@@ -1,0 +1,68 @@
+= Managing CloudHub Specific Settings
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: anypoint platform, permissions, configuring, cloudhub
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+This document describes Anypoint Platform settings relevant to applications deployed to CloudHub.
+
+You can manage these settings from the xref:access-management::index.adoc[Access Management] section in your Anypoint Platform.
+
+[NOTE]
+====
+Depending on your user's entitlements, you might not be able to perform these changes. +
+Make sure your account has the roles *Cloudhub administratrator* or *Organization Administrator*.
+====
+
+== Managing Regions
+
+If Global Deployment is enabled on your account, you can also set the *Default Region*. The region auto-populates in the deployment screen settings for all applications deployed by users in your organization, and it can be adjusted at the application level if necessary for individual deployments. Access this menu by clicking the gear icon next to your user name at the top of the screen and then picking the *CloudHub* link, under SETTINGS in the left menu.
+
+image::geargeneral.png[GearGeneral]
+
+[NOTE]
+If you don't currently have Global Deployment enabled on your account but would like it, please contact your account manager.
+
+[TIP]
+See xref:cloudhub-architecture.adoc#global-worker-clouds[available regions] for a list of available regions.
+
+== CloudHub Subscription
+
+When you first sign up for CloudHub, you're automatically added to the Free plan (subscription level). To upgrade to a paid plan, please contact your account manager.
+
+To see your subscription level and usage, click the gear icon at the top of the screen and click *Subscription*:
+
+image::subscription.png[Subscription]
+
+The following *Subscription* example shows the use of 13.1 of possible 20 vCores in the Production environment and 2 of 20 vCores in use in the Sandbox environment: +
+
+image::subscriptionlevel.png[SubscriptionLevel]
+
+[NOTE]
+--
+*The Number of Workers Is Not the Same as the Number of Applications* +
+Note that there is not a 1:1 relationship between workers and applications. For more information on Worker Sizing, see xref:cloudhub-fabric.adoc[CloudHub Fabric] and xref:deploying-to-cloudhub.adoc#worker-sizing[Deploying to CloudHub].
+--
+
+[TIP]
+--
+Only running applications count for vCores processing usage. +
+`Stopped` applications do not consume vCore availability.
+--
+
+== Changing Your Plan
+
+To change your plan, you can contact your account representative or file a support ticket.
+
+== See Also
+
+* For more on managing environments see xref:access-management::environments.adoc[Environments].
+
+* Learn more about xref:deploying-to-cloudhub.adoc[Deploying to CloudHub].
+
+* Review the CloudHub http://www.mulesoft.com/cloudhub/pricing[plans and pricing].

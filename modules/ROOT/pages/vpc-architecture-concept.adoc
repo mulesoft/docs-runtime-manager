@@ -1,0 +1,33 @@
+= About VPC Network Architecture
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+A VPC is a logically private and isolated network hosted inside CloudHub. You can connect your private intranet to your CloudHub VPC as if they were all part of a single, private network. +
+The VPC configuration exposes the DNS record "mule-worker-internal-<app-name>.cloudhub.io". This is a DNS A record which includes the IP addresses of all your workers. This DNS record cannot be accessed from outside your VPC.
+
+Each VPC allows you to configure firewall rules to check inbound connections directly to your workers. +
+Four firewall rules are created by default: 2 rules allowing your private address space through ports 8091 and 8092, and 2 rules that whitelist external requests proxied by CloudHub's shared load balancer through ports 8081 and 8092. +
+All traffic that is not whitelisted in a firewall rule, is blocked by default.
+
+The graphic below shows a default VPC architecture:
+
+image::vpc-architecture-concept-31808.png[]
+
+Additionally you can configure a dedicated load balancer inside your VPC. +
+This service allows you to  provide custom certificates and optionally enforce two-way SSL client authentication, and  configure proxy rules that map your applications to custom domains, enabling you to for example host everything under a single vanity domain.
+
+A VPC architecture with a dedicated load balancer would look like this:
+
+image::vpc-architecture-concept-6aac3.png[]
+
+A CloudHub Dedicated Load Balancer is assigned to a particular VPC. The dedicated load balancer then routes traffic to that particular VPC within the particular service region of the VPC.
+
+Each Dedicated Load Balancer has a DNS A Record "<lb-name>.lb.anypointdns.net" resolving to 2 Public IP addresses of its two instances. +
+Through your DNS provider, you can add a CNAME record pointing to this A record and use your own domain names to access. This DNS A record can also be reached from outside the VPC. +
+Additionally a CloudHub Dedicated Load Balancer has an internal domain name to be used by applications and clients within the VPC. The structure is "internal-<lb-name>.lb.anypointdns.net".
+
+
+== See Also
+
+* xref:resolve-private-domains-vpc-task.adoc[To Resolve Private Domains in Your Internal Network]

@@ -1,0 +1,31 @@
+= To Configure Schedule Management for an Application (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+If a scheduled job is missed (not triggered) one or more times because the application is down, Runtime Mnager triggers the job when the application restarts.
+
+The scheduler reads a schedule job configuration every time it is run. This means that if you update the schedule time, the change is not immediate. The job executes using the original configuration. The scheduler will pick up the next setting for the next run. To have your changes applied immediately, run your jobs after every schedule update.
+
+
+== Prerequisites
+
+Before performing the following procedure, ensure that you have deployed an application that includes one or more polling element. When deploying an application, Runtime Manager synchronizes your schedules automatically, overriding any synchronize property set on the flows containing the polling scopes. You do not have to perform any additional configuration. After deploying an application schedulers are enabled by default.
+
+== Configuring Schedule Management for an Application
+
+. From Anypoint Platform, click Runtime Manager.
+. Click Applications.
+. Click Manage Application, then click Schedulers
+. Select the Scheduler you want to configure. You can perform the following:
++
+* Enable or disable the scheduler.
+* Configure how often the scheduler runs.
+* Configure when the next run of the scheduler.
+
+. Click Update.
+
+== See Also
+
+* xref:hybrid-schedule-mgmt.adoc[About Schedule Management (Hybrid)]
+* [Quartz Library - Used for Cron-type schedulers](http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html)

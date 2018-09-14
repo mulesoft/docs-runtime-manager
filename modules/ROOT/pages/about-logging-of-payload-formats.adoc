@@ -1,0 +1,157 @@
+= About Logging of Payload Formats
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+keywords: analytics, monitoring, splunk, elk, elastisearch, logstash, kibana, logs, mule events, logging, apy analytics, metrics, traceability, arm, anypoint runtime manager
+
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+In order to send message payload data xref:sending-data-from-arm-to-external-analytics-software.adoc[to external analytics software], it must first be serialized and converted to text.
+
+Some payload formats can't be converted to plain text. Because of this, the Runtime Manager Agent differentiates formats accordingly and only converts those that are considered to work.
+
+When the payload format isn't of a convertible type, the agent only passes on the full qualified name of the payload class type, not its content.
+
+[WARNING]
+The information on this document only applies as of version xref:release-notes::runtime-manager-agent/runtime-manager-agent-1.6.3-release-notes.adoc[1.6.3] of the Runtime Manager agent. Prior versions attempt to convert all formats, causing failures on some.
+
+== Default Conversion Behavior
+
+The Runtime Manager agent only passes on payload messages where the *Converted to String* column reads `TRUE` in the table below:
+
+[%header,cols="15,35,25,20"]
+|===
+|Extension |	Kind of document|	MIME Type|	Converted to String
+|.epub	|Electronic publication (EPUB)|	application/epub+zip|	FALSE
+|.jar	|Java Archive (JAR)	|application/java-archive|	FALSE
+|.js	|JavaScript (ECMAScript)|	application/javascript|	TRUE
+|.json	|JSON format|	application/json|	TRUE
+|.doc	|Microsoft Word|	application/msword|	FALSE
+|.arc	|Archive document (multiple files embedded)|	application/octet-stream|	FALSE
+|.bin	|Any kind of binary data|	application/octet-stream|	FALSE
+|.ogx	|OGG|	application/ogg|	FALSE
+|.pdf	|Adobe Portable Document Format (PDF)|	application/pdf|	FALSE
+|.rtf	|Rich Text Format (RTF)|	application/rtf|	TRUE
+|.azw	|Amazon Kindle eBook format|	application/vnd.amazon.ebook|	FALSE
+|.mpkg	|Apple Installer Package|	application/vnd.apple.installer+xml|	FALSE
+|.xul	|XUL|	application/vnd.mozilla.xul+xml|	TRUE
+|.xls	|Microsoft Excel|	application/vnd.ms-excel|	FALSE
+|.ppt	|Microsoft PowerPoint|	application/vnd.ms-powerpoint|	FALSE
+|.odp	|OpenDocuemnt presentation document|	application/vnd.oasis.opendocument.presentation|	FALSE
+|.ods	|OpenDocuemnt spreadsheet document|	application/vnd.oasis.opendocument.spreadsheet|	FALSE
+|.odt	|OpenDocument text document|	application/vnd.oasis.opendocument.text|	FALSE
+|.vsd	|Microsoft Visio	|application/vnd.visio|	FALSE
+|.7z	|7-zip archive	|application/x-7z-compressed|	FALSE
+|.abw	|AbiWord document	|application/x-abiword|	FALSE
+|.bz	|BZip archive	|application/x-bzip|	FALSE
+|.bz2	|BZip2 archive	|application/x-bzip2|	FALSE
+|.csh	|C-Shell script	|application/x-csh|	TRUE
+|.rar	|RAR archive	|application/x-rar-compressed|	FALSE
+|.sh	|Bourne shell script	|application/x-sh|	TRUE
+|.swf	|Small web format (SWF) or Adobe Flash document|	application/x-shockwave-flash|	FALSE
+|.tar	|Tape Archive (TAR)|	application/x-tar|	FALSE
+|.xhtml	|XHTML|	application/xhtml+xml|	TRUE
+|.xml	|XML|	application/xm|l	TRUE
+|.zip	|ZIP archive|	application/zip|	FALSE
+|.aac	|AAC audio file|	audio/aac|	FALSE
+|.mid .midi|	Musical Instrument Digital Interface (MIDI)|	audio/midi|	FALSE
+|.oga	|OGG audio|	audio/ogg|	FALSE
+|.weba	|WEBM audio|	audio/webm|	FALSE
+|.wav	|Waveform Audio Format|	audio/x-wav|	FALSE
+|.ttf	|TrueType Font|	font/ttf|	FALSE
+|.woff	|Web Open Font Format (WOFF)|	font/woff|	FALSE
+|.woff2	|Web Open Font Format (WOFF)|	font/woff2|	FALSE
+|.gif	|Graphics Interchange Format (GIF)|	image/gif|	FALSE
+|.jpeg .jpg|	JPEG images|	image/jpeg|	FALSE
+|.svg	|Scalable Vector Graphics (SVG)|	image/svg+xml|	TRUE
+|.tif |.tiff	Tagged Image File Format (TIFF)|	image/tiff|	FALSE
+|.webp	|WEBP image|	image/webp|	FALSE
+|.ico	|Icon format|	image/x-icon|	FALSE
+|.ics	|iCalendar format|	text/calendar|	TRUE
+|.css	|Cascading Style Sheets (CSS)|	text/css|	TRUE
+|.csv	|Comma-separated values (CSV)|	text/csv|	TRUE
+|.htm |.html	HyperText Markup Language (HTML)|	text/html|	TRUE
+|.txt	|Plain Text|	text/plain|	TRUE
+|.3gp	|3GPP audio/video container	|video/3gpp audio/3gpp if it doesn't contain video|	FALSE
+|.3g2	|3GPP2 audio/video container	|video/3gpp2 audio/3gpp2 if it doesn't contain video|	FALSE
+|.mpeg	|MPEG Video	|video/mpeg|	FALSE
+|.ogv	|OGG video	|video/ogg|	FALSE
+|.webm	|WEBM video	|video/webm|	FALSE
+|.avi	|AVI: Audio Video Interleave|	video/x-msvideo|	FALSE
+|	|Multipart|	"multipart/mixed, multipart/alternative, multipart/digest multipart/parallel"	|FALSE||
+|===
+
+
+
+== Customizing Conversion Behavior
+
+You can override the default behavior make the agent forward all payload formats or none. This is achieved by adding certain properties to the `conf/mule-agent.yml` file.
+
+You may want to force the exclusion of certain formats from the external logs. This may be because of security concerns around shearing certain types of data:
+
+
+.Force exclusion on a specific application
+[source,yaml,linenums]
+----
+    mule.agent.tracking.service:
+        globalTrackingLevel: DEBUG
+        enabled: true
+        trackedApplications:
+            - appName: someApp
+              trackingLevel: DEBUG
+              payloadExcluded: true
+----
+
+.Force exclusion globally
+[source,yaml,linenums]
+----
+    mule.agent.tracking.service:
+        globalTrackingLevel: DEBUG
+        enabled: true
+        globalPayloadExclusion: true
+----
+
+You may also want to force the conversion and forwarding of formats that are considered to not be convertible.
+
+[WARNING]
+Note that by doing this there's a risk of breaking the payload.
+
+
+
+.Force inclusion on a specific application
+[source,yaml,linenums]
+----
+    mule.agent.tracking.service:
+        globalTrackingLevel: DEBUG
+        enabled: true
+        trackedApplications:
+            - appName: someApp
+              trackingLevel: DEBUG
+              forcePayloadInclusion: true
+----
+
+.Force inclusion globally
+[source,yaml,linenums]
+----
+    mule.agent.tracking.service:
+        globalTrackingLevel: DEBUG
+        enabled: true
+        forceGlobalPayloadInclusion: true
+----
+
+
+
+
+== See Also
+
+* xref:managing-servers.adoc[Managing Servers]
+* xref:monitoring.adoc[Monitoring Applications]
+* xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
+* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
+* xref:runtime-manager-api.adoc[REST APIs]

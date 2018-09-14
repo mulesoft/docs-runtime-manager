@@ -1,0 +1,27 @@
+= Salesforce Developer Account Setup
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, salesforce, arm, runtime manager
+
+To set up a free developer Salesforce account:
+
+== Register
+
+Go to link:http://www.developerforce.com/events/regular/registration.php and register.
+
+== Reset Your Security Token
+
+To reset:
+
+. After logging in to Salesforce, go to Setup.
++
+image::sfdc-setup-1.png[SFDC-Setup-1]
++
+. Select "Reset Security Token" from My Personal Information>Reset My Security Token
++
+image::sfdc-resetsecuritytoken.png[SFDC-ResetSecurityToken]
++
+. An email is sent to you with your new Security Token.
++
+Salesforce uses password+securitytoken for API authentication.

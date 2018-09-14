@@ -1,0 +1,24 @@
+= About Servers, Server Groups, and Clusters
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, application, server, server group, on-premise, runtime manager, arm, cluster, clusters
+
+Using Runtime Manager, you can register and set up the properties of servers, server groups, and clusters that reside on-premises. After setting up a server, you can select it as the deployment target for your applications.
+
+== Server Groups and Clusters
+
+Both server groups and clusters run applications in multiple distributed nodes.  When using a server group, instances of the applications are completely isolated from each other. In a cluster configuration, the nodes are aware one another and share common information and synchronize statuses.
+
+== Alerts
+
+You can set up email alerts that are sent whenever certain events occur to your servers, such as a server being disconnected, or a server being removed from a cluster. These alerts may be linked to a specific server or to all of them. See xref:alerts-on-runtime-manager.adoc[Alerts] for instructions on how to do this.
+
+== See Also
+
+* xref:runtime-manager-switch-env.adoc[To Switch Environments using Runtime Manager]
+* xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
+* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
+* xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]
+* xref:runtime-manager-api.adoc[REST APIs]

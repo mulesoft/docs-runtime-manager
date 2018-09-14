@@ -1,0 +1,70 @@
+= Update Application Metadata
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, api, update, metadata, workers, put
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+[TIP]
+This document deals with calling the xref:cloudhub-api.adoc[CloudHub API]. For instructions on how to perform these same tasks more easily via the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub] and its child pages.
+
+The PUT method, specified with the `/api/applications/{domain}` resource (where `{domain}` is the application domain), updates your application metadata, including the number of workers and system properties. You can also use it to update an existing application. For information on how to update you application, see xref:managing-applications-on-cloudhub.adoc[Updating Your Application].
+
+The update operation can update the workers, properties, muleVersion, and filename properties. Properties which are not specified are not updated.
+
+*Example Request:*
+
+[source,json,linenums]
+----
+PUT https://anypoint.mulesoft.com/cloudhub/api/applications/yourdomain
+Content-Type: application/json
+
+{
+  "workers" : 1,
+  "properties" : {
+     "your.system.property" : "some.value"
+  },
+  "muleVersion" : "3.7.0",
+  "filename" : "myapp.zip"
+}
+----
+
+*Example Response:*
+
+[source,json,linenums]
+----
+200
+Content-Type: application/json
+Location: https://anypoint.mulesoft.com/cloudhub/api/applications/yourdomain
+
+{
+  "workers":1,
+  "domain":"yourdomain",
+  "fullDomain":"yourdomain.cloudhub.io",
+  "hasFile":false,
+  "muleVersion":"3.7.0",
+  "properties" : {
+     "your.system.property" : "some.value"
+  },
+  "status":"DEPLOYED"
+}
+----
+
+[TIP]
+====
+Check out the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal] of the CloudHub API to see an interactive reference of all the supported resources, methods, required properties and expected responses.
+
+In the link above, search among other Mule APIs for the "CloudHub" API and click on its latest version.
+====
+
+== See Also
+
+* xref:index.adoc[Runtime Manager]
+* xref:cloudhub.adoc[CloudHub]
+* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:monitoring.adoc[Monitoring Applications]

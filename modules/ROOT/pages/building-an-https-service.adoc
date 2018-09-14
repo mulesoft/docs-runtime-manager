@@ -1,0 +1,130 @@
+= Building an HTTPS Service
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: runtime manager, arm, https, cloudhub
+
+// image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+// image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+// image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+// image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+CloudHub supports building HTTPS/SSL based services so you can be ensured of your data confidentiality.
+
+[NOTE]
+--
+The configuration steps shown in this document are meant for deploying your app to CloudHub. If you instead intend to deploy your app locally, see xref:3.8@mule-runtime::tls-configuration.adoc[TLS Configuration]. +
+The xref:deployment-strategies.adoc[Deployment Strategies] documentation offers a closer look at how the configuration should differ between each deployment scenario.
+--
+
+This tutorial builds on existing tutorials, so to begin, build a service using the xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub tutorial].
+
+You can now modify your existing service to use HTTPS as detailed in the following steps.
+
+. Generate a keystore if you don't have one already.
+:: You can do this using the command line and the keytool utility from the JDK.
++
+[IMPORTANT]
+--
+To generate a self signed certificate now you must specify the hostname in your command, the property 'SAN=DNS:localhost,IP:127.0.0.1' is key in the example below
+--
++
+[source,text,linenums]
+----
+keytool -genkeypair -keystore keystore.jks   -dname "CN=localhost, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown"  -keypass password  -storepass password  -keyalg RSA  -sigalg SHA1withRSA  -keysize 2048  -alias mule  -ext SAN=DNS:localhost,IP:127.0.0.1 -validity 9999
+----
++
+This command creates a file named `keystore.jks`. Before proceeding, verify that this file exists and appears in the folder `src/main/resources`.
+
+. Configure an HTTPS connector inside your Mule configuration:
++
+[source,xml,linenums]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+    xmlns:spring="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd">
+    <http:listener-config name="HTTPS_Listener_Configuration" protocol="HTTPS" host="0.0.0.0" port="${https.port}" doc:name="HTTP Listener Configuration">
+        <tls:context>
+            <tls:key-store path="keystore.jks" password="password" keyPassword="${keystore.password}"/>
+        </tls:context>
+    </http:listener-config>
+...
+----
++
+
+. Configure any host IP addresses you want to use HTTPS on with the HTTPS scheme and the *`${https.port}`* variable for the port.
+:: Make sure to include a reference to the HTTPS global connector configuration. For example:
++
+[source,xml,linenums]
+----
+<http:listener config-ref="HTTPS_Listener_Configuration" path="hello" doc:name="HTTP"/>
+----
+
+To make HTTPS requests to external addresses, configure an HTTP Requester using your required TLS configuration:
+
+[source,xml,linenums]
+----
+ <http:request-config name="https.request" protocol="HTTPS" host="0.0.0.0" port="${https.port}" doc:name="HTTP Request Configuration">
+        <tls:context>
+            <tls:key-store path="keystore.jks" password="password" keyPassword="${keystore.password}"/>
+        </tls:context>
+    </http:listener-config>
+
+...
+
+  <http:request config-ref="https.request" path="some-path" doc:name="HTTPs out" method="GET" followRedirects="true" parseResponse="false"/>
+...
+----
+
+These same configurations can all be easily achieved through the Anypoint Studio UI. For instructions on how that is done, and for more in depth configuration details, see the xref:3.8@mule-runtime::http-connector.adoc[HTTP Connector] documentation.
+
+Your application is now ready to be deployed on CloudHub. You can access your endpoint via the normal HTTPS address, for example: `+https://yourdomain.cloudhub.io+`.
+
+== Services under API Manager Proxies
+
+If you were prompted to download a proxy from API Manager and need to configure it for HTTPS, you can follow the steps mentioned above with the exception that the configuration of the HTTP listener is already templatized for you.
+
+. After importing the proxy project in Studio, select the configuration tab for your proxy flow.
+:: Note that an error is detected by the parser. The flow references an HTTPS connector that is currently commented since some adjustments need to be made.
++
+. Uncomment the http:listener-config block.
+. Fill out the information regarding your keystore: path, pasword and keyPassword.
+:: You may use external properties. Also keep in mind that the path should not include src/main/resources.
++
+Your configuration should look similar to the following:
++
+[source,xml,linenums]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:http="http://www.mulesoft.org/schema/mule/http"
+      xmlns:api-platform-gw="http://www.mulesoft.org/schema/mule/api-platform-gw"
+      xmlns:expression-language="http://www.mulesoft.org/schema/mule/expression-language-gw"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/schema/mule/api-platform-gw/current/mule-api-platform-gw.xsd
+http://www.mulesoft.org/schema/mule/expression-language-gw http://www.mulesoft.org/schema/mule/expression-language-gw/current/mule-expression-language-gw.xsd">
+
+    <configuration defaultProcessingStrategy="non-blocking" />
+
+    <expression-language:property-placeholder location="config.properties" />
+
+    <api-platform-gw:api apiName="![p['api.name']]" version="![p['api.version']]" flowRef="proxy">
+    </api-platform-gw:api>
+
+    <http:listener-config name="https-lc-0.0.0.0-8082" host="0.0.0.0" port="![p['proxy.port']]" protocol="HTTPS">
+        <tls:context name="tls-context-config">
+            <tls:key-store path="keystore.jks" password="password"
+                           keyPassword="${keystore.password}"/>
+        </tls:context>
+     </http:listener-config>
+...
+----
+
+Apart from these caveats, the configuration is identical to the generic steps above.

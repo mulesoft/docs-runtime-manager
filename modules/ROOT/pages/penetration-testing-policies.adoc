@@ -1,0 +1,48 @@
+= Penetration Testing Policies
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, testing, audit, workers
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+If you are deploying applications to xref:index.adoc[Runtime Manager] or APIs on xref:api-manager::index.adoc[API Manager] and your company's security policies require that you run penetration testing on them, there is a way for you to run these. Given that such tests can interfere with other tenants, penetration testing is only allowed on your own workers. It is not allowed for any other services in the Anypoint Platform.
+
+External vulnerability scans, via an Approved Scanning Vendor (ASV), as described in section 11.2.2 of the PCI standard may be performed at will and do not require prior approval. Penetration testing as described by section 11.3.1 of the PCI standard does require prior approval from MuleSoft.
+
+CloudHub Workers, by default, do not use static IPs and cannot be properly tested as their IPs may change. Please enable static IPs, as described in xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
+
+To perform such testing, you must provide a written request 5 business days in advance to security@mulesoft.com along with:
+
+* Start and end time of testing.
+* Hosts to include in the test.
+* Source IP address or range.
+* Contact information, including a phone number and email, for the individual or team conducting the test.
+* You agree to only audit CloudHub workers, and not audit any other platform services which are common to all tenants.
+* You agree not to audit shared workers.
+* Send an email to security@mulesoft.com upon start and completion of tests.
+* Notify security@mulesoft.com of any vulnerabilities found immediately.
+* You may only audit once a quarter.
+
+After you submit your request, you receive a written authorization from of the MuleSoft team, at which point you may proceed with testing according to your proposed plan.
+
+== See Also
+
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
+* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
+* xref:deployment-strategies.adoc[Deployment Strategies]
+* xref:cloudhub-architecture.adoc[CloudHub architecture]
+* xref:monitoring.adoc[Monitoring Applications]
+* xref:cloudhub-fabric.adoc[CloudHub Fabric]
+* xref:managing-queues.adoc[Managing Queues]
+* xref:managing-schedules.adoc[Managing Schedules]
+* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
+* xref:anypoint-platform-cli.adoc[Command Line Tools]
+* xref:secure-application-properties.adoc[Secure Application Properties]
+* xref:virtual-private-cloud.adoc[Virtual Private Cloud]

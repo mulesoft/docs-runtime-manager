@@ -1,0 +1,32 @@
+= About Clusters (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+A Cluster is a set of servers that act as a single deployment target where instances of the application are aware of one another and share common information and synchronize statuses. An on-premise cluster enables up to 8 servers to participate in a high availability processing unit so that in case one server should fail, another server takes over processing applications. A cluster can run multiple applications.
+
+Before creating a  cluster, you must create each of the Mule runtimes that are part of the cluster. You must download and install the same version of the Mule runtime. The supported versions of these components are:
+
+* Mule runtime, version 3.7.0 and later.
+* Runtime Manager Agent, version 1.1.1 and later.
+
+Before creating a cluster, you must also create each of the servers that connect your Mule runtimes to Runtime Manager.
+
+== Multicast vs Unicast Clusters
+
+A cluster can be created in the Runtime Manager from servers that are already registered with the Runtime Manager console. While configuring a cluster, you can specify either unicast or multicast options for identifying a node within the cluster:
+
+* *Unicast*: A unicast cluster requires that you configure the IP addresses of which nodes to associate together. No special network configuration is necessary other than to indicate which are the server IP addresses that make up the cluster. Each server needs to be in Running status when it is added to a unicast cluster. If a server has multiple interfaces, use the internal IP, the one that allows a node to have a direct communication with other nodes. Clustering across different subnets is not supported.
++
+Mule relies on the IP address as the unique handle for identifying a server, which means it is impossible to have IP addresses dynamically assigned using DHCP for servers on a unicast cluster. If a server is restarted and uses DHCP to get a new IP address, it needs to be rejoined with the cluster using its new IP address.
+
+* *Multicast*: A multicast cluster groups servers that automatically detect each other. Servers that are part of a multicast cluster should be on the same network segment.
++
+One advantage of using multicast is that a server does not need to be running to be configured as a node in a cluster. Another is that you can add nodes to the cluster dynamically without restarting the cluster.
++
+Check with your network administrator to determine if multicast is allowed within your network, as many networks block multicast functionalities.
+
+== See Also
+
+* xref:servers-create.adoc[To Create a Server in Runtime Manager]
+* xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]

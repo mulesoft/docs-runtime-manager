@@ -1,0 +1,23 @@
+= To Delete a Server Group (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+When deleting a server group, consider the following:
+
+* Alert definitions and history for the server group are deleted.
+* Servers assigned to the server group are not deleted. Servers that belong to the deleted group are  displayed in the main server list. They can be used individually or be paired up into other Server Groups or Clusters.
+* Servers assigned to the group are not restarted or shutdown.
+* Applications deployed to the servers in the server group are cloned on each server.
+
+
+== Deleting a Server Group
+
+. From the Runtime Manager *Servers* tab, click a server group entry to display the detail view on the right side of the screen.
+
+. Click the down arrow below the server name and select *Delete group*.
+
++
+image::deletegroup.png[DeleteGroup]
+
+. A prompt appears to be sure you want to continue. Click the check box and click *Delete Server Group*

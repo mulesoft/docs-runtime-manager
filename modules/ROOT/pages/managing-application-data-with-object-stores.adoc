@@ -1,0 +1,151 @@
+= Managing Application Data Storage with Object Stores
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, object stores, arm, runtime manager
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+CloudHub includes application data storage for each application it manages, this data is accessible through Mule's xref:3.8@mule-runtime::mule-object-stores.adoc[Object Store] functionality. This storage can be used to store anything, but two of its main uses are:
+
+* Storing synchronization state:  Your application may need to keep track of the last synchronized record, so that the next time the application synchronizes, it can resume where it left off.
+* OAuth tokens: OAuth enabled connectors can store tokens inside an Object Store with a few lines of configuration code.
+
+Your application can also store custom integration data as well, within the limits outlined below.
+
+*Notes:*
+
+* Object stores are handled in the way described in this document only for applications deployed to CloudHub workers. For applications that you deploy via the Runtime Manager to local servers, you must handle the storage of data in your own repository. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
+
+* All data in an object store is handled by servers in the *US-East zone*, regardless of what zone your application is deployed to. This may impact performance.
+
+
+== Storing and Retrieving Data
+
+To work with application data inside a Mule flow, use the Object Store connector. The connector provides operations to store, retrieve, list, and remove data from a Runtime Manager Object Store.
+
+*Note:* You must specify a unique Partition name in the connector, and to view information in Runtime Manager > Application Data, your connector project must contain an Object Store Reference to the `_defaultUserObjectStore` Spring bean instance.
+
+See:
+
+* https://anypoint.mulesoft.com/exchange/org.mule.modules/mule-module-objectstore/[Object Store connector in Anypoint Exchange].
+* xref:3.8@mule-runtime::object-store-connector.adoc#springbeans[About the Object Store Spring Bean Instances].
+
+=== Storing OAuth Data
+
+Each connector contains instructions on how to use the Object Store module to store and retrieve OAuth tokens. See the "Saving and Restoring State" section in the http://mulesoft.github.com/linkedin-connector/mule/linkedin-config.html#config[LinkedIn connector configuration] documentation for an example.
+
+== Viewing Application Data
+
+To view application data, click your application name in Runtime Manager, click *Manage Application*, and click the *Application Data* tab. This tab contains a list of keys and values. You can view the data as plain text, or as a list.
+
+image::applicationdata.png[]
+
+*Tip:* To make properties secure so that they're not visible using the Runtime Manager UI or anywhere else, see xref:secure-application-properties.adoc[Secure Application Policies].
+
+== Semantics and Storage Limits
+
+The Runtime Manager object store provides read-after-write consistency and the last write wins in terms of updates.
+
+Additionally, Runtime Manager  object store places these limits on your data:
+
+* A maximum of 100,000 keys per application
+* A 768 byte key size
+* A 1 MB value size
+* 1 GB of data per application
+
+== Advanced Information
+
+Internally, Mule has several different types of object stores. Runtime Manager provides an implementation of the user defined object store. This is for runtime information about your application, such as those use cases mentioned above. If you wish to access this object store directly, it can be found internally in the Mule Registry under the `_defaultUserObjectStore`. The Object Store module and connectors use this store to store all their data by default.
+
+== Object Store Example
+
+To write data to the Runtime Manager > Application Data object store:
+
+. In Anypoint Studio, create a new Mule Project. This example names the application `objectstoredemo`.
+. Create an application with at least these components:
++
+image::objectstore-flow.png[]
++
+* *HTTP* connector - Receives the data sent by a *curl* command. +
+Settings: *Host*: `0.0.0.0`, *Port*: `8081`, *Path* (in Basic Settings) to `/store`, *Allowed Methods* set to `POST`
+* *Object to String* - Converts the input to a String. +
+Settings: Leave fields empty.
+* *JSON to Object* - Converts the String to a Java Map object. +
+Settings: Set *Return Class* to `java.util.Map`
+* *ObjectStore* - Stores data in the Runtime Manager Application Data area.
++
+Settings:
++
+In the plus menu:
++
+** You must specify a Partion Name, which can be any unique name.
+** You must set the Object Store Reference to the `_defaultUserObjectStore` value.
+** If you specify a value for entryTtl, values for expirationInterval and maxEntries are also required. You can set entryTtl to 0 for never expire. For *Operation*: `Store`, *Key*: `&#x0023;[payload.key]`, and *Value Reference*: `&#x0023;[payload.value]`
++
+* *Set Payload* - Displays a confirmation prompt that appears after you use the *curl* command. +
+Settings: Set *Settings* to `KEY: &#x0023;[payload.key] AND VALUE: &#x0023;[payload.value] WERE SAVED OK`
++
+The source for this example is:
++
+[source,xml,linenums]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:objectstore="http://www.mulesoft.org/schema/mule/objectstore"
+xmlns:json="http://www.mulesoft.org/schema/mule/json"
+xmlns:http="http://www.mulesoft.org/schema/mule/http"
+xmlns="http://www.mulesoft.org/schema/mule/core"
+xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+xmlns:spring="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core
+http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json
+http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/http
+http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/objectstore
+http://www.mulesoft.org/schema/mule/objectstore/current/mule-objectstore.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0"
+     port="8081" doc:name="HTTP Listener Configuration"/>
+    <objectstore:config name="ObjectStore__Connector" partition="mypartition"
+    entryTtl="0" expirationInterval="42" maxEntries="42"
+    objectStore-ref="_defaultUserObjectStore" doc:name="ObjectStore: Connector"/>
+    <flow name="objectstoreFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration"
+        path="/store" doc:name="HTTP"/>
+        <object-to-string-transformer doc:name="Object to String"/>
+        <json:json-to-object-transformer returnClass="java.util.Map"
+        doc:name="JSON to Object"/>
+        <objectstore:store config-ref="ObjectStore__Connector"
+        key="#[payload.key]" value-ref="#[payload.value]" doc:name="ObjectStore"/>
+        <set-payload value="KEY: #[payload.key] AND VALUE: #[payload.value] WERE STORED__"
+        doc:name="Set Payload"/>
+    </flow>
+</mule>
+----
++
+. Run this application as a Mule application to test it. After the application works, you can stop the application.
+. Export the application and save it as a zip file on your computer. Right-click the project name in Package Explorer,
+click Export > Mule > Anypoint Studio Project to Mule Deployable Archive.
+. Log into Anypoint Platform and click Runtime Manager. Deploy the application and use the zip file that you exported to your computer for the deployed application.
+. Start the deployed application.
+. From a command prompt, run this *curl* command, which sends a JSON-formatted key and value to the   `+http://objectstoredemo.cloudhub.io/store+` example URL:
++
+----
+curl -X POST -H "Content-Type: application/json" -d '{
+    "key": "Test",
+    "value": "Test sent to the object store"
+}' "http://objectstoredemo.cloudhub.io/store"
+----
++
+. In Runtime Manager, click the application's name and click *Application Data*. The data from
+the curl command displays in the Application Data page:
++
+image::objectstore-application-data.png[]

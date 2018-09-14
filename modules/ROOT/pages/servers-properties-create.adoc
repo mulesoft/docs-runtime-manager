@@ -1,0 +1,22 @@
+= To Create a Custom Server Property (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Runtime Manager enables you to define and configure server-side properties. These properties are defined as key/value pairs and are used by the JVM where the server is running. For example, you can set a property called `ENV=qa` that enables you to specify the environment of the server.
+
+Server properties are stored in the `wrapper.conf` file on the remote server.
+
+. From Anypoint Platform, select Runtime Manager.
+. Click Servers.
+. Select the server whose properties you want to configure, then click Manage Server.
+. Click the Properties tab, then Custom Properties.
+. Enter the name of the property in the Key field.
+. Enter the value of the property in the Value field.
+. Click Save.
+
+After creating a custom property, you must restart the server for the new property to be applied to the Mule runtime configuration.
+
+== See Also
+
+* xref:servers-properties-view.adoc[To View Server Properties]

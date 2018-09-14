@@ -1,0 +1,253 @@
+= Managing Deployed Applications
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, managing, monitoring, deploy, runtime manager, arm
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-active.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+After you deploy an application through the Runtime Manager, you can use the console to monitor and manage it while running. Depending on the xref:deployment-strategies.adoc[deployment strategy] used (where the application is deployed to and from what console), there is a different set of possible actions you can perform on it.
+
+[TIP]
+Whether you're using the https://anypoint.mulesoft.com[cloud based] or the Private Cloud Edition of the Anypoint Platform, the features described in this page work identically in both. If you’re interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
+
+This page introduces the basic management tools in the console that are common to both types of deployments:
+
+* <<Start, Restart, Stop, and Delete an Application>>
+* <<Status States>>
+* <<Updating Your Application>>
+* Various xref:monitoring.adoc[monitoring] and xref:troubleshooting.adoc[troubleshooting] functionalities
+
+
+On applications deployed to xref:managing-applications-on-your-own-servers.adoc[your own servers] you can additionally do the following:
+
+* xref:managing-servers.adoc[Manage Servers]
+* xref:managing-servers.adoc[Create Clusters and Server Groups]
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[Send Data from Runtime Manager to External Analytics Software]
+* xref:flow-management.adoc[Manage Individual Flows]
+
+On applications deployed to xref:managing-applications-on-cloudhub.adoc[CloudHub] you can additionally manage the following elements:
+
+* xref:notifications-on-runtime-manager.adoc[Notifications]
+* xref:insight.adoc[Insight]
+* xref:managing-queues.adoc[Queues]
+* xref:managing-schedules.adoc[Schedules]
+* xref:secure-application-properties.adoc[Secure Application Properties]
+* xref:viewing-log-data.adoc[View application log data]
+* xref:worker-monitoring.adoc[Worker Monitoring]
+* xref:managing-application-data-with-object-stores.adoc[Object Stores]
+
+
+== Getting Started
+
+Sign in to the Anypoint Platform and click *Runtime Manager*:
+
+image::deploying-to-your-own-servers-get-to-arm.png[]
+
+The Runtime Manager has two main tabs, *Applications* and *Servers*.
+
+=== Applications Tab
+
+In the Runtime Manager, an application is a Mule Application that is running on a Mule runtime or an API Gateway runtime instance. The instance can be running in CloudHub, in an on-premise server of your organization, in a group of servers, or in a cluster.
+
+In the *Applications* menu you can get a quick view of the applications that are currently deployed and running for your account. Click an entry to display additional information (as shown below), or click *Manage Application* to see the application's xref:monitoring-dashboards.adoc[dashboard] and settings page:
+
+image::amc-manageapplication.png[AMC_ManageApplication]
+
+After you create at least one application, you can see your applications listed here.
+
+[TIP]
+For server groups, an application deployed to the group runs on every server in the group.
+
+=== Servers Tab
+
+[NOTE]
+This tab is only relevant to deploying to servers on-premises. CloudHub workers aren't displayed here.
+
+In Runtime Manager, a server is a Mule or API Gateway instance in a location other than CloudHub (on-premises or in a different cloud server) and that you must first register in the Runtime Manager console. Once registered and configured in this tab, you may deploy your applications to it through the Applications Tab.
+
+image::amc-servers2.png[AMC_Servers]
+
+From the *Servers* tab, by selecting an entry as shown, you can perform these tasks:
+
+* Add a Server (registers the server with the Runtime Manager console)
+* Start Mule or API Gateway
+* Create a Server Group
+* Create a Cluster
+* Add and remove Servers from a Server Group
+* Add and remove Servers from a Cluster
+* Stop an Application on a Server
+* Delete a Server, Server Group or Cluster
+
+
+For more on the options offered by this tab, see xref:managing-servers.adoc[Managing Servers].
+
+=== Switching Environments
+
+After you have multiple environments in your organization, you can switch between them. From any screen in Runtime Manager, you can switch to a different environment by clicking the current environment, displayed in the upper left corner of the screen, and picking another environment.
+
+image::managing-deployed-applications-0e10f.png[]
+
+. Click the current environment in the top left corner
+. Select the environment you want to switch to
+. Click the *switch* button
+
+== Start, Restart, Stop, or Delete an Application
+
+To start, restart, stop, or delete an application, click an application, and click the status down-arrow (the menus differ by Status):
+
+image::amc-restartapp.png[AMC_StopStartDeleteApp]
+
+Click *Start*, *Restart*, *Stop*, or *Delete* as needed. The *Start* command restarts stopped applications, *Restart* resets applications that have already started and if the application is Undeployed, sends the application's zip file to the server to start the application on the server.
+
+[IMPORTANT]
+On CloudHub, after you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before being purged. This allows you to recover the data if needed. Open a support case at: https://support.mulesoft.com[https://support.mulesoft.com] for more information.
+
+[NOTE]
+====
+For applications deployed through PCF:
+
+* *Restart* redeploys your application on the virtual machine
+* *Stop* destroys the virtual machine running the application but retains the entry on the Runtime Manager to keep log continuity.
+* *Undeploy* both destroys the virtual machine running the application and deletes the entry for it on the Runtime Manager
+====
+
+
+
+== Status States
+
+The following states appear in the *Status* column:
+
+
+.Application Status
+[%header,cols="10a,90a"]
+|===
+|Icon |Description
+|image::managing-deployed-applications-a665b.png[] |The application is not running.
+
+
+|image::managing-deployed-applications-515a4.png[] |The application is deploying.
+
+|image:console-overview-green-circle.png[console_overview_green_circle] |The application is running.
+
+|image:console-overview-red-circle.png[console_overview_red_circle] |The application deployment failed.
+
+| image::managing-deployed-applications-ab70d.png[] |The application update failed.
+| image::managing-deployed-applications-de1b7.png[] |The application's status is unknown, as the server is not responding to the platform (only for on-prem deployments)
+
+|===
+
+=== Application Status States
+
+* Deployment Failed - Application stopped running due to a failure state. The cause of the failure appears in the console.
+* Partial - Application is in the process of starting.
+* Started - Application is running.
+* Starting - Application is transitioning into a running state.
+* Stopped - Application stopped.
+* Undeploying - Application has been removed from a server.
+* Undeployed - Application no longer resides in the server.
+* Updated - Application has been updated.
+
+=== Server Status States
+
+* Connected - Server available for use.
+* Created - Server was recently registered into the system and has never been connected.
+* Running - Server is up and running, and accepting requests.
+* Disconnected - Server that is currently unavailable but is registered and ready to connect.
+
+=== Server Groups Status States
+
+* Connected - All servers in the server group are connected.
+* Created - Server group created. This state occurs temporarily after creating a group until Empty asserts.
+* Disconnected - All servers in the server group are unavailable. This state can occur if the network goes down or one or more servers in a group fail.
+* Empty - No servers currently assigned to this group.
+* Partial - One or more servers in the group have differing states.
+* Running - All servers in the server group are running.
+
+=== Cluster Status States
+
+
+[%header,cols="25a,75a"]
+|===
+|Icon
+|Description
+| image:status-green.png[green]
+| Running - all nodes are running
+| image:status-yellow.png[yellow]
+| Partial (x of y running)- some nodes are running and some are down
+| image::managing-deployed-applications-a665b.png[]
+| Disconnected - all nodes are disconnected
+| image:status-black.png[black]
+| Created - a server/node is registered in the platform but never was started
+| image:status-yellow.png[yellow]
+| Running with communication issue - all nodes are running, visibility issues between them
+| image:status-yellow.png[yellow]
+| Partial (x of y running) with communication Issue - some nodes are running some are down, visibility issues between them
+|===
+
+== Applications Dashboard
+
+If you select any of the applications on the Applications tab, a panel opens on the right. Here you will be able to read additional information about the application and access its settings.
+
+image::dashboard-ch.png[dashboard]
+
+What this dashboard displays depends on if your application is deployed on xref:managing-applications-on-cloudhub.adoc[CloudHub] or on xref:managing-applications-on-your-own-servers.adoc[a Mule server]. You will always see the status, the time of the last modification, and the deployed application .zip file, which you can change from this menu through the *Choose File* button. Applications on CloudHub additionally display info about the CloudHub worker they run on. Applications deployed on clusters and server groups additionally display the list of servers and the status of each.
+
+You can also click the *Manage Application* button to access a menu where you can view and configure several more app settings:
+
+image::managing-deployed-applications-38b94.png[]
+
+From there you can also view the *Dashboad* to see the full detail dashboard of your application, see xref:monitoring-dashboards.adoc[Monitoring Dashboards] for more info about what you can see here.
+
+image::managing-deployed-applications-107ad.png[]
+
+
+You can also click on the *Insight* button to see data at a transaction level. See xref:insight.adoc[Insight] for more info about what you can see here.
+
+image::managing-deployed-applications-76124.png[]
+
+[NOTE]
+The Dashboard and insights are features that are currently not available for the Anypoint Platform Private Cloud Edition. See xref:deployment-strategies.adoc[deployment strategies].
+
+== Monitoring Applications
+
+Depending on the xref:deployment-strategies.adoc[deployment strategy] used (where the applications are deployed to, and through what console), different tools exist for monitoring events that may occur on your application and the performance of the servers or virutal servers it runs on. See xref:monitoring.adoc[Monitoring Applications] for more details.
+
+
+== Updating Your Application
+
+If you made changes to your applications and would like to upload a new version, click *Choose file* on the Deployment screen for that application. The new filename appears in italicized text. Click *Apply changes* to use the new file for deployment. Within a few seconds, your application successfully redeploys. While redeploying, the application status indicator changes to blue, and then turns green after the deployment completes. For applications deployed to CloudHub, you can click *Logs* to see a live redeployment of your application.
+
+[TIP]
+If you're deploying your application to a cluster on-premises, Runtime Manager installs the new app version progressively on each server to keep the service working with no downtime throughout the process.
+
+== Alerts
+
+You can set up email alerts that are sent whenever certain events occur to your application, such as deployment failures or application deletions. These alerts may be linked to a specific application or to all of them. See  xref:alerts-on-runtime-manager.adoc[Alerts] for instructions on how to do this.
+
+All users of the Anypoint Platform, even those without permissions to create alerts, can then switch the alerts that are already created into an active or inactive state for their user. This determines what email alerts will reach their inbox.
+
+
+[NOTE]
+Switching an alert off from this view only switches it off for the user that is currently logged in, other users may still have it active.
+
+
+== See Also
+
+Additional tools for managing your applications:
+
+* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:managing-servers.adoc[Managing Servers] contains information about how to register servers, server groups and clusters to be able to deploy to them and how to administer them.
+* See how you can xref:sending-data-from-arm-to-external-analytics-software.adoc[Send data from Runtime Manager to External Analytics Software]
+* xref:deployment-strategies.adoc[Deployment Strategies]
+* xref:monitoring.adoc[Monitoring Applications] shows you how you can set up email alerts for whenever certain events occur with your application, workers or servers
+* xref:cloudhub-fabric.adoc[CloudHub Fabric]
+* xref:managing-queues.adoc[Managing Queues]
+* xref:managing-schedules.adoc[Managing Schedules]
+* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
+* xref:secure-application-properties.adoc[Secure Application Properties]
+* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:penetration-testing-policies.adoc[Penetration Testing Policies]

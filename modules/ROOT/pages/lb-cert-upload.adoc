@@ -1,0 +1,31 @@
+= About Uploading Certificates to a Dedicated Load Balancer
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The certificate that you upload to your Load Balancer must be contained in one _pem_ encoded and unencrypted file.
+This file must contain the entire certificate chain ordered sequentially, as shown in this example:
+
+[%header,cols="30a,70a"]
+|===
+| Certificate | Example
+| The Primary Certificate | -----BEGIN CERTIFICATE----- +
+(Your Primary SSL certificate: your_domain_name.crt) +
+-----END CERTIFICATE-----
+| The Intermediate Certificate | -----BEGIN CERTIFICATE----- +
+(Your Intermediate certificate: DigiCertCA.crt) +
+-----END CERTIFICATE-----
+|===
+
+It is not required to include the root certificate in the certificate chain. However, you must include the ASCII armor in each certificate.
+
+
+When creating a load balancer, you can include an SSL Endpoint using Runtime Manager or using the `cloudhub load-balancer create` command from the CLI.
+
+After creating a load balancer, you can upload an SSL Endpoint using Runtime Manager or using the `cloudhub load-balancer ssl-endpoint add` command from the CLI.
+
+== See Also
+
+* xref:lb-create-arm.adoc[To Create a Load Balancer using Runtime Manager]
+* xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[cloudhub load balancer create]
+* xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]

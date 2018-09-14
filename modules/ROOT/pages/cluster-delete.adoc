@@ -1,0 +1,29 @@
+= To Delete a Cluster (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Delete a Cluster
+
+When deleting a cluster, consider the following:
+* Alert definitions and history for the cluster are deleted.
+* Servers assigned to the cluster are not deleted.
+* Servers assigned to the cluster are restarted.
+* Applications deployed to the servers in the cluster are removed.
+
+To delete a cluster from Runtime Manager:
+
+. From the Runtime Manager *Servers* tab, click the name of a cluster to show details.
+
++
+image::server-details.png[]
+
+. Click the down arrow next to the cluster status and click *Delete Cluster*:
+
++
+image::down-arrow-status.png[DeleteServerDownArrow]
+
+. A prompt appears to be sure you want to continue. Click the check box and click *Delete Cluster*:
+
++
+image::deleteacluster.png[DeleteACluster]

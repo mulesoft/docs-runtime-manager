@@ -1,0 +1,42 @@
+= To View Activity About a Server Using the Dashboard (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The servers dashboard provides information about server performance, including heap memory and CPU performance. It also provides the following information:
+
+* A list of applications deployed to the server
+* The status of each application
+* Mule messages for each application
+* Error messages for each application
+
+If you select any of the servers, server groups or clusters on the Servers tab, a panel opens on the right. Here you will be able to read additional information about it and access some configuration items.
+
+image::dashboard-server.png[dashboard]
+
+What this dashboard displays depends on whether it's a server, server group, or cluster and on what runtime versions are in use. You will always see the status, the Mule version installed in it (server groups and clusters must all have the same Mule version installed to work together), the Agent version in use, in case of clusters and server groups you will also see the type (unicast or multicast).
+
+
+A series of tabs in the bottom allow you to see details about:
+
+* The applications running and the status of each
+* Clusters and server groups display the list of servers and the status of each
+* Any plugins, such as xref:sending-data-from-arm-to-external-analytics-software.adoc[Send data to External Analytics Software]
+
+On all panels, two buttons are displayed:
+
+* The *View Dashboard* button, which takes you to the server's dashboard page. This page displays more detailed performance metrics and the evolution of these over time, see xref:monitoring-dashboards.adoc#the-dashboard-for-a-server[Monitoring Dashboards] for more on this.
++
+image::managing-servers-7fc41.png[]
++
+[NOTE]
+Dashboards are a feature that isn't currently available on the Anypoint Platform Private Cloud Edition
+
+* The *Manage Server*  / *Manage Group* / *Manage Cluster* button, which takes you to the <<Settings Page>>.
+
++
+image::managing-servers-ebc52.png[]
+
+== See Also
+
+* xref:servers-create.adoc[To Create a Server]

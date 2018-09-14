@@ -1,0 +1,25 @@
+= To Create a Load Balancer (Anypoint Platform CLI)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+You can create a dedicated load balancer using the Anypoint Platform CLI.
+
+== Prerequisites
+
+To create a load balancer, ensure that you perform the following:
+
+* Ensure that your profile is a a member of the administrator role of in the organization where you are creating the load balancer.
+* Create a Virtual Private Cloud (VPC) in the organization where you want to create a load balancer.
+* Create at least one certificate and private key for your certificate.
+
+== Creating a Load Balancer
+
+To create a load balancer from the CLI, use the `cloudhub load-balancer create`. This command enables you to specify the VPC where the load balancer is created. It also enables you to specify the certificate and private keys used by the load balancer.
+
+== See Also
+
+* xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[cloudhub load-balancer create]
+* xref:lb-cert-upload.adoc[About Uploading Certificates]
+* xref:access-management::index.adoc[Access Management]
+* xref:index.adoc[To Create a Load Balancer using Runtime Manager]

@@ -1,0 +1,14 @@
+= About Dedicated Load Balancer SSL Endpoints and Certificates
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+By providing a certificate and private key pair, you can configure an SSL endpoint for your load balancer to serve to clients.
+Each load balancer can have multiple and independent SSL endpoints. Each one is identified by their server certificate common name.
+
+A dedicated load balancer must have at least one certificate associated to it.  This requires that at least one SSL endpoint must be configured when creating the load balancer.
+
+== See Also
+
+* xref:lb-cert-upload.adoc[About Uploading Certificates]
+* xref:lb-cert-validation.adoc[About Certificate Validation]

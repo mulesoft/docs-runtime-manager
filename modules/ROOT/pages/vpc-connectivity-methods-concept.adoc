@@ -1,0 +1,30 @@
+= About VPC Connectivity Methods
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+You can connect a Virtual Private Cloud to your private network using any of these methods:
+
+== IPsec tunnel with network-to-network configuration.
+
+This method is used to connect your on-prem data centers to your CloudHub VPC. It uses  an IPsec VPN tunnel which, in general, is the recommended solution for VPC to on-premise connectivity. It provides a standardized, secure way to connect, which integrates well with existing IT infrastructure such as routers/appliances.
+
+image::chvpc02.png[CHVPC02]
+
+==  VPC Peering
+
+Pairs your private Amazon VPC directly to your CloudHub VPC.
+
+image::chvpc05.png[CHVPC05]
+
+This method requires that your AWS and CloudHub VPC are located in the same region.
+
+== CloudHub Direct Connect.
+
+If your network connects to your Amazon VPC using Amazon Direct Connect, you can create a hosted virtual interface to your CloudHub VPC.
+
+image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
+
+== See Also
+
+* xref:to-request-vpc-connectivity.adoc[To Request VPC Connectivity to Your Network]

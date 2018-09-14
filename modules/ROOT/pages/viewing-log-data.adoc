@@ -1,0 +1,167 @@
+= Viewing Log Data
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, logging, enhanced log management, r44, arm, runtime manager
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+CloudHub provides access to log data that includes deployment messages and events for each worker.
+
+
+[NOTE]
+====
+Logs and diagnostics are a feature that is currently only available for applications deployed to CloudHub workers. They are not available for applications that you deploy via the Runtime Manager to local servers, in those cases you can send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software]. See xref:deployment-strategies.adoc[Deployment Strategies] and xref:monitoring.adoc[Monitoring Applications] for more details.
+
+Applications deployed to Pivotal Cloud Foundry (PCF) don't expose any log data through Runtime Manager, but you can see event logs on Pivotal's UI.
+====
+
+[IMPORTANT]
+====
+After you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before being purged. This allows you to recover the data if needed. Open a support case at: https://support.mulesoft.com[https://support.mulesoft.com] for more information.
+====
+
+
+== View Logs
+
+. Open the management options of an application that's deployed to CloudHub
+. Click *Logs*.
+
++
+image::elmstart.png[ELMStart]
+
+. The Filters section on the right of the logging screen lets you selectively view the output by day, Deployment, System Log, and Workers. You can unapply a filter by unticking the checkbox next to a date.
++
+image::elmfilters.png[ELMfilters]
+
+. You can also search for log content, or click *Advanced* to search for a time or day, or date range, or by message priority. After you choose, click *Apply*. For more information, see <<Advanced Search, Advanced Search>>.
++
+image::elmadvancedsearch.png[ELMAdvancedSearch]
+
+
+
+== Download Logs
+
+There are separate logs for each worker in each deployment that can be downloaded.
+
+In the filters section on the right, find the date and worker you want to view, click the download icon next to it and select *Logs*.
+
+image::downloadlogs.png[DownloadLogs]
+
+The log file is a text file with `.log` file type and named in the format of: _deployment-ID_`.`_instance-ID_`.log`. You can view this file with a text editor.
+
+
+== Download Diagnostics
+
+Diagnostics display the Java thread dump of each CloudHub worker in each of your deployments. They indicate the current state of the server, useful for debugging and support.
+
+[NOTE]
+For apps that run on a Mule version prior to 3.8.0 (excluding version 3.7.4), diagnostics aren't available.
+
+
+In the filters section on the right, find the date and worker you want to view, click the download icon next to it and select *Diagnostics*.
+
+The log file is a text file with the .txt file type. You can view this file with a text editor.
+
+
+[TIP]
+====
+On the diagnostics, the instance ID of a worker is set as deployment id + worker number (0 to 4)
+
+You can also download a diagnostics file directly, without having to go through the UI, by accessing the following URL:
+
+`api/v2/applications/appName/instances/instanceId/diagnostics`
+====
+
+
+== About Log Persistence
+
+CloudHub stores logs of up to 100 MB per app & per worker or for up to 30 days, whichever limit is hit first.
+
+[IMPORTANT]
+====
+After you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before being purged. This allows you to recover the data if needed. https://support.mulesoft.com[Contact Support] for more information.
+====
+
+== About log Timezones
+
+CloudHub stores log data in Universal Time (UTC); however, the console displays the log using your computer's local time zone.
+
+
+== Search Logs
+
+
+Advanced search lets you search logs by date and priority.
+
+To access it, click *Advanced* in the search field.
+
+image::elmadvsearch.png[ELMAdvSearch]
+
+=== Search by Date and Time
+
+The *Date & Time* filter lets you specify a date range to search the log. Possible values are:
+
+* Last hour
+* Last 24hrs
+* Last week
+* Last month
+
+=== Search by Message Priority
+
+The Priority filter lets you view specific events in the log. You can also specify different priorities by typing `priority<type>` in the search box, as shown in the Command column in the table.
+
+Possible values are:
+
+[%header,cols="3*a"]
+|===
+| Value
+| Description
+| Command
+
+| All Priorities
+| List all messages
+| N/A
+
+| ERROR
+| List only error messages, such when an exception occurs.
+| priority:ERROR
+
+| FATAL
+| List only fatal messages for when an application fails
+| priority:FATAL
+
+| INFO
+| List informative messages
+| priority:INFO
+
+| SYSTEM
+| List messages about application and worker startup
+| priority:SYSTEM
+
+| CONSOLE
+| List message about console events such as setting the objectstore
+| priority:CONSOLE
+
+| WARN
+| List warning messages
+| priority:WARN
+
+| DEBUG
+| List debugging messages
+| priority:DEBUG
+
+|===
+
+=== Wildcard Searching
+
+You can also filter log data by entering search terms into the search box at the top of the log page that match results in the log message. You can search for any exact term in the log message as well as a few common quantifiers for wildcard searching:
+
+* `?` - The question mark matches zero or one of the preceding element.
+* `*` - The asterisk matches zero or more of the preceding element.
+
+== See Also
+
+* xref:monitoring.adoc[Monitoring Applications]

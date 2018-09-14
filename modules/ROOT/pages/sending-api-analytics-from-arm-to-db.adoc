@@ -1,0 +1,262 @@
+= Sending API Analytics from Runtime Manager to External Databases
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+keywords: analytics, monitoring, logs, mule events, logging, apy analytics, metrics, traceability, arm, anypoint runtime manager, db, sql, mysql, oracle, jdbc
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+By simply configuring a few settings, the HTTP API Analytics produced by your applications running on the API Gateway runtime can be easily stored in a database.
+
+[NOTE]
+====
+Sending data to third party software is a feature that is currently only available for applications deployed to local servers. It is not available for applications that you deploy via the Runtime Manager to xref:cloudhub.adoc[CloudHub]. See xref:deployment-strategies.adoc[Deployment Strategies].
+////
+It's not available either for applications deployed to PCF
+////
+====
+
+
+To see how to send this same information to Splunk, ELK or other third party software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software].
+
+== Prerequisites
+
+Please make sure you have the following software installed:
+
+* API Gateway Standalone – Version 2.1.0 or above
+* The Runtime Manager Agent Plugin version 1.3.0 or above
+
+
+== Install the Runtime Manager Agent
+
+First you must install the Runtime Manager Agent, which is in charge of sending messages out of mule. In order to send event information to third party software, you need to have version *1.3.0* or newer of the Runtime Manager Agent.
+See xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent].
+
+
+== Install API Analytics Tracking Database Internal Handlers
+
+Download the API Analytics Tracking Database Internal Handlers from *http://mule-agent.s3.amazonaws.com/1.5.1/mule-agent-internal-handlers-db-1.5.1.zip[here]* and unzip them on `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules` folder.
+
+== Agent Configurable Fields
+
+Once you have the latest Runtime Manager Agent and the API Analytics Tracking Database Internal Handlers installed on your API Gateway Standalone server you enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
+
+Below we provide example configurations for MySQL Server, ORACLE and Microsoft SQL Server.
+
+Although the required fields are `driver`, `jdbcUrl`, `user` and `pass`. You can also configure the `apiAnalyticsTable` where the analytics are stored.
+
+|===
+|Field|Data Type|Description|Type|Default Value
+
+|driver
+|String
+|Represents the JDBC driver to use to communicate with the database server.
+|Required
+|
+
+|jdbcUrl
+|String
+|Represents the JDBC url to the database server.
+|Required
+|
+
+|user
+|String
+|The username to connect to the database server.
+|Required
+|
+
+|pass
+|String
+|The password to connect to the database server.
+|Required
+|
+
+|apiAnalyticsTable
+|String
+|Represents the name of the table in which the agent will store the events.
+|Optional
+|MULE_API_ANALYTICS
+
+|===
+
+
+== Proposed Configurations
+
+Below are a few examples for setting up the agent for working with some of the most common databases.
+
+=== MySQL
+
+==== Schema
+
+[source,sql,linenums]
+----
+CREATE TABLE MULE_API_ANALYTICS (
+  id                           CHAR(36)     NOT NULL,
+  api_id                       INT          NOT NULL,
+  api_name                     VARCHAR(64)  NULL,
+  api_version                  VARCHAR(150) NULL,
+  api_version_id               INT          NOT NULL,
+  application_name             VARCHAR(42)  NULL,
+  client_id                    VARCHAR(255) NULL,
+  client_ip                    VARCHAR(45)  NOT NULL,
+  event_id                     VARCHAR(36)  NOT NULL,
+  host_id                      VARCHAR(255) NULL,
+  org_id                       VARCHAR(36)  NULL,
+  path                         VARCHAR(500) NOT NULL,
+  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_name VARCHAR(150) NULL,
+  policy_violation_outcome     VARCHAR(10)  NULL,
+  received_ts                  VARCHAR(30)  NOT NULL,
+  replied_ts                   VARCHAR(30)  NOT NULL,
+  request_bytes                INT          NOT NULL,
+  request_disposition          VARCHAR(10)  NOT NULL,
+  response_bytes               INT          NOT NULL,
+  status_code                  INT          NOT NULL,
+  transaction_id               VARCHAR(36)  NULL,
+  user_agent                   VARCHAR(500) NULL,
+  verb                         VARCHAR(8)   NOT NULL,
+  PRIMARY KEY (id)
+);
+
+----
+
+==== Internal Handler Configuration
+
+. Download the MySQL JDBC driver from http://dev.mysql.com/downloads/connector/j/.
+. Extract the .zip file to obtain the `mysql-connector-java-_VERSION_-bin.jar` file
+. Copy this .jar file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
++
+[source,yaml,linenums]
+....
+---
+  mule.agent.gw.http.handler.database:
+    enabled: true
+    driver: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.61.128/mule
+    user: root
+    pass: test
+....
+
+
+=== ORACLE
+
+==== Schema
+
+[source,sql,linenums]
+----
+CREATE TABLE MULE_API_ANALYTICS (
+  id                           CHAR(36)     NOT NULL,
+  api_id                       INT          NOT NULL,
+  api_name                     VARCHAR(64)  NULL,
+  api_version                  VARCHAR(150) NULL,
+  api_version_id               INT          NOT NULL,
+  application_name             VARCHAR(42)  NULL,
+  client_id                    VARCHAR(255) NULL,
+  client_ip                    VARCHAR(45)  NOT NULL,
+  event_id                     VARCHAR(36)  NOT NULL,
+  host_id                      VARCHAR(255) NULL,
+  org_id                       VARCHAR(36)  NULL,
+  path                         VARCHAR(500) NOT NULL,
+  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_name VARCHAR(150) NULL,
+  policy_violation_outcome     VARCHAR(10)  NULL,
+  received_ts                  VARCHAR(30)  NOT NULL,
+  replied_ts                   VARCHAR(30)  NOT NULL,
+  request_bytes                INT          NOT NULL,
+  request_disposition          VARCHAR(10)  NOT NULL,
+  response_bytes               INT          NOT NULL,
+  status_code                  INT          NOT NULL,
+  transaction_id               VARCHAR(36)  NULL,
+  user_agent                   VARCHAR(500) NULL,
+  verb                         VARCHAR(8)   NOT NULL,
+  PRIMARY KEY (id)
+);
+----
+
+==== Internal Handler Configuration
+
+. Download the Oracle JDBC driver from http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html.
+. Extract the .zip file to obtain the .jar file
+. Copy this .jar file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
++
+[source,yaml,linenums]
+....
+---
+  mule.agent.gw.http.handler.database:
+    enabled: true
+    driver: oracle.jdbc.OracleDriver
+    jdbcUrl: jdbc:oracle:thin:@192.168.61.128/XE
+    user: root
+    pass: test
+....
+
+
+=== Microsoft SQL Server
+
+==== Schema
+
+[source,sql,linenums]
+----
+CREATE TABLE MULE_API_ANALYTICS (
+  id                           CHAR(36)     NOT NULL,
+  api_id                       INT          NOT NULL,
+  api_name                     VARCHAR(64)  NULL,
+  api_version                  VARCHAR(150) NULL,
+  api_version_id               INT          NOT NULL,
+  application_name             VARCHAR(42)  NULL,
+  client_id                    VARCHAR(255) NULL,
+  client_ip                    VARCHAR(45)  NOT NULL,
+  event_id                     VARCHAR(36)  NOT NULL,
+  host_id                      VARCHAR(255) NULL,
+  org_id                       VARCHAR(36)  NULL,
+  path                         VARCHAR(500) NOT NULL,
+  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_name VARCHAR(150) NULL,
+  policy_violation_outcome     VARCHAR(10)  NULL,
+  received_ts                  VARCHAR(30)  NOT NULL,
+  replied_ts                   VARCHAR(30)  NOT NULL,
+  request_bytes                INT          NOT NULL,
+  request_disposition          VARCHAR(10)  NOT NULL,
+  response_bytes               INT          NOT NULL,
+  status_code                  INT          NOT NULL,
+  transaction_id               VARCHAR(36)  NULL,
+  user_agent                   VARCHAR(500) NULL,
+  verb                         VARCHAR(8)   NOT NULL,
+  PRIMARY KEY (id)
+);
+----
+
+==== Internal Handler Configuration
+
+. Download the Microsoft JDBC driver from https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774.
+. Extract the `sqljdbc_4_%version%.tar.gz` file to obtain the `sqljdbc4%version%_.jar` file
+. Copy this .jar file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
+
++
+[source,yaml,linenums]
+....
+---
+  mule.agent.gw.http.handler.database:
+    enabled: true
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jdbcUrl: jdbc:sqlserver://192.168.61.128:1433;databaseName=Mule;
+    user: root
+    pass: test
+....
+
+== See Also
+
+* See other ways you can xref:monitoring.adoc[Monitor Applications]
+* xref:managing-servers.adoc[Managing Servers]
+* Learn how to first xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
+* xref:managing-deployed-applications.adoc[Managing Deployed Applications] contains more information on how to manage your application once deployed
+* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers] contains more information specific to on-premise deployments
+* A xref:runtime-manager-api.adoc[REST APIs] is also available for deployment to your servers.

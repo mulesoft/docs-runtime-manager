@@ -1,0 +1,35 @@
+= About Virtual Private Cloud
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The Virtual Private Cloud (VPC) offering allows you to create a virtual, private, and isolated network segment in the cloud to host your CloudHub workers.
+
+By connecting to your CloudHub VPC you can extend your corporate intranet whether on-prem data centers through a secured VPN tunnel, or one of your private AWS VPCs through a VPN peering, or using AWS direct connect. This allows CloudHub workers to access resources behind your corporate firewall. +
+Keep in mind that you can't reuse your existing AWS VPC as a CloudHub VPC.
+
+The base VPC subscription includes 2 VPCs and one VPC can be associated with multiple environments. This allows you, for example, to have one isolated network for your production environment, and another for your QA and staging.
+
+CloudHub VPC supports different Amazon regions. During setup, you need to specify which Amazon region you want. You can even have multiple VPCs inside a single Amazon region, however this is not a standard setup and you need to specify this requirement when provisioning your VPC.
+
+image::virtual-private-cloud-78b5f.png[]
+
+Each VPC allows you to configure firewall rules to apply to your workers. You can choose to expose or block your custom ports and even block requests to your apps coming from CloudHub's shared load balancer. +
+Additionally, you can configure one or more dedicated load balancers to validate requests using your own SSL certificates, and to map input URLs to calls to different CloudHub applications. +
+Combining firewall rules and dedicated load balancers configurations, you can fine tune how external services reach your applications.
+
+// _TODO: So On-prem + cloud ?
+// VPCs can have multiple peers (connections)
+
+== See Also
+
+* xref:vpc-architecture-concept.adoc[About VPC Network Architecture]
+* xref:vpc-provisioning-concept.adoc[About Provisioning a VPC]
+* xref:cloudhub-dedicated-load-balancer.adoc[About Cloudhub Dedicated Load Balancer]
+* xref:vpc-firewall-rules-concept.adoc[About VPC Firewall Rules]
+* xref:cloudhub-architecture.adoc[CloudHub Architecture]
+//_TODO: Add this as a See Also link:
+// xref:cloudhub-architecture.adoc#cloudhub-workers[CloudHub workers]
+// xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer features]
+// <<Set up Internal DNS, DNS server>>
+// CH Architechture

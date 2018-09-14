@@ -1,0 +1,72 @@
+= Working with Logs
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, cloudhub api, logs, json, get
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+[TIP]
+This document deals with calling the xref:cloudhub-api.adoc[CloudHub API]. For instructions on how to perform these same tasks more easily via the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub] and its child pages.
+
+The logs API allows you to search your logs. All resources or methods that return or accept a type (except where noted) use the application JSON type. As an example, here's an example of what the result from a log search looks like.
+
+[source,json,linenums]
+----
+{
+"data":
+  [
+    {
+      "message": "Deploying application to 1 workers.",
+      "priority": "SYSTEM",
+      "sequenceNumber": 1343797858127,
+      "timestamp": 1344872571834
+    }
+  ],
+  "total": 528
+}
+----
+
+
+
+
+== Log Object Properties
+
+The following are the properties for applications.
+
+[%header,cols="2*a"]
+|===
+|Property |Description
+|message |The log message.
+|priority |The priority - DEBUG, INFO, ERROR, SYSTEM, CONSOLE.
+|timestamp |The timestamp in UTC when the log message occurred.
+|sequenceNumber |A sequence number which determines the order of the log messages when they have the same timestamp.
+|===
+
+== Operations for Logs
+
+The following is a summary of log related operations:
+
+[%header,cols="34a,33a,33a"]
+|===
+|Operation |Resource |Description
+|xref:list-all-logs.adoc[GET] |`/api/applications/{application}/logs` |Lists log messages.
+|===
+
+[TIP]
+====
+Check out the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal] of the CloudHub API to see an interactive reference of all the supported resources, methods, required properties and expected responses.
+
+In the link above, search among other Mule APIs for the "CloudHub" API and click on its latest version.
+====
+
+== See Also
+
+* xref:index.adoc[Runtime Manager]
+* xref:cloudhub.adoc[CloudHub]
+* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:monitoring.adoc[Monitoring Applications]

@@ -1,0 +1,131 @@
+= Tutorial: Creating a VPC (Runtime Manager)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:noindex:
+
+This tutorial walks you through the creation of a *virtual private cloud* configuring firewall rules. +
+To be able to create a VPC, your organization needs to purchase a VPC offering and your account needs to meet the necessary permissions to create and administrate a VPC.
+
+To create a VPC, log in to your Anypoint Platform and follow these steps:
+
+. Select the `VPCs` tab from the navigation bar to your left.
+. Click the Create VPC option:
++
+image::vpc-and-load-balancer-creation-df931.png[]
++
+You can start passing the parameters to define and configure your VPC:
++
+image::vpc-and-load-balancer-creation-35c7d.png[]
++
+. A VPC name. +
+For this tutorial, name your VPC `vpc-tutorial`.
+. The region to which the VPC is bound. +
+In this case, the VPC is bound to `US East (Virginia)`.
++
+[NOTE]
+--
+All VPCs need to be associated to a CloudHub region.
+--
++
+. The size of your VPC in Classless Inter-Domain Routing (*CIDR*) notation. +
+Set it to 10.111.0.0/24 which grants us 256 IP addresses from 10.111.0.0 to 10.111.0.255. +
+The CIDR Blocks chosen for the VPC should ideally come from a private IP space, and should not overlap with any other VPC's CIDR Blocks or any CIDR Blocks in use in your corporate network.
++
+[CAUTION]
+--
+Once the VPC is created, it is not possible to resize it, nor to edit your selected CIDR block. +
+Understanding how to size your VPC is crucial at this point. If you are not sure how to configure this, make sure to follow our xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide.
+--
++
+. Set an environment to which your VPC is bound. +
+For this example, the environment is left blank so every application deployed to US-EAST gets associated to this VPC disregarding to which environment it is being deployed.
+. Set whether this VPC is the default for the region in which it is being created. +
+This example sets the VPC as the default. This means that all environments in this region that are not associated to a VPC will be, by default, associated to `vpc-tutorial`.
+. Set the business group to which your VPC is bound. +
+By leaving it blank, the VPC is associated to the main organization.
++
+image::vpc-and-load-balancer-creation-97c25.png[]
++
+. Click the *Firewall Rules* option.
+.. All inbound traffic is blocked by default. Firewall rules are required to allow traffic to your worker. +
+The UI suggests you a list of most used firewall rules. For this example, add a firewall rule with type 'http.private.port' from `Anywhere`. +
+Note that the port range is automatically set to `8091`.
++
+This means that only connections through the port `8091` are whitelisted inside the VPC and that your worker will listen to all interfaces coming through port `8091`. +
+Setting this firewall rule allows a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] to communicate to your workers using its default configurations.
++
+Additionally, to properly receive requests from the load balancer, all applications that are deployed to the VPC must be listening on port `8091`.
+. Click *Create VPC*.
+
+[[set-dns]]
+[TIP]
+--
+Optionally you can click the *Internal DNS* option.
+
+image::vpc-tutorial-31341.png[]
+
+This option allows you to xref:virtual-private-cloud.adoc#set-up-internal-dns[set up internal DNS servers] to resolve your private host names.
+
+.. Click the `Add New IP` button and type your public DNS IP address. +
+Click the `Add to List` or hit `enter`. +
+You can pass up to 3 IP addresses.
++
+image::vpc-tutorial-f7641.png[]
++
+.. Click the `Add New Domain` button and type the private domains that need to be resolved using your DNS servers. +
+Click the `Add to List` or hit `enter. +
+It is possible to add several private domains.
++
+image::vpc-tutorial-7770c.png[]
++
+Whenever those private domains are provided, your worker resolves them using your private DNS, so you can still use the internal host names of your private network.
+--
+
+From this moment on, any application that is deployed to US-EAST (disregarding the environment used), will be deployed to this VPC. +
+
+== Connect to your VPC
+
+xref:virtual-private-cloud.adoc#vpc-connectivity-methods[VPC connectivity methods] (IPSEC, AWS Peering, etc) are not a self-serve function at this time. +
+To configure a connection between your Cloudhub VPC and your infrastructure, download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the VPC discovery form] (requires at least MS Excel 2007 with macros enabled), enter data to communicate the necessary details required for your connectivity method and send it to MuleSoft customer support.
+
+The SLA for configuring VPC is 5 business days after the VPC discovery form has been completed and returned, though it may be completed sooner.
+
+== Update an Existing VPC
+
+image::vpc-tutorial-c5a66.png[]
+
+. Find your VPC from the list of existing VPC in the UI, and select it.
+. You can update:
+.. Environments +
+You can select one or more specific environment from the drop down menu.
++
+image::vpc-tutorial-6dea0.png[]
++
+.. Business Groups +
+You can select one or more business group from the drop down menu.
++
+image::vpc-tutorial-981cc.png[]
++
+.. Firewall Rules +
+You edit existing firewall rules, or add new ones.
++
+image::vpc-tutorial-fa890.png[]
++
+.. Internal DNS +
+This option allows you to set a list of internal host names to be resolved using your DNS servers for which you need to provide their public IP addresses.
++
+image::vpc-tutorial-0b7b2.png[]
++
+Set your public DNS IP address and hit `enter` or click the blue check mark. +
++
+image::vpc-tutorial-df177.png[]
++
+Add the private domains that need to be resolved using your DNS server and hit `enter` or click the blue check mark.
++
+. When you finished all your editing, click *Apply Changes*.
+
+== See Also
+
+* Learn how to associate a load balancer following the xref:dedicated-load-balancer-tutorial.adoc[load balancer tutorial].
+* xref:vpc-management-permission-topic.adoc[FAQ: Where To Place a VPC Inside my Organization]

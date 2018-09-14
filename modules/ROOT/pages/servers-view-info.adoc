@@ -1,0 +1,42 @@
+= To View Information about a Server, API Gateway, Server Group, or Cluster (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The Servers tab in Runtime Manager enables you to view a list of the servers, server groups, and clusters that have been created in an environment. From this tab, you can also perform actions related to these components.
+
+image::amc-servers.png[AMC_Servers]
+
+[NOTE]
+Virtual servers created through Pivotal Cloud Foundry (PCF) are not displayed on this tab.
+
+. From Anypoint Platform, select Runtime Manager
+. Click the Servers tab
++
+Runtime Manager displays a table containing the following information:
++
+|===
+| Name | Displays the name of the server, API gateway, server group, or cluster.
+| Status | Displays the current status. Possible values are:
+
+*Created*: indicates that the component was registered in Runtime Manager but has not been started.
+
+*Connected*: indicates that Runtime Manager can connect to the Runtime Manager Agent for of the component.
+
+*Disconnected*: indicates that component was registered in Runtime Manager, but was shutdown.
+
+*Running*: indicates that the component is running and that you can perform actions, including deploy an application.
+
+*Empty*: indicates that a server group or cluster does not contain any servers.
+
+| Type | Lists whether the component is a server, API gateway, server group, or cluster.
+| Version | Lists the version of API gateway or Mule runtime. No value is displayed for server groups or clusters.
+|===
+
+. Click the name of the component to view its dashboard.
+. Click in the row next to the component name to view additional properties and actions for the component.
+
+== See Also
+
+* To Create a Server in Runtime Manager
+* To Shutdown, Restart and Delete a Server

@@ -1,0 +1,92 @@
+= Working with Applications
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub api
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+[TIP]
+====
+This API deals only with cloud deployments via the cloud-based version of the Runtime Manager. See xref:deployment-strategies.adoc[Deployment Strategies] for a better understanding of the different possible deployment scenarios. For managing on-prem applications via an API, see the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/ae639f94-da46-42bc-9d51-180ec25cf994/apis/38784/versions/42082[Runtime Manager API Portal]
+====
+
+The application API allows you to list, create, update, and delete applications. All resources or methods that return or accept a type (except where noted) use the application JSON type. As an example, here's data you might receive, in JSON format, in response to a request to get an application:
+
+[source,json]
+----
+{
+  "domain":"hello",
+  "fullDomain":"hello.cloudhub.io",
+  "workers":1,
+  "hasFile":false,
+  "filename": "myapp.zip",
+  "muleVersion", "3.3.0"
+  "properties": {
+    "foo":"bar"
+  },
+  "status":"STARTED",
+  "workerStatuses":[
+     {
+       "id":"",
+       "host":"xxx.xxx.xxx.xxx",
+       "port":8081,
+       "status":"STARTED"
+     }
+   ],
+   "secureDataGateway": {
+     "connected": false
+   },
+}
+----
+
+
+== Application Properties
+
+The following are the properties for applications.
+
+[%header,cols="2*"]
+|===
+|Property |Description
+|domain |The short domain name of the application.
+|fullDomain |The long domain name of the application.
+|hasFile |Whether or not an application file has been supplied for this application.
+|muleVersion |The Mule version for this application. Either 3.1.2 or 3.2.0.
+|properties |A set of environment variables that get set when the application is started.
+|workers |The number of workers associated with this application.
+|status |The status of the application. STARTED, DEPLOYING, UNDEPLOYED, DEPLOYED_FAILED are valid values.
+|secureDataGateway |Whether or not the data gateway is connected, and how long it's been connected.
+|===
+
+== Operations for Applications
+
+The following is a summary of the operations you can perform on your application and the resource you specify for each.
+
+[%header,cols="3*a"]
+|===
+|Operation |Resource |Description
+|xref:list-all-applications.adoc[GET] |/api/applications |Lists all applications.
+|xref:create-application.adoc[POST] |/api/applications |Creates an application.
+|xref:get-application.adoc[GET] |/api/applications/{domain} |Gets an application.
+|xref:deploy-application.adoc[POST] |/api/applications/{domain}/deploy |Deploys a Mule application file.
+|xref:update-application-metadata.adoc[PUT] |/api/applications/{domain} |Updates the metadata for an application.
+|xref:delete-application.adoc[DELETE] |/api/applications/{domain} |Deletes an application.
+|===
+
+[TIP]
+====
+Check out the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal] of the CloudHub API to see an interactive reference of all the supported resources, methods, required properties and expected responses.
+
+In the link above, search among other Mule APIs for the "CloudHub" API and click on its latest version.
+====
+
+== See Also
+
+* xref:index.adoc[Runtime Manager]
+* xref:cloudhub.adoc[CloudHub]
+* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:monitoring.adoc[Monitoring Applications]

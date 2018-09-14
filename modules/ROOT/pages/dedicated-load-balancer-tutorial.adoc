@@ -1,0 +1,40 @@
+= About Load Balancers (CloudHub)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This topic provides general information about load balancers in CloudHub. CloudHub provides a back-end load-balancing service that automatically provisions infrastructure components.
+
+CloudHub provides two types of load balancers:
+
+* Shared Load Balancer: Provides basic load balancing functionality.
+* Dedicated Load Balancer: Enables you to deploy and configure one or more custom load-balancers within a VPC.
+
+== Shared Load Balancers
+
+CloudHub provides a default shared load balancer that is available in all environments. The shared load balancer provides basic functionality, including TCP load balancing and SSL certification pass through. Shared load balancers do not allow you to configure custom SSL certificates or configure proxy rules.
+
+Additionally, shared load balancers have lower rate limits that help ensure platform stability. MuleSoft regularly monitors and scales these limits as necessary. Rate limits on shared load balancers are applied according to region. Thus, if you are deploying an application to workers in multiple regions, the rate limit for each region may be different.
+
+If an application exceeds the rate limit for a shared load balancer, the load balancer returns a 503 Service Unavailable response.
+
+To perform custom load balancer configuration or have higher rate limit thresholds, you must use a dedicated load balancer.
+
+== Dedicated Load Balancers
+
+Dedicated load balancers enable you to:
+
+* Handle Load balancing among the different CloudHub workers that run your application.
+* Define SSL configurations to provide custom certificates and optionally enforce two-way SSL client authentication.
+* Configure proxy rules that map your applications to custom domains. This enables you to host your applications under a single domain.
+
+Dedicated load balancers are an optional component of Anypoint Platform. To use a dedicated load balancer in your environment, you must be running an Anypoint Virtual Private Cloud (VPC). You can associate multiple environments to the same VPC. This enables you to use the same dedicated load balancer in different environments.
+
+You can view the load balancer and VPCS endpoints in your Anypoint Platform organization from the API Portal.
+
+== See Also
+
+* https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal]
+* xref:cloudhub.adoc[CloudHub]
+* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:lb-architecture.adoc[About Load Balancer Architecture]

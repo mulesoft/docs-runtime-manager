@@ -1,0 +1,31 @@
+= About Schedule Management (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+[NOTE]
+Schedule management is only supported on servers in a hybrid deployment environment using Mule runtime version 3.9 or later.
+
+You can use Runtime Manager to view and control polling elements within the flows of your deployed applications. Runtime Manager automatically detects the polling elements within your flows. These elements are listed on the Schedulers tab of the Manage Applications page.
+
+Runtime Manager lists the name of each poll element as `polling://{flow_name}`.
+
+From this tab, you can perform the following:
+
+* Enable or disable polling elements.
+* Change the polling frequency.
+
+You can perform these tasks at runtime, without having to make changes to or redeploy the application.
+
+== Use Cases
+
+Schedule management is useful in the following contexts:
+
+* You want to change your schedules in your application at runtime without redeploying.
+* You want to disable a scheduled job while one of the applications you are connecting to is undergoing maintenance.
+* You want runtime visibility into the schedules in your application.
+
+
+== See Also
+
+* xref:hybrid-schedule-mgmt-config.adoc[To Configure Schedule Management for an Application (Hybrid)]

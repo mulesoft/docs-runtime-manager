@@ -1,0 +1,88 @@
+= To Create a Server in Runtime Manager (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This topic describes how to use the `amc_setup` script to create a server by configuring the Runtime Manager Agent to communicate with Runtime Manager. The server communicates with Runtime Manager using the Runtime Manager Agent. To make a server visible in the Runtime Manager console and be able to manage it, you must first register it with the Runtime Manager Agent.
+
+== Prerequisites
+
+To manage servers in a customer-hosted environment, you must perform the following:
+
+* Install Mule runtime, version 3.6 or later or API Gateway runtime, version 2.0 or later.
+* Install Runtime Manager Agent, version 1.1.1 or later.
+* (Optional) Configure any whitelisted IPs or ports required to connect to the Anypoint Platform through a firewall.
+
+If the server you want to add is already registered with a different instance of Runtime Manager, you cannot add it until you remove if from the other instance. To do this, delete the server from the Server tab in Runtime Manager, then delete the 'mule-agent.yaml' configuration file found on your '{RUNTIME PARENT FOLDER}/conf' folder.
+
+If your environment requires all outbound calls to go through a proxy you will need to modify the proxy settings in the 'wrapper.conf' file in the '{RUNTIME PARENT FOLDER}/conf' directory.
+
+If you have previously configured your runtime environment you must delete the server and its corresponding configuration file.
+. Delete the server from Runtime Manager.
+. Remove the `mule-agent.yml` file from the `$MULE_HOME/conf` directory.
+
+
+=== The amc_setup Command
+
+The `amc_setup` command described in this topic is located in the `$MULE_HOME/bin` directory. If you do not run this command from this directory, you must do one of the following:
+
+* Set the `MULE_HOME` environment variable before running the command
+* Use the `--mule-home` parameter as shwon in the following example:
++
+----
+/opt/mule-3.7.0/bin/amc_setup --mule-home /opt/mule-3.7.0 -H ...
+----
+
+The `amc_setup` script calls the Runtime Manager Agent installation script, which has several useful parameters for configuring security and proxies.
+
+=== The Server Registration Token
+
+The registration token provided by Runtime Manager, included in the command with the `-H` parameter, is specific to a single environment. For example, if you register a server in a QA environment by clicking Add Server, Runtime Manager provides a token. However, if you try to register the server in your production environment,  Runtime Manager generates a different token. Tokens are specific to the environment where you register a server. You can only use a token to register multiple Mules if all servers to be in the same environment.
+
+=== The IBM JVM
+
+When creating a server using IBM's Java Virtual Machine (JVM) you must use a different truststore than the default truststore installed by the Runtime Manager Agent. Download the custom truststore from the customer support portal, then install it in the `conf` folder of the Runtime Manager Agent.
+
+== Creating a Server
+
+. From Anypoint Platform, select Runtime Manager.
+. Click the Servers tab.
+. If you have previously created a server in this environment, click Create Server.
+. Copy the full `amc_setup` script, including your unique token for your Runtime Manager environment.
++
+image::empty-servers-add-server-1st-srv-corr-comm-real-2.png[empty_servers-add_server_1st_srv-CORR.COMM-REAL-2]
++
+The `amc_setup` command contains information that is unique to your organization. Running this command enables the Mule server to communicate with Runtime Manager. The key included in the `-H` parameter (partly redacted in the image above) is a token generated specifically for your Mule server or API Gateway to authenticate against Runtime Manager.
+
+. Login to the environment where your Mule runtime is installed.
+. Navigate to the `$MULESOFT_HOME/bin` directory.
+. Paste the command in your terminal window, substituting `server-name` with name of your server, for example:
++
+----
+./amc_setup -H 17958da2-[redacted]---1942 my_server
+----
++
+If you are running Windows, substitute `amc_setup.bat` for `./amc_setup`.
+
+. Press Enter to run the command.
+
+If the `amc_setup` command is successful, you should see the following output:
+
+----
+Mule Agent configured successfully
+Connecting to Access Management to extract client_id and client_secret
+Credentials extracted correctly, updating wrapper conf file
+----
+
+After the script completes successfully, your server is listed in the Servers tab of Runtime Manager. The status should be Created.
+
+image::srv1-created.png[srv1_created]
+
+If the server was running when you ran the `amc_setup` script, it must be restarted for it to start communicating with Runtime Manager.
+
+== See Also
+
+* xref:3.7@mule-runtime::installing.adoc[Installing Mule Runtime]
+* xref:runtime-manager-agent.adoc[Runtime Manager Agent]
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Installing and Configuring Runtime Manager Agent]
+* xref:installing-and-configuring-runtime-manager-agent.adoc#ports-ips-and-hostnames-to-whitelist[Ports and IPs to Whitelist]

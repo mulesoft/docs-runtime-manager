@@ -1,0 +1,39 @@
+= Debugging The Runtime Manager Agent
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: agent, mule, servers, monitor, notifications, external systems, third party, get status, metrics
+
+In order to troubleshoot and provide better insights upon a malfunction of the Runtime Manager Agent installation, a new `$MULE_HOME/bin/amc_debug` script is available.
+
+If you experience any issue with the Runtime Manager Agent Plugin and/or with managing applications on the Anypoint platform, it's highly recommended to obtain the output of this script before filling any support tickets.
+
+When you execute this script it will collect the following information that will help troubleshoot your issue:
+
+. Discover Mule/agent JVM process
+. Extract Thread dump (not forced if possible)
+. Extract Heap dump
++
+[CAUTION]
+--
+This step can cause delays in running applications.
+--
++
+. Extract machine generic data: Java version, CPU usage, Memory usage, Disk usage.
+. Copy all logs
+. Copy Runtime Manager Agent Configuration files
+. ZIP all the information
+
+After the script is executed, you can find a .zip file in the folder `$MULE_HOME/bin` (with a name similar to `snapshot_201701021410.zip`) that you can send to MuleSoft's support engineers to help troubleshoot your issues.
+
+== Runtime Manager Agent Documentation Pages
+
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Installing Runtime Manager Agent]
+* xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture]
+* xref:administration-service.adoc[Administration Service]
+* xref:managing-applications-and-domains.adoc[Managing Applications and Domains]
+* xref:event-tracking.adoc[Event Tracking]
+* xref:jmx-service.adoc[JMX Service]
+* xref:runtime-manager-agent-notifications.adoc[Runtime Manager Agent Notifications]
+* xref:extending-the-runtime-manager-agent.adoc[Extending the Runtime Manager Agent]
+* xref:internal-handler-buffering.adoc[Internal Handler Buffering]

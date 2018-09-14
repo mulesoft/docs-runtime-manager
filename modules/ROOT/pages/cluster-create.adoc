@@ -1,0 +1,57 @@
+= To Create a Cluster using Runtime Manager (Hybrid)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Prerequisites
+
+Before creating a cluster, ensure you have performed the following:
+
+* Install Mule runtime, version 3.6 or later or API Gateway runtime, version 2.0 or later.
+* Install Runtime Manager Agent, version 1.1.1 or later.
+* Create a server for each runtime you want to include in your cluster.
+
+Also, note the following considerations when creating a cluster:
+
+* None of the servers you select for creating a new cluster can contain any *previously deployed applications*.
+
+* Multicast servers can be in the status states] 'Running' or 'Disconnected', whereas unicast servers can only be in the state 'Running'. They can't be merely in 'Created' state.
+
+* All servers in a cluster must be running the same Mule runtime version and Agent version.
+
+If you wish to have Object Store persistence on all servers of your cluster, you must create your cluster manually and use Quorum Management.
+
+== Creating a Cluster
+
+. From Anypoint Platform, click Runtime Manager.
+. Click the Servers tab.
+. Ensure that all servers are visible in the Servers list.
+. Click *Create Cluster*. Servers can be added to a cluster in any status.
++
+image::serverstatus-no-cluster-allonline.png[all servers]
+
+. Enter a name for the cluster.
++
+The following restrictions on cluster names apply:
++
+* Must not start or end with a dash,
+* Must be at least 3 characters long
+* Cannot contain more than 40 characters
+* Must be unique
+* Must contain only letters, numbers, or dashes.
+
+. Choose Multicast or Unicast.
+. Click the checkboxes for the names of the servers to add to your cluster
+. Click Create Cluster.
++
+image::createcluster-multicast.png[CreateACluster]
+
+. Click the cluster name to list details about the cluster. This view also lets you add additional servers, remove servers, and delete the cluster:
++
+image::addingservertocluster-sidepanel.png[ClusterDetail]
+
+== See Also:
+
+* xref:cluster-about.adoc[About Clusters]
+* xref:3.8@mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store persistence]
+* xref:3.8@mule-runtime::creating-and-managing-a-cluster-manually.adoc#quorum-management[Quorum Management]

@@ -1,0 +1,109 @@
+= Custom Application Alerts and Notifications
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, monitoring, api, runtime manager, arm
+
+[NOTE]
+Custom Alerts and Notifications are a feature that is currently only available for applications deployed to CloudHub workers. They are not available for applications that you deploy via the Runtime Manager to local servers on-premises. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+== Prerequisites
+
+Before going further, complete the xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub] example as this builds on top of it. In addition, you need to have "Mavenized" your project within Studio. For more information, see xref:6@studio::enabling-maven-support-for-a-studio-project.adoc[Enabling Maven Support for a Studio Project].
+
+== How to Use Notifications
+
+Notifications give you the ability to give visibility into business related events inside your application. For example, you can raise notifications when:
+
+* Your application is unable to connect to a remote service
+* An error occurs which requires human intervention, such as a problem with data mapping
+* You want to create a summary of what occurred inside your application, such as the number of orders processed.
+
+In combination with xref:alerts-on-runtime-manager.adoc[Alerts], you can direct these notifications to different people to act on the alerts and fix the underlying problems.
+
+This example illustrates:
+
+* How to send business related events as notifications
+* How to send errors as notifications
+* How to send email alerts when notifications arrive
+
+You can create alerts in CloudHub with the software provided. If you want to create custom alerts, you need to get the https://www.mulesoft.com/exchange/#!/cloudhub-integration-connector[CloudHub Connector] and install it in Anypoint Studio.
+
+[TIP]
+For installation and configuration details, read the xref:3.8@mule-runtime::cloudhub-connector.adoc[CloudHub Connector User Guide].
+
+
+== Deploying Your Application
+
+To deploy your application, in the Runtime Manager click *Deploy Application* from the *Applications* menu. For more information, see xref:deploying-to-cloudhub.adoc[Deploying to CloudHub].
+
+== Triggering Your Notification
+
+Once your application is running, you can trigger the notification by simply going to your application's URL, for example: +http://YOURAPP.cloudhub.io/hello-notification+. The page should display a `Hello World` message, and automatically create a new notification in your Runtime Manager console. Next, return to the Runtime Manager console and click the new notification indicator bell indicator in the upper-right to show the alert message:
+
+image::image2014-10-24-17-41-16-1.png[image2014-10-24+17-41-16-1]
+
+If the notification is sent after an exception, it attaches the
+`exception.message` and `exception.stacktrace` as custom properties of the notification, which are accessible from the Runtime Manager console.
+
+== Creating a Custom Alert
+
+Alerts allow you to send emails based on your application notifications. To create a custom alert for your application notification, click your application, and then click *Alerts* from the left menu.
+
+In the *New Alert* dialog:
+
+. Click *New alert*.
+. Enter an alert name, "Hello World".
+. Optionally select your application name or leave the selection as "any"
+. Select "custom application notification" as the event type
+. Enter "Hello" as the word that triggers your notification. Recall the message you configured above is "Hello World!"
+. Enter email addresses that you wish to email to
+. Click *Create*.
+
+This creates your alert. Now, trigger your notification again by going to your application's URL, for example: `+http://YOURAPP.cloudhub.io/+`. You then receive an email with your notification in it!
+
+If *Custom Properties* where send with the notification. i.e:
+
+[source,xml,linenums]
+----
+<cloudhub:create-notification message="Error processing transaction." priority="ERROR">
+  <cloudhub:custom-properties >
+    <cloudhub:custom-property key="originalPayload">#[flowVars.originalPayload]</cloudhub:custom-property>
+  </cloudhub:custom-properties>
+</cloudhub:create-notification>
+----
+Then, they can be accessed as normal properties in the message. i.e.: ${originalPayload}
+
+== Sending an Error Notification
+
+In addition to sending notifications from business events, you may want to send notifications when errors happen so they can be acted upon. To do this, you can use the CloudHub connector inside a catch exception strategy. To do this, add the following XML to your mule-config.xml:
+
+[source,xml,linenums]
+----
+<flow name="create notification from exception">
+    <inbound-endpoint address="http://0.0.0.0:${http.port}/create-notification-from-exception"/>
+    <scripting:component>
+        <scripting:script engine="groovy">
+            throw new Exception("Could not connect to remote service.")
+        </scripting:script>
+    </scripting:component>
+    <default-exception-strategy>
+        <cloudhub:create-notification message="Error processing transaction." priority="ERROR"/>
+    </default-exception-strategy>
+</flow>
+----
+
+This flow throws an exception and creates a notification from that exception with the message "Error processing transaction." The exception stack trace for the flow is attached to the message. This can optionally be turned off using the `attachStacktrace` attribute.
+
+As before, build and deploy your application, and then go to the URL: `+http://YOURAPP.cloudhub.io/create-notification-from-exception+`. Then return to the Runtime Manager console, and a notification pop-up appears in the top-right. Click the notifications link and the notification with the stack trace appears in the notifications list.
+
+image::notifications-exception.png[notifications_exception]
+
+To view the whole stack trace and details, click "More..." and the whole message appears in a pop-up window:
+
+image::notifications-stack-trace.png[notifications_stack_trace]
