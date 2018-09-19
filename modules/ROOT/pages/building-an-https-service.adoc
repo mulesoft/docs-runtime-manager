@@ -22,7 +22,7 @@ This tutorial builds on existing tutorials, so to begin, build a service using t
 You can now modify your existing service to use HTTPS as detailed in the following steps.
 
 . Generate a keystore if you don't have one already.
-:: You can do this using the command line and the keytool utility from the JDK.
+ You can do this using the command line and the keytool utility from the JDK.
 +
 [IMPORTANT]
 --
@@ -58,7 +58,7 @@ http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/ht
 +
 
 . Configure any host IP addresses you want to use HTTPS on with the HTTPS scheme and the *`${https.port}`* variable for the port.
-:: Make sure to include a reference to the HTTPS global connector configuration. For example:
+ Make sure to include a reference to the HTTPS global connector configuration. For example:
 +
 [source,xml,linenums]
 ----
@@ -90,11 +90,11 @@ Your application is now ready to be deployed on CloudHub. You can access your en
 If you were prompted to download a proxy from API Manager and need to configure it for HTTPS, you can follow the steps mentioned above with the exception that the configuration of the HTTP listener is already templatized for you.
 
 . After importing the proxy project in Studio, select the configuration tab for your proxy flow.
-:: Note that an error is detected by the parser. The flow references an HTTPS connector that is currently commented since some adjustments need to be made.
+ Note that an error is detected by the parser. The flow references an HTTPS connector that is currently commented since some adjustments need to be made.
 +
 . Uncomment the http:listener-config block.
 . Fill out the information regarding your keystore: path, pasword and keyPassword.
-:: You may use external properties. Also keep in mind that the path should not include src/main/resources.
+ You may use external properties. Also keep in mind that the path should not include src/main/resources.
 +
 Your configuration should look similar to the following:
 +
