@@ -18,7 +18,7 @@ Internally, safely hidden application properties are encrypted and stored in a M
 
 Safely hidden application properties are a feature that is currently only available for setting via the Runtime Manager UI for applications deployed to CloudHub workers. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application zip file.
 
-Safely hidden application properties are a separate feature and concept from encryted Mule application properties that are stored in link:/mule-user-guide/v/4.1/secure-configuration-properties[Secure Configuration Properties] files.
+Safely hidden application properties are a separate feature and concept from encryted Mule application properties that are stored in xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
 
 == Overview
 
@@ -118,7 +118,7 @@ When moving applications between *sandboxes*, safely hidden application property
 == Encrypted Application Properties vs. Safely Hidden Application Properties
 Mule applications can also store properties with encrypted values using secure properties placeholders.
 
-See link:/mule-user-guide/v/4.1/secure-configuration-properties[Secure Configuration Properties] for more information on creating and using secure configuration properties.
+See xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] for more information on creating and using secure configuration properties.
 
 With encrypted properties, the Mule application bundles the secure property placeholder files inside the Mule application's deployable archive .jar file.
 
@@ -204,7 +204,7 @@ For example, if a production application needs to update the database user and p
 The previous discussion indicates that for Mule applications that will only be deployed into CloudHub workers, you may not need to encrypt properties, but instead just flag those properties as safely hidden propreties in the Mule application's `mule-artifact.json` file's `secureProperties` entry.
 
 == See Also
-* link:/mule-user-guide/v/4.1/secure-configuration-properties[Secure Configuration Properties]
+* xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]

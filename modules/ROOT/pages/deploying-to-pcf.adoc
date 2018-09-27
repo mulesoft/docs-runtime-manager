@@ -11,7 +11,7 @@ image:logo-pcf-active.png[link="/runtime-manager/deployment-strategies", title="
 
 If your local infrastructure includes Pivotal Cloud Foundry spaces, you can deploy Mule applications to virtual servers running on dynamically allocated local resources. See xref:deployment-strategies.adoc[Deployment Strategies] for a better understanding of how this works and its current limitations.
 
-Through Pivotal Cloud Foundry, you can also link:/api-manager/setting-up-an-api-proxy[deploy a proxy application] that can mediate all of the traffic going to a non-Mule app, and through that apply runtime policies.
+Through Pivotal Cloud Foundry, you can also xref:1.x@api-manager::setting-up-an-api-proxy.adoc[deploy a proxy application] that can mediate all of the traffic going to a non-Mule app, and through that apply runtime policies.
 
 This page describes the options on the *Deploy Application* panel on the Runtime Manager UI on the Anypoint Platform Private Cloud Edition.
 
@@ -214,11 +214,11 @@ image::deploying-to-pcf-setup.png[]
 
 If you want to register an API in API Manager for an application that isn't developed as a Mule application, you can do this through the command line.
 
-This creates a simple Mule application that works as a proxy, and that's automatically registered both in the Runtime Manager and in the API Manager. Through the API Manager, you can apply link:/api-manager/applying-custom-policies[policies] and view usage data.
+This creates a simple Mule application that works as a proxy, and that's automatically registered both in the Runtime Manager and in the API Manager. Through the API Manager, you can apply xref:1.x@api-manager::applying-custom-policies.adoc[policies] and view usage data.
 
 image::infrastructure-pcf-api.png[API PCF]
 
-See link:/api-manager/setting-up-an-api-proxy[Setting Up a Proxy].
+See xref:1.x@api-manager::setting-up-an-api-proxy.adoc[Setting Up a Proxy].
 
 
 == Deployment Errors
