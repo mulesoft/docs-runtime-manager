@@ -1,0 +1,2578 @@
+= Anypoint Platform CLI 2.x List of Commands
+
+Anypoint Platform CLI provides commands for different use case scenarios:
+
+* <<Commands For Administrating your Anypoint Platform Account>>
+* <<Commands for API Manager>>
+* <<Commands for Administrating your Design Center Applications>>
+* <<Commands for Managing Exchange Assets>>
+* <<Commands for Administrating your CloudHub Application>>
+* <<Commands for Managing your Locally Deployed Applications Managed by Runtime Manager>>
+* <<Commands for Managing Your Local PCF Deployed Applications>>
+* <<Commands for Managing your Local Servers>>
+* <<Commands for Administrating your Local Server Groups>>
+* <<Commands for Administrating your Local Cluster Servers>>
+* <<Commands for Managing Alerts for your Locally Deployed Applications Managed by Runtime Manager>>
+* <<Commands for Mananging your CloudHub Dedicated Load balancer>>
+* <<Commands for Managing your CloudHub VPC>>
+* <<Commands for Specifying Environments and Business Groups>>
+
+
+[TIP]
+--
+The Anypoint Platform CLI provides three default options:
+
+* The `--help` option displays usage information of the command.
+* The `-o` or `--output` option lets you specify the command's output to the defined format. +
+Supported values are `table`, `text`, and `json`. Defaults to `text` for non-interactive mode and `table` for interactive sessions.
+* The `-f` or `--fields` option allows you to define which fields to output. +
+You can pass the `--fields` option after a command to get a list of all possible fields to output.
+--
+
+== Commands For Administrating your Anypoint Platform Account
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<account user describe>>| Show account details
+|<<account business-group list>>| Lists business groups
+|<<account business-group describe>>| Show details of a business group
+|<<account environment list>>| Lists environments
+|<<account environment create>>| Create new environment
+|<<account environment delete>>| Delete an environment
+|<<account environment describe>> | Shows details of an environment
+|===
+
+== Commands for API Manager
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<api-mgr api list>> | Lists all APIs in API Manager
+|<<api-mgr api-version delete>> | Deletes an API version
+|<<api-mgr api-version list>> | Lists all versions of an API in API Manager
+|<<api-mgr applications approve>> | Approves a given application
+|<<api-mgr applications approve-tier-change>> | Approves SLA tier change
+|<<api-mgr applications delete>> | Deletes a given application
+|<<api-mgr applications list>> | Lists all applications to a given API version
+|<<api-mgr applications reject>> | Rejects a given application
+|<<api-mgr applications reject-tier-change>> | Rejects SLA tier change
+|<<api-mgr applications restore>> | Restores a given application
+|<<api-mgr applications revoke>> | Revokes a given application
+|<<api-mgr applications set-tier>> | Sets SLA tier for a given application
+|<<api-mgr definition copy>> | Copies an API definition from one API to another
+|<<api-mgr definition download>> | Download an API definition to a local directory
+|<<api-mgr definition upload>> | Uploads a local API definition to API Manager
+|<<api-mgr endpoint configure>> | Configures the endpoint of a given API version
+|<<api-mgr endpoint describe>> | Shows the endpoint configuration of a given API version
+|<<api-mgr policy apply>> | Apply a policy to a given API version
+|<<api-mgr policy copy>> | Copies the policy configuration from one API version to another. Doing this removes the policies that don't exist in the source API version
+|<<api-mgr policy describe>> | Show the description and available configuration properties of a given policy
+|<<api-mgr policy disable>> | Disable a policy from a given API version
+|<<api-mgr policy edit>> | Edit the policy configuration of a given API version
+|<<api-mgr policy enable>> | Enable a policy on a given API version
+|<<api-mgr policy list>> | List policies
+|<<api-mgr policy remove>> | Remove a policy from a given API version
+|<<api-mgr portal copy>> | Copies an API portal from source to target
+|<<api-mgr portal list>> | Lists all the portals for an API
+|<<api-mgr portal open>> | Opens the API portal in your browser
+|<<api-mgr tiers add>> | Creates an SLA tier
+|<<api-mgr tiers copy>> | Copy SLA tiers from one API version to another
+|<<api-mgr tiers delete>> | Delete SLA tier
+|<<api-mgr tiers deprecate>> | Deprecate SLA tier
+|<<api-mgr tiers edit>> | Edit SLA tier
+|<<api-mgr tiers list>> | Lists API version SLA tiers
+|<<api-mgr tiers reactivate>> | Reactivate SLA tier
+|<<api-mgr proxy download>> | Download a ZIP archive of a proxy to a local directory
+|===
+
+== Commands for Administrating your Design Center Applications
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+| <<designcenter project create>> | Creates a new Design Center project
+| <<designcenter project delete>> | Deletes a Design Center project
+| <<designcenter project download>> | Downloads the content of a Design Center project
+| <<designcenter project publish>> | Publishes a Design Center project to Exchange
+| <<designcenter project upload>> | Uploads the content of a project to Design Center
+| <<designcenter project list>> | List all Design Center projects
+|===
+
+== Commands for Managing Exchange Assets
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<exchange asset upload>> | Uploads an Exchange asset
+|<<exchange asset modify>> | Modifies an Exchange asset
+|<<exchange asset download>> | Downloads an Exchange asset
+|<<exchange asset list>> | Lists all assets
+|<<exchange asset page download>> | Downloads an asset's description page from Exchange
+|<<exchange asset page modify>> | Changes an asset's description page from Exchange
+|<<exchange asset page upload>> | Uploads an asset's description page from Exchange
+|<<exchange asset page delete>> | Deletes an asset's description page from Exchange
+|<<exchange asset page list>> | List all pages for a given asset
+|<<exchange asset copy>> | Copies an Exchange asset
+|<<exchange asset delete>> | Deletes an asset from Exchange
+|<<exchange asset deprecate>> | Deprecates an asset
+|<<exchange asset undeprecate>> | Undeprecate an asset
+|<<exchange asset describe>> | Show a given asset's information
+|===
+
+== Commands for Administrating your CloudHub Application
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<runtime-mgr cloudhub-alert list>>| Lists all alerts in the environment
+|<<runtime-mgr cloudhub-alert-history describe>>| Describes the history of the alarm
+|<<runtime-mgr cloudhub-application list>>| Lists all applications in the environment
+|<<runtime-mgr cloudhub-application describe>>| Show application details
+|<<runtime-mgr cloudhub-application describe-json>>| Show raw application JSON response
+|<<runtime-mgr cloudhub-application stop>>| Stop a running application
+|<<runtime-mgr cloudhub-application start>>| Start an application
+|<<runtime-mgr cloudhub-application restart>>| Restart a running application
+|<<runtime-mgr cloudhub-application delete>>| Delete an application
+|<<runtime-mgr cloudhub-application deploy>>| Deploy a new application
+|<<runtime-mgr cloudhub-application modify>>| Modify an existing application, optionally updating the zip file
+// |<<runtime-mgr application revert-runtime>>| Reverts application to its previous runtime
+|<<runtime-mgr cloudhub-application download-logs>>| Download application logs to specified directory
+|<<runtime-mgr cloudhub-application tail-logs>>| Tail application logs
+|<<runtime-mgr cloudhub-application copy>>| Copies a CloudHub application
+// |<<runtime-mgr cloudhub-application upgrade-runtime>>| Upgrades application runtime to the latest patch version or if a version if specified, to that version.
+// |<<runtime-mgr cloudhub-application downgrade-runtime>>| Downgrades application runtime to the previous runtime version or if a version is specified, to that version.
+|===
+
+== Commands for Managing your Locally Deployed Applications Managed by Runtime Manager
+
+[CAUTION]
+In order for the Anypoint Platform CLI to recognize your target servers, each server needs to be manually registered with the platform.
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<runtime-mgr standalone-application artifact>> | Downloads application artifact binary
+|<<runtime-mgr standalone-application deploy>> | Deploys a new application to an on-premises server, server group or cluster
+|<<runtime-mgr standalone-application describe-json>> | Shows a raw standalone application JSON response
+|<<runtime-mgr standalone-application modify>> | Changes a standalone application artifact
+|<<runtime-mgr standalone-application start>> | Starts an standalone application
+|<<runtime-mgr standalone-application delete>> | Deletes an standalone application
+|<<runtime-mgr standalone-application describe>> | Shows detailed info of a standalone application
+|<<runtime-mgr standalone-application list>> | Lists all standalone applications in the environment
+|<<runtime-mgr standalone-application restart>> | Restarts a standalone application
+|<<runtime-mgr standalone-application stop>> | Stops a standalone application
+|<<runtime-mgr standalone-application copy>> | Copies a standalone application
+|===
+
+== Commands for Managing Your Local PCF Deployed Applications
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<runtime-mgr pcf-application delete>> | Deletes PCF application
+|<<runtime-mgr pcf-application describe>> | Shows detailed info of PCF application
+|<<runtime-mgr pcf-application list>> | Lists all PCF applications in the environment
+|<<runtime-mgr pcf-application restart>> | Restarts PCF application
+|<<runtime-mgr pcf-application stop>> | Stops PCF application
+|<<runtime-mgr pcf-application deploy>> | Deploys a new application to PCF space
+|<<runtime-mgr pcf-application describe-json>> | Shows raw PCF application JSON response
+|<<runtime-mgr pcf-application modify>> | Edits an application deployed to PCF space
+|<<runtime-mgr pcf-application start>> | Starts PCF application
+|===
+
+
+== Commands for Managing your Local Servers
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<runtime-mgr server describe>> | Describes server
+|<<runtime-mgr server modify>> | Modifies server
+|<<runtime-mgr server token>> | Gets server registration token. This token needs to be used to register a new server
+|<<runtime-mgr server delete>> | Deletes server
+|<<runtime-mgr server list>> | Changes an standalone application artifact
+// |<<runtime-mgr server register>> | Registers a new server. Returns a signed certificate which is downloaded to the `directory` path
+|===
+
+== Commands for Administrating your Local Server Groups
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<runtime-mgr serverGroup create>> | Creates server group from servers
+|<<runtime-mgr serverGroup describe>> | Describes server group
+|<<runtime-mgr serverGroup modify>> | Modifies server group
+|<<runtime-mgr serverGroup add server>> | Adds server to a server group
+|<<runtime-mgr serverGroup delete>> | Deletes server group
+|<<runtime-mgr serverGroup list>> | Lists all server groups in the environment
+|<<runtime-mgr serverGroup remove server>> | Removes server from a server group
+|===
+
+== Commands for Administrating your Local Cluster Servers
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<runtime-mgr cluster add server>> | Adds server to cluster
+|<<runtime-mgr cluster delete>> | Deletes cluster
+|<<runtime-mgr cluster list>> | Lists all clusters in the environment
+|<<runtime-mgr cluster remove server>> | Removes server from a cluster
+|<<runtime-mgr cluster create>> | Creates new cluster
+|<<runtime-mgr cluster describe>> | Describes server cluster
+|<<runtime-mgr cluster modify>> | Modifies cluster
+|===
+
+
+== Commands for Managing Alerts for your Locally Deployed Applications Managed by Runtime Manager
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<runtime-mgr standalone-alert describe>> | Describes an alert
+|<<runtime-mgr standalone-alert create>> | Creates new alert for standalone runtime
+|<<runtime-mgr standalone-alert modify>> | Modifies alert for standalone runtime
+|<<runtime-mgr standalone-alert list>> | Lists all alerts for standalone runtimes in the environment
+|===
+
+== Commands for Mananging your CloudHub Dedicated Load balancer
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<cloudhub load-balancer list>>| Lists all Load balancers in an organization
+|<<cloudhub load-balancer describe>>| Show LB details
+|<<cloudhub load-balancer describe-json>>| Show raw LB JSON response
+|<<cloudhub load-balancer create>>| Create a Load balancer
+|<<cloudhub load-balancer start>>| Starts a Load balancer
+|<<cloudhub load-balancer stop>>| Stops a Load balancer
+|<<cloudhub load-balancer delete>>| Delete a Load balancer
+|<<cloudhub load-balancer ssl-endpoint add>>| Add an additional certificate to an existing Load balancer
+|<<cloudhub load-balancer ssl-endpoint remove>>| Remove a certificate from a Load balancer
+|<<cloudhub load-balancer ssl-endpoint set-default>>| Set the default certificate that the Load balancer will serve
+|<<cloudhub load-balancer ssl-endpoint describe>>| Show the Load balancer configuration for a particular certificate
+|<<cloudhub load-balancer whitelist add>>| Add an IP or range of IPs to the Load balancer whitelist
+|<<cloudhub load-balancer whitelist remove>>| Remove an IP or range of IPs from the Load balancer whitelist
+|<<cloudhub load-balancer mappings describe>>| Lists the proxy mapping rules for a Load balancer. If no certificateName is given, the mappings for the default SSL endpoint are shown
+|<<cloudhub load-balancer mappings add>>| Add a proxy mapping rule at the specified indexIf no certificateName is given, the mappings for the default SSL endpoint are shown
+|<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping ruleIf no certificateName is given, the mappings for the default SSL endpoint are shown
+|<<cloudhub load-balancer dynamic-ips enable>>| Enables dynamic IPs
+|<<cloudhub load-balancer dynamic-ips disable>>| Disables dynamic IPs
+|<<cloudhub region list>>| Lists all supported regions
+|<<cloudhub runtime list>>| Lists all available runtimes
+|===
+
+== Commands for Managing your CloudHub VPC
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<cloudhub vpc list>>| Lists all VPCs
+|<<cloudhub vpc describe>>| Show VPC details
+|<<cloudhub vpc describe-json>>| Show raw VPC JSON response
+|<<cloudhub vpc create>>| Create a new VPC
+|<<cloudhub vpc delete>>| Delete an existing VPC
+|<<cloudhub vpc environments add>>| Modifies the VPC association to Runtime Manager environments.
+|<<cloudhub vpc environments remove>>| Modifies the VPC association to Runtime Manager environments.
+|<<cloudhub vpc business-groups add>>| Share a VPC with a list of Business Groups.
+|<<cloudhub vpc business-groups remove>>| Share a VPC with a list of Business Groups.
+|<<cloudhub vpc dns-servers set>>| Sets the domain names that are resolved using your internal DNS servers. If used with no option, internal DNS will be disabled
+|<<cloudhub vpc dns-servers unset>>| Clears the list domain names that are resolved using your internal DNS servers
+|<<cloudhub vpc firewall-rules describe>>| Show firewall rule for Mule applications in this VPC
+|<<cloudhub vpc firewall-rules add>>| Add a firewall rule for Mule applications in this VPC
+|<<cloudhub vpc firewall-rules remove>>| Remove a firewall rule for Mule applications in this VPC
+|===
+
+== Commands for Specifying Environments and Business Groups
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+|<<use environment>>| Make specified environment active
+|<<use business-group>>| Make specified business-group active
+|===
+
+An Anypoint-CLI call should then have the following form:
+[source,console]
+----
+$ anypoint-cli [params] [command]
+----
+
+If you choose not to pass a command, Anypoint-CLI will run in *interactive mode*.
+If you choose to pass a specific command and there is an error, the application will exit and return you a description of the issue.
+
+== account user describe
+
+----
+> account user describe  [options]
+----
+
+This command simply returns the information for your account. This includes your username, your full name, your email address, and the creation date of your account. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== account business-group list
+
+----
+> account business-group list [options]
+----
+
+This command displays all xref:access-management::organization.adoc#business-groups[business groups]. It returns return the name of the business group, the type ('Master' or 'Business unit') and the Id. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== account business-group describe
+
+----
+> account business-group describe  [options] <name>
+----
+
+This command displays information on the business group you pass in <name>. +
+If <name> is not specified, the command describes the business group on the current session.
+
+[NOTE]
+--
+If your business group or organization name contains spaces, you need to enclose its name between `"` characters.
+
+----
+> account business-group describe "QA Organization"
+----
+--
+
+It returns data such as the owner, the type, subscription information, the entitlements of the group and in which environment is running.
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== account environment list
+
+----
+> account environment list [options]
+----
+This command lists all your Environments in your Anypoint Platform. It will return your environment name, its Id and whether it's sandboxed or not. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== account environment create
+
+----
+> account environment create [options] <name>
+----
+This command creates a new environment using the name you set in <name>. +
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `--type` option. Use the `--type` option to specify the environment type. +
+Supported values for environment types are:
+
+* design
+* production
+* sandbox
+
+If no type is specified, the command creates a production environment.
+
+== account environment delete
+
+----
+> account environment delete  [options] <name>
+----
+This command deletes the environment specified in <name> +
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== account environment delete
+
+----
+> account environment describe [options] <name>
+----
+
+This command deletes the environment specified in <name> +
+If no <name> is provided, this command returns information about the current session's environment.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr api list
+
+----
+> api-mgr api list [options] <searchText>
+----
+This command lists all APIs in API Manager.
+
+You can specify an API Name in `searchText` to get the results of that specific API. +
+This command lists API Name, the latest version of the API, version count of the API and time passed since it was last updated.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+|--limit | Number of results to retrieve | `api-mgr api list --limit 2`
+|--offset | Offsets the amount of APIs passed | `api-mgr api list --offset 3`
+|--sort | Sorts the results in the field name passed | `api-mgr api list --sort "Latest Version"`
+|===
+
+== api-mgr api-version delete
+
+----
+> api-mgr api-version delete [options] <apiName> <version>
+----
+
+This command deletes version specified in `version` of the API passed in `apiName`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr api-version list
+
+----
+> api-mgr api-version list [options] <apiName>
+----
+
+This command lists all versions of the API specified in `apiName`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr applications approve
+
+----
+> api-mgr applications approve [options] <clientId> <apiName> <apiVersion>
+----
+
+This command approves the access request from the application with the client Id passed in `clientId` to the API specified in `apiName` and version passed in `apiVersion`.
+
+[TIP]
+--
+You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
+--
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr applications approve-tier-change
+
+----
+> api-mgr applications approve-tier-change [options] <clientId> <apiName> <apiVersion>
+----
+
+This command approves the SLA tier change for the application with the client Id passed in `clientId` to the  API specified in `apiName` and version passed in `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[TIP]
+--
+You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
+--
+
+== api-mgr applications delete
+
+----
+>  api-mgr applications delete [options] <clientId> <apiName> <apiVersion>
+----
+
+This command deletes the application associated with the client Id passed in `clientId` to the API passed in `apiName` with version specified in `apiVersion`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[TIP]
+--
+You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
+--
+
+
+== api-mgr applications list
+
+----
+> api-mgr applications list [options] <apiName> <apiVersion> [searchText]
+----
+
+This command displays information about the applications whose access request status to your API is either `pending`, `approved` or `revoked`.
+
+[TIP]
+You can specify keywords in searchText to limit results to APIs containing those specific keywords.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+|--tier-requests | When passed, this command only lists applications with pending SLA tier change requests. | `api-mgr applications list --tier-requests`
+|--limit | Number of results to retrieve | `api-mgr applications list --limit 2`
+|--offset | Offsets the amount of APIs passed | `api-mgr applications list --offset 3`
+|--sort | Sorts the results in the field name passed | `api-mgr applications list --sort "Latest Version"`
+|===
+
+== api-mgr applications reject
+
+----
+> api-mgr applications reject [options] <clientId> <apiName> <apiVersion>
+----
+
+This command rejects the application to the API passed in `apiName` and version specified in `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[TIP]
+--
+You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
+--
+
+== api-mgr applications reject-tier-change
+
+----
+> api-mgr applications reject-tier-change [options] <clientId> <apiName> <apiVersion>
+----
+
+This command rejects the SLA tier change requested by the application with client Id passed in `clientId` for the API passed in `apiName` and version specified in `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[TIP]
+--
+You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
+--
+
+== api-mgr applications restore
+
+----
+> api-mgr applications restore [options] <clientId> <apiName> <apiVersion>
+----
+
+This command restores the requested application associated with the client Id passed in `clientId` with the API passed in `apiName` and version specified in `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[TIP]
+--
+You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
+--
+
+
+== api-mgr applications revoke
+
+----
+> api-mgr applications revoke [options] <clientId> <apiName> <apiVersion>
+----
+
+This command revokes the application associated with the client Id passed in `clientId` to the API passed in `apiName` and version specified in `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[TIP]
+--
+You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
+--
+
+== api-mgr applications set-tier
+
+----
+> api-mgr applications set-tier [options] <tierId> <clientId> <apiName> <apiVersion>
+----
+
+This command sets the SLA Tier specified in `tierId` for the application associated with the client Id passed in `clientId`, and to the API passed in `apiName` and version specified in `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[NOTE]
+You can create a tier using the <<api-mgr tiers add>> command.
+
+== api-mgr definition copy
+
+----
+> api-mgr definition copy [options] <source> <target>
+----
+
+This command copies the definition from the API passed in `source` to the API passed in `target`. +
+Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+For example:
+
+----
+> api-mgr definition copy Services/api-1/1.0 Development/api-1/1.0
+----
+
+Copies the definition of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization. +
+If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
+
+----
+> api-mgr definition copy api-1/1.0 Development/api-1/1.0
+----
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr definition download
+
+----
+> api-mgr definition download [options] <apiName> <version> <directory>
+----
+
+This command downloads the API definition of the API passed in `apiName` with version specified in `version` to the local directory passed in `directory`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== api-mgr definition upload
+
+----
+> api-mgr definition upload [options] <apiName> <version> <directory>
+----
+
+This command uploads the API definition from the directory passed in `directory`, to the API passed in `apiName` with version passed in `version`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+|--swagger | Passed when the API definition is swagger | `api-mgr definition upload --swagger --root swagger.yaml test-api 1 /Users/sample/Documents`
+|--root | Defines the root file of the API definition to upload | `api-mgr definition upload --root sample.raml test-api 1 /Users/sample/Documents`
+|===
+
+== api-mgr endpoint configure
+
+----
+> api-mgr endpoint configure [options] <apiName> <apiVersion>
+----
+This command lets configure the endpoint for the API specified in `apiName` with version `apiVersion`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,70a"]
+|===
+|Command | Description
+| -p, --withProxy            | Indicates whether the endpoint should use a proxy. Passing `false` will set all proxy-specific options to `null`.
+| -c, --isCloudHub           | Indicates whether a CloudHub proxy should be configured. Passing `true` will set the proxy's `--port` to Cloudhub's default value and `--referencesUserDomain` to `false`.
+| -r, --referencesUserDomain | Indicates whether a proxy should reference a user domain
+| --type <value>             | Endpoint type
+| --uri <value>              | Implementation URI
+| --getUriFromRAML           | Get implementation URI from RAML
+| --scheme <value>           | Proxy scheme
+| --port <value>             | Proxy port
+| --path <value>             | Proxy path
+| --responseTimeout          | Response Timeout
+|===
+
+
+== api-mgr endpoint describe
+
+----
+> api-mgr endpoint describe [options] <apiName> <apiVersion>
+----
+
+This command describes the endpoint of the API passed in `apiName` with version passed in `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== api-mgr policy apply
+
+----
+> api-mgr policy apply [options] <policyId> <apiName> <apiVersion>
+----
+
+This command applies the policy passed in `policyId` to the API and version passed in `apiName` and `apiVersion` respectively.
+
+[TIP]
+--
+You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
+--
+
+
+[CAUTION]
+--
+The Policy configuration properties must be passed in JSON format using the `-c` or `--config` option:
+
+----
+api-mgr policy apply ip-blacklist test-api 1 -c '{"ips": "123.1.1.1"}'
+----
+
+--
+
+Besides the the `-c`/`--config` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+
+[TIP]
+--
+You can use the <<api-mgr policy describe>> option to check the default field names and values of each default policy. +
+--
+
+== api-mgr policy copy
+
+----
+> api-mgr policy copy [options] <source> <target> [policyId]
+----
+
+This command copies all policies from the API passed in `source` to the API passed in `target`. +
+Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID.
+
+When the "policyId" argument is provided, only the policy with that matching ID is copied. +
+For example:
+
+----
+> api-mgr policy copy Services/api-1/1.0 Development/api-1/1.0
+----
+
+Copies the policy of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization.
+
+----
+> api-mgr policy copy Services/api-1/1.0 Development/api-1/1.0 ip-blacklist
+----
+
+Only copies the ip-blacklist policy.
+
+If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
+
+----
+> api-mgr definition copy api-1/1.0 Development/api-1/1.0
+----
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr policy describe
+
+----
+> api-mgr policy describe [options] <policyId>
+----
+
+This command shows a description of the policy passed in `policyId`.
+
+[TIP]
+--
+You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
+--
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr policy disable
+
+----
+> api-mgr policy disable [options] <policyId> <apiName> <apiVersion>
+----
+
+This command disables the policy passed in `policyId` from the API and version passed in `apiName` and `apiVersion` respectively. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[TIP]
+--
+You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
+--
+
+== api-mgr policy edit
+
+----
+> api-mgr policy edit [options] <policyId> <apiName> <apiVersion>
+----
+This command edits the policy passed in `policyId` on the API and version passed in `apiName` and `apiVersion` respectively.
+
+[TIP]
+--
+You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
+--
+
+[CAUTION]
+--
+The Policy configuration properties must be passed in JSON format using the `-c` or `--config` option:
+
+----
+api-mgr policy edit ip-blacklist test-api 1 -c '{"ips": "123.1.1.1"}'
+----
+
+--
+
+Besides the the `-c`/`--config` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+
+[TIP]
+--
+You can use the <<api-mgr policy describe>> option to check the default field names and values of each default policy. +
+--
+
+== api-mgr policy enable
+
+----
+> api-mgr policy enable [options] <policyId> <apiName> <apiVersion>
+----
+
+This commands enables the policy passed in `policyId` in the API and version passed in `apiName` and `apiVersion`.
+
+[TIP]
+--
+You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
+--
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr policy list
+
+----
+> api-mgr policy list [options] [apiName] [apiVersion]
+----
+
+This command lists all the policies available. +
+When `apiName` and `apiVersion` are provided, this command returns the policies applied to the specified API.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr policy remove
+
+----
+> api-mgr policy remove [options] <policyId> <apiName> <apiVersion>
+----
+
+This command removes the the policy passed in `policyId` from the API and version passed in `apiName` and `apiVersion` respectively.
+
+[TIP]
+--
+You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
+--
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr portal copy
+
+----
+> api-mgr portal copy [options] <source> <target>
+----
+
+This command copies the API Portal from the API passed in `source` to the API passed in `target`. +
+Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+For example:
+
+----
+> api-mgr portal copy Services/api-1/1.0 Development/api-1/1.0
+----
+
+Copies the API portal of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization. +
+If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
+
+----
+> api-mgr portal copy api-1/1.0 Development/api-1/1.0
+----
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== api-mgr portal list
+
+----
+> api-mgr portal list [options] <apiName>
+----
+
+This command lists all portals associated with the API passed in `apiName`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr portal open
+
+This command is only available for interactive mode.
+
+----
+> api-mgr portal open [options] <apiName> <version>
+----
+
+This command opens in your browser the API portal of the API and version passed in `apiName` and `version`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== api-mgr tiers add
+
+----
+> api-mgr tiers add [options] <apiName> <apiVersion>
+----
+
+This command creates an SLA tier for the API and version passed in `apiName` and `version`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,70a"]
+|===
+|Command | Description
+| -a, --autoApprove | Indicates whether SLA tier should be auto-approved.
+| --name | SLA tier name
+| --description | SLA Tier description
+| -l, --limit | Single instance of an SLA tier limit in the form `--limit A,B,C` where:
+
+* "A" is a boolean indicating whether or not this limit should be visible.
+* "B" is a number of requests per "C" time period.
+* "C" is the time period unit. Time period options are:
+** `ms`(millisecond)
+** `sec`(second)
+** `min`(minute)
+** `hr`(hour)
+** `d`(day)
+** `wk`(week)
+** `mo`(month)
+** `yr`(year)
+
+E.g.: `--limit true,100,min` is a "visible" limit of 100 requests per minute. +
+
+[TIP]
+To create multiple limits, you can provide multiple `--limit` options. +
+E.g. `-l true,100,sec -l false,20,min`
+
+|===
+
+== api-mgr tiers copy
+
+----
+> api-mgr tiers copy [options] <source> <target>
+----
+This command copies the SLA tier from the API passed in `source` to the API passed in `target`. +
+Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+For example:
+
+----
+> api-mgr tiers copy Services/api-1/1.0 Development/api-1/1.0
+----
+
+Copies the tier of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization. +
+If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
+
+----
+> api-mgr tiers copy api-1/1.0 Development/api-1/1.0
+----
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== api-mgr tiers delete
+
+----
+> api-mgr tiers delete [options] <tierId> <apiName> <apiVersion>
+----
+
+This command deletes the SLA tier passed in `tierId` from the API and version from `apiName` and `apiVersion` respectively. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+
+== api-mgr tiers deprecate
+
+----
+> api-mgr tiers deprecate [options] <tierId> <apiName> <apiVersion>
+----
+
+This command deprecates the SLA tier passed in `tierId` from the `apiName` and `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr tiers edit
+
+----
+> api-mgr tiers edit [options] <tierId> <apiName> <apiVersion>
+----
+
+This command edits the SLA tier passed in `tierId` associated with the API and version passed in `apiName` and `apiVersion` respectively.
+
+[CAUTION]
+All passed data replaces the original with no deep merging or comparison performed. +
+Full SLA tier data must be passed.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,70a"]
+|===
+|Command | Description
+| -a, --autoApprove | Indicates whether SLA tier should be auto-approved.
+| --name | SLA tier name
+| --description | SLA tier description
+| -l, --limit | Single instance of an SLA tier limit in the form `--limit A,B,C` where:
+
+* "A" is a boolean indicating whether or not this limit should be visible.
+* "B" is a number of requests per "C" time period.
+* "C" is the time period unit. Time period options are:
+** `ms`(millisecond)
+** `sec`(second)
+** `min`(minute)
+** `hr`(hour)
+** `d`(day)
+** `wk`(week)
+** `mo`(month)
+** `yr`(year)
+
+E.g.: `--limit true,100,min` is a "visible" limit of 100 requests per minute. +
+
+[TIP]
+To create multiple limits, you can provide multiple `--limit` options. +
+E.g. `-l true,100,sec -l false,20,min`
+
+|===
+
+== api-mgr tiers list
+
+----
+> api-mgr tiers list [options] <apiName> <apiVersion>
+----
+
+This command lists all SLA tiers for the API and version passed in `apiName` and `apiVersion` respectively.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+|--limit | Number of results to retrieve | `api-mgr tiers list --limit 2`
+|--offset | Offsets the amount of APIs passed | `api-mgr tiers list --offset 3`
+|--sort | Sorts the results in the field name passed | `api-mgr tiers list --sort "Latest Version"`
+|===
+
+
+== api-mgr tiers reactivate
+
+----
+> api-mgr tiers reactivate [options] <tierId> <apiName> <apiVersion>
+----
+
+This command reactivates the SLA tier passed in `tierId` for the API and version passed in `apiName` and `apiVersion`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr proxy download
+
+----
+> api-mgr proxy download [options] <apiName> <apiVersion> <directory>
+----
+
+This command download a ZIP archive of the proxy used by <apiName> and <apiVersion> to the local directory passed in <directory>. +
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `-gatewayVersion` option.  If not specified, the command defaults to the latest version.
+
+== designcenter project create
+
+----
+> designcenter project create [options] <name>
+----
+
+This Command creates a new Design Center project with the name specified in <name>.
+
+[IMPORTANT]
+This command does not support Mule application types.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+| --type (required) | The project type. +
+This field is required.
+
+Supported values are:
+
+* raml
+* raml-fragment | `designcenter project create --type raml`
+| --fragment-type | The fragment type if the application type is a RAML fragment.
+
+This field is required if the type option was set as raml-fragment
+
+Supported fragments type are:
+
+* trait
+* resource-type
+* library
+* type
+* user-documentation | `designcenter project create --type raml-fragment --fragment-type user-documentation`
+|===
+
+== designcenter project delete
+
+----
+> designcenter project delete [options] <name>
+----
+
+This Command deletes the Design Center project specified in `name`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== designcenter project download
+
+----
+> designcenter project download [options] <name> <targetDir>
+----
+
+This Command downloads the Design Center project passed in `name` to your local directory specified in `targetDir`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== designcenter project publish
+
+----
+> designcenter project publish [options] <projectName>
+----
+
+This Command publishes the Design Center project passed in `projectName` to Exchange. +
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[TIP]
+Options that are not specified are extracted from exchange.json
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+| --name | The name for the asset | `designcenter project publish --name sampleProject`
+| --main | The name of the main file name. | `designcenter project publish --main sample.xml`
+| --apiVersion | The API version if your project is an API specification project. | `designcenter project publish --main sample.raml --apiVersion 1.0`
+| --tags | Comma separated list of tags. | `designcenter project publish --tags test,sample,integration`
+| --groupId | The asset's groupId. | `designcenter project publish --groupId com.mulesoft.com`
+| --assetId  | The asset's assetId. | `designcenter project publish --assetId project`
+| --version | The asset's version. | `designcenter project publish --version 1.0`
+|===
+
+== designcenter project upload
+
+----
+> designcenter project upload [options] <name> <projDir>
+----
+
+This Command uploads a Design Center project from your local directory passed in `projDir` and names it using the name passed in `name`.
+
+By default, this command ignores all hidden files and directories. To include hidden files and directories, use the `--include-dot-files` option. +
+When the `--include-dot-files` option is used, the command uploads hidden files and folders from your specified directory.
+
+Besides the `--include-dot-files`, this command takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+
+== designcenter project list
+
+----
+> designcenter project list [options] [searchText]
+----
+
+This Command lists all your Design Center projects. +
+You can start typing your project's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset upload
+
+----
+> exchange asset upload [options] <assetIdentifier> [filePath]
+----
+
+This command upload an oas, wsdl, http or custom asset using the IDs passed in <assetIdentifier>. +
+If [filePath] points to a ZIP archive file, that archive must include an "exchange.json" file describing the asset. +
+Argument "assetIdentifier" should be formatted as follows: <group_id>/<asset_id>/<version>.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+| --apiVersion |  Asset API version .3+<.<| `exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
+| --name       |  Asset name
+| --classifier |  Asset classifier +
+Valid classifiers are `custom`, `oas`, and `wsdl`.
+|===
+
+== exchange asset modify
+
+----
+> exchange asset modify [options] <assetIdentifier>
+----
+
+This command modifies the Exchange asset identified with <assetIdentifier>. +
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+|--name | New asset name .2+<.<| `exchange asset modify --name newName --tags test,sample`
+|--tags | Comma-separated tags for the asset
+|===
+
+== exchange asset download
+
+----
+> exchange asset download [options] <assetIdentifier> <directory>
+----
+
+This command downloads the Exchange asset identified with <assetIdentifier> to the directory passed in <directory>. +
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset list
+
+----
+> exchange asset list [options] [searchText]
+----
+
+This command lists all assets in Exchange.
+
+[TIP]
+You can specify keywords in searchText to limit results to APIs containing those specific keywords.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+|--limit | Number of results to retrieve | `exchange asset list --limit 2`
+|--offset | Offsets the amount of APIs passed | `exchange asset list --offset 3`
+|--sort | Sorts the results in the field name passed | `exchange asset list --sort "Latest Version"`
+|===
+
+
+== exchange asset page download
+
+----
+> exchange asset page download [options] <assetIdentifier> <directory> [pageName]
+----
+
+This command downloads the description page specified in [pageName], for the Exchange asset identified with <assetIdentifier> to the directory passed in <directory>. +
+If [pageName] is not specified, this command downloads all pages.
+
+[NOTE]
+This command only supports published pages.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+The description page in downloaded in Markdown format. When "name" is not specified, all pages are downloaded.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset page modify
+
+----
+> exchange asset page modify [options] <assetIdentifier> <pageName>
+----
+
+This command modifies the description page specified in <pageName>, for the Exchange asset identified with <assetIdentifier>.
+
+[NOTE]
+This command only supports published pages.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `--name` option to set a new asset page name.
+
+== exchange asset page upload
+
+----
+> exchange asset page upload [options] <assetIdentifier> <pageName> <mdPath>
+----
+
+This command uploads an asset description page from the path passed in <mdPath> using the name specified in <pageName> to the Exchange asset identified with <assetIdentifier>. +
+Naming the page "home" makes the uploaded page the main description page for the Exchange asset.
+
+[NOTE]
+This command only supports published pages.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset page delete
+
+----
+> exchange asset page delete [options] <assetIdentifier> <pageName>
+----
+
+This command deletes the description page specified in <pageName>, for the asset identified with <assetIdentifier>. +
+If [pageName] is not specified, this command downloads all pages.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+[NOTE]
+This command only supports published pages.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset page list
+
+----
+> exchange asset page list <assetIdentifier>
+----
+
+This command List all pages for the asset passed in <assetIdentifier>. +
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID.
+
+[NOTE]
+This command only supports published pages.
+
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== exchange asset copy
+
+----
+> exchange asset copy [options] <source> <target>
+----
+
+This command copies the Exchange asset from <source> to <target>. +
+Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset delete
+
+----
+> exchange asset delete [options] <assetIdentifier>
+----
+
+This command deletes the Exchange asset passed in <assetIdentifier>.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset deprecate
+
+----
+> exchange asset deprecate <assetIdentifier>
+----
+
+This command deprecates the asset passed in <assetIdentifier>.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset undeprecate
+
+----
+> exchange asset undeprecate <assetIdentifier>
+----
+
+This command undeprecates the asset passed in <assetIdentifier>.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== exchange asset describe
+
+----
+> exchange asset describe <assetIdentifier>
+----
+
+This command describes the asset passed in <assetIdentifier>.
+
+Argument "assetIdentifier" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-alert list
+
+----
+> runtime-mgr cloudhub-alert list [options]
+----
+This command lists all alerts associated with your current environment
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-alert-history describe
+
+----
+> runtime-mgr cloudhub-alert-history describe [options] <name>
+----
+This command describes the history of the alarm passed in <name>.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application list
+
+----
+> runtime-mgr cloudhub-application list [options]
+----
+
+This command lists all applications available in your Anypoint-CLI. It returns your application name, its status, the amount of vCores assigned and the last time it was updated. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application describe
+
+----
+> runtime-mgr cloudhub-application describe [options] <name>
+----
+
+This command displays information on the application you pass in <name>. +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+It will return data such as the application's domain, its status, last time it was updated, the Runtime version, the .zip file name, the region, monitoring, and Workers; as well as 'TRUE' or 'FALSE' information for persistent queues and static IPs enablement. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application describe-json
+
+----
+> runtime-mgr cloudhub-application describe-json  [options] <name>
+----
+
+This command returns the raw JSON response of the application you specify in <name>. +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application stop
+
+----
+> runtime-mgr cloudhub-application stop  [options] <name>
+----
+
+This command stops the running application you specify in <name> +
+You can start typing your application's name and hit `tab` for Anypoint-ClI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application start
+
+----
+> runtime-mgr cloudhub-application start [options] <name>
+----
+
+This command starts the running application you specify in <name> +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application restart
+
+----
+> runtime-mgr cloudhub-application restart  [options] <name>
+----
+
+This command restarts the running application you specify in <name> +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application delete
+
+----
+> runtime-mgr cloudhub-application delete [options] <name>
+----
+
+This command deletes the running application you specify in <name>
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application deploy
+
+----
+> runtime-mgr cloudhub-application deploy  [options] <name> <zipfile>
+----
+
+This command deploys the Mule deployable archive .zip file that you specify in <zipfile> using the name you set in <name>. +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You will have to provide the absolute or relative path to the deployable zip file in your local hard drive and the name you give to your application has to be unique.
+
+The options this command can take are:
+[%header,cols="30a,70a"]
+|===
+|Option |Description
+|--runtime                                   | Name of the runtime environment
+|--workers                                      | Number of workers. (This value is '1' by default)
+|--workerSize                               | Size of the workers in vCores. (This value is '1' by default)
+|--region                                        | Name of the region to deploy to. +
+For a list of all supported regions, use the <<cloudhub region list>> command.
+|--property                                    | Set a property (name:value). Can be specified multiple times. +
+The property to be set must be passed enclosed in quotes and characters `:` and `=` must be escaped. +
+(e.g. `--property "salesforce.password:qa\=34534"`).
+
+Character `:` is not supported for the property's name.
+|--propertiesFile                        | Overwrite all properties with values from this file. The file format is 1 or more lines in name:value format. Set the absolute path of the properties file in your local hard drive.
+|--persistentQueues                   | Enable or disable persistent queues. Can take 'true' or 'false' values. (This value is 'false' by default)
+|--persistentQueuesEncrypted  | Enable or disable persistent queue encryption. Can take 'true' or 'false' values. (This value is 'false' by default)
+|--staticIPsEnabled                                      | Enable or disable static IPs. Can take 'Enable' or 'Disabled' values. (This value is 'Disabled' by default)
+|--autoRestart                            | Automatically restart app when not responding. Can take 'true' or 'false' values. (This value is 'false' by default)
+|--help                                                  | output usage information
+|===
+Note that from Anypoint-CLI you won't be able to allocate static IPs. You can simply enable and disable them.
+
+After typing any option, you can double tap the `tab` key for a full list of all possible options.
+For example:
+----
+> deploy <app name> --runtime [tab][tab]
+----
+Lists all possible runtimes you can select.
+
+[IMPORTANT]
+====
+If you deploy without using any options, your application will deploy using all your default values.
+====
+
+== runtime-mgr cloudhub-application modify
+
+----
+> runtime-mgr cloudhub-application modify  [options] <name> [zipfile]
+----
+This command updates the settings of an existing application. Optionally you can update it by uploading a new .zip file. +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
+This command can take all the same options as the *deploy* option.
+
+You can also start typing your option and hit `tab` for Autocomplete-CLI to autocomplete it for you.
+
+//TODO Check revert-runtime deprecation
+/ === runtime-mgr application revert-runtime
+//
+// [source,Example]
+// ----
+// > runtime-mgr application revert-runtime [options] <name>
+// ----
+// This command reverts the application defined in <name> to its previous runtime environment. +
+// You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+// This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cloudhub-application download-logs
+
+----
+> runtime-mgr cloudhub-application download-logs [options] <name> <directory>
+----
+This command downloads logs the for application specified in <name> to the specified directory. +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+Keep in mind that contrarily to what you see in the UI, the logs you download from the CLI won't separate system logs from worker logs.
+
+== runtime-mgr cloudhub-application tail-logs
+
+----
+> runtime-mgr cloudhub-application tail-logs [options] <name>
+----
+
+This command tails application logs. +
+You can start typing your application's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+/ === runtime-mgr cloudhub-application upgrade-runtime
+//
+// [source,Example]
+// ----
+// > runtime-mgr cloudhub-application upgrade-runtime [options] <name>
+// ----
+//
+// This command upgrades the runtime version of the application passed in `name` to the latest patch version. If the `-v`/`--version` option is used to specify a specific runtime version, this command updates the application's runtime to that version. +
+// Besides the `--version` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+//
+/ === runtime-mgr cloudhub-application downgrade-runtime
+//
+// [source,Example]
+// ----
+// > runtime-mgr cloudhub-application downgrade-runtime [options] <name>
+// ----
+// This command downgrades the runtime version of the application passed in `name` to the previous runtime version. If the `-v`/`--version` option is used to specify a specific runtime version, this command updates the application's runtime to that version. +
+// Besides the `--version` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+
+== runtime-mgr cloudhub-application copy
+
+----
+> runtime-mgr cloudhub-application copy [options] <source> <target>
+----
+
+This command copies the CloudHub application passed in `source` to the target passed in `target`. +
+Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+If "group_id" is not specified, it will default to the currently selected Organization ID. +
+For example:
+
+----
+> runtime-mgr cloudhub-application copy Services:QA/application-1 Development:QA/application-2
+----
+Copies the application named `application-1` from the QA environment of the _Services_ organization to the QA environment of the _Development_ organization. +
+If the Anypoint Platform CLI is using the QA environment in the Services organization, the command can simply take the application name as a `source`:
+
+----
+> runtime-mgr cloudhub-application copy application-1 Development/QA/application-2
+----
+
+[NOTE]
+Running this command requires for your user to have read/write access to the `/tmp` directory of the OS where CLI is installed.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application artifact
+
+----
+> runtime-mgr standalone-application artifact [options] <identifier> <directory>
+----
+
+This command downloads the application artifact of the `identifier` application, to the directory passed in `directory`. +
+The "identifier" parameter can be either an application ID or name. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application deploy
+
+----
+> runtime-mgr standalone-application deploy [options] <targetIdentifier> <name> <zipfile>
+----
+
+This command deploys the application passed as a zip file in the path `zipfile` to the on-premise target passed in `targetIdentifier`. +
+The "targetIdentifier" parameter can be either a target ID or name. +
+A target can be either a server, server group or cluster. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application describe-json
+
+----
+> runtime-mgr standalone-application describe-json [options] <identifier>
+----
+
+This command describes the application passed in `identifier` as a raw JSON response. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application modify
+
+----
+> runtime-mgr standalone-application modify [options] <identifier> <zipfile>
+----
+
+This command modifies the standalone application passed in `identifier` with the zip file application passed in `zipfile` as a path. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application start
+
+----
+> runtime-mgr standalone-application start [options] <identifier>
+----
+
+This command starts the application passed in `identifier`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application delete
+
+----
+> runtime-mgr standalone-application delete [options] <identifier>
+----
+
+This command deletes the application passed in `identifier`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+== runtime-mgr standalone-application describe
+
+----
+> runtime-mgr standalone-application describe [options] <identifier>
+----
+
+This command describes the standalone application passed in `identifier`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application list
+
+----
+> runtime-mgr standalone-application list [options]
+----
+
+This command lists all standalone applications. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application restart
+
+----
+> runtime-mgr standalone-application restart [options] <identifier>
+----
+
+This command restarts the application passed in `identifier`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application stop
+
+----
+> runtime-mgr standalone-application stop [options] <identifier>
+----
+
+This command stops the standalone application passed in `identifier`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-application copy
+
+----
+> runtime-mgr standalone-application copy [options] <source> <target> <targetIdentifier>
+----
+
+This command copies the standalone application passed in `source` to the target passed in `target` and the server, server group or cluster ID or Name passed in `targetIdentifier`. +
+Both arguments `source` and `destination` are represented using the format: `<organizationName>:<environmentName>/<appName>`, for example:
+
+----
+> runtime-mgr standalone-application copy Services:QA/application-1 Development:QA/application-2 123456
+----
+Copies the application named `application-1` from the QA environment of the _Services_ organization to the QA environment of the _Development_ organization in the server Id 123456. +
+If the Anypoint Platform CLI is using the QA environment in the Services organization, the command can simply take the application name as a `source`:
+
+----
+> runtime-mgr standalone-application copy application-1 Development/QA/application-2 123456
+----
+
+[NOTE]
+Running this command requires for your user to have read/write access to the `/tmp` directory of the OS where CLI is installed.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr pcf-application delete
+
+----
+> runtime-mgr pcf-application delete [options] <appId>
+----
+
+This commands deletes the PCF application passed in `appId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+== runtime-mgr pcf-application describe
+
+----
+> runtime-mgr pcf-application describe [options] <appId>
+----
+
+This command describes the PCF deployed application passed in `appId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr pcf-application list
+
+----
+> runtime-mgr pcf-application list [options]
+----
+
+This command lists all your PCF deployed applications. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr pcf-application restart
+
+----
+> runtime-mgr pcf-application restart [options] <appId>
+----
+
+This command restarts your PCF deployed application passed in `appId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr pcf-application stop
+
+----
+> runtime-mgr pcf-application stop [options] <appId>
+----
+
+This command stops the PCF deployed appplication passed in `appId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr pcf-application deploy
+
+----
+> runtime-mgr pcf-application deploy [options] <name> <zipfile>
+----
+
+This command deploys to your PCF instance the application passed in `zipfile` with the name Id passed in `name`. +
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30,70"]
+|===
+|Value |Description
+| --runtime [version] | Runtime version
+| --replication [factor] | Replication factor
+| --property [property] | Set a property (name:value). Can be specified multiple times
+| --propertiesFile [propertiesFile] | Overwrite all properties with values from this file. The file format is 1 or more lines in name=value format
+| --binding [binding] | Set a service binding (serviceName.key:value). Can be specified multiple times
+| --bindingsFile [sindingsFile] | Overwrite all properties with values from this file. The file format is 1 or more lines in serviceName.key:value format
+|===
+
+== runtime-mgr pcf-application describe-json
+
+----
+> runtime-mgr pcf-application describe-json [options] <appId>
+----
+
+This command shows a raw JSON description of the PCF deployed application passed in `appId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr pcf-application modify
+
+----
+> runtime-mgr pcf-application modify [options] <appId> [zipfile]
+----
+
+This command modifies the PCF deployed application passed in `appId` with the ZIP file application passed in `zipfile`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30,70"]
+|===
+|Value |Description
+| --runtime [version] | Runtime version
+| --replication [factor] | Replication factor
+| --property [property] | Set a property (name:value). Can be specified multiple times
+| --propertiesFile [propertiesFile]  | Overwrite all properties with values from this file. The file format is 1 or more lines in name=value format
+| --binding [binding] | Set a service binding (serviceName.key:value). Can be specified multiple times
+| --bindingsFile [sindingsFile] | Overwrite all properties with values from this file. The file format is 1 or more lines in serviceName.key:value format
+|===
+
+== runtime-mgr pcf-application start
+
+----
+> runtime-mgr pcf-application start [options] <appId>
+----
+
+This command starts the PCF deployed application passed in `appId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr server describe
+
+----
+> runtime-mgr server describe [options] <serverId>
+----
+
+This command describes the server passed in `serverId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr server modify
+
+----
+> runtime-mgr server modify [options] <serverId>
+----
+
+This command modifies the server passed in `serverId`. +
+In order to update the id for the cluster, you need to pass the  `--name` option.
+
+Besides the `--name` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+
+== runtime-mgr server token
+
+----
+> runtime-mgr server token [options]
+----
+
+This command gets server registration token. This token needs to be used to register a new server. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr server delete
+
+----
+> runtime-mgr server delete [options] <serverId>
+----
+
+This command deletes the server passed in `serverId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+== runtime-mgr server list
+
+----
+> runtime-mgr server list [options]
+----
+
+This server lists all servers in your environment. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+// TODO: Deprecated server register
+/ === runtime-mgr server register
+//
+// [source,Example]
+// ----
+// > runtime-mgr server register [options] <name> <directory>
+// ----
+//
+// This command registers a new server with the name passed in `name`. This command returns a signed certificate which is downloaded to `directory` path.
+//
+// Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+//
+// [%header,cols="30,70"]
+// |===
+// |Value |Description
+// | --signature <signatureStr> | Signature for Sign Certificate Request.
+// | --mule <version> | Mule version
+// | --gateway <version> | Gateway version
+// |===
+
+== runtime-mgr serverGroup create
+
+----
+> runtime-mgr serverGroup create [options] <name> [serverIds...]
+----
+
+This command creates a server group with the name passed in `name` using the server Id(s) passed as argument(s) thereafter. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr serverGroup describe
+
+----
+> runtime-mgr serverGroup describe [options] <serverGroupId>
+----
+
+This command describes the server group passed in `serverGroupId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr serverGroup modify
+
+----
+> runtime-mgr serverGroup modify [options] <serverGroupId>
+----
+
+This command modifies the server group passed in `serverGroupId`. +
+In order to update the id for the cluster, you need to pass the  `--name` option.
+
+Besides the `--name` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+
+
+== runtime-mgr serverGroup add server
+
+----
+> runtime-mgr serverGroup add server [options] <serverGroupId> <serverId>
+----
+
+This command adds the server passed in `serverId` to the server group passed in `serverGroupId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr serverGroup delete
+
+----
+> runtime-mgr serverGroup delete [options] <serverGroupId>
+----
+
+This command deletes the server groups passed in `serverGroupId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+== runtime-mgr serverGroup list
+
+----
+> runtime-mgr serverGroup list [options]
+----
+
+This command lists all server groups in the environment. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr serverGroup remove server
+
+----
+> runtime-mgr serverGroup remove server [options] <serverGroupId> <serverId>
+----
+
+This command removes the removes the server passed in `serverId`, from the server group passed in `serverGroupId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cluster add server
+
+----
+> runtime-mgr cluster add server [options] <clusterId> <serverId>
+----
+
+This command adds the cluster in `clusterId` to the server passed in `serverId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cluster delete
+
+----
+> runtime-mgr cluster delete [options] <clusterId>
+----
+
+This command deletes the cluster passed in `clusterId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+== runtime-mgr cluster list
+
+----
+> runtime-mgr cluster list [options]
+----
+
+This command lists all clusters in the environment. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cluster remove server
+
+----
+> runtime-mgr cluster remove server [options] <clusterId> <serverId>
+----
+
+This command removes the server passed in `serverId` from the cluster passed in `clusterId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cluster create
+
+----
+> runtime-mgr cluster create [options] <name>
+----
+
+This command creates a cluster using the id passed in `name`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+[%header,cols="30,70"]
+|===
+|Value | Description
+|--multicast | Whether cluster should be Multicast
+|--server <id:ip> | Pair of server ID and IP address. Latter is optional for multicast cluster. Provide multiple values to add multiple servers
+|===
+
+== runtime-mgr cluster describe
+
+----
+> runtime-mgr cluster describe [options] <clusterId>
+----
+
+This command describes the cluster passed in `clusterId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr cluster modify
+
+----
+> runtime-mgr cluster modify [options] <clusterId>
+----
+
+This command modifies the cluster passed in `clusterId`. +
+In order to update the id for the cluster, you need to pass the  `--name` option.
+
+Besides the `--name` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+
+
+
+
+== runtime-mgr standalone-alert describe
+
+----
+> runtime-mgr standalone-alert describe [options] <alertId>
+----
+
+This command describes the alert passed in `alertId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== runtime-mgr standalone-alert create
+
+----
+> runtime-mgr standalone-alert create [options] <name>
+----
+
+This command creates a new alert for a standalone runtime with the id passed in `name`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30,70"]
+|===
+|Value |Description
+| --severity <val> | Alert severity
+| --resourceType <type> | Alert resource type
+| --resource [id] | Alert resource ID. Can be used multiple types. If not provided alert triggers for all resources. Depending on resourceType resource can be application, server, server-group or cluster.
+| --condition <val> | Alert trigger condition
+| --period [minutes] | Condition duration in minutes
+| --threshold [num] | Condition threshold number
+| --operator [type] | Condition operator explaining values relation to threshold.
+| --subject <string> | Alert notification email subject
+| --content <string> | Alert notification email body
+| --recipient [username] | Username to send alert notification to. Can be used multiple times to specify multiple usernames.
+| --email [emailAddress] | Email to send alert notification to. Can be used multiple times to specify multiple emails.
+|===
+
+== runtime-mgr standalone-alert modify
+
+----
+> runtime-mgr standalone-alert modify [options] <alertId>
+----
+
+This command modifies the alert passed in `alertId`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30,70"]
+|===
+|Value |Description
+| --name <val> | Alert name
+| --severity <val> | Alert severity
+| --resourceType <type> | Alert resource type
+| --resource [id] | Alert resource ID. Can be used multiple types. If not provided alert triggers for all resources. Depending on resourceType resource can be application, server, server-group or cluster.
+| --condition <val> | Alert trigger condition
+| --period [minutes] | Condition duration in minutes
+| --threshold [num] | Condition threshold number
+| --operator [type] | Condition operator explaining values relation to threshold.
+| --subject <string> | Alert notification email subject
+| --content <string> | Alert notification email body
+| --recipient [username] | Username to send alert notification to. Can be used multiple times to specify multiple usernames.
+| --email [emailAddress] | Email to send alert notification to. Can be used multiple times to specify multiple emails.
+|===
+
+== runtime-mgr standalone-alert list
+
+----
+> runtime-mgr standalone-alert list [options]
+----
+
+This command lists all alerts for standalone runtimes in the current environment. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+
+== cloudhub load-balancer list
+
+----
+> cloudhub load-balancer list [options]
+----
+This command lists all load balancers in your Anypoint Platform. It displays load balancer's name, domain, its state and the VPC Id to which the load balancer is bound. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub load-balancer describe
+
+----
+> cloudhub load-balancer describe [options] <name>
+----
+This command displays information about the load balancer that is specified in <name>. +
+You can start typing your load balancer's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+It displays load balancer's name, domain, its state and the VPC Id to which the load balancer is bound.
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub load-balancer describe-json
+
+----
+> cloudhub load-balancer describe [options] <name>
+----
+This command displays raw JSON response of the load balancer that is specified in <name>. +
+You can start typing your load balancer's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub load-balancer create
+
+----
+> cloudhub load-balancer create [options] <vpc> <name> <certificate> <privateKey>
+----
+This command creates a load balancer using the specified values in the variables.
+[%header,cols="12,53a,35a"]
+|===
+|Value |Description |Example
+| vpc |Name of the VPC to which this load balancer is bound. +
+*If your VPC name contains spaces, you need to pass it between ´"´ characters* | vpc-demo
+| name |Name for the load balancer. | newtestloadbalancer
+| Certificate |Absolute path to the `.pem` file of your server certificate in your local hard drive. +
+*Your certificate files need to be pem encoded and not encrypted* | /Users/mule/Documents/cert.pem
+| privateKey |Absolute path to the `.pem` file of your private key of the server certificate in your local hard drive. +
+*Your private key file needs to be passphraseless* | /Users/mule/Documents/privateKey.pem
+|===
+
+[CAUTION]
+--
+The name for the load balancer that you pass in <name> must be unique. +
+By default, your load balancer listens external requests on https and communicates with your workers internally through http. +
+If you configured your Mule application within the VPC to listen on https, make sure you set `upstreamProtocol` to https when creating the mapping list using the <<cloudhub-load-balancer-mappings-add,load-balancer mappings add>> command.
+--
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,70a"]
+|===
+|Value |Description
+|http | Specifies the Load balancer HTTP behavior. It can be set to `on` (accepts http requests and forwards it to your configured default _sslendpoint_) `off` (refuses all http requests) or `redirect` (redirects to https).
+|clientCertificate | Client certificate file
+|verificationMode  | Specifies the client verification mode. It can be set to `on` (verify always) `off` (don't verify) or `optional` (Verification optional).
+|crl | Certificate Revocation List file
+|tlsv1  | Supports TLSv1 in addition to TLSv1.1 and TLSv1.2
+|dynamic-ips | Uses dynamic IPs, which are not persistent through restarts
+|===
+
+[NOTE]
+Cloudhub does not implement the Online Certificate Status Protocol (OCSP). To keep your certification revocation list up to date, it's recommended to use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[REST API] to update your certificates programmatically.
+
+Further configuration information can be found in the xref:cloudhub-dedicated-load-balancer.adoc#managing-certificates[certificates section] of the dedicated xref:cloudhub-dedicated-load-balancer.adoc[load balancer documentation] page.
+
+== cloudhub load-balancer start
+
+----
+> cloudhub load-balancer start [options] <name>
+----
+This command starts the load balancer specified in <name>. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+
+== cloudhub load-balancer stop
+
+----
+> cloudhub load-balancer stop [options] <name>
+----
+This command stops the load balancer specified in <name>. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer delete
+
+----
+> cloudhub load-balancer delete [options] <name>
+----
+
+This command deletes the load balancer specified in <name>.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer ssl-endpoint add
+
+----
+> cloudhub load-balancer ssl-endpoint add [options] <name> <certificate> <privateKey>
+----
+This command adds an SSL endpoint to the load balancer specified in <name>, using the certificate and private key passed.
+
+[%header,cols="12a,53a,35a"]
+|===
+|Value |Description |Example
+| name |Name for the load balancer. | newtestloadbalancer
+| Certificate |Absolute path to the `.pem` file of your certificate in your local hard drive. +
+*Your certificate files need to be pem encoded and not encrypted* | /Users/mule/Documents/cert.pem
+| privateKey |Absolute path to the `.pem` file of your private key in your local hard drive. +
+*Your private key file needs to be passphraseless* | /Users/mule/Documents/privateKey.pem
+|===
+
+[NOTE]
+Cloudhub does not implement the Online Certificate Status Protocol (OCSP). To keep your certification revocation list up to date, it's recommended to use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/2321502/pages/107964[REST API] to update your certificates programmatically.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="15a,85a"]
+|===
+|Value |Description
+|http | Specifies the Load balancer HTTP behavior. It can be set to `on` (accepts http requests and forwards it to your configured default _sslendpoint_) `off` (refuses all http requests) or `redirect` (redirects to https).
+|clientCertificate | Client certificate file
+|verificationMode  | Specifies the client verification mode. It can be set to `on` (verify always) `off` (don't verify) or `optional` (Verification optional).
+|crl | Certificate Revocation List file
+|tlsv1  | Supports TLSv1 in addition to TLSv1.1 and TLSv1.2
+|===
+
+Further configuration information can be found in the xref:cloudhub-dedicated-load-balancer.adoc#managing-certificates[certificates section] of the dedicated xref:cloudhub-dedicated-load-balancer.adoc[load balancer documentation] page.
+
+== cloudhub load-balancer ssl-endpoint remove
+
+----
+> cloudhub load-balancer ssl-endpoint remove [options] <name> <certificateName>
+----
+This command removes the ssl certificate specified in <certificateName> from the load balancer specified in <name>.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer ssl-endpoint set-default
+
+----
+> cloudhub load-balancer ssl-endpoint set-default [options] <name> <certificateName>
+----
+This command sets the certificate specified in <certificateName> as the default  certificate for the load balancer passed in <name>. +
+
+You can start typing your load balancer's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,70a"]
+|===
+|Value |Description
+|http | Specifies the Load balancer HTTP behavior
+|===
+
+== cloudhub load-balancer ssl-endpoint describe
+
+----
+> cloudhub load-balancer ssl-endpoint describe [options] <name> <certificateName>
+----
+This command shows information about the configuration of the load balancer passed in <name> for the the certificate specified in <certificateName>. +
+You can start typing your load balancer's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer whitelist add
+
+----
+> cloudhub load-balancer whitelist add [options] <name> <cidrBlock>
+----
+This command adds a range of IP addresses specified in <cidrBlock> to the whitelist of the load balancer specified in <name>.
+
+[NOTE]
+The whitelist works at the load balancer level, not at the CN certificate level. Make sure you only pass IP addresses formatted in https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[CIDR notation].
+
+You can start typing your load balancer's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer whitelist remove
+
+----
+> cloudhub load-balancer whitelist remove <name> <cidrBlock>
+----
+This command removes an IP or range of IPs addresses specified in <cidrBlock> to the whitelist of the load balancer specified in <name>.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer mappings describe
+
+----
+> cloudhub load-balancer mappings describe <name> [certificateName]
+----
+This command lists the mapping rules for the load balancer specified in <name>. +
+If no `certificateName` is passed, Anypoint CLI returns the mappings for the default SSL endpoint.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer mappings add
+
+----
+> cloudhub load-balancer mappings add [options] <name> <index> <inputUri> <appName> <appUri> [certificateName]
+----
+This command adds a proxy mapping rule to the load balancer specified in <name> at the priority index specified in <index> in the CN passed under the `certificateName` option. +
+If no `certificateName` is passed, Anypoint CLI adds the mappings to the default SSL endpoint.
+
+
+[%header,cols="12a,68a,20a"]
+|===
+|Value |Description |Example
+|name |Name of the load balancer to which this rule is applied. |testloadbalancer
+|index |Priority of the rule.  |1
+|inputUri |Name of the URI of your input URL |example.com
+|appName |Name of the app of your output URL to which the request is forwarded |{app}-example
+|appUri |URI of the app of your output URL to which the request is forwarded |/
+|===
+
+For the values in the example above, for an input call to `my-superapp.api.example.com/status?limit=10`, the endpoint `my-superapp-example: /status?limit=10` will be called for the application.
+
+This command also takes the `--upstreamProtocol` option. +
+The `--upstreamProtocol` option sets the protocol used by your application to communicate internally with your load balancer. If no upstreamProtocol is set, HTTP is used as default.
+
+[%header,cols="12a,68a,20a"]
+|===
+| --upstreamProtocol <protocol> | Look for upstream applications in HTTP port 8091 or HTTPS port 8092. +
+Supported Values: http, https | --upsetreamProtocol http
+| --certificateName | |
+|===
+
+== cloudhub load-balancer mappings remove
+
+----
+> cloudhub load-balancer mappings remove [options] <name> <index> [certificateName]
+----
+This command removes the proxy mapping rules from the load balancer specified in <name> at the priority index specified in <index> and the CN specified as the `certificateName` option.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+If no `certificateName` is passed, Anypoint CLI removes the mappings for the default SSL endpoint.
+
+== cloudhub load-balancer dynamic-ips enable
+
+----
+> cloudhub load-balancer dynamic-ips enable [options] <name>
+----
+This command enables dynamic IPs for the load balancer specified in <name>.
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+== cloudhub load-balancer dynamic-ips disable
+
+----
+> cloudhub load-balancer dynamic-ips disable [options] <name>
+----
+This command disables dynamic IPs for the load balancer specified in <name>.
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
+
+
+== cloudhub region list
+
+----
+> cloudhub region list [options]
+----
+This command lists all supported regions. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub runtime list
+----
+> cloudhub runtime list [options]
+----
+This command lists all supported runtimes. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub vpc list
+
+----
+> cloudhub vpc list [options]
+----
+This command lists all available VPCs. It returns ID, region, and environment of the network and whether it is the default VPC or not.
+
+== cloudhub vpc describe
+
+----
+> cloudhub vpc describe [options] <name>
+----
+This command displays information about the VPC that is specified in <name>. +
+You can start typing your VPC's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub vpc describe-json
+
+----
+> cloudhub vpc describe [options] <name>
+----
+This command displays raw JSON response of the VPC that is specified in <name>. +
+You can start typing your VPC's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub vpc create
+
+----
+> cloudhub vpc create [options] <name> <region> <cidrBlock> [environments...]
+----
+This command creates a VPC using the name in <name>, in the region specified in <region>, with the xref:virtual-private-cloud.adoc#size-your-vpc[size] passed in <cidrBlock> in the form of a Classless Inter-Domain Routing (CIDR) block, using https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[CIDR notation] and associates it to the xref:access-management::environments.adoc[environment(s)] passed as argument(s) thereafter.
+
+[NOTE]
+A VPC needs to be bound to a business group within your organization. When creating a VPC, make sure to assign it a business group using the <<cloudhub vpc business-groups add, business-groups add>> command.
+
+Besides the default `--help` option, this command also takes the `--default` option. When passed, the VPC is created as the default VPC for the selected environment.
+
+== cloudhub vpc delete
+
+----
+> cloudhub vpc delete <name>
+----
+This command deletes the VPC specified in <name>.
+
+[WARNING]
+This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub vpc environments add
+
+----
+> cloudhub vpc environments add [options] <vpc> [environments...]
+----
+This command assigns the VPC defined in <vpc> to the environment(s) passed as argument(s) thereafter. +
+The `--default` option allows setting a VPC as the default for the organization, which applies to all environments which don't have a VPC explicitly associated.
+
+This command also takes the default `--help` option.
+
+== cloudhub vpc environments remove
+
+----
+> cloudhub vpc environments remove [options] <vpc> [environments...]
+----
+This command removes the VPC defined in <vpc> from the environment(s) passed as argument(s) thereafter. +
+Besides the default `--help` option, this command also takes the option `--default`, that removes this VPC as the default VPC for the environment.
+
+== cloudhub vpc business-groups add
+
+----
+> cloudhub vpc business-groups add [options] <vpc> <businessGroups...>
+----
+This command assigns the VPC defined in <vpc> to the business group(s) passed as argument(s) thereafter. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub vpc business-groups remove
+----
+> cloudhub vpc business-groups remove [options] <vpc> <businessGroups...>
+----
+This command removes the VPC defined in <vpc> from the business group(s) passed as argument(s) thereafter +
+
+[WARNING]
+This command does not prompt twice before removing the VPC from the specified resource. If you send a remove instruction, it does not ask for confirmation.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub vpc dns-servers set
+
+----
+> cloudhub vpc dns-servers set [options] <vpc>
+----
+This command sets a list of local host names (internal domain names) to be resolved using your DNS servers for which you need to provide their IP addresses (whether private or public addresses). +
+Whenever those private domains are provided, your worker resolves them using your private DNS, so you can still use the internal host names of your private network.
+
+[NOTE]
+This feature is supported by workers running Mule versions 3.5.x, 3.6.x, 3.7.4, 3.8.0-HF1, 3.8.1 and 3.8.2.
+
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="20a,80a"]
+|===
+|Option |Description
+| server | IP for a DNS server to resolve special domains on. Can be specified up to 3 times
+| domain | A domain to resolve on the special DNS server list. Can be specified multiple times
+|===
+
+You can pass as many domains as you need, and up to 3 IP addresses. +
+For example, `$ cloudhub vpc dns-servers set --domain example.com --server 192.168.1.10 <VPC Name>`.
+
+Every time you run this command, you overwrite your previous DNS set command. +
+To remove a DNS set, you need to use the <<cloudhub vpc dns-servers unset,vpc dns-servers unset>> command.
+
+== cloudhub vpc dns-servers unset
+
+----
+> cloudhub vpc dns-servers unset [options] <vpc>
+----
+This command clears the list of local host names (internal domain names) to be resolved using your DNS servers from the VPC passed in <vpc>
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== cloudhub vpc firewall-rules describe
+
+----
+> cloudhub vpc firewall-rules describe <vpc>
+----
+This command describes all the firewall rules for the VPC defined in <vpc>. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== cloudhub vpc firewall-rules add
+
+----
+> cloudhub vpc firewall-rules add [options] <vpc> <cidrBlock> <protocol> <fromPort> [toPort]
+----
+This command adds a firewall rule to the VPC defined in <vpc> using the values set in the variables: +
+
+[%header,cols="18a,62a,20a"]
+|===
+|Value |Description |Example
+| vpc |Name of the VPC to which this load balancer is bound. +
+*If your VPC name contains spaces, you need to pass it between ´"´ characters* | vpc-demo
+| cidrBlock | IP address in CIDR notation for the firewall to allow  | 192.0.1.0/27
+| protocol | The protocol to use in the rules. It can be `tcp` or `udp` | tcp
+| fromPort | The port from which the firewall will allow requests. it can go from 0 to 65535 | 8888
+| toPort | *optional* In case a port range is needed, the `fromPort` and `toPort` variables define such range | 8090
+|===
+
+[CAUTION]
+--
+When creating a VPC, make sure to allow your outbound address. +
+By default, all IP addresses are blocked, and you need to authorize IP addresses or range of addresses to your VPC firewall rule.
+--
+
+You can start typing your VPC's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== cloudhub vpc firewall-rules remove
+
+----
+> cloudhub vpc firewall-rules remove <vpc> <index>
+----
+This command removes the firewall rule from the workers inside the VPC specified in <vpc> at the index passed in the <index>. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== use environment
+
+This command is only available for interactive mode.
+
+----
+> use environment [options] <name>
+----
+This command makes active the environment specified in <name>. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== use business-group
+
+This command is only available for interactive mode.
+
+----
+> use business-group  [options] <name>
+----
+This command makes the business group you specified in <name> active.
+
+[NOTE]
+--
+If your business group or organization name contains spaces, you need to enclose its name between `"` characters.
+
+----
+> use business-group "QA Organization"
+----
+--
+
+== exit
+
+----
+> exit [options]
+----
+This command exits Anypoint-CLI. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`Anypoint Platform provides you a command line tool to interact with:
