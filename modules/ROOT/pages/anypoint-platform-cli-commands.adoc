@@ -167,6 +167,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr pcf-application list>> | Lists all PCF applications in the environment
 |<<runtime-mgr pcf-application restart>> | Restarts PCF application
 |<<runtime-mgr pcf-application stop>> | Stops PCF application
+|<<runtime-mgr rtf list>>  | Lists available Runtime Fabric instances
 |<<runtime-mgr pcf-application deploy>> | Deploys a new application to PCF space
 |<<runtime-mgr pcf-application describe-json>> | Shows raw PCF application JSON response
 |<<runtime-mgr pcf-application modify>> | Edits an application deployed to PCF space
@@ -1710,6 +1711,17 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command stops the PCF deployed appplication passed in `appId`. +
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+== runtime-mgr rtf list
+
+----
+> runtime-mgr rtf list [options]
+----
+
+This command lists available Runtime Fabric instances.
+
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr pcf-application deploy
