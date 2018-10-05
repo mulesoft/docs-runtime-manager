@@ -48,42 +48,34 @@ You can pass the `--fields` option after a command to get a list of all possible
 [%header,cols="35a,65a"]
 |===
 |Command |Description
-|<<api-mgr api list>> | Lists all APIs in API Manager
-|<<api-mgr api-version delete>> | Deletes an API version
-|<<api-mgr api-version list>> | Lists all versions of an API in API Manager
-|<<api-mgr applications approve>> | Approves a given application
-|<<api-mgr applications approve-tier-change>> | Approves SLA tier change
-|<<api-mgr applications delete>> | Deletes a given application
-|<<api-mgr applications list>> | Lists all applications to a given API version
-|<<api-mgr applications reject>> | Rejects a given application
-|<<api-mgr applications reject-tier-change>> | Rejects SLA tier change
-|<<api-mgr applications restore>> | Restores a given application
-|<<api-mgr applications revoke>> | Revokes a given application
-|<<api-mgr applications set-tier>> | Sets SLA tier for a given application
-|<<api-mgr definition copy>> | Copies an API definition from one API to another
-|<<api-mgr definition download>> | Download an API definition to a local directory
-|<<api-mgr definition upload>> | Uploads a local API definition to API Manager
-|<<api-mgr endpoint configure>> | Configures the endpoint of a given API version
-|<<api-mgr endpoint describe>> | Shows the endpoint configuration of a given API version
-|<<api-mgr policy apply>> | Apply a policy to a given API version
-|<<api-mgr policy copy>> | Copies the policy configuration from one API version to another. Doing this removes the policies that don't exist in the source API version
-|<<api-mgr policy describe>> | Show the description and available configuration properties of a given policy
-|<<api-mgr policy disable>> | Disable a policy from a given API version
-|<<api-mgr policy edit>> | Edit the policy configuration of a given API version
-|<<api-mgr policy enable>> | Enable a policy on a given API version
-|<<api-mgr policy list>> | List policies
-|<<api-mgr policy remove>> | Remove a policy from a given API version
-|<<api-mgr portal copy>> | Copies an API portal from source to target
-|<<api-mgr portal list>> | Lists all the portals for an API
-|<<api-mgr portal open>> | Opens the API portal in your browser
-|<<api-mgr tiers add>> | Creates an SLA tier
-|<<api-mgr tiers copy>> | Copy SLA tiers from one API version to another
-|<<api-mgr tiers delete>> | Delete SLA tier
-|<<api-mgr tiers deprecate>> | Deprecate SLA tier
-|<<api-mgr tiers edit>> | Edit SLA tier
-|<<api-mgr tiers list>> | Lists API version SLA tiers
-|<<api-mgr tiers reactivate>> | Reactivate SLA tier
-|<<api-mgr proxy download>> | Download a ZIP archive of a proxy to a local directory
+|<<api-mgr alert add>> | Creates an API instance alert
+|<<api-mgr alert list>> | Lists alerts for an API instance
+|<<api-mgr api change-specification>> | Changes the asset version for an API instance by choosing a new version from Exchange
+|<<api-mgr api classify>> |Classifies an API instance in a given environment
+|<<api-mgr api delete>> | Deletes an API
+|<<api-mgr api deploy>> | Deploys an API to Cloudhub, Hybrid server, or Runtime Fabric
+|<<api-mgr api deprecate>> | Deprecates an API instance
+|<<api-mgr api describe>> | Shows details of an API
+|<<api-mgr api download-proxy>> | Downloads the API proxy zip file to a local directory
+|<<api-mgr api edit>> | Edits an API instance
+|<<api-mgr api list>> | Lists all APIs in API Manager 2.x
+|<<api-mgr api manage>> | Manages a new API, API version, or new API instance with an asset from exchange
+|<<api-mgr api promote>> | Promotes an API instance from source environment
+|<<api-mgr api redeploy>> | Deploys an API to Cloudhub, Hybrid server, or Runtime Fabric
+|<<api-mgr api undeprecate>> | Undeprecates an API instance
+|<<api-mgr contract delete>> | Deletes a given API contract
+|<<api-mgr contract list>> | Lists all contracts to a given API instance.
+|<<api-mgr policy apply>> | Applies a policy to a given API instance
+|<<api-mgr policy describe>> | Shows the description and available configuration properties of a given policy template
+|<<api-mgr policy disable>> | Disables policy from a given API instance
+|<<api-mgr policy edit>> | Edits the policy configuration of a given API instance
+|<<api-mgr policy enable>> | Enables a policy on a given API instance
+|<<api-mgr policy list>> | Lists policies
+|<<api-mgr policy remove>> | Removes a policy from a given API instance
+|<<api-mgr tier add>> | Creates an SLA tier
+|<<api-mgr tier copy>> | Copies an SLA tier from source to a target API Instance
+|<<api-mgr tier delete>> | Deletes an SLA tier from an API instance
+|<<api-mgr tier list>> | Lists the SLA tiers of an API instance
 |===
 
 == Commands for Administrating your Design Center Applications
@@ -387,337 +379,450 @@ If no <name> is provided, this command returns information about the current ses
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-== api-mgr api list
+== api-mgr alert add
 
 ----
-> api-mgr api list [options] <searchText>
+> api-mgr alert add [options] <apiInstanceId> <name>
 ----
-This command lists all APIs in API Manager.
 
-You can specify an API Name in `searchText` to get the results of that specific API. +
-This command lists API Name, the latest version of the API, version count of the API and time passed since it was last updated.
+This command creates an API instance alert with the name passed in `name` for the API Instance Id passed in `<apiInstanceId>`.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
-[%header,cols="30a,40a,30a"]
+[%header%autowidth.spread,cols="a,a"]
 |===
-|Command | Description |  Example
-|--limit | Number of results to retrieve | `api-mgr api list --limit 2`
-|--offset | Offsets the amount of APIs passed | `api-mgr api list --offset 3`
-|--sort | Sorts the results in the field name passed | `api-mgr api list --sort "Latest Version"`
+|Value |Description
+| enabled
+| Sets whether the alert should be enabled or not. +
+Possible values are `true` or `false`.
+
+| severity <val>
+| Alert severity. +
+Supported values: Info, Warning, Critical.
+
+| type <val>
+| Alert type/condition. +
+Supported values: request-count, response-code, policy-violation, response-time
+
+| operator <val>
+| Condition operator explaining values relation to threshold. +
+Supported values: gt, lt, eq
+
+| threshold <num>
+| Condition occurrences threshold number.
+
+| periods <num>
+| Number of consecutive periods condition should occur for.
+
+| duration <num>
+| Condition occurrence period duration.
+
+| durationUnit <val>
+| Condition occurrence period duration unit. +
+Supported values: days, hours, minutes.
+
+| recipient [username]
+| Username to send alert notification to. +
+You can pass this option multiple times to specify multiple usernames.
+
+| email [emailAddress]
+| Email to send alert notification to. +
+You can pass this option multiple times to specify multiple emails.
+
+| responseTime [num]
+| Response time to trigger "response-time" alert type.
+
+| responseCode [code]
+| Response codes to trigger "response-code" alert type. +
+You can pass this option multiple times to specify multiple codes.
+
+| policyId [num]
+| ID of a policy applied to API instance to trigger "response-code" alert type.
 |===
 
-== api-mgr api-version delete
+== api-mgr alert list
 
 ----
-> api-mgr api-version delete [options] <apiName> <version>
+> api-mgr alert list [options] <apiInstanceId>
 ----
 
-This command deletes version specified in `version` of the API passed in `apiName`.
+Lists alerts for the API instance passed in `<apiInstanceId>`.
 
-[WARNING]
-This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a,a"]
+|===
+|Value |Description | Example
+|--offset | Offsets the amount of APIs passed | `api-mgr alert list --offset 3`
+|--sort | Sorts the results in the field name passed | `api-mgr alert list --sort "Latest Version"`
+|===
+
+
+== api-mgr api change-specification
+
+----
+> api-mgr api change-specification [options] <apiInstanceId> <assetVersion>
+----
+
+Changes the asset version for the API instance passed in `<apiInstanceId`,  by choosing a new version from Exchange passed in `<assetVersion>`.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-== api-mgr api-version list
+== api-mgr api classify
 
 ----
-> api-mgr api-version list [options] <apiName>
+> api-mgr api classify [options] <destEnvName> <apiInstanceId>
 ----
 
-This command lists all versions of the API specified in `apiName`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-== api-mgr applications approve
-
-----
-> api-mgr applications approve [options] <clientId> <apiName> <apiVersion>
-----
-
-This command approves the access request from the application with the client Id passed in `clientId` to the API specified in `apiName` and version passed in `apiVersion`.
-
-[TIP]
---
-You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
---
+Classifies the API instance passed in `<apiInstanceId>` in the  environment passed in `<destEnvName>`.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-== api-mgr applications approve-tier-change
+== api-mgr api delete
 
 ----
-> api-mgr applications approve-tier-change [options] <clientId> <apiName> <apiVersion>
+> api-mgr api delete [options] <apiInstanceId>
 ----
 
-This command approves the SLA tier change for the application with the client Id passed in `clientId` to the  API specified in `apiName` and version passed in `apiVersion`. +
+This command deltes the API Instance passed in `<apiInstanceId>`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-[TIP]
---
-You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
---
-
-== api-mgr applications delete
+== api-mgr api deploy
 
 ----
->  api-mgr applications delete [options] <clientId> <apiName> <apiVersion>
+> api-mgr api deploy [options] <apiInstanceId>
 ----
 
-This command deletes the application associated with the client Id passed in `clientId` to the API passed in `apiName` with version specified in `apiVersion`.
+This command deploys the API instanced passed in <apiInstanceId> to the deployment target specified using the options described below.
 
-[WARNING]
-This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a,a"]
+|===
+|Value |Description | Example
+| target <id>
+| Hybrid or RTF deployment target ID. +
+Valid options are: 'ES3', 'ES5', or 'ES2015'.
+| `api-mgr api deploy --target ES5 643404`
+
+| applicationName <name>
+| Application name
+| `api-mgr api deploy --applicationName myMuleApp 643404`
+
+| environmentName <name>
+| Target environment name. Should only be used when deploying APIs from unclassified environments.
+| `api-mgr api deploy --environmentName TestEnv 643404`
+
+| gatewayVersion <version>
+| The Cloudhub Gateway version
+| `api-mgr api deploy --gatewayVersion: 9.9.9.9  643404`
+
+| overwrite
+| Update application if exists. +
+It takes `true` or `false` values.
+| `api-mgr api deploy --overwrite: true  643404`
+
+|===
+
+== api-mgr api deprecate
+
+----
+> api-mgr api deprecate [options] <apiInstanceId>
+----
+
+Deprecates the API instance passed in `<apiInstanceId>`.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-[TIP]
---
-You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
---
-
-
-== api-mgr applications list
+== api-mgr api describe
 
 ----
-> api-mgr applications list [options] <apiName> <apiVersion> [searchText]
+> api-mgr api describe [options] <apiInstanceId>
 ----
 
-This command displays information about the applications whose access request status to your API is either `pending`, `approved` or `revoked`.
+Shows details of the API Instance passed in `<apiInstanceId>`.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr api download-proxy
+
+----
+> api-mgr api download-proxy [options] <apiInstanceId> <targetPath>
+----
+
+This command downloads the API proxy zip file of the API Instance passed in `<apiInstanceId>` to a local directory specified in `<targetPath>`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes a `gatewayVersion` option to specify the gateway version you want to download.
+For example: `api-mgr api download-proxy --gatewayVersion: 4.0.1  643404 /tmp/`
+
+== api-mgr api edit
+
+----
+> api-mgr api edit [options] <apiInstanceId>
+----
+
+Edits the API instance passed in `<apiInstanceId>`. +
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| -p, --withProxy
+| Indicates whether the endpoint should use a proxy. +
+This option takes `true` or `false` values.
+
+| -r, --referencesUserDomain
+| Indicates whether a proxy should reference a user domain. +
+This option takes `true` or `false` values.
+
+| -m, --muleVersion4OrAbove
+| Indicates whether you are managing this API in Mule 4 or above. +
+This option takes `true` or `false` values.
+
+| --deploymentType <value>
+| Deployment type. +
+Supported values are `cloudhub`, `hybrid`, or `rtf`.
+
+| --uri <value>
+| Your implementation URI.
+
+| --scheme <value>
+| Proxy scheme. +
+Supported values are `http`, or `https`.
+
+| --port <value>
+| Proxy port.
+
+| --path <value>
+| Proxy path.
+
+| --responseTimeout <value>
+| Your maximum response timeout.
+
+| --apiInstanceLabel <value>
+| (Optional) API instance label.
+
+| --serviceName <value>
+| WSDL service name.
+
+| --serviceNamespace <value>
+| WSDL service namespace.
+
+| --servicePort <value>
+| WSDL service port.
+
+|===
+
+== api-mgr api list
+
+----
+> api-mgr api list [options]
+----
+
+Lists all APIs in API Manager 2.x.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| --assetId <value>       | Asset ID by which filter results.
+| --apiVersion <value>    | API version by which filter results.
+| --instanceLabel <value> | API instance label by which  filter results.
+| --limit <num>           | Number of results to retrieve.
+|--offset | Offsets the amount of APIs passed
+|--sort | Sorts the results in the field name passed
+|===
+
+== api-mgr api manage
+
+----
+> api-mgr api manage [options] <assetId> <assetVersion>
+----
+
+Manages a new API, API version, or new API instance with the Exchange asset passed in `<assetId>`, and the version passed in `<assetVersion>`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| --type <value>
+| Endpoint type. +
+Accepted values are `http`, `raml`, or `wsdl`.
+
+| -p, --withProxy
+| Indicates whether the endpoint should use a proxy. +
+This option takes `true` or `false` values.
+
+| -r, --referencesUserDomain
+| Indicates whether a proxy should reference a user domain. +
+This option takes `true` or `false` values.
+
+| -m, --muleVersion4OrAbove
+| Indicates whether you are managing this API in Mule 4 or above. +
+This option takes `true` or `false` values.
+
+| --deploymentType <value>
+| Deployment type. +
+Supported values are `cloudhub`, `hybrid`, or `rtf`.
+
+| --uri <value>
+| Implementation URI.
+
+| --scheme <value>
+| Proxy scheme. +
+Supported values are `http`, or `https`.
+
+| --port <value>
+| Proxy port.
+
+| --path <value>
+| Proxy path.
+
+| --responseTimeout <value>
+| Response timeout.
+
+| --apiInstanceLabel <value>
+| (Optional) API instance label.
+
+| --serviceName <value>
+| WSDL service name.
+
+| --serviceNamespace <value>
+| WSDL service namespace.
+
+| --servicePort <value>
+| WSDL service port.
+|===
+
+
+== api-mgr api promote
+
+----
+> api-mgr api promote [options] <apiInstanceId> <sourceEnvId>
+----
+
+Promotes the API instance passed in `<apiInstanceId>` from the source environment in `<sourceEnvId>`.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| -a, --copyAlerts
+| Indicates whether to copy alerts. +
+This option takes `true` or `false` values. Default Value is `true`
+
+| -p, --copyPolicies
+|Indicates whether to copy policies. +
+This option takes `true` or `false` values. Default Value is `true`
+
+| -t, --copyTiers
+|Indicates whether to copy tiers. +
+This option takes `true` or `false` values. Default Value is `true`
+|===
+
+
+== api-mgr api redeploy
+
+----
+> api-mgr api redeploy [options] <apiInstanceId>
+----
+
+Redeploys the API Instance passed in `<apiInstanceId>` to the deployment target set up in the options described below.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| --target <id>
+| Hybrid or RTF deployment target ID.
+
+| --applicationName <name>
+| Application name.
+
+| --environmentName <name>
+| Target environment name. +
+ Must be provided to redeploy APIs from unclassified environments.
+
+| --gatewayVersion <version>
+| Cloudhub Gateway version.
+
+| --overwrite
+| Update application if exists. +
+This option takes `true` or `false` values. Default Value is `true`
+|===
+
+
+== api-mgr api undeprecate
+
+----
+> api-mgr api undeprecate [options] <apiInstanceId>
+----
+
+Undeprecates the API instance passed in `<apiInstanceId>`.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr contract delete
+
+----
+> api-mgr contract delete [options] <apiInstanceId> <clientId>
+----
+
+This command deletes the contract between the API Instance passed in `<apiInstanceId>`, and the Client passed in `<clientId>`.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+== api-mgr contract list
+
+----
+> api-mgr contract list [options] <apiInstanceId> [searchText]
+----
+
+Lists all contracts of the API passed in `<apiInstanceId>`.
 
 [TIP]
 You can specify keywords in searchText to limit results to APIs containing those specific keywords.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
-[%header,cols="30a,40a,30a"]
+[%header%autowidth.spread,cols="a,a,a"]
 |===
-|Command | Description |  Example
-|--tier-requests | When passed, this command only lists applications with pending SLA tier change requests. | `api-mgr applications list --tier-requests`
-|--limit | Number of results to retrieve | `api-mgr applications list --limit 2`
-|--offset | Offsets the amount of APIs passed | `api-mgr applications list --offset 3`
-|--sort | Sorts the results in the field name passed | `api-mgr applications list --sort "Latest Version"`
+|Value |Description |Example
+|--limit | Number of results to retrieve | `exchange asset list --limit 2`
+|--offset | Offsets the amount of APIs passed | `api-mgr contract list --offset 3 643404`
+|--sort | Sorts the results in the field name passed | `api-mgr contract list --sort "Latest Version" 643404`
 |===
-
-== api-mgr applications reject
-
-----
-> api-mgr applications reject [options] <clientId> <apiName> <apiVersion>
-----
-
-This command rejects the application to the API passed in `apiName` and version specified in `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-[TIP]
---
-You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
---
-
-== api-mgr applications reject-tier-change
-
-----
-> api-mgr applications reject-tier-change [options] <clientId> <apiName> <apiVersion>
-----
-
-This command rejects the SLA tier change requested by the application with client Id passed in `clientId` for the API passed in `apiName` and version specified in `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-[TIP]
---
-You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
---
-
-== api-mgr applications restore
-
-----
-> api-mgr applications restore [options] <clientId> <apiName> <apiVersion>
-----
-
-This command restores the requested application associated with the client Id passed in `clientId` with the API passed in `apiName` and version specified in `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-[TIP]
---
-You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
---
-
-
-== api-mgr applications revoke
-
-----
-> api-mgr applications revoke [options] <clientId> <apiName> <apiVersion>
-----
-
-This command revokes the application associated with the client Id passed in `clientId` to the API passed in `apiName` and version specified in `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-[TIP]
---
-You can use the <<api-mgr applications list>> command to get the Client Id of the application you'd like to interact with.
---
-
-== api-mgr applications set-tier
-
-----
-> api-mgr applications set-tier [options] <tierId> <clientId> <apiName> <apiVersion>
-----
-
-This command sets the SLA Tier specified in `tierId` for the application associated with the client Id passed in `clientId`, and to the API passed in `apiName` and version specified in `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-[NOTE]
-You can create a tier using the <<api-mgr tiers add>> command.
-
-== api-mgr definition copy
-
-----
-> api-mgr definition copy [options] <source> <target>
-----
-
-This command copies the definition from the API passed in `source` to the API passed in `target`. +
-Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
-If "group_id" is not specified, it will default to the currently selected Organization ID. +
-For example:
-
-----
-> api-mgr definition copy Services/api-1/1.0 Development/api-1/1.0
-----
-
-Copies the definition of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization. +
-If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
-
-----
-> api-mgr definition copy api-1/1.0 Development/api-1/1.0
-----
-
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-== api-mgr definition download
-
-----
-> api-mgr definition download [options] <apiName> <version> <directory>
-----
-
-This command downloads the API definition of the API passed in `apiName` with version specified in `version` to the local directory passed in `directory`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-
-== api-mgr definition upload
-
-----
-> api-mgr definition upload [options] <apiName> <version> <directory>
-----
-
-This command uploads the API definition from the directory passed in `directory`, to the API passed in `apiName` with version passed in `version`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
-
-[%header,cols="30a,40a,30a"]
-|===
-|Command | Description |  Example
-|--swagger | Passed when the API definition is swagger | `api-mgr definition upload --swagger --root swagger.yaml test-api 1 /Users/sample/Documents`
-|--root | Defines the root file of the API definition to upload | `api-mgr definition upload --root sample.raml test-api 1 /Users/sample/Documents`
-|===
-
-== api-mgr endpoint configure
-
-----
-> api-mgr endpoint configure [options] <apiName> <apiVersion>
-----
-This command lets configure the endpoint for the API specified in `apiName` with version `apiVersion`.
-
-Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
-
-[%header,cols="30a,70a"]
-|===
-|Command | Description
-| -p, --withProxy            | Indicates whether the endpoint should use a proxy. Passing `false` will set all proxy-specific options to `null`.
-| -c, --isCloudHub           | Indicates whether a CloudHub proxy should be configured. Passing `true` will set the proxy's `--port` to Cloudhub's default value and `--referencesUserDomain` to `false`.
-| -r, --referencesUserDomain | Indicates whether a proxy should reference a user domain
-| --type <value>             | Endpoint type
-| --uri <value>              | Implementation URI
-| --getUriFromRAML           | Get implementation URI from RAML
-| --scheme <value>           | Proxy scheme
-| --port <value>             | Proxy port
-| --path <value>             | Proxy path
-| --responseTimeout          | Response Timeout
-|===
-
-
-== api-mgr endpoint describe
-
-----
-> api-mgr endpoint describe [options] <apiName> <apiVersion>
-----
-
-This command describes the endpoint of the API passed in `apiName` with version passed in `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
 
 == api-mgr policy apply
 
 ----
-> api-mgr policy apply [options] <policyId> <apiName> <apiVersion>
+> api-mgr policy apply [options] <apiInstanceId> <policyId>
 ----
 
-This command applies the policy passed in `policyId` to the API and version passed in `apiName` and `apiVersion` respectively.
+Applies the policy passed in `<policyId>` to the API instance passed in `<apiInstanceId>`.
 
-[TIP]
---
-You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
---
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| --policyVersion <value>
+| Mule 4 policy version.
 
+| --groupId <value>
+| Mule 4 policy group ID. +
+If not value is provided, this value defaults to MuleSoft group ID.
 
-[CAUTION]
---
-The Policy configuration properties must be passed in JSON format using the `-c` or `--config` option:
+| -c, --config [configJSON]
+| Pass the configuration data as a JSON string. +
+For example, `api-mgr policy apply -c '{"property": "value"}'`
 
-----
-api-mgr policy apply ip-blacklist test-api 1 -c '{"ips": "123.1.1.1"}'
-----
-
---
-
-Besides the the `-c`/`--config` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
-
-[TIP]
---
-You can use the <<api-mgr policy describe>> option to check the default field names and values of each default policy. +
---
-
-== api-mgr policy copy
-
-----
-> api-mgr policy copy [options] <source> <target> [policyId]
-----
-
-This command copies all policies from the API passed in `source` to the API passed in `target`. +
-Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
-If "group_id" is not specified, it will default to the currently selected Organization ID.
-
-When the "policyId" argument is provided, only the policy with that matching ID is copied. +
-For example:
-
-----
-> api-mgr policy copy Services/api-1/1.0 Development/api-1/1.0
-----
-
-Copies the policy of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization.
-
-----
-> api-mgr policy copy Services/api-1/1.0 Development/api-1/1.0 ip-blacklist
-----
-
-Only copies the ip-blacklist policy.
-
-If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
-
-----
-> api-mgr definition copy api-1/1.0 Development/api-1/1.0
-----
-
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+| -p, --pointcut [dataJSON]
+| Pass pointcut data as JSON strings. +
+For example `api-mgr policy apply (...) -p '[{"methodRegex":"GET|PUT","uriTemplateRegex":"/users*"}]'`
+|===
 
 == api-mgr policy describe
 
@@ -725,161 +830,110 @@ This command does not take any options, except for the default ones: `--help`, `
 > api-mgr policy describe [options] <policyId>
 ----
 
-This command shows a description of the policy passed in `policyId`.
+This command shows the description and available configuration properties of the policy passed in `<policyId>`. +
 
-[TIP]
---
-You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
---
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| --policyVersion <value>
+| Mule4 policy version.
+
+| --groupId <value>
+| Mule4 policy group ID. +
+Defaults to MuleSoft group ID when not provided.
+|===
+
 
 == api-mgr policy disable
 
 ----
-> api-mgr policy disable [options] <policyId> <apiName> <apiVersion>
+> api-mgr policy disable [options] <apiInstanceId> <policyId>
 ----
 
-This command disables the policy passed in `policyId` from the API and version passed in `apiName` and `apiVersion` respectively. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+This command disables the policy passed in `<policyId>` from the API instance passed in `<apiInstanceId>`.
 
-[TIP]
---
-You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
---
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == api-mgr policy edit
 
 ----
-> api-mgr policy edit [options] <policyId> <apiName> <apiVersion>
-----
-This command edits the policy passed in `policyId` on the API and version passed in `apiName` and `apiVersion` respectively.
-
-[TIP]
---
-You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
---
-
-[CAUTION]
---
-The Policy configuration properties must be passed in JSON format using the `-c` or `--config` option:
-
-----
-api-mgr policy edit ip-blacklist test-api 1 -c '{"ips": "123.1.1.1"}'
+> api-mgr policy edit [options] <apiInstanceId> <policyId>
 ----
 
---
+This command edits the policy configuration passed in `<policyId>` of the API Instance passed in `<apiInstanceId>`.
 
-Besides the the `-c`/`--config` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
-[TIP]
---
-You can use the <<api-mgr policy describe>> option to check the default field names and values of each default policy. +
---
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| -c, --config [configJSON]
+| Pass the configuration data as a JSON string. +
+For example, `api-mgr policy apply -c '{"property": "value"}'`
+
+| -p, --pointcut [dataJSON]
+| Pass pointcut data as JSON strings. +
+For example `api-mgr policy apply (...) -p '[{"methodRegex":"GET|PUT","uriTemplateRegex":"/users*"}]'`
+|===
 
 == api-mgr policy enable
 
 ----
-> api-mgr policy enable [options] <policyId> <apiName> <apiVersion>
+> api-mgr policy enable [options] <apiInstanceId> <policyId>
 ----
 
-This commands enables the policy passed in `policyId` in the API and version passed in `apiName` and `apiVersion`.
-
-[TIP]
---
-You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
---
+This command enables the policy passed in `<policyId>`for the API Instance passed in `<apiInstanceId>`.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == api-mgr policy list
 
 ----
-> api-mgr policy list [options] [apiName] [apiVersion]
+> api-mgr policy list [options] [apiInstanceId]
 ----
 
-This command lists all the policies available. +
-When `apiName` and `apiVersion` are provided, this command returns the policies applied to the specified API.
+This command lists all policies for all APIs in API Manager 2.x. +
+When the `[apiInstanceId]` parameter is specified, this command lists the policies applied to that API instance.
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `-m, --muleVersion4OrAbove` option which takes `true` or `false` values. +
+
 
 == api-mgr policy remove
 
 ----
-> api-mgr policy remove [options] <policyId> <apiName> <apiVersion>
+> api-mgr policy remove [options] <apiInstanceId> <policyId>
 ----
 
-This command removes the the policy passed in `policyId` from the API and version passed in `apiName` and `apiVersion` respectively.
-
-[TIP]
---
-You can learn the policy Id of each default policy using the <<api-mgr policy list>> command.
---
+This command removes the policy specified in `<policyId>` from the API instance passed in `<apiInstanceId>`.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-== api-mgr portal copy
+== api-mgr tier add
 
 ----
-> api-mgr portal copy [options] <source> <target>
+> api-mgr tier add [options] <apiInstanceId>
 ----
 
-This command copies the API Portal from the API passed in `source` to the API passed in `target`. +
-Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
-If "group_id" is not specified, it will default to the currently selected Organization ID. +
-For example:
-
-----
-> api-mgr portal copy Services/api-1/1.0 Development/api-1/1.0
-----
-
-Copies the API portal of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization. +
-If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
-
-----
-> api-mgr portal copy api-1/1.0 Development/api-1/1.0
-----
-
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-
-== api-mgr portal list
-
-----
-> api-mgr portal list [options] <apiName>
-----
-
-This command lists all portals associated with the API passed in `apiName`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-== api-mgr portal open
-
-This command is only available for interactive mode.
-
-----
-> api-mgr portal open [options] <apiName> <version>
-----
-
-This command opens in your browser the API portal of the API and version passed in `apiName` and `version`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-
-== api-mgr tiers add
-
-----
-> api-mgr tiers add [options] <apiName> <apiVersion>
-----
-
-This command creates an SLA tier for the API and version passed in `apiName` and `version`.
+This command creates an SLA tier for the API instance passed in `<apiInstanceId>`.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
-[%header,cols="30a,70a"]
+[%header%autowidth.spread,cols="a,a"]
 |===
-|Command | Description
-| -a, --autoApprove | Indicates whether SLA tier should be auto-approved.
-| --name | SLA tier name
-| --description | SLA Tier description
+|Value |Description
+| -a, --autoApprove
+| Indicates whether the SAL tier should be auto-approved. +
+This command only takes `true` or `false` values.
+
+| --name <value>
+| Tier name
+
+| --description <value>
+| Tier description
+
+| -l, --limit <value>
 | -l, --limit | Single instance of an SLA tier limit in the form `--limit A,B,C` where:
 
 * "A" is a boolean indicating whether or not this limit should be visible.
@@ -902,130 +956,43 @@ E.g. `-l true,100,sec -l false,20,min`
 
 |===
 
-== api-mgr tiers copy
+
+== api-mgr tier copy
 
 ----
-> api-mgr tiers copy [options] <source> <target>
-----
-This command copies the SLA tier from the API passed in `source` to the API passed in `target`. +
-Arguments "source" and "target" should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
-If "group_id" is not specified, it will default to the currently selected Organization ID. +
-For example:
-
-----
-> api-mgr tiers copy Services/api-1/1.0 Development/api-1/1.0
+> api-mgr tier copy [options] <sourceAPIInstanceId> <targetAPIInstanceId>
 ----
 
-Copies the tier of the API named `api-1` and version `1.0` from _Services_ organization to the _Development_ organization. +
-If the Anypoint Platform CLI is using the Services organization, the command can simply take the application name as a `source`:
-
-----
-> api-mgr tiers copy api-1/1.0 Development/api-1/1.0
-----
+This command copies the SLA tier from the API instance passed in `<sourceAPIInstanceId>` to the API instance Id passed in `<targetAPIInstanceId>`.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-
-== api-mgr tiers delete
+== api-mgr tier delete
 
 ----
-> api-mgr tiers delete [options] <tierId> <apiName> <apiVersion>
+> api-mgr tier delete [options] <apiInstanceId> <tierId>
 ----
 
-This command deletes the SLA tier passed in `tierId` from the API and version from `apiName` and `apiVersion` respectively. +
+This command deletes the SLA tier passed in `<tierId>` from API instance passed in `<apiInstanceId>`.
+
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-[WARNING]
-This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
-
-
-== api-mgr tiers deprecate
-
+== api-mgr tier list
 ----
-> api-mgr tiers deprecate [options] <tierId> <apiName> <apiVersion>
+> api-mgr tier list [options] <apiInstanceId> [searchText]
 ----
 
-This command deprecates the SLA tier passed in `tierId` from the `apiName` and `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-== api-mgr tiers edit
-
-----
-> api-mgr tiers edit [options] <tierId> <apiName> <apiVersion>
-----
-
-This command edits the SLA tier passed in `tierId` associated with the API and version passed in `apiName` and `apiVersion` respectively.
-
-[CAUTION]
-All passed data replaces the original with no deep merging or comparison performed. +
-Full SLA tier data must be passed.
+This command lists the SLA tiers of the  API instance passed in `<apiInstanceId>`.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
-[%header,cols="30a,70a"]
+[%header%autowidth.spread,cols="a,a"]
 |===
-|Command | Description
-| -a, --autoApprove | Indicates whether SLA tier should be auto-approved.
-| --name | SLA tier name
-| --description | SLA tier description
-| -l, --limit | Single instance of an SLA tier limit in the form `--limit A,B,C` where:
-
-* "A" is a boolean indicating whether or not this limit should be visible.
-* "B" is a number of requests per "C" time period.
-* "C" is the time period unit. Time period options are:
-** `ms`(millisecond)
-** `sec`(second)
-** `min`(minute)
-** `hr`(hour)
-** `d`(day)
-** `wk`(week)
-** `mo`(month)
-** `yr`(year)
-
-E.g.: `--limit true,100,min` is a "visible" limit of 100 requests per minute. +
-
-[TIP]
-To create multiple limits, you can provide multiple `--limit` options. +
-E.g. `-l true,100,sec -l false,20,min`
-
+|Value |Description | Example
+|--limit | Number of results to retrieve | `api-mgr tier list --limit 2`
+|--offset | Offsets the amount of APIs passed | `api-mgr tier list --offset 3`
+|--sort | Sorts the results in the field name passed | `api-mgr tier list --sort "Latest Version"`
 |===
-
-== api-mgr tiers list
-
-----
-> api-mgr tiers list [options] <apiName> <apiVersion>
-----
-
-This command lists all SLA tiers for the API and version passed in `apiName` and `apiVersion` respectively.
-
-Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
-
-[%header,cols="30a,40a,30a"]
-|===
-|Command | Description |  Example
-|--limit | Number of results to retrieve | `api-mgr tiers list --limit 2`
-|--offset | Offsets the amount of APIs passed | `api-mgr tiers list --offset 3`
-|--sort | Sorts the results in the field name passed | `api-mgr tiers list --sort "Latest Version"`
-|===
-
-
-== api-mgr tiers reactivate
-
-----
-> api-mgr tiers reactivate [options] <tierId> <apiName> <apiVersion>
-----
-
-This command reactivates the SLA tier passed in `tierId` for the API and version passed in `apiName` and `apiVersion`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-== api-mgr proxy download
-
-----
-> api-mgr proxy download [options] <apiName> <apiVersion> <directory>
-----
-
-This command download a ZIP archive of the proxy used by <apiName> and <apiVersion> to the local directory passed in <directory>. +
-Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `-gatewayVersion` option.  If not specified, the command defaults to the latest version.
 
 == designcenter project create
 
