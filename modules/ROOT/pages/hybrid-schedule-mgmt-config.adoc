@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If a scheduled job is missed (not triggered) one or more times because the application is down, Runtime Mnager triggers the job when the application restarts.
+If a scheduled job is missed (not triggered) one or more times because the application is down, Runtime Manager triggers the job when the application restarts.
 
 The scheduler reads a schedule job configuration every time it is run. This means that if you update the schedule time, the change is not immediate. The job executes using the original configuration. The scheduler will pick up the next setting for the next run. To have your changes applied immediately, run your jobs after every schedule update.
 
