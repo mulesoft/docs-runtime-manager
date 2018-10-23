@@ -29,7 +29,7 @@ After you delete an application, your log data is no longer accessible through t
 
 . In Runtime Manager, click *Applications* in the left menu, then click the application that is deployed to CloudHub to open its management options.
 . In the left menu, click *Logs*. The application logs are displayed.
-
++
 //image::elmstart.png[ELMStart]
 
 . The *Deployments* section on the right of the logging screen lets you selectively view the output by day, Deployment, System Log, and Workers. You can unapply a filter by unticking the checkbox next to a date.
@@ -50,20 +50,20 @@ In the *Deployment* filters section on the right, find the date and worker you w
 
 image::downloadlogs.png[DownloadLogs]
 
-The log file is a text file with `.log` file type and named in the format of: _deployment-ID_`.`_instance-ID_`.log`. You can view this file with a text editor.
+The log file is a text file with `.log` file extension and named in the format of `<deployment-ID>-<instance-ID>.log`. You can view this file with a text editor.
 
 
 == Download Diagnostics
 
-Diagnostics display the Java thread dump of each CloudHub worker in each of your deployments. They indicate the current state of the server, which is useful for debugging and support.
+Diagnostics display the Java thread dump of each CloudHub worker in each deployment. These indicate the current state of the server, which is useful for debugging and support.
 
 [NOTE]
-For apps that run on a Mule version prior to 3.8.0 (excluding version 3.7.4), diagnostics aren't available.
+For apps that run on a Mule version earlier than 3.8.0 (excluding version 3.7.4), diagnostics are not available.
 
 
 In the *Deployment* filters section on the right, find the date and worker you want to view, click the download icon next to it, and select *Diagnostics*.
 
-The downloaded log file is a text file with the .txt file type. You can view this file with a text editor.
+The downloaded log file is a text file with the `.txt` file extension and named in the format of `<app-name>-instance-<instance-ID>-<worker-number>-diag.txt`. You can view this file with a text editor.
 
 
 [TIP]
@@ -82,7 +82,7 @@ CloudHub stores logs of up to 100 MB per app per worker, or for up to 30 days, w
 
 [IMPORTANT]
 ====
-After you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before it is purged. This allows you to recover the data if needed. https://support.mulesoft.com[Contact Support] for more information.
+After you delete an application, your log data is no longer accessible through the console. CloudHub archives log data for a limited period of time before it is purged. This allows you to recover the data if needed. https://support.mulesoft.com[Contact Support] for more information.
 ====
 
 == About Log Timezones
@@ -95,7 +95,7 @@ CloudHub stores log data in Universal Time (UTC); however, the console displays 
 
 Advanced search lets you search logs by date and priority.
 
-To access it, click *Advanced* in the search field.
+To access advanced search, click *Advanced* in the search field.
 
 image::elmadvsearch.png[ELMAdvSearch]
 
