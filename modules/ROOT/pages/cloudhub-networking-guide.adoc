@@ -117,10 +117,6 @@ Deploying to a region also affects your internal and external worker DNS address
 
 The only two ports exposed externally are `${http.port}` and `${https.port}` (by default `8081` and `8082` respectively). If you wish to access other ports, you can do so through the *Anypoint Virtual Private Cloud (VPC)* offering.
 
-If you wish to expose HTTP services only inside a VPC, these services can be exposed on ports `${http.private.port}` `${https.private.port}` (`8091` and `8092` respectively), which are open by default on the internal network. In this case, these services are not accessible on the public IPs or the load-balancer, ensuring that they can be accessed securely.
-
-While the ports in your VPC for 8091 & 8092 are already open, your Mule application needs to be configured so its HTTP(s) Listener configuration uses either port 8091 or 8092.
-
 Additional ports can be opened inside the VPC, for example, for JMX based monitoring. In order  to do so, refer to the Firewall rules section in out xref:virtual-private-cloud.adoc#firewall-rules[VPC documentation].
 
 == Dedicated Load Balancing Configurations
