@@ -73,7 +73,7 @@ This step deploys the actual Mule application artifact for the first time to a t
 
 == Workflow for On-Prem Runtime Fabric
 
-The workflow explained below can be carried out by various different means depending on your preference, but the steps remain the same. It first logs your user into the Anypoint Platform, obtains information about the runtime fabrics that are registered on that account, and then deploys an application to it. It interfaces with the APIs for the MuleSoft Anypoint Platform Access Management and Runtime Manager.
+The workflow explained below can be carried out by various different means depending on your preference, but the steps remain the same. It first logs your user into the Anypoint Platform, obtains information about the Runtime Fabrics that are registered on that account, and then deploys an application to it. It interfaces with the APIs for the MuleSoft Anypoint Platform Access Management and Runtime Manager.
 
 The workflow must receive the following input parameters:
 
@@ -131,7 +131,7 @@ This step retrieves the application 'id' to determine whether the following step
 . Post *Deployments* on the *Application Manager API*, passing the organization's 'id', the environment's 'id', 'applicationName', 'labels', 'target' deployment settings (including the target id retrieved in the in step 1 of this section), the Exchange reference of the published Mule application 'application' to deploy, the application 'configuration' and optionally the application 'id'.
 
 [NOTE]
-This step deploys the actual Mule application artifact for the first time to a target environment and runtime fabric. Use *POST* requests if no application identifier was retrieved in step 2. Use *PATCH* if an application identifier was retrieved in step 2, to re-deploy.
+This step deploys the actual Mule application artifact for the first time to a target environment and Runtime Fabric. Use *POST* requests if no application identifier was retrieved in step 2. Use *PATCH* if an application identifier was retrieved in step 2, to re-deploy.
 
 
 
