@@ -128,7 +128,7 @@ Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97
 [NOTE]
 This step retrieves the application 'id' to determine whether the following step is a new deployment (6a) or a re-deployment (6b). The application 'id' must be extracted from 'data[i].id' where 'data[i].artifact.name == inputArtifactName' and 'data[i].target.targetId == 'targetId'.
 
-. Post *Deployments* on the *Application Manager API*, passing the organization's 'id', the environment's 'id', 'applicationName', 'labels', 'target' deployment settings (including the target id retrieved in the in step 1 of this section), the Exchange referenfe of the published Mule application 'application' to deploy, the application 'configuration' and optionally the application 'id'.
+. Post *Deployments* on the *Application Manager API*, passing the organization's 'id', the environment's 'id', 'applicationName', 'labels', 'target' deployment settings (including the target id retrieved in the in step 1 of this section), the Exchange reference of the published Mule application 'application' to deploy, the application 'configuration' and optionally the application 'id'.
 
 [NOTE]
 This step deploys the actual Mule application artifact for the first time to a target environment and runtime fabric. Use *POST* requests if no application identifier was retrieved in step 2. Use *PATCH* if an application identifier was retrieved in step 2, to re-deploy.
