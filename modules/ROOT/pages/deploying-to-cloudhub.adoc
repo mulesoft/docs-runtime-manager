@@ -9,12 +9,12 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-You can deploy a Mule application to CloudHub via:
+You can deploy a Mule application to CloudHub from:
 
 * *Anypoint Studio* - Right-click your project and click *Deploy to Anypoint Platform* -> *Cloud*.
-* *Runtime Manager* - in the cloud-based version of the https://anypoint.mulesoft.com[Anypoint Platform]. Go to the *Runtime Manager* section, and then from the *Applications* tab, click the *Deploy application* button.
+* *Anypoint Runtime Manager* - In the cloud-based version of https://anypoint.mulesoft.com[Anypoint Platform]. Go to the *Runtime Manager* section, then from the *Applications* tab click *Deploy application*.
 
-This page describes the options on the *Deploy Application* panel that is identical in both cases. Additionally, you can also deploy to CloudHub through:
+You can also deploy to CloudHub through:
 
 * The CloudHub API
 * CloudHub CLI
@@ -24,82 +24,79 @@ This page describes the options on the *Deploy Application* panel that is identi
 
 === From Anypoint Platform
 
-To deploy an application:
-
 . Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
-. Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*
+. Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*.
 +
 image::deploying-to-cloudhub-5f383.png[]
 +
-. Click *Deploy application*:
+. In the *Applications* tab, click *Deploy application*.
 +
-image::deploying-to-cloudhub-3dcbb.png[]
+// image::deploying-to-cloudhub-3dcbb.png[]
 +
-.  The Deploy Application page opens:
+The Deploy Application page opens:
 +
 image::deploying-to-cloudhub-8524f.png[]
 
 
 === From SandBox
 
+If you created an application in a sandbox environment and tested it, when you are ready to deploy the application to production, you must first move the application.
 
-If you created an application in a sandbox environment and tested it, you would eventually want to migrate it to production.
+To move an application from a sandbox environment to production:
 
-To do so:
-
-. Logged into your Anypoint Platform account, go to your production environment
-. In the *Applications* tab, click the *Deploy Application* button
+. Log into your Anypoint Platform account, and go to your production environment.
+. In the *Applications* tab, click the *Deploy Application* button.
 +
-image::deploying-to-your-own-servers-d84f7.png[]
+// image::deploying-to-your-own-servers-d84f7.png[]
 
-. Then when picking the application file, instead of uploading a new file, click *Get from sandbox*.
+. When choosing the application file, click *Get from sandbox*.
 +
 image::deploying-to-cloudhub-d6f7a.png[]
 
-. You can then choose between your sandbox environments, and select an application to deploy in production. Select an application and click *Apply*
+. In the *Get from sandbox* dialog, select your sandbox environment, then select an application to deploy in production, and click *Apply*.
 
-. Continue setting up your deployment as you would with any normal deployment
+. Continue setting up your deployment as you would with any other deployment.
 
 
 ==== Limitations
 
 * Only a *CloudHub* Administrator can move applications between environments.
-* To avoid domain name conflict, an application cannot exist in two environments at the same time. Alter the application's name slightly to deploy it to another environment.
-* You cannot move an application into the same environment it's in already. Runtime Manager prevents you from duplicating applications in a single environment. If you wish to have the same, or similar applications in a single environment, modify one application's file to distinguish it from the original.
-
-
-
-
-
-
+* To avoid domain name conflict, an application with the same name cannot be deployed in two environments at the same time. Modify the application's name slightly to deploy it to another environment.
+* Runtime Manager prevents you from duplicating applications in a single environment, so you cannot move an application into the environment it's already in. To have the same, or similar, applications in a single environment, modify one application's file to distinguish it from the original.
 
 
 === From Anypoint Studio
 
-You can easily deploy your applications to CloudHub, straight from Anypoint Studio. This is specially helpful if you're still developing the application and want to deploy it often to an online test environment.
+You can deploy your applications to CloudHub from Anypoint Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
 
-. With your application open in Anpoint Studio as a Mule Project, Right-click on the project node in the package explorer. Then select *Deploy to Anypoint Platform* > *Cloud* from the cascading menu.
+. In Anypoint Studio, open your application as a Mule Project.
+
+. In *Package Explorer*, right-click the project node, then select *Anypoint Platform* > *Deploy to CloudHub*.
 +
-image::deploy-to-cloudhub.png[deploy+to+cloudhub]
+// image::deploy-to-cloudhub.png[deploy+to+cloudhub]
 +
-. If this is your first time deploying in this way, a popup menu asks you to provide your login credentials for the Anypoint Platform. Studio stores your credentials and uses them automatically the next time you deploy to CloudHub.
+. If this is your first time deploying from Studio, a popup dialog box asks you to provide your login credentials for Anypoint Platform. Studio stores your credentials and uses them automatically the next time you deploy to CloudHub.
 
 +
 [TIP]
 You can manage these credentials through the Studio *Preferences* menu, in *Anypoint Studio* > *Authentication*.
 
-. After you sign in, the Deploy Application menu opens.
+. After you sign in, the *Deploy Application* dialog opens.
 +
 image::deployappfirstscreen.png[DeployAppFirstScreen]
 
-[TIP]
+[NOTE]
+--
+You cannot deploy an application from Studio to the CloudHub *Design* environment. The *Design* environment is specific to applications created in Anypoint Platform Design Center.
+--
+
 For an example of deploying to CloudHub directly from Anypoint Studio, see xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub].
 
 == Creating an Application Name
 
-Every application requires a unique application domain name. The application domain identifies your application in the Runtime Manager and also provides you with a public URL, `+http://myapplicationdomain.cloudhub.io+`, for accessing the application if it exposes any inbound endpoints.
+The application name is the `cloudhub.io` domain name that you use to access your application, therefore, application names must be unique to avoid domain conflicts. The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints. The format of the URL is `+http://myapplicationdomain.cloudhub.io+`. For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
 
-In the *Deploy Application* dialog, enter a unique application name. The Application Name also becomes the `cloudhub.io` domain name that you use to access your application; for example the Application Name, `abcde` is accessible at `+http://abcde.cloudhub.io+`. Valid names contain alphanumeric characters and dashes, and contain at most 42 characters. If the name is valid, the Runtime Manager alerts you whether it is available or already reserved by another user.
+In the *Deploy Application* dialog, enter a unique application name. Valid names have a maximum of 42 characters and can contain alphanumeric characters and dashes. If the name is valid, Runtime Manager alerts you if the name is available or already reserved by another user.
 
 image::deployappname.png[DeployAppName]
 
@@ -108,17 +105,19 @@ With the CloudHub dedicated load balancer, you can then optionally implement xre
 
 == Deployment Target
 
-If you already have any servers registered to the Anypoint Platform, you will see a *Deployment Target* field that lets you specify where you want to deploy your application:
+If you already have servers registered to the Anypoint Platform, you see a *Deployment Target* field. Use it to specify where you want to deploy your application:
 
 * On the CloudHub worker cloud
 * On an on-premises server, server group, or cluster
 
-This document focuses on deploying to CloudHub, for more information on deploying to servers, server groups and clusters, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers].
+This document focuses on deploying to CloudHub. For more information on deploying to servers, server groups, and clusters, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers].
 
 
 == Application File
 
-Upload a new file for deployment. Click the *Choose file* button, select your application file, and then click *Open*. You can also click the *Get from sandbox* button to copy a file from a non-production environment into your current environment. (If the Get From Sandbox button does not appear, you may first need to create a non-production environment to view this option.)
+. Click *Choose file* and select your application file.
+. Click *Open* to upload a new file for deployment.
+. You can also click *Get from sandbox* to copy a file from a non-production environment into your current environment. (If the *Get from sandbox* button does not appear, you may first need to create a non-production environment.)
 
 *Note*: The application file size limit is 200 MB.
 
@@ -129,33 +128,35 @@ image::applicationfile.png[ApplicationFile]
 
 === Runtime Version
 
-Using the drop-down menu, select the *Runtime version* to which you to deploy:
+Using the drop-down menu, select the *Runtime version* where you want to deploy:
 
 image::runtimeversion2.png[RuntimeVersion2]
 
 [IMPORTANT]
 ====
-* Ensure that the runtime version is the same Mule version used to develop your application. For example, if you use the value 3.5.0 and your application uses the new HTTP connector introduced in Mule 3.6 and newer, your application won't deploy and the log will contain errors.
-* To see what runtime version you set when you deployed your application, click the *Applications* tab and click your application. In the expansion view on the right, click *Manage Application*. Click *Settings* to see the deployment values.
+* Ensure that the runtime version is the same Mule version used to develop your application. For example, if you use the value 3.5.0 and your application uses the new HTTP connector introduced in Mule 3.6 and later, your application won't deploy and the log will contain errors.
+* To see what runtime version you set when you deployed your application:
+. Click the *Applications* tab and click your application.
+. In the expansion view on the right, click *Manage Application*.
+. Click *Settings* to see the deployment values.
 ====
 
-
-Once deployed and running, if any security patches, OS updates, or critical bug fixes are released for the selected runtime version, then you will be prompted about this change. You will be able to control exactly when each update is applied. If you take no action, updates will be applied automatically for you after 30 days to ensure your applications run with the latest security patches.
+Once the application is deployed and running, if any security patches, OS updates, or critical bug fixes are released for the selected runtime version, then you are prompted about this change. If you take no action, updates are applied automatically after 30 days to ensure your applications run with the latest security patches.
 
 image::deploying-to-cloudhub-update.png[]
 
 
 === Worker Sizing
 
-After deploying your application, you can allocate the amount and size of the worker associated with your application. On each application, workers are responsible for executing your application logic.
+After deploying your application, you can allocate the number and size of the worker associated with your application. On each application, workers are responsible for executing the application logic.
 
 [TIP]
 --
-Only running applications count for workers usage. +
+Only running applications count toward workers usage. +
 `Stopped` applications do not consume vCore availability.
 --
 
-There are worker sizes with different compute and memory capacities:
+Worker sizes have different compute and memory capacities, including:
 
 [%header,cols="2*a"]
 |===
@@ -173,10 +174,10 @@ Workers that have less than 1 vCore capacity (0.1 vCores and 0.2 vCores) offer l
 
 [NOTE]
 --
-Workers running on fractional vCores (0.1 vCores and 0.2 vCores) have the ability to burst to higher CPU speeds for a short duration of time. This is useful with improving application start up times and with processing infrequently large workloads. Allocating workers with 1 vCore or greater is recommended if consistency of performance is desired.
+Workers running on fractional vCores (0.1 vCores and 0.2 vCores) have the ability to burst to higher CPU speeds for a short duration of time. This is useful for improving application start-up times and with processing infrequently large workloads. Allocating workers with 1 vCore or greater is recommended if consistency of performance is needed.
 --
 
-Applications with greater storage needs (verbose logging etc.) should use one of the larger worker sizes - 2 vCores or 4 vCores, which have additional storage as follows:
+Applications with greater storage needs (for example, verbose logging) should use one of the larger worker sizes--2 vCores or 4 vCores, which have additional storage as follows:
 
 * 1 vCore workers have an additional 4 GB of storage
 * 2 vCores workers have an additional 32 GB of storage
@@ -185,51 +186,59 @@ Applications with greater storage needs (verbose logging etc.) should use one of
 * 16 vCores workers have an additional 320 GB of storage
 
 [IMPORTANT]
-The workers with additional storage as listed above are only available for Mule runtimes 3.6.2 or later, or API Gateway 2.0.2 or later.
-[NOTE]
+--
+The workers with additional storage listed above are available only for Mule runtimes 3.6.2 or later, or API Gateway 2.0.2 or later.
++
 It is recommended to access the additional storage at /tmp.
+--
 
-To select the worker size and amount of each, select options from the drop-down menu to configure the computing power you need:
+Select the options from the drop-down menu to configure the computing power you need:
 
 image::workersizeandqty.png[WorkerSizeAndQty]
 
-Depending on how many vCores your account possesses, some of these options may not be eligible, as you may not have enough available capacity.
+Depending on how many vCores are allocated to your account, some of these options may not be applicable, as you may not have enough available capacity.
 
 [IMPORTANT]
-If you select more vCores than are available in your account, CloudHub allows you to create the application using the console, but you cannot start your application until vCores are available.
+If you select more vCores than are available in your account, CloudHub allows you to create the application using the console, but you cannot start your application until the vCores are available.
 
 When deploying an application with more than one worker, CloudHub automatically load-balances any incoming traffic across your allocated workers. For more information, see xref:cloudhub-fabric.adoc[CloudHub Fabric].
 
 === Region
 
-If you have global deployment enabled on your account, you can change the *Region* to which your application deploys using the drop-down menu. Administrators can xref:managing-cloudhub-specific-settings.adoc[set the default region] on the Organization tab in Account Settings, but that region can be adjusted here when the application is deployed, if necessary.
+If you have global deployment enabled on your account, you can change the *Region* to which your application deploys using the drop-down menu. Administrators can xref:managing-cloudhub-specific-settings.adoc[set the default region] on the *Organization* tab in Account Settings, but that region can be adjusted here when the application is deployed, if necessary.
 
-* Note that applications deployed to Europe automatically have their domain updated to  `+http://myapplicationdomain.eu.cloudhub.io+`.
-* Note that applications deployed to Asia / Pacific automatically have their domain updated to `+http://myapplicationdomain.au.cloudhub.io+`.
-
+[NOTE]
+--
+* Applications deployed to Europe automatically have their domain updated to  `+http://myapplicationdomain.eu.cloudhub.io+`.
+* Applications deployed to Asia / Pacific automatically have their domain updated to `+http://myapplicationdomain.au.cloudhub.io+`.
+--
 
 === Automatic Restart
 
-If you are deploying to a runtime that supports worker monitoring (3.4.0 runtime or later), you have the option to check *Automatically restart application when not responding*. With this box checked, CloudHub automatically restarts your application when the monitoring system discovers a problem with your application. If this box is not checked, CloudHub produces all the log messages, notifications, and any configured alerts, but takes no action to restart the application.
+If you are deploying to a runtime that supports worker monitoring (3.4.0 runtime or later), you have the option to select *Automatically restart application when not responding*. When you select this option, CloudHub automatically restarts your application when the monitoring system discovers a problem with your application.
+
+If this option is not selected, CloudHub produces all the log messages, notifications, and any configured alerts, but takes no action to restart the application.
 
 Read more about xref:worker-monitoring.adoc[Worker Monitoring].
 
 === Persistent Queues
 
-Check this box to enable persistent queues on your application. Persistent queues protect against message loss and allow you to distribute workloads across a set of workers. Before you can take advantage of persistent queueing, your application needs to be set up to use queues. See xref:cloudhub-fabric.adoc[CloudHub Fabric] for more information.
+Select this box to enable persistent queues on your application. Persistent queues protect against message loss and allow you to distribute workloads across a set of workers. Before you can take advantage of persistent queueing, your application must be set up to use queues. See xref:cloudhub-fabric.adoc[CloudHub Fabric] for more information.
 
 [IMPORTANT]
 ====
-If your mule application is using Batch component and persistent queues, then you might see batch record being processed multiple times. All batch records are stored in Amazon SQS and by default the visibility of the message is set to 70 seconds. If your batch process takes longer than 70 seconds, then batch process might see the same message again and process it multiple times.  To avoid this issue please set 'persistent.queue.min.timeout' system parameter to a reasonable value, for example if your batch process takes 30 minutes to complete then set value to 'persistent.queue.min.timeout=2700000' milliseconds ( 45 Minutes). Maximum value of 43000000 milliseconds (12 hours) is supported. See screen shot below for setting the value in cloudhub
+If your Mule application is using batch component and persistent queues, then you might see batch records being processed multiple times. All batch records are stored in Amazon SQS and by default the visibility of the message is set to 70 seconds. If your batch process takes longer than 70 seconds, then batch processes might see the same message again and process it multiple times.
+
+To avoid this issue, set the 'persistent.queue.min.timeout' system parameter to a reasonable value. For example, if your batch process takes 30 minutes to complete, then set the value to 'persistent.queue.min.timeout=2700000' milliseconds (45 Minutes). The maximum value is 43000000 milliseconds (12 hours). See the below screen shot for setting the value in CloudHub.
 
 image::mulebatchwithpersistentqueueduplicationsolution.png[MuleBatchWithPersistentQueues]
 ====
 
 == Properties Tab
 
-You can also optionally specify properties that your application requires. This allows you to externalize important pieces of configuration which may switch depending on the environment in which you're deploying. For example, if you're using a Mule application locally, you might configure your database host to be localhost. But if you're using CloudHub, you might configure it to be an Amazon RDS server.
+You can optionally specify properties that your application requires. This allows you to externalize important pieces of the configuration that may switch depending on the environment into which you're deploying. For example, if you're using a Mule application locally, you might configure your database host to be `localhost`. But if you're using CloudHub, you might configure it to be an Amazon RDS server.
 
-To create an application property, click the *Properties* tab and set the variable by either using a text  `key=value` format or by using the list format with two text boxes. After you've made the change, click *Apply Changes*.
+To create an application property, click the *Properties* tab and set the variable by using either a text  `key=value` format or by using the list format with two text boxes. After you have made the change, click *Apply Changes*.
 
 image::deploying-to-cloudhub-cff02.png[]
 
@@ -245,35 +254,36 @@ These application properties can be used inside your Mule configuration. For exa
 
 === Overriding Properties in CloudHub vs. On-Premises Mule Runtimes
 
-Just like with on-premise Mule runtime deployments, applications that you deploy to CloudHub can still bundle their own property placeholder or secure property placeholder files inside the deployable archive file. CloudHub substitutes these properties into the application when the application starts. With an on-premise Mule runtime, there are several ways you can override property values bundled inside the application.
+Just like with on-premises Mule runtime deployments, applications that you deploy to CloudHub can still bundle their own property placeholder or secure property placeholder files inside the deployable archive file. CloudHub substitutes these properties into the application when the application starts.
 
+With an on-premises Mule runtime, there are a couple of ways you can override property values bundled inside the application:
 
-. You can configure an external location to add property placeholder or secure property placeholder files to override properties.
+. You can configure an external location to add property or secure property placeholder files to override properties.
 
 . You can set Java system environment variables at deployment time to override properties.
 
-To use the second option, with an on-premises server you could deploy your application with the following command:
+For example, to use the second option, with an on-premises server you could deploy your application with the following command:
 
 ----
 mule -M-Dsecret.key=toSecretPassword -M-Denv=prod -M-Ddb.password=secretPassword -app myApp.zip
 ----
 
-In this case all the values typed into the command would only be stored in memory, they are never stored in any file.
+In this case, all the values typed into the command are stored only in memory--they are never stored in any file.
 
 With CloudHub, these techniques to override properties work differently.
 
-The first approach is difficult to translate to CloudHub: when an application is deployed into CloudHub it is harder to write override properties files into the file system.
+The first approach is more difficult for CloudHub to translate because when an application is deployed into CloudHub it is harder to write override properties files into the file system.
 
-The second approach is much easier to translate to CloudHub: the Properties tab does allow you to specify Java system environment variables which will function in the same way as adding environment variables when you deploy to an on-premises server. Read more about how to set these variables in xref:managing-applications-on-cloudhub.adoc#updating-environment-variables-and-application-properties[Managing Applications on CloudHub].
+The second approach is easier for CloudHub to handle because the Properties tab allows you to specify Java system environment variables that will function in the same way as adding environment variables when you deploy to an on-premises server. Read more about how to set these variables in xref:managing-applications-on-cloudhub.adoc#updating-environment-variables-and-application-properties[Managing Applications on CloudHub].
 
-If you also have any property names set in a mule-app.properties file inside your application or in bundled property placeholder files, then when your application is deployed, any entries in the CloudHub Properties tab with the same name will override the matching value bundled with the application.
+If you also have property names set in a `mule-app.properties` file inside your application, or in bundled property placeholder files, then when your application is deployed, any entries in the CloudHub Properties tab with the same name will override the matching value bundled with the application.
 
 [NOTE]
 It is possible to change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive. You do this by changing the options in the Property Placeholder element in the Mule application to prefer property placeholder files over JVM system environment variables. See http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information on non-default property placeholder options.
 
 === Overriding Secure Properties
 
-Note that you can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. You can also include an 'applications.properties' file in your application bundle, which can include properties that are marked as secure, and they will be automatically treated as such. These properties can also be overriden by new values you can set via the Runtime Manager console at runtime. See xref:secure-application-properties.adoc[Secure Application Properties] for more information.
+You can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. You can also include an 'applications.properties' file in your application bundle, which can include properties that are marked as secure, so they are automatically treated as such. These properties can also be overridden by new values you can set at runtime in the Runtime Manager console. See xref:secure-application-properties.adoc[Secure Application Properties] for more information.
 
 
 == Insight Tab
@@ -294,7 +304,7 @@ The bell icon in the upper right corner lets you manage notifications. For more 
 
 == Static IPs Tab
 
-To enable a static IP address for your application, go to the *Static IPs* tab, then check the *Use Static IP* checkbox.
+To enable a static IP address for your application, go to the *Static IPs* tab, then select the *Use Static IP* checkbox.
 
 image::static-ip-tab.png[Static IP tab]
 
@@ -302,9 +312,9 @@ To pre-allocate static IPs for your application, select a region from the *Regio
 
 image::static-ip-regions.png[Static IPs by region]
 
-By default, the number of static IPs allocated to your organization is equal to twice the number of Production vCores in your subscription. This number is displayed under the *Use Static IP* checkbox. If you need to increase this quota, you can contact https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support].
+By default, the number of static IPs allocated to your organization is equal to twice the number of production vCores in your subscription. This number is displayed under the *Use Static IP* checkbox. If you need to increase this quota, you can contact https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support].
 
-If an application has static IPs reserved in multiple regions, it picks up the IP from whichever region it is deployed to. This allows you to pre-configure IP rules for multiple regions, for disaster recovery (DR) scenario.
+If an application has static IPs reserved in multiple regions, it picks up the IP from whichever region it is deployed to. This allows you to pre-configure IP rules for multiple regions for disaster recovery (DR) scenarios.
 
 If you need to free up some of your overall static IP allocation, you can release a static IP that is currently allocated to an application.
 
@@ -312,9 +322,9 @@ If you need to free up some of your overall static IP allocation, you can releas
 
 == Deployment Execution
 
-After you complete the above steps, click *Create* and CloudHub uploads your application and automatically begins the deployment process. During this process, your view is switched to the log view allowing you to monitor the process of your application deployment. This process could take several minutes. During the deployment, the application status indicator changes to yellow to indicate deployment in progress.
+After you complete the above steps, click *Create*. CloudHub uploads your application and automatically begins the deployment process. During this process, your view is switched to the log view, allowing you to monitor the process of your application deployment. This process could take several minutes. During the deployment, the application status indicator changes to yellow to indicate the deployment is in progress.
 
-When deployment is complete, the application status indicator changes to green and you are notified in the status area that the application has deployed successfully. Here's what is in the logs:
+When deployment is complete, the application status indicator changes to green, and you are notified in the status area that the application has deployed successfully. Here's what is in the logs:
 
 ----
 Successfully deployed [mule application name]
@@ -324,11 +334,11 @@ Successfully deployed [mule application name]
 
 Most of the settings discussed in the steps above can be edited once the application is already deployed to CloudHub. To do so you must:
 
-. In the Applications tab, select an application entry and click *Manage Application*:
+. In the *Applications* tab, select an application entry and click *Manage Application*.
 +
 image::amc-manageapplication.png[AMC_ManageApplication]
 +
-. Click the *Settings* tab:
+. Click the *Settings* tab.
 +
 image::viewingdeployedapp.png[ViewingDeployedApp]
 
@@ -337,7 +347,9 @@ image::viewingdeployedapp.png[ViewingDeployedApp]
 
 == Auto-Deploy a Proxy from API Manager
 
-If you've registered an API in the Anypoint Platform, you can easily run it through an auto generated proxy to track its usage and implement policies. You can deploy this proxy to CloudHub without ever needing to go into the Runtime Manager section of the Anypoint platform. From a menu in the API version page, you can trigger the deployment of your proxy and set up the application name in CloudHub, the CloudHub environment and the Gateway version to use. Then, you can optionally access the Runtime Manager deployment menu for this proxy and configure advanced settings. See xref:1.x@api-manager::setting-up-an-api-proxy.adoc[Setting Up a Proxy].
+If you have registered an API in the Anypoint Platform, you can easily run it through an auto generated proxy to track its usage and implement policies. You can deploy this proxy to CloudHub without ever needing to go into the Runtime Manager section of Anypoint Platform.
+
+From a menu in the API version page, you can trigger the deployment of your proxy and set up the CloudHub application name, environment, and gateway version to use. Then you can optionally access the Runtime Manager deployment menu for this proxy and configure advanced settings. See xref:1.x@api-manager::setting-up-an-api-proxy.adoc[Setting Up a Proxy].
 
 == Deployment Errors
 
