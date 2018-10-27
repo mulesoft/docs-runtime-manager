@@ -4,14 +4,14 @@ include::_attributes.adoc[]
 endif::[]
 
 In CloudHub's default configuration, all applications are hosted in a multi-tenant cloud balanced by a publicly accessible load balancer. +
-When you create your own virtual private cloud (VPC), you can add your own firewall rules to allow specific IP ranges and ports to reach your workers.
+When you create your own virtual private cloud (VPC), you can add your own firewall rules to allow specific IP ranges and ports to reach your workers. See <<configurefirewall,Configure Firewall Rules>>.
 
 [NOTE]
 ====
 Keep in mind that the firewall rules that you configure in your VPC check inbound connections only to your workers, and not to the VPC, your dedicated load balancer, or the publicly accessible load balancer.
 ====
 
-All traffic to your VPC is blocked, unless it's explicitly allowed in a firewall rule.
+By default, all traffic to your VPC is blocked, unless it's explicitly allowed in a firewall rule.
 When you create a VPC, four firewall rules are created by default:
 
 * Two rules to allow inbound connections from within your local VPC through ports 8091 and 8092:
@@ -56,6 +56,21 @@ These rules allow traffic from any host to reach your workers through ports 8081
 These ports are used by CloudHub's shared load balancer to proxy external requests to your workers.
 You can remove these rules if you don't want your internal workers to be reached by the publicly accessible load balancer.
 ====
+
+[[configurefirewall]]
+== Configure Firewall Rules
+You can configure firewall rules in Anypoint Runtime Manager.
+
+. Sign into Anypoint Platform as a user with the Organization Administrators role.
+. In *Management Center*, click *Runtime Manager*.
+. In the left menu, click *VPCs* and click the row for the VPC to configure the firewall rules for.
+. Click *Firewall Rules >* to expand the fields. +
+The default firewall ports 8081, 8082, 8091, 8092 (described above) are displayed in the *Port Range* column. These rows can be modified.
+. Select the *Type* and *Source* for the firewall rule.
+. If you need to add additional rules, click *Add New Rule*.
+
+
+
 
 == See Also
 
