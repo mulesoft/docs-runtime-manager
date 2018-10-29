@@ -1,0 +1,137 @@
+= About Continuous Deployment
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, cloudhub api, manage, api, rest, ci/cd, cd, continuous deployment
+
+This topic details the process to follow for continuous deployments of Mule applications via the Runtime Manager REST API to your own servers that are on-premises or to other cloud servers (outside CloudHub). The Runtime Manager REST API enables you to programmatically access much of the functionality provided by the Runtime Manager. If you are looking to do continuous deployment to CloudHub, pleae refer to xref:cloudhub-api.adoc[CloudHub API].
+
+The process described is to be implemented as a task in the Continuous Deployment pipeline. The task could be implemented as either a shell (e.g. Microsoft PowerShell, Bash, etc.) script or a Jenkins/Maven Plugin written in Java.
+
+For a more complete reference of all the operations, resources, methods, required properties and expected responses that are supported through the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Standalone Runtime Manager API Reference] or https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/1.0.3/console/summary/[Runtime Fabric API Reference]
+
+A Mule Maven Plugin also exists that provides exactly the same capabilities. Therefore this document is to be used as an alternative for those who cannot or do not want to use the https://docs.mulesoft.com/mule-runtime/4.1/mmp-deployment-concept[Mule Maven Plugin].
+
+It is advised to create a dedicated Anypoint Platform account used exclusively for deployment and CI related activities.
+
+== Workflow for On-Prem Servers
+
+The workflow explained below can be carried out by various different means depending on your preference, but the steps remain the same. It first logs your user into the Anypoint Platform, obtains information about the servers/server groups/clusters that are registered on that account, and then deploys an application to it. It interfaces with the APIs for the MuleSoft Anypoint Platform Access Management and Runtime Manager.
+
+The workflow must receive the following input parameters:
+
+* *Username* - The Anypoint Platform account username
+* *Password* - Password for the Anypoint Platform username
+* *Environment* - The deployment environment (Dev, Test, Prod, etc.)
+* *Target Name* - The name of the target onto which deploy the application
+* *Target Type* - The type of target (Server, Cluster, ServerGroup, Runtime Fabric)
+* *Artifact Name* - Name of the Mule application to deploy
+* *File* - The binary file of the Mule application to deploy
+
+The workflow executes the following API calls in sequence:
+
+image::arm-api-workflow.png[workflow]
+
+Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management] API:
+
+. Call *Login* on the Access Management API with valid Anypoint Platform Username and Password to obtain the 'access_token' and 'token_type' to use in all the subsequent calls.
+
++
+[TIP]
+If using Jenkins, the *Username* and *Password* will need to be configured in the task. The task will have to concatenate the 'token_type' and 'access_token' and save them for the duration of the entire workflow process. The fields must be concatenated as follows: 'token = token_type + " " + access_token' *E.g.* '"bearer 895d1a05-ba24-44f2-a9df-3675c1bde97b"'. The token in its concatenated form must be passed as header in every subsequent API call.
+
+. Call *Accounts* on the Access Management API to retrieve the organization 'id'.
+
++
+[TIP]
+The task must then extract the organization identifier from the location 'user.organisation.id' and save it for later use. This step is not mandatory, as the organization identifier can be passed as a local parameter to the task due to its static nature.
+
+. Call *Environments* on the Access Management API, passing the organization 'id' retrieved in the previous step and choosing the correct environment 'id' based on the relevant environment name (e.g. Dev, Test, Production, etc.). 
+
++
+[TIP]
+The organization 'id' retrieved in step 2 must be passed as part of the API URI. The environment 'id' must be extracted from the path 'data[i].id', where 'data[i].name == inputEnvironment' (it may take values like 'Dev', 'Test', 'Production' or any valid environment name that set up in your Anypoint Platform).
+
+Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Standalone Runtime Manager] API:
+
+. Call either the *Servers*, *Clusters* or *Server Groups* on the *Runtime Manager API*, passing the server / cluster / server group name, as well as the retrieved organization 'id' and environment 'id'. This returns all of the data about this server /cluster / server group, including the 'targetId'.
+
++
+[NOTE]
+This step retrieves the target 'id', which is then used as target for the deployment. The task will need to pick up the right server,server group or cluster identifier based on the provided Target Name, that you may set as an input at the beginning of the workflow. The server 'id' must be extracted from 'data[i].id' where 'data[i].name == inputTargetName'.
+
+. Call *Applications* on the *Runtime Manager API*, passing the organization's 'id' and the environment's 'id', to retrieve the application's 'id' and the rest of its data.
+
++
+[NOTE]
+This step retrieves the application 'id' to determine whether the following step is a new deployment (6a) or a re-deployment (6b). The application 'id' must be extracted from 'data[i].id' where 'data[i].artifact.name == inputArtifactName' and 'data[i].target.id == serverId' / 'clusterId' / 'serverGroupId'.
+
+. Post *Applications* on the *Runtime Manager API*, passing the organization's 'id', the environment's 'id', 'artifactName', 'targetId' (retrieved in the in step 1 of this section), the Mule application .zip 'file' to deploy and optionally the application 'id'.
+
+[NOTE]
+This step deploys the actual Mule application artifact for the first time to a target environment and server / cluster / server group. Use *POST* requests if no application identifier was retrieved in step 2. Use *PATCH* if an application identifier was retrieved in step 2, to re-deploy the actual Mule application artifact to a target environment and server / cluster / server group.
+
+== Workflow for On-Prem Runtime Fabric
+
+The workflow explained below can be carried out by various different means depending on your preference, but the steps remain the same. It first logs your user into the Anypoint Platform, obtains information about the Runtime Fabrics that are registered on that account, and then deploys an application to it. It interfaces with the APIs for the MuleSoft Anypoint Platform Access Management and Runtime Manager.
+
+The workflow must receive the following input parameters:
+
+* *Username* - The Anypoint Platform account username
+* *Password* - Password for the Anypoint Platform username
+* *Environment* - The deployment environment (Dev, Test, Prod, etc.)
+* *Target Settings* - The type (ie: MC),name of the target onto which deploy the application and setttings
+* *Exchange Reference* - Reference of the Mule application to deploy in Exchange
+* *Application Configuration* - The application configurations for such deployment
+
+The workflow executes the following API calls in sequence. Using the standard *Maven* tool:
+
+. Publish the artifact to the Exchange Assets Manager via https://docs.mulesoft.com/exchange/to-publish-assets-maven[Maven]. 
+
++
+[NOTE]
+This step is required to ensure high availability when failure occurs in the target and the Control Plane needs to re-deploy artifacts for recovery.
+
+Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management] API:
+
+. Call *Login* on the Access Management API with valid Anypoint Platform Username and Password to obtain the 'access_token' and 'token_type' to use in all the subsequent calls.
+
++
+[TIP]
+If using Jenkins, the *Username* and *Password* will need to be configured in the task. The task will have to concatenate the 'token_type' and 'access_token' and save them for the duration of the entire workflow process. The fields must be concatenated as follows: 'token = token_type + " " + access_token' *E.g.* '"bearer 895d1a05-ba24-44f2-a9df-3675c1bde97b"'. The token in its concatenated form must be passed as header in every subsequent API call.
+
+. Call *Accounts* on the Access Management API to retrieve the organization 'id'.
+
++
+[TIP]
+The task must then extract the organization identifier from the location 'user.organisation.id' and save it for later use. This step is not mandatory, as the organization identifier can be passed as a local parameter to the task due to its static nature.
+
+. Call *Environments* on the Access Management API, passing the organization 'id' retrieved in the previous step and choosing the correct environment 'id' based on the relevant environment name (e.g. Dev, Test, Production, etc.). 
+
++
+[TIP]
+The organization 'id' retrieved in step 2 must be passed as part of the API URI. The environment 'id' must be extracted from the path 'data[i].id', where 'data[i].name == inputEnvironment' (it may take values like 'Dev', 'Test', 'Production' or any valid environment name that set up in your Anypoint Platform).
+
+Using the https://anypoint.mulesoft.com/exchange/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-deployment-target-registry/1.0.1/pages/home/[Runtime Manager Target Registry] API:
+
+. Call the *Targets* on the *Target Registry API*, passing the provider 'id', as well as the retrieved organization 'id' and environment 'id'. This returns all of the registered targets for the organization, including the 'targetId'.
+
++
+[NOTE]
+This step retrieves the target 'id', which is then used as target for the deployment. The task will need to pick up the right target identifier based on the provided Target Name, that you may set as an input at the beginning of the workflow. The target 'id' must be extracted from 'data[i].id' where 'data[i].name == inputTargetName'.
+
+Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/1.0.3/console/summary/[Application Manager] API:
+
+. Call *Deployments* on the *Application Manager API*, passing the organization's 'id' and the environment's 'id', to retrieve the application's 'id' and the rest of its data.
+
++
+[NOTE]
+This step retrieves the application 'id' to determine whether the following step is a new deployment (6a) or a re-deployment (6b). The application 'id' must be extracted from 'data[i].id' where 'data[i].artifact.name == inputArtifactName' and 'data[i].target.targetId == 'targetId'.
+
+. Post *Deployments* on the *Application Manager API*, passing the organization's 'id', the environment's 'id', 'applicationName', 'labels', 'target' deployment settings (including the target id retrieved in the in step 1 of this section), the Exchange reference of the published Mule application 'application' to deploy, the application 'configuration' and optionally the application 'id'.
+
+[NOTE]
+This step deploys the actual Mule application artifact for the first time to a target environment and Runtime Fabric. Use *POST* requests if no application identifier was retrieved in step 2. Use *PATCH* if an application identifier was retrieved in step 2, to re-deploy.
+
+
+
