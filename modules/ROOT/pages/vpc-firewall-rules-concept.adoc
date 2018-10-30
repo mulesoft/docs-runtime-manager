@@ -66,8 +66,8 @@ Before you implement firewall rules, or make changes to existing rules, you shou
 Firewall rules are inbound and use the following parameters:
 
 * *Type*: Protocol type, for example, TCP
-* *Source*:
-* *Port Range*:
+* *Source*: Source IP address
+* *Port Range*: The only two ports exposed externally are 8081 (http.port) and 8082 (https.port). You can use this parameter to open additional ports inside the VPC.
 
 === Add or Edit Firewall Rules
 
@@ -79,16 +79,18 @@ The right panel displays information about the VPC.
 .. Click *Manage VPC*, then click the *Firewall Rules tab*.
 . If you are creating firewall rules when you create your VPC:
 .. Click *Firewall Rules >* to expand the fields. +
-The default firewall ports 8081, 8082, 8091, 8092 (described above) are displayed in the *Port Range* column. These rows can be modified. +
++
 image::firewall-rules-page.png[]
-. To edit a rule, you can modify existing values. select the new values from the *Type* and *Source* drop-down lists, and enter the value for the *Port Range*.
++
+. To edit a rule, select the new values from the *Type* and *Source* drop-down lists, and enter the value for the *Port Range*.
 . To add additional rules:
 .. Click *Add New Rule*.
 .. Select the following values for the type and source in the corresponding columns: +
 * *Type*: Select the transport protocol type for the rule.
-* *Source*: Select the source IP address, or select *Custom* to define your own source.+
-..Enter a value for *Port Range* and click *Add to list*.
+* *Source*: Select the source IP address, or select *Custom* to define your own source.
+.. Enter a value for *Port Range* and click *Add to list*.
 . To delete a firewall rule, hover over the firewall rule row to delete, then click the trashcan icon in the far-right column. +
+
 [NOTE]
 --
 There is not a confirmation dialog when you delete a firewall rule, so make sure you really want to delete it.
