@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 In CloudHub's default configuration, all applications are hosted in a multi-tenant cloud balanced by a publicly accessible load balancer. +
-When you create your own virtual private cloud (VPC), you can add your own firewall rules to allow specific IP ranges and ports to reach your workers. See <<configurefirewall,Configure Firewall Rules>>.
+When you create a virtual private cloud (VPC), you can add your own firewall rules to allow specific IP ranges and ports to reach your workers. See <<configurefirewall,Configure Firewall Rules>>.
 
 [NOTE]
 ====
@@ -59,18 +59,40 @@ You can remove these rules if you don't want your internal workers to be reached
 
 [[configurefirewall]]
 == Configure Firewall Rules
-You can configure firewall rules in Anypoint Runtime Manager.
+You can configure firewall rules in the Anypoint Runtime Manager UI at the time you create a VPC, or you can add them to an existing VPC. You can also modify the firewall rules for a VPC at any time.
+
+Before you implement firewall rules, or make changes to existing rules, you should fully understand all security implications. Make sure you follow the established best practices of your organization before making any changes to firewall rules. In general, the rules you use to define access to your VPC should be as specific as is practical.
+
+Firewall rules are inbound and use the following parameters:
+
+* *Type*: Protocol type, for example, TCP
+* *Source*:
+* *Port Range*:
+
+=== Add or Edit Firewall Rules
 
 . Sign into Anypoint Platform as a user with the Organization Administrators role.
 . In *Management Center*, click *Runtime Manager*.
-. In the left menu, click *VPCs* and click the row for the VPC to configure the firewall rules for.
-. Click *Firewall Rules >* to expand the fields. +
-The default firewall ports 8081, 8082, 8091, 8092 (described above) are displayed in the *Port Range* column. These rows can be modified.
-. Select the *Type* and *Source* for the firewall rule.
-. If you need to add additional rules, click *Add New Rule*.
-
-
-
+. If you already have a VPC:
+.. In the left menu, click *VPCs* and click the row for the VPC to configure the firewall rules for. +
+The right panel displays information about the VPC.
+.. Click *Manage VPC*, then click the *Firewall Rules tab*.
+. If you are creating firewall rules when you create your VPC:
+.. Click *Firewall Rules >* to expand the fields. +
+The default firewall ports 8081, 8082, 8091, 8092 (described above) are displayed in the *Port Range* column. These rows can be modified. +
+image::firewall-rules-page.png[]
+. To edit a rule, you can modify existing values. select the new values from the *Type* and *Source* drop-down lists, and enter the value for the *Port Range*.
+. To add additional rules:
+.. Click *Add New Rule*.
+.. Select the following values for the type and source in the corresponding columns: +
+* *Type*: Select the transport protocol type for the rule.
+* *Source*: Select the source IP address, or select *Custom* to define your own source.+
+..Enter a value for *Port Range* and click *Add to list*.
+. To delete a firewall rule, hover over the firewall rule row to delete, then click the trashcan icon in the far-right column. +
+[NOTE]
+--
+There is not a confirmation dialog when you delete a firewall rule, so make sure you really want to delete it.
+--
 
 == See Also
 
