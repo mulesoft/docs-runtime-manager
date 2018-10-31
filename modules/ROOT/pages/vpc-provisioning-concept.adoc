@@ -5,60 +5,64 @@ endif::[]
 
 Provisioning a VPC for your organization consists of two major steps:
 
-. Creating the VPC. +
+. Create the VPC. +
 This is a self-service process. You can create a VPC using either the Runtime Manager UI, or the Anypoint Platform CLI.
-. Connecting to your VPC. +
-This needs to be done by a MuleSoft representative.
+. Connect to your VPC. +
+This must be done by a MuleSoft representative.
 
-See the tutorials and task in the See Also section below for detailed information about these processes. +
-However, before creating the VPC, you need to be aware that some settings are only configurable during the first set up:
+[NOTE]
+--
+To avoid unnecessary downtime, it is critical to define the VPC settings when you first create a new VPC. +
+If you edit these settings after the VPC is created, you must then remove all your workers and redeploy them after the change is complete.
+--
+
+These settings include:
 
 * The address space for your network. +
 This determines the size of your VPC.
 * The location of your VPC. +
-In order for the VPC to be able to host your Workers, it needs to be bound to a business group and a specific CloudHub region.
+To enable the VPC to host your workers, it must be bound to a business group and a specific CloudHub region.
 +
 ** The Organization or Business Group for your VPC.
 ** The CloudHub Region for your VPC.
 
-Editing these settings after the VPC is created, requires for you  to remove all your workers and redeploy them after the change is complete. Defining these settings at the beginning is crucial to avoid unnecessary downtime. +
-Pay attention to the following FAQ to understand how to plan a successful VPC set-up.
+Read the following FAQs to understand how to plan a successful VPC setup.
 
 == FAQ: How to Size my VPC
 
-When you create a VPC, the range of IP addresses for this network needs to be specified in the form of a Classless Inter-Domain Routing (CIDR) block, using CIDR notation. +
+When you create a VPC, the range of IP addresses for the network must be specified in the form of a Classless Inter-Domain Routing (CIDR) block, using CIDR notation. +
 This address space is reserved for Mule workers, so it cannot overlap with any address space used in your data center if you want to peer it with your VPC.
 
-In order to calculate the proper sizing for your VPC, you first need to understand that the number of dedicated IP addresses is not the same as the number of workers you have deployed. +
+To calculate the proper sizing for your VPC, you first need to understand that the number of dedicated IP addresses is not the same as the number of workers you have deployed. +
 For each worker deployed to CloudHub, the following IP assignation takes place:
 
-* For better fault tolerance the VPC subnet may be divided into up to 4 Availability Zones.
+* For better fault tolerance, the VPC subnet may be divided into up to four Availability Zones.
 * A few IP addresses are reserved for infrastructure.
 * At least two IP addresses per worker to perform at zero-downtime.
 
 Due to this structure, the smallest network subnet block you can assign for your VPC is /24 and the largest /16. +
 A /24 CIDR notation subnet has 256 IP addresses. +
-Reserving one IP address for the network and one for broadcast you have 254 hosts for your worker, which get divided into 4 availability zones of 62 hosts each. Consider that each worker potentially needs two IP addresses for zero-downtime, that's around 30 IP addresses to assign to your workers. +
-Consider also the environments that would require in a VPC.  For example, f you need space for 300 instances each in Dev, QA and UAT you need to size for 1024 instances at minimum.
+Reserving one IP address for the network and one for broadcast leaves you with 254 hosts for your worker. These get divided into four availability zones of 62 hosts each. Consider that each worker potentially needs two IP addresses for zero downtime, which leaves around 30 IP addresses to assign to your workers. +
+Consider also the environments required in a VPC.  For example, if you need space for 300 instances each in Dev, QA, and UAT, you need to size for 1024 instances at minimum.
 
-The safe rule of thumb for deciding the size of your VPC subnet is "10 times the maximum number of expected apps to deploy in the VPC".
+The safe rule of thumb for deciding the size of your VPC subnet is to calculate 10 times the maximum number of expected apps to deploy in the VPC.
 
 == FAQ: Where To Place a VPC Inside my Organization
 
 As an organization administrator, you can create a VPC and share it with any business group within your main organization. +
-However, once the VPC is inherited by a business group, only the administrator of said business group can operate the VPC. For example, a CloudHub organization administrator or a Business Group Owner can create or update an existing VPC (owned or inherited) to make it the default for either the region, the environments or both. +
-However, if such association already exists, it's overwritten by the requested VPC.
+However, once the VPC is inherited by a business group, only the administrator of said business group can operate the VPC. For example, a CloudHub organization administrator or a business group owner can create or update an existing VPC (owned or inherited) to make it the default for either the region, the environment, or both. +
+However, if such an association already exists, it's overwritten by the requested VPC.
 
-If no business group association is specified, or if your organization does not have any business group, the VPC ownership remains associated with the main organization. The organization under which the VPC is created is the VPC Owner and this organization's administrator is the only one who can share the VPC. +
+If no business group association is specified, or if your organization does not have any business groups, the VPC ownership remains associated with the main organization. The organization under which the VPC is created is the VPC owner and this organization's administrator is the only one who can share the VPC. +
 VPCs can only be shared vertically from the main organization to one of its business groups, or from a business group to one of its child business groups. +
-You cannot share a VPC created by a business group with another one of higher hierarchy.
+You cannot share a VPC created by a business group with another business group that is higher in the hierarchy.
 
-It's recommended to create your VPC in your master organization, and to share it with the other business groups.
+It is recommended that you create your VPC in your master organization, and share it with the other business groups.
 
-== FAQ: In Which Region Create a VPC
+== FAQ: Which Region to use When Creating a VPC
 
 You can create your VPC inside any of the available CloudHub regions. +
-The recommended region to use might vary depending on how would you connect to your VPC. If you are using a VPN tunnel, you might want to choose the CloudHub region closest to your data center. +
+The recommended region to use might vary depending on how you connect to your VPC. If you are using a VPN tunnel, you might want to choose the CloudHub region closest to your data center. +
 However, if you are peering with your private AWS VPC, you need to create your CloudHub VPC in the same AWS region.
 
 == See Also
