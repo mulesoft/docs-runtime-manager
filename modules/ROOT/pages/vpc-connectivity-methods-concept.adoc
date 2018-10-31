@@ -3,25 +3,28 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can connect a Virtual Private Cloud to your private network using any of these methods:
+You can connect a Virtual Private Cloud to your private network using an IPsec tunnel, VPC peering, and CloudHub Direct Connect.
 
-== IPsec tunnel with network-to-network configuration.
+== IPsec Tunnel
 
-This method is used to connect your on-prem data centers to your CloudHub VPC. It uses  an IPsec VPN tunnel which, in general, is the recommended solution for VPC to on-premise connectivity. It provides a standardized, secure way to connect, which integrates well with existing IT infrastructure such as routers/appliances.
+Use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your CloudHub VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances.
 
 image::chvpc02.png[CHVPC02]
 
 ==  VPC Peering
 
-Pairs your private Amazon VPC directly to your CloudHub VPC.
+VPC peering provides a connection between two VPCs. In this case, it pairs your private Amazon VPC directly to your CloudHub VPC. This enables you to route traffic between the two VPCs so they can communicate as though they are in the same network.
 
 image::chvpc05.png[CHVPC05]
 
-This method requires that your AWS and CloudHub VPC are located in the same region.
+[NOTE]
+--
+To use VPC Peering, your AWS and CloudHub VPCs must be located in the same region.
+--
 
-== CloudHub Direct Connect.
+== CloudHub Direct Connect
 
-If your network connects to your Amazon VPC using Amazon Direct Connect, you can create a hosted virtual interface to your CloudHub VPC.
+This method establishes a dedicated network connection from your Amazon VPC to your CloudHub VPC. This enables you to create a hosted virtual interface to your CloudHub VPC.
 
 image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
 

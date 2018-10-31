@@ -4,85 +4,81 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-This tutorial walks you through the creation of a *virtual private cloud* configuring firewall rules. +
-To be able to create a VPC, your organization needs to purchase a VPC offering and your account needs to meet the necessary permissions to create and administrate a VPC.
+Before you can create a VPC, your organization must:
 
-To create a VPC, log in to your Anypoint Platform and follow these steps:
+* Purchase a VPC offering
+* Have the necessary permissions on your account to create and administrate a VPC
 
-. Select the `VPCs` tab from the navigation bar to your left.
-. Click the Create VPC option:
-+
-image::vpc-and-load-balancer-creation-df931.png[]
-+
-You can start passing the parameters to define and configure your VPC:
-+
-image::vpc-and-load-balancer-creation-35c7d.png[]
-+
-. A VPC name. +
-For this tutorial, name your VPC `vpc-tutorial`.
-. The region to which the VPC is bound. +
-In this case, the VPC is bound to `US East (Virginia)`.
+== Create the VPC
+
+. Sign into your Anypoint Platform account as a user with the Organization Administrators role.
+. Under *Management Center*, click *Runtime Manager*.
+. In the left navigation, click *VPCs*.
+. Click *Create VPC*, and enter the following information to define and configure the VPC:
+* *Name*: The name to identify your VPC. The name must:
+** Be unique within the organization
+** Between 3 - 42 characters long
+** Contain only lowercase letters, numbers, and dashes
+* *Region*: The region to which the VPC is bound.
 +
 [NOTE]
 --
 All VPCs must be associated to a CloudHub region.
 --
 +
-. The size of your VPC in Classless Inter-Domain Routing (*CIDR*) notation. +
-Set it to 10.111.0.0/24 which grants us 256 IP addresses from 10.111.0.0 to 10.111.0.255. +
-The CIDR Blocks chosen for the VPC should ideally come from a private IP space, and should not overlap with any other VPC's CIDR Blocks or any CIDR Blocks in use in your corporate network.
+* *CIDR Block*: The size of the VPC in Classless Inter-Domain Routing (*CIDR*) notation. +
+For example, if you set it to 10.111.0.0/24, the VPC is granted 256 IP addresses from 10.111.0.0 to 10.111.0.255. +
+Ideally, the CIDR Blocks you choose for the VPC come from a private IP space, and should not overlap with any other VPC's CIDR Blocks, or any CIDR Blocks in use in your corporate network.
 +
 [CAUTION]
 --
-Once the VPC is created, it is not possible to resize it, nor to edit your selected CIDR block. +
-Understanding how to size your VPC is crucial at this point. If you are not sure how to configure this, make sure to follow our xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide.
+This setting is configurable only during initial setup of the VPC. Once the VPC is created, you cannot resize it, nor edit your selected CIDR block. +
+Make sure you thoroughly understand how to properly size the VPC for your needs before configuring this parameter. If you are not sure of how to configure this setting, follow the  xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide.
 --
 +
-. Set an environment to which your VPC is bound. +
-For this example, the environment is left blank so every application deployed to US-EAST gets associated to this VPC disregarding to which environment it is being deployed.
-. Set whether this VPC is the default for the region in which it is being created. +
-This example sets the VPC as the default. This means that all environments in this region that are not associated to a VPC will be, by default, associated to `vpc-tutorial`.
-. Set the business group to which your VPC is bound. +
-By leaving it blank, the VPC is associated to the main organization.
+* *Environments*: Optionally, select an environment to which the VPC is bound. If you do not select an environment, every application deployed to the region you selected for the VPC gets associated with this VPC regardless of the environment to which it is deployed.
+* *Set as default VPC*: Select this option to set the VPC as the default for the region you set. This means that all environments in this region not associated with a VPC will be, by default, associated with this VPC.
+* *Business Groups*: Optionally, bind the VPC with a business group. If you don't select a business group, the VPC is associated with the master organization. You can change this later in the VPC management settings.
++
+image::create-vpc.png[]
++
+. Click *Firewall Rules>* to expand the fields and configure firewall rules now. +
+By default, all inbound traffic is blocked, and you need to configure firewall rules to allow traffic to your worker. You can configure these rules at a later time. +
+The UI is pre-filled with suggestions of the most commonly used firewall rules. +
+The example below shows a firewall rule with type 'http.private.port' from `Anywhere`. The port range is set to `8091` automatically.
 +
 image::vpc-and-load-balancer-creation-97c25.png[]
-+
-. Click the *Firewall Rules* option.
-.. All inbound traffic is blocked by default. Firewall rules are required to allow traffic to your worker. +
-The UI suggests you a list of most used firewall rules. For this example, add a firewall rule with type 'http.private.port' from `Anywhere`. +
-Note that the port range is automatically set to `8091`.
 +
 This means that only connections through the port `8091` are whitelisted inside the VPC and that your worker will listen to all interfaces coming through port `8091`. +
 Setting this firewall rule allows a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] to communicate to your workers using its default configurations.
 +
+[NOTE]
+--
 Additionally, to properly receive requests from the load balancer, all applications that are deployed to the VPC must be listening on port `8091`.
+--
 . Click *Create VPC*.
 
 [[set-dns]]
-[TIP]
---
-Optionally you can click the *Internal DNS* option.
+== Configure the Internal DNS
+
+Optionally, you can xref:virtual-private-cloud.adoc#set-up-internal-dns[set up internal DNS servers] to resolve your private host names.
+
+. Click the *Internal DNS* option.
 
 image::vpc-tutorial-31341.png[]
 
-This option allows you to xref:virtual-private-cloud.adoc#set-up-internal-dns[set up internal DNS servers] to resolve your private host names.
-
-.. Click the `Add New IP` button and type your public DNS IP address. +
-Click the `Add to List` or hit `enter`. +
+. Click *Add New IP* and type your public DNS IP address, then click Add to List, or press enter`. +
 You can pass up to 3 IP addresses.
 +
 image::vpc-tutorial-f7641.png[]
 +
-.. Click the `Add New Domain` button and type the private domains that need to be resolved using your DNS servers. +
-Click the `Add to List` or hit `enter. +
-It is possible to add several private domains.
+. Click *Add New Domain* and type the private domains to resolve using your DNS servers. +
+. Click *Add to List* or press `enter. +
+You can add several private domains.
 +
 image::vpc-tutorial-7770c.png[]
 +
-Whenever those private domains are provided, your worker resolves them using your private DNS, so you can still use the internal host names of your private network.
---
-
-From this moment on, any application that is deployed to US-EAST (disregarding the environment used), will be deployed to this VPC. +
+Whenever private domains are provided, your worker resolves them using your private DNS, so you can still use the internal host names of your private network. From now on, any application that is deployed to the specified region (regardless of environment used), will be deployed to this VPC. +
 
 == Connect to your VPC
 
@@ -95,37 +91,39 @@ The SLA for configuring VPC is 5 business days after the VPC discovery form has 
 
 image::vpc-tutorial-c5a66.png[]
 
-. Find your VPC from the list of existing VPC in the UI, and select it.
+. Find your VPC in the list of existing VPCs in the UI, and select it.
 . You can update:
-.. Environments +
+.. *Environments* +
 You can select one or more specific environment from the drop down menu.
 +
 image::vpc-tutorial-6dea0.png[]
 +
-.. Business Groups +
-You can select one or more business group from the drop down menu.
+.. *Business Groups* +
+You can select one or more business groups from the drop down menu.
 +
 image::vpc-tutorial-981cc.png[]
 +
-.. Firewall Rules +
-You edit existing firewall rules, or add new ones.
+.. *Firewall Rules* +
+You can edit existing firewall rules, or add new ones.
 +
 image::vpc-tutorial-fa890.png[]
 +
-.. Internal DNS +
-This option allows you to set a list of internal host names to be resolved using your DNS servers for which you need to provide their public IP addresses.
+.. *Internal DNS* +
+You can edit existing internal DNS configurations, or add new ones.
 +
 image::vpc-tutorial-0b7b2.png[]
 +
-Set your public DNS IP address and hit `enter` or click the blue check mark. +
+Set your public DNS IP address and press `enter`, or click the blue check mark. +
 +
 image::vpc-tutorial-df177.png[]
 +
-Add the private domains that need to be resolved using your DNS server and hit `enter` or click the blue check mark.
+Add the private domains that need to be resolved using your DNS server and press `enter`, or click the blue check mark.
 +
-. When you finished all your editing, click *Apply Changes*.
+. When you finish making your changes, click *Apply Changes*.
 
 == See Also
 
-* Learn how to associate a load balancer following the xref:dedicated-load-balancer-tutorial.adoc[load balancer tutorial].
+* xref:vpc-firewall-rules-concept.adoc[About VPC Firewall Rules]
+* xref:dedicated-load-balancer-tutorial.adoc[About CloudHub Load Balancers]
 * xref:vpc-management-permission-topic.adoc[FAQ: Where To Place a VPC Inside my Organization]
+* xref:resolve-private-domains-vpc-task.adoc[Configure Private Domains]
