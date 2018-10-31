@@ -5,13 +5,16 @@ endif::[]
 
 You can specify custom private domains by adding the IP address and domain name for your network. +
 
-. From Anypoint Platform, click Runtime Manager, and then VPC.
-. Select the row of the VPC you want to configure, then click Manage VPC.
-. Select the Internal DNS tab.
-. Click Add New IP, then enter the IP address of your internal DNS server.
-. Click Add New DNS, then enter the domain name of your internal DNS server. +
+. From Anypoint Platform, click *Runtime Manager*.
+. In the left navigation, click *VPCs*.
+. Select the row of the VPC to configure, then click *Manage VPC*.
+. Select the *Internal DNS* tab.
+. Click *Add New IP*, then enter the IP address of your internal DNS server.+
+. Click *Add New DNS*, then enter the domain name of your internal DNS server. +
 You only need to add the common portion of the domain name, for example: mulesoft.com.
-. Click Apply Changes
+. Click *Apply Changes*.
++
+image::internal-dns-configuration[]
 
 When resolving a domain name in your internal network, consider the following:
 
