@@ -15,7 +15,9 @@ Before you can create a VPC, your organization must:
 . Under *Management Center*, click *Runtime Manager*.
 . In the left navigation, click *VPCs*.
 . Click *Create VPC*, and enter the following information to define and configure the VPC:
-* *Name*: The name to identify your VPC. The name must:
+* *Name*: The name to identify your VPC. +
+The name must:
+
 ** Be unique within the organization
 ** Between 3 - 42 characters long
 ** Contain only lowercase letters, numbers, and dashes
@@ -42,7 +44,7 @@ Make sure you thoroughly understand how to properly size the VPC for your needs 
 +
 image::create-vpc.png[]
 +
-. Click *Firewall Rules>* to expand the fields and configure firewall rules now. +
+. Click *Firewall Rules* to expand the fields and configure firewall rules. +
 By default, all inbound traffic is blocked, and you need to configure firewall rules to allow traffic to your worker. You can configure these rules at a later time. +
 The UI is pre-filled with suggestions of the most commonly used firewall rules. +
 The example below shows a firewall rule with type 'http.private.port' from `Anywhere`. The port range is set to `8091` automatically.
