@@ -12,7 +12,7 @@ This must be done by a MuleSoft representative.
 
 [NOTE]
 --
-To avoid unnecessary downtime, it is critical to define the VPC settings during the initial setup of the VPC. +
+To avoid unnecessary downtime, it is critical to define the VPC settings when you first create a new VPC. +
 If you edit these settings after the VPC is created, you must then remove all your workers and redeploy them after the change is complete.
 --
 
@@ -42,7 +42,7 @@ For each worker deployed to CloudHub, the following IP assignation takes place:
 
 Due to this structure, the smallest network subnet block you can assign for your VPC is /24 and the largest /16. +
 A /24 CIDR notation subnet has 256 IP addresses. +
-Reserving one IP address for the network and one for broadcast leaves you with 254 hosts for your worker. These get divided into four availability zones of 62 hosts each. Consider that each worker potentially needs two IP addresses for zero-downtime, which leaves around 30 IP addresses to assign to your workers. +
+Reserving one IP address for the network and one for broadcast leaves you with 254 hosts for your worker. These get divided into four availability zones of 62 hosts each. Consider that each worker potentially needs two IP addresses for zero downtime, which leaves around 30 IP addresses to assign to your workers. +
 Consider also the environments required in a VPC.  For example, if you need space for 300 instances each in Dev, QA, and UAT, you need to size for 1024 instances at minimum.
 
 The safe rule of thumb for deciding the size of your VPC subnet is to calculate 10 times the maximum number of expected apps to deploy in the VPC.

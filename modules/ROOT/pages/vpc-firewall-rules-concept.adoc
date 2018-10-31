@@ -31,7 +31,7 @@ When you create a VPC, four firewall rules are created by default:
 },
 ----
 +
-These firewall rules allow traffic from within the VPC to reach your workers through ports 8091 and 8092. These are the only ports used by your CloudHub dedicated load balancer to proxy all external communications to your workers.
+These firewall rules allow traffic from within the VPC to reach your workers through ports 8091 and 8092. These are the only ports used by your CloudHub-dedicated load balancer to proxy all external communications to your workers.
 
 * Two rules to allow inbound connections from anywhere through ports 8081 and 8082:
 +
@@ -93,7 +93,7 @@ image::firewall-rules-page.png[]
 
 [NOTE]
 --
-There is not a confirmation dialog when you delete a firewall rule, so make sure you really want to delete it.
+No confirmation dialog appears when you delete a firewall rule, so make sure you really want to delete it.
 --
 
 == See Also
