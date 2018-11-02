@@ -1,4 +1,4 @@
-= Tutorial: Creating a VPC (Runtime Manager)
+= Create a VPC (Runtime Manager)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -25,7 +25,7 @@ The name must:
 +
 [NOTE]
 --
-All VPCs must be associated to a CloudHub region.
+All VPCs must be associated with a CloudHub region.
 --
 +
 * *CIDR Block*: The size of the VPC in Classless Inter-Domain Routing (*CIDR*) notation. +
@@ -34,7 +34,7 @@ Ideally, the CIDR Blocks you choose for the VPC come from a private IP space, an
 +
 [CAUTION]
 --
-This setting is configurable only during initial setup of the VPC. Once the VPC is created, you cannot resize it, nor edit your selected CIDR block. +
+This setting is configurable only during this initial creation of the VPC. Once the VPC is created, you cannot resize it or edit your selected CIDR block. +
 Make sure you thoroughly understand how to properly size the VPC for your needs before configuring this parameter. If you are not sure of how to configure this setting, follow the  xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide.
 --
 +
