@@ -1,4 +1,4 @@
-= Create a VPC (Runtime Manager)
+= Create and Update a VPC (Runtime Manager)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -38,56 +38,44 @@ This setting is configurable only during this initial creation of the VPC. Once 
 Make sure you thoroughly understand how to properly size the VPC for your needs before configuring this parameter. If you are not sure of how to configure this setting, follow the  xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide.
 --
 +
-* *Environments*: Optionally, select an environment to which the VPC is bound. If you do not select an environment, every application deployed to the region you selected for the VPC gets associated with this VPC regardless of the environment to which it is deployed.
-* *Set as default VPC*: Select this option to set the VPC as the default for the region you set. This means that all environments in this region not associated with a VPC will be, by default, associated with this VPC.
-* *Business Groups*: Optionally, bind the VPC with a business group. If you don't select a business group, the VPC is associated with the master organization. You can change this later in the VPC management settings.
+* *Environments*: Optionally, select an environment to which the VPC is bound. +
+If you do not select an environment, every application deployed to the region you selected for the VPC gets associated with this VPC regardless of the environment to which it is deployed.
+* *Set as default VPC*: Select this option to set the VPC as the default for the region you set. +
+This means that all environments in this region not associated with a VPC will be, by default, associated with this VPC.
+* *Business Groups*: Optionally, bind the VPC with a business group. +
+If you don't select a business group, the VPC is associated with the master organization. You can change this later in the VPC management settings.
 +
 image::create-vpc.png[]
 +
-. Click *Firewall Rules* to expand the fields and configure firewall rules. +
+. Click *Firewall Rules* to expand the fields and xref:vpc-firewall-rules-concept.adoc[configure firewall rules]. +
 By default, all inbound traffic is blocked, and you need to configure firewall rules to allow traffic to your worker. You can configure these rules at a later time. +
 The UI is pre-filled with suggestions of the most commonly used firewall rules. +
 The example below shows a firewall rule with type 'http.private.port' from `Anywhere`. The port range is set to `8091` automatically.
 +
 image::vpc-and-load-balancer-creation-97c25.png[]
 +
-This means that only connections through the port `8091` are whitelisted inside the VPC and that your worker will listen to all interfaces coming through port `8091`. +
+This means that only connections through port `8091` are whitelisted inside the VPC and that your worker will listen to all interfaces coming through port `8091`. +
 Setting this firewall rule allows a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] to communicate to your workers using its default configurations.
 +
 [NOTE]
 --
-Additionally, to properly receive requests from the load balancer, all applications that are deployed to the VPC must be listening on port `8091`.
+Additionally, to properly receive requests from the load balancer, all applications deployed to the VPC must be listening on port `8091`.
 --
-. Click *Create VPC*.
 
-[[set-dns]]
-== Configure the Internal DNS
-
-Optionally, you can xref:virtual-private-cloud.adoc#set-up-internal-dns[set up internal DNS servers] to resolve your private host names.
-
-. Click the *Internal DNS* option.
-
+. Optionally, you can click the *Internal DNS* option to xref:resolve-private-domains-vpc-task.adoc[set up internal DNS servers] to resolve your private host names.
++
 image::vpc-tutorial-31341.png[]
++
+You can do this when you initially create the VPC, or you can configure the internal DNS later.
 
-. Click *Add New IP* and type your public DNS IP address, then click Add to List, or press enter`. +
-You can pass up to 3 IP addresses.
-+
-image::vpc-tutorial-f7641.png[]
-+
-. Click *Add New Domain* and type the private domains to resolve using your DNS servers. +
-. Click *Add to List* or press `enter. +
-You can add several private domains.
-+
-image::vpc-tutorial-7770c.png[]
-+
-Whenever private domains are provided, your worker resolves them using your private DNS, so you can still use the internal host names of your private network. From now on, any application that is deployed to the specified region (regardless of environment used), will be deployed to this VPC. +
+. Click *Create VPC*.
 
 == Connect to your VPC
 
-xref:virtual-private-cloud.adoc#vpc-connectivity-methods[VPC connectivity methods] (IPSEC, AWS Peering, etc) are not a self-serve function at this time. +
-To configure a connection between your Cloudhub VPC and your infrastructure, download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the VPC discovery form] (requires at least MS Excel 2007 with macros enabled), enter data to communicate the necessary details required for your connectivity method and send it to MuleSoft customer support.
+xref:virtual-private-cloud.adoc#vpc-connectivity-methods[VPC connectivity methods] (IPSEC, AWS Peering, and so on) are not a self-serve function at this time. +
+To configure a connection between your CloudHub VPC and your infrastructure, download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the VPC discovery form] (requires at least MS Excel 2007 with macros enabled), enter the necessary information required for your connectivity method and send it to MuleSoft customer support.
 
-The SLA for configuring VPC is 5 business days after the VPC discovery form has been completed and returned, though it may be completed sooner.
+The SLA for configuring VPC is 5 business days after the VPC discovery form is completed and returned, though it may be completed sooner.
 
 == Update an Existing VPC
 
@@ -106,12 +94,12 @@ You can select one or more business groups from the drop down menu.
 image::vpc-tutorial-981cc.png[]
 +
 .. *Firewall Rules* +
-You can edit existing firewall rules, or add new ones.
+You can edit existing xref:vpc-firewall-rules-concept.adoc[firewall rules], or add new ones.
 +
 image::vpc-tutorial-fa890.png[]
 +
 .. *Internal DNS* +
-You can edit existing internal DNS configurations, or add new ones.
+You can edit existing xref:resolve-private-domains-vpc-task.adoc[internal DNS configurations], or add new ones.
 +
 image::vpc-tutorial-0b7b2.png[]
 +
