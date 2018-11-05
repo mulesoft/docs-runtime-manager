@@ -3,22 +3,35 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can specify custom private domains by adding the IP address and domain name for your network. +
+You can specify custom private domains xref:vpc-tutorial by adding the IP address and domain name for your network. When you provide private domains, your worker resolves them using your private DNS, so you can still use the internal host names of your private network. Once you provide this information, any application that is deployed to the specified region (regardless of environment used), will be deployed to this VPC.
 
-. From Anypoint Platform, click Runtime Manager, and then VPC.
-. Select the row of the VPC you want to configure, then click Manage VPC.
-. Select the Internal DNS tab.
-. Click Add New IP, then enter the IP address of your internal DNS server.
-. Click Add New DNS, then enter the domain name of your internal DNS server. +
-You only need to add the common portion of the domain name, for example: mulesoft.com.
-. Click Apply Changes
+. Sign into Anypoint Platform, and in *Management Center*, click *Runtime Manager*.
+. In the left navigation, click *VPCs*.
+. Select the row of the VPC to configure, then click *Manage VPC*.
+. Click the *Internal DNS* tab.
+. Click *Add New IP*, enter the IP address of your internal DNS server, then click *Add to List*. +
+You can enter up to 3 IP addresses.
++
+image::vpc-tutorial-f7641.png[]
++
+. Click *Add New Domain*, enter the domain name of your internal DNS server, then click *Add to List*. +
+You only need to add the common portion of the domain name, for example: `mulesoft.com`.
++
+You can add several private domains.
++
+image::vpc-tutorial-7770c.png[]
++
+. Click *Apply Changes*.
++
+image::internal-dns-configuration.png[]
 
 When resolving a domain name in your internal network, consider the following:
 
 * The IP address you configure is for the DNS server of your internal network. It is not the IP address of the service you are connecting to.
-* The maximum number of characters of all the domains you configure must not exceed 255 characters. For example, adding the domains mydomain1.com and mydomain2.com would require 28 characters. Each domain name consumes an additional character because in the DNS hierarchy all domains end with a "." characer.
-* You should avoid entering hostnames to ensure that you do not exceed the 255 character limit.
+* The maximum number of characters of all the domains you configure must not exceed 255 characters. For example, adding the domains `mydomain1.com` and `mydomain2.com` requires 28 characters. Each domain name consumes an additional character because in the DNS hierarchy all domains end with a "." character.
+* Avoid entering hostnames to ensure that you do not exceed the 255 character limit.
 
 == See Also
 
 * xref:vpc-architecture-concept.adoc[About VPC Network Architecture]
+* xref:vpc-tutorial.adoc[Create a VPC]
