@@ -9,7 +9,24 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The Runtime Manager Agent publishes notifications about events that occur in the Mule instance in JSON format, which allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager Agent Architecture documentation).
+The Runtime Manager Agent publishes notifications, in JSON format, about events that occur in the Mule instance. This allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager Agent Architecture documentation).
+
+== Configure the Mule Agent Notifications Callback URL
+
+To receive notifications on the specified URL, you must first configure the `callback` URL in the `mule-agent.yml` file inside the REST transport section as shown below.
+
++
+[TIP]
+To enable notification to be sent, you must enable the `rest.agent.transport` section. Also ensure the configured URL ends with a trailing slash (`/`). This is required since the agent will append the path to it.
+
+[source,yaml,linenums]
+----
+  rest.agent.transport:
+    enabled: true
+    callback:
+      url: http://localhost:8080/
+    port: 8888
+----
 
 == Application Deployment Notifications
 
@@ -102,8 +119,8 @@ Contains the following itemized information about the domain:
 
 * Domain name
 * List of applications deployed to the domain, specifying:
-* Application name
-* Domain name
+** Application name
+** Domain name
 ** Application status
 
 |`status` a|
@@ -116,7 +133,7 @@ For a list of all possible status messages, see the <<Application States and Dep
 
 == Keep-Alive Notifications
 
-The Runtime Manager Agent sends a periodic keep-alive notification to verify that the Mule instance is still running. The notification is sent via a POST request with an empty body to the keeAlive path, as shown below.
+The Runtime Manager Agent sends a periodic keep-alive notification to verify that the Mule instance is still running. The notification is sent via a POST request with an empty body to the `keepAlive` path, as shown below.
 
 ----
 POST <callback URL>/keepAlive HTTP/1.1
