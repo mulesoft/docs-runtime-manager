@@ -11,6 +11,23 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 The Runtime Manager Agent publishes notifications about events that occur in the Mule instance in JSON format, which allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager Agent Architecture documentation).
 
+== Configuring the Mule Agent Notifications Callback URL
+
+To start receiving the notifications in the desired URL, you must first configure the `callback` URL in the `mule-agent.yml` file inside the REST transport section as shown below.
+
++
+[TIP]
+Make sure to enable the `rest.agent.transport` section or the notification will not be sent. Also ensure the configured url ends with a trailing slash (`/`). This is required since the agent will append the path to it.
+
+[source,yaml,linenums]
+----
+  rest.agent.transport:
+    enabled: true
+    callback:
+      url: http://localhost:8080/
+    port: 8888
+----
+
 == Application Deployment Notifications
 
 The Runtime Manager Agent sends a notification every time there is a change in state during an application deployment or undeployment. Notifications are sent via a PUT request to the `applications/<appname>/deployment` path, as shown below.
