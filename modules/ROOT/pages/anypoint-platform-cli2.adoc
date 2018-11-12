@@ -1617,7 +1617,10 @@ The options this command can take are:
 [%header,cols="30a,70a"]
 |===
 |Option |Description
-|--runtime                                   | Name of the runtime environment
+|--runtime                                   | Name and version of the runtime environment. +
+Use this option to specify the name and version of the runtime you want to deploy. +
+Some examples of this value are `2.1.1-API-Gateway`, `3.9.1-visualizer` or   `4.1.1`. +
+Tap your `tab` key after this option for the CLI to show you all your available options.
 |--workers                                      | Number of workers. (This value is '1' by default)
 |--workerSize                               | Size of the workers in vCores. (This value is '1' by default)
 |--region                                        | Name of the region to deploy to. +
