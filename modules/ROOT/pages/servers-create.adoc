@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to use the `amc_setup` script to create a server by configuring the Runtime Manager Agent to communicate with Runtime Manager. The server communicates with Runtime Manager using the Runtime Manager Agent. To make a server visible in the Runtime Manager console and be able to manage it, you must first register it with the Runtime Manager Agent.
+You can use the `amc_setup` script to create a server by configuring the Runtime Manager Agent to communicate with Runtime Manager. The server communicates with Runtime Manager using the Runtime Manager Agent. To make a server visible in the Runtime Manager console so you can manage it, you must first register it with the Runtime Manager Agent.
 
 == Prerequisites
 
@@ -11,11 +11,14 @@ To manage servers in a customer-hosted environment, you must perform the followi
 
 * Install Mule runtime, version 3.6 or later or API Gateway runtime, version 2.0 or later.
 * Install Runtime Manager Agent, version 1.1.1 or later.
-* (Optional) Configure any whitelisted IPs or ports required to connect to the Anypoint Platform through a firewall.
+* (Optional) Configure any whitelisted IPs or ports required to connect to Anypoint Platform through a firewall.
 
-If the server you want to add is already registered with a different instance of Runtime Manager, you cannot add it until you remove if from the other instance. To do this, delete the server from the Server tab in Runtime Manager, then delete the 'mule-agent.yaml' configuration file found on your '{RUNTIME PARENT FOLDER}/conf' folder.
+If the server you want to add is already registered with a different instance of Runtime Manager, you cannot add it until you remove if from the other instance. To do this:
 
-If your environment requires all outbound calls to go through a proxy you will need to modify the proxy settings in the 'wrapper.conf' file in the '{RUNTIME PARENT FOLDER}/conf' directory.
+. In Runtime Manager, delete the server from the *Server* tab.
+. Delete the 'mule-agent.yaml' configuration file, which can be found in your '{RUNTIME PARENT FOLDER}/conf' folder.
+
+If your environment requires all outbound calls to go through a proxy you must modify the proxy settings in the 'wrapper.conf' file in the '{RUNTIME PARENT FOLDER}/conf' directory.
 
 If you have previously configured your runtime environment you must delete the server and its corresponding configuration file.
 . Delete the server from Runtime Manager.
@@ -24,10 +27,10 @@ If you have previously configured your runtime environment you must delete the s
 
 === The amc_setup Command
 
-The `amc_setup` command described in this topic is located in the `$MULE_HOME/bin` directory. If you do not run this command from this directory, you must do one of the following:
+The `amc_setup` command is located in the `$MULE_HOME/bin` directory. If you do not run the command from this directory, you must do one of the following:
 
 * Set the `MULE_HOME` environment variable before running the command
-* Use the `--mule-home` parameter as shwon in the following example:
+* Use the `--mule-home` parameter as shown in the following example:
 +
 ----
 /opt/mule-3.7.0/bin/amc_setup --mule-home /opt/mule-3.7.0 -H ...
@@ -37,17 +40,22 @@ The `amc_setup` script calls the Runtime Manager Agent installation script, whic
 
 === The Server Registration Token
 
-The registration token provided by Runtime Manager, included in the command with the `-H` parameter, is specific to a single environment. For example, if you register a server in a QA environment by clicking Add Server, Runtime Manager provides a token. However, if you try to register the server in your production environment,  Runtime Manager generates a different token. Tokens are specific to the environment where you register a server. You can only use a token to register multiple Mules if all servers to be in the same environment.
+The registration token provided by Runtime Manager, which is included in the command with the `-H` parameter, is specific to a single environment. For example, if you register a server in a QA environment by clicking *Add Server*, Runtime Manager provides a token. However, if you try to register the server in your production environment, Runtime Manager generates a different token. Tokens are specific to the environment where you register a server. You can only use a token to register multiple Mules if all servers are in the same environment.
 
 === The IBM JVM
 
-When creating a server using IBM's Java Virtual Machine (JVM) you must use a different truststore than the default truststore installed by the Runtime Manager Agent. Download the custom truststore from the customer support portal, then install it in the `conf` folder of the Runtime Manager Agent.
+When creating a server using IBM's Java Virtual Machine (JVM) you must use a different truststore than the default truststore installed by the Runtime Manager Agent.
+
+. Download the custom truststore from the customer support portal.
+. Rename the file to `truststore.jks`.
+. Copy the custom truststore into the Runtime Manager Agent `<MULE_HOME>/conf` folder.
+. Restart the Mule runtime.
 
 == Creating a Server
 
-. From Anypoint Platform, select Runtime Manager.
-. Click the Servers tab.
-. If you have previously created a server in this environment, click Create Server.
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. If you have previously created a server in this environment, click *Create Server*.
 . Copy the full `amc_setup` script, including your unique token for your Runtime Manager environment.
 +
 image::empty-servers-add-server-1st-srv-corr-comm-real-2.png[empty_servers-add_server_1st_srv-CORR.COMM-REAL-2]
