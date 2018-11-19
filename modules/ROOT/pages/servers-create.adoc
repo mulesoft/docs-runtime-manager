@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can use the `amc_setup` script to create a server by configuring the Runtime Manager Agent to communicate with Runtime Manager. The server communicates with Runtime Manager using the Runtime Manager Agent. To make a server visible in the Runtime Manager console so you can manage it, you must first register it with the Runtime Manager Agent.
+Use the `amc_setup` script to create a server by configuring the Runtime Manager Agent to communicate with Runtime Manager. To make a server visible in the Runtime Manager console so you can manage it, you must first register it with the Runtime Manager Agent.
 
 == Prerequisites
 
@@ -16,7 +16,7 @@ To manage servers in a customer-hosted environment, you must perform the followi
 If the server you want to add is already registered with a different instance of Runtime Manager, you cannot add it until you remove if from the other instance. To do this:
 
 . In Runtime Manager, delete the server from the *Server* tab.
-. Delete the 'mule-agent.yaml' configuration file, which can be found in your '{RUNTIME PARENT FOLDER}/conf' folder.
+. Delete the `mule-agent.yaml` configuration file, which can be found in your '{RUNTIME PARENT FOLDER}/conf' folder.
 
 If your environment requires all outbound calls to go through a proxy you must modify the proxy settings in the 'wrapper.conf' file in the '{RUNTIME PARENT FOLDER}/conf' directory.
 
