@@ -1,14 +1,14 @@
-= Debugging The Runtime Manager Agent
+= Troubleshooting the Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, servers, monitor, notifications, external systems, third party, get status, metrics
 
-In order to troubleshoot and provide better insights upon a malfunction of the Runtime Manager Agent installation, a new `$MULE_HOME/bin/amc_debug` script is available.
+A `$MULE_HOME/bin/amc_debug` script is available to help you troubleshoot Runtime Manager Agent installation issues.
 
-If you experience any issue with the Runtime Manager Agent Plugin and/or with managing applications on the Anypoint platform, it's highly recommended to obtain the output of this script before filling any support tickets.
+If you experience issues with the Runtime Manager Agent Plugin or with managing applications on Anypoint Platform, run this script and save the output before filing a support ticket.
 
-When you execute this script it will collect the following information that will help troubleshoot your issue:
+When you run this script it collects the following information to help troubleshoot your issue:
 
 . Discover Mule/agent JVM process
 . Extract Thread dump (not forced if possible)
@@ -24,7 +24,13 @@ This step can cause delays in running applications.
 . Copy Runtime Manager Agent Configuration files
 . ZIP all the information
 
-After the script is executed, you can find a .zip file in the folder `$MULE_HOME/bin` (with a name similar to `snapshot_201701021410.zip`) that you can send to MuleSoft's support engineers to help troubleshoot your issues.
+After the script completes, you can find a .zip file in the folder `$MULE_HOME/bin` (with a name similar to `snapshot_201701021410.zip`) that you can send to MuleSoft's support engineers to help troubleshoot your issues.
+
+== Connectivity Problems
+
+If you have connectivity issues, check the JVM you are using. If you are using the IBM JVM, you must install the truststore manually since this truststore requires special parameters that are different from the Oracle JVM or OpenJDK.
+
+For instructions, see xref:servers-create#the-ibm-jvm[The IBM JVM].
 
 == Runtime Manager Agent Documentation Pages
 
