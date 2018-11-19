@@ -1444,6 +1444,7 @@ Character `:` is not supported for the property's name.
 |--persistentQueues                   | Enable or disable persistent queues. Can take 'true' or 'false' values. (This value is 'false' by default)
 |--persistentQueuesEncrypted  | Enable or disable persistent queue encryption. Can take 'true' or 'false' values. (This value is 'false' by default)
 |--staticIPsEnabled                                      | Enable or disable static IPs. Can take 'Enable' or 'Disabled' values. (This value is 'Disabled' by default)
+|--objectStoreV1                   | Enable or disable Object Store V1. Can take 'true' or 'false' values
 |--autoRestart                            | Automatically restart app when not responding. Can take 'true' or 'false' values. (This value is 'false' by default)
 |--help                                                  | output usage information
 |===
@@ -2200,7 +2201,6 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 [%header,cols="15a,85a"]
 |===
 |Value |Description
-|http | Specifies the Load balancer HTTP behavior. It can be set to `on` (accepts http requests and forwards it to your configured default _sslendpoint_) `off` (refuses all http requests) or `redirect` (redirects to https).
 |clientCertificate | Client certificate file
 |verificationMode  | Specifies the client verification mode. It can be set to `on` (verify always) `off` (don't verify) or `optional` (Verification optional).
 |crl | Certificate Revocation List file
