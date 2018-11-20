@@ -354,33 +354,49 @@ public class ReverseInternalHandler extends BufferedHandler<String>
     }
 
     @Override
-    protected boolean flush(Collection<String> ts)
+protected boolean flush(Collection<String> ts)
     {
         String tempDir = System.getProperty("java.io.tmpdir");
         File revertedStringFile = new File(tempDir, "revertedString.txt");
 
+        FileOutputStream fos = null;
+
+        BufferedWriter bw = null;
+
         try
         {
-            FileOutputStream fos = new FileOutputStream(revertedStringFile);
+            fos = new FileOutputStream(revertedStringFile);
 
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            bw = new BufferedWriter(new OutputStreamWriter(fos));
 
             for (String string : ts)
             {
                 bw.write(string);
                 bw.newLine();
             }
-
-            bw.close();
         }
         catch (IOException e)
         {
             System.out.println("Error writing reversed string");
             return false;
+        } finally {
+          if (bw != null){
+            try {
+                bw.close();
+            } catch(IOException x) {
+                
+            }
+          }
+          if (fos != null){
+            try{
+                fos.close();
+            } catch(IOException x) {
+                
+            }
+          }
         }
         return true;
     }
-
     @PostConfigure
     public void postConfigure()
     {
