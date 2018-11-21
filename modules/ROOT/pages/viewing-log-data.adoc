@@ -19,11 +19,6 @@ Logs and diagnostics are currently available only for applications deployed to C
 Applications deployed to Pivotal Cloud Foundry (PCF) don't expose any log data through Runtime Manager, but you can see event logs on Pivotal's UI.
 ====
 
-[IMPORTANT]
-====
-After you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before it is purged. This allows you to recover the data if needed. Open a support case at: https://support.mulesoft.com[https://support.mulesoft.com] for more information.
-====
-
 
 == View Logs
 
@@ -51,6 +46,9 @@ In the *Deployment* filters section on the right, find the date and worker you w
 image::downloadlogs.png[DownloadLogs]
 
 The log file is a text file with `.log` file extension and named in the format of `<deployment-ID>-<instance-ID>.log`. You can view this file with a text editor.
+
+[NOTE]
+If Cloudhub Application Logs need to be archived or downloaded for audit, analytics or similar purpose on regular intervals, please use xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
 
 
 == Download Diagnostics
