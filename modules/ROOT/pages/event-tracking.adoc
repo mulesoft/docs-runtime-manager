@@ -110,8 +110,8 @@ In `mule-agent.yml`:
 [source,yaml,linenums]
 ----
 services:
-  mule.agent.tracking.service:
-  globalTrackingLevel: TRACKING
+ mule.agent.tracking.service:
+ globalTrackingLevel: TRACKING
 ----
 
 [NOTE]
@@ -142,9 +142,10 @@ The `globalTrackingLevel` is also set to override the default value `NONE`, so o
 In `mule-agent.yml`:
 [source,yaml,linenums]
 ----
-mule.agent.tracking.service:
-  globalTrackingLevel: BE
-  trackedApplications:
+services:
+ mule.agent.tracking.service:
+ globalTrackingLevel: BE
+ trackedApplications:
     - appName: mule-flights
       trackingLevel: TRACKING
       replayLevel: NONE
@@ -154,6 +155,7 @@ In addition to changing the `trackingLevel` and `replayLevel` for a particular M
 The `trackedFlows` element contains additional elements to specify granular tuning of what should be tracked for a particular flow, and how any message replay should behave. When a flow is configured, these settings override the settings inherited by the global and Mule application level settings.
 
 ==== Configuring Tracking per Flow of a Mule Application
+
 In addition to the Mule application level trackingLevel and replayLevel settings, you can also list one or more flows and override/customize the global and application level settings for each flow.
 
 The tracked flows options are described in this table:
@@ -164,7 +166,7 @@ The tracked flows options are described in this table:
 |flow name |  The name of the flow, as it is coded in the Mule application's XML configuration file.
 |tracking level |  One of the values NONE, BE, TRACKING, or DEBUG, as described in the previous table.
 |replayLevel |  One of the values NONE, SOURCED (only store messages if the flow begins with a message source), ALL
-|payloadExcluded |  If replayLevel is SOURCED or ALL, this determines whether to also store the message payload for later replay, or to just store the message metadata.
+|payloadExcluded |  If `replayLevel` is SOURCED or ALL, this determines whether to also store the message payload for later replay, or to just store the message metadata.
 |===
 
 Here is an example that adds some flow level tracking configuration to the previous `mule-flights` Mule application configuration. The global and Mule application level tracking is using the default values (NONE).
@@ -194,13 +196,13 @@ The `globalTrackingLevel` is set to `OFF`, which is the default. You could remov
 
 * Application `mule-flights`:
 ** trackingLevel: `TRACKING` level for the applications.
-** replayLevel: `OFF` for the application - do not store any messages and disable replay.
+** replayLevel: `OFF` for the application--messages are not stored and replay is disabled.
 *** Flow `purchaseFlight`:
 **** trackingLevel: `DEBUG` level for this one flow (overrides the `TRACKING` level).
-**** replayLevel: `ALL` for this one flow - save every message for replay, even if the flow does not have a message source.
+**** replayLevel: `ALL` for this one flow--save every message for replay, even if the flow does not have a message source.
 * Application `mule-ticketing`:
 ** trackingLevel: `BE `for the application
-** replayLevel: `SOURCE` for the application- do not store any messages and disable replay.
+** replayLevel: `SOURCE` for the application--messages are not stored and replay is disabled.
 *** Flow `confirmReservation`:
 **** trackingLevel: `DEBUG` level for this one flow (overrides the `TRACKING` level).
 **** replayLevel: `ALL` for this one flow - save every message for replay, even if the flow does not have a message source.
@@ -221,10 +223,10 @@ services:
           - flowName: purchaseFlight
             trackingLevel: DEBUG
             replayLevel: ALL
-      - flowName: help
+          - flowName: help
             trackingLevel: OFF
             replayLevel: NONE
-     - appName: mule-ticketing
+      - appName: mule-ticketing
         trackingLevel: BE
         replayLevel: SOURCE
         trackedFlows:
@@ -239,7 +241,7 @@ The agent API allows you to change the agent tracking configuration during runti
 
 ==== Retrieving the Current Configuration
 
-The following example retrieves the information about the tracking service. The retrieved information includes the configurable fields with their current values.
+The following example retrieves information about the tracking service. The retrieved information includes the configurable fields with their current values.
 
 *Request:*
 ----
@@ -280,7 +282,7 @@ GET <Runtime Manager Agent URL>/mule/agent/mule.agent.tracking.service
 
 ==== Modifying the Current Configuration
 
-To modify the current configuration during runtime, send a request with the JSON representation of the desired configuration. This representation will override the current configuration. Any fields not included in the JSON representation will retain their current values.
+To modify the current configuration during runtime, send a request with the JSON representation of the modified configuration. This representation will override the current configuration. Any fields not included in the JSON representation will retain their current values.
 
 The following example request overrides the `globalTrackingLevel` and `trackedApplications` fields. All other fields are left unchanged.
 
