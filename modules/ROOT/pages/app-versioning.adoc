@@ -40,7 +40,8 @@ At the top of the Settings page, a status bar appears.
 +
 image:app-versioning-applying-config.png[]
 . Click *View Status* to view the status for each replica in the deployment. +
-The last successfully deployed configuration is retained until the new (desired) configuration is successfully deployed. New configurations are applied as "rolling updates." For example, a replica is created with the desired configuration, and once that configuration is successfully applied, the replica with the old configuration is deleted, and this process is repeated with each replica in the deployment.  
+The last successfully deployed configuration is retained until the new (desired) configuration is successfully deployed. +
+New configurations are applied as "rolling updates." For example, a replica is created with the desired configuration, and once that configuration is successfully applied, the replica with the old configuration is deleted, and this process is repeated with each replica in the deployment. This model means there is zero downtime while updates are applied to the application. 
 +
 image::app-versioning-replica-status.png[]
 +
