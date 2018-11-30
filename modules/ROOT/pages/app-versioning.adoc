@@ -1,15 +1,19 @@
-= Application Versioning
+= Application Deployment Versioning
 
-Applications deployed to Runtime Fabric have a versioning feature for the application's configuration. Versioning enables you to:
+Applications and their configurations deployed to Runtime Fabric are automatically versioned by ARM. This versioning feature enables you to:
 
 * View the configuration change history of the application.
 * Roll back configurations to an earlier version in case the currently applied configuration has issues or is unstable.
+* View the application status:
+** Running: At least one replica is receiving traffic (Started state).
+** Not running: None of the replicas are receiving traffic.
+** Unknown: The target is disconnected.
 * Make updates to a deployed application's configuration, including:
-** The application ZIP file
-** Application version
-** Deployment target settings, such as runtime version, number of replicas, and whether the application is running in cluster mode
-** Resource allocations such as number of cores and memory allocation
-** Ingress and property values
+** The application package.
+** Application deployment package version.
+** Deployment target settings, such as runtime version, number of replicas, and whether the application is running in cluster mode.
+** Resource allocations such as number of cores and memory allocation.
+** Ingress and property values.
 
 
 == Access the Application's Settings Page
@@ -32,7 +36,7 @@ The *All changes* tab displays a history of versions created from the configurat
 == Apply Configuration Changes
 
 . On the Settings page for the application, you can make the following changes to a deployed configuration: +
-* Upload a new ZIP file.
+* Upload a new application package.
 * Make changes to the deployment target and resource allocation.
 * Modify values for *Ingress* and *Properties*.
 . Once your changes are made, click *Apply Changes*. +
@@ -49,7 +53,9 @@ Replica statuses include:
 * Stopped: The replica has stopped (is not receiving traffic).
 * Failed (red): The desired configuration failed to deploy. +
 The last successfully deployed configuration is retained until the new (desired) configuration is successfully deployed. +
-New configurations are applied as "rolling updates." For example, a replica is created with the desired configuration, and once that configuration is successfully applied, the replica with the old configuration is deleted, and this process is repeated with each replica in the deployment. This model means there is zero downtime while updates are applied to the application.
+New configurations are applied as "rolling updates." For example, a replica is created with the desired configuration, and once that configuration is successfully applied, the replica with the old configuration is deleted, and this process is repeated with each replica in the deployment. This model means there is zero downtime while updates are applied to the application. +
+[NOTE]
+Applications can't run multiple versions in parallel.
 +
 image::app-versioning-replica-status.png[]
 +
@@ -63,7 +69,7 @@ If the updates to the configuration fail to deploy, you get an "Desired configur
 +
 image::app-versioning-update-failed.png[]
 +
-In cases of failure, the deployment is rolled back to the last successful version of the configuration, but the status of the configuration still displays "Updated failed."
+In cases of failure, the deployment attempts to roll back to the last successful version of the configuration, but in certain situations, the rollback may not be successful. The status of the configuration displays "Update failed."
 
 If it’s the first deployment of the application the rollback version won’t be defined and in case of a failed deployment, it remains in the failed status.
 
