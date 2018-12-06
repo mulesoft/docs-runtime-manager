@@ -10,53 +10,54 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 [NOTE]
-To use the autoscaling feature, you must have the correct product license. Contact your account representative to obtain the required license.
+To use the autoscaling feature, your organization must have an Enterprise License Agreement (ELA). Entitlement is approved based on qualified use cases. If you are interested in this feature, contact your account representative.
 
-CloudHub allows you to make the processing power behind your applications responsive to changes in their usage. You can define policies that respond to CPU or Memory usage thresholds by either scaling up or scaling down the processing resources used by an application.
+CloudHub allows you to make the processing power behind your applications responsive to changes in their usage. You can define policies that respond to CPU or memory usage thresholds by scaling up or scaling down the processing resources used by an application.
 
 == Configuring Autoscaling
 
-. Enter the *Applications* tab of the Runtime Manager.
-. Select an application deployed to CloudHub to open open its panel
-. In the panel click *Manage Application*.
-. In the *Settings* section, select the *Autoscaling* tab. From here you can see all existing autoscaling policies, activate or deactivate them, create or delete them, and create associated xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager].
+. Click the *Applications* tab of Runtime Manager.
+. Select an application deployed to CloudHub to open its panel.
+. In the panel, click *Manage Application*.
+. In the *Settings* section, select the *Autoscaling* tab. +
+You can see all existing autoscaling policies, activate or deactivate them, create or delete them, and create associated xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager].
 
 == Creating a Policy
 
-To create a policy, click the *Create Policy* button, then configure a few fields to set your policy up.
+To create a policy, click the *Create Policy* button, then configure the fields to set your policy up.
 
 image::autoscale-create-policy.png[policy]
 
-Changes in worker size or number are triggered when a policy meets its requirements. Policies can either be based upon CPU or Memory usage, and they can either modify worker numbers or worker size. All policies include a scale up and a scale down condition.
+Changes in worker size or number are triggered when a policy meets its requirements. Policies can be based either upon CPU or Memory usage, and they can either modify worker numbers or worker size. All policies include a scale up and a scale down condition.
 
 image::policy-form.png[form]
 
-. Provide a *Name* for your policy
+. Provide a *Name* for your policy.
 . Determine if the scaling will be based on *Memory or CPU usage*.
 +
 [NOTE]
-The percentage shown is the percentage of total memory or CPU allocated for the JVM that's being used (includes the memory being consumed by jvm itself)
+The percentage shown is the percentage of total memory or CPU allocated for the JVM that's being used. This includes the memory being consumed by the JVM itself.
 
-. Determine the *Rules* for your scaling. You must provide the following values both for the upscale and the downscale conditions:
+. Determine the *Rules* for your scaling. You must provide the following values for both the upscale and the downscale conditions:
 .. A usage *percentage*
 .. A period of *time* throughout which this level must be sustained before the policy is applied
 .. A *cool-down period* that blocks this and other policies from affecting scaling from being applied
 
-. Define what *action* will be performed when the policy is applied
+. Define what *action* will be performed when the policy is applied:
 .. If it will affect the *number* of workers or the *size* of them
 .. Set a *maximum* and *minimum* value to fluctuate in between
 
 == Scaling Considerations
 
-All policies scale your application one step at a time. To scale up to meet a very pronounced spike that requires scaling various steps, each step will take CloudHub the sum of the policy evaluation time plus the cool-down period.
+All policies scale your application one step at a time. To scale up to meet a pronounced spike that requires scaling numerous steps, each step takes CloudHub the sum of the policy evaluation time plus the cool-down period.
 
-You can only apply one autoscaling policy per application.
+You can apply only one autoscaling policy per application.
 
 The maximum amount and size of workers that you have available is limited by the characteristics of your account. If multiple applications running in your account compete for limited resources, they are allocated in a first-come, first-serve manner.
 
 == Editing an Existing Policy
 
-To edit an existing policy, open the policies tab. Click the policy name and you will access the same menu that is used to create a new policy.
+To edit an existing policy, open the *Policies* tab. Click the policy name and you will access the same menu that is used to create a new policy.
 
 == Deactivating a Policy
 
