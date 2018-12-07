@@ -9,7 +9,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The Runtime Manager Agent provides a simple way of implementing Internal handlers with buffering support. This documents shows how to implement and configure buffers for Runtime Manager Agent internal handlers.
+The Runtime Manager Agent provides a simple way of implementing internal handlers with buffering support. This document explains how to implement and configure buffers for Runtime Manager Agent internal handlers.
 
 == Implementing a Buffered Internal Handler
 
@@ -19,11 +19,11 @@ To implement a buffered internal handler, you need to extend the `BufferedHandle
 
 * `boolean canHandle(T message)`
 
-   Returns true if the message can be handled by the internal handler
+   Returns true if the message can be handled by the internal handler.
 
 * `boolean flush(Collection<T> collectionOfMessages)`
 
-   Provides the implementation to send the messages stored in the buffer to the external service
+   Provides the implementation to send the messages stored in the buffer to the external service.
 
 === Example
 
@@ -66,14 +66,14 @@ public class MyPublisher extends BufferedHandler<List<Metric>>
 
 === Buffering Configuration Object
 
-If the internal handler includes buffering support, you can can configure the buffer in the `mule-agent.yml` file. The following table lists the available configuration parameters.
+If the internal handler includes buffering support, you can configure the buffer in the `mule-agent.yml` file. The following table lists the available configuration parameters.
 
 [%header,cols="34,33,33"]
 |===
 |Field |Description |Default value
 |`type` |Buffer type. Valid values are `MEMORY` or `DISK`. |
 |`retryCount` |Number of retries after an exception was thrown in the flush method. |
-|`maximumCapacity` |Maximum amount of events to keep in buffer. |
+|`maximumCapacity` |Maximum number of events to keep in buffer. |
 |`flushFrequency` |Frequency at which the flush method will run, in milliseconds. |
 |`filePath` |Path to the buffer file. Only valid for buffers of type `DISK`. |`PATH/bufferFile`
 |`whenExhausted` |Strategy to follow when the buffer is exhausted. If not specified, the buffer will grow automatically. Valid values are `FAIL` and `FLUSH.` |N/A
@@ -83,10 +83,13 @@ If the internal handler includes buffering support, you can can configure the bu
 
 [IMPORTANT]
 ====
-The maximum size capacity for the buffer is configured based on an amount of events and not in bytes. Keep in mind that if the events are of a considerable size and you don't set `maximumCapacity` to a low value, the heap might suffer stress and this might impact the application's performance.
+The maximum size capacity for the buffer is configured based on a number of events and not in bytes. Keep in mind that if the events are of a considerable size and you don't set `maximumCapacity` to a low value, the heap might suffer stress and this might impact the application's performance.
 ====
 
-If you configures a `DISK` buffer, the agent will also instantiate an in-memory buffer in order to improve the performance of the I/O operations. This memory buffer has a default value of 10000 events and is flushed to disk every 500ms, and in batches of 10000 events each. These values are configurable through the system properties `agent.disk.buffering.cache.size`, `agent.disk.buffering.cache.flush.frequency` and `agent.disk.buffering.max.flushing.size`, respectively. 
+If you configure a `DISK` buffer, the agent will also instantiate an in-memory buffer in order to improve the performance of the I/O operations. This memory buffer has a default value of 10000 events and is flushed to disk every 500ms, and in batches of 10000 events each. These values are configurable through the system properties `agent.disk.buffering.cache.size`, `agent.disk.buffering.cache.flush.frequency` and `agent.disk.buffering.max.flushing.size`, respectively.
+
+[NOTE]
+Flushing from disk to the external system in batches of 10000 events each and the `agent.disk.buffering.max.flushing.size` property are supported for Mule Agent Plugin versions 2.1.9 and 1.11.3 and later.
 
 === Sample `mule-agent.yml` Files
 
