@@ -86,7 +86,7 @@ If the internal handler includes buffering support, you can can configure the bu
 The maximum size capacity for the buffer is configured based on an amount of events and not in bytes. Keep in mind that if the events are of a considerable size and you don't set `maximumCapacity` to a low value, the heap might suffer stress and this might impact the application's performance.
 ====
 
-If you configures a `DISK` buffer, the agent will also instantiate an in-memory buffer in order to improve the performance of the I/O operations. This memory buffer has a default value of 10000 events and is flushed to disk every 500ms. These values are configurable through the system properties `agent.disk.buffering.cache.size` and `agent.disk.buffering.cache.flush.frequency`, respectively.
+If you configures a `DISK` buffer, the agent will also instantiate an in-memory buffer in order to improve the performance of the I/O operations. This memory buffer has a default value of 10000 events and is flushed to disk every 500ms, and in batches of 10000 events each. These values are configurable through the system properties `agent.disk.buffering.cache.size`, `agent.disk.buffering.cache.flush.frequency` and `agent.disk.buffering.max.flushing.size`, respectively. 
 
 === Sample `mule-agent.yml` Files
 
