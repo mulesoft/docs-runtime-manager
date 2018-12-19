@@ -16,7 +16,7 @@ CloudHub supports *safely hidden application properties*, where the name of a pr
 Internally, safely hidden application properties are encrypted and stored in a MuleSoft managed CloudHub properties database, which is encrypted per user organization.
 ====
 
-For applications deployed to CloudHub workers, you must use the Runtime Manager UI to set hidden application. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application ZIP file.
+For applications deployed to CloudHub workers, you must use the Runtime Manager UI to set hidden application. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application's ZIP file.
 
 Safely hidden application properties are a separate feature and concept from encrypted Mule application properties that are stored in xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
 
@@ -85,6 +85,7 @@ The `securePproperties` entry affects all properties no matter where (or if) the
 
 To create safely hidden application properties for Mule 3, you must place the properties in the `mule-app.properties` file, for example:
 
+[source,code,lineums]
 ----
 db.user=john
 db.password=mypassword
