@@ -16,13 +16,13 @@ CloudHub supports *safely hidden application properties*, where the name of a pr
 Internally, safely hidden application properties are encrypted and stored in a MuleSoft managed CloudHub properties database, which is encrypted per user organization.
 ====
 
-Safely hidden application properties are a feature that is currently only available for setting via the Runtime Manager UI for applications deployed to CloudHub workers. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application zip file.
+For applications deployed to CloudHub workers, you must use the Runtime Manager UI to set hidden application. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application ZIP file.
 
-Safely hidden application properties are a separate feature and concept from encryted Mule application properties that are stored in xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
+Safely hidden application properties are a separate feature and concept from encrypted Mule application properties that are stored in xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
 
 == Overview
 
-Application Properties are variables that act as placeholders in your Mule application, and which are set in your Mule runtime at runtime. The Mule runtime supplies the values for the property variables using information you configure in the Runtime Manager console's Properties tab, when you deploy an application or update an existing application in the Runtime Manager console.
+Application properties are variables that act as placeholders in your Mule application, and are set in your Mule runtime at runtime. When you deploy an application, or update an existing application in the Runtime Manager console, the Mule runtime engine supplies the values for the property variables using information you configure in the Runtime Manager console's *Properties* tab.
 
 
 
@@ -35,9 +35,9 @@ image::dbproperties.png[]
 
 For sensitive information, you may wish to flag these properties as hidden so that, after they are entered and saved in the Runtime Manager console, their values are neither visible in the console nor passed between the console and the CloudHub server.
 
-== Creating Safely Hidden Application Properties
+== Create Safely Hidden Application Properties
 
-To create safely hidden application properties:
+To create safely hidden application properties for Mule 4.0 and later:
 
 . Inside the Mule application's `mule-artifact.json` file, list the property names you wish to safely hide under the `secureProperties` key as a comma separated array. Line 5 of the example flags two properties as secure.
 (optional) `config.yaml` defines four properties with values for local testing.
@@ -82,6 +82,16 @@ birthdate: "01/01/2015"
 ====
 The `securePproperties` entry affects all properties no matter where (or if) they are defined.
 ====
+
+To create safely hidden application properties for Mule 3, you must place the properties in the `mule-app.properties` file, for example:
+
+----
+db.user=john
+db.password=mypassword
+salesforce.user=john1
+salesforce.password=mysfpassword
+secure.properties=db.password,salesforce.password
+----
 
 [start=2]
 . Deploy the Mule application to CloudHub.
