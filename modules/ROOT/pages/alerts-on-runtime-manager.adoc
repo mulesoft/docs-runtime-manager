@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, management, analytics, runtime manager, arm
 
-You can set up alerts that send an email notification when certain events occur. These can be events for an application or server. Runtime Manager includes several out-of-the-box *standard alert* types, for example:
+You can set up alerts that send an email notification when certain events occur. These can be events for an application or server. Runtime Manager includes several *standard alert* types that trigger notifications for common events, for example when:
 
 * An application exceeds a certain number of events processed within a certain time period.
 * A deployment completes with success or failure.
@@ -23,10 +23,11 @@ You can view alerts in Runtime Manager in a few ways.
 
 == Rate Limits on Alerts
 
-Anypoint Platform enforces rate limits that determine how often an alert is triggered. These limits prevent excessive emails from being sent. The rate limit depends on the following:
+Anypoint Platform enforces rate limits that determine how often an alert is triggered. These limits prevent excessive emails from being sent. The rate limit is determined by several factors, including:
 
-* CloudHub: When using CloudHub-Connector to trigger notifications and alerts, there is a limit of five custom application alerts per IP address, per second. If an application uses multiple workers, this limit is multiplied by the number of workers assigned to the application, since the limitation is enforced per IP. The custom notifications that trigger emails are also subject to the rate limit on email notifications described below.
-* Alert emails: Both out-of-the-box and custom alerts have a rate limit where only one alert notification email is sent every 2.5 seconds. This limit is enforced by a combination of organization, environment, alert (name/ID), and resource (application, server, server group, or cluster).
+* CloudHub: When using CloudHub-Connector to trigger notifications and alerts, there is a limit of five custom application alerts per IP address, per second. If an application uses multiple workers, this limit is multiplied by the number of workers assigned to the application, since the limitation is enforced per IP. +
+Custom notifications that trigger emails are also subject to the rate limit on email notifications described below.
+* Alert emails: Both standard and custom alerts have a rate limit where only one alert notification email is sent every 2.5 seconds. This limit is enforced by a combination of organization, environment, alert (name/ID), and resource (application, server, server group, or cluster).
 
 
 == Create an Alert
@@ -54,8 +55,8 @@ Different severity levels currently have no effect on alerts, but will in the fu
 You can't create a single alert that spans applications deployed to both CloudHub and local servers. You must create two separate alerts to reach both types.
 +
 * *Server Type* - For servers, determine if you're managing a single server, a server group, or a cluster. If your servers aren't available on your menu, see xref:managing-servers.adoc[Managing Servers].
-* *Application(s)/server(s)* - select the application or server to apply the alert.
-* *Condition* - Condition that triggers the alert. The options depend on whether your alert is linked to a server, an application running on CloudHub, or an application running locally. Certain conditions require additional data, which is explained in a <<Alert Conditions, section below>>.
+* *Application(s)/server(s)* - Select the application or server to which to apply the alert.
+* *Condition* - The condition that triggers the alert. The options depend on whether your alert is linked to a server, an application running on CloudHub, or an application running locally. Certain conditions require additional data, which is explained in a <<Alert Conditions, section below>>.
 * *Subject* - Subject of the email that will be sent. Your subject may include variable <<Alert Properties>>.
 * *Message* - Enter the body text for the email. Your message may include variable <<Alert Properties>>.
 * *Recipients* - List the recipients of this email. You can select users of the platform, or enter email addresses of people who aren't in the organization.
@@ -70,7 +71,7 @@ See below for more information on the alert conditions available for each alert 
 
 == Alert Conditions
 
-Depending on what your alert's source is, different event types exist. Some of these are self explaining notifications for different events such as 'Application Deployment Success'; others require that you complete additional parameters that appear as new fields in the form.
+Depending on what your alert's source is, you can select different event types. Some event types are simple success or failure notifications such as 'Application Deployment Success' and more complex notifications which require you to define parameters that appear as new fields in the form.
 
 === Conditions on CloudHub Deployed Applications
 
@@ -94,7 +95,7 @@ image::custom-alert.png[custom]
 +
 To enable this condition, you must specify the notifications that are the output of a CloudHub connector. This connector must exist in your Mule application. An alert is raised when the text in one of the notifications matches or contains the string that you provide in the *Contains* field. See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
 +
-On *Custom Notification Alerts*, you can access a set of alert properties that you can compile into the notification message to provide a better context.
+On *Custom Notification Alerts*, you can access a set of alert properties that you can compile into the notification message to provide more context.
 
 
 * *Exceeds event traffic threshold*
@@ -161,17 +162,14 @@ This alert is currently not available on the xref:deployment-strategies.adoc#dep
 === Conditions on Mule Servers
 
 
-The available alert events vary depending on the *Server Type* field, where you selected between server, server group, or cluster.
-
-The alerts detailed below are available on all target types (servers, server groups, and clusters):
-
+The available alert events vary depending on the *Server Type* field. The alerts detailed below are available on all target types (servers, server groups, and clusters):
 
 
 * *CPU Usage* - CPU usage of the servers.
 +
 image::cpu-usage.png[cpu]
 +
-You must set up a few parameters to enable this condition. The parameters specify a duration and capacity threshold that triggers the alert.
+To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert. 
 
 
 
@@ -179,7 +177,7 @@ You must set up a few parameters to enable this condition. The parameters specif
 +
 image::memory-usage.png[memo]
 +
-You must set up a few parameters to enable this condition. These parameters specify a duration and capacity threshold that triggers the alert.
+To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert. 
 
 * *Server Load Average* - Average processing for a given time period.
 
@@ -190,7 +188,7 @@ image::alerts-on-runtime-manager-load-average.png[]
 [NOTE]
 Windows environments don’t provide this information, so this metric isn't available on Windows environments.
 
-* *Server Thread Count* - Amount of threads on the JVM.
+* *Server Thread Count* - Number of threads on the JVM.
 
 +
 image::alerts-on-runtime-manager-thread-count.png[]
@@ -200,8 +198,7 @@ image::alerts-on-runtime-manager-thread-count.png[]
 [NOTE]
 None of the alerts listed above are currently available on the xref:deployment-strategies.adoc#deployment-scenarios[Anypoint Platform Private Cloud Edition].
 
-
-In addition to these common alerts, there are some additional alerts, which vary according to the target type. These are all self explanatory and require no additional parameters.
+The following alerts vary according to the target type (server, server groups, or clusters), and require no additional parameters.
 
 ==== Servers
 
@@ -259,27 +256,27 @@ The following properties are available and can be used in the alert Email to, Su
 
 == Editing Existing Alerts
 
-If you view the panel for an application or server, you see a *View Alerts* link, where you can see and manage the alerts that are sourced from it. You can also click the *Alerts* link in the left panel to view a list of all alerts.
+To see the alerts for an application or server, click the *View Alerts* link in the panel for that application or server. You can also click the *Alerts* link in the left panel to view a list of all alerts.
 
 image::view-alerts.png[alerts]
 
 
-From this menu you can filter the displayed alerts, click on an alert name to directly edit it, or click the icon next to one to open its panel to view its settings. From this panel you can click the *edit* icon next to the name to edit the same options you have when creating a new alert.
+From this menu you can filter the displayed alerts, click on an alert name to directly edit it, or click the icon next to one to open its panel and view its settings. From this panel you can click the *edit* icon next to the name to edit the same options you have when creating a new alert.
 
 image::edit-alert.png[edit]
 
 
 
-=== Switching an Alert Off
+=== Switching an Alert On or Off
 
-Select one or multiple alerts in the alert menu and click the switch to change its state form *on* to *off* or vice versa.
+To change an alert's state, select one or more alerts and click the switch to *on* or *off*.
 
 image::alert-on.png[on]
 
-All users of Anypoint Platform, even those without permissions to create alerts, can switch existing alerts into an active or inactive state. This determines what email alerts will reach their inbox.
+All users of Anypoint Platform, even those without permissions to create alerts, can control whether email alerts are sent by setting each alert to an *Active* or *Inactive* state.
 
 [NOTE]
-When an alert is disabled or enabled the change is reflected for all users.
+When an alert is disabled or enabled the change is applied for all users who receive email notifications for that alert.
 
 === Duplicating an Alert
 
