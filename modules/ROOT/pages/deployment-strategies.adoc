@@ -83,8 +83,19 @@ The hybrid scenario of hosting your apps on your own servers while managing them
 
 To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see xref:managing-servers.adoc#add-a-server[Add a Server]. You then have the flexibility to group servers into xref:managing-servers.adoc#create-a-server-group[Server Groups] or xref:managing-servers.adoc#create-a-cluster[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
 
-[TIP]
-See the sections below to find out what specific operating features apply to this modality and how to configure them.
+==== Security and Hybrid Deployment 
+
+By default, no application data flows to the cloud, only metadata pushed by the  Runtime Manager agent in each Mule runtime engine.
+The agent monitors and controls Mule, and publishes its own data to the control plane. 
+Outside the Runtime Manager, you can control Mule by calling Runtime Manager agent APIs from external systems, or have Mule publish its own data to external systems.
+
+If you wish, you can change the default behavior so that the agent pushes IDs, final average numbers, or any data you find useful for monitoring or keeping control of applications. 
+You can also xref:anypoint-security::tokenization-example.adoc[tokenize sensitive data].
+
+==== For More Information About Hybrid Deployment
+
+* See the sections below to find out which features are available in this type of hybrid deployment, and how to configure them.
+* For more information about Mule agents, see xref:runtime-manager-agent.adoc[The Runtime Manager Agent] and xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture].
 
 === On-Premises Console On-Premises Deployment image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
 
