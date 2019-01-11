@@ -6,7 +6,9 @@ endif::[]
 Provisioning a VPC for your organization consists of two major steps:
 
 . Create the VPC. +
-This is a self-service process. You can create a VPC using either the Runtime Manager UI, or the Anypoint Platform CLI.
+This is a self-service process. You can create a VPC using either the Runtime Manager UI, or the Anypoint Platform CLI. +
+[NOTE]
+The Anypoint Platform base subscription includes two VPC licenses, which entitles your Anypoint Platform organization to two VPCs. Once your VPC license limit is reached, the *Create VPC* option is disabled in the user interface.
 . Connect to your VPC. +
 This must be done by a MuleSoft representative.
 
@@ -27,6 +29,15 @@ To enable the VPC to host your workers, it must be bound to a business group and
 ** The CloudHub Region for your VPC.
 
 Read the following FAQs to understand how to plan a successful VPC setup.
+
+== FAQ: How to Calculate VPC and VPN Licensing Requirements
+
+To connect a CloudHub VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario. 
+
+The Anypoint Platform base subscription includes two VPC licenses, which entitles your Anypoint Platform organization to two VPCs. VPN licenses are bundled with the VPC license, so each VPC license also entitles the organisation to one VPN gateway with a connection to one public IP address in a remote location. Therefore, one VPC License = 1 VPC entitlement + 1 VPN entitlement.
+
+An additional VPC license is required for each remote location that needs to be accessible from the CloudHub VPC. 
+
 
 == FAQ: How to Size my VPC
 
