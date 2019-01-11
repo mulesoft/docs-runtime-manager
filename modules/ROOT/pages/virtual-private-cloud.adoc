@@ -19,9 +19,26 @@ Combining firewall rules and dedicated load balancers configurations, you can fi
 
 [[example_deployment_scenarios]]
 == Example VPC Deployment Scenarios
+When you are planning and configuring your your CloudHub VPCs, you should make sure you have enough licenses to meet your requirements. 
 
+=== 1:1 Relationship Deployment
 
-=== 1:1 Relationship
+In this scenario, you are using a 1:1 relationship, which means that each VPC can connect to a single public IP address at a remote location. 
+
+image::vpc-1-1-deployment.png[1:1 VPC Deployment]
+
+=== Connect a Single VPC to Two Remote Locations
+
+A strict 1:1 relationship between a VPC and remote location is not necessary. In this example, a single VPC is connected to public IP addresses at two remote locations. This means that you are using both of the VPC licenses that are included in the base VPC subscription for a single VPC, which leaves no licenses for connectivity to the second VPC. 
+
+image::vpc-one-to-two-remote-locations.png[One VPC Connecting to Two Remote Locations]
+
+=== Connect Two VPCs to Two Remote Locations
+
+If you implement a VPC deployment scenarious where both VPCs connect to two remote locations, four VPC licenses are required, even if you are using the same two public IP addresses. This is because each remote location that needs to be accessible from the Cloudhub VPC requires an additional VPC license.
+
+image::vpc-2-2-deployment.png[2:2 VPC Deployment]
+
 
 
 // _TODO: So On-prem + cloud ?
