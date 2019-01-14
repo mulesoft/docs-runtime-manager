@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Provisioning a VPC for your organization consists of two major steps:
+Provisioning an Anypoint VPC for your organization consists of two major steps:
 
 . Create the VPC. +
 This is a self-service process. You can create a VPC using either the Runtime Manager UI, or the Anypoint Platform CLI. +
@@ -32,14 +32,14 @@ Read the following FAQs to understand how to plan a successful VPC setup.
 
 == FAQ: How to Calculate VPC and VPN Licensing Requirements
 
-To connect a CloudHub VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario. 
+To connect an Anypoint VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario. 
 
 The Anypoint Platform base subscription includes two VPC licenses, which entitles your Anypoint Platform organization to two licensed VPCs. VPN licenses are bundled with the VPC license, so each VPC license also entitles the organization to one VPN gateway with a connection to one public IP address in a remote location. 
 
 [NOTE]
-VPN licenses do not need to have a one-to-one relationship with the VPC licenses. For example, you can have two VPCs with two VPNs in one of them and none in the other. 
+VPN licenses do not need to have a one-to-one relationship with the VPC licenses. For example, you can have one VPC with two VPNs and another VPC with no VPNs.  
 
-An additional VPC license is required for each remote location that needs to be accessible from the CloudHub VPC. 
+An additional Anypoint VPC license is required for each remote location that needs to be accessible from the Anypoint VPC. 
 
 
 == FAQ: How to Size my VPC
@@ -64,7 +64,7 @@ The safe rule of thumb for deciding the size of your VPC subnet is to calculate 
 == FAQ: Where To Place a VPC Inside my Organization
 
 As an organization administrator, you can create a VPC and share it with any business group within your main organization. +
-However, once the VPC is inherited by a business group, only the administrator of said business group can operate the VPC. For example, a CloudHub organization administrator or a business group owner can create or update an existing VPC (owned or inherited) to make it the default for either the region, the environment, or both. +
+However, once the VPC is inherited by a business group, only the administrator of said business group can operate the VPC. For example, an Anypoint organization administrator or a business group owner can create or update an existing VPC (owned or inherited) to make it the default for either the region, the environment, or both. +
 However, if such an association already exists, it's overwritten by the requested VPC.
 
 If no business group association is specified, or if your organization does not have any business groups, the VPC ownership remains associated with the main organization. The organization under which the VPC is created is the VPC owner and this organization's administrator is the only one who can share the VPC. +
@@ -77,7 +77,7 @@ It is recommended that you create your VPC in your master organization, and shar
 
 You can create your VPC inside any of the available CloudHub regions. +
 The recommended region to use might vary depending on how you connect to your VPC. If you are using a VPN tunnel, you might want to choose the CloudHub region closest to your data center. +
-However, if you are peering with your private AWS VPC, you need to create your CloudHub VPC in the same AWS region.
+However, if you are peering with your private AWS VPC, you need to create your Anypoint VPC in the same AWS region.
 
 == See Also
 

@@ -5,11 +5,11 @@ endif::[]
 
 The Virtual Private Cloud (VPC) offering allows you to create a virtual, private, and isolated network segment in the cloud to host your CloudHub workers.
 
-Connecting to your CloudHub VPC extends your corporate intranet and allows CloudHub workers to access resources behind your corporate firewall. You can connect on-premises data centers through a secured VPN tunnel, or a private AWS VPC through VPC peering, or by using AWS Direct Connect.
+Connecting to your Anypoint VPC extends your corporate intranet and allows CloudHub workers to access resources behind your corporate firewall. You can connect on-premises data centers through a secured VPN tunnel, or a private AWS VPC through VPC peering, or by using AWS Direct Connect.
 
-The base VPC subscription includes two VPCs and each VPC can be associated with multiple environments. This allows you, for example, to have one isolated network for your production environment, and another for your QA and staging. Your licensing requirements will depend on your specific deployment scenario. 
+The base VPC subscription includes two VPCs and each VPC can be associated with multiple environments. This allows you, for example, to have one isolated network for your production environment, and another for your QA and staging. Your licensing requirements depend on your specific deployment scenario. 
 
-CloudHub VPC supports different Amazon regions. During setup, you need to specify which Amazon region you want. You can even have multiple VPCs inside a single Amazon region, however this is not a standard setup and you need to specify this requirement when provisioning your VPC.
+Anypoint VPC supports different Amazon regions. During setup, you need to specify which Amazon region you want. You can even have multiple VPCs inside a single Amazon region, however this is not a standard setup and you need to specify this requirement when provisioning your VPC.
 
 image::virtual-private-cloud-78b5f.png[]
 
@@ -18,8 +18,8 @@ Additionally, you can configure one or more dedicated load balancers to validate
 Combining firewall rules and dedicated load balancers configurations, you can fine tune how external services reach your applications.
 
 [[example_deployment_scenarios]]
-== Example VPC Deployment Scenarios
-When you are planning and configuring your CloudHub VPCs, you should make sure you have enough licenses to meet your requirements. 
+== Example Anypoint VPC Deployment Scenarios
+When you are planning and configuring your Anypoint VPCs, you should make sure you have enough licenses to meet your requirements. 
 
 === 1:1 Relationship Deployment
 
@@ -27,15 +27,15 @@ In this scenario, you are using a 1:1 relationship, which means that each VPC ca
 
 image::vpc-1-1-deployment.png[1:1 VPC Deployment]
 
-=== Connect a Single VPC to Two Remote Locations
+=== Connect a Single Anypoint VPC to Two Remote Locations
 
 A strict 1:1 relationship between a VPC and remote location is not necessary. In this example, a single VPC is connected to public IP addresses at two remote locations. This means that you are using both of the VPC licenses that are included in the base VPC subscription for a single VPC, which leaves no licenses for connectivity to the second VPC. 
 
 image::vpc-one-to-two-remote-locations.png[One VPC Connecting to Two Remote Locations]
 
-=== Connect Two VPCs to Two Remote Locations Each
+=== Connect Two Anypoint VPCs to Two Remote Locations Each
 
-If you implement a VPC deployment scenario where both VPCs connect to two remote locations, four VPC licenses are required, even if you are using the same two public IP addresses. This is because each remote location that needs to be accessible from the CloudHub VPC requires an additional VPC license.
+If you implement a VPC deployment scenario where both VPCs connect to two remote locations, four VPC licenses are required, even if you are using the same two public IP addresses. This is because each remote location that needs to be accessible from the Anypoint VPC requires an additional VPC license.
 
 image::vpc-2-2-deployment.png[2:2 VPC Deployment]
 
