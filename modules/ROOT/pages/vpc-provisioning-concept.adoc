@@ -34,7 +34,10 @@ Read the following FAQs to understand how to plan a successful VPC setup.
 
 To connect a CloudHub VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario. 
 
-The Anypoint Platform base subscription includes two VPC licenses, which entitles your Anypoint Platform organization to two VPCs. VPN licenses are bundled with the VPC license, so each VPC license also entitles the organisation to one VPN gateway with a connection to one public IP address in a remote location. Therefore, one VPC License = 1 VPC entitlement + 1 VPN entitlement.
+The Anypoint Platform base subscription includes two VPC licenses, which entitles your Anypoint Platform organization to two licensed VPCs. VPN licenses are bundled with the VPC license, so each VPC license also entitles the organization to one VPN gateway with a connection to one public IP address in a remote location. 
+
+[NOTE]
+VPN licenses do not need to have a one-to-one relationship with the VPC licenses. For example, you can have two VPCs with two VPNs in one of them and none in the other. 
 
 An additional VPC license is required for each remote location that needs to be accessible from the CloudHub VPC. 
 
