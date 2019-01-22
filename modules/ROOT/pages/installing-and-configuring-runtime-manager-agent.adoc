@@ -597,7 +597,7 @@ echo "Export the client alias' certificate from the clientkeystore.jks key store
 keytool -export -alias client -file client.crt -keystore clientkeystore.jks -storepass mulesoft
 ----
 
-. Because these are self-signed certificate files, create a truststore file containing both the client and RMA certificates (public keys). This emulates a Certificate Authority (CA) signing both of these certificates. In a more real world scenario, the server and client certificates would both be signed by a trusted CA, then published or shared with the client and server machines.
+. Since these are self-signed certificate files, the client can't validate them with a Certificate Authority (CA), so you must create a truststore file containing both the client and RMA certificates (public keys) to emulate CA signing both of these certificates. In a production environment, the server and client certificates would both be signed by a trusted CA, then published or shared with the client and server machines.
 
 +
 [source,console,linenums]
