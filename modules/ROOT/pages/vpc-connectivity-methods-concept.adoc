@@ -24,9 +24,14 @@ To use VPC Peering, your AWS and CloudHub VPCs must be located in the same regio
 
 == CloudHub Direct Connect
 
-This method establishes a dedicated network connection from your Amazon VPC to your CloudHub VPC. This enables you to create a hosted virtual interface to your CloudHub VPC.
+This method establishes a dedicated network connection from your Amazon account to your CloudHub VPC. This enables you to create a hosted virtual interface to attach to your CloudHub VPC.
 
 image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
+
+[NOTE]
+--
+To use Direct Connect, your AWS Direct Connect Location and CloudHub VPCs must be located in the same region. Please note that Direct Connect Gateways are not currently supported.
+--
 
 == See Also
 
