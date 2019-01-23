@@ -1,0 +1,44 @@
+= CloudHub High Availability and Disaster Recovery
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+
+Anypoint CloudHub provides high availability (HA) and disaster recovery for application and hardware failures.
+
+CloudHub uses Amazon AWS for its cloud infrastructure, so CloudHub availability is dependent on Amazon. The availability and deployments in CloudHub are separated into different regions, which in turn point to the corresponding Amazon regions. If an Amazon region goes down, the applications within the region are unavailable and not automatically replicated in other regions.
+
+image::hadr-aws-global-infrastructure.png[]
+
+For example, if the US East region is unavailable, the CloudHub management UI as well as the various rest services that enable deployments are unavailable until the region's availability is restored. This means that new applications can't be deployed while US East is down.
+
+CloudHub provides an internal messaging mechanism, in the form of persistent queues, that are used for message reliability. The persistent queues are highly available within a region. However, these persistent queues are lost when the region is unavailable, which could result in some data loss (usually a few second or minutes depending on the use case).
+
+Certain CloudHub modules, such as Object Store V1, application settings, and Insight related information are maintained in the US East region for all applications regardless of the region they are deployed in. xref:object-store::index.adoc[Object Store V2] is maintained in the same region as the deployed CloudHub application. For both Object Store V1 and V2 if a region is unavailable, the data persists and becomes available again after the region returns to service.
+
+VPC setup is at the region level. So if a region is unavailable, unless a previous VPC setup has been done for the other region, the VPC is unavailable.
+
+=== Anypoint CloudHub Default Deployment Model
+
+If the application uses multiple workers CloudHub, by default, deploys the workers in separate availability zones providing HA across availability zones. The distance between the availability zones is variable and in general does not exceed more than 350 miles apart.
+
+image::hadr-am-web-services.png[]
+
+If an application uses a single worker, when the availability zone is unavailable, the application must be manually restarted once the zone becomes available. You can set up alerts in `status.mulesoft.com` to receive alerts when a failure occurs in an availability zone or region.
+
+=== Anypoint CloudHub Alternative Deployment Model
+
+A load balancer (cloud or on-premises) can be pointed to applications deployed to different regions to provide a better disaster recovery strategy.
+
+image::hadr-load-balancer.png[]
+
+== Keep Integrations Stateless
+
+As a general design principle it is important to ensure integrations are stateless in nature. This means that no transactional information is shared between various client invocations or the executions (in case of scheduled services). If some data must be maintained by the middleware due to a system limitation, it should be persisted in an external store such as a database or a messaging queue and not within the middleware infrastructure or memory. 
+
+[IMPORTANT]
+As you scale, especially in the cloud, the state of and resources used by each worker or node should be independent of other workers. This model ensures better performance and scalability as well as reliability.
+
+=== See Also
+
+xref:4.1@mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]
