@@ -37,7 +37,7 @@ image::hadr-load-balancer.png[]
 As a general design principle it is important to ensure integrations are stateless in nature. This means that no transactional information is shared between various client invocations or the executions (in case of scheduled services). If some data must be maintained by the middleware due to a system limitation, it should be persisted in an external store such as a database or a messaging queue and not within the middleware infrastructure or memory. 
 
 [IMPORTANT]
-As you scale, especially in the cloud, the state and resources used by each worker or node should be independent of other workers. This model ensures better performance and scalability as well as reliability.
+As you scale, especially in the cloud, the state of and resources used by each worker or node should be independent of other workers. This model ensures better performance and scalability as well as reliability.
 
 === See Also
 
