@@ -180,7 +180,10 @@ image::chexcmsg.png[CHExcMsg]
 
 After investigating the logs and resolving the issue that caused the transaction failure – for example, by purchasing more API capacity  – you can simply replay the transaction.
 
-*Note*: Replay only works for flows that have inbound endpoints.
+[NOTE]
+====
+Currently, the replay feature is supported only for Mule 3 applications and for flows that have inbound endpoints.
+====
 
 Click the replay icon (circular arrow) next to the first event in the failed transaction to replay it:
 
