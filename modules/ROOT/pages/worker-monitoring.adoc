@@ -32,7 +32,7 @@ If you are setting this from the *Deploy Application* menu, click *Deploy Applic
 
 If you are setting this from the *Manage Application* menu, click *Apply Changes*.
 
-For applications running on runtime 3.8.x and below, upon deployment, CloudHub inserts a monitoring ping flow into your application. When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application.
+For applications running on runtime 3.8.x and earlier, upon deployment, CloudHub inserts a monitoring ping flow into your application. When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application.
 
 image::logpingflowinjector.png[LogPingFlowInjector]
 
@@ -42,17 +42,17 @@ image::chmulesystemhealthmsg.png[CHMuleSystemHealthMsg]
 
 == How Monitoring Works
 
-*Mule Runtime 3.8.x and below* 
+*Mule Runtime 3.8.x and earlier* 
 
 Every 30 seconds, CloudHub sends an HTTP get request to the ping flow within the application. If the application is running normally, the ping flow sends a response. If CloudHub receives no response from the ping three times in a row, the logs print a warning and display a full thread dump.
 
 image::ch-monitoring-threaddump.png[CH-monitoring-threaddump]
 
-*Mule Runtime 3.9.x and above*
+*Mule Runtime 3.9.x and later*
 
 Every thirty seconds, CloudHub checks the PID of the Mule process. If CloudHub detects the application process is not running three times in a row, the logs print a warning.
 
-In addition, CloudHub triggers a notification to the console to alert you that a worker for any application stopped responding.
+In both cases, CloudHub triggers a notification to the console to alert you that a worker for any application stopped responding.
 
 If you have configured email alerts, the nonresponsive worker also triggers an email alert based on the "Worker Not Responding" event. See  xref:alerts-on-runtime-manager.adoc[Alerts] for more information about configuring these alerts.
 
