@@ -1098,7 +1098,14 @@ Besides the `--include-dot-files`, this command takes the default `--help`, `-f`
 This Command lists all your Design Center projects. +
 You can start typing your project's name and hit `tab` for Anypoint-CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,40a,30a"]
+|===
+|Command | Description |  Example
+|--pageIndex | Number of page to retrieve | `designcenter project list --pageIndex 3`
+|--pageSize | Number of results to retrieve per page | `designcenter project list --pageSize 5`
+|===
 
 == exchange asset upload
 
