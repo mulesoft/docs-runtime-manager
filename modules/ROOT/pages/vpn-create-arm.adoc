@@ -1,0 +1,52 @@
+= Create an Anypoint VPN
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Prerequisites
+
+Before creating a VPN, you must create a Virtual Private Cloud (VPC). See About Virtual Private Cloud for more information. You should also ensure that the components of your external network are configured correctly. See link:runtime-manager::virtual-private-cloud.adoc[Virtual Private Cloud] for more information. You should also ensure that the components of your external network are configured correctly.
+
+When creating or configuring a VPN, you must provide the following information:
+
+* *Remote IP address:* IP address of the device you are connecting to.
+* *Pre-shared Key (PSK):* (Optional) Shared secret used by the network tunnel that connects Anypoint Platform and your network. This value will be auto-generated if you leave it blank.
+* *Point-to-Point CIDR:* (Optional) IP range used by the network tunnel. You must configure a unique IP address range for each tunnel. This value will be auto-generated if you leave it blank.
+* *Remote and Local Autonomous System Number (ASN)*: Specifies the collection of routing prefixes. You must configure both a remote and local ASN before creating a VPN.
+* *Classless Inter-Domain Routing (CIDR)*: Specifies the routing address of your network. This is required only if you are using static routing.
+
+== Create a VPN
+
+. From the Anypoint Management Center, select *Runtime Manager*.
+. Go to the environment where you want to create a VPN.
+. Click the *VPN* tab, then click *Create VPN*.
+. Enter a name for your VPN.
+. Select a Virtual Private Cloud from the drop-down list.
+. Enter the remote IP address used to connect to your VPN.
+. Select the routing type you want to use for your VPN. +
+Border Gateway Protocol (BGP) routing is recommended when possible.
+. To use BGP routing:
+.. Select *BGP Routing*.
+.. Enter the ASN corresponding to your backend under Remote ASN. The default value is 65001.
+.. Assign an ASN to the Mule VPC side under Local ASN. The default value is 64512.
+. To use static routing:
+.. Select *Static Routing*.
+.. Click *Add New Rule*.
+.. Enter a Classless Inter-Domain Routing (CIDR) address. For example: + ---- 10.0.0.0/8 ----
+. Configure the tunnel used to connect between Anypoint Platform and your network.
++
+You must configure two tunnels that connect between different endpoints. In the case of a custom configuration, you can use the same PSK value for both connections, but you must use different point-to-point CIDR ranges.
+. Select the type of tunnel configuration for your VPN: +
+* *Automatic*: Automatically configures the required tunnels for your VPN using the default values.
+* *Custom*: Enables you to manually configure the tunnels used by your VPN.
+. Enter a value for the PSK.
+. Enter the address range for the Point-To-Point CIDR. For example:
++
+----
+169.254.1.0/30
+----
+. Click *Create VPN*.
+
+== Result
+
+After creating the VPN, it appears in the list of VPNs. Initially, the *Status* column displays PENDING and both VPN tunnels display DOWN. Once your VPN connection is successful, the status changes to AVAILABLE and UP.
