@@ -5,14 +5,14 @@ endif::[]
 
 == Prerequisites
 
-Before creating a VPN, you must create a Virtual Private Cloud (VPC). See About Virtual Private Cloud for more information. You should also ensure that the components of your external network are configured correctly. See xref:virtual-private-cloud.adoc[Virtual Private Cloud] for more information. You should also ensure that the components of your external network are configured correctly.
+Before creating a VPN, you must create a Virtual Private Cloud (VPC). See xref:runtime-manager::virtual-private-cloud.adoc[Virtual Private Cloud] for more information. You should also ensure that the components of your external network are configured correctly.
 
 When creating or configuring a VPN, you must provide the following information:
 
 * *Remote IP address:* IP address of the device you are connecting to.
 * *Pre-shared Key (PSK):* (Optional) Shared secret used by the network tunnel that connects Anypoint Platform and your network. This value will be auto-generated if you leave it blank.
 * *Point-to-Point CIDR:* (Optional) IP range used by the network tunnel. You must configure a unique IP address range for each tunnel. This value will be auto-generated if you leave it blank.
-* *Remote and Local Autonomous System Number (ASN)*: Specifies the collection of routing prefixes. You must configure both a remote and local ASN before creating a VPN.
+* *Remote and Local Autonomous System Number (ASN)*: Specifies the collection of routing prefixes. You must configure both a remote and local ASN before creating a VPN. This is required only if you are using dynamic routing.
 * *Classless Inter-Domain Routing (CIDR)*: Specifies the routing address of your network. This is required only if you are using static routing.
 
 == Create a VPN
@@ -39,14 +39,28 @@ You must configure two tunnels that connect between different endpoints. In the 
 . Select the type of tunnel configuration for your VPN: +
 * *Automatic*: Automatically configures the required tunnels for your VPN using the default values.
 * *Custom*: Enables you to manually configure the tunnels used by your VPN.
-. Enter a value for the PSK.
-. Enter the address range for the Point-To-Point CIDR. For example:
+. Enter a value for the PSK. 
 +
-----
+The PSK must be between 8 and 64 characters in length and cannot start with zero (0). Allowed characters are alphanumeric characters, periods (.), and underscores (\_).
++ 
+. Enter the range for the Point-To-Point CIDR.
++
+This is the range of inside IP addresses for the VPN tunnel. You can specify a size /30 CIDR block from the 169.254.0.0/16 range. The CIDR block must be unique across all VPN connections. +
+The following CIDR blocks are reserved and cannot be used:
+----	----
+169.254.0.0/30
 169.254.1.0/30
-----
+169.254.2.0/30
+169.254.3.0/30
+169.254.4.0/30
+169.254.5.0/30
+169.254.169.252/30
+----	----
 . Click *Create VPN*.
+
+[NOTE]
+You cannot modify tunnel options after you create the VPN connection. To change the settings for an existing connection, you must delete the VPN connection and create a new one. 
 
 == Result
 
-After creating the VPN, it appears in the list of VPNs. Initially, the *Status* column displays PENDING and both VPN tunnels display DOWN. Once your VPN connection is successful, the status changes to AVAILABLE and UP.
+After creation, the new VPN appears in the list of VPNs. Initially, the *Status* column displays PENDING and both VPN tunnels display DOWN. Once your VPN connection is successful, the status changes to AVAILABLE and UP.

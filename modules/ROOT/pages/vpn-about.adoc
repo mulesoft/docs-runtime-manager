@@ -17,9 +17,9 @@ To create and maintain a secure connection with your external network, the Anypo
 [NOTE]
 Network Address Translation (NAT) is not supported.
 
-== Supported IPSEC Configurations
+== Supported IPSec Configurations
 
-Anypoint VPN supports the IPSEC configurations for encrypting data communications between Anypoint Platform and your network:
+Anypoint VPN supports the IPSec configurations for encrypting data communications between Anypoint Platform and your network:
 
 * IKE version 1
 * AES 128 and 256-bit encryption
@@ -29,14 +29,14 @@ Anypoint VPN supports the IPSEC configurations for encrypting data communication
 ** Phase2 DH groups 2, 5, 14-18, 22, 23, 24
 
 [NOTE]
-Anypoint VPN only supports acting as a responder, so IPSEC connections should be brought up and maintained up by initiating traffic from a remote device.
+The Anypoint VPN endpoint is the responder, so you should establish and maintain connections by initiating traffic from a remote device.
 
 == Anypoint VPN Routing
 
 The Anypoint VPN supports two types of routing:
 
-* Border Gateway Protocol (BGP) routing: Enables you to use dynamic routing. This allows the device you are connecting to broadcast routes to the VPN. We recommend using BGP routing if your device supports this protocol.
-* Static routing: Requires you to specify the routes that the Anypoint VPN uses to communicate with your network.
+* Border Gateway Protocol (BGP) routing: Your device uses BGP to dynamically advertise its routes to Anypoint VPN. We recommend using BGP routing if your device supports this protocol.
+* Requires you to specify the routes (subnets) for your network that should be accessible to Anypoint VPN.
 
 == See Also
 
