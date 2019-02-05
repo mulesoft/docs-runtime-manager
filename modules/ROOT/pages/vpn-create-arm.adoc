@@ -26,29 +26,28 @@ When creating or configuring a VPN, you must provide the following information:
 * *Name* - Enter a name for your VPN. 
 * *VPC* - From the drop-down list, select the Virtual Private Cloud for the VPN connection.
 * *Remote IP Address* - Enter the remote IP address to use to connect to the VPN.
-* *Routing Type* - Select *Static* or *BGP* as the routing type to use for the VPN. 
-. To use *BGP* routing (This type of routing is recommended if your device supports this protocol):
-.. Select *BGP*, and enter the following values: +
+. Select the routing type to use: 
++
+[NOTE]
+You can select either *BGP* or *Static*. The Border Gateway Protocol (BGP) type is recommended if it is supported by your device.
++
+.. To use BGP, select *BGP* and enter the following values: +
 * *Remote ASN* - Enter the ASN corresponding to your backend under Remote ASN. The default value is 65001.
 * *Local ASN* - Assign an ASN to the Mule VPC side under Local ASN. The default value is 64512.
-. To use *Static* routing:
-.. Select *Static*.
-.. Click *Add New Rule*.
-.. Enter a Classless Inter-Domain Routing (*CIDR*) address. For example: + ---- 10.0.0.0/8 ----
+.. To use static network routing select *Static*, and click *Add New Rule*: +
+In the *CIDR* field, enter a Classless Inter-Domain Routing address. For example: `10.0.0.0/8`
 . Select the type of tunnel configuration for the tunnel used to connect between Anypoint Platform and your network. +
 * *Automatic* - Automatically configures the required tunnels for your VPN using the default values.
-* *Custom* - Enables you to manually configure the tunnels used by your VPN.
-+
+* *Custom* - Enables you to manually configure the tunnels used by your VPN. +
 You must configure two tunnels that connect between different endpoints. In the case of a custom configuration, you can use the same PSK value for both connections, but you must use different point-to-point CIDR ranges.
-.. In the *PSK* field, enter a value for the PSK. 
-+
+.. In the *PSK* field, enter a value for the PSK. +
 The PSK must be between 8 and 64 characters in length and cannot start with zero (0). Allowed characters are alphanumeric characters, periods (.), and underscores (\_).
-+ 
-.. In the *Point-to-Point CIDR* field, enter the range of inside IP addresses for the VPN tunnel.
-+
-You can specify a size /30 CIDR block from the 169.254.0.0/16 range. The CIDR block must be unique across all VPN connections. +
+.. In the *Point-to-Point CIDR* field, enter the range of inside IP addresses for the VPN tunnel. +
+You can specify a size /30 CIDR block from the 169.254.0.0/16 range. The CIDR block must be unique across all VPN connections. 
+
 You cannot use the following CIDR blocks:
-----	----
+
+----	
 169.254.0.0/30
 169.254.1.0/30
 169.254.2.0/30
@@ -56,7 +55,7 @@ You cannot use the following CIDR blocks:
 169.254.4.0/30
 169.254.5.0/30
 169.254.169.252/30
-----	----
+----
 . Click *Create VPN*.
 
 [NOTE]
