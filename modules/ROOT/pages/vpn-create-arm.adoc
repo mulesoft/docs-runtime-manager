@@ -12,8 +12,8 @@ You should also ensure that the components of your external network are configur
 When creating or configuring a VPN, you must provide the following information:
 
 * *Remote IP address:* IP address of the device you are connecting to.
-* *Pre-shared Key (PSK):* (Optional) Shared secret used by the network tunnel that connects Anypoint Platform and your network. This value will be auto-generated if you leave it blank.
-* *Point-to-Point CIDR:* (Optional) IP range used by the network tunnel. You must configure a unique IP address range for each tunnel. This value will be auto-generated if you leave it blank.
+* *Pre-shared Key (PSK):* Shared secret used by the network tunnel that connects Anypoint Platform and your network. This value will be auto-generated if you select Automatic Tunnel Configuration.
+* *Point-to-Point CIDR:* IP range used by the network tunnel. You must configure a unique IP address range for each tunnel. This value will be auto-generated if you select Automatic Tunnel Configuration.
 * *Remote and Local Autonomous System Number (ASN)*: Specifies the collection of routing prefixes. You must configure both a remote and local ASN before creating a VPN. This is required only if you are using dynamic routing.
 * *Classless Inter-Domain Routing (CIDR)*: Specifies the routing address of your network. This is required only if you are using static routing.
 
