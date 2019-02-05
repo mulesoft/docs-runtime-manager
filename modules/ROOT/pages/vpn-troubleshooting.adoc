@@ -33,3 +33,7 @@ To solve this, ensure that only one unique SA is used per VPN tunnel connection.
 IPsec is established by sending interesting traffic (traffic that should be encrypted over the VPN connection). If there is no interesting traffic, the tunnel disconnects when the timers expire. This is the expected behavior.
 
 To keep the tunnel active, you must ensure you are periodically sending interesting traffic. For example, sending an ICMP request every five seconds to a CloudHub worker internal IP address or DNS name allows the tunnel to stay active.
+
+=== See Also
+
+https://support.mulesoft.com/s/article/Anypoint-VPN-Knowledge-Articles[Anypoint VPN Knowledge Articles]
