@@ -1,17 +1,41 @@
-= To Request VPC Connectivity to Your Network
+= Request VPC Connectivity to Your Network
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you need to connect your VPC to your internal network (VPN tunnel), or to another Cloud network (peering):
+The way you request VPC connectivity to your network varies depending on the connectivity method and the date your VPC is created. 
+
+[%header]
+|===
+|VPC Connection Method|How to
+|IPsec Tunnel
+|How you connect using the IPsec tunnel method depends on when you initially configure your VPC.
+
+For VPCs before November 2018, see xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity]
+
+For new VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN]
+
+To update VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[add additional static routes].
+|VPC Peering
+|<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
+|CloudHub Direct Connect
+|<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
+|===
+
+[request_vpc_connectivity]
+== Request VPC Connectivity
+
+If you need to connect your VPC to your internal network via VPN tunnel, Peering, or Direct Connect, you must:
 
 . Download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the VPC discovery form] (requires at least MS Excel 2007 with macros enabled), and enter the data to communicate the necessary details required for your connectivity method. +
 If you need support for multiple Amazon regions, you need to submit one copy of the discovery form for each region in which you need support.
 . Contact your MuleSoft account representative to discuss your specific requirements. +
 After the CloudHub support team receives your form and answer any remaining questions, they securely exchange keys and supply instructions on how to configure your router(s).
 
-The SLA for configuring VPC is 5 business days after the VPC discovery form has been completed, returned and approved by support, though it may be completed sooner.
+The SLA for configuring VPC is five business days after the VPC discovery form has been completed, returned, and approved by support, though the VPC configuration may be completed sooner.
+
 
 == See Also
 
+* xref:vpn-about.adoc[Anypoint VPN]
 * xref:vpc-connectivity-methods-concept.adoc[About VPC Connectivity Methods]

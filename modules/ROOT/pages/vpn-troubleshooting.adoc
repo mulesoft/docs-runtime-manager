@@ -1,0 +1,39 @@
+= Troubleshoot Anypoint VPN
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+These are some of the possible errors you may encounter when attempting to connect Anypoint VPN.
+
+=== Unable to Connect to the VPN
+
+If you are unable to connect to the VPN, ensure any firewalls that are configured are allowing traffic through the IP addresses in the `localExternalIpAddress` field in the VPN tunnels.
+
+=== `NO_PROPOSAL_CHOSEN` Error or Cannot Establish Phase 1 Connection
+
+This is likely due to a problem with your Phase 1 configuration. Anypoint VPN supports only IKEv1 connections, so any IKEv2 connections will not work. Additionally, the following Phase 1 Diffie-Hellman (DH) groups are supported: `2 14-18 22 23 24`
+
+=== Cannot Establish a Phase 2 Connection
+
+It is possible that your Phase 2 DH group is not supported. The supported Phase 2 DH groups are: `2 5 14-18 22 23 24`
+
+
+=== VPN Tunnel Connection Works, but Routes Are Not Propagated
+
+Ensure that the neighbor IP address for the tunnel is taken from the Local point-to-point IP address in the tunnel’s details.
+
+=== Phase 2 SA Established, but Traffic Not Passing Through Tunnel
+
+The VPN connection supports only one Security Association (SA) pair per tunnel, so any more than one traffic selector per connection results in traffic problems.
+
+To solve this, ensure that only one unique SA is used per VPN tunnel connection. If more than one policy is needed, you must consolidate and filter traffic in your network.
+
+=== VPN Tunnel Disconnects After Period of Inactivity
+
+IPsec is established by sending interesting traffic (traffic that should be encrypted over the VPN connection). If there is no interesting traffic, the tunnel disconnects when the timers expire. This is the expected behavior.
+
+To keep the tunnel active, you must ensure you are periodically sending interesting traffic. For example, sending an ICMP request every five seconds to a CloudHub worker internal IP address or DNS name allows the tunnel to stay active.
+
+=== See Also
+
+https://support.mulesoft.com/s/article/Anypoint-VPN-Knowledge-Articles[Anypoint VPN Knowledge Articles]

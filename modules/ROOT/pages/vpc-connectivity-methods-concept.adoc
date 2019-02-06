@@ -7,9 +7,11 @@ You can connect a Virtual Private Cloud to your private network using an IPsec t
 
 == IPsec Tunnel
 
-Use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your CloudHub VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances.
+You can use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your CloudHub VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances. 
 
 image::chvpc02.png[CHVPC02]
+
+To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[Anypoint VPN].
 
 ==  VPC Peering
 
@@ -35,4 +37,5 @@ To use Direct Connect, your AWS Direct Connect Location and CloudHub VPCs must b
 
 == See Also
 
-* xref:to-request-vpc-connectivity.adoc[To Request VPC Connectivity to Your Network]
+* xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity to Your Network]
+* xref:vpn-about.adoc[Anypoint VPN]

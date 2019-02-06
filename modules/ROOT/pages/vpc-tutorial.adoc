@@ -72,12 +72,14 @@ You can do this when you initially create the VPC, or you can configure the inte
 
 == Connect to your VPC
 
-xref:virtual-private-cloud.adoc#vpc-connectivity-methods[VPC connectivity methods] (IPSEC, AWS Peering, and so on) are not a self-serve function at this time. +
+xref:virtual-private-cloud.adoc#vpc-connectivity-methods[VPC connectivity methods] (VPC Peering and CloudHub Direct Connect) are not a self-serve functions at this time. +
 To configure a connection between your CloudHub VPC and your infrastructure, download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the VPC discovery form] (requires at least MS Excel 2007 with macros enabled), enter the necessary information required for your connectivity method and send it to MuleSoft customer support.
 
-The SLA for configuring VPC is 5 business days after the VPC discovery form is completed and returned, though it may be completed sooner.
+The SLA for configuring VPC is five business days after the VPC discovery form is completed and returned, though the VPC configuration may be completed sooner.
 
 == Update an Existing VPC
+
+These instructions are for updating VPCs created before November 2018. If you are adding additional static routes to an IPsec VPN tunnel created after November 2018, you https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel [can use the API] to do so.
 
 image::vpc-tutorial-c5a66.png[]
 
