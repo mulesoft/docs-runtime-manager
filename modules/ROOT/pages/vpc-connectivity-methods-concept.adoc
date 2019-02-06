@@ -7,9 +7,11 @@ You can connect a Virtual Private Cloud to your private network using an IPsec t
 
 == IPsec Tunnel
 
-Use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your CloudHub VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances.
+You can use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your CloudHub VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances. 
 
 image::chvpc02.png[CHVPC02]
+
+To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[Anypoint VPN].
 
 ==  VPC Peering
 
@@ -33,28 +35,7 @@ image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
 To use Direct Connect, your AWS Direct Connect Location and CloudHub VPCs must be located in the same region. Please note that Direct Connect Gateways are not currently supported.
 --
 
-== Configure VPC Connection
-
-Refer to the following table to connect your VPC to a VPN or to another cloud network. 
-
-[%header]
-|===
-|VPC Connection Method|How to
-|IPsec Tunnel
-|How you connect using the IPsec tunnel method depends on when you initially configure your VPC.
-
-For VPCs before November 2018, see xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity]
-
-For new VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN]
-
-To update VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[add additional static routes].
-|VPC Peering
-|xref:to-request-vpc-connectivity.adoc[To Request VPC Connectivity to Your Network]
-|CloudHub Direct Connect
-|xref:to-request-vpc-connectivity.adoc[To Request VPC Connectivity to Your Network]
-|===
-
 == See Also
 
-* xref:to-request-vpc-connectivity.adoc[To Request VPC Connectivity to Your Network]
+* xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity to Your Network]
 * xref:vpn-about.adoc[Anypoint VPN]

@@ -9,7 +9,7 @@ These are some of the possible errors you may encounter when attempting to conne
 
 If you are unable to connect to the VPN, ensure any firewalls that are configured are allowing traffic through the IP addresses in the `localExternalIpAddress` field in the VPN tunnels.
 
-=== NO_PROPOSAL_CHOSEN Error or Cannot Establish Phase 1 Connection
+=== `NO_PROPOSAL_CHOSEN` Error or Cannot Establish Phase 1 Connection
 
 This is likely due to a problem with your Phase 1 configuration. Anypoint VPN supports only IKEv1 connections, so any IKEv2 connections will not work. Additionally, the following Phase 1 Diffie-Hellman (DH) groups are supported: `2 14-18 22 23 24`
 
@@ -24,7 +24,7 @@ Ensure that the neighbor IP address for the tunnel is taken from the Local point
 
 === Phase 2 SA Established, but Traffic Not Passing Through Tunnel
 
-The VPN connection supports only one Security Association (SA) pair per tunnel, so any more than one traffic selector per connection will result in unexpected traffic problems.
+The VPN connection supports only one Security Association (SA) pair per tunnel, so any more than one traffic selector per connection results in traffic problems.
 
 To solve this, ensure that only one unique SA is used per VPN tunnel connection. If more than one policy is needed, you must consolidate and filter traffic in your network.
 
