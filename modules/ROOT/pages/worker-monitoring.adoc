@@ -42,15 +42,15 @@ image::chmulesystemhealthmsg.png[CHMuleSystemHealthMsg]
 
 == How Monitoring Works
 
-*Mule Runtime 3.8.x and earlier* 
+*Mule Runtime 3.x.x * 
 
 Every 30 seconds, CloudHub sends an HTTP get request to the ping flow within the application. If the application is running normally, the ping flow sends a response. If CloudHub receives no response from the ping three times in a row, the logs print a warning and display a full thread dump.
 
 image::ch-monitoring-threaddump.png[CH-monitoring-threaddump]
 
-*Mule Runtime 3.9.x and later*
+*Mule Runtime 4.x.x *
 
-Every thirty seconds, CloudHub checks the PID of the Mule process. If CloudHub detects the application process is not running three times in a row, the logs print a warning.
+Every 30 seconds, CloudHub checks the PID of the Mule process. If CloudHub detects the application process is not running three times in a row, the logs print a warning.
 
 In both cases, CloudHub triggers a notification to the console to alert you that a worker for any application stopped responding.
 
