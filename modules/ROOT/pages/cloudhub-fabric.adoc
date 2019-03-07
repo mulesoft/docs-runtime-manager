@@ -62,8 +62,6 @@ If your application is already deployed, you must redeploy it in order for your 
 
 == How CloudHub Fabric is Implemented
 
-Object stores in your applications are stored persistently, even if you did not enable Persistent queues for your application.
-
 HTTP load balancing is implemented by an internal reverse proxy server. Requests to the application (domain) URL +http://appname.cloudhub.io+ are automatically load balanced between all the application's Worker URLs.
 
 Clients can bypass the CloudHub Fabric load balancer by using a worker's direct URL. See: xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide] for more information on how to access an application in a specific CloudHub worker.
