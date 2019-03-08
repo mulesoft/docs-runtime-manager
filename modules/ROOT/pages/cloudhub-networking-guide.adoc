@@ -4,30 +4,24 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cluster, managing, monitoring, runtime manager, arm
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
-
-[NOTE]
-====
-The topics in this document deal only with cloud deployments via the cloud-based version of the Runtime Manager. See xref:deployment-strategies.adoc[Deployment Strategies] for a better understanding of the different possible deployment scenarios.
-====
+This guide is for cloud deployments using the cloud-based version of Runtime Manager. See xref:deployment-strategies.adoc[Deployment Strategies] for information about different deployment scenarios.
 
 == Overview
 
-CloudHub provides a variety of tools to architect your integrations and APIs so that they are maintainable, secure, and scalable. This guide covers the basic network architecture, DNS, and firewall rules.
+CloudHub provides a variety of tools to architect your integrations and APIs so they are maintainable, secure, and scalable. This guide covers the basic network architecture, DNS, and firewall rules.
 
 image::cloudhub-networking-guide-1.jpg[CloudHub+Networking+Guide-1]
 
 == Load Balancing
 
-CloudHub provides a load balancing service for all integrations, you can use the default one or obtain the xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer].
+CloudHub provides a load balancing service for all integrations. You can use the default load balancing service or obtain a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer].
 
-This service does round robin load distribution across workers, allowing workers to scale linearly as they receive more requests as well as providing transparent switchover when an application is upgraded (see zero downtime upgrades for more information).
+The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub].
 
-Each application deployed on CloudHub has a CNAME record that refers to the load balancer - example: `myapp.cloudhub.io`. Mule applications deployed on CloudHub must listen on `0.0.0.0` and ports assigned by CloudHub for HTTP and HTTPS. The load balancer then forwards requests from port 80 and 443 (SSL) to these ports on the Mule worker. Forwarded traffic is still HTTP & HTTPS, this means that you can't listen for HTTPS on `${http.port}` nor for plain HTTP on `${https.port}`. +
-These ports must be referenced using the reserved properties `${http.port}` and `${https.port}` respectively, so CloudHub services can then dynamically allocate a port at deployment time. +
+Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.cloudhub.io`. Mule applications deployed on CloudHub must listen on `0.0.0.0` and ports assigned by CloudHub for HTTP and HTTPS. 
+
+The load balancer then forwards requests from port 80 and 443 (SSL) to the assigned ports on the Mule worker. Forwarded traffic still uses HTTP and HTTPS protocols, which means you can't listen for HTTPS on `${http.port}` or plain HTTP on `${https.port}`. +
+You must reference these ports using the reserved properties `${http.port}` and `${https.port}` respectively. CloudHub services can then dynamically allocate a port at deployment time. +
 
 Here is an example of a Mule configuration that utilizes this to expose an HTTPS endpoint:
 
@@ -40,22 +34,21 @@ Here is an example of a Mule configuration that utilizes this to expose an HTTPS
 </http:listener-config>
 ----
 
-You may also refer to this knowledge-base article: https://support.mulesoft.com/s/article/Sample-App-Configuring-HTTPS-endpoint-for-deployment-in-Cloudhub[Sample App: Configuring HTTPS endpoint for deployment in CloudHub]
-
-*Important*: On the Mule worker, the CloudHub load balancer proxies port :80 to :8081 for HTTP and proxies port :443 to :8082 for HTTPS. +
-The `http.port` property is automatically set to port 8081 for HTTP, and `https.port` is set to port 8082 for HTTPS. If other values for http.port and https.port are specified in the mule-app.properties file, these are overwritten at deployment time.
+[IMPORTANT]
+On the Mule worker, the CloudHub load balancer proxies port :80 to :8081 for HTTP and proxies port :443 to :8082 for HTTPS. +
+The `http.port` property is automatically set to port 8081 for HTTP, and `https.port` is set to port 8082 for HTTPS. If other values for `http.port` and `https.port` are specified in the `mule-app.properties` file, these are overwritten at deployment time.
 
 [NOTE]
 --
-For each request that a client makes through CloudHub's load balancer (_myapp.cloudhub.io_), the load balancer maintains two connections. One connection ​from​ the client and one to your Worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection.  If no data has been sent or received during this time period, the load balancer closes ​both connections.
+For each request that a client makes through CloudHub's load balancer (_myapp.cloudhub.io_), the load balancer maintains two connections. One connection ​is from​ the client and one is to your worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection.  If no data is sent or received during this time period, the load balancer closes ​both connections.
 
-For connections that take more than 300 seconds to be processed from either side, consider handling the processing asynchronously.
+For connections that take more than 300 seconds to process from either side, consider handling the processing asynchronously.
 --
 
 
 == DNS Records
 
-The following DNS records are exposed for your applications when deployed to CloudHub:
+The following DNS records for your applications are exposed when they are deployed to CloudHub:
 
 [cols="2*a"]
 |===
@@ -64,17 +57,16 @@ The following DNS records are exposed for your applications when deployed to Clo
 |*mule-worker-internal-myapp.cloudhub.io* |The internal IP address of the Mule workers. The IPs for this DNS record are only accessible within a customer's private xref:virtual-private-cloud.adoc[VPC]. *These IPs are not accessible for workers running in the MuleSoft shared VPC.* Public HTTP services are exposed on `${http.port}` and `${https.port}.` Internal HTTP services are exposed on ports *8091/8092*.
 |===
 
-In certain situations, you may want to know an application’s internal IPs:
+In certain situations, you may want to know an application’s internal IP addresses, for example:
 
 * When communicating with the worker directly within the customer's xref:virtual-private-cloud.adoc[VPC] without sending data over the public internet
-* When you wish to setup your own load balancer (see below)
+* When setting up your own load balancer
 
-These IP addresses can be accessed through the `mule-worker-internal-myapp.cloudhub.io` record, from within the customer's VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
+You can access these IP addresses through the `mule-worker-internal-myapp.cloudhub.io` record from within the customer's VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
 
 == IP Ranges and Static IPs
 
 As CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, please consult http://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html[Amazon AWS IP Address Ranges API]. The download link in that page will retrieve a dynamically generate JSON representation of all ranges that include the region. Note that Amazon may change the ranges without notice so you may want to update this information regularly.
-
 
 
 CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://support.mulesoft.com[MuleSoft Support]. After a static IP has been allocated for your application, it is visible in the *Static IPs* tab in the application settings. For more details, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
@@ -143,6 +135,7 @@ If you have a xref:virtual-private-cloud.adoc[Virtual Private Cloud] and a xref:
 
 == See Also
 
+* https://support.mulesoft.com/s/article/Sample-App-Configuring-HTTPS-endpoint-for-deployment-in-Cloudhub[Sample App: Configuring HTTPS endpoint for deployment in CloudHub]
 * xref:developing-applications-for-cloudhub.adoc#providing-an-external-http-https-port[Providing an External HTTP/HTTPS Port when deploying to CloudHub]
 * xref:cloudhub-architecture.adoc[CloudHub architecture]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]

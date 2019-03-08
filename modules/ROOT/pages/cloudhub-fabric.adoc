@@ -5,13 +5,14 @@ endif::[]
 
 CloudHub Fabric provides scalability, workload distribution, and added reliability to applications on CloudHub. This functionality is powered by CloudHub's scalable load-balancing service,  worker scale-out, and persistent queues features.
 
-You can enable CloudHub Fabric features on a per-application basis using the Runtime Manager console when deploying a new application or redeploy an existing application.
-
-The topics in this document deal only with cloud deployments via the cloud-based version of the Runtime Manager.
+You can enable CloudHub Fabric features on a per-application basis using the Runtime Manager console when deploying a new application or redeploying an existing application.
 
 == Prerequisites
 
-CloudHub Fabric requires a CloudHub Enterprise or Partner account. This document assumes that you have an account type that allows you to use this feature, and that you are familiar with deploying applications using the Runtime Manager console.
+CloudHub Fabric requires:
+
+* A CloudHub Enterprise or Partner account type that allows you to use this feature. 
+* Familiarity with deploying applications using the Runtime Manager console.
 
 == Worker Scale-out
 
@@ -50,7 +51,7 @@ To learn more about how to work with persistent queues in your application, see 
 
 You can enable and disable either or both features of CloudHub Fabric in one of two ways:
 
-* When deploying an application to CloudHub for the first time using the Runtime Manager console
+* When you deploy an application to CloudHub for the first time using the Runtime Manager console
 * By accessing the *Deployment* tab in the Runtime Manager console for a previously-deployed application
 
 Next to *Workers*, select options from the drop-down menus to define the number and type of workers assigned to your application. See xref:deploying-to-cloudhub.adoc#worker-sizing[Worker Sizing] for more information about deploying to multiple workers.
@@ -61,13 +62,9 @@ If your application is already deployed, you must redeploy it in order for your 
 
 == How CloudHub Fabric is Implemented
 
-Internally, worker scaling and VM queue load balancing is implemented using Amazon SQS.
-
-Object stores in your applications are also always stored persistently using Amazon SQS, even if you did not enable Persistent queues for your application.
-
 HTTP load balancing is implemented by an internal reverse proxy server. Requests to the application (domain) URL +http://appname.cloudhub.io+ are automatically load balanced between all the application's Worker URLs.
 
-Clients can by-pass the CloudHub Fabric load balancer by using a Worker's direct URL. See: xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide] for more information on how to access an application in a specific CloudHub worker.
+Clients can bypass the CloudHub Fabric load balancer by using a worker's direct URL. See: xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide] for more information on how to access an application in a specific CloudHub worker.
 
 == Use Cases
 
@@ -222,7 +219,8 @@ When messages are added to a VM queue in CloudHub, the two-phase commit protocol
 
 If all three above conditions are true, the message is added to the queue instead of being rolled back as intended by the transaction rollback process. No message loss occurs, and the transaction can still repeat, but the outbound VM queue contains an unintended message.
 
-Note that this issue occurs only when a flow produces messages that need to be added to a VM queue. There is no effect on the process of consuming messages from queues.
+[NOTE]
+This issue occurs only when a flow produces messages that need to be added to a VM queue. There is no effect on the process of consuming messages from queues.
 
 == See Also
 
