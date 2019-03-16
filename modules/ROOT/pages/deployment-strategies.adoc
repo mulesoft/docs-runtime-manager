@@ -304,7 +304,7 @@ For applications deployed to PCF, logs aren't supported but you can view logs di
 
 CloudHub provides an implementation of the user object store. This makes its usage a lot simpler, as you can simply reference the already configured CloudHub object store. It places limits on the usage of this to avoid abuse. These are detailed on the xref:managing-application-data-with-object-stores.adoc[Object Store] page.
 
-Deployments on-premises require that you set up your own objet store, see xref:3.8@mule-runtime::mule-object-stores.adoc[Mule object stores].
+Deployments on-premises require that you set up your own object store, see xref:3.8@mule-runtime::mule-object-stores.adoc[Mule object stores].
 
 [TIP]
 For deployments to PCF, it's recommended that you store your data outside the Mule runtime instance where your application runs, since its data will be lost whenever the application is stopped. Instead, you can for example can create a service binding to a database that runs elsewhere.
