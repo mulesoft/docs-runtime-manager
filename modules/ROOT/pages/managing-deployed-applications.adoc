@@ -51,7 +51,7 @@ Runtime Manager has two main tabs--*Applications* and *Servers*.
 
 === Applications Tab
 
-In Runtime Manager, an application is a Mule Application that is running on a Mule runtime or an API Gateway runtime instance. The instance can be running in CloudHub, in an on-premise server of your organization, in a group of servers, or in a cluster.
+In Runtime Manager, an application is a Mule Application that is running on a Mule runtime or an API gateway runtime instance. The instance can be running in CloudHub, in an on-premise server of your organization, in a group of servers, or in a cluster.
 
 In the *Applications* menu you can get a quick view of the applications that are currently deployed and running for your account. Click an entry to display additional information (as shown below), or click *Manage Application* to see the application's xref:monitoring-dashboards.adoc[dashboard] and settings page:
 
@@ -67,20 +67,20 @@ For server groups, an application deployed to the group runs on every server in 
 [NOTE]
 This tab is only relevant to deploying to servers on-premises. CloudHub workers aren't displayed here.
 
-In Runtime Manager, a server is a Mule or API Gateway instance in a location other than CloudHub (on-premises or in a different cloud server) that you must first register in the Runtime Manager console. Once registered and configured in this tab, you can deploy your applications to it through the *Applications* tab.
+In Runtime Manager, a server is a Mule or API gateway instance in a location other than CloudHub (on-premises or in a different cloud server) that you must first register in the Runtime Manager console. Once registered and configured in this tab, you can deploy your applications to it through the *Applications* tab.
 
 image::amc-servers2.png[AMC_Servers]
 
 From the *Servers* tab, select one of the following options to perform these tasks:
 
 * Add a Server (registers the server with the Runtime Manager console)
-* Start Mule or API Gateway
-* Create a Server Group
-* Create a Cluster
-* Add and remove Servers from a Server Group
-* Add and remove Servers from a Cluster
-* Stop an Application on a Server
-* Delete a Server, Server Group or Cluster
+* Start Mule or API gateway
+* Create a server group
+* Create a cluster
+* Add and remove servers from a server group
+* Add and remove servers from a cluster
+* Stop an application on a server
+* Delete a server, server group or cluster
 
 
 For more about the options on this tab, see xref:managing-servers.adoc[Managing Servers].
@@ -145,14 +145,14 @@ The following states appear in the *Status* column:
 
 === Application Status States
 
-* Deployment Failed - Application stopped running due to a failure state. The cause of the failure appears in the console.
-* Partial - Application is in the process of starting.
-* Started - Application is running.
-* Starting - Application is transitioning into a running state.
-* Stopped - Application stopped.
-* Undeploying - Application has been removed from a server.
-* Undeployed - Application no longer resides in the server.
-* Updated - Application has been updated.
+* *Deployment Failed* - Application stopped running due to a failure state. The cause of the failure appears in the console.
+* *Partial* - Application is in the process of starting.
+* *Started* - Application is running.
+* *Starting* - Application is transitioning into a running state.
+* *Stopped* - Application stopped.
+* *Undeploying* - Application has been removed from a server.
+* *Undeployed* - Application no longer resides in the server.
+* *Updated* - Application has been updated.
 
 === Replica Status States
 
@@ -160,29 +160,29 @@ Replica statuses apply only to applications deployed on Runtime Fabric. These st
 
 Replica statuses include:
 
-* Started (green) - The replica is receiving traffic.
-* Starting - The process is starting on the replica.
-* Deleting - The deletion of the replica is in progress.
-* Deleted - The replica has been deleted.
-* Stopping - The replica is in the middle of the stopping process.
-* Stopped - The replica has stopped (is not receiving traffic).
-* Failed (red) - The desired configuration failed to deploy.
+* *Started* (green) - The replica is receiving traffic.
+* *Starting* - The process is starting on the replica.
+* *Deleting* - The deletion of the replica is in progress.
+* *Deleted* - The replica has been deleted.
+* *Stopping* - The replica is in the middle of the stopping process.
+* *Stopped* - The replica has stopped (is not receiving traffic).
+* *Failed* (red) - The desired configuration failed to deploy.
 
 === Server Status States
 
-* Connected - Server available for use.
-* Created - Server was recently registered into the system and has never been connected.
-* Running - Server is up and running, and accepting requests.
-* Disconnected - Server is currently unavailable but is registered and ready to connect.
+* *Connected* - Server available for use.
+* *Created* - Server was recently registered into the system and has never been connected.
+* *Running* - Server is up and running, and accepting requests.
+* *Disconnected* - Server is currently unavailable but is registered and ready to connect.
 
 === Server Groups Status States
 
-* Connected - All servers in the server group are connected.
-* Created - Server group created. This state occurs temporarily after creating a group until Empty asserts.
-* Disconnected - All servers in the server group are unavailable. This state can occur if the network goes down or one or more servers in a group fail.
-* Empty - No servers currently assigned to this group.
-* Partial - One or more servers in the group have differing states.
-* Running - All servers in the server group are running.
+* *Connected* - All servers in the server group are connected.
+* *Created* - Server group created. This state occurs temporarily after creating a group until Empty asserts.
+* *Disconnected* - All servers in the server group are unavailable. This state can occur if the network goes down or one or more servers in a group fail.
+* *Empty* - No servers currently assigned to this group.
+* *Partial* - One or more servers in the group have differing states.
+* *Running* - All servers in the server group are running.
 
 === Cluster Status States
 
@@ -211,7 +211,7 @@ If you select any of the applications on the *Applications* tab, a panel opens o
 
 image::dashboard-ch.png[dashboard]
 
-What this dashboard displays depends on if your application is deployed on xref:managing-applications-on-cloudhub.adoc[CloudHub] or on xref:managing-applications-on-your-own-servers.adoc[a Mule server]. You will always see the status, the time of the last modification, and the deployed application ZIP file. You can click the *Choose File* button to change the application ZIP file.
+What this dashboard displays depends on if your application is deployed on xref:managing-applications-on-cloudhub.adoc[CloudHub] or on xref:managing-applications-on-your-own-servers.adoc[Mule]. You will always see the status, the time of the last modification, and the deployed application ZIP file. You can click the *Choose File* button to change the application ZIP file.
 
 Applications on CloudHub display info about the CloudHub worker they run on.
 

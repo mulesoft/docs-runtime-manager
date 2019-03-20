@@ -9,7 +9,7 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-CloudHub supports *safely hidden application properties*, where the name of a property is visible in the console, but the value is not displayed or retrievable by any user. CloudHub resolves the property at runtime without exposing the sensitive information.
+CloudHub supports safely hidden application properties, where the name of a property is visible in the console, but the value is not displayed or retrievable by any user. CloudHub resolves the property at runtime without exposing the sensitive information.
 
 [NOTE]
 ====
@@ -25,9 +25,7 @@ Safely hidden application properties are a separate feature and concept from enc
 Application properties are variables that act as placeholders in your Mule application, and are set in your Mule runtime at runtime. When you deploy an application, or update an existing application in the Runtime Manager console, the Mule runtime engine supplies the values for the property variables using information you configure in the Runtime Manager console's *Properties* tab.
 
 
-
 == Use Case
-
 
 For example, you can configure a JDBC connector where the username is set to `${dbUsername}` and the password is set to `${dbPassword}`. In the Runtime Manager console, you can set these two properties as application properties, as shown below.
 
@@ -42,7 +40,7 @@ To create safely hidden application properties for Mule 4.0 and later:
 . Inside the Mule application's `mule-artifact.json` file, list the property names you wish to safely hide under the `secureProperties` key as a comma separated array. Line 5 of the example flags two properties as secure.
 (optional) `config.yaml` defines four properties with values for local testing.
 
-.config.yaml
+.`config.yaml`
 [source,yaml,linenums]
 ----
 http:
@@ -52,7 +50,7 @@ password: "testpass123"
 birthdate: "01/01/2015"
 ----
 
-.mule-artifact.json
+.`mule-artifact.json`
 [source,json,linenums]
 ----
 {
@@ -79,9 +77,7 @@ birthdate: "01/01/2015"
 
 
 [NOTE]
-====
 The `secureProperties` entry affects all properties no matter where (or if) they are defined.
-====
 
 To create safely hidden application properties for Mule 3, you must place the properties in the `mule-app.properties` file, for example:
 
@@ -122,8 +118,8 @@ Once an application is deployed with safely hidden application properties, Cloud
 ====
 
 
-*Copying Safely Hidden Application Properties between Sandboxes*
-When moving applications between *sandboxes*, safely hidden application property values will _not_ be copied to the new environment. For all safely hidden application properties, the name of the property will be copied, but the value will be left blank.
+== Copying Safely Hidden Application Properties between Sandboxes 
+When moving applications between *sandboxes*, safely hidden application property values are not copied to the new environment. For all safely hidden application properties, the name of the property will be copied, but the value will be left blank.
 
 
 == Encrypted Application Properties vs. Safely Hidden Application Properties
@@ -155,7 +151,7 @@ Encrypted properties can also be flagged as safely hidden application properties
 
 Here is an example:
 
-.config.yaml
+.`config.yaml`
 [source,yaml,linenums]
 ----
 http:
@@ -165,7 +161,7 @@ password: "![r8weir09458riwe0r9484oi]"
 birthdate: "01/01/2015"
 ----
 
-.mule-artifact.json
+.`mule-artifact.json`
 [source,json,linenums]
 ----
 {

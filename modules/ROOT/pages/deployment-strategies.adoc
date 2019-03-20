@@ -26,7 +26,7 @@ Runtime Manager allows you to deploy your Mule applications to Mule runtime inst
 
 |xref:1.6@private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
 
-| A http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[*Pivotal Cloud Foundry*] repository that manages an instance of Mule runtime.
+| A http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[Pivotal Cloud Foundry (PCF)] repository that manages an instance of Mule runtime.
 
 xref:deploying-to-pcf.adoc[_See deployment instructions_]
 |===
@@ -51,7 +51,7 @@ These are otherwise grayed out.
 
 image::arm-vs-ch1.png[diagram1]
 
-In xref:studio::index.adoc[Anypoint Studio], hitting the *Play* icon (or right-clicking project on the Package Explorer and selecting *Run As* > *Mule Application*), deploys your application to an embedded test server that is built into Studio. This server is not meant for production deployment and uptime restrictions apply. Ultimately you will want to deploy your application into one of the *deployment scenarios* described below. All of these are supported by the Runtime Manager.
+In xref:studio::index.adoc[Anypoint Studio], hitting the *Play* icon (or right-clicking project on the Package Explorer and selecting *Run As* > *Mule Application*), deploys your application to an embedded test server that is built into Studio. This server is not meant for production deployment and uptime restrictions apply. Ultimately you will deploy your application into one of the deployment scenarios described below. All of these are supported by the Runtime Manager.
 
 
 == Deployment Scenarios
@@ -123,7 +123,7 @@ image::infrastructure-pcf.png[pcf]
 If your IT infrastructure is built on http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[Pivotal Cloud Foundry (PCF)] to virtualize local resources, you might be interested in leveraging this platform to deploy Mule applications to dynamically allocated resources. Runtime Manager is integrated with PCF, by simply picking PCF as a deployment target on the UI, you can xref:deploying-to-pcf.adoc[deploy to your PCF instance].
 
 
-This deployment strategy is only available through the *Anypoint Platform Private Cloud Edition*, so the same limitations apply as described in the prior scenario. It requires that you do some extra leg work, and is currently lacking some operating features. You need to take extra steps to work out <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
+This deployment strategy is only available through the Anypoint Platform Private Cloud Edition, so the same limitations apply as described in the prior scenario. It requires that you do some extra leg work, and is currently lacking some operating features. You need to take extra steps to work out <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
 
 This packaging of the Anypoint Platform is currently lacking <<Dashboards>>, <<Insights>>, as well as <<Alerts and Notifications, alerts>>. Future releases will bridge those gaps further.
 
@@ -160,17 +160,17 @@ Although the long term plan is to converge the features of these deployment mech
 [%header,cols="2*"]
 |===
 | Deploying to a CloudHub worker | Deploying to a server you manage
-| xref:viewing-log-data.adoc[Logs are handled] by CloudHub
-| You can configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK
+| xref:viewing-log-data.adoc[Logs are handled] by CloudHub.
+| You can configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK.
 
 | CloudHub has its own xref:insight.adoc[Insight Engine]
-| You can also configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK
+| You can also configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK.
 
-| You can manage xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI
-| You must use the xref:3.8@mule-runtime::poll-schedulers.adoc[Poll Scheduler] element in your flows to schedule tasks
+| You can manage xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI.
+| You must use the xref:3.8@mule-runtime::poll-schedulers.adoc[Poll Scheduler] element in your flows to schedule tasks.
 
 | CloudHub has its own preconfigured default xref:managing-application-data-with-object-stores.adoc[Object Store] you can reference. To use it, simply add an xref:3.8@mule-runtime::mule-object-stores.adoc[Object Store connector] and set its 'config_ref' to point to the default CloudHub Object Store.
-| To use xref:3.8@mule-runtime::mule-object-stores.adoc[Object Stores] you must configure your own database to store data
+| To use xref:3.8@mule-runtime::mule-object-stores.adoc[Object Stores] you must configure your own database to store data.
 |===
 
 
@@ -253,7 +253,7 @@ In this case all the values typed into the command would only be stored in memor
 === For Applications on PCF
 
 
-In PCF, you can also set properties that are specific to binded services, such as credentials that are directed to a binded MySQL data base. These properties are set on the xref:deploying-to-pcf.adoc#service-bindings-tab[Service Bindings Tab]
+In PCF, you can also set properties that are specific to binded services, such as credentials that are directed to a binded MySQL data base. These properties are set on the xref:deploying-to-pcf.adoc#service-bindings-tab[Service Bindings Tab].
 
 
 == Monitoring
@@ -262,7 +262,7 @@ In PCF, you can also set properties that are specific to binded services, such a
 
 Most scenarios include the possibility of setting up xref:alerts-on-runtime-manager.adoc[Alerts] for when certain events occur. The available alerts differ depending on the deployment modality, see xref:alerts-on-runtime-manager.adoc[Alerts] for a full reference.
 
-Besides the established list of events that can trigger an alert, CloudHub allows you to set up xref:custom-application-alerts.adoc[Custom Application Alerts and Notifications]. These can be triggered by any event that you wish, by adding a *CloudHub connector* to your app's flows.
+Besides the established list of events that can trigger an alert, CloudHub allows you to set up xref:custom-application-alerts.adoc[Custom Application Alerts and Notifications]. These can be triggered by any event that you wish, by adding a CloudHub connector to your app's flows.
 
 CloudHub also features a set of standard xref:notifications-on-runtime-manager.adoc[Notifications] that pop up to inform of certain events regarding your applications.
 
@@ -296,7 +296,7 @@ Anypoint Platform Private Cloud Edition doesn't currently support the insights f
 
 CloudHub provides a xref:viewing-log-data.adoc[logging service] for allowing logs to be searched, downloaded, or log levels to be customized. See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for more details.
 
-On-premises applications can send data to external tools to manage your logs, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software]. You can use custom log4j properties files.
+On-premises applications can send data to external tools to manage your logs, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software]. You can use custom `log4j` properties files.
 
 For applications deployed to PCF, logs aren't supported but you can view logs directly on Pivotal's console.
 

@@ -10,9 +10,9 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 [TIP]
-This document describes how to call the CloudHub API. For information on how to perform these same tasks more easily via the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub] and its child pages.
+This document describes how to call the CloudHub API. For information on how to perform these same tasks more easily via the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub].
 
-The alerts API allows you to create alerts. All resources or methods that return or accept a type (except where noted) use the application JSON type. As an example, here's a Curl command that would create an alert.
+The alerts API allows you to create alerts. All resources or methods that return or accept a type (except where noted) use the application JSON type. As an example, this `curl` command creates an alert.
 
 ----
 curl --verbose -XPOST 'https://<USERNAME>:<PASSWORD>@anypoint.mulesoft.com/cloudhub/api/v2/alerts' -H "content-type: application/json" -d '{

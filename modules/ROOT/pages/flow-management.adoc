@@ -11,35 +11,31 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 [NOTE]
 ====
-CloudHub apps and the Anypoint Platform Private Cloud Edition don't currently support the flow management feature.
+CloudHub apps and the Anypoint Platform Private Cloud Edition (PCE) don't currently support the flow management feature.
 
 To act upon flows, you must have `Manage Applications` permission on the desired applications.
 ====
 
 You can individually start and stop the specific flows within your deployed applications via the Runtime Manager UI. All flows are active by default.
 
-
 == Starting and Stopping Flows
-
 
 Individual flows can be set to active or inactive through the *Start* and *Stop* buttons.
 
-Simply select one or more flows in your app, and click the Start or Stop button.
+Simply select one or more flows in your app, and click the *Start* or *Stop* button.
 
 image::flow-management-983fd.png[]
 
 [NOTE]
 Starting a flow doesn't imply triggering its endpoints, it just makes it active if previously set inactive.
 
-
 == Setting Flows to Unmanaged
 
 In some special cases, you might have apps that are explicitly set up to start and stop flows automatically, according to any criteria you want. In these cases, this behavior is carried out by logic in the applications running inside the Mule runtime itself, and Runtime Manager is unaware of the logic behind these changes.
 
-If you click *Start* or *Stop* for a flow in the Flow Management tab, Runtime Manager will continually enforce the active or inactive state onto the flow, regardless of any changes that the Mule runtime may attempt.
+If you click *Start* or *Stop* for a flow in the *Flow Management* tab, Runtime Manager continually enforces the active or inactive state onto the flow, regardless of any changes that the Mule runtime may attempt.
 
-If you want your flows to freely transition states between active and inactive according to the behavior set up in application logic running in the Mule runtime, then you can click *Unmanage* to set the flow to Unmanaged. Then the flow will no longer be affected by the Start and Stop buttons in this tab.
-
+If you want your flows to freely transition states between active and inactive according to the behavior set up in application logic running in the Mule runtime, then you can click *Unmanage* to set the flow to Unmanaged. Then the flow will no longer be affected by the *Start* and *Stop buttons* in this tab.
 
 image::flow-management-unmanage.png[]
 

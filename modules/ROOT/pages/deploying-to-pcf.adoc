@@ -19,8 +19,8 @@ This page describes the options on the *Deploy Application* panel on the Runtime
 
 To deploy an application:
 
-. Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
-. Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*
+. Sign on to the https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
+. Hover your mouse over the *Runtime Manager* icon and click it, or click *Open*.
 +
 image::deploying-to-cloudhub-5f383.png[]
 +
@@ -46,10 +46,10 @@ image::deploying-to-pcf-appname.png[]
 
 The *Deployment Target* field lets you specify where you want to deploy your application:
 
-* On the Cloud Foundry
+* On the Pivotal Cloud Foundry (PCF)
 * On an on-premises server, server group, or cluster
 
-This document focuses on deploying to the Cloud Foundry, for more information on deploying to servers, server groups and clusters, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers].
+This document focuses on deploying to Pivotal Cloud Foundry, for more information on deploying to servers, server groups and clusters, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers].
 
 
 
@@ -67,15 +67,15 @@ image::applicationfile.png[ApplicationFile]
 
 === Runtime Version
 
-Using the drop-down menu, select the *Runtime version* to which you wish to deploy:
+Using the drop-down menu, select the *Runtime version* (Mule version) to which you wish to deploy:
 
 image::runtimeversion2.png[RuntimeVersion2]
 
 [IMPORTANT]
 ====
-* Ensure that the runtime version is the same Mule version used to develop your application.
+* Ensure that the Mule version is the same version used to develop your application.
 
-* To see what runtime version you set when you deployed your application, click the *Applications* tab and click your application. In the expansion view on the right, click *Manage Application*. Click *Settings* to see the deployment values.
+* To see what Mule version you set when you deployed your application, click the *Applications* tab and click your application. In the expansion view on the right, click *Manage Application*. Click *Settings* to see the deployment values.
 ====
 
 === Replication Factor
@@ -140,7 +140,7 @@ After selecting one, click the *Add Service* button. You can then add properties
 
 === Properties for Service Bindings
 
-Just as in the <<Properties Tab>>, you can define key:value pairs for properties that are specific to the corresponding service. Keep in mind that the properties on this tab will only act on the scope of the given service, whilst the properties on the *Properties Tab* will act at a global level over the full deployment.
+Just as in the <<Properties Tab>>, you can define key:value pairs for properties that are specific to the corresponding service. Keep in mind that the properties on this tab only act on the scope of the given service; the properties on the *Properties Tab* act at a global level over the full deployment.
 
 image::deploying-to-pcf-properties.png[]
 

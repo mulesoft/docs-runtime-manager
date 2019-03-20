@@ -14,7 +14,9 @@ Worker Monitoring is a feature that is only available for applications deployed 
 
 CloudHub supports worker monitoring and automatic restarts for unresponsive applications. Monitoring allows you the option to receive notifications and diagnostic information if your application becomes unresponsive. Optionally, enable automatic restarts so that your application can recover automatically without your intervention. CloudHub gives you the flexibility to conduct monitoring with or without enabling automatic restarts.
 
-Monitoring is enabled by default on all applications deployed on CloudHub. (Applications already deployed before the monitoring feature was introduced need to be redeployed for monitoring to take effect.) You can activate the automatic restart feature on a per-application basis using the Runtime Manager console when you deploy a new application or redeploy an existing application.
+Monitoring is enabled by default on all applications deployed on CloudHub. Applications already deployed before the monitoring feature was introduced need to be redeployed for monitoring to take effect. 
+
+You can activate the automatic restart feature on a per-application basis using the Runtime Manager console when you deploy a new application or redeploy an existing application.
 
 == Prerequisites
 
@@ -36,19 +38,19 @@ For applications running on runtime 3.8.x and earlier, upon deployment, CloudHub
 
 image::logpingflowinjector.png[LogPingFlowInjector]
 
-After your application fully starts, the log displays an additional message to indicate that monitoring has started, "Mule system health monitoring started for your application."
+After your application fully starts, the log displays an additional message to indicate that monitoring has started: `Mule system health monitoring started for your application.`
 
 image::chmulesystemhealthmsg.png[CHMuleSystemHealthMsg]
 
 == How Monitoring Works
 
-*Mule Runtime 3.x.x * 
+=== Mule Runtime 3.x.x 
 
 Every 30 seconds, CloudHub sends an HTTP get request to the ping flow within the application. If the application is running normally, the ping flow sends a response. If CloudHub receives no response from the ping three times in a row, the logs print a warning and display a full thread dump.
 
 image::ch-monitoring-threaddump.png[CH-monitoring-threaddump]
 
-*Mule Runtime 4.x.x *
+=== Mule Runtime 4.x.x
 
 Every 30 seconds, CloudHub checks the PID of the Mule process. If CloudHub detects the application process is not running three times in a row, the logs print a warning.
 
@@ -85,7 +87,7 @@ If the restart fails, CloudHub continues to attempt restarting up to five times.
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
+* xref:cloudhub.adoc[CloudHub Overview]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:deployment-strategies.adoc[Deployment Strategies]
 * xref:cloudhub-architecture.adoc[CloudHub architecture]

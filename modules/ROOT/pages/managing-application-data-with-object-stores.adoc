@@ -16,18 +16,18 @@ CloudHub includes application data storage for each application it manages, this
 
 Your application can also store custom integration data as well, within the limits outlined below.
 
-*Notes:*
-
+[NOTE]
+====
 * Object stores are handled in the way described in this document only for applications deployed to CloudHub workers. For applications that you deploy via the Runtime Manager to local servers, you must handle the storage of data in your own repository. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
-
 * All data in an object store is handled by servers in the *US-East zone*, regardless of what zone your application is deployed to. This may impact performance.
-
+====
 
 == Storing and Retrieving Data
 
 To work with application data inside a Mule flow, use the Object Store connector. The connector provides operations to store, retrieve, list, and remove data from a Runtime Manager Object Store.
 
-*Note:* You must specify a unique Partition name in the connector, and to view information in Runtime Manager > Application Data, your connector project must contain an Object Store Reference to the `_defaultUserObjectStore` Spring bean instance.
+[NOTE]
+You must specify a unique Partition name in the connector, and to view information in *Runtime Manager* > *Application Data*, your connector project must contain an Object Store Reference to the `_defaultUserObjectStore` Spring bean instance.
 
 See:
 
@@ -44,7 +44,8 @@ To view application data, click your application name in Runtime Manager, click 
 
 image::applicationdata.png[]
 
-*Tip:* To make properties secure so that they're not visible using the Runtime Manager UI or anywhere else, see xref:secure-application-properties.adoc[Secure Application Policies].
+[TIP]
+To make properties secure so that they're not visible using the Runtime Manager UI or anywhere else, see xref:secure-application-properties.adoc[Secure Application Policies].
 
 == Semantics and Storage Limits
 

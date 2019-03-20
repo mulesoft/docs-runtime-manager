@@ -1,11 +1,12 @@
-= Tutorial: Creating a VPC (Anypoint Platform CLI)
+= Tutorial: Creating an Anypoint Virtual Private Cloud with Anypoint Platform CLI
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-This section shows you how to create and configure a VPC using the Anypoint Platform CLI. +
-Log in to your organization and use the vpc create command to create the VPC:
+This section shows you how to create and configure an Anypoint Virtual Private Cloud (Anypoint VPC) using the Anypoint Platform CLI.
+
+Log in to your organization and use the `vpc create` command to create the Anypoint VPC:
 
 ----
 cloudhub vpc create // <1>
@@ -17,32 +18,33 @@ us-east-1 // <3>
 
 In this example:
 
-. The VPC is called `vpc-tutorial`
-. Is bound to the `us-east-1` region
+* The Anypoint VPC is called `vpc-tutorial`.
+* The Anypoint VPC is bound to the `us-east-1` region.
 +
 [NOTE]
 --
-All VPCs need to be associated to a CloudHub region.
+All Anypoint VPCs need to be associated to a CloudHub region.
 --
 +
-. The VPC size is `10.111.0.0/24`. In CIDR notation, this grants 256 IP addresses from 10.111.0.0 to 10.111.0.255. +
-It is not possible to resize a VPC once created. +
-Understanding how to size your VPC is crucial at this point. If you are not sure how to configure this, make sure to follow our xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide. +
-The CIDR Blocks chosen for the VPC should ideally come from a private IP space, and should not overlap with any other VPC's CIDR Blocks or any CIDR Blocks in use in your corporate network.
-. The VPC is set as default. This means that all environments in this region that are not associated to a VPC will be, by default, associated to this VPC.
+* The Anypoint VPC size is `10.111.0.0/24`. In CIDR notation, this grants 256 IP addresses from 10.111.0.0 to 10.111.0.255. +
+** It is not possible to resize an Anypoint VPC once created. +
+** Understanding how to size your Anypoint VPC is crucial at this point. If you are not sure how to configure this, make sure to follow our xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide. +
+** The CIDR blocks chosen for the Anypoint VPC should ideally come from a private IP space, and should not overlap with any other Anypoint VPC's CIDR Blocks or any CIDR Blocks in use in your corporate network.
+
+* The Anypoint VPC is set as default. This means that all environments in this region that are not associated to an Anypoint VPC will be, by default, associated to this Anypoint VPC.
 
 [CAUTION]
 --
-In this example, we are *not passing*:
+In this example, we are not passing:
 
 * Environment information: +
-Not setting a specific environment makes that every application deployed to US-EAST is associated to this VPC disregarding the environment to which it is being deployed.
+Not setting a specific environment makes that every application deployed to US-EAST is associated to this Anypoint VPC disregarding the environment to which it is being deployed.
 
 * Business group information: +
-By doing so, we are associating this VPC to the main organization.
+By doing so, we are associating this Anypoint VPC to the main organization.
 --
 
-When the operation succeeds, the CLI displays the details of the newly created VPC.
+When the operation succeeds, Anypoint Platform CLI displays the details of the newly created Anypoint VPC.
 
 [source,text,linenums]
 ----
@@ -73,7 +75,7 @@ When the operation succeeds, the CLI displays the details of the newly created V
 
 == Create Firewall Rules
 
-When the VPC is created, four firewall rules are set by default. You can review them using the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-describe[vpc firewall-rules describe] command:
+When the Anypoint VPC is created, four firewall rules are set by default. You can review them using the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-describe[vpc firewall-rules describe] command:
 
 ----
 cloudhub vpc firewall-rules describe vpc-tutorial
@@ -94,12 +96,12 @@ This command returns:
 
 [TIP]
 --
-Rule `0` allows inbound connections from your local VPC from ports *8091* and *8092*, while rule `1` allows traffic from any host to reach your workers through ports 8081 and 8082.
+Rule `0` allows inbound connections from your local Anypoint VPC from ports 8091 and 8092, while rule `1` allows traffic from any host to reach your workers through ports 8081 and 8082.
 --
 
-You can use the xref:anypoint-platform-cli.adoc#cloudhub-vpc-delete[vpc firewall-rules delete] command to remove any of the default rules or you  can add new ones using the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-add[vpc firewall-rules add] command.
+You can use the xref:anypoint-platform-cli.adoc#cloudhub-vpc-delete[`vpc firewall-rules delete`] command to remove any of the default rules or you  can add new ones using the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-add[`vpc firewall-rules add`] command.
 
-Assume you want to enable TCP traffic through port 8090 inside your VPC. You need to run the following:
+Assume you want to enable TCP traffic through port 8090 inside your Anypoint VPC. You need to run the following:
 
 ----
 cloudhub vpc firewall-rules add
@@ -110,8 +112,8 @@ tcp // <4>
 8090
 ----
 
-. Set `vpc-tutorial` as the target VPC for this new firewall rule.
-. Set the IP range to allow all only hosts from insde your VPC by setting `10.111.0.0/24`. +
+. Set `vpc-tutorial` as the target Anypoint VPC for this new firewall rule.
+. Set the IP range to allow all only hosts from insde your Anypoint VPC by setting `10.111.0.0/24`. +
 In CIDR notation, this allows the range 10.111.0.0 to 10.111.0.255.
 . Set the whitelisted protocol to `tcp`
 . Allow the port number `8090`
@@ -123,17 +125,17 @@ VPC firewall modified successfully
 ----
 
 
-== Update an Existing VPC
+== Update an Existing Anypoint VPC
 
-Although it is not possible to update certain values from your VPC through the Anypoint Platform CLI, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[Cloudhub API] to programmatically manage and update your VPC:
+Although it is not possible to update certain values from your Anypoint VPC through the Anypoint Platform CLI, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[Cloudhub API] to programmatically manage and update your Anypoint VPC:
 
 . Log in to the CloudHub services passing your credentials through the `+https://anypoint.mulesoft.com/accounts/login+` endpoint.
-. Use the `organizations/{orgid}/vpcs/{vpcId}` endpoint to update your VPC.
+. Use the `organizations/{orgid}/vpcs/{vpcId}` endpoint to update your Anypoint VPC.
 
 [NOTE]
 You can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[API Reference] to understand how to interact with the API's resources.
 
-For example, to update the environments of your VPC you need to send a `PUT` request to the `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs/{vpcId}` endpoint with a JSON payload:
+For example, to update the environments of your Anypoint VPC you need to send a `PUT` request to the `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs/{vpcId}` endpoint with a JSON payload:
 
 [TIP]
 --
@@ -153,11 +155,11 @@ Your `{vpcId}` value is listed by running a xref:anypoint-platform-cli.adoc#clou
 
 [NOTE]
 --
-`<EnvironmentId>` needs to be replaced by the Id of the environment to which you want to associate this VPC. +
+`<EnvironmentId>` needs to be replaced by the Id of the environment to which you want to associate this Anypoint VPC. +
 You can get the Ids for your environments running a xref:anypoint-platform-cli.adoc#account-environment-list[account environment list] command.
 --
 
 == See Also
 
-* Learn how to associate a load balancer to this VPC following the xref:dedicated-load-balancer-tutorial.adoc[load balancer tutorial].
+* Learn how to associate a load balancer to this Anypoint VPC following the xref:dedicated-load-balancer-tutorial.adoc[load balancer tutorial].
 * Learn more about the xref:anypoint-platform-cli.adoc[Anypoint Platform CLI].

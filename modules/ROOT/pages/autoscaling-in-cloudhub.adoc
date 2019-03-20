@@ -14,7 +14,7 @@ To use the autoscaling feature, your organization must have an Enterprise Licens
 
 CloudHub allows you to make the processing power behind your applications responsive to changes in their usage. You can define policies that respond to CPU or memory usage thresholds by scaling up or scaling down the processing resources used by an application.
 
-== Configuring Autoscaling
+== Configure Autoscaling
 
 . Click the *Applications* tab of Runtime Manager.
 . Select an application deployed to CloudHub to open its panel.
@@ -22,7 +22,7 @@ CloudHub allows you to make the processing power behind your applications respon
 . In the *Settings* section, select the *Autoscaling* tab. +
 You can see all existing autoscaling policies, activate or deactivate them, create or delete them, and create associated xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager].
 
-== Creating a Policy
+== Create a Policy
 
 To create a policy, click the *Create Policy* button, then configure the fields to set your policy up.
 
@@ -55,21 +55,21 @@ You can apply only one autoscaling policy per application.
 
 The maximum amount and size of workers that you have available is limited by the characteristics of your account. If multiple applications running in your account compete for limited resources, they are allocated in a first-come, first-serve manner.
 
-== Editing an Existing Policy
+== Edit an Existing Policy
 
 To edit an existing policy, open the *Policies* tab. Click the policy name and you will access the same menu that is used to create a new policy.
 
-== Deactivating a Policy
+== Deactivate a Policy
 
 To deactivate a running policy, open the policies tab and flip the switch in its corresponding *Status* field:
 
 image::enable-policy.png[enable]
 
-== Deleting a Policy
+== Delete a Policy
 
 To delete an existing policy, go to the policies tab, then click its corresponding delete icon.
 
-== Setting an Alert and Viewing Autoscaling History
+== Set an Alert and View Autoscaling History
 
 Two specific types of Alerts can be set up for applications on CloudHub that warn you whenever a worker autoscaling event occurs. One alerts you about scale ups and the other about scale downs.
 

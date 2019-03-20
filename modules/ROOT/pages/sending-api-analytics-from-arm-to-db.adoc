@@ -3,80 +3,71 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-keywords: analytics, monitoring, logs, mule events, logging, apy analytics, metrics, traceability, arm, anypoint runtime manager, db, sql, mysql, oracle, jdbc
+:keywords: analytics, monitoring, logs, mule events, logging, apy analytics, metrics, traceability, arm, anypoint runtime manager, db, sql, mysql, oracle, jdbc
 
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-By simply configuring a few settings, the HTTP API Analytics produced by your applications running on the API Gateway runtime can be easily stored in a database.
+By simply configuring a few settings, the HTTP API Analytics produced by your applications running on the API gateway runtime can be easily stored in a database.
 
 [NOTE]
 ====
 Sending data to third party software is a feature that is currently only available for applications deployed to local servers. It is not available for applications that you deploy via the Runtime Manager to xref:cloudhub.adoc[CloudHub]. See xref:deployment-strategies.adoc[Deployment Strategies].
-////
-It's not available either for applications deployed to PCF
-////
 ====
-
 
 To see how to send this same information to Splunk, ELK or other third party software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software].
 
 == Prerequisites
 
-Please make sure you have the following software installed:
-
-* API Gateway Standalone – Version 2.1.0 or above
-* The Runtime Manager Agent Plugin version 1.3.0 or above
-
+* API gateway standalone – version 2.1.0 or above
+* Runtime Manager agent plugin version 1.3.0 or above
 
 == Install the Runtime Manager Agent
 
-First you must install the Runtime Manager Agent, which is in charge of sending messages out of mule. In order to send event information to third party software, you need to have version *1.3.0* or newer of the Runtime Manager Agent.
-See xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent].
+The Runtime Manager Agent is in charge of sending messages out of Mule. In order to send event information to third party software, you need to have version 1.3.0 or newer of the Runtime Manager Agent.
 
+For help installing the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent].
 
 == Install API Analytics Tracking Database Internal Handlers
 
-Download the API Analytics Tracking Database Internal Handlers from *http://mule-agent.s3.amazonaws.com/1.5.1/mule-agent-internal-handlers-db-1.5.1.zip[here]* and unzip them on `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules` folder.
+Download http://mule-agent.s3.amazonaws.com/1.5.1/mule-agent-internal-handlers-db-1.5.1.zip[the API Analytics Tracking Database Internal Handlers] and unzip them in the `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules` folder.
 
 == Agent Configurable Fields
 
-Once you have the latest Runtime Manager Agent and the API Analytics Tracking Database Internal Handlers installed on your API Gateway Standalone server you enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
+Once you have the latest Runtime Manager agent and the API analytics tracking database internal handlers installed on your API gateway Standalone server, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
 
-Below we provide example configurations for MySQL Server, ORACLE and Microsoft SQL Server.
-
-Although the required fields are `driver`, `jdbcUrl`, `user` and `pass`. You can also configure the `apiAnalyticsTable` where the analytics are stored.
+In the following example configurations for MySQL Server, ORACLE and Microsoft SQL Server, the required fields are `driver`, `jdbcUrl`, `user` and `pass`. You can also configure the `apiAnalyticsTable` where the analytics are stored.
 
 |===
 |Field|Data Type|Description|Type|Default Value
 
-|driver
+|`driver`
 |String
 |Represents the JDBC driver to use to communicate with the database server.
 |Required
 |
 
-|jdbcUrl
+|`jdbcUrl`
 |String
 |Represents the JDBC url to the database server.
 |Required
 |
 
-|user
+|`user`
 |String
 |The username to connect to the database server.
 |Required
 |
 
-|pass
+|`pass`
 |String
 |The password to connect to the database server.
 |Required
 |
 
-|apiAnalyticsTable
+|`apiAnalyticsTable`
 |String
 |Represents the name of the table in which the agent will store the events.
 |Optional
@@ -84,10 +75,9 @@ Although the required fields are `driver`, `jdbcUrl`, `user` and `pass`. You can
 
 |===
 
-
 == Proposed Configurations
 
-Below are a few examples for setting up the agent for working with some of the most common databases.
+Examples for setting up the agent for working with some of the most common databases
 
 === MySQL
 
@@ -128,8 +118,8 @@ CREATE TABLE MULE_API_ANALYTICS (
 ==== Internal Handler Configuration
 
 . Download the MySQL JDBC driver from http://dev.mysql.com/downloads/connector/j/.
-. Extract the .zip file to obtain the `mysql-connector-java-_VERSION_-bin.jar` file
-. Copy this .jar file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Extract the ZIP file to obtain the `mysql-connector-java-_VERSION_-bin.jar` file.
+. Copy the JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]
@@ -182,8 +172,8 @@ CREATE TABLE MULE_API_ANALYTICS (
 ==== Internal Handler Configuration
 
 . Download the Oracle JDBC driver from http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html.
-. Extract the .zip file to obtain the .jar file
-. Copy this .jar file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Extract the ZIP file to obtain the JAR file.
+. Copy this JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]

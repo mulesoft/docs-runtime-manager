@@ -11,12 +11,12 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 [NOTE]
 ====
-The Anypoint Platform Private Cloud Edition doesn't currently support the insights feature.
+Anypoint Platform Private Cloud Edition doesn't support Insight.
 ====
 
 == Overview
 
-*Insight* is a troubleshooting tool that gives you in-depth visibility into business transactions and events on your Mule applications that you deploy through Runtime Manager. By tracking everything your data does in an application, Insight makes information searchable and helps you find and recover from any errors that occurred during message processing and replay your transactions instantly.
+Insight is a troubleshooting tool that gives you in-depth visibility into business transactions and events on your Mule applications that you deploy through Runtime Manager. By tracking everything your data does in an application, Insight makes information searchable and helps you find and recover from any errors that occurred during message processing and replay your transactions instantly.
 
 Insight helps you answer questions about your integrated apps, such as:
 
@@ -25,7 +25,7 @@ Insight helps you answer questions about your integrated apps, such as:
 * What was the result of a transaction?
 * If something went wrong during processing, at what point did the failure occur?
 
-Using the *Insight Dashboard*, you can view events that occur within the flows that handle your business transactions. Further, you can drill down into event-related data to access information that can help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
+Using the Insight Dashboard, you can view events that occur within the flows that handle your business transactions. Further, you can drill down into event-related data to access information that can help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
 
 [IMPORTANT]
 ====
@@ -40,7 +40,7 @@ Insight does not support visibility into xref:3.8@mule-runtime::batch-processing
 If you want to enable insight on apps that run on servers on-premises, besides following the steps in this section you must also obtain special entitlements on your account. Contact your MuleSoft sales representatives to obtain these.
 
 
-To track, aggregate, and store Mule server events by default, Insight requires some processing and network overhead. Complete the following procedure to enable Insight to track the events your Mule servers generate.
+To track, aggregate, and store Mule events by default, Insight requires some processing and network overhead. Complete the following procedure to enable Insight to track the events your Mule servers generate.
 
 . Sign in to your Anypoint Platform account.
 . On the *Applications* section, select an application to open its right panel, click the *Manage Application* button.
@@ -54,16 +54,15 @@ image::insight-92ba4.png[]
 image::insight-320c1.png[]
 
 . Select one of the tracking options:
-** *Disabled* to not use Insight.
-** *Metadata* to simply track events.
-** *Metadata and Replay* to track events and enable the ability to instantly replay a transaction from the console. For more information, see Diagnosing Problems and Replaying Transactions. *Note*: Replay only works for flows that have inbound endpoints.
+** *Disabled* to not use Insight
+** *Metadata* to simply track events
+** *Metadata and Replay* to track events and enable the ability to instantly replay a transaction from the console. For more information, see Diagnosing Problems and Replaying Transactions.
 +
 [NOTE]
-This third option is only available on applications deployed to CloudHub
+*Metadata and Replay* is only available on applications deployed to CloudHub, and replay only works for flows that have inbound endpoints.
 
 
 . Click *Apply changes* to apply the settings.
-
 
 After you enable Insight, the following events are tracked by default:
 
@@ -78,13 +77,12 @@ Logs for applications deployed to servers on-premises contain event information,
 
 You can configure business events in your Mule applications by embedding custom business events in flows, or by enabling granular event tracking within message processors in your flows.
 
-* *Custom Business Events* Include *Custom Business Event* elements at relevant points within the flows of your application to surface the processing information that is most relevant for your business to track. Read more about xref:3.8@mule-runtime::business-events.adoc[configuring custom business events] for details.
-
-* *Event Tracking* Track more granular events by enabling *default event tracking* for your entire flow or for specific message processors or endpoints within your flow. When you configure the flows in your application, you can explicitly configure the scope for default event tracking. Read more about xref:3.8@mule-runtime::business-events.adoc[enabling default business event tracking] in your flows.
+* Custom Business Events. Include custom business event elements at relevant points within the flows of your application to surface the processing information that is most relevant for your business to track.
+* Event Tracking. Track more granular events by enabling default event tracking for your entire flow or for specific message processors or endpoints within your flow. When you configure the flows in your application, you can explicitly configure the scope for default event tracking.
 
 [NOTE]
 ====
-Note that when deploying your application on Runtime Manager, you must make sure that in the *Insight* tab you select either 'Metadata' or 'Metadata and Replay'
+Note that when deploying your application on Runtime Manager, you must make sure that in the *Insight* tab you select either *Metadata* or *Metadata and Replay*
 
 image::chinsighttab.png[insight tab]
 ====
@@ -94,9 +92,9 @@ image::chinsighttab.png[insight tab]
 
 The *Insight Dashboard* displays information at three tracking levels: Transactions, Events, and Metadata.
 
-* *Transactions* are logical groupings of related events, and often correspond to a business view of the system.
-* *Events* track low-level details of a transaction. Events map to message processors and endpoints and reveal information about exceptions and any custom business events you may have configured.
-* *Metadata* tracks customized key/value pairs that you have specified as part of custom events in your application. The information that Insight tracks at this level presents information about high-level business events.
+* Transactions are logical groupings of related events, and often correspond to a business view of the system.
+* Events track low-level details of a transaction. Events map to message processors and endpoints and reveal information about exceptions and any custom business events you may have configured.
+* Metadata tracks customized key/value pairs that you have specified as part of custom events in your application. The information that Insight tracks at this level presents information about high-level business events.
 
 The following image illustrates where to find transactions, events, and metadata on the Insight dashboard.
 
@@ -106,7 +104,7 @@ image::chindash2.png[CHInDash2]
 
 For Transaction-level events, Insight may display long numeric values in the ID column. Rather than use random number identifiers, you may wish to customize the transaction IDs so that they display more intuitive values which are relevant to your business requirements.
 
-Use a xref:3.8@mule-runtime::mule-expression-language-mel.adoc[Mule expression] to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number. Read more about xref:3.8@mule-runtime::business-events.adoc[how to customize your transaction ID] in Studio's visual editor or XML editor.
+Use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number.
 
 === Searching or Filtering Transactions
 
@@ -150,11 +148,11 @@ image::chsavesearch.png[CHSaveSearch]
 
 === Filtering Events
 
-Within transactions, use the *Transaction Details* to further refine the types of events that Insight displays for each transaction. Click the events Transaction Details dropdown to reveal possible filter criteria. If you are debugging, you may find it useful to see all events so that you can drill down into the detailed steps of your flow. If you are interested in analyzing higher level business information, you may wish to apply a filter so as to view only your custom business events.
+Within transactions, use the Transaction Details to further refine the types of events that Insight displays for each transaction. Click the events Transaction Details dropdown to reveal possible filter criteria. If you are debugging, you may find it useful to see all events so that you can drill down into the detailed steps of your flow. If you are interested in analyzing higher level business information, you may wish to apply a filter so as to view only your custom business events.
 
 image::chtransactiondetails.png[CHTransactionDetails]
 
-The *default settings* of the events filter depend upon your user role as follows:
+The default settings of the events filter depend upon your user role as follows:
 
 * If your user role is *Support*, the default events filter setting display only custom events.
 * If your user role is *Admin* or *Developer*, the default events filter setting displays custom events, endpoint events, and message processor events, but does not display flow events.
@@ -168,7 +166,7 @@ Replay Data for applications created before Oct 7, 2017 will be stored in the de
 
 == Diagnosing Problems and Replaying Transactions
 
-Insight's *Message Replay* feature enables advanced error recovery. When you encounter a failed transaction (as displayed on Insight's dashboard), you can diagnose the problem, fix the root issue, then replay the transaction that failed. The following example demonstrates this functionality.
+Insight's message replay feature enables advanced error recovery. When you encounter a failed transaction (as displayed on Insight's dashboard), you can diagnose the problem, fix the root issue, then replay the transaction that failed. The following example demonstrates this functionality.
 
 === Transaction Failed
 
@@ -205,9 +203,7 @@ This action cannot be reversed.
 
 == See Also
 
-* xref:3.8@mule-runtime::business-events.adoc[Configure business events] in your application.
-* Read more about viewing log data.
-* Read more about Insight on our http://blogs.mulesoft.com/?s=insight[MuleSoft Blog].
+* http://blogs.mulesoft.com/?s=insight[MuleSoft Blog].
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
@@ -221,5 +217,5 @@ This action cannot be reversed.
 * xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
 * xref:anypoint-platform-cli.adoc[Command Line Tools]
 * xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)]
 * xref:penetration-testing-policies.adoc[Penetration Testing Policies]

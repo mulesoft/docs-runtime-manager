@@ -1,50 +1,47 @@
-= Flow Metrics (Hybrid / PCE)
+= Flow Metrics
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, analytics, monitoring, insight, filter
 
-You can view the evolution of performance metrics for individual flows in your applications that are deployed to servers on premises.
+You can view the evolution of performance metrics for individual flows in your applications that are deployed to servers on premises (hybrid or Anypoint Platform Private Cloud Edition).
 
-== Enabling Flow Metrics (Hybrid)
+== Enabling Flow Metrics for Hybrid
 
 When you deploy a new application to a hybrid deployment environment, the flow metrics feature is not enabled by default. To enable flow metrics, your account must be granted one of the following permissions.
 
-* Manage Application Data
-* Create Applications
-* Manage Settings
+* *Manage Application Data*
+* *Create Applications*
+* *Manage Settings*
 
 To enable flow metrics:
 
-. From Runtime Manager, click Applications.
-. Select the application where you want to enable flow metrics, then click Manage Application.
-. Click Settings, then select the Flow Monitoring tab.
+. From Runtime Manager, click *Applications*.
+. Select the application where you want to enable flow metrics, then click *Manage Application*.
+. Click *Settings*, then select the *Flow Monitoring* tab.
 +
 image::flow-metrics-enable.png[]
-. Select Enabled, then click Apply Changes.
-
-
+. Select *Enabled*.
+. Click *Apply Changes*.
 
 == Access Flow Metrics
 
 To view flow metrics, you must have the Read Application permission for the desired applications.
 
-. Select the *Applications* tab in Runtime Manager
+. Select the *Applications* tab in Runtime Manager.
 . Enter a running application's settings (either by clicking the *Manage Application* button on the side panel, or the application name itself in the table).
-. Select the *Flows* tab on the left side bar
-. Select one or multiple flows
+. Select the *Flows* tab on the left side bar.
+. Select one or multiple flows.
 +
 image::flow-metrics-c8f9d.png[]
 
 == Verify the Status of Servers
 
-If your application is deployed to a Cluster or a Server Group, you can view the status of the flow on each server it runs in.
-
+If your application is deployed to a cluster or a server group, you can view the status of the flow on each server it runs in.
 
 image::flow-metrics-86a1a.png[]
 
-This screen can help you rule out the possibility of a communication issue leading to inconsistent states throughout the servers.
-
+Use this information to rule out the possibility of a communication issue leading to inconsistent states throughout the servers.
 
 == View Flow Metrics
 
@@ -60,8 +57,8 @@ This tab contains charts for the following three metrics:
 
 All metrics are displayed as an average relative to the selected time scale.
 
-NOTE: The retention period for flow metrics is two weeks.
-
+[NOTE]
+The retention period for flow metrics is two weeks.
 
 == Navigating the Metrics
 

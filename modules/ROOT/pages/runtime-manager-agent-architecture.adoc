@@ -9,11 +9,11 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The Runtime Manager Agent is a Mule plugin that exposes the Mule ESB JAVA API as a service, allowing users to manipulate and monitor Mule ESB instances from external systems.
+The Runtime Manager agent is a Mule plugin that exposes the Mule JAVA API as a service, allowing users to manipulate and monitor Mule instances from external systems.
 
-This document shows an overview of the Runtime Manager Agent architecture and its main components.
+This document shows an overview of the Runtime Manager agent architecture and its main components.
 
-== Runtime Manager Agent Main Components
+== Runtime Manager agent Main Components
 
 === Mule Service
 
@@ -57,10 +57,10 @@ image::push-agent.png[push]
 
 The agent's architecture is quite simple:
 
-* The transports handle communication
-* The external message handlers dispatch messages
-* The services connect to Mule API
-* The internal message handlers dispatch Mule notifications
+* The transports handle communication.
+* The external message handlers dispatch messages.
+* The services connect to Mule API.
+* The internal message handlers dispatch Mule notifications.
 
 The interaction of each component is shown in the diagram below for each of the three types of messages (synchronous, asynchronous and push):
 
@@ -78,11 +78,11 @@ Below is an outline of a typical sequence of component interaction:
 . The service maps the notification to an agent notification, and looks for the internal message handlers that may handle the notification type.
 . The corresponding internal message handlers are executed.
 
-== Runtime Manager Agent Configuration
+== Runtime Manager agent Configuration
 
-At startup, the Runtime Manager Agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`. You must manually add, then edit this file with your installation's configuration parameters. The format is self-explanatory; a sample file is available for download.
+At startup, the Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`. You must manually add, then edit this file with your installation's configuration parameters. The format is self-explanatory; a sample file is available for download.
 
-During installation, you also have the option to configure the Runtime Manager Agent via a quick-start script. For details, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent]
+During installation, you also have the option to configure the Runtime Manager agent using a quick-start script. For details, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager agent]
 
 == Configurable Components
 

@@ -1,4 +1,4 @@
-= Anypoint CLI 2.x
+= Anypoint Platform CLI 2.x
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -17,12 +17,12 @@ The CLI supports both interactive shell and standard CLI modes, and works with:
 
 == Prerequisites
 
-Anypoint-CLI is a Node.js application. To install Anypoint CLI on your computer you need to make sure that you have the Node.js runtime environment installed on your computer, along with NPM, the default Node.js package manager.
+Anypoint-CLI is a NodeJS application. To install Anypoint Platform CLI on your computer you need to make sure that you have the NodeJS runtime environment installed on your computer, along with NPM, the default Node.js package manager.
 Follow the NodeJS documentation to get both resources.
 
-Additionally, you  also need to install the Git version management system on your computer. Installation instructions and links to downloads for your particular Operating System are available at the Git Documentation site.
+Additionally, you  also need to install the git version management system on your computer. Installation instructions and links to downloads for your particular Operating System are available at the Git Documentation site.
 
-After you have installed Node.js (with npm) and git, you can install Anypoint CLI by opening a command-line interface and typing:
+After you have installed NodeJS (with npm) and git, you can install Anypoint Platform CLI by opening a command-line interface and typing:
 
 == Installation
 
@@ -80,7 +80,7 @@ If you send both username and password, and the token bearer, the CLI prioritize
 
 === Credentials File
 
-The recommended way of passing these options to your Anypoint CLI installation is using the `credentials` file located inside the `./anypoint/` directory, which is not automatically created during installation. Follow these steps to create your credentials file:
+The recommended way of passing these options to your Anypoint Platform CLI installation is using the `credentials` file located inside the `./anypoint/` directory, which is not automatically created during installation. Follow these steps to create your credentials file:
 
 . Create a directory called `.anypoint` in the `~/` directory for Linux and OSx, or `C:\Users\USERNAME \` in Windows.
 . Navigate to your `.anypoint` directory and create a blank file named `credentials` with the following structure:
@@ -2456,7 +2456,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > cloudhub load-balancer mappings describe <name> [certificateName]
 ----
 This command lists the mapping rules for the load balancer specified in <name>. +
-If no `certificateName` is passed, Anypoint CLI returns the mappings for the default SSL endpoint.
+If no `certificateName` is passed, Anypoint Platform CLI returns the mappings for the default SSL endpoint.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
 
@@ -2466,7 +2466,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > cloudhub load-balancer mappings add [options] <name> <index> <inputUri> <appName> <appUri> [certificateName]
 ----
 This command adds a proxy mapping rule to the load balancer specified in <name> at the priority index specified in <index> in the CN passed under the `certificateName` option. +
-If no `certificateName` is passed, Anypoint CLI adds the mappings to the default SSL endpoint.
+If no `certificateName` is passed, Anypoint Platform CLI adds the mappings to the default SSL endpoint.
 
 
 [%header,cols="12a,68a,20a"]
@@ -2499,7 +2499,7 @@ Supported Values: http, https | --upsetreamProtocol http
 This command removes the proxy mapping rules from the load balancer specified in <name> at the priority index specified in <index> and the CN specified as the `certificateName` option.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
-If no `certificateName` is passed, Anypoint CLI removes the mappings for the default SSL endpoint.
+If no `certificateName` is passed, Anypoint Platform CLI removes the mappings for the default SSL endpoint.
 
 === cloudhub load-balancer dynamic-ips enable
 

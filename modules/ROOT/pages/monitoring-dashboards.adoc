@@ -10,7 +10,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 [NOTE]
-To view dashboards, your user must have `Read Application` or `Read Servers` permission for the desired resources.
+To view dashboards, your user must have *Read Application* or *Read Servers* permission for the desired resources.
 
 The Dashboard gives you in-depth visibility into usage metrics about both your deployed applications and the systems they're deployed to.
 
@@ -40,7 +40,7 @@ image::dashboards-a2810.png[]
 
 The dashboard shows graphs for three separate metrics:
 
-* Mule Messages
+* Mule messages
 * CPU usage, as a percentage of the capacity
 * Memory usage
 
@@ -75,7 +75,7 @@ image::dashboards-a2810.png[]
 +
 . Select the *Dashboard* section on the left.
 
-You can also drill down to this dashboard if you first open <<The Dashboard for a Server>> that runs the application, and from there then click on the hyperlink on the name of the application.
+You can also drill down to this dashboard if you first open the dashboard for a server that runs the application, then click on the hyperlink on the name of the application.
 
 === Navigating the Dashboard
 
@@ -94,9 +94,9 @@ image::monitoring-dashboards-cbd92.png[]
 If your application runs on a cluster or server group, the aggregated metrics of the entire set of servers included will be charted as a single plot line.
 
 [TIP]
-If you run your app on a Cluster or Server group and want to see these same metrics broken down at individual server level, you can look at <<The Dashboard for a Server, the dashboard for the individual server>>. Note that if multiple apps are running on the server, what you'll see is the overall server performance, without a distinction between each of the apps running on it.
+If you run your app on a cluster or server group and want to see these same metrics broken down at individual server level, you can look at the dashboard for the individual server. Note that if multiple apps are running on the server, what you'll see is the overall server performance, without a distinction between each of the apps running on it.
 
-By hovering your mouse over a given point of a graph, an overlay will display numerical detail about activity on that instant.
+By hovering your mouse over a given point of a graph, an overlay displays numerical detail about activity on that instance.
 
 image::monitoring-dashboards-fad4e.png[]
 
@@ -105,10 +105,8 @@ Set up xref:alerts-on-runtime-manager.adoc#conditions-on-locally-deployed-applic
 
 == The Dashboard for a Server
 
-
 [NOTE]
-The Anypoint Platform Private Cloud Edition doesn't currently support the dashboard feature.
-
+The Anypoint Platform Private Cloud Edition doesn't support the dashboard feature.
 
 === Access the Dashboard
 
@@ -118,29 +116,16 @@ To access the dashboard of a server on-premises:
 . Click the *View Details* button.
 . Select the *Dashboard* section on the left.
 
-////
-[TIP]
-====
-If the server has an issue, click the icon on the *Health* column to access the dashboard directly.
-
-image::dashboards-34419.png[]
-====
-////
-
-You can also drill down to this dashboard if you first open <<The Dashboard for a Cluster or Server Group>> that contains the server, and from there then click on the hyperlink on the name of the server.
+You can also drill down to this dashboard if you first open the dashboard for a cluster or server group that contains the server, then click on the hyperlink on the name of the server.
 
 image::monitoring-dashboards-server.png[]
 
-=== Navigating the Dashboard
-
-
+=== Navigate the Dashboard
 
 The dashboard shows several metrics divided into two panes:
 
-* Overview
-* Breakdown
-
-The different graphs you can find in each are detailed below.
+* *Overview*
+* *Breakdown*
 
 All graphs can be viewed at different time scales by selecting the desired time interval on the top-right corner.
 
@@ -158,7 +143,7 @@ image::monitoring-dashboards-39935.png[]
 
 
 [TIP]
-Set up xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[Alerts] to notify you automatically whenever any of these metrics hits a critical value for a sustained period of time.
+Set up xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[alerts] to notify you automatically whenever any of these metrics hits a critical value for a sustained period of time.
 
 === Metrics in the Server Dashboard
 
@@ -167,27 +152,26 @@ The graphs in this dashboard cover different metrics related to memory and CPU u
 
 At a high level, memory can be thought of as divided into what’s in the JVM heap and what’s outside of it.
 
-The “heap” is the area where all Java objects reside. The heap is created when the JVM is started up, it can be scaled up or down in size without interrupting the applications in it. When the heap becomes full, garbage is collected. During the garbage collection, objects that are no longer used are cleared, thus making space for new objects.
+The heap is the area where all Java objects reside. The heap is created when the JVM is started up, it can be scaled up or down in size without interrupting the applications in it. When the heap becomes full, garbage is collected. During the garbage collection, objects that are no longer used are cleared, thus making space for new objects.
 
 The non-heap memory stores per-class structures such as a runtime constant pool, field and method data, and the code for methods and constructors.
 
-The graphs in this dashboard that display memory usage levels, in both the ‘overview’ and the ‘breakdown’ tabs, track the following three values:
+The graphs in this dashboard that display memory usage levels, in both the *Overview* and the *Breakdown* tabs, track the following three values:
 
-* Used - The amount of memory (in MB) that is currently in use
-* Committed - The amount of memory (in MB) guaranteed to be available for use by the Java VM. This amount may change over time. The amount of committed memory will always be greater than or equal to the amount of used memory.
-* Total - The maximum amount of memory (in MB) that can be used. This amount may change or be undefined. A memory allocation may fail if the Java VM attempts to increase the used memory to be greater than committed memory, even if the amount used is below the total.
+* *Used* - The amount of memory (in MB) that is currently in use.
+* *Committed* - The amount of memory (in MB) guaranteed to be available for use by the Java VM. This amount may change over time. The amount of committed memory will always be greater than or equal to the amount of used memory.
+* *Total* - The maximum amount of memory (in MB) that can be used. This amount may change or be undefined. A memory allocation may fail if the Java VM attempts to increase the used memory to be greater than committed memory, even if the amount used is below the total.
 
 
 === Heap Memory
 
-This metric found in the *Overview tab* refers to the total Heap memory usage in MB. Refer to the <<Breakdown Tab>> for details about each of its component.
+This metric found in the *Overview* tab refers to the total heap memory usage in MB. See the <<Breakdown Tab,*Breakdown* tab>> for details about each of its component.
 
 image::monitoring-dashboards-heap.png[]
 
 * Heap Memory Usage
 * Heap Commited Memory
 * Total Memory
-
 
 === CPU
 
@@ -202,8 +186,6 @@ image::monitoring-dashboards-cpu.png[]
 +
 [NOTE]
 Not available in Windows.
-
-
 
 === Thread Count
 
@@ -222,26 +204,15 @@ In the first phase, called the mark phase, finds and marks all accessible object
 
 image::monitoring-dashboards-garbage.png[]
 
-* MarkSweep Time.
-* MarkSweep Count.
-* Par New Time.
-* Par New Count.
-
 === Class Loading
-
 
 The class loading graph shows the amount of classes that are currently loaded or being loaded in total across all apps in the JVM.
 
 image::monitoring-dashboards-classloading.png[]
 
-* Total classes loaded since JVM start.
-* Currently loaded classes.
-* Unloaded Classes.
-
 === Heap Memory Metrics
 
-The following metrics relate to the portion of the server memory that makes up the JVM Heap:
-
+The following metrics relate to the portion of the server memory that makes up the JVM Heap.
 
 ==== Par Eden / Eden Space
 
@@ -249,21 +220,11 @@ The pool in the Heap Space from which memory is initially allocated for most obj
 
 image::monitoring-dashboards-eden.png[]
 
-* Par Eden Usage.
-* Par Eden Total.
-* Par Eden Committed.
-
-
 ==== Par Survivor / Survivor Space
 
 The pool in the Heap containing objects that have survived the garbage collection of the Eden space.
 
 image::monitoring-dashboards-survivor.png[]
-
-* Par Survivor Usage.
-* Par Survivor Total.
-* Par Survivor Committed.
-
 
 ==== Tenured Generation
 
@@ -271,27 +232,15 @@ The pool in the Heap containing objects that have existed for some time in the s
 
 image::monitoring-dashboards-tenure.png[]
 
-* Tenured Gen Usage.
-* Tenured Gen Total.
-* Tenured Gen Committed.
-
-
 === Non-heap Memory Metrics
 
-
-The following metrics refer to memory that exists outside the JVM Heap:
-
+The following metrics refer to memory that exists outside the JVM Heap.
 
 ==== Code Cache
 
 This non-heap space contains memory that is used for compilation and storage of native code.
 
 image::monitoring-dashboards-cahce.png[]
-
-* Code Cache Usage.
-* Code Cache Total.
-* Code Cache Committed.
-
 
 ==== Compressed Class Space
 
@@ -300,22 +249,12 @@ Only Available when using JDK 8+.
 
 image::monitoring-dashboards-class-space.png[]
 
-* Compressed Class Space Usage.
-* Compressed Class Space Total.
-* Compressed Class Space Committed.
-
-
 ==== Metaspace
 
 JVM memory space that uses native memory for the representation of class metadata.
 Only Available when using JDK 8+.
 
 image::monitoring-dashboards-meta.png[]
-
-* Metaspace Usage.
-* Metaspace Total.
-* Metaspace Commited.
-
 
 == The Dashboard for a Cluster or Server Group
 
@@ -326,15 +265,6 @@ To access the dashboard of a cluster or a server group on-premises:
 . Select a cluster or server group in the *Servers* page to open the side panel.
 . Click the *View Details* button.
 . Select the *Dashboard* section on the left.
-
-////
-[TIP]
-====
-If the cluster or server group has an issue, click the icon on the *Health* column to access the dashboard directly.
-
-image::dashboards-34419.png[]
-====
-////
 
 === Navigating the Dashboard
 

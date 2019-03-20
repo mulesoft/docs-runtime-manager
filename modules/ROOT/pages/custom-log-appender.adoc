@@ -9,16 +9,14 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-With the option to disable CloudHub logs, customers can supply their own log4j configurations to
+With the option to disable CloudHub logs, customers can supply their own Log4j configurations to
 integrate with their own logging systems.
 
-== Creating your Log4j configuration
+== Create Your Log4j Configuration
 [IMPORTANT]
 ====
-*Important:*
-
 * This feature is only available on request. If you do not have access to this feature, you can request it via the support portal.
-* MuleSoft is not responsible for lost logging data due to misconfiguration of your own log4j appender.
+* MuleSoft is not responsible for lost logging data due to misconfiguration of your own Log4j appender.
 * MuleSoft is also not responsible for misconfigurations that result in performance degradation,
 running out of disk space, or other side effects.
 * To configure logs to flow to both your log system and CloudHub, read the directions below. Note that the UI will continue to
@@ -27,12 +25,12 @@ warn you that logs in CloudHub will not be available.
 * Only Asynchronous log appenders can be used, Synchronous appenders should not be used.
 ====
 
-To enable your own log4j appender, you need to first create a log4j2.xml configuration with your log settings. In Anypoint Studio, this file must reside in the src/main/resources directory. For details
-on creating your own log4j configuration, please see the
+To enable your own Log4j appender, you need to first create a `log4j2.xml` configuration file with your log settings. In Anypoint Studio, this file must reside in the src/main/resources directory. For details
+on creating your own Log4j configuration, please see the
 https://logging.apache.org/log4j/2.x/manual/configuration.html[Log4j documentation].
 
 If you wish to have logs flow to both your own logging system, and be viewable in CloudHub, you
-must configure the CloudHub log4j appender. MuleSoft recommends this as the base configuration for your
+must configure the CloudHub Log4j appender. MuleSoft recommends this as the base configuration for your
 log configuration. It sends log data to CloudHub and provides a local log file in case it's needed for
 remote debugging purposes by MuleSoft staff.
 
@@ -91,10 +89,10 @@ remote debugging purposes by MuleSoft staff.
 </Configuration>
 ----
 
-== Enabling custom Log4j configurations in CloudHub
+== Enable Custom Log4j Configurations in CloudHub
 
-Once you've configured your log4j appenders, you'll need to deploy this application to CloudHub
-and tell CloudHub you are supplying your own log4j configuration:
+Once you've configured your Log4j appenders, deploy the application to CloudHub
+and tell CloudHub you are supplying your own Log4j configuration:
 
 . Log into https://anypoint.mulesoft.com/#/signin[Anypoint Platform] and click *CloudHub*.
 . Click an application to expand the details view:
@@ -111,11 +109,11 @@ image::disablechlogsverification.png[DisableCHLogsVerification]
 +
 . Click *Apply Changes*.
 . Review your application settings to ensure they are correct.
-. Then click Apply Changes to restart your application.
+. Click *Apply Changes* to restart your application.
 
-Once your application starts, logs should start flowing to your custom log4j appender and will be
+Once your application starts, logs should start flowing to your custom Log4j appender and will be
 viewable in your target system.
 
-If you did not use the CloudHub log4j appender specified above, only system logs will be available.
-System logs will tell you the status of your worker deployment and if your application started correctly,
-but will not provide any application logs.
+If you did not use the CloudHub Log4j appender specified above, only system logs will be available.
+System logs tell you the status of your worker deployment and if your application started correctly,
+but do not provide any application logs.

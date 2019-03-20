@@ -9,7 +9,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The Runtime Manager Agent provides a simple way of implementing internal handlers with buffering support. This document explains how to implement and configure buffers for Runtime Manager Agent internal handlers.
+The Runtime Manager agent provides a simple way of implementing internal handlers with buffering support. This document explains how to implement and configure buffers for Runtime Manager agent internal handlers.
 
 == Implementing a Buffered Internal Handler
 
@@ -89,11 +89,11 @@ The maximum size capacity for the buffer is configured based on a number of even
 If you configure a `DISK` buffer, the agent will also instantiate an in-memory buffer in order to improve the performance of the I/O operations. This memory buffer has a default value of 10000 events and is flushed to disk every 500ms, and in batches of 10000 events each. These values are configurable through the system properties `agent.disk.buffering.cache.size`, `agent.disk.buffering.cache.flush.frequency` and `agent.disk.buffering.max.flushing.size`, respectively.
 
 [NOTE]
-Flushing from disk to the external system in batches of 10000 events each and the `agent.disk.buffering.max.flushing.size` property are supported for Mule Agent Plugin versions 2.1.9 and 1.11.3 and later.
+Flushing from disk to the external system in batches of 10000 events each and the `agent.disk.buffering.max.flushing.size` property are supported for Mule agent plugin versions 2.1.9 and 1.11.3 and later.
 
 === Sample `mule-agent.yml` Files
 
-==== Configuring Buffering in a Publisher
+==== Configure Buffering in a Publisher
 
 [source,yaml,linenums]
 ----
@@ -158,7 +158,7 @@ externalHandlers:
     domains.request.handler:
         enabled: true
 ----
-==== Configuring Buffering in Events Tracking
+==== Configure Buffering in Events Tracking
 
 [source,yaml,linenums]
 ----

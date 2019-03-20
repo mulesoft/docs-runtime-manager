@@ -18,7 +18,7 @@ The xref:cloudhub.adoc[CloudHub] guide, includes walkthroughs of basic concepts 
 
 == Specifying an HTTP/HTTPS Host
 
-If you employ any xref:3.8@mule-runtime::http-connector.adoc[HTTP Connectors], define the Host address in a CloudHub configuration as *0.0.0.0*. CloudHub routes requests from your application domain URL to the endpoint. If you deploy multiple xref:cloudhub-faq.adoc[workers], CloudHub load-balances incoming traffic automatically across these workers for you. As your application scales, work loads automatically distribute between your workers.
+If you employ any xref:3.8@mule-runtime::http-connector.adoc[HTTP Connectors], define the Host address in a CloudHub configuration as 0.0.0.0. CloudHub routes requests from your application domain URL to the endpoint. If you deploy multiple xref:cloudhub-faq.adoc[workers], CloudHub load-balances incoming traffic automatically across these workers for you. As your application scales, work loads automatically distribute between your workers.
 
 == Providing an External HTTP/HTTPS Port
 
@@ -36,7 +36,7 @@ http://0.0.0.0:${http.port}/service/path/two
 
 If you want to deploy a same Mule application via various different xref:deployment-strategies.adoc[deployment strategies] – such as to an on-prem server and on CloudHub – you should abstract some parameters of the application to xref:3.8@mule-runtime::mule-application-deployment-descriptor.adoc[application properties] that you can set with different values in each case.
 
-Create an application properties file named *mule-app.properties* in the `src/main/app` folder of your project. You need to do this whether you work in Anypoint Studio or another IDE and want to deploy to Anypoint Studio's built in server. This allows you to define a local value for the variable `http.port` or `https.port`.
+Create an application properties file named `mule-app.properties` in the `src/main/app` folder of your project. You need to do this whether you work in Anypoint Studio (Studio) or another IDE and want to deploy to Studio's built-in server. Creating a properties file allows you to define a local value for the variable `http.port` or `https.port`.
 
 If you have other runtime settings that you want to configure differently when running locally, you may also place them in the application properties file and refer to them using the syntax `${propertyname}` in your Mule application configuration. Each application can declare a set of environment variables when it is deploys to provide a different value when deploying on CloudHub. You can define these environment variables using the xref:deploying-to-cloudhub.adoc[Runtime Manager Console] or the xref:anypoint-platform-cli.adoc[Command Line Interface].
 
@@ -53,7 +53,7 @@ CloudHub provides services in the platform that support connecting over many dif
 
 == Accessing Resources Behind the Firewall
 
-When developing an application that needs to access resources from inside your firewall, you can configure a xref:virtual-private-cloud.adoc[Virtual Private Cloud (VPC)] to host your xref:cloudhub-architecture.adoc#cloudhub-workers[Cloudhub Workers] and configure an IPSec tunnel to access your applications.
+When developing an application that needs to access resources from inside your firewall, you can configure a xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)] to host your xref:cloudhub-architecture.adoc#cloudhub-workers[CloudHub workers] and configure an IPSec tunnel to access your applications.
 
 
 == Accessing Third-Party APIs and Services
