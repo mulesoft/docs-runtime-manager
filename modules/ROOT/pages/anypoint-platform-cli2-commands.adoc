@@ -8,7 +8,7 @@ Anypoint Platform CLI provides commands for different use case scenarios:
 * <<Commands for Managing Exchange Assets>>
 * <<Commands for Administrating your CloudHub Application>>
 * <<Commands for Managing your Locally Deployed Applications Managed by Runtime Manager>>
-* <<Commands for Managing Your Local PCF Deployed Applications>>
+* <<Commands for Managing Your Local Pivotal Cloud Foundry Deployed Applications>>
 * <<Commands for Managing your Local Servers>>
 * <<Commands for Administrating your Local Server Groups>>
 * <<Commands for Administrating your Local Cluster Servers>>
@@ -165,20 +165,20 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr standalone-application copy>> | Copies a standalone application
 |===
 
-== Commands for Managing Your Local PCF Deployed Applications
+== Commands for Managing Your Local Pivotal Cloud Foundry Deployed Applications
 
 [%header,cols="35a,65a"]
 |===
 |Command |Description
-|<<runtime-mgr pcf-application delete>> | Deletes PCF application
-|<<runtime-mgr pcf-application describe>> | Shows detailed info of PCF application
-|<<runtime-mgr pcf-application list>> | Lists all PCF applications in the environment
-|<<runtime-mgr pcf-application restart>> | Restarts PCF application
-|<<runtime-mgr pcf-application stop>> | Stops PCF application
-|<<runtime-mgr pcf-application deploy>> | Deploys a new application to PCF space
-|<<runtime-mgr pcf-application describe-json>> | Shows raw PCF application JSON response
-|<<runtime-mgr pcf-application modify>> | Edits an application deployed to PCF space
-|<<runtime-mgr pcf-application start>> | Starts PCF application
+|<<runtime-mgr pcf-application delete>> | Deletes Pivotal Cloud Foundry application
+|<<runtime-mgr pcf-application describe>> | Shows detailed info of Pivotal Cloud Foundry application
+|<<runtime-mgr pcf-application list>> | Lists all Pivotal Cloud Foundry applications in the environment
+|<<runtime-mgr pcf-application restart>> | Restarts Pivotal Cloud Foundry application
+|<<runtime-mgr pcf-application stop>> | Stops Pivotal Cloud Foundry application
+|<<runtime-mgr pcf-application deploy>> | Deploys a new application to Pivotal Cloud Foundry space
+|<<runtime-mgr pcf-application describe-json>> | Shows raw Pivotal Cloud Foundry application JSON response
+|<<runtime-mgr pcf-application modify>> | Edits an application deployed to Pivotal Cloud Foundry space
+|<<runtime-mgr pcf-application start>> | Starts Pivotal Cloud Foundry application
 |===
 
 
@@ -235,7 +235,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr standalone-alert list>> | Lists all alerts for standalone runtimes in the environment
 |===
 
-== Commands for Mananging your CloudHub Dedicated Load Balancer
+== Commands for Managing your CloudHub Dedicated Load Balancer
 
 [%header,cols="35a,65a"]
 |===
@@ -316,7 +316,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > account business-group list [options]
 ----
 
-This command displays all xref:access-management::organization.adoc#business-groups[business groups]. It returns return the name of the business group, the type (`Master` or `Business unit`) and the ID. +
+This command displays all xref:access-management::organization.adoc#business-groups[business groups]. It returns the name of the business group, the type (`Master` or `Business unit`) and the ID. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 
@@ -625,7 +625,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |===
 |Command | Description
 | `-p, --withProxy`            | Indicates whether the endpoint should use a proxy. Passing `false` will set all proxy-specific options to `null`.
-| `-c, --isCloudHub`           | Indicates whether a CloudHub proxy should be configured. Passing `true` will set the proxy's `--port` to Cloudhub's default value and `--referencesUserDomain` to `false`.
+| `-c, --isCloudHub`           | Indicates whether a CloudHub proxy should be configured. Passing `true` will set the proxy's `--port` to CloudHub's default value and `--referencesUserDomain` to `false`.
 | `-r, --referencesUserDomain` | Indicates whether a proxy should reference a user domain
 | `--type <value>`             | Endpoint type
 | `--uri <value>`              | Implementation URI
@@ -817,7 +817,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command copies the API Portal from the API passed in `source` to the API passed in `target`. +
-Arguments `source` and `target` should be formatted as follows: ([group_id]/)<asset_id>/<version>. +
+Arguments `source` and `target` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID. +
 For example:
 
@@ -886,11 +886,11 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 ** `mo`(month)
 ** `yr`(year)
 
-E.g.: `--limit true,100,min` is a `visible` limit of 100 requests per minute. +
+For example: `--limit true,100,min` is a `visible` limit of 100 requests per minute. +
 
 [TIP]
 To create multiple limits, you can provide multiple `--limit` options. +
-E.g. `-l true,100,sec -l false,20,min`
+For example: `-l true,100,sec -l false,20,min`
 
 |===
 
@@ -974,11 +974,11 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 ** `mo`(month)
 ** `yr`(year)
 
-E.g.: `--limit true,100,min` is a `visible` limit of 100 requests per minute. +
+For example: `--limit true,100,min` is a `visible` limit of 100 requests per minute. +
 
 [TIP]
 To create multiple limits, you can provide multiple `--limit` options. +
-E.g. `-l true,100,sec -l false,20,min`
+For example: `-l true,100,sec -l false,20,min`
 
 |===
 
@@ -1044,7 +1044,7 @@ Supported values are:
 * `raml-fragment` | `designcenter project create --type raml`
 | `--fragment-type` | The fragment type if the application type is a RAML fragment.
 
-This field is required if the type option was set as raml-fragment
+This field is required if the type option was set as `raml-fragment`
 
 Supported fragments type are:
 
@@ -1061,7 +1061,7 @@ Supported fragments type are:
 > designcenter project delete [options] <name>
 ----
 
-This Command deletes the Design Center project specified in `name`.
+This Command deletes the Design Center project specified in `<name>`.
 
 [WARNING]
 This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
@@ -1107,7 +1107,7 @@ Options that are not specified are extracted from exchange.json
 > designcenter project upload [options] <name> <projDir>
 ----
 
-This Command uploads a Design Center project from your local directory passed in `projDir` and names it using the name passed in `name`.
+This Command uploads a Design Center project from your local directory passed in `projDir` and names it using the name passed in `<name>`.
 
 By default, this command ignores all hidden files and directories. To include hidden files and directories, use the `--include-dot-files` option. +
 When the `--include-dot-files` option is used, the command uploads hidden files and folders from your specified directory.
@@ -1121,7 +1121,7 @@ Besides the `--include-dot-files`, this command takes the default `--help`, `-f`
 ----
 
 This Command lists all your Design Center projects. +
-You can start typing your project's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your project's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
@@ -1131,9 +1131,9 @@ This command does not take any options, except for the default ones: `--help`, `
 > exchange asset upload [options] <assetIdentifier> [filePath]
 ----
 
-This command upload an oas, wsdl, http or custom asset using the IDs passed in `<assetIdentifier>`. +
+This command upload an OAS, WSDL, HTTP or custom asset using the IDs passed in `<assetIdentifier>`. +
 If [filePath] points to a ZIP archive file, that archive must include an `exchange.json` file describing the asset. +
-Argument `assetIdentifier` should be formatted as follows: <group_id>/<asset_id>/<version>.
+Argument `assetIdentifier` should be formatted as follows: `<group_id>/<asset_id>/<version>`.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
@@ -1171,7 +1171,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > exchange asset download [options] <assetIdentifier> <directory>
 ----
 
-This command downloads the Exchange asset identified with `<assetIdentifier>` to the directory passed in <directory>. +
+This command downloads the Exchange asset identified with `<assetIdentifier>` to the directory passed in `<directory>`. +
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
@@ -1205,7 +1205,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > exchange asset page download [options] <assetIdentifier> <directory> [pageName]
 ----
 
-This command downloads the description page specified in [pageName], for the Exchange asset identified with `<assetIdentifier>` to the directory passed in <directory>. +
+This command downloads the description page specified in `<pageName>`, for the Exchange asset identified with `<assetIdentifier>` to the directory passed in `<directory>`. +
 If [pageName] is not specified, this command downloads all pages.
 
 [NOTE]
@@ -1223,7 +1223,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > exchange asset page modify [options] <assetIdentifier> <pageName>
 ----
 
-This command modifies the description page specified in <pageName>, for the Exchange asset identified with `<assetIdentifier>`.
+This command modifies the description page specified in `<pageName>`, for the Exchange asset identified with `<assetIdentifier>`.
 
 [NOTE]
 This command only supports published pages.
@@ -1238,7 +1238,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > exchange asset page upload [options] <assetIdentifier> <pageName> <mdPath>
 ----
 
-This command uploads an asset description page from the path passed in <mdPath> using the name specified in <pageName> to the Exchange asset identified with `<assetIdentifier>`. +
+This command uploads an asset description page from the path passed in `<mdPath>` using the name specified in `<pageName>` to the Exchange asset identified with `<assetIdentifier>`. +
 Naming the page `home` makes the uploaded page the main description page for the Exchange asset.
 
 [NOTE]
@@ -1254,7 +1254,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > exchange asset page delete [options] <assetIdentifier> <pageName>
 ----
 
-This command deletes the description page specified in <pageName>, for the asset identified with `<assetIdentifier>`. +
+This command deletes the description page specified in `<pageName>`, for the asset identified with `<assetIdentifier>`. +
 If [pageName] is not specified, this command downloads all pages.
 
 [WARNING]
@@ -1273,7 +1273,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > exchange asset page list <assetIdentifier>
 ----
 
-This command List all pages for the asset passed in `<assetIdentifier>`. +
+This command lists all pages for the asset passed in `<assetIdentifier>`. +
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
@@ -1379,7 +1379,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command displays information on the application you pass in `<name>`. +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 It will return data such as the application's domain, its status, last time it was updated, the Runtime version, the .zip file name, the region, monitoring, and Workers; as well as 'TRUE' or 'FALSE' information for persistent queues and static IPs enablement. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
@@ -1390,7 +1390,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command returns the raw JSON response of the application you specify in `<name>`. +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr cloudhub-application stop
@@ -1400,7 +1400,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command stops the running application you specify in `<name>` +
-You can start typing your application's name and hit `tab` for Anypoint-ClI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your application's name and press `tab` for Anypoint Platform ClI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr cloudhub-application start
@@ -1410,7 +1410,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command starts the running application you specify in `<name>` +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr cloudhub-application restart
@@ -1420,7 +1420,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command restarts the running application you specify in `<name>` +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr cloudhub-application delete
@@ -1442,8 +1442,8 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr cloudhub-application deploy  [options] <name> <zipfile>
 ----
 
-This command deploys the Mule deployable archive .zip file that you specify in <zipfile> using the name you set in `<name>`. +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+This command deploys the Mule deployable archive .zip file that you specify in `<zipfile>` using the name you set in `<name>`. +
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 You will have to provide the absolute or relative path to the deployable zip file in your local hard drive and the name you give to your application has to be unique.
 
 The options this command can take are:
@@ -1464,10 +1464,10 @@ The property to be set must be passed enclosed in quotes and characters `:` and 
 
 Character `:` is not supported for the property's name.
 | `--propertiesFile`                        | Overwrite all properties with values from this file. The file format is 1 or more lines in name:value format. Set the absolute path of the properties file in your local hard drive.
-| `--persistentQueues`                   | Enable or disable persistent queues. Can take 'true' or 'false' values. (This value is 'false' by default)
-| `--persistentQueuesEncrypted`  | Enable or disable persistent queue encryption. Can take 'true' or 'false' values. (This value is 'false' by default)
+| `--persistentQueues`                   | Enable or disable persistent queues. Can take `true` or `false` values. (This value is `false` by default)
+| `--persistentQueuesEncrypted`  | Enable or disable persistent queue encryption. Can take `true` or `false` values. (This value is `false` by default)
 | `--staticIPsEnabled`                                      | Enable or disable static IPs. Can take 'Enable' or 'Disabled' values. (This value is 'Disabled' by default)
-| `--autoRestart`                            | Automatically restart app when not responding. Can take 'true' or 'false' values. (This value is 'false' by default)
+| `--autoRestart`                            | Automatically restart app when not responding. Can take `true` or `false` values. (This value is `false` by default)
 | `--help`                                                  | output usage information
 |===
 Note that from Anypoint Platform CLI you won't be able to allocate static IPs. You can simply enable and disable them.
@@ -1490,10 +1490,10 @@ If you deploy without using any options, your application will deploy using all 
 > runtime-mgr cloudhub-application modify  [options] <name> [zipfile]
 ----
 This command updates the settings of an existing application. Optionally you can update it by uploading a new .zip file. +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
-This command can take all the same options as the *deploy* option.
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
+This command can take all the same options as the `deploy` option.
 
-You can also start typing your option and hit `tab` for Autocomplete-CLI to autocomplete it for you.
+You can also start typing your option and press `tab` for Anypoint Platform CLI to autocomplete it for you.
 
 //TODO Check revert-runtime deprecation
 / === runtime-mgr application revert-runtime
@@ -1503,7 +1503,7 @@ You can also start typing your option and hit `tab` for Autocomplete-CLI to auto
 // > runtime-mgr application revert-runtime [options] <name>
 // ----
 // This command reverts the application defined in `<name>` to its previous runtime environment. +
-// You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+// You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 // This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr cloudhub-application download-logs
@@ -1512,7 +1512,7 @@ You can also start typing your option and hit `tab` for Autocomplete-CLI to auto
 > runtime-mgr cloudhub-application download-logs [options] <name> <directory>
 ----
 This command downloads logs the for application specified in `<name>` to the specified directory. +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 Keep in mind that contrarily to what you see in the UI, the logs you download from the CLI won't separate system logs from worker logs.
 
 == runtime-mgr cloudhub-application tail-logs
@@ -1522,7 +1522,7 @@ Keep in mind that contrarily to what you see in the UI, the logs you download fr
 ----
 
 This command tails application logs. +
-You can start typing your application's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 / === runtime-mgr cloudhub-application upgrade-runtime
@@ -1586,7 +1586,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application deploy [options] <targetIdentifier> <name> <zipfile>
 ----
 
-This command deploys the application passed as a zip file in the path `zipfile` to the on-premise target passed in `targetIdentifier`. +
+This command deploys the application passed as a ZIP file in the path `zipfile` to the on-premise target passed in `targetIdentifier`. +
 The `targetIdentifier` parameter can be either a target ID or name. +
 A target can be either a server, server group, or cluster. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
@@ -1696,7 +1696,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr pcf-application delete [options] <appId>
 ----
 
-This commands deletes the PCF application passed in `appId`. +
+This commands deletes the Pivotal Cloud Foundry application passed in `appId`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 [WARNING]
@@ -1708,7 +1708,7 @@ This command does not prompt twice before deleting. If you send a delete instruc
 > runtime-mgr pcf-application describe [options] <appId>
 ----
 
-This command describes the PCF deployed application passed in `appId`. +
+This command describes the Pivotal Cloud Foundry deployed application passed in `appId`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr pcf-application list
@@ -1717,7 +1717,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr pcf-application list [options]
 ----
 
-This command lists all your PCF deployed applications. +
+This command lists all your Pivotal Cloud Foundry deployed applications. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr pcf-application restart
@@ -1726,7 +1726,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr pcf-application restart [options] <appId>
 ----
 
-This command restarts your PCF deployed application passed in `appId`. +
+This command restarts your Pivotal Cloud Foundry deployed application passed in `appId`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr pcf-application stop
@@ -1735,7 +1735,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr pcf-application stop [options] <appId>
 ----
 
-This command stops the PCF deployed appplication passed in `appId`. +
+This command stops the Pivotal Cloud Foundry deployed application passed in `appId`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr pcf-application deploy
@@ -1744,7 +1744,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr pcf-application deploy [options] <name> <zipfile>
 ----
 
-This command deploys to your PCF instance the application passed in `zipfile` with the name ID passed in `name`. +
+This command deploys to your Pivotal Cloud Foundry instance the application passed in `zipfile` with the name ID passed in `name`. +
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
 [%header,cols="30,70"]
@@ -1764,7 +1764,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > runtime-mgr pcf-application describe-json [options] <appId>
 ----
 
-This command shows a raw JSON description of the PCF deployed application passed in `appId`. +
+This command shows a raw JSON description of the Pivotal Cloud Foundry deployed application passed in `appId`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr pcf-application modify
@@ -1773,7 +1773,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr pcf-application modify [options] <appId> [zipfile]
 ----
 
-This command modifies the PCF deployed application passed in `appId` with the ZIP file application passed in `zipfile`.
+This command modifies the Pivotal Cloud Foundry deployed application passed in `appId` with the ZIP file application passed in `zipfile`.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
@@ -1794,7 +1794,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > runtime-mgr pcf-application start [options] <appId>
 ----
 
-This command starts the PCF deployed application passed in `appId`. +
+This command starts the Pivotal Cloud Foundry deployed application passed in `appId`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == runtime-mgr server describe
@@ -2096,7 +2096,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > cloudhub load-balancer describe [options] <name>
 ----
 This command displays information about the load balancer that is specified in `<name>`. +
-You can start typing your load balancer's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your load balancer's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 It displays load balancer's name, domain, its state and the VPC ID to which the load balancer is bound.
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
@@ -2106,7 +2106,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > cloudhub load-balancer describe [options] <name>
 ----
 This command displays raw JSON response of the load balancer that is specified in `<name>`. +
-You can start typing your load balancer's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your load balancer's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == cloudhub load-balancer create
@@ -2120,9 +2120,9 @@ This command creates a load balancer using the specified values in the variables
 |Value |Description |Example
 | `vpc` |Name of the VPC to which this load balancer is bound. +
 If your VPC name contains spaces, you need to pass it between ´"´ characters. | vpc-demo
-| `name` |Name for the load balancer. | newtestloadbalancer
+| `name` |Name for the load balancer. | `newtestloadbalancer`
 | `certificate` |Absolute path to the `.pem` file of your server certificate in your local hard drive. +
-Your certificate files need to be pem encoded and not encrypted | `/Users/mule/Documents/cert.pem`
+Your certificate files need to be PEM encoded and not encrypted | `/Users/mule/Documents/cert.pem`
 | `privateKey` |Absolute path to the `.pem` file of your private key of the server certificate in your local hard drive. +
 Your private key file needs to be passphraseless | `/Users/mule/Documents/privateKey.pem`
 |===
@@ -2130,8 +2130,8 @@ Your private key file needs to be passphraseless | `/Users/mule/Documents/privat
 [CAUTION]
 --
 The name for the load balancer that you pass in `<name>` must be unique. +
-By default, your load balancer listens external requests on https and communicates with your workers internally through http. +
-If you configured your Mule application within the VPC to listen on https, make sure you set `upstreamProtocol` to https when creating the mapping list using the <<cloudhub-load-balancer-mappings-add,load-balancer mappings add>> command.
+By default, your load balancer listens external requests on HTTPS and communicates with your workers internally through HTTP. +
+If you configured your Mule application within the VPC to listen on HTTPS, make sure you set `upstreamProtocol` to HTTPS when creating the mapping list using the <<cloudhub-load-balancer-mappings-add,load-balancer mappings add>> command.
 --
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
@@ -2139,7 +2139,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 [%header,cols="30a,70a"]
 |===
 |Value |Description
-| `http` | Specifies the load balancer HTTP behavior. It can be set to `on` (accepts http requests and forwards it to your configured default _sslendpoint_) `off` (refuses all http requests) or `redirect` (redirects to https).
+| `http` | Specifies the load balancer HTTP behavior. It can be set to `on` (accepts HTTP requests and forwards it to your configured default _sslendpoint_) `off` (refuses all HTTP requests) or `redirect` (redirects to HTTPS).
 | `clientCertificate` | Client certificate file
 | `verificationMode`  | Specifies the client verification mode. It can be set to `on` (verify always) `off` (don't verify) or `optional` (Verification optional).
 | `crl` | Certificate Revocation List file
@@ -2148,7 +2148,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |===
 
 [NOTE]
-Cloudhub does not implement the Online Certificate Status Protocol (OCSP). To keep your certification revocation list up to date, it's recommended to use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[REST API] to update your certificates programmatically.
+CloudHub does not implement the Online Certificate Status Protocol (OCSP). To keep your certification revocation list up to date, it's recommended to use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[REST API] to update your certificates programmatically.
 
 Further configuration information can be found in the xref:cloudhub-dedicated-load-balancer.adoc#managing-certificates[certificates section] of the dedicated xref:cloudhub-dedicated-load-balancer.adoc[load balancer documentation] page.
 
@@ -2192,15 +2192,15 @@ This command adds an SSL endpoint to the load balancer specified in `<name>`, us
 [%header,cols="12a,53a,35a"]
 |===
 |Value |Description |Example
-| `name` |Name for the load balancer. | newtestloadbalancer
+| `name` |Name for the load balancer. | `newtestloadbalancer`
 | `certificate` |Absolute path to the `.pem` file of your certificate in your local hard drive. +
 Your certificate files need to be pem encoded and not encrypted | /Users/mule/Documents/cert.pem
 | `privateKey` |Absolute path to the `.pem` file of your private key in your local hard drive. +
-Your private key file needs to be passphraseless | /Users/mule/Documents/privateKey.pem
+Your private key file needs to be passphraseless | `/Users/mule/Documents/privateKey.pem`
 |===
 
 [NOTE]
-Cloudhub does not implement the Online Certificate Status Protocol (OCSP). To keep your certification revocation list up to date, it's recommended to use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/2321502/pages/107964[REST API] to update your certificates programmatically.
+CloudHub does not implement the Online Certificate Status Protocol (OCSP). To keep your certification revocation list up to date, it's recommended to use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/2321502/pages/107964[REST API] to update your certificates programmatically.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
@@ -2220,7 +2220,7 @@ Further configuration information can be found in the xref:cloudhub-dedicated-lo
 ----
 > cloudhub load-balancer ssl-endpoint remove [options] <name> <certificateName>
 ----
-This command removes the ssl certificate specified in <certificateName> from the load balancer specified in `<name>`.
+This command removes the SSL certificate specified in `<certificateName>` from the load balancer specified in `<name>`.
 
 [WARNING]
 This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
@@ -2234,7 +2234,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 This command sets the certificate specified in <certificateName> as the default  certificate for the load balancer passed in `<name>`. +
 
-You can start typing your load balancer's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your load balancer's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
 [%header,cols="30a,70a"]
@@ -2249,7 +2249,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > cloudhub load-balancer ssl-endpoint describe [options] <name> <certificateName>
 ----
 This command shows information about the configuration of the load balancer passed in `<name>` for the the certificate specified in <certificateName>. +
-You can start typing your load balancer's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your load balancer's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
 
@@ -2258,12 +2258,12 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub load-balancer whitelist add [options] <name> <cidrBlock>
 ----
-This command adds a range of IP addresses specified in <cidrBlock> to the whitelist of the load balancer specified in `<name>`.
+This command adds a range of IP addresses specified in `<cidrBlock>` to the whitelist of the load balancer specified in `<name>`.
 
 [NOTE]
 The whitelist works at the load balancer level, not at the CN certificate level. Make sure you only pass IP addresses formatted in https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[CIDR notation].
 
-You can start typing your load balancer's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your load balancer's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
 
 == cloudhub load-balancer whitelist remove
@@ -2271,7 +2271,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub load-balancer whitelist remove <name> <cidrBlock>
 ----
-This command removes an IP or range of IPs addresses specified in <cidrBlock> to the whitelist of the load balancer specified in `<name>`.
+This command removes an IP or range of IPs addresses specified in `<cidrBlock>` to the whitelist of the load balancer specified in `<name>`.
 
 [WARNING]
 This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
@@ -2293,17 +2293,17 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub load-balancer mappings add [options] <name> <index> <inputUri> <appName> <appUri> [certificateName]
 ----
-This command adds a proxy mapping rule to the load balancer specified in `<name>` at the priority index specified in <index> in the CN passed under the `certificateName` option. +
+This command adds a proxy mapping rule to the load balancer specified in `<name>` at the priority index specified in `<index>` in the CN passed under the `certificateName` option. +
 If no `certificateName` is passed, Anypoint Platform CLI adds the mappings to the default SSL endpoint.
 
 
 [%header,cols="12a,68a,20a"]
 |===
 |Value |Description |Example
-| `name` |Name of the load balancer to which this rule is applied. |testloadbalancer
+| `name` |Name of the load balancer to which this rule is applied. |`testloadbalancer`
 | `index` |Priority of the rule.  |1
 | `inputUri` |Name of the URI of your input URL |example.com
-| `appName` |Name of the app of your output URL to which the request is forwarded |{app}-example
+| `appName` |Name of the app of your output URL to which the request is forwarded |`{app}-example`
 | `appUri` |URI of the app of your output URL to which the request is forwarded |/
 |===
 
@@ -2325,7 +2325,7 @@ Supported Values: `http`, `https` | `--upsetreamProtocol http`
 ----
 > cloudhub load-balancer mappings remove [options] <name> <index> [certificateName]
 ----
-This command removes the proxy mapping rules from the load balancer specified in `<name>` at the priority index specified in <index> and the CN specified as the `certificateName` option.
+This command removes the proxy mapping rules from the load balancer specified in `<name>` at the priority index specified in `<index>` and the CN specified as the `certificateName` option.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
 If no `certificateName` is passed, Anypoint Platform CLI removes the mappings for the default SSL endpoint.
@@ -2375,7 +2375,7 @@ This command lists all available VPCs. It returns ID, region, and environment of
 > cloudhub vpc describe [options] <name>
 ----
 This command displays information about the VPC that is specified in `<name>`. +
-You can start typing your VPC's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == cloudhub vpc describe-json
@@ -2385,7 +2385,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command displays raw JSON response of the VPC that is specified in `<name>`. +
-You can start typing your VPC's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == cloudhub vpc create
@@ -2393,7 +2393,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub vpc create [options] <name> <region> <cidrBlock> [environments...]
 ----
-This command creates a VPC using the name in `<name>`, in the region specified in <region>, with the xref:virtual-private-cloud.adoc#size-your-vpc[size] passed in <cidrBlock> in the form of a Classless Inter-Domain Routing (CIDR) block, using https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[CIDR notation] and associates it to the xref:access-management::environments.adoc[environment(s)] passed as argument(s) thereafter.
+This command creates a VPC using the name in `<name>`, in the region specified in `<region>`, with the xref:virtual-private-cloud.adoc#size-your-vpc[size] passed in `<cidrBlock>` in the form of a Classless Inter-Domain Routing (CIDR) block, using https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[CIDR notation] and associates it to the xref:access-management::environments.adoc[environment(s)] passed as argument(s) thereafter.
 
 [NOTE]
 A VPC needs to be bound to a business group within your organization. When creating a VPC, make sure to assign it a business group using the <<cloudhub vpc business-groups add, business-groups add>> command.
@@ -2505,10 +2505,10 @@ This command adds a firewall rule to the VPC defined in `<vpc>` using the values
 |===
 |Value |Description |Example
 | `vpc` |Name of the VPC to which this load balancer is bound. +
-If your VPC name contains spaces, you need to pass it between ´"´ characters | vpc-demo
+If your VPC name contains spaces, you need to pass it between ´"´ characters | `vpc-demo`
 | `cidrBlock` | IP address in CIDR notation for the firewall to allow  | 192.0.1.0/27
 | `protocol` | The protocol to use in the rules. It can be `tcp` or `udp` | tcp
-| `fromPort` | The port from which the firewall will allow requests. it can go from 0 to 65535 | 8888
+| `fromPort` | The port from which the firewall will allow requests. It can go from 0 to 65535 | 8888
 | `toPort` | Optional. In case a port range is needed, the `fromPort` and `toPort` variables define such range | 8090
 |===
 
@@ -2518,7 +2518,7 @@ When creating a VPC, make sure to allow your outbound address. +
 By default, all IP addresses are blocked, and you need to authorize IP addresses or range of addresses to your VPC firewall rule.
 --
 
-You can start typing your VPC's name and hit `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
+You can start typing your VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 
@@ -2527,7 +2527,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub vpc firewall-rules remove <vpc> <index>
 ----
-This command removes the firewall rule from the workers inside the VPC specified in `<vpc>` at the index passed in the <index>. +
+This command removes the firewall rule from the workers inside the VPC specified in `<vpc>` at the index passed in the `<index>`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 == use environment

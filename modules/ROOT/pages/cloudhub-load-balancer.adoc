@@ -46,14 +46,14 @@ Instead of using literal matchings you can also use a pattern to match a variabl
 
 By using proxy rules, you can map a domain or subdomain to one of your Mule applications that run in CloudHub.
 
-=== Pattern matching
+=== Pattern Matching
 
 A pattern is a string that defines a template for matching an input text. Whatever is placed into curly brackets (`{   }`) is treated as a variable.
-These variables can contain only letters (a-z) and cannot contain any other characters, such as digits, slashes, etc. The variable values can contain the following characters `a-z0-1.&?-_` but no slashes.
+These variables can contain only letters (a-z) and cannot contain any other characters, such as digits, slashes, etc. The variable values can contain the following characters `a-z0-1.&-_?_` but no slashes.
 
 ==== Examples
 
-===== Defining a simple rule
+===== Defining a Simple Rule
 
 [source,text,linenums]
 ----
@@ -62,7 +62,7 @@ These variables can contain only letters (a-z) and cannot contain any other char
 
 The example above literally binds these two addresses for redirect.
 
-===== Defining a rule that includes a pattern
+===== Defining a Rule that Includes a Pattern
 
 [source,text,linenums]
 ----
@@ -129,7 +129,7 @@ URI=/hello
 
 ==== Redirect URL
 
-Sets the URI text portion that should be added in the Location and Refresh header fields of a proxied server response. Suppose a proxied server of your application returned the header field `Location: http://example.com/two/some/uri/`. The directive `redirectURI=”/hello”` changes the location header to: `Location: https://example.com/hello/two/some/uri/`.
+Sets the URI text portion that should be added in the `Location` and `Refresh` header fields of a proxied server response. Suppose a proxied server of your application returned the header field `Location: http://example.com/two/some/uri/`. The directive `redirectURI=”/hello”` changes the location header to: `Location: https://example.com/hello/two/some/uri/`.
 
 === Rule Order
 

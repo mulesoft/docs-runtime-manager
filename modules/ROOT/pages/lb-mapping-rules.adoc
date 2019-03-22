@@ -141,7 +141,7 @@ If you have only one application, you can map the literal app name.
 |   |  *URI*  |   *appName* |   *appURI*
 | 0 | /       |    myApp    | /
 |===
-This maps your default load balancer `lb-demo.lb.anypointdns.net` directly to your app in Cloudhub `myApp.cloudhub.io`.
+This maps your default load balancer `lb-demo.lb.anypointdns.net` directly to your app in CloudHub `myApp.cloudhub.io`.
 
 == Indexing the Priority of Rules
 
@@ -154,12 +154,12 @@ Every rule must have a priority defined.  It is highly recommended to pay attent
 
 You can set the order of your mapping rules when creating them using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-add[`cloudhub load-balancer mappings add`] command in the Anypoint Platform CLI by specifying an index value.
 
-When using the API to create a rule, you cannot specify a priority order, but you can send a PATCH request later to the load balancer endpoint `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbalancerId}` and update your rules expressions with an order index, to match your needs based on the order logic explained above.
+When using the API to create a rule, you cannot specify a priority order, but you can send a `PATCH` request later to the load balancer endpoint `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbalancerId}` and update your rules expressions with an order index, to match your needs based on the order logic explained above.
 
 [NOTE]
 --
 The load balancer ID is provided to you when you create it.
-You can also perform a GET request to your endpoint `/organizations/{orgid}}/loadbalancers` to get the ID.
+You can also perform a `GET` request to your endpoint `/organizations/{orgid}}/loadbalancers` to get the ID.
 --
 
 == See Also

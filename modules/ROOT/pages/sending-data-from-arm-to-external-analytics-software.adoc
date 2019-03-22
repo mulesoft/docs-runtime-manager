@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To send the event notifications of your Mule Applications to 3rd party tool such as Splunk and ELK, configure Runtime Manager to export data to external analytics tools.
+To send the event notifications of your Mule applications to 3rd party tool such as Splunk and ELK, configure Runtime Manager to export data to external analytics tools.
 
 This functionality is only available in hybrid deployment scenarios. It is not available for applications deployed to CloudHub.
 
@@ -35,8 +35,8 @@ The xref:runtime-manager-agent.adoc[Runtime Manager Agent] acts in between Runti
 
 == Prerequisites
 
-* Mule v3.6 or above, or API gateway standalone version 2.1.0 or above if you deal with apps that are built with the API gateway.
-* Runtime Manager Agent 1.2.0 or above is required, the steps to install and configure it are provided below.
+* Mule v3.6 or later, or API gateway standalone version 2.1.0 or later if you deal with apps that are built with the API gateway.
+* Runtime Manager agent 1.2.0 or later is required, the steps to install and configure it are provided below.
 
 == Installation and Setup of Runtime Manager with a Third-Party Analytics Tool
 
@@ -46,12 +46,12 @@ image::steps-for-external-logs.png[steps]
 
 === Update the Runtime Manager Agent
 
-First you must install the latest version of the Runtime Manager Agent, which is in charge of sending messages out of mule. In order to send event information to third party software, you need to have version 1.2.0 or newer of the Runtime Manager Agent.
+First you must install the latest version of the Runtime Manager agent, which is in charge of sending messages out of mule. In order to send event information to third party software, you need to have version 1.2.0 or later of the Runtime Manager agent.
 See xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent].
 
 [NOTE]
 ====
-Although Runtime Manager Agent exists by default bundled with Mule as of version 3.7, all Mule versions older than 3.7.2 contain an old version of Runtime Manager Agent that doesn't support this feature. You must download the latest version of the Runtime Manager Agent separately if your Mule version is older than 3.7.2.
+Although Runtime Manager agent exists by default bundled with Mule as of version 3.7, all Mule versions older than 3.7.2 contain an old version of Runtime Manager agent that doesn't support this feature. You must download the latest version of the Runtime Manager agent separately if your Mule version is older than 3.7.2.
 
 http://mule-agent.s3.amazonaws.com/1.2.0/mule-agent-1.2.0.zip[Download Runtime Manager Agent]
 ====
@@ -67,8 +67,8 @@ To obtain this code, you must do the following:
 [TIP]
 To open Anypoint Platform Private Cloud Edition, make sure you've already initiated Runtime Manager. If you haven't then you must boot it by running docker. Once initiated, you can access it by navigating to +https://localhost+ in a browser.
 
-. Navigate to `Runtime Manager - > Servers`.
-. Click `Add Server`. Without needing to actually add a new server, a sample command will be displayed in a popup window that includes the code for your particular organization. Copy this command, depending on where you wish to deploy, you may need to add extra arguments to it.
+. Navigate to *Runtime Manager > Servers*.
+. Click *Add Server*. Without needing to actually add a new server, a sample command will be displayed in a popup window that includes the code for your particular organization. Copy this command, depending on where you wish to deploy, you may need to add extra arguments to it.
 
 +
 image::org-code.png[]
@@ -89,7 +89,7 @@ or on Windows:
 
 The argument `-H` is an id that references your organization in the Anypoint platform Private Cloud Edition installation.
 
-The final argument of this command is the name that you assign for your Runtime Manager Agent instance, in the above example, `myServer`. This name will then be visible when interacting with the agent from your Runtime Manager console.
+The final argument of this command is the name that you assign for your Runtime Manager agent instance, in the above example, `myServer`. This name will then be visible when interacting with the agent from your Runtime Manager console.
 
 [discrete.view]
 === Anypoint Platform Private Cloud Edition
@@ -104,7 +104,7 @@ or on Windows:
 
 The argument `-H` is an id that references your organization in Anypoint Platform installation.
 
-The final argument of this command is the name that you assign for your Runtime Manager Agent instance, in the above example, `myServer`. This name will then be visible when interacting with the agent from your Runtime Manager console.
+The final argument of this command is the name that you assign for your Runtime Manager agent instance, in the above example, `myServer`. This name will then be visible when interacting with the agent from your Runtime Manager console.
 
 Note that three extra arguments must be added to what you copied from the Runtime Manager UI: -A, -W and -C.
 * *A* sets the Runtime Manager host address
@@ -115,11 +115,11 @@ Note that three extra arguments must be added to what you copied from the Runtim
 
 === Update the Runtime Manager Agent
 
-If you update the Agent version, it isn't necessary to undeploy the running apps.
+If you update the Runtime Manager agent version, it isn't necessary to undeploy the running apps.
 
 
 [TIP]
-For more information on how to install or Update the Runtime Manager Agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent]
+For more information on how to install or Update the Runtime Manager agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent]
 
 
 image::agent-server.jpg[]
@@ -132,7 +132,7 @@ Creating multiple agents within a single server is not supported.
 After running the above command, open Runtime Manager to verify that the agent has been registered successfully:
 
 . Sign in to Anypoint Platform with your credentials
-. Go to `Runtime Manager - > Servers`. You should now see that one of those servers is your Agent instance, named with the name you provided when installing it:
+. Go to `Runtime Manager - > Servers`. You should now see that one of those servers is your Runtime Manager agent instance, named with the name you provided when installing it:
 
 image::verify-agent.jpg[]
 
@@ -247,10 +247,10 @@ and the index doesn't exist, then the internal handler will create it.
 
 === Rest API
 
-This feature requires the 1.2.0 agent version or newer.
+This feature requires Runtime Manager agent 1.2.0 version or later.
 
 . Select the server whose information you want to send out.
-. In the menu on the right, click *Manage Server* to access the Server's settings.
+. In the menu on the right, click *Manage Server* to access the server's settings.
 +
 image::sending-data-from-arm-to-external-monitoring-software-manage-server.png[]
 
@@ -273,21 +273,21 @@ image::agent-to-splunk-restapi-advanced.png[splunk]
 [discrete.view]
 === HTTP Event Collector
 
-This feature require 1.3.1 agent version or newer.
+This feature require 1.3.1 agent version or later.
 
 [NOTE]
-This feature requires Runtime Manager Agent version 1.3.1 or newer.
+This feature requires Runtime Manager agent version 1.3.1 or later.
 
 . First you must obtain a token from Splunk. To do so:
 .. Sign in to your Splunk account.
 .. Navigate to *Settings* -> *Data Inputs*.
 .. Among the different options, you can find the *HTTP Event Collector*, click the *Add New* link next to it.
 +
-image::splunk-datainput-setup.png[splunk settings]
+image::splunk-datainput-setup.png[Splunk settings]
 .. Follow the steps of the wizard to set up a data input and obtain the token for it
 
 . Back in the Runtime Manager, select the server whose information you want to send out.
-. In the menu on the right, click *Manage Server* to access the Server's settings.
+. In the menu on the right, click *Manage Server* to access the server's settings.
 +
 image::sending-data-from-arm-to-external-monitoring-software-manage-server.png[]
 
@@ -312,12 +312,12 @@ image::agent-to-splunk-httpevent.png[splunk]
 image::agent-to-splunk-httpevent-advanced.png[splunk]
 
 [NOTE]
-Although you can set values for the Splunk index, Splunk source and Splunk source type when registering your data input in your Splunk account, the values are overwritten by the values you configure for these fields in the *Advanced* section of the Agent Plugins menu.
+Although you can set values for the Splunk index, Splunk source and Splunk source type when registering your data input in your Splunk account, the values are overwritten by the values you configure for these fields in the *Advanced* section of the Runtime Manager agent *Plugins* menu.
 
 [discrete.view]
 === TCP
 
-This feature require 1.3.1 agent version or newer.
+This feature require 1.3.1 agent version or later.
 
 . First you must enable the input source in Splunk. To do so:
 .. Sign in to your Splunk account.
@@ -352,8 +352,8 @@ image::agent-to-splunk-tcp.png[splunk]
 
 ==== Integrating with an ELK Stack
 
-ELK combines three open source tools (Elasticsearch, Logstash, Kibana) that work together to help you store, search and analyze log data. You can output the Mule event notifications as generic system logs, which can be handled by your ELK stack. Logstash captures and indexes the data into the log, from which you can then use Elastisearch and Kibana to generate graphs, reports, alerts, dashboards and visualizations.
-The Agent helps you store all of the Event Notifications produced from the Mule runtime flows into a configurable log file with a rolling file policy.
+ELK combines three open source tools (Elasticsearch, Logstash, Kibana) that work together to help you store, search and analyze log data. You can output the Mule event notifications as generic system logs, which can be handled by your ELK stack. Logstash captures and indexes the data into the log, from which you can then use Elasticsearch and Kibana to generate graphs, reports, alerts, dashboards and visualizations.
+The Runtime Manager agent helps you store all of the Event Notifications produced from the Mule runtime flows into a configurable log file with a rolling file policy.
 
 image::amc-onprem-diagram-detail-elk.jpg[]
 
@@ -437,7 +437,7 @@ If you intend to export your payload's contents to be logged, keep in mind that 
 
 == Encrypting Passwords
 
-Assign a master password to your Mule instance or your API gateway Standalone instance when launching them. If you don't, when you set up your credentials for external applications using the Runtime Manager UI, the credentials are stored as plain text in the `conf/mule-agent.yml` file. This is not recommended for security reasons. Instead, launch Mule or API Gateway runtime with an extra argument that is then used to encrypt these passwords when storing them in the YAML file.
+Assign a master password to your Mule instance or your API gateway Standalone instance when launching them. If you don't, when you set up your credentials for external applications using the Runtime Manager UI, the credentials are stored as plain text in the `conf/mule-agent.yml` file. This is not recommended for security reasons. Instead, launch Mule or API gateway runtime with an extra argument that is then used to encrypt these passwords when storing them in the YAML file.
 
 === Mule
 

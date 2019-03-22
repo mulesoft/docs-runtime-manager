@@ -13,7 +13,7 @@ The Runtime Manager agent is a Mule plugin that exposes the Mule JAVA API as a s
 
 This document shows an overview of the Runtime Manager agent architecture and its main components.
 
-== Runtime Manager agent Main Components
+== Runtime Manager Agent Main Components
 
 === Mule Service
 
@@ -78,7 +78,7 @@ Below is an outline of a typical sequence of component interaction:
 . The service maps the notification to an agent notification, and looks for the internal message handlers that may handle the notification type.
 . The corresponding internal message handlers are executed.
 
-== Runtime Manager agent Configuration
+== Runtime Manager Agent Configuration
 
 At startup, the Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`. You must manually add, then edit this file with your installation's configuration parameters. The format is self-explanatory; a sample file is available for download.
 

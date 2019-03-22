@@ -10,7 +10,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-By simply configuring a few settings, the HTTP API Analytics produced by your applications running on the API gateway runtime can be easily stored in a database.
+By configuring a few settings, the HTTP API Analytics produced by your applications running on the API gateway runtime can be easily stored in a database.
 
 [NOTE]
 ====
@@ -26,9 +26,9 @@ To see how to send this same information to Splunk, ELK or other third party sof
 
 == Install the Runtime Manager Agent
 
-The Runtime Manager Agent is in charge of sending messages out of Mule. In order to send event information to third party software, you need to have version 1.3.0 or newer of the Runtime Manager Agent.
+The Runtime Manager agent is in charge of sending messages out of Mule. In order to send event information to third party software, you need to have version 1.3.0 or newer of the Runtime Manager agent.
 
-For help installing the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent].
+For help installing the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Installing and Configuring Runtime Manager Agent].
 
 == Install API Analytics Tracking Database Internal Handlers
 
@@ -36,7 +36,7 @@ Download http://mule-agent.s3.amazonaws.com/1.5.1/mule-agent-internal-handlers-d
 
 == Agent Configurable Fields
 
-Once you have the latest Runtime Manager agent and the API analytics tracking database internal handlers installed on your API gateway Standalone server, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
+Once you have the latest Runtime Manager agent and the API analytics tracking database internal handlers installed on your API gateway standalone server, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
 
 In the following example configurations for MySQL Server, ORACLE and Microsoft SQL Server, the required fields are `driver`, `jdbcUrl`, `user` and `pass`. You can also configure the `apiAnalyticsTable` where the analytics are stored.
 

@@ -60,14 +60,14 @@ A dedicated load balancer needs to have at least one certificate associated to i
 
 To associate an SSL endpoint you need to provide:
 
-. One file containing a pem encoded and not encrypted certificate file.
+. One file containing a PEM encoded and not encrypted certificate file.
 . A second file containing the private key of your PEM certificate.
 +
 [CAUTION]
 The private key file needs to be _passphraseless_.
 
 
-For example, you can create both a PEM encoded and not encyrpted certificate file and a private key using openssl. Here is an example of creating a self-signed certificate and corresponding private key:
+For example, you can create both a PEM encoded and not encrypted certificate file and a private key using `openssl`. Here is an example of creating a self-signed certificate and corresponding private key:
 
 [source,json,linenums]
 ----
@@ -76,7 +76,7 @@ openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 
 
 This command prompts you for the certificate information.
 
-You can also store the certificate information in a configuration file and pass that configuration file in to the openssl command.
+You can also store the certificate information in a configuration file and pass that configuration file in to the `openssl` command.
 
 For example, this certificate configuration file named `example-com.cfg` defines the DNS domain `example.com` that includes some SAN (Subject Alternate Names) for two Mule applications: `app1.example.com` and `app2.example.com`.
 
@@ -119,14 +119,14 @@ commonName                 = *.example.com
 
 The example wildcard ceritifcate is configured to support any subdomain request to `example.com`, so this would include `app1.example.com` and `app2.example.com`, as well as any future subdomain names.
 
-You can then pass the certificate configuration file in an openssl command:
+You can then pass the certificate configuration file in an `openssl` command:
 
 [source,json,linenums]
 ----
 openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 3000 -out example-com-crt.pem -config example-com.cfg
 ----
 
-Then you can decrypt the private key using openssl:
+Then you can decrypt the private key using `openssl`:
 
 [source,json,linenums]
 ----
@@ -230,7 +230,7 @@ AES256-SHA
 AES128-SHA
 ----
 
-ClourHub's dedicated load balancer supports TLSv1.1 and TLSv1.2. Additionally, you can configure TLS v1.0, but bear in mind that such protocol is no longer accepted by PCi compliance due to its significant vulnerabilities.
+CloudHub's dedicated load balancer supports TLSv1.1 and TLSv1.2. Additionally, you can configure TLS v1.0, but bear in mind that such protocol is no longer accepted by PCi compliance due to its significant vulnerabilities.
 
 
 == Mapping Rules
@@ -247,7 +247,7 @@ By using proxy rules, you can map a domain or subdomain to one of your Mule appl
 === Using Patterns in Mapping Rules
 
 A pattern is a string that defines a template for matching an input text. Whatever is placed into curly brackets `{   }` is treated like a variable.
-These variables can contain only letters (a-z) and cannot contain any other characters, such as digits or slashes. The variable values can contain the following characters `a-z0-1.&?-_` but no slashes.
+These variables can contain only letters (a-z) and cannot contain any other characters, such as digits or slashes. The variable values can contain the following characters `a-z0-1.&_-?_` but no slashes.
 
 Suppose you have set up a DNS CNAME records from  `example.com` to `<lb-name>.lb.anypointdns.net`. Then you can map `app.example.com` to a different deployed CloudHub Mule application name.
 
@@ -378,7 +378,7 @@ If you have only one application, you can map the literal app name.
 |   |  *URI*  |   *appName* |   *appURI*
 | 0 | `/`       |    `myApp`    | `/`
 |===
-This maps your default load balancer `lb-demo.lb.anypointdns.net` directly to your app in Cloudhub `myApp.cloudhub.io`.
+This maps your default load balancer `lb-demo.lb.anypointdns.net` directly to your app in CloudHub `myApp.cloudhub.io`.
 
 === Indexing the Priority of Rules
 
@@ -396,12 +396,12 @@ When using the API to create a rule, you can not specify a priority order, but y
 [NOTE]
 --
 The load balancer ID is provided to you when you create it.
-You can also perform a `GET` request to your endpoint /organizations/{orgid}}/loadbalancers` to get the ID.
+You can also perform a `GET` request to your endpoint `/organizations/{orgid}}/loadbalancers` to get the ID.
 --
 
 == Whitelists
 
-In order to whitelist IP addresses to your load balancers, you need to pass those IP addresses in CIDR notation using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[load-balancer whitelist add] command.
+To whitelist IP addresses to your load balancers, you need to pass those IP addresses in CIDR notation using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[load-balancer whitelist add] command.
 
 The whitelist works for inbound connections at the load balancer level, not at the CN certificate level. Make sure you only pass IP addresses.
 

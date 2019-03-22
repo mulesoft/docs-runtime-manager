@@ -33,7 +33,7 @@ WebSockets are used with a `hybrid` installation option (by running `amc_setup -
 
 When registering the Runtime Manager agent with Runtime Manager (by using the hybrid `-H` option), the Runtime Manager agent first makes an outbound HTTPS connection to the Runtime Manager. This connection is used to establish a new secure, full duplex WebSocket connection between the Runtime Manager and the Runtime Manager agent.
 
-Once configured, the Runtime Manager agent securely connects to this Runtime Manager account every time the Mule restarts.  The link that the Runtime Manager agent establishes allows the Mule to be monitored and managed remotely through an Anypoint Runtime Management Console.
+Once configured, the Runtime Manager agent securely connects to this Runtime Manager account every time the Mule restarts.  The link that the Runtime Manager agent establishes allows the Mule to be monitored and managed remotely through an Anypoint Runtime Management console.
 
 If this link goes down while the Mule is still running, statistics and analyics are buffered until the WebSocket connection can be re-established. Additionally, there is also a reconnection strategy in place in cases the WebSocket connection drops.
 
@@ -48,7 +48,7 @@ The Runtime Manager agent is installed into your `$MULE_HOME/plugins` directory 
 
 == External System Choices
 
-In addition to configurating and allowing REST connections with a Runtime Manager agent, you can configure a Runtime Manager agent plugin to connect a Mule to a variety of external systems. The installation script provides options to choose particular communication methods and external systems, including controlling a Mule through a Runtime Manager.
+In addition to configuring and allowing REST connections with a Runtime Manager agent, you can configure a Runtime Manager agent plugin to connect a Mule to a variety of external systems. The installation script provides options to choose particular communication methods and external systems, including controlling a Mule through a Runtime Manager.
 
 See xref:deployment-strategies.adoc[Deployment Strategies] for information on how the Runtime Manager agent communicates with Runtime Manager.
 

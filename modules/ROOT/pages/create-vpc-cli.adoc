@@ -113,8 +113,8 @@ tcp // <4>
 ----
 
 . Set `vpc-tutorial` as the target Anypoint VPC for this new firewall rule.
-. Set the IP range to allow all only hosts from insde your Anypoint VPC by setting `10.111.0.0/24`. +
-In CIDR notation, this allows the range 10.111.0.0 to 10.111.0.255.
+. Set the IP range to allow only hosts from inside your Anypoint VPC by setting `10.111.0.0/24`. +
+In CIDR notation, this allows the range `10.111.0.0` to `10.111.0.255`.
 . Set the whitelisted protocol to `tcp`
 . Allow the port number `8090`
 
@@ -129,7 +129,7 @@ VPC firewall modified successfully
 
 Although it is not possible to update certain values from your Anypoint VPC through the Anypoint Platform CLI, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[Cloudhub API] to programmatically manage and update your Anypoint VPC:
 
-. Log in to the CloudHub services passing your credentials through the `+https://anypoint.mulesoft.com/accounts/login+` endpoint.
+. Log into the CloudHub services passing your credentials through the `+https://anypoint.mulesoft.com/accounts/login+` endpoint.
 . Use the `organizations/{orgid}/vpcs/{vpcId}` endpoint to update your Anypoint VPC.
 
 [NOTE]

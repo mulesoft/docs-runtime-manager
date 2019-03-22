@@ -9,9 +9,9 @@ The public CloudHub load balancer already routes HTTP requests to `http://<myApp
 
 == Routing External Requests to the Dedicated Load Balancer
 
-A CloudHub dedicated Load Balancer provides an alternative domain name to route HTTP requests to Mule applications listening on port 8091, and HTTPS requests to Mule applications listening on port 8092. In addition, you can write mapping rules to rename requests to the CloudHub dedicated load balancer to a different Mule application domain name.
+A CloudHub dedicated load balancer provides an alternative domain name to route HTTP requests to Mule applications listening on port 8091, and HTTPS requests to Mule applications listening on port 8092. In addition, you can write mapping rules to rename requests to the CloudHub dedicated load balancer to a different Mule application domain name.
 
-For example, supose you define a create a load balancer named *lb-name*. Then the dedicated load Balancer exposes an external domain name that resolves to two public IP addresses which are accessible from outside your CloudHub Anypoint VPC network.
+For example, suppose you define and create a load balancer named *lb-name*. Then the dedicated load Balancer exposes an external domain name that resolves to two public IP addresses which are accessible from outside your CloudHub Anypoint VPC network.
 
 ----
  lb-name.lb.anypointdns.net
@@ -26,9 +26,10 @@ You could then set a mapping rule in your dedicated load balancer so external cl
 
 In addition, you can set a CNAME record in your corporate DNS nameserver to mask the `lb-name.lb.anypointdns.net` domain to your companies "vanity" domain.
 
-For example, suppose your company owns the DNS domain example.com. You can create a CNAME record to route requests to myapp.example.com to `<myApp>.lb-name.lb.anypointdns.net`. Now you have hidden the complexity of the CloudHub domain name in the `cloudhub.io` domain.
+For example, suppose your company owns the DNS domain example.com. You can create a CNAME record to route requests to `myapp.example.com` to `<myApp>.lb-name.lb.anypointdns.net`. Now you have hidden the complexity of the CloudHub domain name in the `cloudhub.io` domain.
 
 == Routing Internal Requests to the Dedicated Load Balancer
+
 Your CloudHub dedicated load balancer also has an internal domain name that is used by applications and clients within the Anypoint VPC. The naming convention used by the internal domain is:
 
 ----
@@ -41,7 +42,7 @@ Each dedicated load balancer has a DNS A Record `<lb-name>.lb.anypointdns.net` t
 
 If you want your load balancer to handle all connections to your application, but do not want your default domain name for your application publicly exposed, then each application needs to be listening on HTTP on port 8091 or 8092. Alternately, you can create a custom mapping policy to redirect outside requests from your load balancer to your specific application.
 
-The following diagram shows how a load balancer interacts between a virtual private cloud and Anypoint Plaform.
+The following diagram shows how a load balancer interacts between a virtual private cloud and Anypoint Platform.
 
 image::pxty-lb.png[Load Balancer]
 

@@ -8,13 +8,13 @@ You can use the Runtime Manager REST API for continuous deployment to your own o
 
 You can implement the process described here as a task in the continuous deployment pipeline in the following ways:
 
-* As a shell (for example, Microsoft PowerShell, Bash, and so on),
-* As a script, or
+* As a shell (for example, Microsoft PowerShell, Bash, and so on)
+* As a script
 * As a Jenkins/Maven Plugin written in Java
 
 For a more complete reference of all the operations, resources, methods, required properties, and expected responses that are supported through the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Standalone Runtime Manager API Reference] or https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/1.0.3/console/summary/[Runtime Fabric API Reference]
 
-A Mule Maven Plugin that provides the same capabilities is also available. Therefore, use the process described here as an alternative if you cannot, or do not want, to use the https://docs.mulesoft.com/mule-runtime/4.1/mmp-deployment-concept[Mule Maven Plugin].
+A Mule Maven plugin that provides the same capabilities is also available. Therefore, use the process described here as an alternative if you cannot, or do not want, to use the https://docs.mulesoft.com/mule-runtime/4.1/mmp-deployment-concept[Mule Maven Plugin].
 
 It is advisable to create a dedicated Anypoint Platform account used exclusively for deployment and CI related activities.
 
@@ -109,7 +109,7 @@ The workflow executes the following API calls in sequence.
 [NOTE]
 This step is required to ensure high availability when failure occurs in the target and the Control Plane needs to re-deploy artifacts for recovery.
 
-To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management] API*:
+To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management] API:
 
 . Call `/login` on the Access Management API with a valid Anypoint Platform user name and password to obtain the `access_token` and `token_type` to use in all the subsequent calls.
 
@@ -141,13 +141,13 @@ This step retrieves the target `id`, which is then used as a target for the depl
 
 *Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/1.0.3/console/summary/[Application Manager] API*:
 
-. Call *Deployments* on the *Application Manager API*, passing the organization's `id` and the environment's `id`, to retrieve the application's `id` and the rest of its data.
+. Call deployments on the Application Manager API, passing the organization's `id` and the environment's `id`, to retrieve the application's `id` and the rest of its data.
 
 +
 [NOTE]
-This step retrieves the application `id` to determine whether the following step is a new deployment (6a) or a re-deployment (6b). The application `id` must be extracted from 'data[i].id', where 'data[i].artifact.name == inputArtifactName' and 'data[i].target.targetId == `targetId`.
+This step retrieves the application `id` to determine whether the following step is a new deployment (6a) or a re-deployment (6b). The application `id` must be extracted from `data[i].id`, where `data[i].artifact.name == inputArtifactName' and `data[i].target.targetId == `targetId``.
 
 . Post `/deployments` on the Application Manager API, passing the organization's `id`, the environment's `id`, `applicationName`, `labels`, `target` deployment settings (including the target id retrieved in Step 1 of this section), the Exchange reference of the published Mule application 'application' to deploy, the application `configuration`, and optionally the application `id`.
 
 [NOTE]
-This step deploys the actual Mule application artifact for the first time to a target environment and Runtime Fabric. Use POST requests if no application identifier was retrieved in step 2. Use PATCH if an application identifier was retrieved in step 2 to re-deploy.
+This step deploys the actual Mule application artifact for the first time to a target environment and Runtime Fabric. Use `POST` requests if no application identifier was retrieved in step 2. Use `PATCH` if an application identifier was retrieved in step 2 to re-deploy.
