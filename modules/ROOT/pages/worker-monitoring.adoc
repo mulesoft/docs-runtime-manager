@@ -10,7 +10,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 [NOTE]
-Worker Monitoring is a feature that is only available for applications deployed to CloudHub workers. It is not available for applications that you deploy via the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Strategies] and xref:monitoring.adoc[Monitoring Applications] for more details.
+Worker Monitoring is a feature that is only available for applications deployed to CloudHub workers. It is not available for applications that you deploy using the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Strategies] and xref:monitoring.adoc[Monitoring Applications] for more details.
 
 CloudHub supports worker monitoring and automatic restarts for unresponsive applications. Monitoring allows you the option to receive notifications and diagnostic information if your application becomes unresponsive. Optionally, enable automatic restarts so that your application can recover automatically without your intervention. CloudHub gives you the flexibility to conduct monitoring with or without enabling automatic restarts.
 
@@ -34,7 +34,7 @@ If you are setting this from the *Deploy Application* menu, click *Deploy Applic
 
 If you are setting this from the *Manage Application* menu, click *Apply Changes*.
 
-For applications running on runtime 3.8.x and earlier, upon deployment, CloudHub inserts a monitoring ping flow into your application. When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application.
+For applications running on Mule 3.8.x and earlier, upon deployment, CloudHub inserts a monitoring ping flow into your application. When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application.
 
 image::logpingflowinjector.png[LogPingFlowInjector]
 
@@ -44,19 +44,19 @@ image::chmulesystemhealthmsg.png[CHMuleSystemHealthMsg]
 
 == How Monitoring Works
 
-=== Mule Runtime 3.x.x 
+=== Mule 3.x.x 
 
 Every 30 seconds, CloudHub sends an HTTP get request to the ping flow within the application. If the application is running normally, the ping flow sends a response. If CloudHub receives no response from the ping three times in a row, the logs print a warning and display a full thread dump.
 
 image::ch-monitoring-threaddump.png[CH-monitoring-threaddump]
 
-=== Mule Runtime 4.x.x
+=== Mule 4.x.x
 
 Every 30 seconds, CloudHub checks the PID of the Mule process. If CloudHub detects the application process is not running three times in a row, the logs print a warning.
 
 In both cases, CloudHub triggers a notification to the console to alert you that a worker for any application stopped responding.
 
-If you have configured email alerts, the nonresponsive worker also triggers an email alert based on the "Worker Not Responding" event. See  xref:alerts-on-runtime-manager.adoc[Alerts] for more information about configuring these alerts.
+If you have configured email alerts, the non-responsive worker also triggers an email alert based on the `Worker Not Responding` event. See  xref:alerts-on-runtime-manager.adoc[Alerts] for more information about configuring these alerts.
 
 == How Automatic Restarts Work
 

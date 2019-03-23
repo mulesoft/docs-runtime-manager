@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Manager enables you to view and configure properties in your Mule runtime environments. Runtime Manager displays two types of properties.
+Runtime Manager enables you to view and configure properties in your Mule environments. Runtime Manager displays two types of properties.
 
 == Custom Properties
 
-Custom properties enable you to define properties used by the JVM container of a mule runtime. Custom properties are defined as key/value pairs.
+Custom properties enable you to define properties used by the JVM container of a Mule. Custom properties are defined as key/value pairs.
 
 == Discovered Properties
 
-Discovered properties are properties defined by the remote environment of the Mule runtime. These include environment and system properties of the machine where your Mule runtime is located.
+Discovered properties are properties defined by the remote environment of the Mule. These include environment and system properties of the machine where your Mule is located.
 
 You can view the following types of properties:
 
@@ -19,9 +19,9 @@ You can view the following types of properties:
 * Environment Properties
 * System Properties
 
-Runtime Manager retrieves the values of these properties from the Runtime Manager Agent which queries the `System` Java class on the remote server. By default, Autodiscovery of remote server properties is disabled. You must click Enable Discovery to use this feature. After enabling this feature, Runtime Manager stores an encrypted version of these properties in its internal database.
+Runtime Manager retrieves the values of these properties from the Runtime Manager agent which queries the `System` Java class on the remote server. By default, Autodiscovery of remote server properties is disabled. You must click *Enable Discovery* to use this feature. After enabling this feature, Runtime Manager stores an encrypted version of these properties in its internal database.
 
-To fully disable this feature, contact your customer success representative.
+To fully disable this feature, contact your MuleSoft customer success representative.
 
 == Viewing Server Properties
 

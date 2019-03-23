@@ -6,7 +6,7 @@ endif::[]
 Before creating a server group, ensure that you have:
 
 * Installed and configured Mule.
-* Installed and configured the Runtime Manager Agent.
+* Installed and configured the Runtime Manager agent.
 * Created a server in Runtime Manager.
 
 
@@ -16,7 +16,7 @@ To create a server group in Runtime Manager:
 . Download and install https://www.mulesoft.com/platform/enterprise-integration[Mule runtime] on two or more physical or virtual servers in your site.
 . Sign in to the Anypoint Platform and click *Runtime Manager*:
 
-. Click the *Servers* tab and use the token to <<Add a Server, register each server to the platform>> via its command line
+. Click the *Servers* tab and use the token to <<Add a Server, register each server to the platform>> using its command line
 
 +
 image::serverstatus-no-cluster-allonline.png[all servers]
@@ -42,7 +42,7 @@ The group name must not start or end with a dash, must be at least 3 characters 
 
 +
 [NOTE]
-All servers in a server group must be running the same Mule runtime version and the same Agent version. Also, a server group can be created from servers that all display the status 'Running' or 'Disconnected' but these can't be mixed with servers that display the status 'Created'. You can on the other hand create a server group out of only servers that display the status 'Created'.
+All servers in a server group must be running the same Mule version and the same Runtime Manager agent version. Also, a server group can be created from servers that all display the status `Running` or `Disconnected` but these can't be mixed with servers that display the status `Created`. You can create a server group out of servers that all display the status `Created`.
 
 == See Also
 

@@ -48,7 +48,7 @@ image::downloadlogs.png[DownloadLogs]
 The log file is a text file with `.log` file extension and named in the format of `<deployment-ID>-<instance-ID>.log`. You can view this file with a text editor.
 
 [NOTE]
-If CloudHub application logs need to be archived or downloaded for audit, analytics or similar purpose on regular intervals, please use xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
+If CloudHub application logs need to be archived or downloaded for audit, analytics or similar purpose on regular intervals, use xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
 
 
 == Download Diagnostics
@@ -56,7 +56,7 @@ If CloudHub application logs need to be archived or downloaded for audit, analyt
 Diagnostics display the Java thread dump of each CloudHub worker in each deployment. These indicate the current state of the server, which is useful for debugging and support.
 
 [NOTE]
-For apps that run on a Mule version earlier than 3.8.0 (excluding version 3.7.4), diagnostics are not available.
+For apps that run on a Mule versions earlier than 3.8.0 (excluding version 3.7.4), diagnostics are not available.
 
 
 In the *Deployment* filters section on the right, find the date and worker you want to view, click the download icon next to it, and select *Diagnostics*.
@@ -85,7 +85,6 @@ CloudHub stores log data in Universal Time (UTC); however, the console displays 
 
 == Search Logs
 
-
 Advanced search lets you search logs by date and priority.
 
 To access advanced search, click *Advanced* in the search field.
@@ -96,14 +95,14 @@ image::elmadvsearch.png[ELMAdvSearch]
 
 The *Date & Time* filter lets you search the log by specifying a date range. Possible values are:
 
-* Last hour
-* Last 24 hours
-* Last week
-* Last month
+* *Last hour*
+* *Last 24 hours*
+* *Last week*
+* *Last month*
 
 === Search by Message Priority
 
-The *Priority* filter lets you view specific events in the log. You can also specify different priorities by typing `priority<type>` in the search box, as shown in the Command column in the table.
+The *Priority* filter lets you view specific events in the log. You can also specify different priorities by typing `priority<type>` in the search box, as shown in the *Command* column in the table.
 
 Possible values are:
 

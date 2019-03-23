@@ -11,11 +11,11 @@ How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to yo
 |IPsec tunnel
 |How you connect using the IPsec tunnel method depends on when you initially configure your VPC.
 
-For VPCs before November 2018, see <<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
+For Anypoint VPCs before November 2018, see <<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 
-For new VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN]
+For new Anypoint VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN]
 
-To add additional static routes to VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[Adding Additional Static Routes Using the API].
+To add additional static routes to Anypoint VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[Adding Additional Static Routes Using the API].
 |VPC peering
 |<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 |CloudHub direct connect
@@ -25,12 +25,12 @@ To add additional static routes to VPCs that were connected after November 2018,
 [request_vpc_connectivity]
 == Request VPC Connectivity
 
-If you need to connect your VPC to your internal network via VPN tunnel, peering, or direct connect, you must:
+If you need to connect your Anypoint VPC to your internal network using VPN tunnel, peering, or direct connect, you must:
 
 . Download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the Anypoint VPC discovery form], which requires at least MS Excel 2007 with macros enabled).
 . Enter the data to communicate the necessary details required for your connectivity method. If you need support for multiple Amazon regions, submit one copy of the discovery form for each region in which you need support.
 . Contact your MuleSoft account representative to discuss your specific requirements. +
-After the MuleSoft Support team receives your form and answer any remaining questions, they securely exchange keys, and supply instructions on how to configure your router(s).
+After the MuleSoft Support team receives your form and answers any remaining questions, they securely exchange keys, and supply instructions on how to configure your router(s).
 
 The SLA for configuring Anypoint VPC is five business days after the Anypoint VPC discovery form has been completed, returned and approved by Support, though the Anypoint VPC configuration may be completed sooner.
 

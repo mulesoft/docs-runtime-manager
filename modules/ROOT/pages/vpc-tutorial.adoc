@@ -4,14 +4,14 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-Before you can create a VPC, your organization must:
+Before you can create an Anypoint VPC, your organization must:
 
 * Purchase an Anypoint VPC offering
 * Have the necessary permissions on your account to create and administrate a Anypoint VPC
 
 == Create the Anypoint VPC
 
-. Sign into your Anypoint Platform account as a user with the Organization Administrators role.
+. Sign into your Anypoint Platform account as a user with the *Organization Administrators* role.
 . Under *Management Center*, click *Runtime Manager*.
 . In the left navigation, click *VPCs*.
 . Click *Create VPC*, and enter the following information to define and configure the Anypoint VPC:
@@ -50,7 +50,7 @@ image::create-vpc.png[]
 . Click *Firewall Rules* to expand the fields and xref:vpc-firewall-rules-concept.adoc[configure firewall rules]. +
 By default, all inbound traffic is blocked, and you need to configure firewall rules to allow traffic to your worker. You can configure these rules at a later time. +
 The UI is pre-filled with suggestions of the most commonly used firewall rules. +
-The example below shows a firewall rule with type 'http.private.port' from `Anywhere`. The port range is set to `8091` automatically.
+The example below shows a firewall rule with type `http.private.port` from `Anywhere`. The port range is set to `8091` automatically.
 +
 image::vpc-and-load-balancer-creation-97c25.png[]
 +
@@ -115,7 +115,7 @@ Add the private domains that need to be resolved using your DNS server and press
 
 == See Also
 
-* xref:vpc-firewall-rules-concept.adoc[About VPC Firewall Rules]
+* xref:vpc-firewall-rules-concept.adoc[About Anypoint VPC Firewall Rules]
 * xref:dedicated-load-balancer-tutorial.adoc[About CloudHub Load Balancers]
 * xref:vpc-management-permission-topic.adoc[FAQ: Where To Place a VPC Inside my Organization]
 * xref:resolve-private-domains-vpc-task.adoc[Configure Private Domains]
