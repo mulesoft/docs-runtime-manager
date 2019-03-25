@@ -3,19 +3,19 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-As an organization administrator, you can create a VPC and share it with any business group within your main organization. +
-However, once the VPC is inherited by a business group, only the administrator of said business group can operate the VPC (i.e. set worker's firewall rules, assign it as default to an environment within that business group, etc). +
+As an organization administrator, you can create an Anypoint VPC and share it with any business group within your main organization. +
+However, once the Anypoint VPC is inherited by a business group, only the administrator of said business group can operate the Anypoint VPC (for example, set worker's firewall rules, assign it as default to an environment within that business group, and so on). +
 
-If no business group association is specified, or if your organization does not have any business group, the VPC ownership remains associated with the main organization. +
-The organization under which the VPC is created is the VPC Owner and this organization's administrator is the only one who can share the VPC.
+If no business group association is specified, or if your organization does not have any business group, the Anypoint VPC ownership remains associated with the main organization. +
+The organization under which the Anypoint VPC is created is the *VPC Owner* and this organization's administrator is the only one who can share the Anypoint VPC.
 
-A CloudHub organization administrator or a Business Group Owner can create or update an existing VPC (owned or inherited) to make it the default for either the region, the environments or both. +
-However, if such association already exists, it's overwritten by the requested VPC.
+A CloudHub organization administrator or a *Business Group Owner* can create or update an existing Anypoint VPC (owned or inherited) to make it the default for either the region, the environments or both. +
+However, if such association already exists, it's overwritten by the requested Anypoint VPC.
 
-VPCs can only be shared vertically from the main organization to one of its business groups, or from a business group to one of its child business groups. +
-You cannot share a VPC created by a business group with another one of higher hierarchy.
+Anypoint VPC instances can only be shared vertically from the main organization to one of its business groups, or from a business group to one of its child business groups. +
+You cannot share an Anypoint VPC created by a business group with another one of higher hierarchy.
 
-It's recommended to create your VPC in your master organization, and to share it with the other business groups.
+We recommend that you create your Anypoint VPC in your master organization, and to share it with the other business groups.
 
 == See Also
 

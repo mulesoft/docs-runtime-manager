@@ -3,17 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Virtual Private Cloud (VPC) offering allows you to create a virtual, private, and isolated network segment in the cloud to host your CloudHub workers.
+The Anypoint Virtual Private Cloud (VPC) offering allows you to create a virtual, private, and isolated network segment in the cloud to host your CloudHub workers.
 
 Connecting to your Anypoint VPC extends your corporate intranet and allows CloudHub workers to access resources behind your corporate firewall. You can connect on-premises data centers through a secured VPN tunnel, or a private AWS VPC through VPC peering, or by using AWS Direct Connect.
 
-The base VPC subscription includes two VPCs and each VPC can be associated with multiple environments. This allows you, for example, to have one isolated network for your production environment, and another for your QA and staging. Your licensing requirements depend on your specific deployment scenario. 
+The base Anypoint VPC subscription includes two Anypoint VPCs and each Anypoint VPC can be associated with multiple environments. This allows you, for example, to have one isolated network for your production environment, and another for your QA and staging. Your licensing requirements depend on your specific deployment scenario. 
 
-Anypoint VPC supports different Amazon regions. During setup, you need to specify which Amazon region you want. You can even have multiple VPCs inside a single Amazon region, however this is not a standard setup and you need to specify this requirement when provisioning your VPC.
+Anypoint VPC supports different Amazon regions. During setup, you need to specify which Amazon region you want. You can even have multiple Anypoint VPCs inside a single Amazon region, however this is not a standard setup and you need to specify this requirement when provisioning your Anypoint VPC.
 
 image::virtual-private-cloud-78b5f.png[]
 
-Each VPC allows you to configure firewall rules to apply to your workers. You can choose to expose or block your custom ports and even block requests to your apps coming from CloudHub's shared load balancer. +
+Each Anypoint VPC allows you to configure firewall rules to apply to your workers. You can choose to expose or block your custom ports and even block requests to your apps coming from CloudHub's shared load balancer. +
 Additionally, you can configure one or more dedicated load balancers to validate requests using your own SSL certificates, and to map input URLs to call to different CloudHub applications. +
 Combining firewall rules and dedicated load balancers configurations, you can fine tune how external services reach your applications.
 
@@ -23,19 +23,19 @@ When you are planning and configuring your Anypoint VPCs, you should make sure y
 
 === 1:1 Relationship Deployment
 
-In this scenario, you are using a 1:1 relationship, which means that each VPC can connect to a single public IP address at a remote location. One license is used per remote location.
+In this scenario, you are using a 1:1 relationship, which means that each Anypoint VPC can connect to a single public IP address at a remote location. One license is used per remote location.
 
 image::vpc-1-1-deployment.png[1:1 VPC Deployment]
 
 === Connect a Single Anypoint VPC to Two Remote Locations
 
-A strict 1:1 relationship between a VPC and remote location is not necessary. In this example, a single VPC is connected to public IP addresses at two remote locations. This means that you are using both of the VPN licenses that are included in the base VPC subscription for a single VPC, which leaves no licenses for connectivity to the second VPC. 
+A strict 1:1 relationship between an Anypoint VPC and remote location is not necessary. In this example, a single Anypoint VPC is connected to public IP addresses at two remote locations. This means that you are using both of the Anypoint VPN licenses that are included in the base Anypoint VPC subscription for a single Anypoint VPC, which leaves no licenses for connectivity to the second Anypoint VPC. 
 
-image::vpc-one-to-two-remote-locations.png[One VPC Connecting to Two Remote Locations]
+image::vpc-one-to-two-remote-locations.png[One Anypoint VPC Connecting to Two Remote Locations]
 
 === Connect Two Anypoint VPCs to Two Remote Locations Each
 
-If you implement a VPC deployment scenario where both VPCs connect to two remote locations, four VPC licenses are required, even if you are using the same two public IP addresses. This is because each remote location that needs to be accessible from the Anypoint VPC requires an additional VPC license.
+If you implement an Anypoint VPC deployment scenario where both Anypoint VPCs connect to two remote locations, four Anypoint VPC licenses are required, even if you are using the same two public IP addresses. This is because each remote location that needs to be accessible from the Anypoint VPC requires an additional Anypoint VPC license.
 
 image::vpc-2-2-deployment.png[2:2 VPC Deployment]
 
@@ -46,10 +46,10 @@ image::vpc-2-2-deployment.png[2:2 VPC Deployment]
 
 == See Also
 
-* xref:vpc-architecture-concept.adoc[About VPC Network Architecture]
-* xref:vpc-provisioning-concept.adoc[About Provisioning a VPC]
-* xref:cloudhub-dedicated-load-balancer.adoc[About Cloudhub Dedicated Load Balancer]
-* xref:vpc-firewall-rules-concept.adoc[About VPC Firewall Rules]
+* xref:vpc-architecture-concept.adoc[About Anypoint VPC Network Architecture]
+* xref:vpc-provisioning-concept.adoc[About Provisioning an Anypoint VPC]
+* xref:cloudhub-dedicated-load-balancer.adoc[About CloudHub Dedicated Load Balancer]
+* xref:vpc-firewall-rules-concept.adoc[About Anypoint VPC Firewall Rules]
 * xref:cloudhub-architecture.adoc[CloudHub Architecture]
 //_TODO: Add this as a See Also link:
 // xref:cloudhub-architecture.adoc#cloudhub-workers[CloudHub workers]

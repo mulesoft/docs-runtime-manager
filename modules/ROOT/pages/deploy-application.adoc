@@ -9,10 +9,15 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-[TIP]
-This document deals with calling the xref:cloudhub-api.adoc[CloudHub API]. For instructions on how to perform these same tasks more easily via the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub] and its child pages.
+Use the the xref:cloudhub-api.adoc[CloudHub API] to deploy an application.
 
-The POST method, specified with the `/api/applications/{domain}/deploy` resource (where `{domain}` is the application domain), allows you to deploy an Mule application zip file to CloudHub. This is commonly done after you've created the application in Anypoint Studio or using Maven from the command line- then you need to upload the actual zip file to CloudHub. After you've deployed the zip file, you can monitor the status of your deployment by xref:logs.adoc[viewing the logs].
+[TIP]
+For instructions on how to perform these same tasks more easily using the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub].
+
+The POST method, specified with the `/api/applications/{domain}/deploy` resource (where `{domain}` is the application domain), allows you to deploy an Mule application ZIP file to CloudHub. 
+Deployment is commonly done after you've created the application in Anypoint Studio or used Maven from the command line. Then you need to upload the ZIP file to CloudHub. 
+
+After you've deployed the ZIP file, you can monitor the status of your deployment by xref:logs.adoc[viewing the logs].
 
 *Example Request:*
 
@@ -34,7 +39,7 @@ POST https://anypoint.mulesoft.com/cloudhub/api/applications/hello/deploy
 ====
 Check out the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal] of the CloudHub API to see an interactive reference of all the supported resources, methods, required properties and expected responses.
 
-In the link above, search among other Mule APIs for the "CloudHub" API and click on its latest version.
+In the API Portal, search among other Mule APIs for the CloudHub API and enter its latest version.
 ====
 
 

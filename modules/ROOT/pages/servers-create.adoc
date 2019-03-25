@@ -9,16 +9,16 @@ Use the `amc_setup` script to create a server by configuring the Runtime Manager
 
 To manage servers in a customer-hosted environment, you must perform the following:
 
-* Install Mule runtime, version 3.6 or later or API Gateway runtime, version 2.0 or later.
+* Install Mule version 3.6 or later, or API gateway version 2.0 or later.
 * Install Runtime Manager Agent, version 1.1.1 or later.
 * (Optional) Configure any whitelisted IPs or ports required to connect to Anypoint Platform through a firewall.
 
 If the server you want to add is already registered with a different instance of Runtime Manager, you cannot add it until you remove if from the other instance. To do this:
 
 . In Runtime Manager, delete the server from the *Server* tab.
-. Delete the `mule-agent.yaml` configuration file, which can be found in your '{RUNTIME PARENT FOLDER}/conf' folder.
+. Delete the `mule-agent.yaml` configuration file, which can be found in your `{RUNTIME PARENT FOLDER}/conf` folder.
 
-If your environment requires all outbound calls to go through a proxy you must modify the proxy settings in the 'wrapper.conf' file in the '{RUNTIME PARENT FOLDER}/conf' directory.
+If your environment requires all outbound calls to go through a proxy you must modify the proxy settings in the `wrapper.conf` file in the `{RUNTIME PARENT FOLDER}/conf` directory.
 
 If you have previously configured your runtime environment you must delete the server and its corresponding configuration file.
 . Delete the server from Runtime Manager.
@@ -60,7 +60,7 @@ When creating a server using IBM's Java Virtual Machine (JVM) you must use a dif
 +
 image::empty-servers-add-server-1st-srv-corr-comm-real-2.png[empty_servers-add_server_1st_srv-CORR.COMM-REAL-2]
 +
-The `amc_setup` command contains information that is unique to your organization. Running this command enables the Mule server to communicate with Runtime Manager. The key included in the `-H` parameter (partly redacted in the image above) is a token generated specifically for your Mule server or API Gateway to authenticate against Runtime Manager.
+The `amc_setup` command contains information that is unique to your organization. Running this command enables the Mule server to communicate with Runtime Manager. The key included in the `-H` parameter (partly redacted in the image above) is a token generated specifically for Mule or API gateway to authenticate against Runtime Manager.
 
 . Login to the environment where your Mule runtime is installed.
 . Navigate to the `$MULESOFT_HOME/bin` directory.

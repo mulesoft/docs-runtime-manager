@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, api, runtime manager, arm, mule, mule, runtime, on prem, on premises
 
-Runtime Manager allows you to deploy your Mule applications to Mule runtime instances in several ways, depending on your Mule runtime server topology. These are the different deployment strategies available to date.
+Runtime Manager allows you to deploy your Mule applications to Mule instances in several ways, depending on your Mule runtime server topology. These are the different deployment strategies available to date.
 
 [%header]
 |===
@@ -26,7 +26,7 @@ Runtime Manager allows you to deploy your Mule applications to Mule runtime inst
 
 |xref:1.6@private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
 
-| A http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[*Pivotal Cloud Foundry*] repository that manages an instance of Mule runtime.
+| A http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[Pivotal Cloud Foundry (PCF)] repository that manages an instance of Mule runtime.
 
 xref:deploying-to-pcf.adoc[_See deployment instructions_]
 |===
@@ -51,7 +51,7 @@ These are otherwise grayed out.
 
 image::arm-vs-ch1.png[diagram1]
 
-In xref:studio::index.adoc[Anypoint Studio], hitting the *Play* icon (or right-clicking project on the Package Explorer and selecting *Run As* > *Mule Application*), deploys your application to an embedded test server that is built into Studio. This server is not meant for production deployment and uptime restrictions apply. Ultimately you will want to deploy your application into one of the *deployment scenarios* described below. All of these are supported by the Runtime Manager.
+In xref:studio::index.adoc[Anypoint Studio], clicking the *Play* icon (or right-clicking project on the *Package Explorer* and selecting *Run As* > *Mule Application*), deploys your application to an embedded test server that is built into Studio. This server is not meant for production deployment and uptime restrictions apply. Ultimately you will deploy your application into one of the deployment scenarios described below. All of these are supported by the Runtime Manager.
 
 
 == Deployment Scenarios
@@ -120,21 +120,18 @@ image:logo-pcf-active.png[link="/runtime-manager/deploying-to-pcf", title="Pivot
 image::infrastructure-pcf.png[pcf]
 
 
-If your IT infrastructure is built on http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[Pivotal Cloud Foundry (PCF)] to virtualize local resources, you might be interested in leveraging this platform to deploy Mule applications to dynamically allocated resources. Runtime Manager is integrated with PCF, by simply picking PCF as a deployment target on the UI, you can xref:deploying-to-pcf.adoc[deploy to your PCF instance].
+If your IT infrastructure is built on http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[Pivotal Cloud Foundry (PCF)] to virtualize local resources, you might be interested in leveraging this platform to deploy Mule applications to dynamically allocated resources. Runtime Manager is integrated with Pivotal Cloud Foundry, by simply picking Pivotal Cloud Foundry as a deployment target on the UI, you can xref:deploying-to-pcf.adoc[deploy to your PCF instance].
 
 
-This deployment strategy is only available through the *Anypoint Platform Private Cloud Edition*, so the same limitations apply as described in the prior scenario. It requires that you do some extra leg work, and is currently lacking some operating features. You need to take extra steps to work out <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
+This deployment strategy is only available through the Anypoint Platform Private Cloud Edition, so the same limitations apply as described in the prior scenario. It requires that you do some extra leg work, and is currently lacking some operating features. You need to take extra steps to work out <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
 
 This packaging of the Anypoint Platform is currently lacking <<Dashboards>>, <<Insights>>, as well as <<Alerts and Notifications, alerts>>. Future releases will bridge those gaps further.
 
-Each time you xref:deploying-to-pcf.adoc[deploy an application], the PCF instances a new Mule server out of the dynamic resources that are available – following the specifications indicated on the used buildPack – and then deploys your application there. You can scale a deployment by choosing a *replication factor*, that defines how many instances of a predefined scale are to be launched.
+Each time you xref:deploying-to-pcf.adoc[deploy an application], the Pivotal Cloud Foundry instances a new Mule server out of the dynamic resources that are available – following the specifications indicated on the used buildPack – and then deploys your application there. You can scale a deployment by choosing a *replication factor*, that defines how many instances of a predefined scale are to be launched.
 
 
 [TIP]
 See the sections below to find out what specific operating features apply to this modality and how to configure them.
-
-
-
 
 
 == Management Features
@@ -160,17 +157,17 @@ Although the long term plan is to converge the features of these deployment mech
 [%header,cols="2*"]
 |===
 | Deploying to a CloudHub worker | Deploying to a server you manage
-| xref:viewing-log-data.adoc[Logs are handled] by CloudHub
-| You can configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK
+| xref:viewing-log-data.adoc[Logs are handled] by CloudHub.
+| You can configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK.
 
 | CloudHub has its own xref:insight.adoc[Insight Engine]
-| You can also configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK
+| You can also configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK.
 
-| You can manage xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI
-| You must use the xref:3.8@mule-runtime::poll-schedulers.adoc[Poll Scheduler] element in your flows to schedule tasks
+| You can manage xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI.
+| You must use the xref:3.8@mule-runtime::poll-schedulers.adoc[Poll Scheduler] element in your flows to schedule tasks.
 
 | CloudHub has its own preconfigured default xref:managing-application-data-with-object-stores.adoc[Object Store] you can reference. To use it, simply add an xref:3.8@mule-runtime::mule-object-stores.adoc[Object Store connector] and set its 'config_ref' to point to the default CloudHub Object Store.
-| To use xref:3.8@mule-runtime::mule-object-stores.adoc[Object Stores] you must configure your own database to store data
+| To use xref:3.8@mule-runtime::mule-object-stores.adoc[Object Stores] you must configure your own database to store data.
 |===
 
 
@@ -192,7 +189,7 @@ To utilize the load balancer, your application must use specific ports that Clou
 
 On deployments that are done to clusters and server groups on-premises, load balancing is handled automatically at the time of deployment.
 
-In the case of PCF deployments done to multiple instances, load balancing is also taken care of automatically.
+In the case of Pivotal Cloud Foundry deployments done to multiple instances, load balancing is also taken care of automatically.
 
 == How to Name Applications on CloudHub
 
@@ -206,18 +203,17 @@ CloudHub provides high availability through xref:cloudhub-fabric.adoc[CloudHub F
 
 Deploying on-premises (both via the cloud and the on-premises console) offers high availability capabilities through creating xref:managing-servers.adoc[Clusters and Server Groups]. Clustered Mule instances have xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[distributed shared memory]. This shared memory is used to provide persistent VM queues, transactions, and cluster-wide data storage.
 
-You can set a higher xref:deploying-to-pcf.adoc#replication-factor[replication factor], which deploys your app to multiple instances. Through PCF settings you can configure how much each of these instances is worth in terms of scale.
+You can set a higher xref:deploying-to-pcf.adoc#replication-factor[replication factor], which deploys your app to multiple instances. Through Pivotal Cloud Foundry settings you can configure how much each of these instances is worth in terms of scale.
 
 [NOTE]
-xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc#clustering-for-high-performance[Clustering for High Performance] is not supported on PCF.
+xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc#clustering-for-high-performance[Clustering for High Performance] is not supported on Pivotal Cloud Foundry.
 
-== Managing Properties
 
-=== For Applications On CloudHub
+== Managing Properties for Applications on CloudHub
 
 The easiest way to load properties on applications deployed to CloudHub is to use the xref:deploying-to-cloudhub.adoc#properties-tab[*Properties*] tab on the Runtime Manager. There you specify Java system environment variables which will function in the same way as adding environment variables when you deploy to an on-premises server.
 
-Just like with on-premises Mule runtime deployments, you could instead add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts.
+Just like with on-premises Mule deployments, you could instead add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts.
 
 On CloudHub, it's not recommended to configure an external location to add property placeholders.
 
@@ -232,7 +228,7 @@ Note that you can flag application properties as secure so that their values are
 See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for best practices on how to handle properties on CloudHub.
 
 
-=== For Applications On Premises
+== Managing Properties for Applications On Premises
 
 With an on-premises Mule runtime you can add properties in several ways. The most common one is to add a `mule-app.properties` file in the application .zip bundle listing these. The Runtime then loads these properties into the application when the application starts.
 
@@ -250,10 +246,10 @@ mule -M-Dsecret.key=toSecretPassword -M-Denv=prod -M-Ddb.password=secretPassword
 
 In this case all the values typed into the command would only be stored in memory and must be provided every time, they are never stored in any file.
 
-=== For Applications on PCF
+=== For Applications on Pivotal Cloud Foundry
 
 
-In PCF, you can also set properties that are specific to binded services, such as credentials that are directed to a binded MySQL data base. These properties are set on the xref:deploying-to-pcf.adoc#service-bindings-tab[Service Bindings Tab]
+In Pivotal Cloud Foundry, you can also set properties that are specific to binded services, such as credentials that are directed to a bound MySQL data base. These properties are set on the xref:deploying-to-pcf.adoc#service-bindings-tab[Service Bindings Tab].
 
 
 == Monitoring
@@ -262,13 +258,13 @@ In PCF, you can also set properties that are specific to binded services, such a
 
 Most scenarios include the possibility of setting up xref:alerts-on-runtime-manager.adoc[Alerts] for when certain events occur. The available alerts differ depending on the deployment modality, see xref:alerts-on-runtime-manager.adoc[Alerts] for a full reference.
 
-Besides the established list of events that can trigger an alert, CloudHub allows you to set up xref:custom-application-alerts.adoc[Custom Application Alerts and Notifications]. These can be triggered by any event that you wish, by adding a *CloudHub connector* to your app's flows.
+Besides the established list of events that can trigger an alert, CloudHub allows you to set up xref:custom-application-alerts.adoc[Custom Application Alerts and Notifications]. These can be triggered by any event that you wish, by adding a CloudHub connector to your app's flows.
 
 CloudHub also features a set of standard xref:notifications-on-runtime-manager.adoc[Notifications] that pop up to inform of certain events regarding your applications.
 
 When deploying to your own servers (both via the cloud and the on-premises console) you can also create alerts that are triggered by events related to the servers they run on, such as reaching a certain CPU usage threshold or adding a new node to a cluster.
 
-Alerts are not supported on PCF deployments.
+Alerts are not supported on Pivotal Cloud Foundry deployments.
 
 === Dashboards
 
@@ -296,9 +292,9 @@ Anypoint Platform Private Cloud Edition doesn't currently support the insights f
 
 CloudHub provides a xref:viewing-log-data.adoc[logging service] for allowing logs to be searched, downloaded, or log levels to be customized. See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for more details.
 
-On-premises applications can send data to external tools to manage your logs, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software]. You can use custom log4j properties files.
+On-premises applications can send data to external tools to manage your logs, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software]. You can use custom `log4j` properties files.
 
-For applications deployed to PCF, logs aren't supported but you can view logs directly on Pivotal's console.
+For applications deployed to Pivotal Cloud Foundry, logs aren't supported but you can view logs directly on Pivotal's console.
 
 == Object Store
 
@@ -307,7 +303,7 @@ CloudHub provides an implementation of the user object store. This makes its usa
 Deployments on-premises require that you set up your own object store, see xref:3.8@mule-runtime::mule-object-stores.adoc[Mule object stores].
 
 [TIP]
-For deployments to PCF, it's recommended that you store your data outside the Mule runtime instance where your application runs, since its data will be lost whenever the application is stopped. Instead, you can for example can create a service binding to a database that runs elsewhere.
+For deployments to Pivotal Cloud Foundry, it's recommended that you store your data outside the Mule runtime instance where your application runs, since its data will be lost whenever the application is stopped. Instead, you can for example can create a service binding to a database that runs elsewhere.
 
 
 
@@ -357,7 +353,7 @@ There are some components for which CloudHub has limited support for currently:
 
 If you want to deploy the same Mule application via various different deployment strategies – such as to an <<Cloud Console On-Premises Deployment, on-premises server>> and  <<Cloud Console CloudHub Deployment, CloudHub>>  – you should abstract some parameters of the application to xref:3.8@mule-runtime::mule-application-deployment-descriptor.adoc[application properties] that you can set with different values in each use case, without needing to alter the actual application.
 
-Create an application properties file named *mule-app.properties* in the `src/main/app` folder of your project. When using the properties tab on CloudHub or PCF, these properties are overriden. See <<Managing Properties>> to see how these are loaded with values in each case.
+Create an application properties file named *mule-app.properties* in the `src/main/app` folder of your project. When using the properties tab on CloudHub or Pivotal Cloud Foundry, these properties are overriden. See <<Managing Properties>> to see how these are loaded with values in each case.
 
 == Using Different Environments
 

@@ -4,25 +4,25 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, servers, monitor, notifications, external systems, third party, get status, metrics
 
-A `$MULE_HOME/bin/amc_debug` script is available to help you troubleshoot Runtime Manager Agent installation issues.
+A `$MULE_HOME/bin/amc_debug` script is available to help you troubleshoot Runtime Manager agent installation issues.
 
-If you experience issues with the Runtime Manager Agent Plugin or with managing applications on Anypoint Platform, run this script and save the output before filing a support ticket.
+If you experience issues with the Runtime Manager agent plugin or with managing applications on Anypoint Platform, run the script and save the output before filing a support ticket.
 
 When you run this script it collects the following information to help troubleshoot your issue:
 
-. Discover Mule/agent JVM process
-. Extract Thread dump (not forced if possible)
-. Extract Heap dump
+. Discovers Mule agent JVM process
+. Extracts thread dump (not forced if possible)
+. Extracts heap dump
 +
 [CAUTION]
 --
 This step can cause delays in running applications.
 --
 +
-. Extract machine generic data: Java version, CPU usage, Memory usage, Disk usage.
-. Copy all logs
-. Copy Runtime Manager Agent Configuration files
-. ZIP all the information
+. Extracts machine generic data: Java version, CPU usage, Memory usage, Disk usage.
+. Copies all logs
+. Copies Runtime Manager Agent Configuration files
+. ZIPs all the information
 
 After the script completes, you can find a ZIP file in the folder `$MULE_HOME/bin` (with a name similar to `snapshot_201701021410.zip`) that you can send to MuleSoft's support engineers to help troubleshoot your issues.
 

@@ -1,41 +1,41 @@
-= Request VPC Connectivity to Your Network
+= Request Anypoint VPC Connectivity to Your Network
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The way you request VPC connectivity to your network varies depending on the connectivity method and the date your VPC is created. 
+How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network varies depending on the connectivity method and the date your Anypoint VPC is created. 
 
 [%header]
 |===
 |VPC Connection Method|How to
-|IPsec Tunnel
+|IPsec tunnel
 |How you connect using the IPsec tunnel method depends on when you initially configure your VPC.
 
-For VPCs before November 2018, see <<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
+For Anypoint VPCs before November 2018, see <<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 
-For new VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN]
+For new Anypoint VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN]
 
-To add additional static routes to VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[Adding Additional Static Routes Using the API].
-|VPC Peering
+To add additional static routes to Anypoint VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[Adding Additional Static Routes Using the API].
+|VPC peering
 |<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
-|CloudHub Direct Connect
+|CloudHub direct connect
 |<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 |===
 
 [request_vpc_connectivity]
 == Request VPC Connectivity
 
-If you need to connect your VPC to your internal network via VPN tunnel, Peering, or Direct Connect, you must:
+If you need to connect your Anypoint VPC to your internal network using VPN tunnel, peering, or direct connect, you must:
 
-. Download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the VPC discovery form] (requires at least MS Excel 2007 with macros enabled), and enter the data to communicate the necessary details required for your connectivity method. +
-If you need support for multiple Amazon regions, you need to submit one copy of the discovery form for each region in which you need support.
+. Download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the Anypoint VPC discovery form], which requires at least MS Excel 2007 with macros enabled).
+. Enter the data to communicate the necessary details required for your connectivity method. If you need support for multiple Amazon regions, submit one copy of the discovery form for each region in which you need support.
 . Contact your MuleSoft account representative to discuss your specific requirements. +
-After the CloudHub support team receives your form and answer any remaining questions, they securely exchange keys and supply instructions on how to configure your router(s).
+After the MuleSoft Support team receives your form and answers any remaining questions, they securely exchange keys, and supply instructions on how to configure your router(s).
 
-The SLA for configuring VPC is five business days after the VPC discovery form has been completed, returned, and approved by support, though the VPC configuration may be completed sooner.
+The SLA for configuring Anypoint VPC is five business days after the Anypoint VPC discovery form has been completed, returned and approved by Support, though the Anypoint VPC configuration may be completed sooner.
 
 
 == See Also
 
 * xref:vpn-about.adoc[Anypoint VPN]
-* xref:vpc-connectivity-methods-concept.adoc[About VPC Connectivity Methods]
+* xref:vpc-connectivity-methods-concept.adoc[About Anypoint VPC Connectivity Methods]

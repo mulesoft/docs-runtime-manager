@@ -6,11 +6,11 @@ endif::[]
 The Anypoint VPN feature enables you to create a secure connection to systems within your network that are hosted outside of Anypoint Platform. 
 
 [NOTE]
-If required, you can create multiple VPNs to connect to different networks or different regions within a network. The number of VPNs you can create depends on the VPN capacity allocated to your account. Contact your MuleSoft account representative to discuss your requirements.
+If required, you can create multiple Anypoint VPNs to connect to different networks or different regions within a network. The number of Anypoint VPNs you can create depends on the Anypoint VPN capacity allocated to your account. Contact your MuleSoft account representative to discuss your requirements.
 
 To create and maintain a secure connection with your external network, the Anypoint VPN provides the following features:
 
-* Route-based access via 2-byte and 4-byte autonomous system numbers (ASN). This defines the routing policies used to connect to your network through the VPN.
+* Route-based access via 2-byte and 4-byte autonomous system numbers (ASN). This defines the routing policies used to connect to your network through the Anypoint VPN.
 * Reusable IP addresses.
 * Tunnel configuration.
 
@@ -35,8 +35,8 @@ Because the Anypoint VPN endpoint is the responder, be sure to establish and mai
 
 The Anypoint VPN supports two types of routing:
 
-* Border Gateway Protocol (BGP) routing - Your device uses BGP to dynamically advertise its routes to Anypoint VPN. BGP routing is recommended if your device supports this protocol.
-* Static - Requires you to specify the routes (subnets) for your network that should be accessible to Anypoint VPN.
+* Border Gateway Protocol (*BGP*) routing - Your device uses BGP to dynamically advertise its routes to Anypoint VPN. BGP routing is recommended if your device supports this protocol.
+* *Static* - Requires you to specify the routes (subnets) for your network that should be accessible to Anypoint VPN.
 
 == Tested Network Devices
 
@@ -59,8 +59,8 @@ The following table lists the network devices that are known to work with the An
 |Yamaha RT107e, RTX1200, RTX1210, RTX1500, RTX3000 and SRT100 routers | 
 |Microsoft Windows Server | 2008 R2 or later +
 2012 R2 or later
-|Zyxel Zywall Series | 4.20 or later for statically routed VPN connections +
-4.30 or later for dynamically routed VPN connections
+|Zyxel Zywall Series | 4.20 or later for statically routed Anypoint VPN connections +
+4.30 or later for dynamically routed Anypoint VPN connections
 |===
 
 == See Also

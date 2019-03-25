@@ -37,7 +37,7 @@ If you access the alerts screen through any of the paths listed above and you do
 image::create-first-alert.png[first-alert]
 
 . Click the plus sign next to *Create your first alert*
-
++
 image::create-alert.png[]
 
 . Fill in the required fields:
@@ -55,11 +55,12 @@ Different severity levels currently have no effect on alerts, but will in the fu
 You can't create a single alert that spans applications deployed to both CloudHub and local servers. You must create two separate alerts to reach both types.
 +
 * *Server Type* - For servers, determine if you're managing a single server, a server group, or a cluster. If your servers aren't available on your menu, see xref:managing-servers.adoc[Managing Servers].
-* *Application(s)/server(s)* - Select the application or server to which to apply the alert.
+* *Application(s)* or *Server(s)* - Select the application or server to which to apply the alert.
 * *Condition* - The condition that triggers the alert. The options depend on whether your alert is linked to a server, an application running on CloudHub, or an application running locally. Certain conditions require additional data, which is explained in a <<Alert Conditions, section below>>.
 * *Subject* - Subject of the email that will be sent. Your subject may include variable <<Alert Properties>>.
 * *Message* - Enter the body text for the email. Your message may include variable <<Alert Properties>>.
 * *Recipients* - List the recipients of this email. You can select users of the platform, or enter email addresses of people who aren't in the organization.
+
 . Click *Create Alert*.
 
 . If an event that meets an alert condition occurs, an email like the following is sent:

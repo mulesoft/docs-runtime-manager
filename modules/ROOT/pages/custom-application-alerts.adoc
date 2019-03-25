@@ -5,7 +5,7 @@ endif::[]
 :keywords: cloudhub, monitoring, api, runtime manager, arm
 
 [NOTE]
-Custom Alerts and Notifications are a feature that is currently only available for applications deployed to CloudHub workers. They are not available for applications that you deploy via the Runtime Manager to local servers on-premises. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
+Custom alerts and notifications are a feature that is currently only available for applications deployed to CloudHub workers. They are not available for applications that you deploy via the Runtime Manager to local servers on-premises. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
 
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
@@ -14,7 +14,8 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 == Prerequisites
 
-Before going further, complete the xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub] example as this builds on top of it. In addition, you need to have "Mavenized" your project within Studio. For more information, see xref:6@studio::enabling-maven-support-for-a-studio-project.adoc[Enabling Maven Support for a Studio Project].
+* Complete the xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub] example as the examples in this topic build on that example.
+* Mavenize your project within Studio. For more information, see xref:6@studio::enabling-maven-support-for-a-studio-project.adoc[Enabling Maven Support for a Studio Project].
 
 == How to Use Notifications
 
@@ -24,7 +25,7 @@ Notifications give you the ability to give visibility into business related even
 * An error occurs which requires human intervention, such as a problem with data mapping
 * You want to create a summary of what occurred inside your application, such as the number of orders processed.
 
-In combination with xref:alerts-on-runtime-manager.adoc[Alerts], you can direct these notifications to different people to act on the alerts and fix the underlying problems.
+In combination with xref:alerts-on-runtime-manager.adoc[alerts], you can direct these notifications to different people to act on the alerts and fix the underlying problems.
 
 This example illustrates:
 
@@ -58,16 +59,16 @@ Alerts allow you to send emails based on your application notifications. To crea
 In the *New Alert* dialog:
 
 . Click *New alert*.
-. Enter an alert name, "Hello World".
-. Optionally select your application name or leave the selection as "any"
-. Select "custom application notification" as the event type
-. Enter "Hello" as the word that triggers your notification. Recall the message you configured above is "Hello World!"
-. Enter email addresses that you wish to email to
+. Enter an alert name: `Hello World`.
+. Optionally select your application name or leave the selection as *any*.
+. Select *custom application notification* as the event type.
+. Enter `Hello` as the word that triggers your notification. Recall the message you configured above is `Hello World`.
+. Enter email addresses that you wish to receive alert email.
 . Click *Create*.
 
-This creates your alert. Now, trigger your notification again by going to your application's URL, for example: `+http://YOURAPP.cloudhub.io/+`. You then receive an email with your notification in it!
+Trigger your notification again by going to your application's URL, for example: `+http://YOURAPP.cloudhub.io/+`. The addresses you specified receive an email with your notification.
 
-If *Custom Properties* where send with the notification. i.e:
+This is an example of custom properties defining where to send a notification.
 
 [source,xml,linenums]
 ----
@@ -77,7 +78,7 @@ If *Custom Properties* where send with the notification. i.e:
   </cloudhub:custom-properties>
 </cloudhub:create-notification>
 ----
-Then, they can be accessed as normal properties in the message. i.e.: ${originalPayload}
+Then, they can be accessed as normal properties in the message, for example `${originalPayload}`
 
 == Sending an Error Notification
 

@@ -9,38 +9,22 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-http://www.mulesoft.com/cloudhub/ipaas-cloud-based-integration-demand[CloudHub] is an integration platform as a service (iPaaS). Through the xref:index.adoc[Runtime Manager], it allows you to deploy sophisticated cross-cloud integration applications in the cloud, create new APIs on top of existing data sources, integrate on-premise applications with cloud services, and much more. This guide helps you learn the basics, and get started developing your first application.
+http://www.mulesoft.com/cloudhub/ipaas-cloud-based-integration-demand[CloudHub] is an integration platform as a service (iPaaS). Through the xref:index.adoc[Runtime Manager], it allows you to deploy sophisticated cross-cloud integration applications in the cloud, create new APIs on top of existing data sources, integrate on-premises applications with cloud services, and much more. 
 
-This page deals with some basic concepts about CloudHub. After this short overview, you can build your first CloudHub integration with the xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub] tutorial.
+You can deploy applications using the xref:index.adoc[Runtime Manager] console, or you can xref:deploying-to-your-own-servers.adoc[deploy] to xref:managing-servers.adoc[servers, server groups, and clusters] on-premises.
 
-[TIP]
-Through the same xref:index.adoc[Runtime Manager] console that you can deploy applications to CloudHub, you can also xref:deploying-to-your-own-servers.adoc[deploy] to xref:managing-servers.adoc[servers, server groups and clusters] on-premises.
-
-
-
-== Create Application for CloudHub
+== Create an Application for CloudHub
 
 image::logo-app.png[app]
 
-* See xref:general:getting-started:build-a-hello-world-application.adoc[Build a Hello World Application] to learn the essentials of building a basic Mule application.
-
+* See xref:general:getting-started:build-a-hello-world-application.adoc[Build a Hello World Application] to learn the essentials of building a Mule application.
 * See xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub] to learn how to make this application compatible with CloudHub.
 * See xref:building-an-https-service.adoc[Building an HTTPS Service on CloudHub] to learn how to configure this application to include HTTPS support.
 
-
 [TIP]
-Want to see examples of more elaborate applications? Check out all the examples in xref:exchange::index.adoc[Anypoint Exchange].
+For examples of more applications, see xref:exchange::index.adoc[Anypoint Exchange].
 
-=== Easy Transition Between Cloud and On-Premise Deployments
-
-
-You can deploy the same Mule applications interchangeably both to CloudHub or to an xref:deploying-to-your-own-servers.adoc[on-premise server]. Keep in mind that there are xref:deployment-strategies.adoc[some considerations] to take into account about how some features work between both kinds of environments.
-
-Learn what special considerations you need to keep in mind for Mule applications that will be deployed in CloudHub:
-
-* xref:deployment-strategies.adoc[Deployment Strategies] for an overview on how applications built for deploying to CloudHub differ from those meant for deploying on-premises
-* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for a more in-depth view of these special considerations on CloudHub
-
+You can deploy the same Mule applications to CloudHub or to an xref:deploying-to-your-own-servers.adoc[on-premises server]. There are xref:deployment-strategies.adoc[some considerations] about how features work between both types of environments when you plan your deployment strategy. See xref:deployment-strategies.adoc[Deployment Strategies].
 
 == Deploy your Application to CloudHub
 
@@ -49,7 +33,7 @@ image::logo-deploy.png[deploy]
 Learn how you can deploy your applications to CloudHub:
 
 * xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
-* If you prefer, you can also use the xref:anypoint-platform-cli.adoc[Command Line Interface] to deploy and manage your application
+* If you prefer, you can also use the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface (Anypoint Platform CLI)] to deploy and manage your application
 
 [TIP]
 If you prefer, the same Runtime Manager console also enables you to xref:deploying-to-your-own-servers.adoc[deploy] and manage applications to your own servers.
@@ -57,7 +41,7 @@ If you prefer, the same Runtime Manager console also enables you to xref:deployi
 
 === Easy Scalability
 
-CloudHub is an elastic cloud, meaning it can scale on demand. You can start small and grow as your needs grow, all without changing your application or suffering any downtime. CloudHub provides you with a scalable architecture – one you can build integration applications on, publish REST APIs or Web Services, and much more.
+CloudHub is an elastic cloud, meaning it scales on demand. You can start small and scale up as your needs grow, without changing your applications or experiencing downtime. CloudHub provides a scalable architecture – one on which you can build integration applications, publish REST APIs, or Web services, and much more.
 ////
 
 With the xref:autoscaling-in-cloudhub.adoc[Autoscaling] feature, you can give your apps access to a varying amount of processing resources depending on how much they have been using, and you can define the rules and thresholds for triggering automatic changes.
@@ -67,13 +51,13 @@ With the xref:autoscaling-in-cloudhub.adoc[Autoscaling] feature, you can give yo
 
 === Integration with Anypoint Studio
 
-With xref:6@studio::index.adoc[Anypoint Studio] you can quickly build integration applications and deploy to CloudHub with just a few clicks, without even leaving the Studio IDE, see xref:deploying-to-cloudhub.adoc#from-anypoint-platform[Deploying to CloudHub].
+With xref:6@studio::index.adoc[Anypoint Studio (Studio)] you can quickly build integration applications and deploy to CloudHub with just a few clicks, without even leaving Studio. See xref:deploying-to-cloudhub.adoc#from-anypoint-platform[Deploying to CloudHub] for more information.
 
 Once your application is deployed to CloudHub's multi-tenant runtime, access it like any other application deployed through the platform, by http://anypoint.mulesoft.com[logging in] to the Anypoint Platform, and then going to the Runtime Manager.
 
 === Integrate Cloud and Enterprise Applications
 
-The CloudHub xref:virtual-private-cloud.adoc[Virtual Private Cloud (VPC)] offering allows you to construct a secure pipe to on-premise applications through an IPsec VPN tunnel, VPC Peering or Direct Connect.
+The CloudHub xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)] allows you to construct a secure pipe to on-premise applications through an IPsec VPN tunnel, Anypoint VPC peering or direct connection.
 
 === CloudHub API
 
@@ -86,7 +70,7 @@ image::logo-manage.png[manage]
 Learn how you can manage an application that is currently running in CloudHub:
 
 * xref:managing-deployed-applications.adoc[Manage Deployed Applications] deals with settings that are general to all applications, both those deployed to CloudHub and to on-premise servers.
-* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub] deals with settings specific to applications on CloudHub
+* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub] deals with settings specific to applications on CloudHub.
 
 === Visibility and Control through Runtime Manager
 
@@ -100,22 +84,23 @@ See:
 
 
 [NOTE]
-You can view the live status and detailed service history for the Runtime Manager console, platform services, and the CloudHub worker cloud on http://trust.mulesoft.com/[trust.mulesoft.com].
+You can view the live status and detailed service history for the Runtime Manager console, platform services, and the CloudHub worker cloud on http://trust.mulesoft.com/[`trust.mulesoft.com`].
 
 
 == Monitor your Application
 
 image::logo-monitor.png[monitor]
 
-Through various tools, the Runtime Manager allows you to triage problems, view logs, set up alerts, view dashboards, and more, see:
-
-* xref:monitoring.adoc[Monitoring Applications] for an overview on the different ways that the Runtime Manager allows you to monitor your running applications
+Through various tools, Runtime Manager allows you to triage problems, view logs, set up alerts, view dashboards, and more. See xref:monitoring.adoc[Monitoring Applications] for an overview on the different ways that the Runtime Manager allows you to monitor your running applications.
 
 
 
 == See Also
 
-
+* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:deployment-strategies.adoc[Deployment Strategies] 
+* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:cloudhub-faq.adoc[CloudHub FAQ]
 * xref:cloudhub-architecture.adoc[CloudHub Architecture]
 * xref:cloudhub-fabric.adoc[CloudHub Fabric]

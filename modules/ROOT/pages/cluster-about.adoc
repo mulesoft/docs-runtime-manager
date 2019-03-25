@@ -3,14 +3,14 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-A Cluster is a set of servers that act as a single deployment target where instances of the application are aware of one another and share common information and synchronize statuses. An on-premise cluster enables up to 8 servers to participate in a high availability processing unit so that in case one server should fail, another server takes over processing applications. A cluster can run multiple applications.
+A cluster is a set of servers that act as a single deployment target where instances of the application are aware of one another and share common information and synchronize statuses. An on-premise cluster enables up to eight servers to participate in a high availability processing unit so that in case one server should fail, another server takes over processing applications. A cluster can run multiple applications.
 
 Before creating a  cluster, you must create each of the Mule runtimes that are part of the cluster. You must download and install the same version of the Mule runtime. The supported versions of these components are:
 
-* Mule runtime, version 3.7.0 and later.
-* Runtime Manager Agent, version 1.1.1 and later.
+* Mule version 3.7.0 and later
+* Runtime Manager Agent version 1.1.1 and later
 
-Before creating a cluster, you must also create each of the servers that connect your Mule runtimes to Runtime Manager.
+Before creating a cluster, you must also create each of the servers that connects Mule to Runtime Manager.
 
 == Multicast vs Unicast Clusters
 
@@ -28,5 +28,5 @@ Check with your network administrator to determine if multicast is allowed withi
 
 == See Also
 
-* xref:servers-create.adoc[To Create a Server in Runtime Manager]
+* xref:servers-create.adoc[Create a Server in Runtime Manager]
 * xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]

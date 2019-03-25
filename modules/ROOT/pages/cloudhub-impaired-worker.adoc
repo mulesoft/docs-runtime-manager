@@ -5,6 +5,6 @@ endif::[]
 
 CloudHub performs constant health checks on the underlying virtual machines where Mule applications are running. When an instance is impaired, there is hardware or software failure that may negatively impact the running application deployed on the instance. Examples of hardware and software failures include network disconnection, memory issues, server hardware failures, file corruption, etc.
 
-When an instance is impaired, CloudHub automatically attempts to restart the instance and relaunch the application. If a retry is successful, the underlying instance and the mule application are recovered, without requiring any further action from the user.
+When an instance is impaired, CloudHub automatically attempts to restart the instance and relaunch the application. If a retry is successful, the underlying instance and the Mule application are recovered, without requiring any further action from the user.
 
-However, if five retry attempts fail, an application's status becomes Failed or Unrecoverable Runtime Error. In this situation, you must manually redeploy and restart the application.
+However, if five retry attempts fail, an application's status becomes `Failed` or `Unrecoverable Runtime Error`. In this situation, you must manually redeploy and restart the application.

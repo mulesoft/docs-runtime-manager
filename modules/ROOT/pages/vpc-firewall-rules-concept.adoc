@@ -4,17 +4,17 @@ include::_attributes.adoc[]
 endif::[]
 
 In CloudHub's default configuration, all applications are hosted in a multi-tenant cloud balanced by a publicly accessible load balancer. +
-When you create a virtual private cloud (VPC), you can add your own firewall rules to allow specific IP ranges and ports to reach your workers. See <<configurefirewall,Configure Firewall Rules>>.
+When you create an Anypoint Virtual Private Cloud (Anypoint VPC), you can add your own firewall rules to allow specific IP ranges and ports to reach your workers. See <<configurefirewall,Configure Firewall Rules>>.
 
 [NOTE]
 ====
-Keep in mind that the firewall rules that you configure in your VPC check inbound connections only to your workers, and not to the VPC, your dedicated load balancer, or the publicly accessible load balancer.
+Keep in mind that the firewall rules that you configure in your Anypoint VPC check inbound connections only to your workers, and not to the Anypoint VPC, your dedicated load balancer, or the publicly accessible load balancer.
 ====
 
-By default, all traffic to your VPC is blocked, unless it's explicitly allowed in a firewall rule.
-When you create a VPC, four firewall rules are created by default:
+By default, all traffic to your VPC is blocked unless it's explicitly allowed in a firewall rule.
+When you create an Anypoint VPC, four firewall rules are created by default:
 
-* Two rules to allow inbound connections from within your local VPC through ports 8091 and 8092:
+* Two rules to allow inbound connections from within your local Anypoint VPC through ports 8091 and 8092:
 +
 [source,json,linenums]
 ----
@@ -31,7 +31,7 @@ When you create a VPC, four firewall rules are created by default:
 },
 ----
 +
-These firewall rules allow traffic from within the VPC to reach your workers through ports 8091 and 8092. These are the only ports used by your CloudHub-dedicated load balancer to proxy all external communications to your workers.
+These firewall rules allow traffic from within the Anypoint VPC to reach your workers through ports 8091 and 8092. These are the only ports used by your CloudHub-dedicated load balancer to proxy all external communications to your workers.
 
 * Two rules to allow inbound connections from anywhere through ports 8081 and 8082:
 +
@@ -59,9 +59,9 @@ You can remove these rules if you don't want your internal workers to be reached
 
 [[configurefirewall]]
 == Configure Firewall Rules
-You can configure firewall rules in the Anypoint Runtime Manager UI at the time you create a VPC, or you can add them to an existing VPC. You can also modify the firewall rules for a VPC at any time.
+You can configure firewall rules in the Anypoint Runtime Manager UI at the time you create an Anypoint VPC, or you can add them to an existing Anypoint VPC. You can also modify the firewall rules for an Anypoint VPC at any time.
 
-Before you implement firewall rules, or make changes to existing rules, you should fully understand all security implications. Make sure you follow the established best practices of your organization before making any changes to firewall rules. In general, the rules you use to define access to your VPC should be as specific as is practical.
+Before you implement firewall rules, or make changes to existing rules, you should fully understand all security implications. Make sure you follow the established best practices of your organization before making any changes to firewall rules. In general, the rules you use to define access to your Anypoint VPC should be as specific as is practical.
 
 Firewall rules are inbound and use the following parameters:
 
@@ -71,13 +71,13 @@ Firewall rules are inbound and use the following parameters:
 
 === Add or Edit Firewall Rules
 
-. Sign into Anypoint Platform as a user with the Organization Administrators role.
+. Sign into Anypoint Platform as a user with the *Organization Administrators* role.
 . In *Management Center*, click *Runtime Manager*.
-. If you already have a VPC:
-.. In the left menu, click *VPCs* and click the row for the VPC to configure the firewall rules for. +
-The right panel displays information about the VPC.
+. If you already have an Anypoint VPC:
+.. In the left menu, click *VPCs* and click the row for the Anypoint VPC whose firewall rules you want to configure. +
+The right panel displays information about the Anypoint VPC instance.
 .. Click *Manage VPC*, then click the *Firewall Rules tab*.
-. If you are creating firewall rules when you create your VPC:
+. If you are creating firewall rules when you create your Anypoint VPC:
 .. Click *Firewall Rules >* to expand the fields. +
 +
 image::firewall-rules-page.png[]

@@ -13,11 +13,11 @@ It returns `NONE` when the certificate is not present and `FAILED` when other va
 
 == X-SSL-Client-DN
 
-Contains the full Distinguished Name of the client certificate.
+Contains the full distinguished name of the client certificate.
 
 == X-SSL-Issuer
 
-Contains the full Distinguished Name of the issuing certificate.
+Contains the full distinguished name of the issuing certificate.
 
 == X-SSL-Client-Serial
 
@@ -25,9 +25,9 @@ Contains the serial number used by the CA to identify the client.
 
 == Adding Revocation Lists
 
-The CloudHub Load balancer can optionally verify client requests against Certificate Revocation Lists (CRL). All CRL files need to be concatenated into a single _pem_ encoded file for upload. Ordering is not important.
+The CloudHub load balancer can optionally verify client requests against Certificate Revocation Lists (CRL). All CRL files need to be concatenated into a single PEM encoded file for upload. Ordering is not important.
 
-You can add a revocation list when creating the load balancer using the ´--crl´ option in your xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[load-balancer create] command.
+You can add a revocation list when creating the load balancer using the ´--crl´ option in your xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`load-balancer create`] command.
 
 Additionally, if your load balancer is already created, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955[REST API] to update it. +
 You can send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadbalancers/{lbId}` endpoint adding a `revocationList` element:
@@ -45,8 +45,8 @@ You can send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadb
 
 [NOTE]
 --
-It is recommended to use the CloudHub REST API to programmatically update your revocation lists. +
-In order to get the necessary vpcId, and loadbalancerId from the CLI, you can use a xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[vpc JSON describe] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[load-balancer JSON describe] command respectively.
+We recommend you use the CloudHub REST API to programmatically update your revocation lists. +
+In order to get the necessary `vpcId`, and loadbalancerId from the CLI, you can use a xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[`vpc JSON describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[`load-balancer JSON describe`] command respectively.
 --
 
 You can send a PATCH request to your load balancer's endpoint to update any other property.
@@ -54,8 +54,8 @@ You can send a PATCH request to your load balancer's endpoint to update any othe
 
 == Certificate Ciphers
 
-A list of recommended ciphers suites with a good balance between compatibility and security for your SSL endpoint are below: +
-They all offer forward secrecy, except RC4-SHA which is there to support Internet Explorer 8.
+Each one of the recommended ciphers suites listed have a good balance between compatibility and security for your SSL endpoint
+offer forward secrecy, except RC4-SHA which is there to support Internet Explorer 8.
 
 ----
 ECDHE-RSA-AES256-GCM-SHA384
@@ -81,7 +81,7 @@ AES128-SHA
 DES-CBC3-SHA
 ----
 
-ClourHub's dedicated load balancer supports TLSv1.1 and TLSv1.2. Additionally, you can configure TLS v1.0, but bear in mind that such protocol is no longer accepted by PCi compliance due to its significant vulnerabilities.
+ClourHub's dedicated load balancer supports TLSv1.1 and TLSv1.2. Additionally, you can configure TLS v1.0. However, TLS v1.0 is no longer accepted by PCi compliance due to its significant vulnerabilities.
 
 == See Also
 

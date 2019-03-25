@@ -1,4 +1,4 @@
-= To Create a Cluster using Runtime Manager (Hybrid)
+= Create a Cluster using Runtime Manager (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -7,24 +7,24 @@ endif::[]
 
 Before creating a cluster, ensure you have performed the following:
 
-* Install Mule runtime, version 3.6 or later or API Gateway runtime, version 2.0 or later.
-* Install Runtime Manager Agent, version 1.1.1 or later.
-* Create a server for each runtime you want to include in your cluster.
+* Install Mule version 3.6 or later, or API gateway runtime version 2.0 or later.
+* Install Runtime Manager Agent version 1.1.1 or later.
+* Create a server for each Mule you want to include in your cluster.
 
 Also, note the following considerations when creating a cluster:
 
 * None of the servers you select for creating a new cluster can contain any *previously deployed applications*.
 
-* Multicast servers can be in the status states] 'Running' or 'Disconnected', whereas unicast servers can only be in the state 'Running'. They can't be merely in 'Created' state.
+* Multicast servers can be in the status states of *Running* or *Disconnected*, whereas unicast servers can be only in the *Running* state. 
 
-* All servers in a cluster must be running the same Mule runtime version and Agent version.
+* All servers in a cluster must be running the same Mule runtime engine version and Runtime Manager agent version.
 
 If you wish to have Object Store persistence on all servers of your cluster, you must create your cluster manually and use Quorum Management.
 
 == Creating a Cluster
 
-. From Anypoint Platform, click Runtime Manager.
-. Click the Servers tab.
+. From Anypoint Platform, click *Runtime Manager*.
+. Click the *Servers* tab.
 . Ensure that all servers are visible in the Servers list.
 . Click *Create Cluster*. Servers can be added to a cluster in any status.
 +
@@ -35,14 +35,14 @@ image::serverstatus-no-cluster-allonline.png[all servers]
 The following restrictions on cluster names apply:
 +
 * Must not start or end with a dash,
-* Must be at least 3 characters long
+* Must be at least three characters long
 * Cannot contain more than 40 characters
 * Must be unique
-* Must contain only letters, numbers, or dashes.
+* Must contain only letters, numbers, or dashes
 
-. Choose Multicast or Unicast.
-. Click the checkboxes for the names of the servers to add to your cluster
-. Click Create Cluster.
+. Choose *Multicast* or *Unicast*.
+. Click the checkboxes for the names of the servers to add to your cluster.
+. Click *Create Cluster*.
 +
 image::createcluster-multicast.png[CreateACluster]
 

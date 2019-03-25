@@ -54,15 +54,15 @@ The following DNS records for your applications are exposed when they are deploy
 |===
 |*myapp.cloudhub.io* |Load balancer. Ports 80 and 443 forward to  `${http.port}` and `${https.port}` respectively.
 |*mule-worker-myapp.cloudhub.io* |The external IP address of the Mule workers. HTTP services are exposed on: `${http.port}` and `${https.port}`
-|*mule-worker-internal-myapp.cloudhub.io* |The internal IP address of the Mule workers. The IPs for this DNS record are only accessible within a customer's private xref:virtual-private-cloud.adoc[VPC]. *These IPs are not accessible for workers running in the MuleSoft shared VPC.* Public HTTP services are exposed on `${http.port}` and `${https.port}.` Internal HTTP services are exposed on ports *8091/8092*.
+|*mule-worker-internal-myapp.cloudhub.io* |The internal IP address of the Mule workers. The IPs for this DNS record are only accessible within a customer's private xref:virtual-private-cloud.adoc[Anypoint VPC]. *These IPs are not accessible for workers running in the MuleSoft shared VPC.* Public HTTP services are exposed on `${http.port}` and `${https.port}.` Internal HTTP services are exposed on ports *8091/8092*.
 |===
 
 In certain situations, you may want to know an application’s internal IP addresses, for example:
 
-* When communicating with the worker directly within the customer's xref:virtual-private-cloud.adoc[VPC] without sending data over the public internet
+* When communicating with the worker directly within the customer's xref:virtual-private-cloud.adoc[Anypoint VPC] without sending data over the public internet
 * When setting up your own load balancer
 
-You can access these IP addresses through the `mule-worker-internal-myapp.cloudhub.io` record from within the customer's VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
+You can access these IP addresses through the `mule-worker-internal-myapp.cloudhub.io` record from within the customer's Anypoint VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
 
 == IP Ranges and Static IPs
 
@@ -72,7 +72,7 @@ As CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon EC2 I
 CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://support.mulesoft.com[MuleSoft Support]. After a static IP has been allocated for your application, it is visible in the *Static IPs* tab in the application settings. For more details, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
 
 [NOTE]
-Static IPs are not supported for private IP addresses inside a CloudHub VPC.
+Static IPs are not supported for private IP addresses inside an Anypoint VPC.
 
 Sometimes firewalls or infrastructure settings don't let Mule runtimes reach the Runtime Manager's public services. This might be an issue when registering a Mule runtime or when starting it and registering it to work with Runtime Manager.
 
@@ -88,18 +88,18 @@ Depending on what region you deploy your application in, the DNS record and the 
 [%header,cols="2*a"]
 |===
 |DNS Record |Regions
-|myapp.us-e1.cloudhub.io | US East (N. Virginia)
-|myapp.us-e2.cloudhub.io | US East (Ohio)
-|myapp.us-w1.cloudhub.io | US West (N. California),
-|myapp.us-w2.cloudhub.io | US West (Oregon)
-|myapp.ca-c1.cloudhub.io | Canada (Central)
-|myapp.br-s1.cloudhub.io | South America (Sao Paulo)
-|myapp.sg-s1.cloudhub.io | Asia Pacific (Singapore)
-|myapp.au-s1.cloudhub.io | Asia Pacific (Sydney)
-|myapp.jp-e1.cloudhub.io | Asia Pacific (Tokyo)
-|myapp.ir-e1.cloudhub.io | EU (Ireland)
-|myapp.de-c1.cloudhub.io | EU (Frankfurt)
-|myapp.uk-e1.cloudhub.io | EU (London)
+| `myapp.us-e1.cloudhub.io` | US East (N. Virginia)
+| `myapp.us-e2.cloudhub.io` | US East (Ohio)
+| `myapp.us-w1.cloudhub.io` | US West (N. California),
+| `myapp.us-w2.cloudhub.io` | US West (Oregon)
+| `myapp.ca-c1.cloudhub.io` | Canada (Central)
+| `myapp.br-s1.cloudhub.io` | South America (Sao Paulo)
+| `myapp.sg-s1.cloudhub.io` | Asia Pacific (Singapore)
+| `myapp.au-s1.cloudhub.io` | Asia Pacific (Sydney)
+| `myapp.jp-e1.cloudhub.io` | Asia Pacific (Tokyo)
+| `myapp.ir-e1.cloudhub.io` | EU (Ireland)
+| `myapp.de-c1.cloudhub.io` | EU (Frankfurt)
+| `myapp.uk-e1.cloudhub.io` | EU (London)
 
 |===
 
@@ -107,9 +107,9 @@ Deploying to a region also affects your internal and external worker DNS address
 
 == Firewall Rules and Port Access
 
-The only two ports exposed externally are `${http.port}` and `${https.port}` (by default `8081` and `8082` respectively). If you wish to access other ports, you can do so through the xref:virtual-private-cloud.adoc[*Anypoint Virtual Private Cloud (VPC)*] offering.
+The only two ports exposed externally are `${http.port}` and `${https.port}` (by default 8081 and 8082 respectively). If you wish to access other ports, you can do so through the xref:virtual-private-cloud.adoc[*Anypoint Virtual Private Cloud (Anypoint VPC)*] offering.
 
-Additional ports can be opened inside the VPC, for example, for JMX based monitoring. In order  to do so, refer to the Firewall rules section in out xref:virtual-private-cloud.adoc#firewall-rules[VPC documentation].
+Additional ports can be opened inside the Anypoint VPC, for example, for JMX based monitoring. In order  to do so, refer to the Firewall rules section in out xref:virtual-private-cloud.adoc#firewall-rules[Anypoint VPC documentation].
 
 == Dedicated Load Balancing Configurations
 
@@ -117,21 +117,19 @@ Under certain circumstances you may want to set up a custom load balancing layer
 
 Traffic can be routed from your load balancer to CloudHub workers through the internal or external DNS record for your workers. This record contains an IP address for every worker in the application. It is recommended that you set your DNS timeout to between 20-60 seconds so that any DNS changes are propagated quickly and minimize impact.
 
-By configuring your own xref:virtual-private-cloud.adoc[VPC] you can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface].
+By configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC] you can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface (Anypoint Platform CLI)].
 
 == Avoiding Public Discoverability for Applications on CloudHub
 
-If you have a xref:virtual-private-cloud.adoc[Virtual Private Cloud] and a xref:cloudhub-dedicated-load-balancer.adoc[Cloudhub Dedicated Load Balancer], you can prevent your applications hosted in CloudHub from being publicly accessible:
+If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-dedicated-load-balancer.adoc[CloudHhub dedicated load balancer], you can prevent your applications hosted in CloudHub from being publicly accessible:
 
-. Remove the xref:virtual-private-cloud.adoc#firewall-rules[VPC firewall rule] for ports 8081 and 8082 using:
-.. The *Firewall Rules* tab in your VPC management center:
-... Remove both rules with *source* `Anywhere (0.0.0.0/0)` and ports 8081 and 8082.
-.. The Anypoint CLI
-... Run the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-remove[cloudhub vpc firewall-rules remove] command with the index `1` and `3`
-. Create a xref:cloudhub-dedicated-load-balancer.adoc#whitelists[whitelist in your dedicated load balancer] with the IPs you want to authorize.
-.. You can only do this using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[cloudhub load-balancer whitelist add] command from the CLI.
+. Remove the xref:virtual-private-cloud.adoc#firewall-rules[Anypoint VPC firewall rule] for ports 8081 and 8082 using:
+.. The *Firewall Rules* tab in your Anypoint VPC management center. Remove both rules with *source* `Anywhere (0.0.0.0/0)` and ports 8081 and 8082.
+.. The Anypoint Platform CLI. Run the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-remove[`cloudhub vpc firewall-rules remove`] command with the index `1` and `3`.
+. Create a xref:cloudhub-dedicated-load-balancer.adoc#whitelists[whitelist in your dedicated load balancer] with the IPs you want to authorize. You can only do this using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[`cloudhub load-balancer whitelist add`] command from Anypoint Platform CLI.
 
-*Important:* If you don't have any xref:cloudhub-dedicated-load-balancer.adoc[Cloudhub Dedicated Load Balancer], performing the first step will be sufficient to ensure that applications deployed in your VPCs will not be publicly accessible.
+[Important]
+If you don't have any xref:cloudhub-dedicated-load-balancer.adoc[Cloudhub dedicated load balancer], performing the first step is sufficient to ensure that applications deployed in your Anypoint VPCs are not publicly accessible.
 
 == See Also
 

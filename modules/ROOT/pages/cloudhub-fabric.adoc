@@ -56,13 +56,13 @@ You can enable and disable either or both features of CloudHub Fabric in one of 
 
 Next to *Workers*, select options from the drop-down menus to define the number and type of workers assigned to your application. See xref:deploying-to-cloudhub.adoc#worker-sizing[Worker Sizing] for more information about deploying to multiple workers.
 
-Click an application to see the overview and click *Manage Application*. Click *Settings* and click the *Persistent Queues* check box to enable queue persistence.
+Click an application to see the overview and click *Manage Application*. Click *Settings* and click the *Persistent Queues* checkbox to enable queue persistence.
 
 If your application is already deployed, you must redeploy it in order for your new settings to take effect.
 
 == How CloudHub Fabric is Implemented
 
-HTTP load balancing is implemented by an internal reverse proxy server. Requests to the application (domain) URL +http://appname.cloudhub.io+ are automatically load balanced between all the application's Worker URLs.
+HTTP load balancing is implemented by an internal reverse proxy server. Requests to the application (domain) URL `+http://appname.cloudhub.io+` are automatically load balanced between all the application's worker URLs.
 
 Clients can bypass the CloudHub Fabric load balancer by using a worker's direct URL. See: xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide] for more information on how to access an application in a specific CloudHub worker.
 
@@ -72,7 +72,7 @@ Depending on your use case, you may want to use both CloudHub Fabric features on
 
 Considerations:
 
-* To take advantage of persistent queueing, set your Mule application to support this feature. See <<Building Mule Applications to Support Persistent Queues>>, for more information.
+* To take advantage of persistent queueing, set your Mule application to support this feature. See <<Building Mule Applications to Support Persistent Queues>> for more information.
 * Enabling persistent queues has a performance implication: Putting a small message (50KB or less) on a queue can take 10-20 milliseconds (ms); taking the same message off a queue can take 70-100 milliseconds.
 * Adding additional workers increases the cost of service.
 
@@ -80,9 +80,9 @@ Considerations:
 |===
 |Use Case |Suggested CloudHub Fabric Configuration |Implications
 |You want to scale out your application, but you are satisfied with the existing highly available CloudHub architecture in terms of preventing service interruption or message loss. |
-Persistent Queues Enabled? *No*
+Persistent queues are not enabled.
 
-Number of Workers: *2 or more*
+Number of Workers: 2 or more
 
 |
 * Application performance is not affected by queue latency.
@@ -90,9 +90,9 @@ Number of Workers: *2 or more*
 * If one data center experiences an outage, your workers are available in a different data center.
 
 |You have a high-stakes process for which you need to protect against message loss, but you are not experiencing issues with handling processing load and are OK with some service interruption in the case of a data center outage. |
-Persistent Queues Enabled? *Yes*
+Persistent queues are enabled.
 
-Number of Workers: *1*
+Number of Workers: 1
 
 |
 * Application may experience some queue latency.
@@ -100,9 +100,9 @@ Number of Workers: *1*
 * If the data center in which your worker operates experiences an outage, CloudHub automatically migrates your application to another availability zone. You may experience downtime during the migration; however, your persistent queue ensures zero message loss.
 
 |You have a high-stakes process for which you need to protect against message loss, avoid any chance of service interruption, and handle large processing loads. |
-Persistent Queues Enabled? *Yes*
+Persistent queues are enabled.
 
-Number of Workers: *2 or more*
+Number of Workers: 2 or more
 
 |
 * Application may experience some queue latency.
@@ -110,9 +110,9 @@ Number of Workers: *2 or more*
 * If one data center experiences an outage, your workers are automatically distributed to ensure redundancy.
 
 |You have an application that does not have any special requirements regarding either processing load or message loss. |
-Persistent Queues Enabled? *No*
+Persistent queues are not enabled.
 
-Number of Workers: *1*
+Number of Workers: 1
 
 |
 * Application performance is not affected by queue latency.
@@ -128,9 +128,9 @@ When you deploy an application containing batch jobs to CloudHub with persistent
 
 When using persistent queues, keep in mind the following limitations:
 
-* Batch jobs using CloudHub persistent queues experience additional latency
+* Batch jobs using CloudHub persistent queues experience additional latency.
 * CloudHub persistent queues occasionally process a message more than once. If your use case requires that each message be guaranteed to be processed only once, consider deploying the application without enabling persistent queues.
-* Message loss can still occur in case of an application restart
+* Message loss can still occur in case of an application restart.
 
 == Building Mule Applications to Support Persistent Queues
 
@@ -138,17 +138,17 @@ For your application to reap the benefits of persistent queuing, implement relia
 
 image::ch-fabric.png[CH_Fabric]
 
-The *reliable acquisition flow* reliably delivers a message from an inbound HTTP connector to an outbound VM endpoint. If the reliable acquisition flow cannot put the message into the VM queue, it ensures that the message is not lost by returning an "unsuccessful request" response to the client so that the client can retry the request.
+The reliable acquisition flow reliably delivers a message from an inbound HTTP connector to an outbound VM endpoint. If the reliable acquisition flow cannot put the message into the VM queue, it ensures that the message is not lost by returning an "unsuccessful request" response to the client so that the client can retry the request.
 
-The *application logic flow* delivers the message from an inbound VM endpoint to the business logic processing in your application. This flow represents one transaction. (Your business logic may involve several other transactions, not shown.)
+The application logic flow delivers the message from an inbound VM endpoint to the business logic processing in your application. This flow represents one transaction. (Your business logic may involve several other transactions, not shown.)
 
-In between these two flows, a *persistent VM queue* holds the messages committed by the reliable acquisition flow until they are ready for processing by the application logic flow. In case of a processing error within the transaction or in case of a transaction timeout (the time allotted for the transaction is exceeded), Mule triggers a rollback. This rollback erases any partial processing that has occurred on the message and places the message back on the queue. If your Mule instance experiences an outage and is unable to explicitly roll back a transaction, the transaction automatically rolls back once the time allotted for the transaction is exceeded. The allotted time is determined by the `timeout` attribute of the transaction element. You can configure the timeout yourself, or accept the default.
+In between these two flows, a persistent VM queue holds the messages committed by the reliable acquisition flow until they are ready for processing by the application logic flow. In case of a processing error within the transaction or in case of a transaction timeout (the time allotted for the transaction is exceeded), Mule triggers a rollback. This rollback erases any partial processing that has occurred on the message and places the message back on the queue. If your Mule instance experiences an outage and is unable to explicitly roll back a transaction, the transaction automatically rolls back once the time allotted for the transaction is exceeded. The allotted time is determined by the `timeout` attribute of the transaction element. You can configure the timeout yourself, or accept the default.
 
 It is helpful to think of each transaction in terms of three steps:
 
-. *Begin*. Mule kicks off the processing of all subcomponents within the transaction.
-. *Commit*. Mule sends the result of the completed transaction on to the next step. (For XA transactions, the commit step has two phases: a _commit-request phase_ and a _commit phase_. During the commit-request phase, Mule coordinates the results of the multiple resources within the scope of the transaction and confirms that all processing executed successfully and is ready to commit. The commit phase then calls each resource to commit its processing.)
-. *Rollback*. If an error occurs in either the Begin or Commit steps, Mule rolls back the operations within the transaction so that no one part results in partial completion.
+. Begin. Mule kicks off the processing of all subcomponents within the transaction.
+. Commit. Mule sends the result of the completed transaction on to the next step. (For XA transactions, the commit step has two phases: a _commit-request phase_ and a _commit phase_. During the commit-request phase, Mule coordinates the results of the multiple resources within the scope of the transaction and confirms that all processing executed successfully and is ready to commit. The commit phase then calls each resource to commit its processing.)
+. Rollback. If an error occurs in either the Begin or Commit steps, Mule rolls back the operations within the transaction so that no one part results in partial completion.
 
 The following code snippet provides an example of an application set up in a reliability pattern using VM transports for queue persistence on CloudHub.
 
@@ -203,10 +203,10 @@ The following table describes key differences between hybrid VM queues and Cloud
 [%header,cols="2*a"]
 |===
 |VM Queues in On-Premises Applications |VM Queues in Applications deployed to CloudHub
-|You can configure the maximum number of outstanding messages using the queue-profile element. |There is no limit to the number of outstanding messages in CloudHub. Even if you have a queue-profile element coded in your application with a maximum number of outstanding messages, CloudHub allows unlimited outstanding messages if you deploy the application to CloudHub with the Persistent Queues check box checked.
-|You can toggle the persistence of the queue using the queue-profile element. |The persistence of your queue is managed using the Persistent Queues check box in the Advanced Details section of the deployment dialog. Even if you have a queue-profile element coded in your application, CloudHub overrides these settings when you deploy the application to CloudHub with the Persistent Queues checkbox checked.
+|You can configure the maximum number of outstanding messages using the queue-profile element. |There is no limit to the number of outstanding messages in CloudHub. Even if you have a queue-profile element coded in your application with a maximum number of outstanding messages, CloudHub allows unlimited outstanding messages if you deploy the application to CloudHub with the *Persistent Queues* checkbox checked.
+|You can toggle the persistence of the queue using the queue-profile element. |The persistence of your queue is managed using the *Persistent Queues* checkbox in the *Advanced Details* section of the deployment dialog. Even if you have a queue-profile element coded in your application, CloudHub overrides these settings when you deploy the application to CloudHub with the *Persistent Queues* checkbox checked.
 |You can define a queue store for your VM queue to use. |CloudHub manages the queue store for you, so there is no need to define a queue store.
-|Transaction commits and rollbacks for XA transactions operate according to the two-phase commit algorithm. |In CloudHub, there is an important exception to the way the two-phase commit algorithm works for XA transactions when a message is being added to a queue. See the known issue described below for details. Note: when CloudHub _consumes_ messages from a persistent queue, this exception to the two-phase commit algorithm does not apply.
+|Transaction commits and rollbacks for XA transactions operate according to the two-phase commit algorithm. |In CloudHub, there is an important exception to the way the two-phase commit algorithm works for XA transactions when a message is being added to a queue. See the known issue described below for details. Note: when CloudHub consumes messages from a persistent queue, this exception to the two-phase commit algorithm does not apply.
 |===
 
 == Considerations
@@ -226,7 +226,7 @@ This issue occurs only when a flow produces messages that need to be added to a 
 
 * xref:deploying-to-cloudhub.adoc#worker-sizing[Worker Sizing]
 * xref:managing-queues.adoc[Managing Queues]
-* xref:cloudhub-architecture.adoc[CloudHub architecture].
+* xref:cloudhub-architecture.adoc[CloudHub architecture]
 * xref:3.8@mule-runtime::transaction-management.adoc[Transaction Management]
 * xref:3.8@mule-runtime::vm-transport-reference.adoc[VM transport]
-* xref:3.8@mule-runtime::reliability-patterns.adoc[Reliability Patterns].
+* xref:3.8@mule-runtime::reliability-patterns.adoc[Reliability Patterns]

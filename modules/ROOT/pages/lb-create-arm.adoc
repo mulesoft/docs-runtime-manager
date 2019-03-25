@@ -10,35 +10,35 @@ You can use Runtime Manager to create a dedicated load balancer in your CloudHub
 
 To create a load balancer, ensure that you perform the following:
 
-* Ensure that your profile is authorized to perform this action by adding the CloudHub Network Administrator permission to the profile of the organization where you are creating the load balancer. Similarly, the administrator role of the same organization also provides the authorization required.
-* Create a Virtual Private Cloud (VPC) in the organization where you want to create a load balancer.
+* Ensure that your profile is authorized to perform this action by adding the *CloudHub Network Administrator* permission to the profile of the organization where you are creating the load balancer. Similarly, the administrator role of the same organization also provides the authorization required.
+* Create an Anypoint Virtual Private Cloud (Anypoint VPC) in the organization where you want to create a load balancer.
 * Create at least one certificate and private key for your certificate.
 
 == Creating a Load Balancer
 
-. From Anypoint Platform, click Runtime Manager
+. From Anypoint Platform, click *Runtime Manager*.
 
-. Click Load Balancers, the click Create Load Balancer
+. Click load balancers, then click *Create Load Balancer*.
 
-. Provide a name, then select a target VPC from the drop down list.
+. Provide a name, then select a target Anypoint VPC from the drop-down list.
 
-. Add any white listed Classless Inter-Domain Routing (CIDR) as required.
+. Add any whitelisted classless inter-domain routing (CIDR) as required.
 +
 The IP addresses you specify here are the only IP addresses that can access the load balancer. The default value is: 0.0.0.0/0.
 
-. Select the inbound HTTP mode for the Load Balancer
+. Select the inbound HTTP mode for the load balancer.
 +
-This property specifies the behavior of the Load Balancer when receiving an HTTP request. Valid values are:
+This property specifies the behavior of the load balancer when receiving an HTTP request. Valid values are:
 +
-* Off: causes the Load Balancer to silently drop the request.
-* On: accepts the inbound request on the default SSL endpoint using the HTTP protocol.
-* Redirect: redirects the request to the same URL using the HTTPS protocl.
+* *Off*: causes the Load Balancer to silently drop the request.
+* *On*: accepts the inbound request on the default SSL endpoint using the HTTP protocol.
+* *Redirect*: redirects the request to the same URL using the HTTPS protocol.
 
-. Add a certificate
+. Add a certificate.
 
-.. Click Add Certificate
+.. Click *Add Certificate*
 .. Add both a public and private key.
-.. (Optional) Select Support TLS 1.0.
+.. (Optional) Select *Support TLS 1.0*.
 .. (Optional) Add a client certificate.
 +
 The client certificate is trusted CA certificate used to verify client certificates.
@@ -47,12 +47,12 @@ The client certificate is trusted CA certificate used to verify client certifica
 +
 If you add more than one URL mapping rule, order the rules in the list according to the priority in which they should be applied.
 
-... Click Add New Rule
+... Click *Add New Rule*.
 ... Specify the input path, target app, output path, and protocol.
 
-.. Click Save Certificate
+.. Click *Save Certificate*.
 
-. Click Save Load Balancer
+. Click *Save Load Balancer*.
 
 == See Also
 

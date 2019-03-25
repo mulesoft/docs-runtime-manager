@@ -11,8 +11,8 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 You can deploy a Mule application to CloudHub from:
 
-* *Anypoint Studio* - Right-click your project and click *Deploy to Anypoint Platform* -> *Cloud*.
-* *Anypoint Runtime Manager* - In the cloud-based version of https://anypoint.mulesoft.com[Anypoint Platform]. Go to the *Runtime Manager* section, then from the *Applications* tab click *Deploy application*.
+* Studio: right-click your project and click *Deploy to Anypoint Platform*, then *Cloud*.
+* Runtime Manager: in the cloud-based version of https://anypoint.mulesoft.com[Anypoint Platform]. Go to the *Runtime Manager* section, then from the *Applications* tab, click *Deploy application*.
 
 You can also deploy to CloudHub through:
 
@@ -24,7 +24,7 @@ You can also deploy to CloudHub through:
 
 === From Anypoint Platform
 
-. Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
+. Sign on to https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
 . Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*.
 +
 image::deploying-to-cloudhub-5f383.png[]
@@ -60,18 +60,18 @@ image::deploying-to-cloudhub-d6f7a.png[]
 
 ==== Limitations
 
-* Only a *CloudHub* Administrator can move applications between environments.
+* Only a CloudHub Administrator can move applications between environments.
 * To avoid domain name conflict, an application with the same name cannot be deployed in two environments at the same time. Modify the application's name slightly to deploy it to another environment.
 * Runtime Manager prevents you from duplicating applications in a single environment, so you cannot move an application into the environment it's already in. To have the same, or similar, applications in a single environment, modify one application's file to distinguish it from the original.
 
 
-=== From Anypoint Studio
+=== From Studio
 
-You can deploy your applications to CloudHub from Anypoint Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
+You can deploy your applications to CloudHub from Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
 
-. In Anypoint Studio, open your application as a Mule Project.
+. In Studio, open your application as a Mule Project.
 
-. In *Package Explorer*, right-click the project node, then select *Anypoint Platform* > *Deploy to CloudHub*.
+. In *Package Explorer*, right-click the project node, then select *Anypoint Platform*, then *Deploy to CloudHub*.
 +
 // image::deploy-to-cloudhub.png[deploy+to+cloudhub]
 +
@@ -90,7 +90,7 @@ image::deployappfirstscreen.png[DeployAppFirstScreen]
 You cannot deploy an application from Studio to the CloudHub *Design* environment. The *Design* environment is specific to applications created in Anypoint Platform Design Center.
 --
 
-For an example of deploying to CloudHub directly from Anypoint Studio, see xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub].
+For an example of deploying to CloudHub directly from Studio, see xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub].
 
 == Creating an Application Name
 
@@ -187,7 +187,7 @@ Applications with greater storage needs (for example, verbose logging) should us
 
 [IMPORTANT]
 --
-The workers with additional storage listed above are available only for Mule runtimes 3.6.2 or later, or API Gateway 2.0.2 or later.
+The workers with additional storage listed above are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later.
 +
 It is recommended to access the additional storage at /tmp.
 --
@@ -256,11 +256,11 @@ These application properties can be used inside your Mule configuration. For exa
 In text format, the backslash (`\`) character is used as an escape character. For example, to use `:` in key or value, you can put `\:` in the text. To use `\`, `\\` is needed. 
 No escape character is required in list format.
 
-=== Overriding Properties in CloudHub vs. On-Premises Mule Runtimes
+=== Overriding Properties in CloudHub vs. On-Premises Mule
 
-Just like with on-premises Mule runtime deployments, applications that you deploy to CloudHub can still bundle their own property placeholder or secure property placeholder files inside the deployable archive file. CloudHub substitutes these properties into the application when the application starts.
+Just like with on-premises Mule deployments, applications that you deploy to CloudHub can still bundle their own property placeholder or secure property placeholder files inside the deployable archive file. CloudHub substitutes these properties into the application when the application starts.
 
-With an on-premises Mule runtime, there are a couple of ways you can override property values bundled inside the application:
+With an on-premises Mule, there are a couple of ways you can override property values bundled inside the application:
 
 . You can configure an external location to add property or secure property placeholder files to override properties.
 

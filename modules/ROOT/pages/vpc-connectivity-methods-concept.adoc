@@ -3,11 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can connect a Virtual Private Cloud to your private network using an IPsec tunnel, VPC peering, and CloudHub Direct Connect.
+You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using an IPsec tunnel, VPC peering, and CloudHub direct connect.
 
 == IPsec Tunnel
 
-You can use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your CloudHub VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances. 
+You can use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your Anypoint VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances. 
 
 image::chvpc02.png[CHVPC02]
 
@@ -15,24 +15,24 @@ To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[An
 
 ==  VPC Peering
 
-VPC peering provides a connection between two VPCs. In this case, it pairs your private Amazon VPC directly to your CloudHub VPC. This enables you to route traffic between the two VPCs so they can communicate as though they are in the same network.
+VPC peering provides a connection between two VPCs. In this case, it pairs your private Amazon VPC directly to your Anypoint VPC. This enables you to route traffic between the two VPCs so they can communicate as though they are in the same network.
 
 image::chvpc05.png[CHVPC05]
 
 [NOTE]
 --
-To use VPC Peering, your AWS and CloudHub VPCs must be located in the same region.
+To use VPC Peering, your AWS and Anypoint VPCs must be located in the same region.
 --
 
 == CloudHub Direct Connect
 
-This method establishes a dedicated network connection from your Amazon account to your CloudHub VPC. This enables you to create a hosted virtual interface to attach to your CloudHub VPC.
+This method establishes a dedicated network connection from your Amazon account to your Anypoint VPC. This enables you to create a hosted virtual interface to attach to your Anypoint VPC.
 
 image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
 
 [NOTE]
 --
-To use Direct Connect, your AWS Direct Connect Location and CloudHub VPCs must be located in the same region. Please note that Direct Connect Gateways are not currently supported.
+To use direct connect, your AWS Direct Connect Location and Anypoint VPCs must be located in the same region. Please note that direct connect gateways are not supported.
 --
 
 == See Also

@@ -9,13 +9,12 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The Runtime Manager Agent publishes notifications, in JSON format, about events that occur in the Mule instance. This allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager Agent Architecture documentation).
+The Runtime Manager agent publishes notifications, in JSON format, about events that occur in the Mule instance. This allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager agent architecture documentation).
 
 == Configure the Mule Agent Notifications Callback URL
 
 To receive notifications on the specified URL, you must first configure the `callback` URL in the `mule-agent.yml` file inside the REST transport section as shown below.
 
-+
 [TIP]
 To enable notification to be sent, you must enable the `rest.agent.transport` section. Also ensure the configured URL ends with a trailing slash (`/`). This is required since the agent will append the path to it.
 
@@ -30,7 +29,7 @@ To enable notification to be sent, you must enable the `rest.agent.transport` se
 
 == Application Deployment Notifications
 
-The Runtime Manager Agent sends a notification every time there is a change in state during an application deployment or undeployment. Notifications are sent via a PUT request to the `applications/<appname>/deployment` path, as shown below.
+The Runtime Manager agent sends a notification every time there is a change in state during an application deployment or undeployment. Notifications are sent via a `PUT` request to the `applications/<appname>/deployment` path:
 
 ----
 PUT <callback URL>/applications/<application name>/deployment HTTP/1.1
@@ -53,7 +52,7 @@ PUT <callback URL>/applications/<application name>/deployment HTTP/1.1
 
 === Notification Fields
 
-Application deployment notifications contain the fields listed below.
+Fields in each application deployment notification:
 
 [%header,cols="2*"]
 |===
@@ -77,7 +76,9 @@ For a list of all possible status messages, see the <<Application States and Dep
 
 == Domain Deployment Notifications
 
-The Runtime Manager Agent sends a notification every time there is a change in state during a domain deployment or undeployment. Notifications are sent via a PUT request to the `domains/<domainname>/deployment` path, as shown below.
+The Runtime Manager agent sends a notification every time there is a change in state during a domain deployment or undeployment.
+
+Notifications are sent via a PUT request to the `domains/<domainname>/deployment` path:
 
 ----
 PUT <callback URL>/domains/<domain name>/deployment HTTP/1.1
@@ -109,7 +110,7 @@ PUT <callback URL>/domains/<domain name>/deployment HTTP/1.1
 
 === Notification Fields
 
-Domain deployment notifications contain the fields listed below.
+Fields in each domain deployment notification:
 
 [%header,cols="2*"]
 |===
@@ -133,7 +134,7 @@ For a list of all possible status messages, see the <<Application States and Dep
 
 == Keep-Alive Notifications
 
-The Runtime Manager Agent sends a periodic keep-alive notification to verify that the Mule instance is still running. The notification is sent via a POST request with an empty body to the `keepAlive` path, as shown below.
+The Runtime Manager agent sends a periodic keep-alive notification to verify that the Mule instance is still running. The notification is sent via a `POST` request with an empty body to the `keepAlive` path:
 
 ----
 POST <callback URL>/keepAlive HTTP/1.1
@@ -145,7 +146,7 @@ POST <callback URL>/keepAlive HTTP/1.1
 
 Application states represent the different stages in the lifecycle of a Mule application.
 
-Valid Application states are:
+Valid application states:
 
 * `CREATED`
 * `INITIALISED`
@@ -158,7 +159,7 @@ Valid Application states are:
 
 Deployment statuses represent the different steps for successful deployment or undeployment of an application or a domain.
 
-Valid deployment statuses are:
+Valid deployment statuses:
 
 * `DEPLOYMENT_STARTED`
 * `DEPLOYED`

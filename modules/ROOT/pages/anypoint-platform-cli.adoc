@@ -1,10 +1,10 @@
-= Anypoint CLI 3.x
+= Anypoint Platform CLI 3.x
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: administration, api, organization, users, gateway, theme, cli
 
-Anypoint Platform provides a scripting and command line tool for both *Anypoint Platform* and *Anypoint Platform Private Cloud Edition*.
+Anypoint Platform provides a scripting and command line tool for both Anypoint Platform and Anypoint Platform Private Cloud Edition.
 The CLI supports both interactive shell and standard CLI modes, and works with:
 
 * xref:exchange::index.adoc[Anypoint Exchange]
@@ -17,12 +17,17 @@ The CLI supports both interactive shell and standard CLI modes, and works with:
 
 == Prerequisites
 
-Anypoint-CLI is a Node.js application. To install Anypoint CLI on your computer you need to make sure that you have the Node.js runtime environment installed on your computer, along with NPM, the default Node.js package manager.
+Anypoint-CLI is a NodeJS application. To install Anypoint Platform CLI on your computer you need to make sure that you have the NodeJS runtime environment installed on your computer, along with NPM, the default NodeJS package manager.
 Follow the NodeJS documentation to get both resources.
 
-Additionally, you  also need to install the Git version management system on your computer. Installation instructions and links to downloads for your particular Operating System are available at the Git Documentation site.
+Additionally, you  also need to install the git version management system on your computer. Installation instructions and links to downloads for your particular Operating System are available at the Git Documentation site.
 
-After you have installed Node.js (with npm) and git, you can install Anypoint CLI by opening a command-line interface and typing:
+After you have installed NodeJS (with npm) and git, you can install Anypoint Platform CLI by opening a command-line interface and typing:
+
+[source]
+----
+> anypoint-cli 
+----
 
 == Installation
 
@@ -35,7 +40,7 @@ $ npm install -g anypoint-cli@latest
 
 [NOTE]
 --
-If during the installation process, npm throws a `fatal: read error: Invalid argument` error, make sure that the git client installed on your computer, and that the git protocol is not blocked by your firewall or network.
+If during the installation process, npm throws a `fatal: read error: Invalid argument` error, make sure that the git client is installed on your computer, and that the git protocol is not blocked by your firewall or network.
 --
 
 == Reference
@@ -45,19 +50,19 @@ Every instance of Anypoint-CLI takes any of the following options:
 [%header%autowidth.spread,cols="a,a,a"]
 |===
 |Parameter |Description | Required
-|username | Your Anypoint Platform username.
+| `username` | Your Anypoint Platform username.
 
-You can also pass this value using a the environment variable `export ANYPOINT_USERNAME=<name>` | *Yes*
+You can also pass this value using a the environment variable `export ANYPOINT_USERNAME=<name>` | Yes
 
-|password | Your Anypoint Platform password.
+| `password` | Your Anypoint Platform password.
 
-You can also pass this value using the environment variable `export ANYPOINT_PASSWORD=<pwd>` | *Yes*
+You can also pass this value using the environment variable `export ANYPOINT_PASSWORD=<pwd>` | Yes
 
-|organization | Your organization within Anypoint Platform.
+| `organization` | Your organization within Anypoint Platform.
 
 You can also pass this value using the environment variable ` export ANYPOINT_ORG=<name>` | No
 
-|environment | Your Anypoint environment.
+| `environment` | Your Anypoint environment.
 
 You can also pass this value using the environment variable `export ANYPOINT_ENV=<name>` | No
 
@@ -82,7 +87,7 @@ If you send both username and password, and the token bearer, the CLI prioritize
 
 === Credentials File
 
-The recommended way of passing these options to your Anypoint CLI installation is using the `credentials` file located inside the `./anypoint/` directory, which is not automatically created during installation. Follow these steps to create your credentials file:
+The recommended way of passing these options to your Anypoint Platform CLI installation is using the `credentials` file located inside the `./anypoint/` directory, which is not automatically created during installation. Follow these steps to create your credentials file:
 
 . Create a directory called `.anypoint` in the `~/` directory for Linux and OSx, or `C:\Users\USERNAME \` in Windows.
 . Navigate to your `.anypoint` directory and create a blank file named `credentials` with the following structure:
@@ -106,7 +111,7 @@ The recommended way of passing these options to your Anypoint CLI installation i
  }
 }
 ----
-Note that the "default" profile is used unless the `ANYPOINT_PROFILE` environment variable is set:
+Note that the `default` profile is used unless the `ANYPOINT_PROFILE` environment variable is set:
 +
 [source,text,linenums]
 ----
@@ -114,7 +119,7 @@ Note that the "default" profile is used unless the `ANYPOINT_PROFILE` environmen
 > anypoint-cli
 ----
 
-Then run the anypoint-cli command without any options:
+Then run the `anypoint-cli` command without any options:
 
 [source,text,linenums]
 ----
@@ -123,7 +128,7 @@ Then run the anypoint-cli command without any options:
 
 === Dedicated Environment Variables
 
-If you choose to pass the credentials when running Anypoint-CLI, we strongly recommend passing both parameters as environment variables: `ANYPOINT_USERNAME` and `ANYPOINT_PASSWORD`.
+If you choose to pass the credentials when running `anypoint-cli`, pass both parameters as environment variables: `ANYPOINT_USERNAME` and `ANYPOINT_PASSWORD`.
 
 [source,text,linenums]
 ----

@@ -15,7 +15,7 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 
 [TIP]
-You can also set up email xref:alerts-on-runtime-manager.adoc[Alerts] that can be sent to any email address to warn whenever a certain event has occurred. Notifications are currently only produced by applications deployed to CloudHub, for applications deployed on-premises, you should use Alerts.
+You can also set up email xref:alerts-on-runtime-manager.adoc[alerts] that can be sent to any email address to warn whenever a certain event has occurred. Notifications are currently only produced by applications deployed to CloudHub, for applications deployed on-premises, you should use Alerts.
 
 
 == Managing Notifications
@@ -30,40 +30,38 @@ Click *Show All Notifications* to view all notifications  including those that h
 == Standard Notifications
 
 
-For applications deployed to *CloudHub*, certain events that may occur to one of your applications will automatically produce a notification:
+For applications deployed to CloudHub, certain events that may occur to one of your applications automatically produces a notification:
 
 
 [%header,cols="30a,70a"]
 |===
 |Event |Message
-| Worker will restart | A worker <ip> has become unresponsive. Restarting the worker.
-| Worker has restarted | Restart SUCCEEDED for worker <ip>.
-| Worker restart failed | Restart FAILED for worker <ip>.
+| Worker will restart | A worker `<ip>` has become unresponsive. Restarting the worker.
+| Worker has restarted | Restart SUCCEEDED for worker `<ip>`.
+| Worker restart failed | Restart FAILED for worker `<ip>`.
 | Maximum Restarts attempted for a worker| We've reached the maximum amount of restart attempts.
-| Worker needs restarting, but restarts are disabled | A worker <ip> has become unresponsive. Restarts are disabled.
+| Worker needs restarting, but restarts are disabled | A worker `<ip>` has become unresponsive. Restarts are disabled.
 |===
 
 
 
 == Custom Notifications
 
-On applications that are deployed to CloudHub, you can create custom notifications using the *CloudHub connector* that must priorly exist in your application.
+On applications that are deployed to CloudHub, you can create custom notifications using the CloudHub connector that must exist in your application.
 
-
-
-. Download the *CloudHub connector* from the xref:exchange::index.adoc[Anypoint Exchange]
+. Download the CloudHub connector from xref:exchange::index.adoc[Anypoint Exchange].
 +
 image::cloudhub-connector.png[]
 
-. Place an instance of the *CloudHub connector* in one of your project's flows, to be triggered when something meaningful happens
-. Configure the connector. In the *Operation* field select *Create Notification* and then set the Domain, Message and Priority for it.
+. Place an instance of the CloudHub connector in one of your project's flows, to be triggered when something meaningful happens.
+. Configure the connector. In the *Operation* field select *Create Notification* and then set the *Domain*, *Message* and *Priority* for it.
 
 +
-You should now be receiving notifications from here
+You should now be receiving notifications.
 
-. You may also want to set up email alerts to inform you when one of these custom events occurs. For setting up these alerts, see xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager]. You must create an alert of type *Custom Notification Alert* that matches your custom notification.
+. Optionally, set up email alerts to inform you when one of these custom events occurs. To set up email alerts, see xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager]. You must create an alert of type *Custom Notification Alert* that matches your custom notification.
 
-See the xref:custom-application-alerts.adoc[Custom Application Alerts] tutorial.
+See the  tutorial.
 
 == Notification Retention
 
@@ -76,10 +74,10 @@ Notifications are retained by Anypoint Platform within the bounds of the followi
 
 == See Also
 
-* Check out the xref:custom-application-alerts.adoc[Custom Application Alerts] tutorial.
+* xref:custom-application-alerts.adoc[Custom Application Alerts] tutorial.
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:deploying-to-cloudhub.adoc[[Deploy to CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
+* xref:cloudhub.adoc[CloudHub Overview]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:deployment-strategies.adoc[Deployment Strategies]
 * xref:cloudhub-fabric.adoc[CloudHub Fabric]

@@ -34,7 +34,7 @@ An https://anypoint.mulesoft.com/#/signup[Anypoint Platform account] gives you a
 
 === Where can I get Anypoint Studio?
 
-Anypoint Studio can be https://www.mulesoft.com/lp/dl/studio[downloaded here]. From Studio, you have ability to deploy directly to CloudHub or run your applications locally on an embedded Mule runtime.
+Anypoint Studio can be https://www.mulesoft.com/lp/dl/studio[downloaded here]. From Studio, you have ability to deploy directly to CloudHub or run your applications locally on an embedded Mule runtime engine (Mule).
 
 === How much does CloudHub cost?
 
@@ -46,11 +46,11 @@ Applications that expose real time services or APIs run on one or more "workers"
 
 === What is an Integration Application?
 
-An integration application is one that integrates two or more applications or services. This may be as simple as synchronizing Salesforce.com data to a local database to creating a mashup using Google Apps, Facebook, and Salesforce.com. These applications perform functions by grabbing data from different sources and publishing it to a new location or as a REST or Web Service. In the traditional 3 tier application model an integration app represents the data tier through connectivity to application data and the service tier through logic used to combine, transform and route this data to consumers.
+An integration application is one that integrates two or more applications or services. This may be as simple as synchronizing Salesforce data to a local database to creating a mashup using Google Apps, Facebook, and Salesforce. These applications perform functions by grabbing data from different sources and publishing it to a new location or as a REST or Web service. In the traditional 3 tier application model an integration app represents the data tier through connectivity to application data and the service tier through logic used to combine, transform and route this data to consumers.
 
 === What is an Anypoint Connector?
 
-Anypoint Connectors provide a simple and easy way to integrate with SaaS and Cloud APIs such as Salesforce, Facebook, AWS, Paypal, and then to use them as services within Mule. With these connectors you are then able to create orchestration that spans both SaaS and on-premises applications, using Mule.
+Anypoint Connectors provide a simple and easy way to integrate with SaaS and Cloud APIs such as Salesforce, Facebook, AWS, PayPal, and then to use them as services within Mule. With these connectors you are then able to create orchestration that spans both SaaS and on-premises applications, using Mule.
 
 === What is a Mule Flow?
 
@@ -88,7 +88,7 @@ If you're seeing messages like this:
 INFO 11-04-06 20:13:50 [DefaultSystemExceptionStrategy] Failed to bind to uri `+http://foo.cloudhub.io:8081/+`
 ----
 
-It's because you're trying to bind to a specific host instead of "0.0.0.0". Change your HTTP Connector to use "0.0.0.0" instead of your CloudHub domain name and redeploy.
+It's because you're trying to bind to a specific host instead of 0.0.0.0. Change your HTTP Connector to use 0.0.0.0 instead of your CloudHub domain name and redeploy.
 
 === How do I stop my application?
 
@@ -122,10 +122,10 @@ Yes, you can stop and start the application, you may upload a new project zip fi
 
 There are some specific scenarios where your static IP may be removed or reassigned. You should be aware of the following scenarios:
 
-* Deleting an application also removes its Static IP. If you create a new application with the same name, it has a new dynamically assigned IP address.
+* Deleting an application also removes its static IP. If you create a new application with the same name, it has a new dynamically assigned IP address.
 * Adding a new application by moving it from Sandbox to Production. This requires a new application name, hence a new Static IP
-* If a xref:virtual-private-cloud.adoc[Virtual Private Cloud (VPC)] is built for your organization, any existing application that is not already in the VPC receives a new IP address when it restarts inside the VPC.
-* An application is re-deployed to a different geographic region. You can pre-allocate a static IP in the new region in the *Static IPs* tab in the application settings page.
+* If a xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)] is built for your organization, any existing application that is not already in the Anypoint VPC receives a new IP address when it restarts inside the Anypoint VPC.
+* An application is redeployed to a different geographic region. You can pre-allocate a static IP in the new region in the *Static IPs* tab in the application settings page.
 
 === Can I request a specific Static IP?
 
@@ -133,7 +133,7 @@ No. Cloudhub utilizes a pool of Static IP’s, which are only assigned to a Clou
 
 === I am running in a Cloudhub Virtual Private Network, how do I assign a Static IP to my internal private IP?
 
-Cloudhub is able to set the worker's public IP address to Static. However, the internal private IP address always remains Dynamic. The private IP address is assigned from the range specified in the Cloudhub Worker's Address Space, which was determined at the creation of your xref:virtual-private-cloud.adoc[VPC].
+Cloudhub is able to set the worker's public IP address to Static. However, the internal private IP address always remains Dynamic. The private IP address is assigned from the range specified in the Cloudhub Worker's Address Space, which was determined at the creation of your xref:virtual-private-cloud.adoc[Anypoint VPC].
 
 === What are the possible IP ranges that can be assigned to Static IPs?
 
@@ -149,7 +149,7 @@ Browse and search our online http://forums.mulesoft.com[forum] archives to find 
 
 The CloudHub team is committed to providing the best customer experience possible. Contact the CloudHub team in the https://support.mulesoft.com[Support Portal].
 
-If you have a paid plan, in addition to the forums, you also have access to the *support portal*. To file a case through the support portal:
+If you have a paid plan, in addition to the forums, you also have access to the support portal. To file a case through the support portal:
 . Sign into the Anypoint Platform, then click *Support* on the top nav bar.
 . Click the *Cases* tab. Here you can browse open cases or click the *Create New Case* button to file a new one.
 . When you create a new case, fill in the required fields (marked in red). Hover over the question icons near the fields for field-specific guidelines or instructions.
@@ -158,7 +158,7 @@ If you have a paid plan, in addition to the forums, you also have access to the 
 
 === Proactive Monitoring
 
-The CloudHub platform is monitored 24x7 by automated systems. In the event of any issue affecting the health and operation of the CloudHub infrastructure, our dedicated operations team is notified and will respond immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users, free and paying. The status of CloudHub services and upcoming maintenance can be found at http://status.mulesoft.com[status.mulesoft.com].
+The CloudHub platform is monitored 24 hours a day, seven days a week by automated systems. In the event of any issue affecting the health and operation of the CloudHub infrastructure, our dedicated operations team is notified and will respond immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users, free and paying. The status of CloudHub services and upcoming maintenance can be found at http://status.mulesoft.com[`status.mulesoft.com`].
 
 == See Also
 
@@ -168,7 +168,7 @@ The CloudHub platform is monitored 24x7 by automated systems. In the event of an
 * xref:cloudhub.adoc[CloudHub]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:deployment-strategies.adoc[Deployment Strategies]
-* xref:cloudhub-architecture.adoc[CloudHub architecture]
+* xref:cloudhub-architecture.adoc[CloudHub Architecture]
 * xref:monitoring.adoc[Monitoring Applications]
 * xref:cloudhub-fabric.adoc[CloudHub Fabric]
 * xref:managing-queues.adoc[Managing Queues]
@@ -176,5 +176,5 @@ The CloudHub platform is monitored 24x7 by automated systems. In the event of an
 * xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
 * xref:anypoint-platform-cli.adoc[Command Line Tools]
 * xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud]
 * xref:penetration-testing-policies.adoc[Penetration Testing Policies]

@@ -1,89 +1,89 @@
-= Create and Update a VPC (Runtime Manager)
+= Create and Update a VPC for Runtime Manager
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-Before you can create a VPC, your organization must:
+Before you can create an Anypoint VPC, your organization must:
 
-* Purchase a VPC offering
-* Have the necessary permissions on your account to create and administrate a VPC
+* Purchase an Anypoint VPC offering
+* Have the necessary permissions on your account to create and administrate a Anypoint VPC
 
-== Create the VPC
+== Create the Anypoint VPC
 
-. Sign into your Anypoint Platform account as a user with the Organization Administrators role.
+. Sign into your Anypoint Platform account as a user with the *Organization Administrators* role.
 . Under *Management Center*, click *Runtime Manager*.
 . In the left navigation, click *VPCs*.
-. Click *Create VPC*, and enter the following information to define and configure the VPC:
-* *Name*: The name to identify your VPC. +
+. Click *Create VPC*, and enter the following information to define and configure the Anypoint VPC:
+* *Name*: The name to identify your Anypoint VPC. +
 The name must:
 
 ** Be unique within the organization
 ** Between 3 - 42 characters long
 ** Contain only lowercase letters, numbers, and dashes
-* *Region*: The region to which the VPC is bound.
+* *Region*: The region to which the Anypoint VPC is bound.
 +
 [NOTE]
 --
-All VPCs must be associated with a CloudHub region.
+All Anypoint VPCs must be associated with a CloudHub region.
 --
 +
-* *CIDR Block*: The size of the VPC in Classless Inter-Domain Routing (*CIDR*) notation. +
-For example, if you set it to 10.111.0.0/24, the VPC is granted 256 IP addresses from 10.111.0.0 to 10.111.0.255. +
-Ideally, the CIDR Blocks you choose for the VPC come from a private IP space, and should not overlap with any other VPC's CIDR Blocks, or any CIDR Blocks in use in your corporate network.
+* *CIDR Block*: The size of the Anypoint VPC in Classless Inter-Domain Routing (*CIDR*) notation. +
+For example, if you set it to 10.111.0.0/24, the Anypoint VPC is granted 256 IP addresses from 10.111.0.0 to 10.111.0.255. +
+Ideally, the CIDR Blocks you choose for the Anypoint VPC come from a private IP space, and should not overlap with any other Anypoint VPC's CIDR Blocks, or any CIDR Blocks in use in your corporate network.
 +
 [CAUTION]
 --
-This setting is configurable only during this initial creation of the VPC. Once the VPC is created, you cannot resize it or edit your selected CIDR block. +
-Make sure you thoroughly understand how to properly size the VPC for your needs before configuring this parameter. If you are not sure of how to configure this setting, follow the  xref:virtual-private-cloud.adoc#size-your-vpc[VPC sizing] guide.
+This setting is configurable only during this initial creation of an Anypoint VPC. Once the Anypoint VPC instance is created, you cannot resize it or edit your selected CIDR block. +
+Make sure you thoroughly understand how to properly size the Anypoint VPC for your needs before configuring this parameter. If you are not sure of how to configure this setting, follow the  xref:virtual-private-cloud.adoc#size-your-vpc[Anypoint VPC sizing] guide.
 --
 +
-* *Environments*: Optionally, select an environment to which the VPC is bound. +
-If you do not select an environment, every application deployed to the region you selected for the VPC gets associated with this VPC regardless of the environment to which it is deployed.
-* *Set as default VPC*: Select this option to set the VPC as the default for the region you set. +
-This means that all environments in this region not associated with a VPC will be, by default, associated with this VPC.
-* *Business Groups*: Optionally, bind the VPC with a business group. +
-If you don't select a business group, the VPC is associated with the master organization. You can change this later in the VPC management settings.
+* *Environments*: Optionally, select an environment to which the Anypoint VPC is bound. +
+If you do not select an environment, every application deployed to the region you selected for the Anypoint VPC gets associated with this Anypoint VPC regardless of the environment to which it is deployed.
+* *Set as default VPC*: Select this option to set the Anypoint VPC as the default for the region you set. +
+This means that all environments in this region not associated with an Anypoint VPC will be, by default, associated with this Anypoint VPC.
+* *Business Groups*: Optionally, bind the Anypoint VPC with a business group. +
+If you don't select a business group, the Anypoint VPC is associated with the master organization. You can change this later in the Anypoint VPC management settings.
 +
 image::create-vpc.png[]
 +
 . Click *Firewall Rules* to expand the fields and xref:vpc-firewall-rules-concept.adoc[configure firewall rules]. +
 By default, all inbound traffic is blocked, and you need to configure firewall rules to allow traffic to your worker. You can configure these rules at a later time. +
 The UI is pre-filled with suggestions of the most commonly used firewall rules. +
-The example below shows a firewall rule with type 'http.private.port' from `Anywhere`. The port range is set to `8091` automatically.
+The example below shows a firewall rule with type `http.private.port` from `Anywhere`. The port range is set to `8091` automatically.
 +
 image::vpc-and-load-balancer-creation-97c25.png[]
 +
-This means that only connections through port `8091` are whitelisted inside the VPC and that your worker will listen to all interfaces coming through port `8091`. +
+This means that only connections through port `8091` are whitelisted inside the Anypoint VPC and that your worker will listen to all interfaces coming through port `8091`. +
 Setting this firewall rule allows a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] to communicate to your workers using its default configurations.
 +
 [NOTE]
 --
-Additionally, to properly receive requests from the load balancer, all applications deployed to the VPC must be listening on port `8091`.
+Additionally, to properly receive requests from the load balancer, all applications deployed to the Anypoint VPC must be listening on port `8091`.
 --
 
 . Optionally, you can click the *Internal DNS* option to xref:resolve-private-domains-vpc-task.adoc[set up internal DNS servers] to resolve your private host names.
 +
 image::vpc-tutorial-31341.png[]
 +
-You can do this when you initially create the VPC, or you can configure the internal DNS later.
+You can do this when you initially create the Anypoint VPC, or you can configure the internal DNS later.
 
 . Click *Create VPC*.
 
-== Connect to your VPC
+== Connect to your Anypoint VPC
 
-xref:virtual-private-cloud.adoc#vpc-connectivity-methods[VPC connectivity methods] (VPC Peering and CloudHub Direct Connect) are not a self-serve functions at this time. +
-To configure a connection between your CloudHub VPC and your infrastructure, download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the VPC discovery form] (requires at least MS Excel 2007 with macros enabled), enter the necessary information required for your connectivity method and send it to MuleSoft customer support.
+xref:virtual-private-cloud.adoc#vpc-connectivity-methods[Anypoint VPC connectivity methods] (Anypoint VPC Peering and CloudHub Direct Connect) are not a self-serve functions at this time. +
+To configure a connection between your Anypoint VPC and your infrastructure, download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the Anypoint VPC discovery form] (requires at least MS Excel 2007 with macros enabled), enter the necessary information required for your connectivity method and send it to MuleSoft customer support.
 
-The SLA for configuring VPC is five business days after the VPC discovery form is completed and returned, though the VPC configuration may be completed sooner.
+The SLA for configuring Anypoint VPC is five business days after the Anypoint VPC discovery form is completed and returned, though the Anypoint VPC configuration may be completed sooner.
 
-== Update an Existing VPC
+== Update an Existing Anypoint VPC
 
-These instructions are for updating VPCs created before November 2018. If you are adding additional static routes to an IPsec VPN tunnel created after November 2018, you https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel [can use the API] to do so.
+These instructions are for updating Anypoint VPCs created before November 2018. If you are adding additional static routes to an IPsec VPN tunnel created after November 2018, you https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel [can use the API] to do so.
 
 image::vpc-tutorial-c5a66.png[]
 
-. Find your VPC in the list of existing VPCs in the UI, and select it.
+. Find your Anypoint VPC in the list of existing Anypoint VPCs in the UI, and select it.
 . You can update:
 .. *Environments* +
 You can select one or more specific environment from the drop down menu.
@@ -115,7 +115,7 @@ Add the private domains that need to be resolved using your DNS server and press
 
 == See Also
 
-* xref:vpc-firewall-rules-concept.adoc[About VPC Firewall Rules]
+* xref:vpc-firewall-rules-concept.adoc[About Anypoint VPC Firewall Rules]
 * xref:dedicated-load-balancer-tutorial.adoc[About CloudHub Load Balancers]
 * xref:vpc-management-permission-topic.adoc[FAQ: Where To Place a VPC Inside my Organization]
 * xref:resolve-private-domains-vpc-task.adoc[Configure Private Domains]
