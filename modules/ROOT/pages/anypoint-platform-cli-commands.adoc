@@ -1125,6 +1125,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |Command | Description |  Example
 | `--apiVersion` |  Asset API version .3+<.<| `exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
 | `--name`       |  Asset name
+| `--mainFile`   |  Main file of the API asset. | `exchange asset upload --mainFile 'api.yml'`
 | `--classifier` |  Asset classifier +
 Valid classifiers are `custom`, `oas`, and `wsdl`.
 |===
@@ -2316,7 +2317,7 @@ The `--upstreamProtocol` option sets the protocol used by your application to co
 
 [%header,cols="12a,68a,20a"]
 |===
-| Option | Description 
+| Option | Description
 | `--upstreamProtocol <protocol>` | Look for upstream applications in HTTP port 8091 or HTTPS port 8092. +
 Supported Values: `http`, `https` |
 | `--certificateName <certificate name>` | Optional parameter
