@@ -653,7 +653,9 @@ services:
     frequencyTimeUnit: MINUTES
 
 ----
-Note: The `/security/cacerts.jks` truststore file will be imported into the `$MULE_HOME/conf` folder and renamed as `truststore.jks`.
+The `/security/cacerts.jks` truststore file is imported into the `$MULE_HOME/conf` folder and renamed as `anypoint-truststore.jks`. +
+[NOTE]
+The default truststore was renamed `anypoint-truststore.jks` in Runtime Manager agent version 1.10.0 and later. In earlier versions of Runtime Manager agent, the default truststore was named `truststore.jks`. 
 
 . Restart the Mule runtime engine, and verify the Runtime Manager agent REST interface starts up successfully. Add SSL debugging to the Mule runtime engine logging. `./mule -M-Djavax.net.debug=all`
 
