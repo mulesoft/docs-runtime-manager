@@ -12,7 +12,7 @@ CloudHub provides two types of load balancers:
 
 == Shared Load Balancers
 
-CloudHub provides a default shared load balancer that is available in all environments. The shared load balancer provides basic functionality, including TCP load balancing and SSL certification pass through. Shared load balancers do not allow you to configure custom SSL certificates or configure proxy rules.
+CloudHub provides a default shared load balancer that is available in all environments. The shared load balancer provides basic functionality, such as TCP load balancing. Shared load balancers do not allow you to configure custom SSL certificates or configure proxy rules.
 
 Additionally, shared load balancers have lower rate limits that help ensure platform stability. MuleSoft regularly monitors and scales these limits as necessary. Rate limits on shared load balancers are applied according to region. Thus, if you are deploying an application to workers in multiple regions, the rate limit for each region may be different.
 
