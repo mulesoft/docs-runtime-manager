@@ -20,7 +20,7 @@ Your application can also store custom integration data as well, within the limi
 ====
 * Object stores are handled in the way described in this document only for applications deployed to CloudHub workers. For applications that you deploy via the Runtime Manager to local servers, you must handle the storage of data in your own repository. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
 * All data in Object Store v1 is handled by servers in the *US-East zone*, regardless of what zone your application is deployed to. This may impact performance.
-* Object Store v2 provides expanded cloud object store functionality for use with Mule 3.8.5 and later and for Mule 4.
+* xref:object-store::osv2-faq.adoc[Object Store v2] expands the number of cloud object store regions and object store capabilities for use with Mule 3.8.5 and later and for Mule 4.
 ====
 
 == Store and Retrieve Data
@@ -66,7 +66,7 @@ Object Store v2 has these limits:
 * Values can be up to 10 MB
 * Trial level 10 TPS, premium level 100 TPS
 * Keys persist for up to 30 days
-* Available in 10 regions around the world 
+* Available in xref:object-store::osv2-faq.adoc[all commercially available CloudHub regions].
 
 == Advanced Information
 
