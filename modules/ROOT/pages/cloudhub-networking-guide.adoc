@@ -18,7 +18,7 @@ CloudHub provides a load balancing service for all integrations. You can use the
 
 The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub].
 
-Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.cloudhub.io`. Mule applications deployed on CloudHub must listen on `0.0.0.0` and the ports assigned by CloudHub for HTTP and HTTPS. 
+Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`). 
 
 The following ports are assigned on the Mule worker:
 
@@ -45,7 +45,7 @@ If other values for `http.port` and `https.port` are specified in the `mule-app.
 
 [NOTE]
 --
-For each request a client makes through CloudHub's load balancer (_myapp.cloudhub.io_), the load balancer maintains two connections. One connection ​is from​ the client and one is to your worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection. If no data is sent or received during this time period, the load balancer closes ​both connections.
+For each request a client makes through CloudHub's load balancer (`myapp.cloudhub.io`), the load balancer maintains two connections. One connection ​is from​ the client and one is to your worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection. If no data is sent or received during this time period, the load balancer closes ​both connections.
 
 For connections that take longer than 300 seconds to process from either side, consider handling the processing asynchronously.
 --
@@ -113,9 +113,9 @@ Deploying to a region also affects your internal and external worker DNS address
 
 == Firewall Rules and Port Access
 
-The only two ports exposed externally are `${http.port}` and `${https.port}` (by default 8081 and 8082 respectively). If you want to access other ports, you can do so through the xref:virtual-private-cloud.adoc[*Anypoint Virtual Private Cloud (Anypoint VPC)*] offering.
+The only two ports exposed externally are `${http.port}` and `${https.port}` (by default 8081 and 8082 respectively). If you want to access other ports, you can do so through the xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)] offering.
 
-Additional ports can be opened inside the Anypoint VPC, for example, for JMX based monitoring. In order  to do so, refer to the Firewall Rules section in xref:virtual-private-cloud.adoc#firewall-rules[Anypoint VPC documentation].
+Additional ports can be opened inside the Anypoint VPC, for example, for JMX based monitoring. Refer to the Firewall Rules section in xref:virtual-private-cloud.adoc#firewall-rules[Anypoint VPC documentation].
 
 == Dedicated Load Balancing Configurations
 
@@ -135,7 +135,7 @@ If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-de
 . Create a xref:cloudhub-dedicated-load-balancer.adoc#whitelists[whitelist in your dedicated load balancer] with the IP addresses you want to authorize. You can only do this using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[`cloudhub load-balancer whitelist add`] command from Anypoint Platform CLI.
 
 [Important]
-If you don't have a xref:cloudhub-dedicated-load-balancer.adoc[Cloudhub dedicated load balancer], performing the first step is sufficient to ensure that applications deployed in your Anypoint VPCs are not publicly accessible.
+If you don't have a xref:cloudhub-dedicated-load-balancer.adoc[CloudHub dedicated load balancer], performing the first step is sufficient to ensure that applications deployed in your Anypoint VPCs are not publicly accessible.
 
 == See Also
 
