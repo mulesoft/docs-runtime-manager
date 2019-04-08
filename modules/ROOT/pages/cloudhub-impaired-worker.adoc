@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-CloudHub performs constant health checks on the underlying virtual machines where Mule applications are running. A worker is impaired when there is hardware or software failure that negatively impacts the running application deployed on the worker. Examples of hardware and software failures include network disconnection, memory issues, server hardware failures, file corruption, and so on.
+CloudHub performs constant health checks on the underlying virtual machines where Mule applications are running. A worker is impaired when there is a hardware or software failure that negatively impacts the running application deployed on the worker. Examples of hardware and software failures include network unavailability, memory issues, server hardware failures, file corruption, and so on.
 
 When a worker is impaired, CloudHub automatically attempts to restart the worker and relaunch the application. If a retry is successful, the underlying worker and the Mule application are recovered without requiring any further action.
 
