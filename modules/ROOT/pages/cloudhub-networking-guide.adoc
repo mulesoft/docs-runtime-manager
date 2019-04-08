@@ -59,7 +59,7 @@ The following DNS records for your applications are exposed when they are deploy
 |===
 |*myapp.cloudhub.io* |Load balancer. Ports 80 and 443 forward to  `${http.port}` and `${https.port}` respectively.
 |*mule-worker-myapp.cloudhub.io* |The external IP address of the Mule workers. Public HTTP services are exposed on: `${http.port}` and `${https.port}`
-|*mule-worker-internal-myapp.cloudhub.io* |The internal IP address of the Mule workers. The IP addresses for this DNS record are accessible only within a customer's private xref:virtual-private-cloud.adoc[Anypoint VPC]. *These IPs are not accessible for workers running in the MuleSoft shared VPC.* Internal HTTP services are exposed on: `${http.private.port}` and `${https.private.port}`. The default assigned ports are 8091 and 8092 respectively, and cannot be changed.
+|*mule-worker-internal-myapp.cloudhub.io* |The internal IP address of the Mule workers. The IP addresses for this DNS record are accessible only within a customer's private xref:virtual-private-cloud.adoc[Anypoint VPC]. *These IP addresses are not accessible for workers running in the MuleSoft shared VPC.* Internal HTTP services are exposed on: `${http.private.port}` and `${https.private.port}`. The default assigned ports are 8091 and 8092 respectively, and cannot be changed.
 |===
 
 In certain situations, you may want to know an application’s internal IP addresses, for example:
@@ -109,7 +109,7 @@ Depending on what region you deploy your application in, the DNS record and the 
 
 |===
 
-Deploying to a region also affects your internal and external worker DNS address. For example, if you deploy in Europe, the DNS records for internal and external IP addresses are `mule-worker-myapp.eu.cloudhub.io` and `mule-worker-internal-myapp.eu.cloudhub.io`.
+Deploying to a region also affects your internal and external worker DNS address. For example, if you deploy in Ireland, the DNS records for internal and external IP addresses are `mule-worker-myapp.ir-e1.cloudhub.io` and `mule-worker-internal-myapp.ir-e1.cloudhub.io`.
 
 == Firewall Rules and Port Access
 
