@@ -52,14 +52,14 @@ To make properties secure so that they're not visible using the Runtime Manager 
 
 Object Store v1 provides read-after-write consistency and the last write wins for updates.
 
-Object Store v1 has these limits:
+Object Store v1 has a:
 
 * Maximum of 100,000 keys per application
 * 768 byte key size
 * 1 MB value size
 * 1 GB of data per application
 
-Object Store v2 has these limits:
+Object Store v2:
 
 * Works with Mule 3.8.5 and later, and Mule 4
 * Unlimited number of keys per application
@@ -70,7 +70,7 @@ Object Store v2 has these limits:
 
 == Advanced Information
 
-Internally, Mule has several different types of object stores. Runtime Manager provides Object Store v1 (for Mule 3) and Object Store v2 (for Mule 3.8.5 and later, and Mule 4). These object stores are for runtime information about your application, such as those use cases mentioned above. If you wish to access this object store directly, it can be found internally in the Mule Registry under the `_defaultUserObjectStore`. The Object Store module and connectors use this store to store all their data by default.
+Internally, Mule has several different types of object stores. Runtime Manager provides Object Store v1 (for Mule 3) and Object Store v2 (for Mule 3.8.5 and later, and Mule 4). These object stores are for runtime information about your application, such as those use cases mentioned above. You can find this object store internally in the Mule Registry under the '_defaultUserObjectStore` if you want to access it directly. The Object Store module and connectors use this store to store all their data by default.
 
 === See also
 
