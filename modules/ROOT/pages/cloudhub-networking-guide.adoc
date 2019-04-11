@@ -91,21 +91,36 @@ You can assign Static IP to applications with multiple workers. However, it is n
 
 Depending on what region you deploy your application in, the DNS record and the load balancer for your integration may change. The following table summarizes what DNS records are available for your application in each region:
 
+.https://anypoint.mulesoft.com[U.S. Control Plane]
 [%header,cols="2*a"]
 |===
-|DNS Record |Regions
-| `myapp.us-e1.cloudhub.io` | US East (N. Virginia)
-| `myapp.us-e2.cloudhub.io` | US East (Ohio)
-| `myapp.us-w1.cloudhub.io` | US West (N. California),
-| `myapp.us-w2.cloudhub.io` | US West (Oregon)
-| `myapp.ca-c1.cloudhub.io` | Canada (Central)
-| `myapp.br-s1.cloudhub.io` | South America (Sao Paulo)
-| `myapp.sg-s1.cloudhub.io` | Asia Pacific (Singapore)
-| `myapp.au-s1.cloudhub.io` | Asia Pacific (Sydney)
-| `myapp.jp-e1.cloudhub.io` | Asia Pacific (Tokyo)
-| `myapp.ir-e1.cloudhub.io` | EU (Ireland)
-| `myapp.de-c1.cloudhub.io` | EU (Frankfurt)
-| `myapp.uk-e1.cloudhub.io` | EU (London)
+| Regions in US Control Plane | DNS Record 
+| US East (N. Virginia) | `myapp.us-e1.cloudhub.io` 
+| US East (Ohio) | `myapp.us-e2.cloudhub.io`
+| US West (N. California) | `myapp.us-w1.cloudhub.io` 
+| US West (Oregon) | `myapp.us-w2.cloudhub.io` 
+| Canada (Central) | `myapp.ca-c1.cloudhub.io`
+| South America (Sao Paulo) | `myapp.br-s1.cloudhub.io` 
+| Asia Pacific (Singapore) | `myapp.sg-s1.cloudhub.io` 
+| Asia Pacific (Sydney) | `myapp.au-s1.cloudhub.io` 
+| Asia Pacific (Tokyo) | `myapp.jp-e1.cloudhub.io` 
+| EU (Ireland) | `myapp.ir-e1.cloudhub.io`
+| EU (Frankfurt) | `myapp.de-c1.cloudhub.io` 
+| EU (London) | `myapp.uk-e1.cloudhub.io` 
+
+|===
+
+Though the EU control plane supports some of the same regions 
+that the U.S. control plane supports, the DNS records are different. 
+For more on the EU control plane, see 
+xref:eu-cloud:index.adoc[About the EU Control Plane].
+
+.https://eu1.anypoint.mulesoft.com[EU Control Plane]
+[%header,cols="2*a"]
+|===
+| Regions in EU Control Plane | DNS Record 
+| EU (Ireland) | `myapp.ir-e1.eu1.cloudhub.io` 
+| EU (Frankfurt) | `myapp.de-c1.eu1.cloudhub.io`
 
 |===
 
