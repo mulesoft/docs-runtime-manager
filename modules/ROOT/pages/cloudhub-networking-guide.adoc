@@ -91,7 +91,9 @@ You can assign Static IP to applications with multiple workers. However, it is n
 
 Depending on what region you deploy your application in, the DNS record and the load balancer for your integration may change. The following table summarizes what DNS records are available for your application in each region:
 
-.https://anypoint.mulesoft.com[U.S. Control Plane]
+https://anypoint.mulesoft.com[Anypoint Platform] for the U.S. control plane 
+covers the following regions.
+
 [%header,cols="2*a"]
 |===
 | Regions in U.S. Control Plane | DNS Record
@@ -110,12 +112,9 @@ Depending on what region you deploy your application in, the DNS record and the 
 
 |===
 
-Though the EU control plane supports some of the same regions
-that the U.S. control plane supports, the DNS records are different.
-For more on the EU control plane, see
-xref:eu-control-plane::index.adoc[About the EU Control Plane].
+https://eu1.anypoint.mulesoft.com[EU Control Plane] for the EU control plane 
+covers the following regions.
 
-.https://eu1.anypoint.mulesoft.com[EU Control Plane]
 [%header,cols="2*a"]
 |===
 | Regions in EU Control Plane | DNS Record
@@ -123,6 +122,11 @@ xref:eu-control-plane::index.adoc[About the EU Control Plane].
 | EU (Frankfurt) | `myapp.de-c1.eu1.cloudhub.io`
 
 |===
+
+Note that DNS records are unique to each control plane. Though the EU control plane 
+supports some of the same regions that the U.S. control plane supports, the DNS records 
+are different. For more on the EU control plane, see
+xref:eu-control-plane::index.adoc[About the EU Control Plane].
 
 Deploying to a region also affects your internal and external worker DNS address. For example, if you deploy in Ireland, the DNS records for internal and external IP addresses are `mule-worker-myapp.ir-e1.cloudhub.io` and `mule-worker-internal-myapp.ir-e1.cloudhub.io`.
 
