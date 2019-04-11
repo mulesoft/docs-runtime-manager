@@ -18,12 +18,12 @@ CloudHub provides a load balancing service for all integrations. You can use the
 
 The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub].
 
-Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`). 
+Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`).
 
 The following ports are assigned on the Mule worker:
 
-* `http.port` is set to `8081` 
-* `https.port` is set to `8082` 
+* `http.port` is set to `8081`
+* `https.port` is set to `8082`
 
 The load balancer then forwards requests to the assigned ports on the Mule worker. Forwarded traffic still uses HTTP and HTTPS protocols, which means it can't listen for HTTPS on `${http.port}` or plain HTTP on `${https.port}`. +
 You must reference these ports using the reserved properties `${http.port}` and `${https.port}` respectively. CloudHub services can then dynamically allocate a port at deployment time. +
@@ -73,7 +73,7 @@ You can access these IP addresses through the `mule-worker-internal-myapp.cloudh
 
 CloudHub IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see http://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html[Amazon AWS IP Address Ranges API]. The download link in that page will retrieve a dynamically generated JSON representation of all ranges that include the region. These ranges can change without notice, so you should update this information regularly.
 
-CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://support.mulesoft.com[MuleSoft Support]. 
+CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://support.mulesoft.com[MuleSoft Support].
 
 After a static IP has been allocated for your application, it is visible in the *Static IPs* tab in the application settings. For more details, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
 
@@ -94,32 +94,32 @@ Depending on what region you deploy your application in, the DNS record and the 
 .https://anypoint.mulesoft.com[U.S. Control Plane]
 [%header,cols="2*a"]
 |===
-| Regions in US Control Plane | DNS Record 
-| US East (N. Virginia) | `myapp.us-e1.cloudhub.io` 
+| Regions in US Control Plane | DNS Record
+| US East (N. Virginia) | `myapp.us-e1.cloudhub.io`
 | US East (Ohio) | `myapp.us-e2.cloudhub.io`
-| US West (N. California) | `myapp.us-w1.cloudhub.io` 
-| US West (Oregon) | `myapp.us-w2.cloudhub.io` 
+| US West (N. California) | `myapp.us-w1.cloudhub.io`
+| US West (Oregon) | `myapp.us-w2.cloudhub.io`
 | Canada (Central) | `myapp.ca-c1.cloudhub.io`
-| South America (Sao Paulo) | `myapp.br-s1.cloudhub.io` 
-| Asia Pacific (Singapore) | `myapp.sg-s1.cloudhub.io` 
-| Asia Pacific (Sydney) | `myapp.au-s1.cloudhub.io` 
-| Asia Pacific (Tokyo) | `myapp.jp-e1.cloudhub.io` 
+| South America (Sao Paulo) | `myapp.br-s1.cloudhub.io`
+| Asia Pacific (Singapore) | `myapp.sg-s1.cloudhub.io`
+| Asia Pacific (Sydney) | `myapp.au-s1.cloudhub.io`
+| Asia Pacific (Tokyo) | `myapp.jp-e1.cloudhub.io`
 | EU (Ireland) | `myapp.ir-e1.cloudhub.io`
-| EU (Frankfurt) | `myapp.de-c1.cloudhub.io` 
-| EU (London) | `myapp.uk-e1.cloudhub.io` 
+| EU (Frankfurt) | `myapp.de-c1.cloudhub.io`
+| EU (London) | `myapp.uk-e1.cloudhub.io`
 
 |===
 
-Though the EU control plane supports some of the same regions 
-that the U.S. control plane supports, the DNS records are different. 
-For more on the EU control plane, see 
-xref:eu-control-plane/index.adoc[About the EU Control Plane].
+Though the EU control plane supports some of the same regions
+that the U.S. control plane supports, the DNS records are different.
+For more on the EU control plane, see
+xref:eu-control-plane::index.adoc[About the EU Control Plane].
 
 .https://eu1.anypoint.mulesoft.com[EU Control Plane]
 [%header,cols="2*a"]
 |===
-| Regions in EU Control Plane | DNS Record 
-| EU (Ireland) | `myapp.ir-e1.eu1.cloudhub.io` 
+| Regions in EU Control Plane | DNS Record
+| EU (Ireland) | `myapp.ir-e1.eu1.cloudhub.io`
 | EU (Frankfurt) | `myapp.de-c1.eu1.cloudhub.io`
 
 |===
