@@ -202,6 +202,7 @@ If encrypted property names are also listed in the Mule application's 'securePro
 So for any encrypted property that is also marked as safely hidden in the Mule application's `secureProperties` entry, you can safely replace any encrypted property with a clear-text value, which will be securely stored in the CloudHub properties database, and securely passed in to the Mule application ever time the Mule application is started.
 
 The new value is also hidden once the application is deployed and can never be viewed again.
+*HERE* I think it's worth mentioning that when override the secured properties in Runtime Manager using Text view, the colon in property name needs to be escaped. For example, secure\:\:someproperty. Or suggest the reader to use List view. It took me hours to figure this out. I am sure I am not the only person followed this document but found it doesn't work.
 
 This means that when you override a secure property in the CloudHub properties tab for the application, the values never needs to be encrypted. In this scenario, securing the values of sensitive properties is reduced to controlling which operators have access to those values when they deploy or redeploy the secure application.
 
