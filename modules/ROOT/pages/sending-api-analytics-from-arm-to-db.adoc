@@ -98,7 +98,7 @@ CREATE TABLE MULE_API_ANALYTICS (
   host_id                      VARCHAR(255) NULL,
   org_id                       VARCHAR(36)  NULL,
   path                         VARCHAR(500) NOT NULL,
-  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
   policy_violation_policy_name VARCHAR(150) NULL,
   policy_violation_outcome     VARCHAR(10)  NULL,
   received_ts                  VARCHAR(30)  NOT NULL,
@@ -112,6 +112,15 @@ CREATE TABLE MULE_API_ANALYTICS (
   verb                         VARCHAR(8)   NOT NULL,
   PRIMARY KEY (id)
 );
+
+----
+
+[NOTE]
+Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior
+
+[source,sql,linenums]
+----
+ALTER TABLE MULE_API_ANALYTICS MODIFY policy_violation_policy_id VARCHAR(50) NULL;
 
 ----
 
@@ -153,7 +162,7 @@ CREATE TABLE MULE_API_ANALYTICS (
   host_id                      VARCHAR(255) NULL,
   org_id                       VARCHAR(36)  NULL,
   path                         VARCHAR(500) NOT NULL,
-  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
   policy_violation_policy_name VARCHAR(150) NULL,
   policy_violation_outcome     VARCHAR(10)  NULL,
   received_ts                  VARCHAR(30)  NOT NULL,
@@ -167,6 +176,18 @@ CREATE TABLE MULE_API_ANALYTICS (
   verb                         VARCHAR(8)   NOT NULL,
   PRIMARY KEY (id)
 );
+----
+
+[NOTE]
+Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior
+
+[source,sql,linenums]
+----
+ALTER TABLE MULE_API_ANALYTICS ADD temp VARCHAR(50);
+update MULE_API_ANALYTICS set temp=cast(policy_violation_policy_id as VARCHAR(50));
+ALTER TABLE MULE_API_ANALYTICS DROP COLUMN policy_violation_policy_id;
+ALTER TABLE MULE_API_ANALYTICS RENAME COLUMN temp TO policy_violation_policy_id;
+
 ----
 
 ==== Internal Handler Configuration
@@ -207,7 +228,7 @@ CREATE TABLE MULE_API_ANALYTICS (
   host_id                      VARCHAR(255) NULL,
   org_id                       VARCHAR(36)  NULL,
   path                         VARCHAR(500) NOT NULL,
-  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
   policy_violation_policy_name VARCHAR(150) NULL,
   policy_violation_outcome     VARCHAR(10)  NULL,
   received_ts                  VARCHAR(30)  NOT NULL,
@@ -221,6 +242,15 @@ CREATE TABLE MULE_API_ANALYTICS (
   verb                         VARCHAR(8)   NOT NULL,
   PRIMARY KEY (id)
 );
+----
+
+[NOTE]
+Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior
+
+[source,sql,linenums]
+----
+ALTER TABLE MULE_API_ANALYTICS ALTER COLUMN policy_violation_policy_id VARCHAR(50) NULL;
+
 ----
 
 ==== Internal Handler Configuration
