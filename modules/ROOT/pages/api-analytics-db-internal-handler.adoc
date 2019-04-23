@@ -4,8 +4,6 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: runtime manager, arm, https, cloudhub
 
-= API Analytics DB Internal Handler
-
 The DB Internal handler will store all the HTTP API Analytics produced from the
 Mule API Gateway in a configurable database.
 You have to copy your JDBC .jar driver to the ${MULE_HOME}/plugins/mule-agent-plugin/lib/modules,
@@ -54,10 +52,47 @@ so the mule agent can load it to the classpath.
 
 ==== Schema
 
-link:src/main/resources/mysql.schema.sql[Proposed schema for HTTP API Analytics storage in MySQL]
+Proposed schema for HTTP API Analytics storage in MySQL
+
+[source,sql]
+...
+CREATE TABLE MULE_API_ANALYTICS (
+  id                           CHAR(36)     NOT NULL,
+  api_id                       INT          NOT NULL,
+  api_name                     VARCHAR(64)  NULL,
+  api_version                  VARCHAR(150) NULL,
+  api_version_id               INT          NOT NULL,
+  application_name             VARCHAR(42)  NULL,
+  client_id                    VARCHAR(255) NULL,
+  client_ip                    VARCHAR(45)  NOT NULL,
+  event_id                     VARCHAR(36)  NOT NULL,
+  host_id                      VARCHAR(255) NULL,
+  org_id                       VARCHAR(36)  NULL,
+  path                         VARCHAR(500) NOT NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
+  policy_violation_policy_name VARCHAR(150) NULL,
+  policy_violation_outcome     VARCHAR(10)  NULL,
+  received_ts                  VARCHAR(30)  NOT NULL,
+  replied_ts                   VARCHAR(30)  NOT NULL,
+  request_bytes                INT          NOT NULL,
+  request_disposition          VARCHAR(10)  NOT NULL,
+  response_bytes               INT          NOT NULL,
+  status_code                  INT          NOT NULL,
+  transaction_id               VARCHAR(36)  NULL,
+  user_agent                   VARCHAR(500) NULL,
+  verb                         VARCHAR(8)   NOT NULL,
+  PRIMARY KEY (id)
+);
+...
 
 Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior.
-link:src/main/resources/mysql.policyViolationId.migration.sql[Proposed migration in script to update policy_violation_policy_id data type in MySQL]
+
+Proposed migration in script to update policy_violation_policy_id data type in MySQL
+
+[source,sql]
+...
+ALTER TABLE MULE_API_ANALYTICS MODIFY policy_violation_policy_id VARCHAR(50) NULL;
+...
 
 ==== Internal Handler Configuration
 
@@ -80,10 +115,51 @@ Download the .zip file and extract to obtain the mysql-connector-java-%VERSION%-
 
 ==== Schema
 
-link:src/main/resources/oracle.schema.sql[Proposed schema for HTTP API Analytics storage in Oracle 11g XE]
+Proposed schema for HTTP API Analytics storage in Oracle 11g XE
+
+[source,sql]
+...
+CREATE TABLE MULE_API_ANALYTICS (
+  id                           CHAR(36)     NOT NULL,
+  api_id                       INT          NOT NULL,
+  api_name                     VARCHAR(64)  NULL,
+  api_version                  VARCHAR(150) NULL,
+  api_version_id               INT          NOT NULL,
+  application_name             VARCHAR(42)  NULL,
+  client_id                    VARCHAR(255) NULL,
+  client_ip                    VARCHAR(45)  NOT NULL,
+  event_id                     VARCHAR(36)  NOT NULL,
+  host_id                      VARCHAR(255) NULL,
+  org_id                       VARCHAR(36)  NULL,
+  path                         VARCHAR(500) NOT NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
+  policy_violation_policy_name VARCHAR(150) NULL,
+  policy_violation_outcome     VARCHAR(10)  NULL,
+  received_ts                  VARCHAR(30)  NOT NULL,
+  replied_ts                   VARCHAR(30)  NOT NULL,
+  request_bytes                INT          NOT NULL,
+  request_disposition          VARCHAR(10)  NOT NULL,
+  response_bytes               INT          NOT NULL,
+  status_code                  INT          NOT NULL,
+  transaction_id               VARCHAR(36)  NULL,
+  user_agent                   VARCHAR(500) NULL,
+  verb                         VARCHAR(8)   NOT NULL,
+  PRIMARY KEY (id)
+);
+...
 
 Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior.
-link:src/main/resources/oracle.policyViolationId.migration.sql[Proposed migration script to update policy_violation_policy_id data type in Oracle 11g XE]
+
+Proposed migration script to update policy_violation_policy_id data type in Oracle 11g XE
+
+[source,sql]
+...
+ALTER TABLE MULE_API_ANALYTICS ADD temp VARCHAR(50);
+update MULE_API_ANALYTICS set temp=cast(policy_violation_policy_id as VARCHAR(50));
+ALTER TABLE MULE_API_ANALYTICS DROP COLUMN policy_violation_policy_id;
+ALTER TABLE MULE_API_ANALYTICS RENAME COLUMN temp TO policy_violation_policy_id;
+...
+
 
 ==== Internal Handler Configuration
 
@@ -105,10 +181,47 @@ Download the .jar file and copy it to ${MULE_HOME}/plugins/mule-agent-plugin/lib
 
 ==== Schema
 
-link:src/main/resources/mssql.schema.sql[Proposed schema for HTTP API Analytics storage in  Microsoft SQL Server 2014]
+Proposed schema for HTTP API Analytics storage in  Microsoft SQL Server 2014
+
+[source,sql]
+...
+CREATE TABLE MULE_API_ANALYTICS (
+  id                           CHAR(36)     NOT NULL,
+  api_id                       INT          NOT NULL,
+  api_name                     VARCHAR(64)  NULL,
+  api_version                  VARCHAR(150) NULL,
+  api_version_id               INT          NOT NULL,
+  application_name             VARCHAR(42)  NULL,
+  client_id                    VARCHAR(255) NULL,
+  client_ip                    VARCHAR(45)  NOT NULL,
+  event_id                     VARCHAR(36)  NOT NULL,
+  host_id                      VARCHAR(255) NULL,
+  org_id                       VARCHAR(36)  NULL,
+  path                         VARCHAR(500) NOT NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
+  policy_violation_policy_name VARCHAR(150) NULL,
+  policy_violation_outcome     VARCHAR(10)  NULL,
+  received_ts                  VARCHAR(30)  NOT NULL,
+  replied_ts                   VARCHAR(30)  NOT NULL,
+  request_bytes                INT          NOT NULL,
+  request_disposition          VARCHAR(10)  NOT NULL,
+  response_bytes               INT          NOT NULL,
+  status_code                  INT          NOT NULL,
+  transaction_id               VARCHAR(36)  NULL,
+  user_agent                   VARCHAR(500) NULL,
+  verb                         VARCHAR(8)   NOT NULL,
+  PRIMARY KEY (id)
+);
+...
 
 Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior.
-link:src/main/resources/mssql.policyViolationId.migration.sql[Proposed migration script to update policy_violation_policy_id data type in Microsoft SQL Server 2014]
+
+Proposed migration script to update policy_violation_policy_id data type in Microsoft SQL Server 2014
+
+[source,sql]
+...
+ALTER TABLE MULE_API_ANALYTICS ALTER COLUMN policy_violation_policy_id VARCHAR(50) NULL;
+...
 
 ==== Internal Handler Configuration
 
