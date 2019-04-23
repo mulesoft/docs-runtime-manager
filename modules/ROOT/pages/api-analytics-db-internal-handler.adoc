@@ -1,0 +1,130 @@
+= API Analytics DB Internal Handler
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: runtime manager, arm, https, cloudhub
+
+= API Analytics DB Internal Handler
+
+The DB Internal handler will store all the HTTP API Analytics produced from the
+Mule API Gateway in a configurable database.
+You have to copy your JDBC .jar driver to the ${MULE_HOME}/plugins/mule-agent-plugin/lib/modules,
+so the mule agent can load it to the classpath.
+
+== Configurable Fields
+
+|===
+|Field|Data Type|Description|Type|Default Value
+
+|driver
+|String
+|Represents the JDBC driver to use to communicate with the database server.
+|Required
+|
+
+|jdbcUrl
+|String
+|Represents the JDBC url to the database server.
+|Required
+|
+
+|user
+|String
+|The username to connect to the database server.
+|Required
+|
+
+|pass
+|String
+|The password to connect to the database server.
+|Required
+|
+
+|apiAnalyticsTable
+|String
+|Represents the name of the table in which the agent will store the events.
+|Optional
+|MULE_API_ANALYTICS
+
+|===
+
+== Proposed Configurations
+
+=== MySQL
+
+==== Schema
+
+link:src/main/resources/mysql.schema.sql[Proposed schema for HTTP API Analytics storage in MySQL]
+
+Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior.
+link:src/main/resources/mysql.policyViolationId.migration.sql[Proposed migration in script to update policy_violation_policy_id data type in MySQL]
+
+==== Internal Handler Configuration
+
+First of all you have to download the MySQL JDBC driver from http://dev.mysql.com/downloads/connector/j/.
+Download the .zip file and extract to obtain the mysql-connector-java-%VERSION%-bin.jar, and copy it to ${MULE_HOME}/plugins/mule-agent-plugin/lib/modules.
+
+[source,yaml]
+....
+---
+  mule.agent.gw.http.handler.database:
+    enabled: true
+    driver: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.61.128/mule
+    user: root
+    pass: test
+....
+
+
+=== ORACLE
+
+==== Schema
+
+link:src/main/resources/oracle.schema.sql[Proposed schema for HTTP API Analytics storage in Oracle 11g XE]
+
+Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior.
+link:src/main/resources/oracle.policyViolationId.migration.sql[Proposed migration script to update policy_violation_policy_id data type in Oracle 11g XE]
+
+==== Internal Handler Configuration
+
+First of all you have to download the ORACLE JDBC driver from http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html.
+Download the .jar file and copy it to ${MULE_HOME}/plugins/mule-agent-plugin/lib/modules.
+
+[source,yaml]
+....
+---
+  mule.agent.gw.http.handler.database:
+    enabled: true
+    driver: oracle.jdbc.OracleDriver
+    jdbcUrl: jdbc:oracle:thin:@192.168.61.128/XE
+    user: root
+    pass: test
+....
+
+=== Microsoft SQL Server
+
+==== Schema
+
+link:src/main/resources/mssql.schema.sql[Proposed schema for HTTP API Analytics storage in  Microsoft SQL Server 2014]
+
+Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior.
+link:src/main/resources/mssql.policyViolationId.migration.sql[Proposed migration script to update policy_violation_policy_id data type in Microsoft SQL Server 2014]
+
+==== Internal Handler Configuration
+
+First of all you have to download the Microsoft JDBC driver from https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774.
+Download the sqljdbc_4_%version%_.tar.gz, uncompress it and copy the sqljdbc4_%version%_.jar to ${MULE_HOME}/plugins/mule-agent-plugin/lib/modules.
+
+[source,yaml]
+....
+---
+  mule.agent.gw.http.handler.database:
+    enabled: true
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jdbcUrl: jdbc:sqlserver://192.168.61.128:1433;databaseName=Mule;
+    user: root
+    pass: test
+....
+
+
+
