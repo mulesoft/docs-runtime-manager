@@ -118,6 +118,8 @@ CREATE TABLE MULE_API_ANALYTICS (
 [NOTE]
 Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior
 
+Proposed migration in script to update policy_violation_policy_id data type in MySQL
+
 [source,sql,linenums]
 ----
 ALTER TABLE MULE_API_ANALYTICS MODIFY policy_violation_policy_id VARCHAR(50) NULL;
@@ -180,6 +182,8 @@ CREATE TABLE MULE_API_ANALYTICS (
 
 [NOTE]
 Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior
+
+Proposed migration script to update policy_violation_policy_id data type in Oracle 11g XE
 
 [source,sql,linenums]
 ----
@@ -246,6 +250,8 @@ CREATE TABLE MULE_API_ANALYTICS (
 
 [NOTE]
 Schema must be updated only if migrating from an agent version prior 2.3.0 to 2.3.0 or superior
+
+Proposed migration script to update policy_violation_policy_id data type in Microsoft SQL Server 2014
 
 [source,sql,linenums]
 ----
