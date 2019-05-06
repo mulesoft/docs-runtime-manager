@@ -10,7 +10,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-By configuring a few settings, the HTTP API Analytics produced by your applications running on the API gateway runtime can be easily stored in a database.
+The HTTP API analytics produced by applications running on the API gateway runtime can be easily stored in a database by configuring a few settings.
 
 [NOTE]
 ====
@@ -21,12 +21,12 @@ To see how to send this same information to Splunk, ELK or other third party sof
 
 == Prerequisites
 
-* API gateway standalone – version 2.1.0 or above
-* Runtime Manager agent plugin version 1.3.0 or above
+* API gateway standalone – version 2.1.0 or later
+* Runtime Manager agent plugin version 1.3.0 or later
 
 == Install the Runtime Manager Agent
 
-The Runtime Manager agent is in charge of sending messages out of Mule. In order to send event information to third party software, you need to have version 1.3.0 or newer of the Runtime Manager agent.
+The Runtime Manager agent is in charge of sending messages out of Mule. To send event information to third party software, you must have version 1.3.0 or later of the Runtime Manager agent.
 
 For help installing the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Installing and Configuring Runtime Manager Agent].
 
@@ -98,7 +98,7 @@ CREATE TABLE MULE_API_ANALYTICS (
   host_id                      VARCHAR(255) NULL,
   org_id                       VARCHAR(36)  NULL,
   path                         VARCHAR(500) NOT NULL,
-  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
   policy_violation_policy_name VARCHAR(150) NULL,
   policy_violation_outcome     VARCHAR(10)  NULL,
   received_ts                  VARCHAR(30)  NOT NULL,
@@ -112,6 +112,17 @@ CREATE TABLE MULE_API_ANALYTICS (
   verb                         VARCHAR(8)   NOT NULL,
   PRIMARY KEY (id)
 );
+
+----
+
+[NOTE]
+You must update the schema only if you are migrating from a Runtime Manager agent version earlier than 2.3.0.
+
+Proposed migration in script to update `policy_violation_policy_id` data type in MySQL.
+
+[source,sql,linenums]
+----
+ALTER TABLE MULE_API_ANALYTICS MODIFY policy_violation_policy_id VARCHAR(50) NULL;
 
 ----
 
@@ -153,7 +164,7 @@ CREATE TABLE MULE_API_ANALYTICS (
   host_id                      VARCHAR(255) NULL,
   org_id                       VARCHAR(36)  NULL,
   path                         VARCHAR(500) NOT NULL,
-  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
   policy_violation_policy_name VARCHAR(150) NULL,
   policy_violation_outcome     VARCHAR(10)  NULL,
   received_ts                  VARCHAR(30)  NOT NULL,
@@ -167,6 +178,20 @@ CREATE TABLE MULE_API_ANALYTICS (
   verb                         VARCHAR(8)   NOT NULL,
   PRIMARY KEY (id)
 );
+----
+
+[NOTE]
+You must update the schema only if you are migrating from a Runtime Manager agent version earlier than 2.3.0.
+
+Proposed migration script to update `policy_violation_policy_id` data type in Oracle 11g XE.
+
+[source,sql,linenums]
+----
+ALTER TABLE MULE_API_ANALYTICS ADD temp VARCHAR(50);
+update MULE_API_ANALYTICS set temp=cast(policy_violation_policy_id as VARCHAR(50));
+ALTER TABLE MULE_API_ANALYTICS DROP COLUMN policy_violation_policy_id;
+ALTER TABLE MULE_API_ANALYTICS RENAME COLUMN temp TO policy_violation_policy_id;
+
 ----
 
 ==== Internal Handler Configuration
@@ -207,7 +232,7 @@ CREATE TABLE MULE_API_ANALYTICS (
   host_id                      VARCHAR(255) NULL,
   org_id                       VARCHAR(36)  NULL,
   path                         VARCHAR(500) NOT NULL,
-  policy_violation_policy_id   INT          NULL,
+  policy_violation_policy_id   VARCHAR(50)  NULL,
   policy_violation_policy_name VARCHAR(150) NULL,
   policy_violation_outcome     VARCHAR(10)  NULL,
   received_ts                  VARCHAR(30)  NOT NULL,
@@ -223,11 +248,22 @@ CREATE TABLE MULE_API_ANALYTICS (
 );
 ----
 
+[NOTE]
+You must update the schema only if you are migrating from a Runtime Manager agent version earlier than 2.3.0.
+
+Proposed migration script to `update policy_violation_policy_id` data type in Microsoft SQL Server 2014.
+
+[source,sql,linenums]
+----
+ALTER TABLE MULE_API_ANALYTICS ALTER COLUMN policy_violation_policy_id VARCHAR(50) NULL;
+
+----
+
 ==== Internal Handler Configuration
 
 . Download the Microsoft JDBC driver from https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774.
-. Extract the `sqljdbc_4_%version%.tar.gz` file to obtain the `sqljdbc4%version%_.jar` file
-. Copy this .jar file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Extract the `sqljdbc_4_%version%.tar.gz` file to obtain the `sqljdbc4%version%_.jar` file.
+. Copy this `.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 
 +
