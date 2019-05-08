@@ -13,12 +13,15 @@ Anypoint VPC supports different Amazon regions. During setup, you need to specif
 
 image::virtual-private-cloud-78b5f.png[]
 
-Each Anypoint VPC allows you to configure firewall rules to apply to your workers. You can choose to expose or block your custom ports and even block requests to your apps coming from CloudHub's shared load balancer. +
-Additionally, you can configure one or more dedicated load balancers to validate requests using your own SSL certificates, and to map input URLs to call to different CloudHub applications. +
+Each Anypoint VPC allows you to configure firewall rules to apply to your workers. You can choose to expose or block your custom ports and even block requests to your apps coming from CloudHub's shared load balancer. 
+
+Additionally, you can configure one or more dedicated load balancers to validate requests using your own SSL certificates, and to map input URLs to call to different CloudHub applications. 
+
 Combining firewall rules and dedicated load balancers configurations, you can fine tune how external services reach your applications.
 
 [[example_deployment_scenarios]]
 == Example Anypoint VPC Deployment Scenarios
+
 When you are planning and configuring your Anypoint VPCs, you should make sure you have enough licenses to meet your requirements. 
 
 === 1:1 Relationship Deployment
