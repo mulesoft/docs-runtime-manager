@@ -35,7 +35,7 @@ The xref:runtime-manager-agent.adoc[Runtime Manager Agent] acts in between Runti
 
 == Prerequisites
 
-* Mule v3.6 or later, or API gateway standalone version 2.1.0 or later if you deal with apps that are built with the API gateway.
+* Mule 3.6 or later, or API gateway standalone version 2.1.0 or later if you deal with apps that are built with the API gateway.
 * Runtime Manager agent 1.2.0 or later is required, the steps to install and configure it are provided below.
 
 == Installation and Setup of Runtime Manager with a Third-Party Analytics Tool
@@ -423,7 +423,7 @@ image::sending-data-from-arm-to-external-monitoring-software-api-analytics.png[]
 
 [NOTE]
 --
-Starting from Mule Runtime versions 4.2.0 and 3.9.3 the runtime can be configured to forward events to both a third-party system, like ELK and Splunk, and to Anypoint Platform by adding an additional property to the `wrapper.conf` file:
+Starting from Mule versions 4.2.0 and 3.9.3, you can configure the Mule runtime engine to forward events to both a third-party system, like ELK and Splunk, and to Anypoint Platform by adding an additional property to the `wrapper.conf` file:
 
 [source,java,linenums]
 ----
@@ -451,7 +451,7 @@ If you intend to export your payload's contents to be logged, keep in mind that 
 [discrete.view]
 == Encrypting Passwords
 
-Assign a master password to your Mule instance or your API gateway Standalone instance when launching them. If you don't, when you set up your credentials for external applications using the Runtime Manager UI, the credentials are stored as plain text in the `conf/mule-agent.yml` file. This is not recommended for security reasons. Instead, launch Mule or API gateway runtime with an extra argument that is then used to encrypt these passwords when storing them in the YAML file.
+Assign a master password to your Mule instance or your API gateway standalone instance when launching them. If you don't, when you set up your credentials for external applications using the Runtime Manager UI, the credentials are stored as plain text in the `conf/mule-agent.yml` file. This is not recommended for security reasons. Instead, launch Mule or API gateway runtime with an extra argument that is then used to encrypt these passwords when storing them in the YAML file.
 
 [discrete.view]
 === Mule
