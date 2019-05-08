@@ -14,20 +14,11 @@ If you are unable to connect to the Anypoint VPN, ensure any firewalls that are 
 This is likely due to a problem with your Phase 1 configuration.
 Anypoint VPN connections support only IKEv1, meaning IKEv2 do not work.
 
-Additionally, the following Phase 1 Diffie-Hellman (DH) groups are supported: 
-
-* 2 
-* 14-18 
-* 22 - 24
+Phase 1 Diffie-Hellman (DH) groups that are supported include 2, 14-18, 22, 23, and 24. 
 
 === Cannot Establish a Phase 2 Connection
 
-It is possible that your Phase 2 DH group is not supported. The supported Phase 2 DH groups are: 
-
-* 2
-* 5
-* 14-18
-* 22-24
+It is possible that your Phase 2 DH group is not supported. Phase 2 DH groups that are supported include 2, 5, 14-18, 22, 23, and 24. 
 
 === Anypoint VPN Tunnel Connection Works, but Routes are not Propagated
 
