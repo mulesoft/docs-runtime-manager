@@ -11,10 +11,10 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 After you deploy an application to xref:deploying-to-cloudhub.adoc[CloudHub], you can use the Runtime Manager to manage your application at runtime.
 
-Depending on if your application is deployed to xref:deploying-to-cloudhub.adoc[CloudHub] or to xref:deploying-to-your-own-servers.adoc[your own servers], there is a different set of possible actions you can perform on it, once deployed.
+Depending on if your application is deployed to xref:deploying-to-cloudhub.adoc[CloudHub] or to xref:deploying-to-your-own-servers.adoc[your own servers], there is a different set of possible actions you can perform.
 
 [NOTE]
-This document refers to applications that are deployed via the cloud Runtime Manager console to xref:cloudhub.adoc[CloudHub]. To view the basic management tools that are common to all types of deployments, see xref:managing-deployed-applications.adoc[Managing Deployed Applications]. See xref:deployment-strategies.adoc[Deployment Strategies] to understand the different deployment scenarios that the platform offers.
+This document refers to applications that are deployed through the Runtime Manager console to xref:cloudhub.adoc[CloudHub]. To view the basic management tools that are common to all types of deployments, see xref:managing-deployed-applications.adoc[Managing Deployed Applications]. See xref:deployment-strategies.adoc[Deployment Strategies] to understand the different deployment scenarios that the platform offers.
 
 
 
@@ -28,7 +28,7 @@ With applications deployed to xref:cloudhub.adoc[CloudHub] you can handle the fo
 
 == Applications Dashboard
 
-If you select any of the applications on the Applications tab, a panel opens on the right. Here you will be able to read additional information about the application and access its settings.
+If you select any of the applications on the *Applications* tab, a panel opens on the right, where you can read additional information about the application and access its settings.
 
 image::dashboard-ch.png[dashboard]
 
@@ -41,25 +41,29 @@ They also display additional info about the CloudHub worker they run on, namely 
 
 == Accessing App Settings
 
-Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager. Select one of your CloudHub running applications to open a panel on the right side. On that panel, click the *Manage Application* button to open up the application's settings.
+. Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager. 
+. Select one of your CloudHub running applications to open a panel on the right side. 
+. In the panel on the right, click the *Manage Application* button to open up the application's settings.
 
 image::cloudhub-manage-application.png[manage app]
 
-In this menu you will be able to change most of the settings you can configure when deploying. For applications on CloudHub, you will also be able to access Log data, Insights, Alerts, queues, set up and manage schedules and application data. You can aso see the *Alerts History* tab, that displays a record of the triggered alerts on this app. See xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager] for more on this.
+In this menu you will be able to change most of the settings you can configure when deploying. For applications on CloudHub, you will also be able to access Log data, Insights, Alerts, queues, set up and manage schedules and application data. You can also see the *Alerts History* tab, which displays a record of the triggered alerts on the app. See xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager] for more on this.
 
 
 == Monitoring Applications
 
-If your application is deployed to CloudHub, a rich set of tools exists for monitoring events that may occur on your application and the performance of the virutal servers it's running on. See xref:monitoring.adoc[Monitoring Applications] for more details.
+If your application is deployed to CloudHub, a rich set of tools exists for monitoring events that may occur on your application and the performance of the virtual servers it's running on. See xref:monitoring.adoc[Monitoring Applications] for more details.
 
 
 == Redeploying to a Different Region
 
-If you have global deployment enabled on your account, you can select a different region for your CloudHub deployments. On the settings page, pick the *Runtime* section, and then select the desired region from the drop-down menu. After you've made your selection, click the *Apply changes* button, which restarts your application in the new region.
+If you have global deployment enabled on your account, you can select a different region for your CloudHub deployments. 
+. On the settings page, pick the *Runtime* section, and then select the desired region from the drop-down menu. 
+. After you select the region, click the *Apply changes* button, which restarts your application in the new region.
 
 image::setregion.png[SetRegion]
 
-Administrators can xref:managing-cloudhub-specific-settings.adoc[set the default region] on the *Organization* tab in Account Settings, but that configuration can be overridden here when the application is deployed, if necessary.
+Administrators can xref:managing-cloudhub-specific-settings.adoc[set the default region] on the *Organization* tab in Account Settings, but that configuration can be overridden when the application is deployed, if necessary.
 
 [NOTE]
 Domains for applications deployed to Europe automatically update to `+http://myapplicationdomain.eu.cloudhub.io+`.
@@ -71,13 +75,19 @@ You can dynamically scale your applications by selecting options from the *Worke
 image::workersize.png[WorkerSize]
 
 [IMPORTANT]
-All applications are limited by default to no more than four workers of any size, and free and professional accounts are limited to a single worker per app. If you need more workers or more total vCore capacity, update your subscription. If you need more than four workers for a single domain, https://support.mulesoft.com[contact us] directly.
+By default, all applications are limited to no more than four workers of any size. Free and professional accounts are limited to a single worker per app. If you need more workers or more total vCore capacity, update your subscription. If you need more than four workers for a single domain, https://support.mulesoft.com[contact MuleSoft] directly.
 
 == Updating Environment Variables and Application Properties
 
-You can configure xref:3.8@mule-runtime::configuring-properties.adoc[environment variables] for your application using CloudHub. This allows you to externalize important pieces of configuration which may switch depending on the environment in which you're deploying. For example, if you use a Mule application locally you might configure your database host to be `0.0.0.0`. But if you use CloudHub, you might configure it to be an Amazon RDS server.
+You can configure xref:3.8@mule-runtime::configuring-properties.adoc[environment variables] for your application using CloudHub. This allows you to externalize important pieces of configurations, which may switch depending on the environment in which you're deploying. 
 
-To create an environment variable or application property, select the *Properties* tab in the *Settings* section. You can define a variable by either using a text `key=value` format or by using the list format with two text boxes. After you've made the change, click *Apply changes*. Here's an example:
+For example, if you use a Mule application locally you might configure your database host to be `0.0.0.0`. But if you use CloudHub, you might configure it to be an Amazon RDS server.
+
+To create an environment variable or application property:
+
+. Select the *Properties* tab in the *Settings* section. 
+. Define a variable by using either a text `key=value` format, or by using the list format with two text boxes. 
+. After you've made the change, click *Apply changes*. Here's an example:
 
 image::setpropertieslist.png[SetPropertiesList]
 
@@ -122,8 +132,15 @@ If you can see the application name, but the name is not a live link, your admin
 
 == Updating Your Application
 
-If you made changes to your applications and would like to upload a new version, click *Choose file* on the Deployment screen for that application. The new filename appears in italicized text. Click *Apply changes* to use the new file for deployment. Within a few seconds, your application successfully redeploys. While redeploying, the application status indicator changes to blue, and then turns green after the deployment completes. You can click *Logs* to see a live redeployment of your application.
-Please note after successfully starting new worker with the application's latest version, CloudHub will overwrite the previous version and you can no longer download the previous archive or revert back to the previous version of application.
+If you made changes to your applications and would like to upload a new version:
+
+. Click *Choose file* on the Deployment screen for that application. The new filename appears in italicized text. 
+. Click *Apply changes* to use the new file for deployment. +
+Within a few seconds, your application successfully redeploys. While redeploying, the application status indicator changes to blue, and then turns green after the deployment completes. 
+. You can click *Logs* to see a live redeployment of your application.
+
+[NOTE]
+After successfully starting a new worker with the application's latest version, CloudHub overwrites the previous version and you can no longer download the previous archive or revert back to the previous version of application.
 
 
 === Zero Downtime Updates with CloudHub
