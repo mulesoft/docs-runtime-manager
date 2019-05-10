@@ -4,18 +4,20 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, saas, applications, servers, clusters, sdg, runtime manager, arm
 
-Runtime Manager is the Anypoint Platform tool used to deploy and manage all of your Mule applications from one central location, whether your apps are running in the cloud or on-premises.
+Use Runtime Manager to deploy and manage all of your Mule applications from one central location, whether your apps are running in the cloud, on-premises, or on Runtime Fabric.
 
-After you have created a Mule application (for example, see xref:general:getting-started:build-a-hello-world-application.adoc[Hello World Mule application]), you can deploy it anywhere through Runtime Manager. Runtime Manager is designed specifically for handling Mule applications, and deploying them to the available Mule runtime instances in a xref:cloudhub.adoc[CloudHub] virtual worker or a Mule server on-premises (server group, cluster, etc.).
+After you create a Mule application (for example, see xref:general:getting-started:build-a-hello-world-application.adoc[Hello World Mule application]), you can deploy it anywhere through Runtime Manager. Runtime Manager is designed specifically for handling Mule applications, and deploying them to the available Mule runtime instances in a xref:cloudhub.adoc[CloudHub] virtual worker, or an on-premises Mule server (server group, cluster, and so on), or a Runtime Fabric. 
 
 [NOTE]
-xref:cloudhub.adoc[CloudHub] is a complete integration platform as a service (iPaaS) that covers all of your server needs out of the box, including Object Store infrastructure, Monitoring, Troubleshooting, Scheduling, etc. Use Runtime Manager to deploy to CloudHub.
+xref:cloudhub.adoc[CloudHub] is a complete integration platform as a service (iPaaS) that covers all of your server needs out of the box, including Object Store infrastructure, Monitoring, Troubleshooting, Scheduling, and so on. Use Runtime Manager to deploy to CloudHub.
 
 == Architecture
 
-The cloud-based version of the Anypoint Platform has a Runtime Manager with a console that allows you to manage applications deployed to xref:cloudhub.adoc[CloudHub] or elsewhere. With the on-prem platform's Runtime Manager you can deploy anywhere _except_ CloudHub.
+The cloud-based version of the Anypoint Platform has a Runtime Manager with a console that allows you to manage applications deployed to xref:cloudhub.adoc[CloudHub] or elsewhere. 
 
-For applications deployed to CloudHub (Cloud runtime in diagram below) you can use xref:insight.adoc[Insight] for analytics and monitoring. For applications that you deploy on-premises or to your private cloud servers you can xref:sending-data-from-arm-to-external-analytics-software.adoc[send data to third-party Analytics applications].
+If you are using the on-premises Runtime Manager you can deploy anywhere _except_ CloudHub.
+
+For applications deployed to CloudHub (Cloud runtime in the diagram below) you can use xref:insight.adoc[Insight] for analytics and monitoring. For applications that you deploy on-premises or to your private cloud servers you can xref:sending-data-from-arm-to-external-analytics-software.adoc[send data to third-party Analytics applications].
 
 image::arm-big-picture.png[]
 
@@ -23,6 +25,5 @@ Runtime Manager provides a dashboard that indicates the status of every deployed
 
 == See Also
 
-* xref:3.8@mule-management-console::index.adoc[Mule Management Console]
-* xref:3.8@mule-runtime::elements-in-a-mule-flow.adoc[Elements in a Mule Flow]
+* xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
 * xref:general:getting-started:build-a-hello-world-application.adoc[Creating a Mule application]
