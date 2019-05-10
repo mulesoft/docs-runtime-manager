@@ -1,4 +1,4 @@
-= Virtual Private Cloud
+= Virtual Private Cloud (VPC)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -15,18 +15,18 @@ image::virtual-private-cloud-78b5f.png[]
 
 Each Anypoint VPC allows you to configure firewall rules to apply to your workers. You can choose to expose or block your custom ports and even block requests to your apps coming from CloudHub's shared load balancer. 
 
-Additionally, you can configure one or more dedicated load balancers to validate requests using your own SSL certificates, and to map input URLs to call to different CloudHub applications. 
+If you use dedicated load balancers, you can configure one or more dedicated load balancers to validate requests using your own SSL certificates, and to map input URLs to call to different CloudHub applications. 
 
-Combining firewall rules and dedicated load balancers configurations, you can fine tune how external services reach your applications.
+Combining firewall rules and dedicated load balancers configurations, enables you to fine tune how external services reach your applications.
 
 [[example_deployment_scenarios]]
 == Example Anypoint VPC Deployment Scenarios
 
-When you are planning and configuring your Anypoint VPCs, you should make sure you have enough licenses to meet your requirements. 
+When you are planning and configuring your Anypoint VPCs, make sure you have enough licenses to meet your requirements. 
 
 === 1:1 Relationship Deployment
 
-In this scenario, you are using a 1:1 relationship, which means that each Anypoint VPC can connect to a single public IP address at a remote location. One license is used per remote location.
+In this scenario, you are using a 1:1 relationship, which means that each Anypoint VPC connects to a single public IP address at a remote location. One license is used per remote location.
 
 image::vpc-1-1-deployment.png[1:1 VPC Deployment]
 

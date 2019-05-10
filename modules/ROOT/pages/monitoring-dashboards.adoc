@@ -9,10 +9,18 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
+== Prerequisites
+
+To view the built-in dashboard, you must have:
+
+* The *Read Application* or *Read Servers* permission for the resources you want to monitor
+* The unified agent
+* 
+
 [NOTE]
 To view dashboards, your user must have *Read Application* or *Read Servers* permission for the desired resources.
 
-The Dashboard gives you in-depth visibility into usage metrics about both your deployed applications and the systems they're deployed to.
+The builtin dashboard gives you in-depth visibility into usage metrics about both your deployed applications and the systems they're deployed to.
 
 The Dashboard helps you answer questions about your integrated apps, such as:
 
@@ -24,89 +32,48 @@ The Dashboard helps you answer questions about your integrated apps, such as:
 
 Using the *Dashboard*, you can view the evolution of metrics about your apps. Going further, you can drill down to the xref:insight.adoc[Insight] section of each app to investigate the fate of individual transactions to help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
 
-== The Dashboard for Apps on CloudHub
-
-=== Access the Dashboard
+== Access the Dashboard
 
 To access a CloudHub app's dashboard:
 
-. Select an application in the *Applications* page to open the side panel.
-. Click the *Manage Application* button.
-+
-image::dashboards-a2810.png[]
-. Select the *Dashboard* section on the left.
+. In Runtime Manager, in the menu on the left, click *Applications*. 
+. In the list of applications, click the name of the application to monitor. +
+The monitoring dashboard opens for the selected application. +
+The dashboard for hybrid applications and applications deployed to CloudHub, the dashboard displays details for many different metrics. For information about available metrics, see xref:monitoring::app-dashboards.adoc[Built-in Application Dashboard]. +
+For applications deployed to servers, you can access an application's monitoring dashboard if you first open the dashboard for the server the application is running on, then click the name of the application.
 
-=== Navigating the Dashboard
+== View Application Metrics
 
-The dashboard shows graphs for three separate metrics:
+You can view all graphs for different time ranges by selecting the time interval from the top of the page.
+
+If your application runs on multiple workers, they are charted as different curves on the same graphs, differentiated by different colors.
+
+If your application runs on a cluster or server group, the aggregated metrics of the entire set of servers included are charted as a single plot line.
+
+[TIP]
+If you run your app on a cluster or server group and want to see these same metrics broken down at the individual server level, you can look at the dashboard for the individual server. If multiple apps are running on the server, what you'll see is the overall server performance, without a distinction between each of the apps running on it.
+
+=== Alerts
+
+Set up xref:alerts-on-runtime-manager.adoc#conditions-on-locally-deployed-applications[alerts] for applications and servers to notify you automatically whenever any of these metrics reaches a critical value for a sustained period of time.
+
+[[classic_dashboard]]
+== Classic Monitoring Dashboard
+
+If you don't want to view the more detailed metrics that are available in the new embedded dashboard, you can switch back to the "classic" dashboard any time. 
+
+To switch back, click the *Switch back to classic metrics* link in the top right of the page. 
+
+The classic dashboard displays graphs for three separate metrics:
 
 * Mule messages
 * CPU usage, as a percentage of the capacity
 * Memory usage
 
-All graphs can be viewed at different time scales by selecting the desired time interval on the top-right corner.
-
-image::dashboards-a7117.png[]
-
-If your application runs on multiple workers at a time, they will be charted as different curves on the same graphs, differentiated by different colors.
-
-By hovering your mouse over a given point of a graph, an overlay will display numerical detail about activity on that instant.
-
-image::dashboards-b8c8c.png[]
-
-[TIP]
-Set up xref:alerts-on-runtime-manager.adoc#conditions-on-cloudhub-applications[Alerts] to notify you automatically whenever any of these metrics hits a critical value for a sustained period of time.
-
-== The Dashboard for Apps on Servers
-
-////
-[NOTE]
-The Anypoint Platform Private Cloud Edition doesn't currently support the dashboard feature.
-////
-
-=== Access the Dashboard
-
-To access the dashboard of an on-premises app:
-
-. Select an application in the *Applications* page to open the side panel.
-. Click the *Manage Application* button.
-+
-image::dashboards-a2810.png[]
-+
-. Select the *Dashboard* section on the left.
-
-You can also drill down to this dashboard if you first open the dashboard for a server that runs the application, then click on the hyperlink on the name of the application.
-
-=== Navigating the Dashboard
-
-The dashboard shows graphs for three separate metrics:
-
-* Mule messages
-* Error rate
-* Response time
-
-image::monitoring-dashboards-f8368.png[]
-
-All graphs can be viewed at different time scales by selecting the desired time interval on the top-right corner.
-
-image::monitoring-dashboards-cbd92.png[]
-
-If your application runs on a cluster or server group, the aggregated metrics of the entire set of servers included will be charted as a single plot line.
-
-[TIP]
-If you run your app on a cluster or server group and want to see these same metrics broken down at individual server level, you can look at the dashboard for the individual server. Note that if multiple apps are running on the server, what you'll see is the overall server performance, without a distinction between each of the apps running on it.
-
-By hovering your mouse over a given point of a graph, an overlay displays numerical detail about activity on that instance.
-
-image::monitoring-dashboards-fad4e.png[]
-
-[TIP]
-Set up xref:alerts-on-runtime-manager.adoc#conditions-on-locally-deployed-applications[Alerts] to notify you automatically whenever any of these metrics hits a critical value for a sustained period of time.
-
-== The Dashboard for a Server
+== Monitoring Dashboard for Servers
 
 [NOTE]
-The Anypoint Platform Private Cloud Edition doesn't support the dashboard feature.
+The Anypoint Platform Private Cloud Edition doesn't support the monitoring dashboard feature.
 
 === Access the Dashboard
 
@@ -120,18 +87,18 @@ You can also drill down to this dashboard if you first open the dashboard for a 
 
 image::monitoring-dashboards-server.png[]
 
-=== Navigate the Dashboard
+=== View Server Metrics
 
-The dashboard shows several metrics divided into two panes:
+The monitoring dashboard for servers displays several metrics, which are divided into two panes:
 
 * *Overview*
 * *Breakdown*
 
-All graphs can be viewed at different time scales by selecting the desired time interval on the top-right corner.
+All graphs can be viewed for specific time periods by selecting the desired time interval on the top-right corner.
 
 image::monitoring-dashboards-cbd92.png[]
 
-By hovering your mouse over a given point of a graph, an overlay will display numerical detail about activity on that instant.
+Hover your mouse over a given point of a graph, to display an overlay of numerical detail about activity on that instant.
 
 image::monitoring-dashboards-hover.png[]
 
@@ -141,11 +108,7 @@ If your server runs multiple applications, you can single out one or several and
 image::monitoring-dashboards-39935.png[]
 
 
-
-[TIP]
-Set up xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[alerts] to notify you automatically whenever any of these metrics hits a critical value for a sustained period of time.
-
-=== Metrics in the Server Dashboard
+== Server Metrics
 
 The graphs in this dashboard cover different metrics related to memory and CPU usage. You can see these two at a high level on the *Overview* tab, or you can dig into the *Breakdown* to see a detailed series of metrics that tracks each part of the memory separately.
 
@@ -268,7 +231,7 @@ To access the dashboard of a cluster or a server group on-premises:
 
 === Navigating the Dashboard
 
-The dashboard shows three separate metrics:
+The dashboard displays three separate metrics:
 
 * CPU usage, as a percentage of the capacity
 * Memory usage, in MB
@@ -276,7 +239,7 @@ The dashboard shows three separate metrics:
 
 image::monitoring-dashboards-5cd3c.png[]
 
-All graphs can be viewed at different time scales by selecting the desired time interval on the top-right corner.
+You can view graphs for specific time periods by selecting the desired time interval in the top-right corner.
 
 image::monitoring-dashboards-cbd92.png[]
 
@@ -295,11 +258,12 @@ Set up xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[Alerts] to
 
 == See Also
 
-* Read about xref:insight.adoc[Insight], a tool for looking into transaction-level detail
+* xref:monitoring::app-dashboards.adoc[Built-in Application Dashboard]
+* xref:insight.adoc[Insight]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
+* xref:cloudhub.adoc[CloudHub] 
 * xref:monitoring.adoc[Monitoring Applications]
 * xref:cloudhub-fabric.adoc[CloudHub Fabric]
 * xref:anypoint-platform-cli.adoc[Command Line Tools]

@@ -12,7 +12,7 @@ If you are unable to connect to the Anypoint VPN, ensure any firewalls that are 
 === `NO_PROPOSAL_CHOSEN` Error or `Cannot Establish Phase 1 Connection`
 
 This is likely due to a problem with your Phase 1 configuration.
-Anypoint VPN connections support only IKEv1, meaning IKEv2 do not work.
+Anypoint VPN connections support only IKEv1, meaning IKEv2 doesn't work.
 
 Phase 1 Diffie-Hellman (DH) groups that are supported include 2, 14-18, 22, 23, and 24. 
 
@@ -26,7 +26,7 @@ Ensure that the neighbor IP address for the tunnel is taken from the Local point
 
 === Phase 2 SA Established, but Traffic not Passing Through Tunnel
 
-The VPN Connection supports only one Security Association (SA) pair per tunnel, so any more than one traffic selector per connection will cause unexpected results.
+The VPN connection supports only one security association (SA) pair per tunnel, so any more than one traffic selector per connection will cause unexpected results.
 
 To solve this, ensure that only one unique SA is used per VPN tunnel connection. If more than one policy is needed, you must consolidate and filter traffic in your network.
 
@@ -35,7 +35,7 @@ To solve this, ensure that only one unique SA is used per VPN tunnel connection.
 
 IPsec is established by sending "interesting traffic" (traffic that should be encrypted over the Anypoint VPN connection). If there is no interesting traffic, the tunnel disconnects. This is the expected behavior, and the timeout value is variable.
 
-Some VPN configurations require additional steps to keep the tunnel active. That is, you will need to ensure you are periodically sending interesting traffic. For example, sending ICMP requests every 5 seconds to a CloudHub worker's internal IP address or FQDN will keep the tunnel up.
+Some VPN configurations require additional steps to keep the tunnel active, which means you need to ensure you periodically send interesting traffic. For example, sending ICMP requests every 5 seconds to a CloudHub worker's internal IP address or FQDN will keep the tunnel active.
 
 
 === See Also
