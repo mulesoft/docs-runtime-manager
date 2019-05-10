@@ -141,14 +141,12 @@ If your server runs multiple applications, you can single out one or several and
 image::monitoring-dashboards-39935.png[]
 
 
-
 [TIP]
 Set up xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[alerts] to notify you automatically whenever any of these metrics hits a critical value for a sustained period of time.
 
 === Metrics in the Server Dashboard
 
 The graphs in this dashboard cover different metrics related to memory and CPU usage. You can see these two at a high level on the *Overview* tab, or you can dig into the *Breakdown* to see a detailed series of metrics that tracks each part of the memory separately.
-
 
 At a high level, memory can be thought of as divided into what’s in the JVM heap and what’s outside of it.
 
@@ -195,9 +193,7 @@ image::monitoring-dashboards-threads.png[]
 
 Threads here refer to threads of execution in Java. The JVM allows an application to have multiple threads of execution running concurrently.
 
-
 === Garbage Collection
-
 
 The JVM implements the garbage collection mark-and-sweep algorithm, which consists of two phases.
 In the first phase, called the mark phase, finds and marks all accessible objects. In the second phase, the garbage collection algorithm scans through the heap and reclaims all the unmarked objects. This phase is called the sweep phase.
