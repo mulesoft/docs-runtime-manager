@@ -3,44 +3,97 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Anypoint VPN feature enables you to create a secure connection to systems within your network that are hosted outside of Anypoint Platform. 
+Use Anypoint VPN to create a secure connection between your MuleSoft Virtual Private Cloud (VPC) and your own on-premises network. You can create multiple site-to-site VPNs if required. 
 
 [NOTE]
-If required, you can create multiple Anypoint VPNs to connect to different networks or different regions within a network. The number of Anypoint VPNs you can create depends on the Anypoint VPN capacity allocated to your account. Contact your MuleSoft account representative to discuss your requirements.
+The number of VPNs you can create depends on the VPN entitlements available to your account. Contact your MuleSoft account representative if you don't know how many VPN entitlements you have on your account. 
 
-To create and maintain a secure connection with your external network, the Anypoint VPN provides the following features:
-
-* Route-based access via 2-byte and 4-byte autonomous system numbers (ASN). This defines the routing policies used to connect to your network through the Anypoint VPN.
-* Reusable IP addresses.
-* Tunnel configuration.
+Anypoint VPN supports site-to-site Internet Protocol security (IPsec) connections. A physical or software appliance, called a VPN endpoint, is the terminator on your side of the connection. The MuleSoft side of the connection is an implementation of a virtual private gateway (VGW).
 
 [NOTE]
-Network Address Translation (NAT) is not supported.
+MuleSoft implementation capabilities may vary from other VGW offerings.
 
-== Supported IPsec Configurations
+== Anypoint VPN Features
 
-Anypoint VPN supports the IPsec configurations for encrypting data communications between Anypoint Platform and your network:
+=== IPsec Settings
+
+Anypoint VPN supports any combination of the following IPsec settings:
 
 * IKE version 1
-* AES 128 and 256-bit encryption
-* SHA and SHA-2 hashing
-* Diffie-Hellman (DH) groups:
-** Phase1 DH groups 2, 14-18, 22, 23, 24
-** Phase2 DH groups 2, 5, 14-18, 22, 23, 24
+* IKE version 2 for route-based VPNs only
+* AES 128 or 256-bit encryption
+* SHA or SHA-2 (256) hashing
+* Diffie-Hellman Phase1 groups 2, 14-18, 22, 23, 24
+* Diffie-Hellman Phase2 groups 2, 5, 14-18, 22, 23, 24
 
 [NOTE]
-Because the Anypoint VPN endpoint is the responder, be sure to establish and maintain connections by initiating traffic from a remote device.
+Your endpoint must initiate traffic to establish and maintain the connection because the Anypoint VPN endpoint acts only as a responder.
 
-== Anypoint VPN Routing
+=== Anypoint VPN Routing
 
-The Anypoint VPN supports two types of routing:
+Anypoint VPN supports dynamic or static routing for VPN connections.
 
-* Border Gateway Protocol (*BGP*) routing - Your device uses BGP to dynamically advertise its routes to Anypoint VPN. BGP routing is recommended if your device supports this protocol.
-* *Static* - Requires you to specify the routes (subnets) for your network that should be accessible to Anypoint VPN.
+* *Dynamic routing* Your device uses Border Gateway Protocol (BGP) to advertise routes to Anypoint VPN. Use BGP routing if your device supports this protocol.
+* *Static routing* - Requires you to specify the routes (subnets) in your network that are accessible through Anypoint VPN. +
+[NOTE]
+A maximum of 95 static routes are permitted per VPC, regardless of the number of VPN connections. Consolidate networks to the fewest number possible to avoid exceeding the limit.  
+
+=== Limitations
+
+Anypoint VPN does not support these features and configurations:
+
+* Network Address Translation (NAT)
+* IPv6
+* IKEv2 with policy-based VPNs
+* A single VPC with both Direct Connect and Anypoint VPN connections
+* Advertising a default route (0.0.0.0/0) over BGP or static routing
+
+[[vpn_requirements]]
+== Requirements for Static VPN Connections
+
+To create a static VPN connection, your VPN endpoint must be able to:
+
+* Establish IKE Security Associations using a Pre-Shared Key (PSK) 
+* Establish IPsec Security Associations in Tunnel mode
+* Utilize any combination of IPsec settings that MuleSoft supports
+* Fragment IP packets before encryption
+* Use one Security Association pair per tunnel
+
+=== Fragmentation Before Encryption
+
+You must fragment packets that are too large to transmit. Your VPN device must be able to fragment packets before encapsulation.
+
+=== Security Association (SA)
+
+Each VPN connection has two separate tunnels. Anypoint VPN supports one unique SA pair per tunnel (where a pair means one inbound, and one outbound). Some policy-based devices create an SA for each ACL entry. In this situation, you must consolidate your rules and then filter unwanted traffic.
+
+To create a dynamic VPN connection, in addition to the static VPN connection requirements, the VPN endpoint must be able to:
+
+* Establish BGP peering
+* Support route-based VPNs (bind tunnels to logical interfaces)
+* Use IPsec Dead Peer Detection
+
+=== IPsec Dead Peer Detection
+
+Dead Peer Detection (DPD) allows devices to rapidly identify when network conditions change. DPD is enabled on the MuleSoft endpoint. 
+
+Configure your endpoint with:
+
+* DPD Interval: `10`
+* DPD Retries: `3`
+
+== Recommendations
+
+* Adjust the maximum segment size of TCP packets entering the VPN tunnel +
+VPN headers require additional space, which reduces the amount of space available for data. +
+To limit the impact of this behavior, configure your endpoint with TCP MSS Adjustment: 1387 bytes.
+* Reset the `DF` flag on packets +
+Packets might carry a Don't Fragment (`DF`) flag, indicating that the packet must not be fragmented. Some VPN devices can override the `DF` flag and fragment packets unconditionally when required. If available, enable the setting `Clear Don't Fragment (DF) Bit`.
+
 
 == Tested Network Devices
 
-The following table lists the network devices that are known to work with the Anypoint VPN.
+These are network devices that are known to work with the Anypoint VPN. If your device does not appear in the list of tested devices, see <<vpn_requirements,Requirements>> to see if your device meets the requirements for use with Anypoint VPN.
 
 [%header%autowidth.spread]
 |===
@@ -56,11 +109,19 @@ The following table lists the network devices that are known to work with the An
 |Juniper ISG | ScreenOS 6.1 or 6.2 or later
 |Netgate pfSense | OS 2.2.5 or later
 |Palo Alto Networks | PANOS 4.1.2 or later
-|Yamaha RT107e, RTX1200, RTX1210, RTX1500, RTX3000 and SRT100 routers | 
-|Microsoft Windows Server | 2008 R2 or later +
-2012 R2 or later
-|Zyxel Zywall Series | 4.20 or later for statically routed Anypoint VPN connections +
-4.30 or later for dynamically routed Anypoint VPN connections
+
+|Yamaha a| * RT107e 
+* RTX1200 
+* RTX1210 
+* RTX1500 
+* RTX3000 
+* SRT100 
+
+|Microsoft Windows Server a| * 2008 R2 or later 
+* 2012 R2 or later
+
+|Zyxel Zywall Series a| * 4.20 or later for statically routed Anypoint VPN connections 
+* 4.30 or later for dynamically routed Anypoint VPN connections
 |===
 
 == See Also

@@ -11,9 +11,9 @@ How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to yo
 |IPsec tunnel
 |How you connect using the IPsec tunnel method depends on when you initially configure your VPC.
 
-For Anypoint VPCs before November 2018, see <<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
+== Request VPC Connectivity for Anypoint VPCs after November 2018
 
-For new Anypoint VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN]
+For new Anypoint VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN].
 
 To add additional static routes to Anypoint VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[Adding Additional Static Routes Using the API].
 |VPC peering
@@ -22,13 +22,16 @@ To add additional static routes to Anypoint VPCs that were connected after Novem
 |<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 |===
 
-[request_vpc_connectivity]
-== Request VPC Connectivity
+[[request_vpc_connectivity]]
+== Request VPC Connectivity for Anypoint VPCs before November 2018
 
 If you need to connect your Anypoint VPC to your internal network using VPN tunnel, peering, or direct connect, you must:
 
-. Download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the Anypoint VPC discovery form], which requires at least MS Excel 2007 with macros enabled).
-. Enter the data to communicate the necessary details required for your connectivity method. If you need support for multiple Amazon regions, submit one copy of the discovery form for each region in which you need support.
+. Download link:{attachmentsdir}/VPC-form-v9.3-template.xlsx[the Anypoint VPC discovery form], which requires at least MS Excel 2007 with macros enabled). 
++
+[NOTE]
+When updating an existing VPN, the VPC discovery form is required only if the VPN was created prior to November 2018. For all VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN].
+. Enter the data to communicate the necessary details required for your connectivity method. If you need support for multiple regions, submit one copy of the discovery form for each region in which you need support.
 . Contact your MuleSoft account representative to discuss your specific requirements. +
 After the MuleSoft Support team receives your form and answers any remaining questions, they securely exchange keys, and supply instructions on how to configure your router(s).
 
