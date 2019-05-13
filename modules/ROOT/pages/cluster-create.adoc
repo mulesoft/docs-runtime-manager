@@ -5,53 +5,49 @@ endif::[]
 
 == Prerequisites
 
-Before creating a cluster, ensure you have performed the following:
+Before you can create a cluster, you must:
 
 * Install Mule version 3.6 or later, or API gateway runtime version 2.0 or later.
 * Install Runtime Manager Agent version 1.1.1 or later.
 * Create a server for each Mule you want to include in your cluster.
 
-Also, note the following considerations when creating a cluster:
-
-* None of the servers you select for creating a new cluster can contain any *previously deployed applications*.
-
-* Multicast servers can be in the status states of *Running* or *Disconnected*, whereas unicast servers can be only in the *Running* state. 
-
+[NOTE]
+--
+* None of the servers you select for a new cluster can contain any previously deployed applications.
+* Multicast servers can have status states of *Running* or *Disconnected*, whereas unicast servers must be in the *Running* state. 
 * All servers in a cluster must be running the same Mule runtime engine version and Runtime Manager agent version.
+* To have Object Store persistence on all the servers in your cluster, you must create your cluster manually and use Quorum Management.
+--
 
-If you wish to have Object Store persistence on all servers of your cluster, you must create your cluster manually and use Quorum Management.
+== Create a Cluster
 
-== Creating a Cluster
-
-. From Anypoint Platform, click *Runtime Manager*.
-. Click the *Servers* tab.
-. Ensure that all servers are visible in the Servers list.
-. Click *Create Cluster*. Servers can be added to a cluster in any status.
+. Sign into Anypoint Platform, and click *Runtime Manager*.
+. Click the *Servers* tab. +
+Ensure that all the servers you want to add to the cluster are visible in the list of servers.
+. Click *Create Cluster*. You can add servers in any status to a cluster.
 +
 image::serverstatus-no-cluster-allonline.png[all servers]
 
-. Enter a name for the cluster.
+. In the *Create a Cluster* dialog: +
+.. Enter a name for the cluster.
 +
-The following restrictions on cluster names apply:
+Cluster names must:
 +
-* Must not start or end with a dash,
-* Must be at least three characters long
-* Cannot contain more than 40 characters
-* Must be unique
-* Must contain only letters, numbers, or dashes
-
-. Choose *Multicast* or *Unicast*.
-. Click the checkboxes for the names of the servers to add to your cluster.
-. Click *Create Cluster*.
-+
-image::createcluster-multicast.png[CreateACluster]
-
-. Click the cluster name to list details about the cluster. This view also lets you add additional servers, remove servers, and delete the cluster:
-+
-image::addingservertocluster-sidepanel.png[ClusterDetail]
+* Not start or end with a dash
+* Be between 3 and 40 characters long
+* Be unique
+* Contain only letters, numbers, or dashes
+.. Select *Unicast* or *Multicast*.
+.. In the list of serves, select the servers to add to your cluster, then click *Create Cluster*. +
+The cluster appears in the server list. 
+. Click the cluster name to view details about the cluster. In the cluster details page, click the *Actions* drop-down to: +
+* Delete servers from the cluster
+* Restart servers in the cluster
+* Shut down servers in the cluster
+* Renew the certificate for servers in the cluster. 
 
 == See Also:
 
 * xref:cluster-about.adoc[About Clusters]
-* xref:3.8@mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store persistence]
-* xref:3.8@mule-runtime::creating-and-managing-a-cluster-manually.adoc#quorum-management[Quorum Management]
+* xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store persistence]
+* xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#quorum-management[Quorum Management]
