@@ -3,10 +3,14 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To add a server to a cluster, all servers in a cluster must run the same version of Mule runtime and of the Runtime Manager agent.
+To add a server to a cluster, all servers in a cluster must run on the same version of Mule runtime and of the Runtime Manager agent.
 
-[NOTE]
-You must first register each of the servers in the cluster by downloading and installing the same version of the https://www.mulesoft.com/platform/mule[Mule] and then running the xref:managing-servers.adoc#add-a-server[amc_setup] script on each.
+== Prerequisite
+
+. Download and install the same version of the https://www.mulesoft.com/platform/mule[Mule] to register each server. 
+. Run the xref:managing-servers.adoc#add-a-server[amc_setup] script on each server.
+
+== Add the Servers to a Cluster
 
 . In Runtime Manager, in the menu on the left, click *Servers*. 
 . In the server list, under *Type*, click the name of the cluster to which to add the server. +
@@ -15,8 +19,7 @@ The management panel opens on the right side of the page.
 image::server-details.png[]
 
 . Click *Add Server*. +
-You can add only servers that are not already in a server group or part of another cluster.
-
+Servers that are already in a server group or part of a cluster do not appear in the list of available servers. 
 . In the list, select the servers to add to the cluster, and click *Add Servers*.
 +
 image::addingservertocluster-selectserver.png[AddAnotherServer]
