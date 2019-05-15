@@ -305,6 +305,8 @@ globalConfiguration:
 ====
 It is not supported to register a Mule runtime engine with multiple Runtime Manager business groups or environments.
 
+It is not supported to duplicate a Mule runtime after having registered it against Anypoint Runtime Manager. Each runtime should be registered individually.
+
 It is also not supported to register a Mule runtime engine with both an older xref:mule-management-console::index.adoc[Mule Management Console (MMC)] and Runtime Manager. If the Mule runtime engine is currently managed in MMC, you should first unregister the Mule runtime engine with MMC before running the `amc_setup -H` script.
 ====
 
