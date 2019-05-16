@@ -5,6 +5,8 @@ endif::[]
 
 A server group is a set of servers that act as a single deployment target for applications, which provides the advantage of not having to deploy an application to each server individually. Applications are deployed to each server in the server group through a single deployment and run in isolation from the application instances running on the other servers. 
 
+Deploying applications to servers in server groups provides redundancy so that even in cases of disaster, applications can be restored more seamlessly and quickly with less downtime. This also helps eliminate duplication of effort because there is no need to restore each application separately.  
+
 In Runtime Manager, you can create servers and server groups, and add servers to server groups. 
 
 == See Also
@@ -12,3 +14,4 @@ In Runtime Manager, you can create servers and server groups, and add servers to
 * xref:servers-create.adoc[Create a Server (Hybrid)]
 * xref:server-group-create.adoc[Create a Server Group (Hybrid)]
 * xref:server-group-add.adoc[Add a Server to a Server Group]
+* xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]

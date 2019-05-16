@@ -3,23 +3,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Prerequisites
-
-Before creating a server group, ensure that you have:
-
-* Installed and configured Mule.
-* Installed and configured the Runtime Manager agent.
-* xref:servers-create.adoc[Created a server] in Runtime Manager.
-* Registered each server with Anypoint Platform.
-
-[NOTE]
---
-* All servers in a server group must be running the same Mule version and the same Runtime Manager agent version. 
-* You can create a server group with servers that display the statuses of `Running` or `Disconnected`, but these can't be mixed with servers that display the status `Created`. 
-* You can create a server group with servers that all display the status `Created`.
---
-
-== Create a Server Group in Runtime Manager
 
 . Sign in to the Anypoint Platform and click *Runtime Manager*.
 . In the menu on the left, click *Servers*, then click *Create Group*.
@@ -27,6 +10,8 @@ Before creating a server group, ensure that you have:
 +
 [TIP]
 The group name must not start or end with a dash, must be between 3-40 characters long, must be unique, and contain only letters, numbers, or dashes.
+
+The new server group appears in the *Servers* list. Click the server group name to see the list of servers that belong to the group. 
 
 == See Also
 
