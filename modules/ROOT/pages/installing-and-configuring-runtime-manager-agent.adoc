@@ -11,14 +11,14 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The Runtime Manager Agent is installed into a Mule runtime engine, and is used to register the Mule with Runtime Manager. The Mule runtime engine is then registered and controlled by Runtime Manager within a specific environment of a specific Anypoint Platform business group.
+The Runtime Manager Agent is installed into a Mule runtime engine (Mule), and is used to register the Mule with Runtime Manager. Once the Mule runtime engine is registered, it can be managed by Runtime Manager within the specific environment and Anypoint Platform business group in which it was registered. A Mule can't be registered with multiple Runtime Manager business groups or environments.
 
-The latest version of the Mule runtime engine is bundled with the latest version of the Runtime Manager agent. You can download the latest Mule runtime engine from the https://www.mulesoft.com/support-login[Customer Portal].
+The latest version of Mule is bundled with the latest version of the Runtime Manager agent. You can download the latest version of Mule from the https://www.mulesoft.com/support-login[Customer Portal].
 
 [NOTE]
-You must download and install the version of the Runtime Manager agent that supports the version of Anypoint Platform you are using. The version of Runtime Manager agent you need may be different from the version bundled with the current version of Runtime Manager. You may need to downgrade the version of the agent to support your version of the platform.
+You must download and install the version of the Runtime Manager agent that supports the version of Anypoint Platform Runtime Manager you are using. The version of Runtime Manager agent you need may be different from the version bundled with the current version of Runtime Manager. You may need to downgrade the version of Runtime Manager agent to support your version of Anypoint Platform.
 
-If you use an earlier version of the Mule runtime engine, or an earlier API gateway, or if a later version of the Runtime Manager agent releases in between Mule runtime engine releases, then you can download and install the latest version of the Runtime Manager Agent from the
+If you use an earlier version of the Mule runtime engine, or an earlier API gateway, or if a later version of the Runtime Manager agent is released in between Mule releases, then you can download and install the latest version of the Runtime Manager agent from the
 https://www.mulesoft.com/support-login[Customer Portal].
 
 
@@ -305,7 +305,7 @@ globalConfiguration:
 ====
 Do not register a single Mule runtime engine with multiple Runtime Manager business groups or environments.
 
-Do not duplicate a Mule runtime engine after registering it with Anypoint Runtime Manager. Each Mule must be registered individually.
+Each individual Mule can be registered with Runtime Manager only once. Do not duplicate a Mule runtime engine after registering it with Anypoint Runtime Manager. 
 
 Do not register a Mule runtime engine with both an older xref:mule-management-console::index.adoc[Mule Management Console (MMC)] and Runtime Manager. If the Mule runtime engine is currently managed in MMC, first unregister the Mule runtime engine with MMC before running the `amc_setup -H` script.
 ====
