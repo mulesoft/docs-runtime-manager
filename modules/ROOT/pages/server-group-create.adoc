@@ -3,46 +3,19 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Before creating a server group, ensure that you have:
 
-* Installed and configured Mule.
-* Installed and configured the Runtime Manager agent.
-* Created a server in Runtime Manager.
-
-To create a server group in Runtime Manager:
-
-. Download and install https://www.mulesoft.com/platform/enterprise-integration[Mule runtime] on two or more physical or virtual servers in your site.
-. Sign in to the Anypoint Platform and click *Runtime Manager*:
-
-. Click the *Servers* tab and use the token to <<Add a Server, register each server to the platform>> using its command line
-
-+
-image::serverstatus-no-cluster-allonline.png[all servers]
-
-. After all servers are registered and visible in the *Servers* tab, click *Create Group*:
-
-+
-image::creategroup.png[CreateGroup]
-
-+
-This takes you to a settings page where you can select what servers to include in your new group and give it a name:
-
-+
-image::amc-createservergroup.png[AMC_CreateServerGroup]
-
-. Give the server group a name.
-
+. Sign in to the Anypoint Platform and click *Runtime Manager*.
+. In the menu on the left, click *Servers*, then click *Create Group*.
+. In the *Create Server Group* page, enter the name for the server group, select the servers to include in your new server group, and click *Create Group*.
 +
 [TIP]
-The group name must not start or end with a dash, must be at least 3 characters long, no more than 40 characters, must be unique, and contain only letters, numbers, or dashes.
+The group name must not start or end with a dash, must be between 3-40 characters long, must be unique, and contain only letters, numbers, or dashes.
 
-. Click the checkbox for each server to include in the group, and click *Create Group*.
-
-+
-[NOTE]
-All servers in a server group must be running the same Mule version and the same Runtime Manager agent version. Also, a server group can be created from servers that all display the status `Running` or `Disconnected` but these can't be mixed with servers that display the status `Created`. You can create a server group out of servers that all display the status `Created`.
+The new server group appears in the *Servers* list. Click the server group name to see the list of servers that belong to the group. 
 
 == See Also
 
+* xref:mule-runtime::mule-standalone.adoc[Mule Installation]
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Installing and Configuring Runtime Manager Agent]
 * xref:servers-create.adoc[Create a Server]
 * xref:server-group-about.adoc[About Server Groups]

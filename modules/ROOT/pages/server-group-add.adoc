@@ -3,25 +3,33 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you want to add a server to a group that is currently running an existing application, you must first stop and and delete the application before you can add the server to a group.
+== Prerequisites
 
-Before adding a server to a server group, ensure that you have:
+Before you can add servers to a server group, you must:
 
-* Installed and configured Mule.
-* Installed and configured the Runtime Manager agent.
-* Created a server in Runtime Manager.
+* Install and configure Mule.
+* Create and configure the servers.
+* Register each of the servers to Runtime Manager by downloading and installing the same version of https://www.mulesoft.com/platform/mule[Mule] and then running the xref:managing-servers.adoc#add-a-server[amc_setup] script on each.
 
-Remember that you must first register each of the servers to Runtime Manager by downloading and installing the same version of https://www.mulesoft.com/platform/mule[Mule] and then running the xref:managing-servers.adoc#add-a-server[amc_setup] script on each.
+[NOTES]
+--
+* All servers in a server group must be running the same Mule version and the same Runtime Manager agent version. 
+* You can create a server group with servers that display the statuses of `Running` or `Disconnected`, but these can't be mixed with servers that display the status `Created`. 
+* You can create a server group with servers that all display the status `Created`.
+* If you want to add a server on which existing applications are currently running to a server group, you must first stop and delete the applications from the server. 
+--
 
-. From the *Servers* screen, click a server to view the additional menu, and click *Add Servers*:
+== Add Servers to a Group
+
+. From the *Servers* screen, click the row of the server group to view the management menu, and click *Add Server*.
 +
 image::addserverstogroup.png[AddServersToGroup]
 
-. After you select servers to add to the group, click *Add to Group*:
-+
-image::addtogroup.png[AddToGroup]
+. A list of available servers appears. Select the servers to add to the group, and click *Add Servers*.
 
 == See Also
 
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Install and Configure Runtime Manager Agent]
+* xref:mule-runtime::runtime-installation-task.adoc[Download and Install Mule]
 * xref:servers-create.adoc[Create a Server (Hybrid)]
 * xref:server-group-about.adoc[About Server Groups (Hybrid)]
