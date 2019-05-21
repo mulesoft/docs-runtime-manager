@@ -67,6 +67,8 @@ You must fragment packets that are too large to transmit. Your VPN device must b
 
 Each VPN connection has two separate tunnels. Anypoint VPN supports one unique SA pair per tunnel (where a pair means one inbound, and one outbound). Some policy-based devices create an SA for each ACL entry. In this situation, you must consolidate your rules and then filter unwanted traffic.
 
+== Requirements for Dynamic VPN Connections
+
 To create a dynamic VPN connection, in addition to the static VPN connection requirements, the VPN endpoint must be able to:
 
 * Establish BGP peering
