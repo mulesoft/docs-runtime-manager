@@ -18,7 +18,7 @@ Internally, safely hidden application properties are encrypted and stored in a M
 
 For applications deployed to CloudHub workers, you must use the Runtime Manager UI to set hidden applications. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application's ZIP file.
 
-Safely hidden application properties are a separate feature and concept from encrypted Mule application properties that are stored in xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
+Safely hidden application properties are a separate feature and concept from encrypted Mule application properties that are stored in xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
 
 == Overview
 
@@ -31,14 +31,14 @@ For example, you can configure a JDBC connector where the username is set to `${
 
 image::dbproperties.png[]
 
-For sensitive information, you may wish to flag these properties as hidden so that, after they are entered and saved in the Runtime Manager console, their values are neither visible in the console nor passed between the console and the CloudHub server.
+For sensitive information, you can flag these properties as hidden so that, after they are entered and saved in the Runtime Manager console, their values are neither visible in the console nor passed between the console and the CloudHub server.
 
 == Create Safely Hidden Application Properties
 
 To create safely hidden application properties for Mule 4.0 and later:
 
-. Inside the Mule application's `mule-artifact.json` file, list the property names you wish to safely hide under the `secureProperties` key as a comma separated array. Line 5 of the example flags two properties as secure.
-(optional) `config.yaml` defines four properties with values for local testing.
+. Inside the Mule application's `mule-artifact.json` file, list the property names you wish to safely hide under the `secureProperties` key as a comma-separated array. Line 5 of the example flags two properties as secure.
+(Optional) `config.yaml` defines four properties with values for local testing.
 
 .`config.yaml`
 [source,yaml,linenums]
@@ -99,7 +99,7 @@ image::dbproperties2.png[]
 
 
 [start=4]
-. Commit your deployment or update. Once your application is deployed, navigate to the Deployment tab and check the application properties. The values for all properties that you had marked as safely hidden are now no longer visible to you or any other user. In the example below, birthdate and password are safely hidden, but username is not.
+. Commit your deployment or update. Once your application is deployed, navigate to the *Deployment* tab and check the application properties. The values for all properties that you marked as safely hidden are now no longer visible to you or any other user. In the example below, birthdate and password are safely hidden, but username is not.
 
 
 image::dbproperties3.png[]
@@ -118,14 +118,15 @@ Once an application is deployed with safely hidden application properties, Cloud
 ====
 
 
-== Copying Safely Hidden Application Properties between Sandboxes 
-When moving applications between *sandboxes*, safely hidden application property values are not copied to the new environment. For all safely hidden application properties, the name of the property will be copied, but the value will be left blank.
+== Copying Safely Hidden Application Properties between Sandboxes
+
+When moving applications between sandboxes, safely hidden application property values are not copied to the new environment. For all safely hidden application properties, the name of the property is copied, but the value is left blank.
 
 
 == Encrypted Application Properties vs. Safely Hidden Application Properties
 Mule applications can also store properties with encrypted values using secure properties placeholders.
 
-See xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] for more information on creating and using secure configuration properties.
+See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] for more information on creating and using secure configuration properties.
 
 With encrypted properties, the Mule application bundles the secure property placeholder files inside the Mule application's deployable archive .jar file.
 
@@ -212,7 +213,7 @@ An example of when to override secure properties is if you need to update the da
 [NOTE]
 Use the list view in the application's *Properties* tab to update properties. If you use the text view to update properties, colons in property names must be escaped, for example: `secure\:\:someproperty`. 
 
-== CloudHub Mule Applications do not Need Encrypted Properties
+== Mule Applications Deployed Only to CloudHub Workers 
 
 If you don't want to encrypt properties for Mule applications that are deployed only to CloudHub workers, you can instead flag those properties as safely hidden properties in the Mule application's `mule-artifact.json` file's `secureProperties` entry.
 
