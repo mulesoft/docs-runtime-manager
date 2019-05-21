@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using an IPsec tunnel, VPC peering, and CloudHub direct connect.
+You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using an IPsec tunnel, VPC peering, and CloudHub Direct Connect.
 
 == IPsec Tunnel
 
@@ -32,7 +32,8 @@ image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
 
 [NOTE]
 --
-To use direct connect, your AWS Direct Connect Location and Anypoint VPCs must be located in the same region. Please note that direct connect gateways are not supported.
+To use Direct Connect, your AWS Direct Connect Location and Anypoint VPCs must be located in the same region. Direct Connect gateways are not supported.
+Direct Connect requires the use of the Border Gateway Protocol (BGP) for dynamic routing. 
 --
 
 == See Also
