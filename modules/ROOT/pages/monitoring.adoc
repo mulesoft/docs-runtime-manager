@@ -1,57 +1,15 @@
-= Monitoring
+= Monitoring Applications and Servers
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:keywords: monitoring, runtime manager, arm, cloudhub, applications, servers
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-active.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+After you deploy your application, you can use Runtime Manager to monitor the application's performance. If you deployed the application to an on-premises server, you can also monitor the server. 
 
-After you deploy your application, following any of the xref:deployment-strategies.adoc[deployment strategies] supported by the Runtime Manager, you can use the Runtime Manager to monitor its performance and that of the server it runs on (if you deployed on-premises).
-
-[NOTE]
-Depending on the xref:deployment-strategies.adoc[deployment strategy] you use, there is a different set of possible monitoring resources available. This feature gap will be gradually reduced as new releases implement the missing features on either side.
-
-
-== Monitoring Applications
-
-You can access monitoring through the following tools:
-
-* xref:alerts-on-runtime-manager.adoc[Alerts] – image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"] Send e-mail alerts whenever key events occur. A history of when these alerts were triggered can also be accessed.
-
-
-* xref:monitoring-dashboards.adoc[Dashboards] – image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"] See the evolution of key performance metrics related to service usage and available processing power
-
-
-
-* xref:notifications-on-runtime-manager.adoc[Notifications] – image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"] Certain events can trigger notifications that are visible when clicking on the bell icon on the Anypoint Platform. You can also create Custom Notifications for any event that interests you.
-
-== Monitoring Flows
-
-You can view information about individual flows within an application through the following tools:
-
-*  xref:flow-metrics.adoc[Flow Metrics] –
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
-View the evolution of metrics for each flow in an application.
-
+Depending on the xref:deployment-strategies.adoc[deployment strategy] you use, there is a different set of possible monitoring resources available, including alerts, dashboards, notifications, and flow metrics. 
 
 == Monitoring Servers
 
-On applications that are deployed on-premises, you'll be able to obtain information about the servers through the following tools:
+On applications that are deployed on-premises, you can use the following tools to get information about the servers.
 
 * xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[Alerts] – image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
@@ -62,21 +20,16 @@ Send e-mail alerts whenever key events occur. A history of when these alerts wer
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"] See the evolution of key performance metrics related to service usage and available processing power
 
 
-
 == See Also
 
+* xref:alerts-on-runtime-manager.adoc[Configure Alerts]
+* xref:notifications-on-runtime-manager.adoc[Notifications on Runtime Manager]
+* xref:custom-application-alerts.adoc[Custom Application Alerts and Notifications]
+* xref:monitoring-dashboards.adoc[Monitoring Dashboards]
+* xref:flow-metrics.adoc[Flow Metrics]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:deployment-strategies.adoc[Deployment Strategies]
 * xref:cloudhub-fabric.adoc[CloudHub Fabric]
 * xref:insight.adoc[Insight]
-* xref:managing-queues.adoc[Managing Queues]
-* xref:managing-schedules.adoc[Managing Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Command Line Tools]
-* xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:viewing-log-data.adoc[Viewing Log Data]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:penetration-testing-policies.adoc[Penetration Testing Policies]
