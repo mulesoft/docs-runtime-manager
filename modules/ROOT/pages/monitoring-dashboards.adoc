@@ -42,11 +42,23 @@ The classic application monitoring dashboard is displayed for:
 
 . In Runtime Manager, in the menu on the left, click *Applications*. 
 . In the list of applications, click the name of the application to monitor. +
-The monitoring dashboard opens for the selected application. 
+The monitoring dashboard opens for the selected application. The dashboard you see depends on the version and type of application you selected. 
 
-If the selected application is deployed to CloudHub, running on Mule 3.8.7 or later, and you have Anypoint Monitoring enabled for the selected application, you see the embedded xref:monitoring::app-dashboards.adoc[Anypoint Monitoring] dashboard. Click the *Switch back to classic metrics* to switch to the classic view of the app monitoring dashboard. 
+The xref:monitoring::app-dashboards.adoc[Anypoint Monitoring] dashboard is displayed if the selected application is: 
 
-If you selected an application deployed to CloudHub and running on a Mule version earlier than 3.8.7, or deployed on-premises, or to Runtime Fabric, you see the classic application monitoring dashboard. Click the link in the blue banner at the top of the page to switch to the embedded Anypoint Monitoring dashboard. 
+* Deployed to CloudHub
+* Running on Mule 3.8.7-AM or 3.9.0 and later
+* Anypoint Monitoring is enabled for the application
+
+Click the *Switch back to classic metrics* link view the classic application monitoring dashboard. Click the blue banner at the top of the page to switch back to the Anypoint Monitoring dashboard.
+
+The classic application monitoring dashboard is displayed if the selected application is:
+
+* Deployed to CloudHub
+* Running on a Mule version earlier than 3.8.7
+* Deployed on-premises
+* Deployed to Runtime Fabric
+* Not enabled for monitoring
 
 == View Application Metrics
 
