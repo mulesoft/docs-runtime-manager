@@ -14,9 +14,7 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 Anypoint Platform Private Cloud Edition doesn't support Insight.
 ====
 
-== Overview
-
-Insight is a troubleshooting tool that gives you in-depth visibility into business transactions and events on your Mule applications that you deploy through Runtime Manager. By tracking everything your data does in an application, Insight makes information searchable and helps you find and recover from any errors that occurred during message processing and replay your transactions instantly.
+Insight is a troubleshooting tool that gives you in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager. Insight makes information searchable and helps you find and recover from any errors that occurred during message processing by tracking everything your data does in an app and replaying your transactions instantly.
 
 Insight helps you answer questions about your integrated apps, such as:
 
@@ -25,11 +23,11 @@ Insight helps you answer questions about your integrated apps, such as:
 * What was the result of a transaction?
 * If something went wrong during processing, at what point did the failure occur?
 
-Using the Insight Dashboard, you can view events that occur within the flows that handle your business transactions. Further, you can drill down into event-related data to access information that can help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
+Using the Insight Dashboard, you can view events that occur within the flows that handle your business transactions. You can drill down into event-related data to access information that can help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
 
 [IMPORTANT]
 ====
-Enabling Insight may cause a performance impact when processing application data. We strongly discourage enabling Insight in production environments for long periods of time. To monitor a production environment, we recommend using the tools listed in the xref:monitoring.adoc[monitoring section].
+Enabling Insight may cause a performance impact when processing application data. Enabling Insight for long periods of time is not recommended for production environments. To monitor a production environment, use the tools listed in the xref:monitoring.adoc[monitoring section].
 
 Insight does not support visibility into xref:3.8@mule-runtime::batch-processing.adoc[batch processing].
 ====
@@ -37,33 +35,26 @@ Insight does not support visibility into xref:3.8@mule-runtime::batch-processing
 == Enabling Insight
 
 [NOTE]
-If you want to enable insight on apps that run on servers on-premises, besides following the steps in this section you must also obtain special entitlements on your account. Contact your MuleSoft sales representatives to obtain these.
+If you want to enable insight on apps that run on servers on-premises, you must obtain special entitlements for your account. Contact your MuleSoft sales representatives to obtain these.
 
 To track, aggregate, and store Mule events by default, Insight requires some processing and network overhead. Complete the following procedure to enable Insight to track the events your Mule servers generate.
 
-. Sign in to your Anypoint Platform account.
+. Sign into your Anypoint Platform account.
 . Click *Runtime Manager*.
-. On the *Applications* section, select an application to open its right panel, click the *Manage Application* button.
-
-+
-image::insight-92ba4.png[]
-
-. In the Settings menu, select the *Insight* tab:
-
+. Click *Applications* in the menu on the left, and select an application to open its management panel on the right side of the page. 
+. In the management panel, click *Insight*.
+. Click *Settings* in the menu on the left, and select the *Insight* tab:
 +
 image::insight-320c1.png[]
 
 . Select one of the tracking options:
 ** *Disabled* to not use Insight
-** *Metadata* to simply track events
-** *Metadata and Replay* to track events and enable the ability to instantly replay a transaction from the console. For more information, see Diagnosing Problems and Replaying Transactions.
+** *Metadata* to track only events
+** *Metadata and Replay* to track events and enable the ability to instantly replay a transaction from the console. For more information, see <<diagnosing_problems,Diagnosing Problems and Replaying Transactions>>.
 +
 [NOTE]
 *Metadata and Replay* is only available on Mule 3 applications deployed to CloudHub, and replay only works for flows that have inbound endpoints.
-
-
-. Click *Apply changes* to apply the settings.
-
+. Click *Apply changes* to apply the settings. +
 After you enable Insight, the following events are tracked by default:
 
 * Data that passes through endpoints (inbound and outbound) in your Mule applications
@@ -82,19 +73,16 @@ You can configure business events in your Mule applications by embedding custom 
 
 [NOTE]
 ====
-Note that when deploying your application on Runtime Manager, you must make sure that in the *Insight* tab you select either *Metadata* or *Metadata and Replay*
-
-image::chinsighttab.png[insight tab]
+When deploying your application on Runtime Manager, you must make sure that in the *Insight* tab you select either *Metadata* or *Metadata and Replay*.
 ====
-
 
 == Searching and Filtering Transactions and Events
 
-The *Insight Dashboard* displays information at three tracking levels: Transactions, Events, and Metadata.
+The *Insight Dashboard* displays information at three tracking levels: 
 
-* Transactions are logical groupings of related events, and often correspond to a business view of the system.
-* Events track low-level details of a transaction. Events map to message processors and endpoints and reveal information about exceptions and any custom business events you may have configured.
-* Metadata tracks customized key/value pairs that you have specified as part of custom events in your application. The information that Insight tracks at this level presents information about high-level business events.
+* Transactions: Logical groupings of related events that often correspond to a business view of the system.
+* Events: Low-level details of a transaction. Events map to message processors and endpoints and reveal information about exceptions and any custom business events you may have configured.
+* Metadata: Tracks customized key/value pairs that you specify as part of custom events in your application. The information that Insight tracks at this level presents information about high-level business events.
 
 The following image illustrates where to find transactions, events, and metadata on the Insight dashboard.
 
@@ -102,13 +90,13 @@ image::chindash2.png[CHInDash2]
 
 == Customizing the Transaction ID
 
-For Transaction-level events, Insight may display long numeric values in the ID column. Rather than use random number identifiers, you may wish to customize the transaction IDs so that they display more intuitive values which are relevant to your business requirements.
+For transaction-level events, Insight may display long numeric values in the ID column. Rather than use random number identifiers, you can customize the transaction IDs so that they display more intuitive values that are relevant to your business requirements.
 
 Use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number.
 
 === Searching or Filtering Transactions
 
-On the Insight tab of the Runtime Manager console, you can use a search tool or filter data to refine the results displayed. This table lists how to specify search or filter criteria:
+On the *Insight* tab of the Runtime Manager console, you can use a search tool or filter data to refine the results displayed. This table lists how to specify search or filter criteria:
 
 [%header,cols="2*a"]
 |===
@@ -164,6 +152,7 @@ Insight does not have a size limit and displays all transactions in your applica
 [NOTE]
 Replay Data for applications created before Oct 7, 2017 will be stored in the default region: us-east-1. New applications and applications whose region is changed after Oct 7, 2017 will start using region specific storage. Insights Replay Data will not be preserved when switching regions (user will be prompted for confirmation). Make sure this doesn't violate any of your compliance requirements.
 
+[[diagnosing_problems]]
 == Diagnosing Problems and Replaying Transactions
 
 Insight's message replay feature enables advanced error recovery. When you encounter a failed transaction (as displayed on Insight's dashboard), you can diagnose the problem, fix the root issue, then replay the transaction that failed. The following example demonstrates this functionality.

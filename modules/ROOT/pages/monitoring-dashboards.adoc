@@ -6,7 +6,9 @@ endif::[]
 
 The monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to. The dashboards give you a view into the evolution of metrics about your apps and servers. 
 
-The dashboard helps you answer questions about your integrated apps, such as:
+== Application Monitoring Dashboard
+
+The app monitoring dashboard helps you answer questions about your integrated apps, such as:
 
 * When did peaks in usage occur?
 * What impact do high traffic peaks have on response time?
@@ -14,15 +16,37 @@ The dashboard helps you answer questions about your integrated apps, such as:
 * What impact do high traffic peaks have on the message fail rate?
 * What impact do high traffic peaks of other apps running on the same server have on the performance of a given app?
 
-To help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures, you can use xref:insight.adoc[Insight].
+=== Required Permissions
 
-== Access the Monitoring Dashboard for Applications
+To view dashboards, you must have either the Runtime Manager *Read Application* permission or the Runtime Manager *Read Servers* permission for the resource.
 
-To view dashboards, you must have the Runtime Manager permissions *Read Application* or *Read Servers* for the resource.
+=== Embedded Anypoint Monitoring Dashboard (CloudHub)
+
+The Anypoint Monitoring dashboard provides a wider array of monitoring metrics than the classic application monitoring dashboard and includes several pages in which to view different types of charts. 
+
+The embedded Anypoint Monitoring dashboard is displayed for CloudHub applications running on Mule 3.8.7-AM, or 3.9.0 or later with Anypoint Monitoring enabled. See xref:monitoring::configure-monitoring-cloudhub.adoc[Configure and Enable Anypoint Monitoring for Mule Apps (CloudHub)].
+
+For information about the Anypoint Monitoring dashboard, see xref:monitoring::app-dashboards.adoc[Built-in Application Dashboard] in the Anypoint Monitoring documentation.
+
+=== Classic Application Monitoring Dashboard
+
+The classic application monitoring dashboard displays metrics for Mule messages, CPU, and Memory.
+
+The classic application monitoring dashboard is displayed for: 
+
+* CloudHub applications running on Mule versions earlier than 3.8.7
+* Applications deployed on-premises (hybrid)
+* Applications deployed to Runtime Fabric
+
+== Access the Application Monitoring Dashboard
 
 . In Runtime Manager, in the menu on the left, click *Applications*. 
 . In the list of applications, click the name of the application to monitor. +
 The monitoring dashboard opens for the selected application. 
+
+If the selected application is deployed to CloudHub, running on Mule 3.8.7 or later, and you have Anypoint Monitoring enabled for the selected application, you see the embedded xref:monitoring::app-dashboards.adoc[Anypoint Monitoring] dashboard. Click the *Switch back to classic metrics* to switch to the classic view of the app monitoring dashboard. 
+
+If you selected an application deployed to CloudHub and running on a Mule version earlier than 3.8.7, or deployed on-premises, or to Runtime Fabric, you see the classic application monitoring dashboard. Click the link in the blue banner at the top of the page to switch to the embedded Anypoint Monitoring dashboard. 
 
 == View Application Metrics
 
@@ -216,6 +240,11 @@ From this menu, you can also click on an individual server name to be taken to t
 
 [TIP]
 Set up xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[Alerts] to notify you automatically whenever any of these metrics hits a critical value for a sustained period of time.
+
+== Insight
+
+To help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures, you can use xref:insight.adoc[Insight].
+
 
 == See Also
 
