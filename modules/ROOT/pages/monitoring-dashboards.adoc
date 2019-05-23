@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 
-The builtin monitoring dashboard gives you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to. The dashboard gives you a view into the evolution of metrics about your apps. 
+The monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to. The dashboards give you a view into the evolution of metrics about your apps and servers. 
 
 The dashboard helps you answer questions about your integrated apps, such as:
 
@@ -18,7 +18,7 @@ To help you analyze the root cause of failures, isolate performance bottlenecks,
 
 == Access the Monitoring Dashboard for Applications
 
-To view dashboards, your user must have the Runtime Manager permissions *Read Application* or *Read Servers* for the resource.
+To view dashboards, you must have the Runtime Manager permissions *Read Application* or *Read Servers* for the resource.
 
 . In Runtime Manager, in the menu on the left, click *Applications*. 
 . In the list of applications, click the name of the application to monitor. +
@@ -77,11 +77,10 @@ The graphs in this server's dashboard cover different metrics related to memory 
 
 The graphs in this dashboard display memory usage levels in both the *Overview* and the *Breakdown* tabs, and track these values:
 
-* *Used* - The amount of memory (in MB) that is currently in use.
+* *Used* - The amount of memory (in MB) that is currently in use. 
+If the Java VM attempts to increase the used memory to be greater than committed memory, even if the amount of used memory is increased to below the total memory, memory allocation fails.
 * *Committed* - The amount of memory (in MB) that's available for use by the Java VM. This amount varies over time. The amount of committed memory is always greater than or equal to the amount of used memory.
-* *Total* - The maximum amount of memory (in MB) for use by the server. The maximum amount can change or be undefined. A memory allocation can fail if the Java VM attempts to increase the used memory to be greater than committed memory, even if the amount used is below the total.
-
-At a high level, you can think of memory as divided into what’s in the JVM heap and what’s outside of it.
+* *Total* - The maximum amount of memory (in MB) for use by the server. The maximum amount can change or be undefined. 
 
 === JVM Heap Memory
 
@@ -93,9 +92,9 @@ This metric in the *Overview* is the total heap memory usage in MB. See the <<Br
 
 image::monitoring-dashboards-heap.png[]
 
-* Heap Memory Usage
-* Heap Commited Memory
-* Total Memory
+* Heap memory usage
+* Heap committed memory
+* Total memory
 
 === CPU
 
@@ -103,9 +102,9 @@ This metric in the *Overview* tab is the total CPU usage of the server, as a per
 
 image::monitoring-dashboards-cpu.png[]
 
-* CPU Usage
-* System Available Processing power
-* System Load Average
+* CPU usage
+* System available processing power
+* System load average
 
 +
 [NOTE]
@@ -170,14 +169,14 @@ image::monitoring-dashboards-cahce.png[]
 ==== Compressed Class Space
 
 [NOTE]
-This metric is only Available when using JDK 8+.
+This metric is only available when using JDK 8+.
 
 image::monitoring-dashboards-class-space.png[]
 
 ==== Metaspace
 
 JVM memory space that uses native memory for the representation of class metadata.
-Only Available when using JDK 8+.
+This metric is only available when using JDK 8+.
 
 image::monitoring-dashboards-meta.png[]
 
