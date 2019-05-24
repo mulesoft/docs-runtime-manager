@@ -53,20 +53,20 @@ You can also pass this value using the environment variable `export ANYPOINT_PAS
 
 | `organization` | Your organization within Anypoint Platform.
 
-You can also pass this value using the environment variable ` export ANYPOINT_ORG=<name>` | No
+You can also pass this value using the environment variable `export ANYPOINT_ORG=<name>` | No
 
 | `environment` | Your Anypoint environment.
 
 You can also pass this value using the environment variable `export ANYPOINT_ENV=<name>` | No
 
-|host | The host of your Anypoint Platform Installation. +
+| `host` | The host of your Anypoint Platform Installation. +
 By default, this value points to +https://anypoint.mulesoft.com+. +
 If you are using Anypoint Platform Private Cloud Edition make sure to pass the address where you are hosting the platform.
 If you are using Anypoint Platform EU Cloud, make sure you pass your EU complaint URL.
 
 You can also pass this value using a dedicated environment variable `ANYPOINT_HOST=<name>` | No
 
-|bearer | Instead of passing your username and password, you can choose to pass the token for your account. +
+| `bearer` | Instead of passing your username and password, you can choose to pass the token for your account. +
 You can get the token for your account by hitting the +https://anypoint.mulesoft.com/accounts/login+ endpoint with your username and password to get your bearer value.
 
 Your session expires when the token bearer expires. +
@@ -80,7 +80,7 @@ If you send both username and password, and the token bearer, the CLI prioritize
 
 === Credentials File
 
-The recommended way of passing these options to your Anypoint Platform CLI installation is using the `credentials` file located inside the `./anypoint/` directory, which is not automatically created during installation. Follow these steps to create your credentials file:
+The recommended way of passing these options to your Anypoint Platform CLI installation is using the `credentials` file located inside the `~/.anypoint` directory, which is not automatically created during installation. Follow these steps to create your credentials file:
 
 . Create a directory called `.anypoint` in the `~/` directory for Linux and OSx, or `C:\Users\USERNAME \` in Windows.
 . Navigate to your `.anypoint` directory and create a blank file named `credentials` with the following structure:
