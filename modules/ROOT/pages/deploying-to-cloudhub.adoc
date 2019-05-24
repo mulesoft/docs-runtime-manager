@@ -22,49 +22,6 @@ You can also deploy to CloudHub through:
 
 == Deploying an Application
 
-=== From Anypoint Platform
-
-. Sign on to https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
-. Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*.
-+
-image::deploying-to-cloudhub-5f383.png[]
-+
-. In the *Applications* tab, click *Deploy application*.
-+
-// image::deploying-to-cloudhub-3dcbb.png[]
-+
-The Deploy Application page opens:
-+
-image::deploying-to-cloudhub-8524f.png[]
-
-
-=== From SandBox
-
-If you created an application in a sandbox environment and tested it, when you are ready to deploy the application to production, you must first move the application.
-
-To move an application from a sandbox environment to production:
-
-. Log into your Anypoint Platform account, and go to your production environment.
-. In the *Applications* tab, click the *Deploy Application* button.
-+
-// image::deploying-to-your-own-servers-d84f7.png[]
-
-. When choosing the application file, click *Get from sandbox*.
-+
-image::deploying-to-cloudhub-d6f7a.png[]
-
-. In the *Get from sandbox* dialog, select your sandbox environment, then select an application to deploy in production, and click *Apply*.
-
-. Continue setting up your deployment as you would with any other deployment.
-
-
-==== Limitations
-
-* Only a CloudHub Administrator can move applications between environments.
-* To avoid domain name conflict, an application with the same name cannot be deployed in two environments at the same time. Modify the application's name slightly to deploy it to another environment.
-* Runtime Manager prevents you from duplicating applications in a single environment, so you cannot move an application into the environment it's already in. To have the same, or similar, applications in a single environment, modify one application's file to distinguish it from the original.
-
-
 === From Studio
 
 You can deploy your applications to CloudHub from Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
@@ -91,6 +48,97 @@ You cannot deploy an application from Studio to the CloudHub *Design* environmen
 --
 
 For an example of deploying to CloudHub directly from Studio, see xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub].
+
+=== Deploy from Runtime Manager
+
+. Sign on to https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
+. Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*.
++
+image::deploying-to-cloudhub-5f383.png[]
++
+. In the *Applications* tab, click *Deploy application*.
++
+// image::deploying-to-cloudhub-3dcbb.png[]
++
+The Deploy Application page opens:
++
+image::deploying-to-cloudhub-8524f.png[]
+
+=== Deploy from CloudHub CLI
+
+To deploy a Mule app from the CloudHub Command Line Utility (CLI):
+
+. Verify that https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[CloudHub access] is enabled on Anypoint Platform.
+. If you do not already have access to the Anypoint-CLI command line tool, install it using xref:runtime-manager::anypoint-platform-cli.adoc#installation[Anypoint Platform CLI installation instructions].
+. Log into your Anypoint Platform account from the command line:
+  .. Enter your username: `anypoint-cli --username="user"`. 
+  .. Enter your password.
+. Use the `runtime-mgr application deploy` command providing the *name* of the app and the *location* of the deployable archive (`.zip`) file on your file system, for example:
++
+----
+runtime-mgr cloudhub-application deploy myMuleApp /Users/exported-app-folder/my-mule-app.zip
+----
++
+. If there are no issues with the name, location or any optional parameters provided, you should see a table like this:
++
+----
+Deploying myMuleApp ...
+┌──────────────────────────────┬────────────────────────────────────────┐
+│ Domain                       │ mymuleapp.cloudhub.io                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Status                       │ UNDEPLOYED                             │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Updated                      │ a few seconds ago                      │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Runtime                      │ 4.1.0                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ File name                    │ my-mule-app.zip                        │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Persistent queues            │ false                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Persistent queues encrypted  │ false                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Static IPs enabled           │ false                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Monitoring                   │ Enabled. Auto-restart if not responding│
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Workers                      │ 1 vCore * 1                            │
+----
+
++
+. Congratulations, your app is now deployed on CloudHub!
+
++
+[TIP]
+. Applications that are deployed via the CLI can be viewed and managed on Runtime Manager like any other application.
+  .. If you then want to stop the app, on the command line type `runtime-mgr cloudhub-application stop <app-name>`.
+  .. To exit the command line tool, hit `ctrl + c` twice.
+. xref:runtime-manager::anypoint-platform-cli.adoc[Anypoint Platform CLI] contains a full list of commands.
+
+=== Prepare to Deploy from a Sandbox
+
+If you created an application in a sandbox environment and tested it, when you are ready to deploy the application to production, you must first move the application.
+
+To move an application from a sandbox environment to production:
+
+. Log into your Anypoint Platform account, and go to your production environment.
+. In the *Applications* tab, click the *Deploy Application* button.
++
+// image::deploying-to-your-own-servers-d84f7.png[]
+
+. When choosing the application file, click *Get from sandbox*.
++
+image::deploying-to-cloudhub-d6f7a.png[]
+
+. In the *Get from sandbox* dialog, select your sandbox environment, then select an application to deploy in production, and click *Apply*.
+
+. Continue setting up your deployment as you would with any other deployment.
+
+==== Limitations
+
+* Only a CloudHub Administrator can move applications between environments.
+* To avoid domain name conflict, an application with the same name cannot be deployed in two environments at the same time. Modify the application's name slightly to deploy it to another environment.
+* Runtime Manager prevents you from duplicating applications in a single environment, so you cannot move an application into the environment it's already in. To have the same, or similar, applications in a single environment, modify one application's file to distinguish it from the original.
 
 == Creating an Application Name
 
