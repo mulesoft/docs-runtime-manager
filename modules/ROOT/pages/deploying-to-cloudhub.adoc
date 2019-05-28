@@ -20,7 +20,7 @@ You can also deploy to CloudHub through:
 * CloudHub CLI
 * Mule-Maven Plugin
 
-== Deploying an Application
+== Deploying an Application to CloudHub
 
 === From Studio
 
@@ -66,7 +66,7 @@ image::deploying-to-cloudhub-8524f.png[]
 To deploy a Mule app from the CloudHub Command Line Utility (CLI):
 
 . Verify that https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[CloudHub access] is enabled on Anypoint Platform.
-. If you do not already have access to the Anypoint-CLI command line tool, install it using xref:runtime-manager::anypoint-platform-cli.adoc#installation[Anypoint Platform CLI installation instructions].
+. If you do not already have access to the Anypoint-CLI command line tool, install it using xref:anypoint-platform-cli2.adoc#installation[Anypoint Platform CLI installation instructions].
 . Log into your Anypoint Platform account from the command line:
   .. Enter your username: `anypoint-cli --username="user"`. 
   .. Enter your password.
@@ -76,7 +76,7 @@ To deploy a Mule app from the CloudHub Command Line Utility (CLI):
 runtime-mgr cloudhub-application deploy myMuleApp /Users/exported-app-folder/my-mule-app.zip
 ----
 +
-. If there are no issues with the name, location or any optional parameters provided, you should see a table like this:
+. If there are no issues with the name, location or any optional parameters provided, you see a table listing deployment information:
 +
 ----
 Deploying myMuleApp ...
@@ -109,8 +109,8 @@ Deploying myMuleApp ...
 [TIP]
 . Applications that are deployed via the CLI can be viewed and managed on Runtime Manager like any other application.
   .. If you then want to stop the app, on the command line type `runtime-mgr cloudhub-application stop <app-name>`.
-  .. To exit the command line tool, hit `ctrl + c` twice.
-. xref:runtime-manager::anypoint-platform-cli.adoc[Anypoint Platform CLI] contains a full list of commands.
+  .. To exit the command line tool, press `ctrl + c` twice.
+. xref:anypoint-platform-cli2.adoc[Anypoint Platform CLI] contains a full list of commands.
 
 === Prepare to Deploy from a Sandbox
 
