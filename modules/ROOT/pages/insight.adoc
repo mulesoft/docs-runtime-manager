@@ -11,7 +11,7 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 [NOTE]
 ====
-Anypoint Platform Private Cloud Edition doesn't support Insight.
+Insight is not supported on Anypoint Platform Private Cloud Edition.
 ====
 
 Insight is a troubleshooting tool that gives you in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager. Insight makes information searchable and helps you find and recover from any errors that occurred during message processing by tracking everything your data does in an app and replaying your transactions instantly.
@@ -27,7 +27,7 @@ Using the Insight Dashboard, you can view events that occur within the flows tha
 
 [IMPORTANT]
 ====
-Enabling Insight may cause a performance impact when processing application data. Enabling Insight for long periods of time is not recommended for production environments. To monitor a production environment, use the tools listed in the xref:monitoring.adoc[monitoring section].
+Enabling Insight has a performance impact when application data is processed. Do not enable Insight for long periods of time for production environments. To monitor a production environment, use the tools listed in the xref:monitoring.adoc[monitoring section].
 
 Insight does not support visibility into xref:3.8@mule-runtime::batch-processing.adoc[batch processing].
 ====
@@ -35,7 +35,7 @@ Insight does not support visibility into xref:3.8@mule-runtime::batch-processing
 == Enabling Insight
 
 [NOTE]
-If you want to enable insight on apps that run on servers on-premises, you must obtain special entitlements for your account. Contact your MuleSoft sales representatives to obtain these.
+To enable Insight on apps that run on on-premises servers, you must obtain special entitlements for your account. Contact your MuleSoft sales representatives to obtain the required enablements.
 
 To track, aggregate, and store Mule events by default, Insight requires some processing and network overhead. Complete the following procedure to enable Insight to track the events your Mule servers generate.
 
