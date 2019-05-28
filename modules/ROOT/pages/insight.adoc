@@ -64,6 +64,7 @@ After you enable Insight, the following events are tracked by default:
 [NOTE]
 Logs for applications deployed to servers on-premises contain event information, but not message contents.
 
+[[set_up_business_events]]
 == Setting Up Business Events
 
 You can configure business events in your Mule applications by embedding custom business events in flows, or by enabling granular event tracking within message processors in your flows.
@@ -125,7 +126,8 @@ In your application, click *Advanced* in the *Search* field to locate additional
 
 image::chinbizdata.png[CHInBizData]
 
-NOTE: To enable the *Business Data* field your app must have business events, see <<Setting Up Business Events>>/
+[NOTE] 
+To enable the *Business Data* field your app must have <<set_up_business_events,business events>>.
 
 |Save Search |
 To save a search, click *Save search*:
@@ -150,7 +152,8 @@ The default settings of the events filter depend upon your user role as follows:
 Insight does not have a size limit and displays all transactions in your application for a period of 30-days. Events are kept for a period of 2-days.
 
 [NOTE]
-Replay Data for applications created before Oct 7, 2017 will be stored in the default region: us-east-1. New applications and applications whose region is changed after Oct 7, 2017 will start using region specific storage. Insights Replay Data will not be preserved when switching regions (user will be prompted for confirmation). Make sure this doesn't violate any of your compliance requirements.
+Replay Data for applications created before Oct 7, 2017 are stored in the default region: us-east-1. +
+New applications and applications whose region changed after Oct 7, 2017 will start using region-specific storage. Insights Replay Data is not preserved when switching regions. Verify that this doesn't violate any of your compliance requirements.
 
 [[diagnosing_problems]]
 == Diagnosing Problems and Replaying Transactions
@@ -159,7 +162,9 @@ Insight's message replay feature enables advanced error recovery. When you encou
 
 === Transaction Failed
 
-For example, a transaction fails because an application exceeds the limited number of API calls for a Salesforce account. Insight displays the status of the transaction as `Failed` (see image below). Click to expand the transaction, then examine the individual events within that transaction. Where it failed, you can see the exception and the error message listed next to the failed event, as well as an existing stack trace.
+For example, a transaction fails because an application exceeds the limited number of API calls for a Salesforce account. Insight displays the status of the transaction as `Failed`. 
+
+Click to expand the transaction, then examine the individual events within that transaction. The exception and the error message are listed next to the failed event, as well as an existing stack trace.
 
 image::chexcmsg.png[CHExcMsg]
 
@@ -184,7 +189,7 @@ image::ch-replay-transaction-replayed.png[CH_replay-transaction-replayed]
 
 == Purge Replay Transaction Data
 
-In the Insight tab for an application, click Purge Replay Data to delete all existing replay data for that application.
+In the *Insight* tab for an application, click *Purge Replay Data* to delete all existing replay data for that application.
 
 [WARNING]
 This action cannot be reversed.
