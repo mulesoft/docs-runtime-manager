@@ -1,10 +1,9 @@
-= About Servers, Server Groups, and Clusters
+= Servers, Server Groups, and Clusters
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:keywords: cloudhub, application, server, server group, on-premise, runtime manager, arm, cluster, clusters
 
-Using Runtime Manager, you can register and set up the properties of servers, server groups, and clusters that reside on-premises. After setting up a server, you can select it as the deployment target for your applications.
+Use Runtime Manager to register and set up the properties of servers, server groups, and clusters that reside on-premises. After setting up a server, you can select it as the deployment target for your applications.
 
 == Server Groups and Clusters
 
@@ -12,13 +11,16 @@ Both server groups and clusters run applications in multiple distributed nodes. 
 
 == Alerts
 
-You can set up email alerts that are sent whenever certain events occur to your servers, such as a server being disconnected, or a server being removed from a cluster. These alerts may be linked to a specific server or to all of them. See xref:alerts-on-runtime-manager.adoc[Alerts] for instructions on how to do this.
+You can set up email alerts so you are notified when certain events occur on your servers, such as a server being disconnected, or a server being removed from a cluster. Alerts can be linked to a specific server in a cluster or server group, or to all of the servers in the cluster or server group. 
 
 == See Also
 
-* xref:runtime-manager-switch-env.adoc[To Switch Environments using Runtime Manager]
-* xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
+* xref:cluster-add-srv.adoc[Add a Server to a Cluster (Hybrid)]
+* xref:server-group-add.adoc[Add a Server to a Server Group (Hybrid)]
+* xref:alerts-on-runtime-manager.adoc[Alerts] 
+* xref:runtime-manager-switch-env.adoc[Switch Environments Using Runtime Manager]
+* xref:deploying-to-your-own-servers.adoc[Deploy Applications to Your Own Servers]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
-* xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]
+* xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Anypoint Platform REST APIs]
