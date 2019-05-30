@@ -23,11 +23,11 @@ Insight helps you answer questions about your integrated apps, such as:
 * What was the result of a transaction?
 * If something went wrong during processing, at what point did the failure occur?
 
-Use the Insight Dashboard to view events that occur within the flows that handle your business transactions. You can drill down into event-related data to access information that can help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
+Use the Insight Dashboard to view events that occur within the flows that handle your business transactions. To analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures, drill down into event-related data.
 
 [IMPORTANT]
 ====
-When Insight is enabled, there is a performance impact when application data is processed. Do not enable Insight for long periods of time for production environments. To monitor a production environment, use the tools listed in the xref:monitoring.adoc[monitoring section].
+When Insight is enabled, data processing performance is affected. Do not enable Insight for long periods of time for production environments. To monitor a production environment, use the tools listed in the xref:monitoring.adoc[monitoring section].
 
 Insight does not support visibility into xref:3.8@mule-runtime::batch-processing.adoc[batch processing].
 ====
@@ -83,7 +83,7 @@ The *Insight Dashboard* displays information at three tracking levels:
 
 * Transactions: Logical groupings of related events that often correspond to a business view of the system.
 * Events: Low-level details of a transaction. Events map to message processors and endpoints and reveal information about exceptions and any custom business events you may have configured.
-* Metadata: Tracks customized key/value pairs that you specify as part of custom events in your application. The information that Insight tracks at this level presents information about high-level business events.
+* Metadata: Customized key/value pairs that you specify as part of custom events in your application. The information that Insight tracks at this level presents information about high-level business events.
 
 The following image illustrates where to find transactions, events, and metadata on the Insight dashboard.
 
@@ -91,7 +91,7 @@ image::chindash2.png[CHInDash2]
 
 == Customizing the Transaction ID
 
-For transaction-level events, Insight may display long numeric values in the ID column. Rather than use random number identifiers, you can customize the transaction IDs so that they display more intuitive values that are relevant to your business requirements.
+For transaction-level events, Insight might display long numeric values in the ID column. Customize the transaction IDs so that they display more intuitive values that are relevant to your business requirements.
 
 Use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number.
 
@@ -152,8 +152,8 @@ The default settings of the events filter depend upon your user role as follows:
 Insight does not have a size limit and displays all transactions in your application for a period of 30-days. Events are kept for a period of 2-days.
 
 [NOTE]
-Replay Data for applications created before Oct 7, 2017 are stored in the default region: us-east-1. +
-New applications and applications whose region changed after Oct 7, 2017 will start using region-specific storage. Insights Replay Data is not preserved when switching regions. Verify that this doesn't violate any of your compliance requirements.
+Replay data for applications created before Oct 7, 2017 are stored in the default region: us-east-1. +
+New applications and applications whose region changed after Oct 7, 2017 use region-specific storage. Insights Replay Data is not preserved when switching regions. Verify that this doesn't violate any of your compliance requirements.
 
 [[diagnosing_problems]]
 == Diagnosing Problems and Replaying Transactions
@@ -162,7 +162,7 @@ Insight's message replay feature enables advanced error recovery. When you encou
 
 === Transaction Failed
 
-For example, a transaction fails because an application exceeds the limited number of API calls for a Salesforce account. Insight displays the status of the transaction as `Failed`. 
+For example, when a transaction fails because an application exceeds the limited number of API calls for a Salesforce account, Insight displays the status of the transaction as `Failed`. 
 
 Click to expand the transaction, then examine the individual events within that transaction. The exception and the error message are listed next to the failed event, as well as an existing stack trace.
 
@@ -170,7 +170,7 @@ image::chexcmsg.png[CHExcMsg]
 
 === Fix Then Replay
 
-After investigating the logs and resolving the issue that caused the transaction failure – for example, by purchasing more API capacity  – you can simply replay the transaction.
+After investigating the logs and resolving the issue (for example, by purchasing more API capacity) that caused the transaction failure you can replay the transaction.
 
 [NOTE]
 ====
@@ -201,7 +201,7 @@ This action cannot be reversed.
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
+* xref:cloudhub.adoc[CloudHub]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:cloudhub-architecture.adoc[CloudHub architecture]
 * xref:monitoring.adoc[Monitoring Applications]
