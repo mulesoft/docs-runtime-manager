@@ -9,16 +9,16 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-CloudHub supports safely hidden application properties, where the name of a property is visible in the console, but the value is not displayed or retrievable by any user. CloudHub resolves the property at runtime without exposing the sensitive information.
+CloudHub supports safely hidden application properties, which means the name of a property is visible in the Runtime Manager console, but the value is not displayed or retrievable by any user. CloudHub resolves the property at runtime without exposing the sensitive information.
 
 [NOTE]
 ====
 Internally, safely hidden application properties are encrypted and stored in a MuleSoft managed CloudHub properties database, which is encrypted per user organization.
 ====
 
-For applications deployed to CloudHub workers, you must use the Runtime Manager UI to set hidden application. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application's ZIP file.
+For applications deployed to CloudHub workers, you must use the Runtime Manager UI to set hidden applications. For applications that you deploy through any other xref:deployment-strategies.adoc[deployment strategy], you need to use secure property placeholder files bundled with your application's ZIP file.
 
-Safely hidden application properties are a separate feature and concept from encrypted Mule application properties that are stored in xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
+Safely hidden application properties are a separate feature and concept from encrypted Mule application properties that are stored in xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] files.
 
 == Overview
 
@@ -31,14 +31,14 @@ For example, you can configure a JDBC connector where the username is set to `${
 
 image::dbproperties.png[]
 
-For sensitive information, you may wish to flag these properties as hidden so that, after they are entered and saved in the Runtime Manager console, their values are neither visible in the console nor passed between the console and the CloudHub server.
+For sensitive information, you can flag these properties as hidden so that, after they are entered and saved in the Runtime Manager console, their values are neither visible in the console nor passed between the console and the CloudHub server.
 
 == Create Safely Hidden Application Properties
 
 To create safely hidden application properties for Mule 4.0 and later:
 
-. Inside the Mule application's `mule-artifact.json` file, list the property names you wish to safely hide under the `secureProperties` key as a comma separated array. Line 5 of the example flags two properties as secure.
-(optional) `config.yaml` defines four properties with values for local testing.
+. Inside the Mule application's `mule-artifact.json` file, list the property names you wish to safely hide under the `secureProperties` key as a comma-separated array. Line 5 of the example flags two properties as secure.
+(Optional) `config.yaml` defines four properties with values for local testing.
 
 .`config.yaml`
 [source,yaml,linenums]
@@ -99,7 +99,7 @@ image::dbproperties2.png[]
 
 
 [start=4]
-. Commit your deployment or update. Once your application is deployed, navigate to the Deployment tab and check the application properties. The values for all properties that you had marked as safely hidden are now no longer visible to you or any other user. In the example below, birthdate and password are safely hidden, but username is not.
+. Commit your deployment or update. Once your application is deployed, navigate to the *Deployment* tab and check the application properties. The values for all properties that you marked as safely hidden are now no longer visible to you or any other user. In the example below, birthdate and password are safely hidden, but username is not.
 
 
 image::dbproperties3.png[]
@@ -118,22 +118,25 @@ Once an application is deployed with safely hidden application properties, Cloud
 ====
 
 
-== Copying Safely Hidden Application Properties between Sandboxes 
-When moving applications between *sandboxes*, safely hidden application property values are not copied to the new environment. For all safely hidden application properties, the name of the property will be copied, but the value will be left blank.
+== Copying Safely Hidden Application Properties between Sandboxes
+
+When moving applications between sandboxes, safely hidden application property values are not copied to the new environment. For all safely hidden application properties, the name of the property is copied, but the value is left blank.
 
 
 == Encrypted Application Properties vs. Safely Hidden Application Properties
 Mule applications can also store properties with encrypted values using secure properties placeholders.
 
-See xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] for more information on creating and using secure configuration properties.
+See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] for more information on creating and using secure configuration properties.
 
 With encrypted properties, the Mule application bundles the secure property placeholder files inside the Mule application's deployable archive .jar file.
 
 A secure property placeholder combines together the file containing the encrypted properties, plus details about the encryption algorithm that is used to encrypt the secure property values. Secure properties are encrypted using a secret key. It is important to never store the secret key inside your Mule applications. Instead, you need to safely (securely) pass in the secret key value at deployment time.
 
-To facilitate safely passing in the secret key into the Mule application, the Mule application can be developed with a property placeholder to represent the secret key value. There are then several options for how an operator can safely pass in the secret key value at deployment time.
+To safely pass the secret key into the Mule application, develop the Mule application with a property placeholder to represent the secret key value. There are then several options for how an operator can safely pass in the secret key value at deployment time.
 
-For deployments to customer-hosted Mule runtimes, where the operators have access to the file system and the command-line, the secret key can be passed in by setting a system environment variable when the Mule runtime is started up. If the file system is secure, it also might be safe to store the secret key in a special secure folder on the file system, with restricted permission for the Mule application to safely read in the secret key at startup time. Once the secret key is read into memory, it is used by the Mule application to decrypt all the other properties in the secure properties placeholder, and the decrypted values are stored in memory. To secure the Mule application, it is important to lock down access to the Mule runtime's host, so that no one can read the Mule application's memory or JVM properties.
+For on-premises deployments where you have access to the file system and the command-line, the secret key can be passed in by setting a system environment variable when the Mule runtime is started up. If the file system is secure, you can also store the secret key in a special secure folder on the file system. Restrict permission for the Mule application to safely read in the secret key at startup. 
+
+Once the secret key is read into memory, it is used by the Mule application to decrypt all the other properties in the secure properties placeholder, and the decrypted values are stored in memory. To secure the Mule application, it is important to lock down access to the Mule runtime's host, so that no one can read the Mule application's memory or JVM properties.
 
 [NOTE]
 ====
@@ -192,26 +195,34 @@ Then, at deployment time, the operator can type in the `secure.key` value into t
 Once the secret key is passed into the Mule application, encrypted properties are decrypted into memory just like they are with customer-hosted deployments. This is a safe thing to do in CloudHub, because CloudHub workers are highly secure, with no access to the CloudHub worker's command-line, nor is there any way for an intruder to read the CloudHub worker's memory or JVM properties.
 
 == How to Override Encrypted Properties
-Encypted properties that are bundled with a Mule application inside a secure properties placeholder file will not appear in the Runtime Manager Properties tab. In this way, the values are safely locked inside the Mule application.
 
-But a problem arises when an operator needs to update an encrypted value. The Runtime Manager console does not have access to the secret key, so it is impossible to replace an encrypted value with a new encrypted value without opening up the Mule application source files, recoding the new encrypted value with the secret key, then regenerating the Mule application's deployable archive. In many environments, runtime operators are not allowed to rip and replace the Mule application's deployable archive file like this, so instead the Mule application would have to be sent back to developers.
+Encrypted properties that are bundled with a Mule application inside a secure properties placeholder file do not appear in the Runtime Manager *Properties* tab. This keeps the values safely locked inside the Mule application.
 
-But there is a way for a Mule application to be designed to allow operations staff to safely override encrypted properties.
-If encrypted property names are also listed in the Mule application's 'secureProperties' entry in 'mule-artifact.json', then once the application is deployed, the value of this encrypted property will also be hidden in the Runtime Manager Properties tab, just like decrypted properties, and just like other properties, the decrypted value is only stored in the Mule worker's memory and securely stored in the CloudHub database for your user account, and is never stored in any CloudHub worker's files, nor is it ever passed between any other machines (including the Runtime Manager Console).
+The Runtime Manager console does not have access to the secret key, so if you need to update an encrypted value, you must open the Mule application source files, recode the new encrypted value with the secret key, then regenerate the Mule application's deployable archive. 
 
-So for any encrypted property that is also marked as safely hidden in the Mule application's `secureProperties` entry, you can safely replace any encrypted property with a clear-text value, which will be securely stored in the CloudHub properties database, and securely passed in to the Mule application ever time the Mule application is started.
+In many environments, it is not possible for you to do this yourself, which means you have to send the Mule application back to the developer to do it for you. However, there is a way to design a Mule application to allow encrypted properties to be overridden safely.
 
-The new value is also hidden once the application is deployed and can never be viewed again.
+If encrypted property names are listed in the Mule application's `secureProperties` entry in `mule-artifact.json`, once the application is deployed, the value of the encrypted property names is hidden in the Runtime Manager *Properties* tab, along with decrypted properties. 
 
-This means that when you override a secure property in the CloudHub properties tab for the application, the values never needs to be encrypted. In this scenario, securing the values of sensitive properties is reduced to controlling which operators have access to those values when they deploy or redeploy the secure application.
+The decrypted values are stored securely in the Mule worker's memory and in the CloudHub database for your user account. These decrypted values are never stored in any CloudHub worker's files, nor are they ever passed between any other machines (including the Runtime Manager Console).
 
-For example, if a production application needs to update the database user and password stored in two properties named db.user and db.password, then an operator would enter this new db.user and db.password into the CloudHub properties tab for the application and then Start or Restart the application. This allows the new application to upgrade this secure login information with zero downtime. Once all dependent applications are migrated, the old account could be decomissioned.
+So for any encrypted property that is also marked as hidden in the Mule application's `secureProperties` entry, you can safely replace any encrypted property with a clear-text value. The clear-text value is then securely stored in the CloudHub properties database, and securely passed into the Mule application every time the Mule application is started.
 
-== CloudHub Mule Applications Do Not Need Encrypted Properties
-The previous discussion indicates that for Mule applications that will only be deployed into CloudHub workers, you may not need to encrypt properties, but instead just flag those properties as safely hidden propreties in the Mule application's `mule-artifact.json` file's `secureProperties` entry.
+The new value is hidden once the application is deployed and can never be viewed again.
+
+This means that when you override a secure property in the CloudHub *Properties* tab for the application, the value doesn't need to be encrypted. In this scenario, only users who have access to the values in the application's source files when they deploy or redeploy a secure application can override secure properties. 
+
+An example of when to override secure properties is if you need to update the database user and password stored in two properties named `db.user` and `db.password` in a production application. You can enter the new `db.user` and `db.password` in the CloudHub *Properties* tab for the application and then start or restart the application. This allows the new application to upgrade the secure login information with zero downtime. Once all dependent applications are migrated, the old account can be decommissioned.
+
+[NOTE]
+Use the list view in the application's *Properties* tab to update properties. If you use the text view to update properties, colons in property names must be escaped, for example: `secure\:\:someproperty`. 
+
+== Mule Applications Deployed Only to CloudHub Workers 
+
+If you don't want to encrypt properties for Mule applications that are deployed only to CloudHub workers, you can instead flag those properties as safely hidden properties in the Mule application's `mule-artifact.json` file's `secureProperties` entry.
 
 == See Also
-* xref:4.1@mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties]
+* xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
