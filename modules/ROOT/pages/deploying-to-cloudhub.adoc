@@ -20,9 +20,31 @@ You can also deploy to CloudHub through:
 * CloudHub CLI
 * Mule-Maven Plugin
 
-== Deploying an Application
+== Deploying an Application to CloudHub
 
-=== From Anypoint Platform
+=== From Studio
+
+You can deploy your applications to CloudHub from Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
+
+. In Studio, open your application as a Mule Project.
+
+. In *Package Explorer*, right-click the project node, then select *Anypoint Platform*, then *Deploy to CloudHub*.
+. If this is your first time deploying from Studio, a popup dialog box asks you to provide your login credentials for Anypoint Platform. Studio stores your credentials and uses them automatically the next time you deploy to CloudHub.
+
++
+[TIP]
+You can manage these credentials through the Studio *Preferences* menu, in *Anypoint Studio* > *Authentication*.
+
+. After you sign in, the *Deploy Application* dialog opens.
++
+image::deployappfirstscreen.png[DeployAppFirstScreen]
+
+[NOTE]
+--
+You cannot deploy an application from Studio to the CloudHub *Design* environment. The *Design* environment is specific to applications created in Anypoint Platform Design Center.
+--
+
+=== Deploy from Runtime Manager
 
 . Sign on to https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
 . Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*.
@@ -37,8 +59,58 @@ The Deploy Application page opens:
 +
 image::deploying-to-cloudhub-8524f.png[]
 
+=== Deploy from CloudHub CLI
 
-=== From SandBox
+To deploy a Mule app from the CloudHub Command Line Utility (CLI):
+
+. Verify that https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[CloudHub access] is enabled on Anypoint Platform.
+. If you do not already have access to the Anypoint-CLI command line tool, install it using xref:anypoint-platform-cli2.adoc#installation[Anypoint Platform CLI installation instructions].
+. Log into your Anypoint Platform account from the command line:
+  .. Enter your username: `anypoint-cli --username="user"`. 
+  .. Enter your password.
+. Use the `runtime-mgr application deploy` command providing the *name* of the app and the *location* of the deployable archive (`.zip`) file on your file system, for example:
++
+----
+runtime-mgr cloudhub-application deploy myMuleApp /Users/exported-app-folder/my-mule-app.zip
+----
++
+. If there are no issues with the name, location or any optional parameters provided, you see a table listing deployment information:
++
+----
+Deploying myMuleApp ...
+┌──────────────────────────────┬────────────────────────────────────────┐
+│ Domain                       │ mymuleapp.cloudhub.io                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Status                       │ UNDEPLOYED                             │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Updated                      │ a few seconds ago                      │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Runtime                      │ 4.1.0                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ File name                    │ my-mule-app.zip                        │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Persistent queues            │ false                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Persistent queues encrypted  │ false                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Static IPs enabled           │ false                                  │
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Monitoring                   │ Enabled. Auto-restart if not responding│
+├──────────────────────────────┼────────────────────────────────────────┤
+│ Workers                      │ 1 vCore * 1                            │
+----
+
++
+. Congratulations, your app is now deployed on CloudHub!
+
++
+[TIP]
+. Applications that are deployed via the CLI can be viewed and managed on Runtime Manager like any other application.
+  .. If you then want to stop the app, on the command line type `runtime-mgr cloudhub-application stop <app-name>`.
+  .. To exit the command line tool, press `ctrl + c` twice.
+. xref:anypoint-platform-cli2.adoc[Anypoint Platform CLI] contains a full list of commands.
+
+=== Prepare to Deploy from a Sandbox
 
 If you created an application in a sandbox environment and tested it, when you are ready to deploy the application to production, you must first move the application.
 
@@ -57,40 +129,11 @@ image::deploying-to-cloudhub-d6f7a.png[]
 
 . Continue setting up your deployment as you would with any other deployment.
 
-
 ==== Limitations
 
 * Only a CloudHub Administrator can move applications between environments.
 * To avoid domain name conflict, an application with the same name cannot be deployed in two environments at the same time. Modify the application's name slightly to deploy it to another environment.
 * Runtime Manager prevents you from duplicating applications in a single environment, so you cannot move an application into the environment it's already in. To have the same, or similar, applications in a single environment, modify one application's file to distinguish it from the original.
-
-
-=== From Studio
-
-You can deploy your applications to CloudHub from Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
-
-. In Studio, open your application as a Mule Project.
-
-. In *Package Explorer*, right-click the project node, then select *Anypoint Platform*, then *Deploy to CloudHub*.
-+
-// image::deploy-to-cloudhub.png[deploy+to+cloudhub]
-+
-. If this is your first time deploying from Studio, a popup dialog box asks you to provide your login credentials for Anypoint Platform. Studio stores your credentials and uses them automatically the next time you deploy to CloudHub.
-
-+
-[TIP]
-You can manage these credentials through the Studio *Preferences* menu, in *Anypoint Studio* > *Authentication*.
-
-. After you sign in, the *Deploy Application* dialog opens.
-+
-image::deployappfirstscreen.png[DeployAppFirstScreen]
-
-[NOTE]
---
-You cannot deploy an application from Studio to the CloudHub *Design* environment. The *Design* environment is specific to applications created in Anypoint Platform Design Center.
---
-
-For an example of deploying to CloudHub directly from Studio, see xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub].
 
 == Creating an Application Name
 
@@ -363,7 +406,7 @@ If an error occurs and the application cannot be deployed, the application statu
 
 == See Also
 
-* xref:general:getting-started:deploy-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:general:runtime-manager:deploying-to-cloudhub.adoc[Deploying to CloudHub]
 * xref:cloudhub.adoc[CloudHub]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
