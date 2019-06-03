@@ -9,20 +9,15 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-You can deploy a Mule application to CloudHub from:
+You can deploy Mule applications to CloudHub using:
 
-* Studio: right-click your project and click *Deploy to Anypoint Platform*, then *Cloud*.
-* Runtime Manager: in the cloud-based version of https://anypoint.mulesoft.com[Anypoint Platform]. Go to the *Runtime Manager* section, then from the *Applications* tab, click *Deploy application*.
-
-You can also deploy to CloudHub through:
-
+* Runtime Manager
+* Anypoint Studio
 * The CloudHub API
 * CloudHub CLI
 * Mule-Maven Plugin
 
-== Deploying an Application to CloudHub
-
-=== From Studio
+== Deploy an Application to CloudHub from Studio
 
 You can deploy your applications to CloudHub from Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
 
@@ -44,22 +39,30 @@ image::deployappfirstscreen.png[DeployAppFirstScreen]
 You cannot deploy an application from Studio to the CloudHub *Design* environment. The *Design* environment is specific to applications created in Anypoint Platform Design Center.
 --
 
-=== Deploy from Runtime Manager
+== Deploy an Application to CloudHub from Runtime Manager
 
-. Sign on to https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
-. Hover your mouse over the *Runtime Manager* icon and click on it, or click *Open*.
+. In Anypoint Platform, go to *Management Center > Runtime Manager*. 
+. In the *Applications* tab, click *Deploy application*. +
+The Deploy Application page opens.
+. In the *Deploy Application* page: +
+* Enter an *Application Name*
+* Select CloudHub as the *Deployment Target*
+* Click *Choose File*, then select either:
+** *Import file from Exchange*
+** *Upload file*
+. In the *Runtime* tab, select the values for: +
+* *Runtime version*
+* *Worker size*
+* *Workers*
+* *Region*
 +
-image::deploying-to-cloudhub-5f383.png[]
-+
-. In the *Applications* tab, click *Deploy application*.
-+
-// image::deploying-to-cloudhub-3dcbb.png[]
-+
-The Deploy Application page opens:
-+
-image::deploying-to-cloudhub-8524f.png[]
+Select from the following options: +
+* *Automatically restart application when not responding* &#8211; Restart the application automatically when it is unresponsive.
+* *Persistent queues* &#8211; Store data in an input queue to disk.
+* *Encrypt Persistent queues* &#8211; Encrypt the data stored in the input queue on disk.
+* *Enable Monitoring and Visualizer* &#8211; Use Anypoint Monitoring and Visualizer for Mule applications running on supported versions of Mule
 
-=== Deploy from CloudHub CLI
+== Deploy from CloudHub CLI
 
 To deploy a Mule app from the CloudHub Command Line Utility (CLI):
 
@@ -110,22 +113,22 @@ Deploying myMuleApp ...
   .. To exit the command line tool, press `ctrl + c` twice.
 . xref:anypoint-platform-cli2.adoc[Anypoint Platform CLI] contains a full list of commands.
 
-=== Prepare to Deploy from a Sandbox
+== Move an Application from Sandbox to Production
 
-If you created an application in a sandbox environment and tested it, when you are ready to deploy the application to production, you must first move the application.
-
-To move an application from a sandbox environment to production:
+If you created an application in a sandbox environment and tested it, when you are ready to deploy the application, you must first move the application from the sandbox environment to the production environment.
 
 . Log into your Anypoint Platform account, and go to your production environment.
 . In the *Applications* tab, click the *Deploy Application* button.
 +
 // image::deploying-to-your-own-servers-d84f7.png[]
 
-. When choosing the application file, click *Get from sandbox*.
+. Click *Get from sandbox* to select the application to move to production.
 +
 image::deploying-to-cloudhub-d6f7a.png[]
 
-. In the *Get from sandbox* dialog, select your sandbox environment, then select an application to deploy in production, and click *Apply*.
+. In the *Get from sandbox* dialog, select your sandbox environment, select an application to deploy to production, then click *Apply*.
++
+Optionally, select the *Merge environment variables and mule version* checkbox to copy the environment variables and Mule version from the source application you selected.
 
 . Continue setting up your deployment as you would with any other deployment.
 
