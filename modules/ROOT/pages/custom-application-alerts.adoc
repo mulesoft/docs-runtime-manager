@@ -22,7 +22,7 @@ xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 
 == How to Use Notifications
 
-Notifications give you the ability to give visibility into business related events inside your application. For example, you can create notifications for when:
+Notifications give you visibility into business related events inside your application. For example, you can create notifications for when:
 
 * Your application is unable to connect to a remote service
 * An error that requires human intervention occurs, such as a problem with data mapping
@@ -43,7 +43,9 @@ To deploy your application, in the Runtime Manager click *Deploy Application* fr
 
 == Triggering Your Notification
 
-Once your application is running, you can trigger the notification by going to your application's URL, for example: +http://YOURAPP.cloudhub.io/hello-notification+. The page should display a `Hello World` message, and automatically create a new notification in your Runtime Manager console. Next, return to the Runtime Manager console and click the new notification indicator bell indicator in the upper-right to show the alert message:
+Once your application is running, you can trigger the notification by going to your application's URL, for example: +http://YOURAPP.cloudhub.io/hello-notification+. The page displays a `Hello World` message, and automatically creates a new notification in your Runtime Manager console. 
+
+Return to the Runtime Manager console and click the new notification indicator bell in the upper-right to display the alert message:
 
 image::image2014-10-24-17-41-16-1.png[image2014-10-24+17-41-16-1]
 
@@ -52,7 +54,7 @@ If the notification is sent after an exception, it attaches the
 
 == Custom Alerts
 
-Alerts allow you to send emails based on your application notifications. You can create alerts in CloudHub with the software provided. To create custom alerts, you need to get the https://www.mulesoft.com/exchange/#!/cloudhub-integration-connector[CloudHub Connector] and install it in Anypoint Studio.
+Alerts allow you to send emails based on your application's notifications. You can create standard alerts in CloudHub with the software provided. To create custom alerts, you need to get the https://www.mulesoft.com/exchange/#!/cloudhub-integration-connector[CloudHub Connector] and install it in Anypoint Studio.
 
 [NOTE]
 Custom alerts and notifications are available only for applications deployed to CloudHub workers. They are not available for applications that you deploy to on-premises servers. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
