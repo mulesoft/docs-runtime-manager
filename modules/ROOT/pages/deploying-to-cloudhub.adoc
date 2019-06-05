@@ -23,8 +23,6 @@ When you deploy an application, you must assign a name to it. The application na
 
 The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints. The format of the URL is `+http://myapplicationdomain.cloudhub.io+`. For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
 
-When you deploy your application, enter a unique application name. Valid names have a minimum of 3 and a maximum of 42 characters and can contain alphanumeric characters and dashes. Runtime Manager alerts you if the name is available or already reserved by another user.
-
 image::deployappname.png[DeployAppName]
 
 [TIP]
@@ -63,7 +61,7 @@ You cannot deploy an application from Studio to the CloudHub *Design* environmen
 . In the *Deploy Application* page: +
 * Enter an *Application Name* +
 [NOTE]
-An application with the same name cannot be deployed in two environments at the same time.
+An application with the same name cannot be deployed in two environments at the same time. Valid names have a minimum of 3 and a maximum of 42 characters and can contain alphanumeric characters and dashes. Runtime Manager alerts you if the name is available or already reserved by another user.
 * In the *Deployment Target* drop-down list, select *CloudHub*.
 * Click *Choose File*, then select either:
 ** *Import file from Exchange*
@@ -71,8 +69,8 @@ An application with the same name cannot be deployed in two environments at the 
 +
 [NOTE]
 The application file size limit is 200 MB.
-+
-You can also click *Get from sandbox* to copy a file from a non-production environment into your current environment. (If the *Get from sandbox* button does not appear, you first need to create a non-production environment.)
+. (Optional) To deploy an the application that is in the sandbox environment, you must first <<move_app_from_sandbox_to_prod,move the application from the sandbox>> environment to the production environment. To do this, click *Get from sandbox*. +
+If the *Get from sandbox* button does not appear, you first need to create a non-production environment.
 . In the *Runtime* tab, select the values from the drop-down lists for: +
 * *Runtime version*
 * *<<worker_sizing,Worker size>>*
@@ -149,6 +147,7 @@ Deploying myMuleApp ...
   .. To exit the command line tool, press `ctrl + c` twice.
 . xref:anypoint-platform-cli2.adoc[Anypoint Platform CLI] contains a full list of commands.
 
+[[move_app_from_sandbox_to_prod]]
 == Move an Application from Sandbox to Production
 
 If you created and tested an application in a sandbox environment, when you are ready to deploy the application, you must first move the application from the sandbox environment to the production environment.
@@ -320,9 +319,9 @@ For example, to use the second option, with an on-premises server you could depl
 mule -M-Dsecret.key=toSecretPassword -M-Denv=prod -M-Ddb.password=secretPassword -app myApp.zip
 ----
 
-In this case, all the values typed into the command are stored only in memory, they are never stored in any file.
+In this case, all the values typed into the command are stored only in memory; they are never stored in any file.
 
-With CloudHub, these techniques to override properties work differently.
+With CloudHub, techniques to override properties work differently.
 
 The first approach is more difficult for CloudHub to translate because when an application is deployed into CloudHub it is harder to write override properties files into the file system.
 
@@ -367,7 +366,7 @@ image::static-ip-regions.png[Static IPs by region]
 
 By default, the number of static IP addresses allocated to your organization is equal to twice the number of production vCores in your subscription. This number is displayed under the *Use Static IP* checkbox. 
 
-If you need to increase this quota, you contact https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support].
+If you need to increase this quota, please contact https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support].
 
 If an application has static IP addresses reserved in multiple regions, it picks up the IP address from whichever region it is deployed to. This allows you to pre-configure IP address rules for multiple regions for disaster recovery (DR) scenarios.
 
