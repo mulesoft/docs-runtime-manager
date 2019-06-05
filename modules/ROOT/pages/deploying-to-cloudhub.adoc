@@ -81,7 +81,10 @@ Select from the following options: +
 * *Automatically restart application when not responding* &#8211; <<automatic_restart,Restart the application automatically>> when it is unresponsive.
 * *Persistent queues* &#8211; Store data in an input queue to disk. See <<persistent_queues,Persistent Queues>> for more information.
 * *Encrypt Persistent queues* &#8211; Encrypt the data stored in the input queue on disk.
-* *Enable Monitoring and Visualizer* &#8211; Use Anypoint Monitoring and Visualizer for Mule applications running on supported versions of Mule.
+* *Enable Monitoring and Visualizer* &#8211; Use Anypoint Monitoring and Visualizer for Mule applications running on supported versions of Mule. 
++
+[NOTE]
+This option appears only if it is enabled for your organization and you have a Titanium subscription to Anypoint Monitoring.
 . Click *Deploy Application*. 
 
 == Deployment Execution
@@ -409,3 +412,5 @@ If an error occurs and the application cannot be deployed, the application statu
 * xref:anypoint-platform-cli.adoc[CloudHub Command Line Interface]
 * xref:cloudhub-api.adoc[REST API]
 * xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+* xref:monitoring::index.adoc[Anypoint Monitoring]
+* xref:visualizer::index.adoc[Anypoint Visualizer]
