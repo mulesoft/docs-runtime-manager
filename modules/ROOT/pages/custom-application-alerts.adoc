@@ -22,11 +22,11 @@ xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 
 == How to Use Notifications
 
-Notifications give you visibility into business related events inside your application. For example, you can create notifications for when:
+Notifications give you visibility into business-related events inside your application. For example, you can create notifications for when:
 
-* Your application is unable to connect to a remote service
-* An error that requires human intervention occurs, such as a problem with data mapping
-* You want to create a summary of what occurred inside your application, such as the number of orders processed
+* Your application is unable to connect to a remote service.
+* An error that requires human intervention occurs, such as a problem with data mapping.
+* You want to create a summary of what occurred inside your application, such as the number of orders processed.
 
 In combination with xref:alerts-on-runtime-manager.adoc[alerts], you can direct these notifications to different people to act on the alerts and fix the underlying problems.
 
@@ -43,7 +43,7 @@ To deploy your application, in the Runtime Manager click *Deploy Application* fr
 
 == Triggering Your Notification
 
-Once your application is running, you can trigger the notification by going to your application's URL, for example: +http://YOURAPP.cloudhub.io/hello-notification+. The page displays a `Hello World` message, and automatically creates a new notification in your Runtime Manager console. 
+Once your application is running, you can trigger the notification by going to your application's URL, for example: `+http://YOURAPP.cloudhub.io/hello-notification+`. The page displays a `Hello World` message, and automatically creates a new notification in your Runtime Manager console. 
 
 Return to the Runtime Manager console and click the new notification indicator bell in the upper-right to display the alert message:
 
@@ -73,26 +73,26 @@ Custom alerts and notifications are available only for applications deployed to 
 . Click *Alerts* in the menu on the left. 
 . Click the blue plus sign to create a new alert.
 . In the *Create an Alert* window, configure the information for your custom alert. +
-* Name - Enter a meaningful name for the custom alert. 
-* Severity level - Select the severity level to apply to the alert:
+* *Name* - Enter a meaningful name for the custom alert. 
+* *Severity level* - Select the severity level to apply to the alert:
  ** *Critical*
  ** *Warning*
  ** *Info*
-* Source - Select the alert source: +
+* *Source* - Select the alert source: +
  ** *Applications*
  ** *Servers*
-* Application type - Select *CloudHub Applications*.
-* Applications - Select specific applications to which to apply the custom alert, or choose *All applications* to apply the alert to all the applications in the environment. +
+* *Application type* - Select *CloudHub Applications*.
+* *Applications* - Select specific applications to which to apply the custom alert, or choose *All applications* to apply the alert to all the applications in the environment. +
 [NOTE]
 For custom alerts, the applications you select must be applications that contain the flow you configured to trigger a custom alert.  
-* Condition - Select *Custom application notification*.
+* *Condition* - Select *Custom application notification*.
  ** Select the *Priority* from the drop-down list, or leave the priority as *Any* to send notifications regardless of priority.
  ** Enter the value for the word that will trigger a notification in *Contains*. +
 [NOTE]
 This string must match a string in the message you added in the CloudHub Connector.
-* Subject - Enter the subject line to include in the notification email. 
-* Message - Enter the custom message to include in the notification. 
-* Recipients - Enter the email addresses for notification recipients. 
+* *Subject* - Enter the subject line to include in the notification email. 
+* *Message* - Enter the custom message to include in the notification. 
+* *Recipients* - Enter the email addresses for notification recipients. 
 . Click *Create Alert*.
 +
 image::custom-alert2.png[]
