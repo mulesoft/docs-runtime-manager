@@ -11,34 +11,25 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 
 [TIP]
-Before you can deploy to a server, you must first xref:3.8@mule-runtime::installing.adoc[install] Mule and then xref:managing-servers.adoc#add-a-server[register it on the platform].
+Before you can deploy to a server, you must first:
 
-You can deploy a Mule application to a local server via:
+. xref:mule-runtime::mule-standalone.adoc[Install Mule] 
+. xref:servers-create.adoc[Create a Server in Runtime Manager]
+
+You can deploy a Mule application to a local server using:
 
 * xref:deployment-strategies.adoc#cloud-console-on-premises-deployment[The Runtime Manager cloud console]
 * xref:deployment-strategies.adoc#on-premises-console-on-premises-deployment[The Anypoint Platform Private Cloud Edition]
-
-// * *Anypoint Studio* - Right-click your project and click *Deploy to Anypoint Platform* -> *Cloud*.
-
-
-This document describes the options on the *Deploy Application* page, which is identical in all of the cases above.
+* The https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager API]
+* The xref:3.9@mule-runtime::mule-maven-plugin.adoc[Mule-Maven Plugin]
 
 
 [TIP]
 ====
-If you’re interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
-
-Additionally, you can also deploy to your servers through:
-
-* The *https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager API]*
-* Using the *xref:3.8@mule-runtime::mule-maven-plugin.adoc[Mule-Maven Plugin]*
-
-On the other hand, deploy an app to xref:cloudhub.adoc[CloudHub], see xref:deploying-to-cloudhub.adoc[Deploying to CloudHub].
-====
-
+To request the Anypoint Platform Private Cloud Edition, please contact your sales representative.
 
 [NOTE]
-You must avoid having dual management over one same server. When using Runtime Manager, other deployment and management methods and/or tools – MMC and manual deployment – must be avoided.
+When you use Runtime Manager to manage a server, you cannot use other deployment and management methods or tools (MMC and manual deployment) to manage the server. 
 
 == Deploying an Application
 
@@ -55,7 +46,7 @@ image::deploying-to-your-own-servers-get-to-arm.png[]
 image::deployappfromconsole.png[DeployAppFromConsole]
 +
 [TIP]
-*Note*: For more information on the *Servers* tab, see xref:managing-servers.adoc[Managing Servers].
+For more information on the *Servers* tab, see xref:managing-servers.adoc[Managing Servers].
 +
 .  The Deploy Application page opens:
 +

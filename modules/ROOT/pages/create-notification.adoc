@@ -1,8 +1,8 @@
-= Create Notification
+= Call the CloudHub API to Create a Notification
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:keywords: cloudhub, cloudhub api, manage, cloud, enterprise, arm, runtime manager
+
 
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
@@ -10,11 +10,11 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 [TIP]
-This document deals with calling the xref:cloudhub-api.adoc[CloudHub API]. For instructions on how to perform these same tasks more easily via the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub] and its child pages.
+For instructions on how to create notifications using the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub] and its child pages.
 
-The POST operation specified with the /api/notifications resource creates a new CloudHub notification.
+The POST operation specified with the `/api/notifications` resource creates a new CloudHub notification.
 
-*Example Request:*
+== Example Request
 
 [source,json,linenums]
 ----
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 ----
 
-Example Response:
+== Example Response
 
 [source,json,linenums]
 ----
