@@ -19,7 +19,7 @@ You can deploy Mule applications to CloudHub using:
 
 == Naming an Application
 
-When you deploy an application, you must assign a name to it. The application name is the `cloudhub.io` domain name that you use to access your application, therefore, application names must be unique to avoid domain conflicts. 
+When you deploy an application, you must assign a name to it. The application name is the `cloudhub.io` domain name that you use to access your application, therefore, application names must be unique to avoid domain conflicts.
 
 The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints. The format of the URL is `+http://myapplicationdomain.cloudhub.io+`. For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
 
@@ -56,8 +56,8 @@ You cannot deploy an application from Studio to the CloudHub *Design* environmen
 
 == Deploy an Application to CloudHub from Runtime Manager
 
-. In Anypoint Platform, go to *Management Center > Runtime Manager*. 
-. In the *Applications* tab, click *Deploy application*. 
+. In Anypoint Platform, go to *Management Center > Runtime Manager*.
+. In the *Applications* tab, click *Deploy application*.
 . In the *Deploy Application* page: +
 * Enter an *Application Name* +
 [NOTE]
@@ -65,7 +65,7 @@ An application with the same name cannot be deployed in two environments at the 
 * In the *Deployment Target* drop-down list, select *CloudHub*.
 * Click *Choose File*, then select either:
 ** *Import file from Exchange*
-** *Upload file* 
+** *Upload file*
 +
 [NOTE]
 The application file size limit is 200 MB.
@@ -81,15 +81,15 @@ Select from the following options: +
 * *Automatically restart application when not responding* &#8211; <<automatic_restart,Restart the application automatically>> when it is unresponsive.
 * *Persistent queues* &#8211; Store data in an input queue to disk. See <<persistent_queues,Persistent Queues>> for more information.
 * *Encrypt Persistent queues* &#8211; Encrypt the data stored in the input queue on disk.
-* *Enable Monitoring and Visualizer* &#8211; Use Anypoint Monitoring and Visualizer for Mule applications running on supported versions of Mule. 
+* *Enable Monitoring and Visualizer* &#8211; Use Anypoint Monitoring and Visualizer for Mule applications running on supported versions of Mule.
 +
 [NOTE]
 This option appears only if it is enabled for your organization and you have a Titanium subscription to Anypoint Monitoring.
-. Click *Deploy Application*. 
+. Click *Deploy Application*.
 
 == Deployment Execution
 
-CloudHub uploads your application and automatically begins the deployment process. During this process, your view is switched to the log view, allowing you to monitor the process of your application deployment. This process might take several minutes. 
+CloudHub uploads your application and automatically begins the deployment process. During this process, your view is switched to the log view, allowing you to monitor the process of your application deployment. This process might take several minutes.
 
 During the deployment, the application status indicator changes to yellow to indicate the deployment is in progress.
 
@@ -106,7 +106,7 @@ To deploy a Mule app from the CloudHub Command Line Utility (CLI):
 . Verify that https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[CloudHub access] is enabled on Anypoint Platform.
 . If you do not already have access to the Anypoint-CLI command line tool, install it using xref:anypoint-platform-cli2.adoc#installation[Anypoint Platform CLI installation instructions].
 . Log into your Anypoint Platform account from the command line:
-  .. Enter your username: `anypoint-cli --username="user"`. 
+  .. Enter your username: `anypoint-cli --username="user"`.
   .. Enter your password.
 . Use the `runtime-mgr application deploy` command providing the *name* of the app and the *location* of the deployable archive (`.zip`) file on your file system, for example:
 +
@@ -303,7 +303,7 @@ These application properties can be used inside your Mule configuration. For exa
 ----
 
 [NOTE]
-In text format, the backslash (`\`) character is used as an escape character. For example, to use `:` in key or value, you can put `\:` in the text. To use `\`, `\\` is needed. 
+In text format, the backslash (`\`) character is used as an escape character. For example, to use `:` in key or value, you can put `\:` in the text. To use `\`, `\\` is needed.
 No escape character is required in list format.
 
 === Overriding Properties in CloudHub vs. On-Premises Mule
@@ -337,7 +337,7 @@ It is possible to change the behavior of the application to not allow CloudHub p
 
 === Overriding Secure Properties
 
-You can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. You can also include an `applications.properties` file in your application bundle, which can include properties that are marked as secure, so they are automatically treated as such. 
+You can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. You can also include an `applications.properties` file in your application bundle, which can include properties that are marked as secure, so they are automatically treated as such.
 
 Secure properties can also be overridden by new values you set at runtime in the Runtime Manager console. See xref:secure-application-properties.adoc[Secure Application Properties] for more information.
 
@@ -367,7 +367,7 @@ To pre-allocate static IP addresses for your application, select a region from t
 
 image::static-ip-regions.png[Static IPs by region]
 
-By default, the number of static IP addresses allocated to your organization is equal to twice the number of production vCores in your subscription. This number is displayed under the *Use Static IP* checkbox. 
+By default, the number of static IP addresses allocated to your organization is equal to twice the number of production vCores in your subscription. This number is displayed under the *Use Static IP* checkbox.
 
 If you need to increase this quota, please contact https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support].
 
@@ -378,7 +378,7 @@ If you need to free up some of your overall static IP allocation, you can releas
 
 == Configuring a Deployed Application
 
-Most of the settings you specified when deploying the application can be edited after the application is deployed to CloudHub. 
+Most of the settings you specified when deploying the application can be edited after the application is deployed to CloudHub.
 
 To edit an application's settings:
 
@@ -395,7 +395,7 @@ image::viewingdeployedapp.png[ViewingDeployedApp]
 
 If you have registered an API in the Anypoint Platform, you can easily run it through an auto generated proxy to track its usage and implement policies. You can deploy this proxy to CloudHub without ever needing to go into the Runtime Manager section of Anypoint Platform.
 
-From a menu in the API version page, you can trigger the deployment of your proxy and set up the CloudHub application name, environment, and gateway version to use. Then you can optionally access the Runtime Manager deployment menu for this proxy and configure advanced settings. See xref:api-manager::setting-up-an-api-proxy.adoc[Setting Up a Proxy].
+From a menu in the API version page, you can trigger the deployment of your proxy and set up the CloudHub application name, environment, and gateway version to use. Then you can optionally access the Runtime Manager deployment menu for this proxy and configure advanced settings.
 
 == Deployment Errors
 
