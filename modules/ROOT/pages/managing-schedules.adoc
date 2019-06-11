@@ -18,7 +18,7 @@ The *Schedules* tab is useful in the following scenarios:
 == Considerations
 
 * Schedulers are managed by CloudHub and are triggered in only one worker even if more are available.
-* While CloudHub supports polling frequencies in seconds, you may see discrepancies of a few seconds between individual polling calls. Setting a polling Schedule lesser than 10 seconds is not recommended.
+* Setting a polling Schedule for less than a 10-second frequency between calls is not recommended.
 * If a scheduled job is not triggered one or more times because the application is down, CloudHub triggers the job as soon as the application restarts.
 * CloudHub scheduler reads a schedule job configuration every time it runs. This means that if you update the schedule time, the change is not immediate. The job executes as it was initially configured before the scheduler picks up the next setting for the next time it runs. To apply your changes immediately, run your jobs after every schedule update.
 * If poll execution time takes longer than 12 hours, the scheduler fails and is re-executed.
