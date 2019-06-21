@@ -79,6 +79,10 @@ You can create your Anypoint VPC inside any of the available CloudHub regions. +
 The recommended region to use might vary depending on how you connect to your Anypoint VPC. If you are using a VPN tunnel, you might want to choose the CloudHub region closest to your data center. +
 However, if you are peering with your private AWS VPC, you need to create your Anypoint VPC in the same AWS region.
 
+== FAQ: How to deploy or move apps into a VPC
+
+You associate a VPC to an environment and deploy apps into that same environment (e.g. Sandbox). If the region selected for your app and VPC are the same, it will deploy your app into that VPC. Otherwise, your app will be deployed into the MuleSoft shared VPC. If the VPC and environment association changes (e.g. you remove and add a different VPC to this environment), your apps will not automatically move into the new VPC. You will need to re-deploy/restart your apps so they move into your new VPC.
+
 == See Also
 
 * xref:to-request-vpc-connectivity.adoc[To Request VPC Connectivity to Your Network]
