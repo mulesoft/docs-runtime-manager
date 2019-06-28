@@ -537,7 +537,7 @@ transports:
   rest.agent.transport:
     restSecurity:
       keyStoreFile: server.jks
-      keystorePassword: P@ssword
+      keyStorePassword: P@ssword
       keyStoreAlias: serverkey
       keyStoreAliasPassword: P@ssword
     port: 9999
@@ -599,6 +599,28 @@ echo "Export the client alias' certificate from the clientkeystore.jks key store
 keytool -export -alias client -file client.crt -keystore clientkeystore.jks -storepass mulesoft
 ----
 
+. Take a backup of anypoint-truststore.jks and mule-agent.yml file
+
++
+[source,console,linenums]
+----
+cp anypoint-truststore.jks anypoint-truststure.jks.bkp
+cp mule-agent.yml mule-agent.yml.bkp
+----
+
+. Export the Anypoint Platform's certificate to a DES formatted certificate file. If prompted for a password just press enter.
+
++
+[source,console,linenums]
+----
+keytool -export -alias hybrid -file hybrid.crt -keystore anypoint-truststore.jks
+
+----
+
+
+
+
+
 . Since these are self-signed certificate files, the client can't validate them with a Certificate Authority (CA), so you must create a truststore file containing both the client and RMA certificates (public keys) to emulate CA signing both of these certificates. In a production environment, the server and client certificates would both be signed by a trusted CA, then published or shared with the client and server machines.
 
 +
@@ -609,7 +631,21 @@ echo "Import client and server public keys into a common cacerts.jks truststore 
 keytool -import -v -trustcacerts -alias rma -file rma.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
 
 keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
+
+keytool -import -v -trustcacerts -alias hybrid -file hybrid.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
+
 ----
+
+. Rename the newly created cacerts.jks file as anypoint-truststore.jks. This file will function as your new trustustrore for RMA as well as Anypoint Platform connectivity.
+
++
+[source,console,linenums]
+----
+mv cacerts.jks anypoint-truststore.jks
+
+----
+
+Start the mule server and verify that it is still connected to ARM in Anypoint Platform.
 
 . Configure the Mule runtime engine with the `rmakeystore.jks` file and the `cacerts.jks` truststore. From the `$MULE_HOME/bin` folder run the command `./amc_setup -S`. For example, if you just ran all the previous commands in the `/security` folder, enter the values:
 
@@ -643,7 +679,7 @@ transports:
   rest.agent.transport:
     restSecurity:
       keyStoreFile: clientkeystore.jks
-      keystorePassword: mulesoft
+      keyStorePassword: mulesoft
       keyStoreAlias: client
       keyStoreAliasPassword: mulesoft
     port: 9999
@@ -739,7 +775,8 @@ organizationId: organizationId
 transports:
     rest.agent.transport:
         security:
-            keyStorePassword: rmakeystore.jks
+            keyStoreFile: rmakeystore.jks
+            keyStorePassword: PassW0rd
             keyStoreAlias: rma
             keyStoreAliasPassword: mulesoft
         port: 9997
@@ -806,6 +843,7 @@ transports:
   websocket.transport:
     consoleUri: wss://mule-manager.anypoint.mulesoft.com:443/mule
     security:
+      keyStoreFile: rma.jks
       keyStorePassword: <password>
       keyStoreAlias: agent
       keyStoreAliasPassword: <password>
