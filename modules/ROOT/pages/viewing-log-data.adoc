@@ -2,19 +2,12 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:keywords: cloudhub, logging, enhanced log management, r44, arm, runtime manager
-
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 CloudHub provides access to log data that includes deployment messages and events for each worker.
 
-
 [NOTE]
 ====
-Logs and diagnostics are currently available only for applications deployed to CloudHub workers. In cases where applications are deployed using the Runtime Manager local server, you can send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software]. See xref:deployment-strategies.adoc[Deployment Strategies] and xref:monitoring.adoc[Monitoring Applications] for more details.
+Logs and diagnostics are currently available only for applications deployed to CloudHub workers. In cases where applications are deployed to a local server, you can send data to external analytics software. 
 
 Applications deployed to Pivotal Cloud Foundry (PCF) don't expose any log data through Runtime Manager, but you can see event logs on Pivotal's UI.
 ====
@@ -22,33 +15,27 @@ Applications deployed to Pivotal Cloud Foundry (PCF) don't expose any log data t
 
 == View Logs
 
-. In Runtime Manager, click *Applications* in the left menu, then click the application that is deployed to CloudHub to open its management options.
-. In the left menu, click *Logs*. The application logs are displayed.
-+
-//image::elmstart.png[ELMStart]
+View logs for applications deployed to CloudHub.
 
+. In Runtime Manager, click *Applications* in the left menu, then click the application that is deployed to CloudHub to open the management panel on the right. 
+. Click *Logs*. The application logs are displayed.
 . The *Deployments* section on the right of the logging screen lets you selectively view the output by day, deployment, system log, and workers. You can unapply a filter by unticking the checkbox next to a date.
 +
 image::elmfilters.png[ELMfilters]
 
-. You can search for log content, or click *Advanced* to search for a specified time, day, date range, or by message priority. After you specify the search criteria, click *Apply*. For more information, see <<Advanced Search, Advanced Search>>.
-+
-image::elmadvancedsearch.png[ELMAdvancedSearch]
-
-
-
 == Download Logs
 
-Each worker in each deployment has separate logs you can download.
+Each worker in each CloudHub deployment has separate logs you can download.
 
-In the *Deployment* filters section on the right, find the date and worker you want to view, click the download icon next to it, and select *Logs*.
+. In the *Deployment* filters section on the right, find the date and worker you want to view. 
+. Click the download icon next to the worker, and select *Logs*.
 
 image::downloadlogs.png[DownloadLogs]
 
-The log file is a text file with `.log` file extension and named in the format of `<deployment-ID>-<instance-ID>.log`. You can view this file with a text editor.
+The log file is a text file with `.log` file extension and named in the format of `<deployment-ID>-<instance-ID>.log`. You can view the log file with a text editor.
 
 [NOTE]
-If CloudHub application logs need to be archived or downloaded for audit, analytics or similar purpose on regular intervals, use xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
+If you need to archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
 
 
 == Download Diagnostics
@@ -59,7 +46,8 @@ Diagnostics display the Java thread dump of each CloudHub worker in each deploym
 For apps that run on a Mule versions earlier than 3.8.0 (excluding version 3.7.4), diagnostics are not available.
 
 
-In the *Deployment* filters section on the right, find the date and worker you want to view, click the download icon next to it, and select *Diagnostics*.
+. In the *Deployment* filters section on the right, select the date and worker for which you want to download diagnostics.
+. Click the download icon next to it, and select *Diagnostics*.
 
 The downloaded log file is a text file with the `.txt` file extension and named in the format of `<app-name>-instance-<instance-ID>-<worker-number>-diag.txt`. You can view this file with a text editor.
 
@@ -68,7 +56,7 @@ The downloaded log file is a text file with the `.txt` file extension and named 
 ====
 In diagnostics, the instance ID of a worker is the deployment ID plus the worker number (0 to 4).
 
-You can also download a diagnostics file directly, without having to go through the UI, by accessing the following URL:
+You can also access the following URL to download a diagnostics file directly:
 
 `api/v2/applications/appName/instances/instanceId/diagnostics`
 ====
@@ -85,11 +73,12 @@ CloudHub stores log data in Universal Time (UTC); however, the console displays 
 
 == Search Logs
 
-Advanced search lets you search logs by date and priority.
+Search for logs that contain specified values, or use advanced search to search for logs by date and priority.
 
-To access advanced search, click *Advanced* in the search field.
-
-image::elmadvsearch.png[ELMAdvSearch]
+. Enter a value in the search box, or click *Advanced* to search for logs for a specified time, day, date range, and message priority. 
+. Click *Apply*.
++
+image::elmadvancedsearch.png[ELMAdvancedSearch]
 
 === Search by Date and Time
 
@@ -151,8 +140,11 @@ Possible values are:
 You can filter log data by entering search terms into the search box at the top of the log page that match results in the log message. You can also search for an exact term in the log message with a few common quantifiers for wildcard searching:
 
 * `?` - The question mark matches zero or one of the preceding elements.
-* `*` - The asterisk matches zero or more of the preceding element.
+* `&#8727;` - The asterisk matches zero or more of the preceding element.
 
 == See Also
 
+* xref:deployment-strategies.adoc[Deployment Strategies]
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
 * xref:monitoring.adoc[Monitoring Applications]
+* xref:mule-runtime::logging-in-mule.adoc[Configuring Logging]
