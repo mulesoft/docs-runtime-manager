@@ -562,7 +562,7 @@ The steps to configure TLS are:
 ----
 echo "Generate a new keystore to identify the Runtime Manager Agent. Use CN=localhost"
 
-keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft  -genkey -keypass mulesoft -noprompt \
+keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
 -alias rma \
 -dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
 ----
@@ -584,7 +584,7 @@ keytool -export -alias rma -file rma.crt -keystore rmakeystore.jks -storepass mu
 [source,console,linenums]
 ----
 echo "Generate a new keystore to be used by client requestors. Use CN=localhost"
-keytool -keystore clientkeystore.jks -storepass mulesoft -genkey -keypass mulesoft -noprompt \
+keytool -keystore clientkeystore.jks -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
 -alias client \
 -dname "CN=localhost, OU=RMA Client, O=MuleSoft, L=San Francisco, S=California, C=US"
 ----
