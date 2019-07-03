@@ -9,9 +9,9 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-You can view and control any Virtual Machine (VM) or Staged Event-Driven Architecture (http://en.wikipedia.org/wiki/Staged_event-driven_architecture[SEDA]) queues within the flows of your deployed applications from the *Queues* tab in CloudHub.
+You can view and control any Virtual Machine (VM) or Staged Event-Driven Architecture (http://en.wikipedia.org/wiki/Staged_event-driven_architecture[SEDA]) queues within the flows of your deployed applications from the *Queues* tab in Runtime Manager.
 
-Queues are currently only available for applications deployed to CloudHub workers. They are not available for applications that you deploy with the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
+Queues are available only for applications deployed to CloudHub workers. They are not available for applications that you deploy with the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
 
 image::queuestab.png[QueuesTab]
 
@@ -31,7 +31,7 @@ The *Queues* tab is useful for the following use cases:
 
 * You want runtime visibility into the queues in your application.
 * You are testing your application to observe whether messages are traveling through your queues as expected.
-* Your application is stuck processing a message and you want to flush the messages from just that queue to resolve the issue.
+* Your application is stuck processing a message and you want to flush the messages from only that queue to resolve the issue.
 
 == Enabling Queues
 
@@ -52,7 +52,13 @@ image::chqconsole.png[CHQConsole]
 
 The name of each queue is determined by the `path` attribute of the associated VM endpoint, or, in the case of a SEDA queue, from the flow name.
 
-The *Queued* column shows the number of messages currently waiting on each of the queues in your application. The *In-Flight* column indicates the number of messages being processed in the flow after that queue. The in-flight messages are still on the queue until processing is complete, then they are deleted from the queue. The *Processed Messages* column shows a thumbnail graph depicting the number of messages processed through each queue over the past 24 hours. The *Queued* and *In-Flight* columns update every five seconds, and the *Processed Messages* graph updates every five minutes.
+* The *Queued* column shows the number of messages currently waiting on each of the queues in your application.
+* The *In-Flight* column indicates the number of messages being processed in the flow after that queue.
++
+The in-flight messages are still on the queue until processing is complete, then they are deleted from the queue.
+* The *Processed Messages* column shows a thumbnail graph depicting the number of messages processed through each queue over the past 24 hours.
+
+The *Queued* and *In-Flight* columns update every five seconds, and the *Processed Messages* graph updates every five minutes.
 
 == Clearing Queues
 
@@ -89,7 +95,7 @@ When enabling persistent queues in your application, be aware of the following:
 
 == See Also
 
-* Learn more about the advantages of xref:runtime-manager::cloudhub-fabric#persistent-queues[persistent queueing].
+* Learn more about the advantages of xref:cloudhub-fabric#persistent-queues[persistent queueing].
 * Learn how to xref:mule-runtime::reliability-patterns#implementing-a-reliability-pattern[set up your applications in reliability patterns] to reap the benefits of persistent queueing.
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * Learn the xref:6@studio::index.adoc[Anypoint Studio Essentials].
