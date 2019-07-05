@@ -44,7 +44,7 @@ An additional Anypoint VPC license is required for each remote location that nee
 [[faq_how_to_size_vpc]]
 == FAQ: How to Size my VPC
 
-When you create a an Anypoint VPC, the range of IP addresses for the network must be specified in the form of a Classless Inter-Domain Routing (CIDR) block, using CIDR notation. +
+When you create an Anypoint VPC, the range of IP addresses for the network must be specified in the form of a Classless Inter-Domain Routing (CIDR) block, using CIDR notation. +
 This address space is reserved for Mule workers, so it cannot overlap with any address space used in your data center if you want to peer it with your VPC.
 
 To calculate the proper sizing for your Anypoint VPC, you first need to understand that the number of dedicated IP addresses is not the same as the number of workers you have deployed. +
@@ -79,9 +79,15 @@ You can create your Anypoint VPC inside any of the available CloudHub regions. +
 The recommended region to use might vary depending on how you connect to your Anypoint VPC. If you are using a VPN tunnel, you might want to choose the CloudHub region closest to your data center. +
 However, if you are peering with your private AWS VPC, you need to create your Anypoint VPC in the same AWS region.
 
-== FAQ: How to deploy or move apps into a VPC
+== FAQ: How to deploy or move applications to a VPC
 
-You associate a VPC to an environment and deploy apps into that same environment (e.g. Sandbox). If the region selected for your app and VPC are the same, it will deploy your app into that VPC. Otherwise, your app will be deployed into the MuleSoft shared VPC. If the VPC and environment association changes (e.g. you remove and add a different VPC to this environment), your apps will not automatically move into the new VPC. You will need to re-deploy/restart your apps so they move into your new VPC.
+MuleSoft applications are deployed to an environment (dev, sandbox, and so on). 
+
+When the deployment region matches the VPC region:
+
+* If the environment is already associated with a VPC at the time of application deployment, the app resides inside the VPC.
+* If the environment is associated with a VPC after the app deployment, the app will not reside inside the VPC until it is restarted.
+* When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means it will not have access to any connectivity methods configured for the VPC. 
 
 == See Also
 
