@@ -7,7 +7,7 @@ CloudHub provides access to log data that includes deployment messages and event
 
 [NOTE]
 ====
-Logs and diagnostics are currently available only for applications deployed to CloudHub workers. In cases where applications are deployed to a local server, you can send data to external analytics software. 
+Logs and diagnostics are currently available only for applications deployed to CloudHub workers. In cases when applications are deployed to a local server, you can send data to external analytics software.
 
 Applications deployed to Pivotal Cloud Foundry (PCF) don't expose any log data through Runtime Manager, but you can see event logs on Pivotal's UI.
 ====
@@ -17,8 +17,10 @@ Applications deployed to Pivotal Cloud Foundry (PCF) don't expose any log data t
 
 View logs for applications deployed to CloudHub.
 
-. In Runtime Manager, click *Applications* in the left menu, then click the application that is deployed to CloudHub to open the management panel on the right. 
-. Click *Logs*. The application logs are displayed.
+. In Runtime Manager, click *Applications* in the left menu, and then click the application that is deployed to CloudHub to open the management panel on the right.
+. Click *Logs*.
++
+The application logs are displayed.
 . The *Deployments* section on the right of the logging screen lets you selectively view the output by day, deployment, system log, and workers. You can unapply a filter by unticking the checkbox next to a date.
 +
 image::elmfilters.png[ELMfilters]
@@ -27,15 +29,15 @@ image::elmfilters.png[ELMfilters]
 
 Each worker in each CloudHub deployment has separate logs you can download.
 
-. In the *Deployment* filters section on the right, find the date and worker you want to view. 
+. In the *Deployment* filters section on the right, find the date and worker you want to view.
 . Click the download icon next to the worker, and select *Logs*.
 
 image::downloadlogs.png[DownloadLogs]
 
-The log file is a text file with `.log` file extension and named in the format of `<deployment-ID>-<instance-ID>.log`. You can view the log file with a text editor.
+The log file is a text file with the file extension `.log` in the format `<deployment-ID>-<instance-ID>.log`. You can view the log file with a text editor.
 
 [NOTE]
-If you need to archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
+To archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
 
 
 == Download Diagnostics
@@ -56,7 +58,7 @@ The downloaded log file is a text file with the `.txt` file extension and named 
 ====
 In diagnostics, the instance ID of a worker is the deployment ID plus the worker number (0 to 4).
 
-You can also access the following URL to download a diagnostics file directly:
+You can also use the following URL to download a diagnostics file directly:
 
 `api/v2/applications/appName/instances/instanceId/diagnostics`
 ====
@@ -75,7 +77,7 @@ CloudHub stores log data in Universal Time (UTC); however, the console displays 
 
 Search for logs that contain specified values, or use advanced search to search for logs by date and priority.
 
-. Enter a value in the search box, or click *Advanced* to search for logs for a specified time, day, date range, and message priority. 
+. Enter a value in the search box, or click *Advanced* to search for logs for a specified time, day, date range, and message priority.
 . Click *Apply*.
 +
 image::elmadvancedsearch.png[ELMAdvancedSearch]
@@ -140,7 +142,7 @@ Possible values are:
 You can filter log data by entering search terms into the search box at the top of the log page that match results in the log message. You can also search for an exact term in the log message with a few common quantifiers for wildcard searching:
 
 * `?` - The question mark matches zero or one of the preceding elements.
-* `&#8727;` - The asterisk matches zero or more of the preceding element.
+* `&#8727;` - The asterisk matches zero or more of the preceding elements.
 
 == See Also
 
