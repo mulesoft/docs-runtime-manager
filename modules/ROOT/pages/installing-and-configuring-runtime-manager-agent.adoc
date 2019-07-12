@@ -1,4 +1,4 @@
-= Install and Configure the Runtime Manager Agent
+directory= Install and Configure the Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -175,9 +175,9 @@ Normally, you configure a Runtime Manager agent to communicate and exchange moni
 
 You can configure a Runtime Manager agent to communicate with other management consoles using one or more REST transports. These options are supported by the `-I` and `-S` options.
 
-If you run `amc_setup` with the `-I` or `-S` options, your previous `$MULE_HOME/conf/mule-agent.yml` file is completely replaced. 
+If you run `amc_setup` with the `-I` or `-S` options, your previous `$MULE_HOME/conf/mule-agent.yml` file is completely replaced.
 
-There are some configuration options that are not possible using the `amc_setup` command, such as extending JMX monitoring to other external services, so these options must be manually added to the `$MULE_HOME/conf/mule-agent.yml` file. You can also backup various configuration options in the `$MULE_HOME/conf/mule-agent.yml` file. 
+There are some configuration options that are not possible using the `amc_setup` command, such as extending JMX monitoring to other external services, so these options must be manually added to the `$MULE_HOME/conf/mule-agent.yml` file. You can also backup various configuration options in the `$MULE_HOME/conf/mule-agent.yml` file.
 
 === Configure JMX Monitoring Publication Services
 
@@ -305,7 +305,7 @@ globalConfiguration:
 ====
 Do not register a single Mule runtime engine with multiple Runtime Manager business groups or environments.
 
-Each individual Mule can be registered with Runtime Manager only once. Do not duplicate a Mule runtime engine after registering it with Anypoint Runtime Manager. 
+Each individual Mule can be registered with Runtime Manager only once. Do not duplicate a Mule runtime engine after registering it with Anypoint Runtime Manager.
 
 Do not register a Mule runtime engine with both an older xref:mule-management-console::index.adoc[Mule Management Console (MMC)] and Runtime Manager. If the Mule runtime engine is currently managed in MMC, first unregister the Mule runtime engine with MMC before running the `amc_setup -H` script.
 ====
@@ -473,13 +473,14 @@ services:
     frequencyTimeUnit: MINUTES
 ----
 
-
-
 === Secure Connection Channel
 
-This option, configurable on the installation command through the '-S' argument, configures the Runtime Manager agent to establish a TLS connection with an on-premises administration console.
+You can configure Runtime Manager agent to establish a TLS connection using the `-S` argument on the installation command line. This option enables a TLS channel for REST communications only.
 
-You need to provide the truststore and keystore in JKS format. This option enables a TLS channel for REST communications only. Once you select the Secure connection Channel mode, you see the following menu:
+You can use this option when managing the agent manually. For detailed steps, see <<Configure Two-Way TLS for Mule Runtime Engine without the Control Plane>>.
+
+If you're using the Anypoint Platform Runtime Manager cloud-console to manage the agent, see <<Configure Two-Way TLS for Mule Runtime Engine Managed by Control Plane>>.
+
 
 [%header,cols="20a,80a"]
 |===
@@ -489,9 +490,13 @@ You need to provide the truststore and keystore in JKS format. This option enabl
 |`-S`
 
 `--secure`
-|Configures the Runtime Manager agent to establish a TLS connection with an on-premises administration console. You need to provide the truststore and keystore in JKS format. This option enables a TLS channel for REST communications only. See <<Secure Connection Channel>>. Note that this is for manually managing the agent (i.e. not using ARM cloud-console to manage the agent)
+|Configures the Runtime Manager agent to establish a TLS connection with an on-premises administration console.
+
+You must provide keystore (public/private key pair) and truststore files in JKS format.
 
 |===
+
+Once you select the secure connection channel mode, you see the following menu:
 
 ----
 The communication channel for the agent will be encrypted using
@@ -506,24 +511,21 @@ Keystore Alias (?):
 Keystore Alias Password (?):
 INFO: Mule agent was successfully configured to use a TLS channel for REST communications.
 ----
-_Keystore location_
 
-The location of the keystore file to encrypt the communication channel. The keystore must be in JKS format. It is mandatory to provide one.
-
-_Truststore location_
-
-The location where of the truststore file to accept incoming requests from the administration console. The truststore must be in JKS format and must not have a password.
-
-_Keystore Password_
-
-The password to read the keystore. The password is used by the agent to open the keystore.
-
-_Keystore Alias_
-
-The alias of the key stored in the keystore.
-
-_Keystore Alias Password_
-
+* *Keystore location*
++
+Specifies the location of the keystore file to encrypt the communication channel. The keystore file must be in JKS format. (Required)
+* *Truststore location*
++
+Specifies the location of the truststore file to accept incoming requests from the administration console. The truststore must be in JKS format and must not have a password.
+* *Keystore Password*
++
+Provides the password to read the keystore. The agent uses the password to open the keystore.
+* *Keystore Alias*
++
+Specifies the alias of the key stored in the keystore.
+* *Keystore Alias Password*
++
 The alias password in the keystore.
 
 Here is an example `mule-agent.yml` file generated by the `-S` parameter:
@@ -549,25 +551,24 @@ services:
     frequencyTimeUnit: MINUTES
 ----
 
-=== Configuring a Mule Runtime for Two-Way TLS Without Anypoint Control Plane
+=== Configure Two-Way TLS for Mule Runtime Engine without the Control Plane
 
-Here is an example of configuring two-way TLS with the `amc_setup -S` option. When using this option, the Mule Runtime is not connected to Anypoint Control Plane.
+To configure two-way TLS when Mule is not connected to the control plane, use the `amc_setup -S` option.
 
-The steps to configure TLS are:
-
-. Generate a keystore (public/private key pair) to identify the Runtime Manager agent (server). Set the CN to match the Runtime Manager agent's hostname or IP Address.
-
+. Generate a keystore (public/private key pair) to identify the Runtime Manager agent (server).
++
+Set the CN to match the Runtime Manager agent hostname or IP address:
 +
 [source,console,linenums]
 ----
-echo "Generate a new keystore to identify the Runtime Manager Agent. Use CN=localhost"
+echo "Generate a new keystore to identify the Runtime Manager agent. Use CN=localhost"
 
 keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
 -alias rma \
 -dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
 ----
 
-. Export the Runtime Manager agent's certificate (only the public key) to a DES formatted certificate file
+. Export the Runtime Manager agent certificate (only the public key) to a DES-formatted certificate file.
 
 +
 [source,console,linenums]
@@ -576,9 +577,7 @@ echo "Export the rma alias' certificate from the rmakeystore.jks key store"
 keytool -export -alias rma -file rma.crt -keystore rmakeystore.jks -storepass mulesoft
 ----
 
-
-
-. For each REST client that will connect to the Runtime Manager agent, generate a keystore (public/private key pair) to identify the REST client.
+. For each REST client that connects to the Runtime Manager agent, generate a keystore (public/private key pair) to identify the REST client.
 
 +
 [source,console,linenums]
@@ -589,8 +588,7 @@ keytool -keystore clientkeystore.jks -storepass mulesoft -genkey -keyalg RSA -ke
 -dname "CN=localhost, OU=RMA Client, O=MuleSoft, L=San Francisco, S=California, C=US"
 ----
 
-
-. Export the REST client's certificate (the public key only) to a DES formatted certificate file.
+. Export the REST client certificate (the public key only) to a DES-formatted certificate file.
 
 +
 [source,console,linenums]
@@ -599,8 +597,8 @@ echo "Export the client alias' certificate from the clientkeystore.jks key store
 keytool -export -alias client -file client.crt -keystore clientkeystore.jks -storepass mulesoft
 ----
 
-. Since these are self-signed certificate files, the client can't validate them with a Certificate Authority (CA), so you must create a truststore file containing both the client and RMA certificates (public keys) to emulate CA signing both of these certificates. In a production environment, the server and client certificates would both be signed by a trusted CA, then published or shared with the client and server machines.
-
++
+. Create the truststore file.
 +
 [source,console,linenums]
 ----
@@ -610,9 +608,16 @@ keytool -import -v -trustcacerts -alias rma -file rma.crt -keystore cacerts.jks 
 
 keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
 ----
++
+Because the certificate files are self-signed, the client can't validate them with a Certificate Authority (CA). To emulate CA signing the certificates, you must create a truststore file containing both the client and RMA certificates (public keys). In a production environment, the server and client certificates are both signed by a trusted CA, and then published or shared with the client and server machines.
 
-. Configure the Mule runtime engine with the `rmakeystore.jks` file and the `cacerts.jks` truststore. From the `$MULE_HOME/bin` folder run the command `./amc_setup -S`. For example, if you just ran all the previous commands in the `/security` folder, enter the values:
+. Configure Mule runtime engine with the `rmakeystore.jks` file and the `cacerts.jks` truststore.
++
+From the `$MULE_HOME/bin` folder, run `./amc_setup -S`.
 
+. When prompted, enter the values you generated.
++
+For example, if you ran the previous commands from the `/security` folder, enter these values:
 +
 [source,console,linenums]
 ----
@@ -655,21 +660,24 @@ services:
     frequencyTimeUnit: MINUTES
 
 ----
-The `/security/cacerts.jks` truststore file is imported into the `$MULE_HOME/conf` folder and renamed as `anypoint-truststore.jks`. +
++
+This command imports the `/security/cacerts.jks` truststore file into the `$MULE_HOME/conf` folder and renames it  `anypoint-truststore.jks`.
++
 [NOTE]
-The default truststore was renamed `anypoint-truststore.jks` in Runtime Manager agent version 1.10.0 and later. In earlier versions of Runtime Manager agent, the default truststore was named `truststore.jks`. 
+In Runtime Manager agent version 1.10.0 and later, the name of the default truststore was `anypoint-truststore.jks`. In earlier versions of Runtime Manager agent, the name was `truststore.jks`.
 
-. Restart the Mule runtime engine, and verify the Runtime Manager agent REST interface starts up successfully. Add SSL debugging to the Mule runtime engine logging. `./mule -M-Djavax.net.debug=all`
+. Restart Mule runtime engine and verify that the Runtime Manager agent REST interface starts successfully.
+. Add SSL debugging to the Mule runtime engine logging:
++
+`./mule -M-Djavax.net.debug=all`
 
+=== Configure Two-Way TLS for Mule Runtime Engine Managed by Control Plane
 
-=== Configuring a Mule Runtime for Two-Way TLS with the Mule Runtime managed by Anypoint Control Plane
+To configure two-way TLS when Mule is connected to the control plane:
 
-Here is an example of configuring two-way TLS with the Mule Runtime connected to Anypoint Control Plane.
-
-The steps to configure TLS are:
-
-. Generate a keystore (public/private key pair) to identify the Runtime Manager agent (server). Set the CN to match the Runtime Manager agent's hostname or IP Address.
-
+. Generate a keystore (public/private key pair) to identify the Runtime Manager agent (server).
++
+Set the CN to match the Runtime Manager agent hostname or IP address.
 +
 [source,console,linenums]
 ----
@@ -680,7 +688,7 @@ keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey 
 -dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
 ----
 
-. Export the Runtime Manager agent's certificate (only the public key) to a DES formatted certificate file
+. Export the Runtime Manager agent certificate (only the public key) to a DES-formatted certificate file.
 
 +
 [source,console,linenums]
@@ -689,10 +697,7 @@ echo "Export the rma alias' certificate from the rmakeystore.jks key store"
 keytool -export -alias rma -file rma.crt -keystore rmakeystore.jks -storepass mulesoft
 ----
 
-
-
-. For each REST client that will connect to the Runtime Manager agent, generate a keystore (public/private key pair) to identify the REST client.
-
+. For each REST client that connects to the Runtime Manager agent, generate a keystore (public/private key pair) to identify the REST client.
 +
 [source,console,linenums]
 ----
@@ -702,9 +707,7 @@ keytool -keystore clientkeystore.jks -storepass mulesoft -genkey -keyalg RSA -ke
 -dname "CN=localhost, OU=RMA Client, O=MuleSoft, L=San Francisco, S=California, C=US"
 ----
 
-
-. Export the REST client's certificate (the public key only) to a DES formatted certificate file.
-
+. Export the REST client certificate (the public key only) to a DES-formatted certificate file.
 +
 [source,console,linenums]
 ----
@@ -712,7 +715,7 @@ echo "Export the client alias' certificate from the clientkeystore.jks key store
 keytool -export -alias client -file client.crt -keystore clientkeystore.jks -storepass mulesoft
 ----
 
-. Since these are self-signed certificate files, the client can't validate them with a Certificate Authority (CA), so you must create a truststore file containing both the client and RMA certificates (public keys) to emulate CA signing both of these certificates. In a production environment, the server and client certificates would both be signed by a trusted CA, then published or shared with the client and server machines.
+. Create the truststore file containing both the client and RMA certificates.
 
 +
 [source,console,linenums]
@@ -723,8 +726,10 @@ keytool -import -v -trustcacerts -alias rma -file rma.crt -keystore cacerts.jks 
 
 keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
 ----
++
+Because the certificate files are self-signed, the client can't validate them with a Certificate Authority (CA). To emulate CA signing the certificates, you must create a truststore file containing both the client and RMA certificates (public keys). In a production environment, the server and client certificates are both signed by a trusted CA, and then published or shared with the client and server machines.
 
-. Take a backup of anypoint-truststore.jks and mule-agent.yml file
+. Back up the `anypoint-truststore.jks` and `mule-agent.yml` files
 
 +
 [source,console,linenums]
@@ -732,25 +737,27 @@ keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacert
 cp anypoint-truststore.jks anypoint-truststure.jks.bkp
 cp mule-agent.yml mule-agent.yml.bkp
 ----
-
-. Export the Anypoint Platform's certificate to a DES formatted certificate file. If prompted for a password just press enter.
-
+. Export the Anypoint Platform certificate to a DES-formatted certificate file.
++
+If prompted for a password, press Enter.
 +
 [source,console,linenums]
 ----
 keytool -export -alias hybrid -file hybrid.crt -keystore anypoint-truststore.jks
 ----
 
-. Since these are self-signed certificate files, the client can't validate them with a Certificate Authority (CA), so you must create a truststore file containing both the client and RMA certificates (public keys) to emulate CA signing both of these certificates, as well as Anypoint Platform's certificate in order to retain the connectivity with the Control Plane. In a production environment, the server and client certificates would both be signed by a trusted CA, then published or shared with the client and server machines.
-
+. Create the truststore file containing these certificates: client, RMA, and Anypoint Platform.
++
 ----
 keytool -import -v -trustcacerts -alias rma -file rma.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
 keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
 keytool -import -v -trustcacerts -alias hybrid -file hybrid.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
 ----
++
+Because the certificate files are self-signed, the client can't validate them with a Certificate Authority (CA). To emulate CA signing these certificates, you must create a truststore file containing both the client and RMA certificates. The truststore file must also contain the Anypoint Platform certificate to retain connectivity with the control plane. In a production environment, the server and client certificates are both signed by a trusted CA, and then published or shared with the client and server machines.
 
-. Shut down the mule server and modify mule-agent.yml file to configure secure REST API endpoint. 
-
+. Shut down Mule runtime engine and modify the `mule-agent.yml` file to configure the secure REST API endpoint.
++
 ----
 transports:
   rest.agent.transport:
@@ -762,16 +769,20 @@ transports:
     port: 9995
 ----
 
-. Rename the newly created cacerts.jks file as anypoint-truststore.jks. This file will function as your new trustustrore for RMA as well as Anypoint Platform connectivity.
+. Rename the newly created `cacerts.jks` file as `anypoint-truststore.jks`. This file is your new truststore for Runtime Manager agent as well as Anypoint Platform connectivity.
++
 ----
 mv cacerts.jks anypoint-truststore.jks
 ----
-
++
 [NOTE]
-The default truststore was renamed `anypoint-truststore.jks` in Runtime Manager agent version 1.10.0 and later. In earlier versions of Runtime Manager agent, the default truststore was named `truststore.jks`. 
+In Runtime Manager agent version 1.10.0 and later, the name of the default truststore was `anypoint-truststore.jks`. In earlier versions of Runtime Manager agent, the name was `truststore.jks`.
 
-. Start the Mule runtime engine, and verify the Runtime Manager agent REST interface starts up successfully as well as verify that it is still connected to ARM in Anypoint Platform. Add SSL debugging to the Mule runtime engine logging. `./mule -M-Djavax.net.debug=all`
+. Start Mule runtime engine, and verify the Runtime Manager agent REST interface starts up successfully and that it is still connected to Runtime Manager in Anypoint Platform.
 
+. Add SSL debugging to the Mule runtime engine logging:
++
+`./mule -M-Djavax.net.debug=all`
 
 
 ==== Submit Two-Way TLS REST Requests
@@ -978,7 +989,7 @@ There are two static IPs that must be whitelisted to access the mule-manager hos
 |*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.194.245.32
 |===
 
-The following DNS endpoints do not have static IP addresses: 
+The following DNS endpoints do not have static IP addresses:
 
 [%header,cols="2*a"]
 |====
