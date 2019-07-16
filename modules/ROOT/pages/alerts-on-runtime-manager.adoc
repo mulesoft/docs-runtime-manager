@@ -243,19 +243,19 @@ The following properties are available and can be used in the alert Email to, Su
 |===
 |Variable |Description |Applicable Alerts
 
-|`${app}` |The name of the application triggering the alert. |All app alerts
+|`${app}` |Name of the application triggering the alert. |All app alerts
 |`${currentValue}` |Current value of metric that triggers the alert |Conditional
-|`${message}` |The message from the notification triggering the alert. |Custom Application Notification
-|`${name}` |The name of the target (server, server group, or cluster) triggering the alert. |All server alerts
+|`${message}` |Message from the notification triggering the alert. |Custom Application Notification
+|`${name}` |Name of the target (server, server group, or cluster) triggering the alert. |All server alerts
 |`${period}` |Timeframe over which to measure |Conditional
 |`${periodTimeUnit}` |Period time unit |Conditional
-|`${operator}`
-|`${priority}` |The priority of the notification triggering the alert. |Custom Application Notification
-|`${resource}` | The name of the application triggering the alert | ?
-|`${severity}` | The severity of the alert. |All
-|`${state}` | The xref:managing-deployed-applications#status_states[state] of the target triggering the alert, such as Running or Deployment Failed. | ?
+|`${operator}` | An operator, such as: < > = |Conditional
+|`${priority}` |Priority of the notification triggering the alert. |Custom Application Notification
+|`${resource}` | Name of the resource triggering the alert, such as server or app. | All
+|`${severity}` | Severity of the alert. |All
+|`${state}` | State of the resource triggering the alert, such as Running or Disconnected. | All
 |`${threshold}` |Count over timeframe which triggers the alert |Conditional
-|`${value}
+|`${value} | A value associated with an element | Conditional
 
 |===
 
