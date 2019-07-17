@@ -1,4 +1,4 @@
-directory= Install and Configure the Runtime Manager Agent
+= Install and Configure the Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -305,7 +305,7 @@ globalConfiguration:
 ====
 Do not register a single Mule runtime engine with multiple Runtime Manager business groups or environments.
 
-You can register each individual Mule with Runtime Manager only once. 
+You can register each individual Mule with Runtime Manager only once.
 
 Do not register a Mule runtime engine with both an older xref:mule-management-console::index.adoc[Mule Management Console (MMC)] and Runtime Manager. If the Mule runtime engine is currently managed in MMC, first unregister the Mule runtime engine with MMC before running the `amc_setup -H` script.
 ====
