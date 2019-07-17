@@ -32,14 +32,14 @@ Read the following FAQs to understand how to plan a successful VPC setup.
 
 == FAQ: How to Calculate Anypoint VPC and VPN Licensing Requirements
 
-To connect an Anypoint VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario. 
+To connect an Anypoint VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario.
 
-The Anypoint Platform base subscription includes two Anypoint VPC licenses, which entitles your Anypoint Platform organization to two licensed Anypoint VPCs. Anypoint VPN licenses are bundled with the Anypoint VPC license, so each Anypoint VPC license also entitles the organization to one VPN gateway with a connection to one public IP address in a remote location. 
+The Anypoint Platform base subscription includes two Anypoint VPC licenses, which entitles your Anypoint Platform organization to two licensed Anypoint VPCs. Anypoint VPN licenses are bundled with the Anypoint VPC license, so each Anypoint VPC license also entitles the organization to one VPN gateway with a connection to one public IP address in a remote location.
 
 [NOTE]
-Anypoint VPN licenses do not need to have a one-to-one relationship with the Anypoint VPC licenses. For example, you can have one Anypoint VPC with two Anypoint VPNs and another VPC with no VPNs.  
+Anypoint VPN licenses do not need to have a one-to-one relationship with the Anypoint VPC licenses. For example, you can have one Anypoint VPC with two Anypoint VPNs and another VPC with no VPNs.
 
-An additional Anypoint VPC license is required for each remote location that needs to be accessible from the Anypoint VPC. 
+An additional Anypoint VPC license is required for each remote location that needs to be accessible from the Anypoint VPC.
 
 [[faq_how_to_size_vpc]]
 == FAQ: How to Size my VPC
@@ -81,13 +81,13 @@ However, if you are peering with your private AWS VPC, you need to create your A
 
 == FAQ: How to deploy or move applications to a VPC
 
-MuleSoft applications are deployed to an environment (dev, sandbox, and so on). 
+MuleSoft applications are deployed to an environment, such as development or sandbox).
 
 When the deployment region matches the VPC region:
 
 * If the environment is already associated with a VPC at the time of application deployment, the app resides inside the VPC.
-* If the environment is associated with a VPC after the app deployment, the app will not reside inside the VPC until it is restarted.
-* When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means it will not have access to any connectivity methods configured for the VPC. 
+* If the environment is associated with a VPC after the app deployment, the app will not reside inside the VPC until the app is restarted.
+* When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means that the app does not have access to any connectivity methods configured for the VPC. Set the deployment region to the VPC region to deploy the app inside the VPC.
 
 == See Also
 
