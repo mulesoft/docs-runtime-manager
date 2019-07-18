@@ -10,13 +10,13 @@ image:logo-server-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 
-Event tracking enables you to to view real-time information about messages being processed by a specific flow. You can view message payloads before, during, and after they are processed, as well as information about the message processors in the flow and message metadata.
+Event tracking enables you to to view real-time information about messages being processed by a specific flow. You can view message payloads before, during, and after they are processed, and you can view information about the message processors in the flow and message metadata.
 
-Event tracking provides visibility into business transactions and events on your Mule servers, enabling you to track and analyze the flow and disposition of particular messages. For example, you can use the data to perform root cause analysis on a failure within a business transaction, or to identify message processing bottlenecks.
+Event tracking enables you to view business transactions and events on your Mule servers so that you can track and analyze the flow and disposition of particular messages. For example, you can use the data to perform root cause analysis on a failure within a business transaction, or to identify message processing bottlenecks.
 
 == Notification Types
 
-Mule runtime engine provides notifications about execution of a flow's components.
+Mule runtime engine notifies you about flow component execution.
 
 image::event-tracking.png[event_tracking]
 
@@ -36,27 +36,43 @@ Mule provides these notification types:
 
 For each notification, the Runtime Manager agent pushes the following information to the Event Tracking Service:
 
-* `timestamp` — Timestamp for the event
-* `notificationType` — Event type, such as Message Processor Event, and Inbound Endpoint Event
-* `action` — Event action, such as Begin, End, Complete, and Rollback
-* `resourceIdentifier` — Name of the flow
-* `muleMessage` — If configured, pushes the serialized Mule message or an error message.
+* `timestamp`
++
+Timestamp for the event
+* `notificationType`
++
+Event type, such as Message Processor event or Inbound Endpoint event
+* `action`
++
+Event action, such as Begin, End, Complete, or Rollback
+* `resourceIdentifier`
++
+Name of the flow
+* `muleMessage`
++
+(If configured) Serialized Mule message or an error message.
 
 The Runtime Manager agent doesn't send this information:
 
 * Mule Message ID
-* Exception — Message and stack trace in case of an exception
-* Path — Component Mule path
-* Annotations — Annotations for the component, if any
+* Exception
++
+Message and stack trace in case of an exception
+* Path
++
+Component Mule path
+* Annotations
++
+Annotations for the component, if any
 * Application
 
 == Event Tracking Notifications
 
-The Runtime Manager agent stores event tracking notifications for Mule apps, then streams them to an Event Tracking Service. Depending on your network topology, and the design of your Mule apps, copying event tracking notifications over the network from the Runtime Manager agent to the online Event Tracking Service can significantly impact performance.
+The Runtime Manager agent stores event tracking notifications for Mule apps, and then streams them to an event tracking service. Depending on your network topology and the design of your Mule apps, copying event tracking notifications over the network from the Runtime Manager agent to the online event tracking service can significantly impact performance.
 
-You can reduce performance impact by specifying tracking levels at different granularities. You can specify a global default event tracking level, then override it in named Mule apps. You can further override the event tracking level in specific named flows within a Mule app.
+You can reduce performance impact by specifying tracking levels at different granularities. You can specify a global default event tracking level, and then override it in named Mule apps. You can further override the event tracking level in specific named flows within a Mule app.
 
-In addition to the event tracking level, you can use a message replay facility to store every message for later replay. Although it can potentially lead to duplicate message processing, the replay facility provides a mechanism for Ops to recover and replay failed transactions. As with tracking levels, you can configure the replay level globally, then override the level for specific Mule apps, or flows within a Mule app.
+In addition to the event tracking level, you can use a message replay facility to store every message for replay. Although it might lead to duplicate message processing, the replay facility provides a mechanism for Operations to recover and replay failed transactions. As with tracking levels, you can configure the replay level globally, and then override the level for specific Mule apps, or flows within a Mule app.
 
 == Event Tracking Levels
 
@@ -70,9 +86,9 @@ The available event tracking levels are:
 [IMPORTANT]
 Because setting event tracking to `Debug` can result in slow performance, use this tracking level for debugging only.
 
-This table lists the types of notifications active in each debugging level.
+The following table lists the types of notifications active in each debugging level.
 
-The MULE TYPE is the `org.mule.api.context.notification.ServerNotification` subclass (in the `org.mule.context.notification` package) that defines the notification type.
+MULE TYPE is the `org.mule.api.context.notification.ServerNotification` subclass (in the `org.mule.context.notification` package) that defines the notification type.
 
 [%header%autowidth.spread]
 |===
@@ -88,9 +104,18 @@ The MULE TYPE is the `org.mule.api.context.notification.ServerNotification` subc
 |Component Message | ComponentMessageNotifications |  |  |  |√
 |===
 
-== Configure Event Tracking
+== Configuring Event Tracking
 
-You can configure the tracking level globally, for an app, or for a flow.
+You can configure the tracking level at the global level, the app level, or the flow level.
+
+* Global
++ Specifies how to track all apps, and their flows, deployed to Mule runtime engine.
+* App
++
+Overrides the global default tracking level for the specific app.
+* Flow
++
+Overrides the global or app tracking for the specific flow.
 
 To configure the global default tracking level, either:
 
@@ -111,9 +136,9 @@ You can configure event tracking in `mule-agent.yml`:
 
 ==== Configure Event Tracking Globally for All Mule Applications
 
-The global default configuration specifies how to track all apps, and their flows, deployed to Mule runtime engine. Set the tracking configuration levels in the `services/mule.agent.tracking.service` section of the `mule-agent.yml` file.
+The global default configuration specifies how to track all apps, and their flows, deployed to Mule runtime engine. You set the tracking configuration levels in the `services/mule.agent.tracking.service` section of the `mule-agent.yml` file.
 
-This example sets the tracking level to `TRACKING`. See <<Event Tracking Levels>> for detailed descriptions of the tracking levels.
+This example sets the global tracking level to `TRACKING`. See <<Event Tracking Levels>> for detailed descriptions of the tracking levels.
 
 In `mule-agent.yml`:
 [source,yaml,linenums]
@@ -123,11 +148,9 @@ services:
  globalTrackingLevel: TRACKING
 ----
 
-If you don't specify `globalTrackingLevel`, the default value is `NONE`.
-
 ==== Configure Tracking for a Mule App
 
-You can override the default global tracking level by setting tracking levels per Mule app.
+You can override the global default tracking level by setting tracking levels per Mule app.
 
 The three Mule app level tracking areas are: `trackingLevel`, `replayLevel`, and `trackedFlows`.
 
@@ -136,15 +159,15 @@ The three Mule app level tracking areas are: `trackingLevel`, `replayLevel`, and
 Specifies one of the four tracking levels: `NONE`, `BE`, `TRACKING`, or `DEBUG`. This tracking level affects every flow in the Mule app. See <<Event Tracking Levels>>.
 * `replayLevel`'
 +
-Specifies how to store each message through every flow of the Mule app for possible later replay: `NONE`, `SOURCED`, or `ALL`.
+Specifies how to store each message through every flow of the Mule app for possible replay: `NONE`, `SOURCED`, or `ALL`.
 
 [[Replay]]
 [%header%autowidth.spread]
 |===
 |Replay Level Option | Description
 |`NONE` |  Specifies to not store any data related to message replay and to disable the replay feature for these flows.
-|`SOURCED` | Stores messages for later replay for only those flows in the Mule app that start with a message source.
-|`ALL` |  Stores messages for later replay for every flow in the Mule app.
+|`SOURCED` | Stores messages for replay for only those flows in the Mule app that start with a message source.
+|`ALL` |  Stores messages for replay for every flow in the Mule app.
 |===
 
 This example sets the tracking level for the app `mule-flights` and its flow to `TRACKING`, and disables the message replay facility for this Mule app. The `mule-flights` app sends some notifications to the Event Tracking Service, but doesn't copy each received message. None of the flows in the `mule-flights` app can be replayed from the Event Tracking Service.
@@ -175,7 +198,7 @@ This table describes the tracked flows options:
 |`flow name` |  The name of the flow, as it is coded in the Mule app XML configuration file.
 |`tracking level` |  One of the values `NONE`, `BE`, `TRACKING`, or `DEBUG`. See <<Event Tracking Levels>>.
 |`replayLevel` |  One of the values `NONE`, `SOURCED`, or `ALL`. See the <<Replay,Replay Levels>> table.
-|`payloadExcluded` |  If `replayLevel` is `SOURCED` or `ALL`, this determines whether to also store the message payload for later replay, or to just store the message metadata.
+|`payloadExcluded` |  If `replayLevel` is `SOURCED` or `ALL`, this determines whether to also store the message payload for replay, or to just store the message metadata.
 |===
 
 This example adds flow-level tracking configuration to the `mule-flights` Mule app configuration. The global and Mule app-level tracking use the default values (`NONE`).
