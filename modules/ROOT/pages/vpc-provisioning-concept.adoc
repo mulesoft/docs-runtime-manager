@@ -32,19 +32,19 @@ Read the following FAQs to understand how to plan a successful VPC setup.
 
 == FAQ: How to Calculate Anypoint VPC and VPN Licensing Requirements
 
-To connect an Anypoint VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario. 
+To connect an Anypoint VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario.
 
-The Anypoint Platform base subscription includes two Anypoint VPC licenses, which entitles your Anypoint Platform organization to two licensed Anypoint VPCs. Anypoint VPN licenses are bundled with the Anypoint VPC license, so each Anypoint VPC license also entitles the organization to one VPN gateway with a connection to one public IP address in a remote location. 
+The Anypoint Platform base subscription includes two Anypoint VPC licenses, which entitles your Anypoint Platform organization to two licensed Anypoint VPCs. Anypoint VPN licenses are bundled with the Anypoint VPC license, so each Anypoint VPC license also entitles the organization to one VPN gateway with a connection to one public IP address in a remote location.
 
 [NOTE]
-Anypoint VPN licenses do not need to have a one-to-one relationship with the Anypoint VPC licenses. For example, you can have one Anypoint VPC with two Anypoint VPNs and another VPC with no VPNs.  
+Anypoint VPN licenses do not need to have a one-to-one relationship with the Anypoint VPC licenses. For example, you can have one Anypoint VPC with two Anypoint VPNs and another VPC with no VPNs.
 
-An additional Anypoint VPC license is required for each remote location that needs to be accessible from the Anypoint VPC. 
+An additional Anypoint VPC license is required for each remote location that needs to be accessible from the Anypoint VPC.
 
 [[faq_how_to_size_vpc]]
 == FAQ: How to Size my VPC
 
-When you create a an Anypoint VPC, the range of IP addresses for the network must be specified in the form of a Classless Inter-Domain Routing (CIDR) block, using CIDR notation. +
+When you create an Anypoint VPC, the range of IP addresses for the network must be specified in the form of a Classless Inter-Domain Routing (CIDR) block, using CIDR notation. +
 This address space is reserved for Mule workers, so it cannot overlap with any address space used in your data center if you want to peer it with your VPC.
 
 To calculate the proper sizing for your Anypoint VPC, you first need to understand that the number of dedicated IP addresses is not the same as the number of workers you have deployed. +
@@ -78,6 +78,17 @@ It is recommended that you create your Anypoint VPC in your master organization,
 You can create your Anypoint VPC inside any of the available CloudHub regions. +
 The recommended region to use might vary depending on how you connect to your Anypoint VPC. If you are using a VPN tunnel, you might want to choose the CloudHub region closest to your data center. +
 However, if you are peering with your private AWS VPC, you need to create your Anypoint VPC in the same AWS region.
+
+== FAQ: How to deploy or move applications to a VPC
+
+MuleSoft applications are deployed to an environment, such as development or sandbox).
+
+When the deployment region matches the VPC region:
+
+* If the environment is already associated with a VPC at the time of application deployment, the app resides inside the VPC.
+* If the environment is associated with a VPC after the app deployment, the app will not reside inside the VPC until the app is restarted.
+
+When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means that the app does not have access to any connectivity methods configured for the VPC. 
 
 == See Also
 
