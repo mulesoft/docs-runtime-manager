@@ -87,7 +87,8 @@ When the deployment region matches the VPC region:
 
 * If the environment is already associated with a VPC at the time of application deployment, the app resides inside the VPC.
 * If the environment is associated with a VPC after the app deployment, the app will not reside inside the VPC until the app is restarted.
-* When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means that the app does not have access to any connectivity methods configured for the VPC. Set the deployment region to the VPC region to deploy the app inside the VPC.
+
+When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means that the app does not have access to any connectivity methods configured for the VPC. 
 
 == See Also
 
