@@ -104,9 +104,7 @@ image::alert-traffic.png[traffic]
 To enable this condition, you must specify the duration and capacity threshold that triggers the alert. This threshold applies to all events of any type.
 If during a certain period you get more than N events, you get an alert.
 The meaning of this depends on the events you are tracking on your application.
-For more information on event tracking, see: 
-http://docs.mulesoft.com/mule-user-guide/v/3.7/business-events[About Business Events]
-
+For more information on event tracking, see xref:mule-runtime::business-events.adoc[Business Events].
 
 
 * *Secure data gateway disconnected*
@@ -169,7 +167,7 @@ The available alert events vary depending on the *Server Type* field. The alerts
 +
 image::cpu-usage.png[cpu]
 +
-To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert. 
+To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
 
 
 
@@ -177,7 +175,7 @@ To enable this condition, specify values in the duration and capacity threshold 
 +
 image::memory-usage.png[memo]
 +
-To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert. 
+To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
 
 * *Server Load Average* - Average processing for a given time period.
 
@@ -243,15 +241,20 @@ The following properties are available and can be used in the alert Email to, Su
 |===
 |Variable |Description |Applicable Alerts
 
-|`${app}` |The name of the application triggering the alert. |All app alerts
-|`${name}` |The name of the target (server, server group, or cluster) triggering the alert. |All server alerts
-|`${severity}` | The severity of the alert. |All
+|`${app}` |Name of the application triggering the alert. |All app alerts
+|`${currentValue}` |Current value of metric that triggers the alert |Conditional
+|`${message}` |Message from the notification triggering the alert. |Custom Application Notification
+|`${name}` |Name of the target (server, server group, or cluster) triggering the alert. |All server alerts
 |`${period}` |Timeframe over which to measure |Conditional
 |`${periodTimeUnit}` |Period time unit |Conditional
-|`${currentValue}` |Current value of metric that triggers the alert |Conditional
+|`${operator}` | An operator, such as: < > = |Conditional
+|`${priority}` |Priority of the notification triggering the alert. |Custom Application Notification
+|`${resource}` | Name of the resource triggering the alert, such as server or app. | All
+|`${severity}` | Severity of the alert. |All
+|`${state}` | State of the resource triggering the alert, such as Running or Disconnected. | All
 |`${threshold}` |Count over timeframe which triggers the alert |Conditional
-|`${message}` |The message from the notification triggering the alert. |Custom Application Notification
-|`${priority}` |The priority of the notification triggering the alert. |Custom Application Notification
+|`${value}` | A value associated with an element | Conditional
+
 |===
 
 == Editing Existing Alerts
@@ -300,11 +303,11 @@ From the *Alerts* page, click an alert name to open its corresponding panel. Fro
 image::alerts-history.png[history]
 
 
-You can also see the alert history record of an individual server or of an application that's deployed to one. 
+You can also see the alert history record of an individual server or of an application that's deployed to one.
 
-. On the *Applications* tab, click the xref:managing-deployed-applications.adoc#applications-tab[*Manage Application* button] (for applications deployed on premises), or click the xref:managing-servers.adoc#settings-page[*Manage Server* button] on the *Servers* tab. 
+. On the *Applications* tab, click the *Manage Application* button (for applications deployed on premises), or click the *Manage Server* button on the *Servers* tab.
 . Click the *Alerts History* tab. +
-The history record for the alert is displayed. 
+The history record for the alert is displayed.
 
 image::alerts-on-runtime-manager-3afb7.png[]
 
