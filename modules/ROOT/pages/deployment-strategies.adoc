@@ -189,8 +189,6 @@ To utilize the load balancer, your application must use specific ports that Clou
 
 For deployments on your local clusters and server groups, you can manage load balancing with the tools connected to your on-premise resources.
 
-For deployments on Pivotal Cloud Foundry, you can use any external load balancing strategy.
-
 == How to Name Applications on CloudHub
 
 Even if you use a dedicated load balancer, the actual deployed application is always deployed with a public application name `myapplication.cloudhub.io`. The application name must be globally unique among every application, across every CloudHub customer. For this reason, it is a good idea to agree on a naming convention for your applications that is protected by your company domain. For example you might always prefix your applications with `mycompany` and perhaps with a department name, so for example you might use a naming convention of `mycompany-mydept-myapplication`.
