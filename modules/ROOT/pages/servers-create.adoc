@@ -42,16 +42,20 @@ The `amc_setup` script calls the Runtime Manager Agent installation script, whic
 
 The registration token provided by Runtime Manager, which is included in the command with the `-H` parameter, is specific to a single environment. For example, if you register a server in a QA environment by clicking *Add Server*, Runtime Manager provides a token. However, if you try to register the server in your production environment, Runtime Manager generates a different token. Tokens are specific to the environment where you register a server. You can only use a token to register multiple Mules if all servers are in the same environment.
 
-=== The IBM JVM
+=== IBM JVM
 
-When creating a server using IBM's Java Virtual Machine (JVM) you must use a different truststore than the default truststore installed by the Runtime Manager Agent.
+When creating a server using the IBM Java Virtual Machine (JVM), you must use a different truststore than the default truststore installed by the Runtime Manager Agent.
 
-. Download the custom truststore from the customer support portal.
-. Rename the file to `truststore.jks`.
+. Download the custom truststore from this knowledge article:
++
+https://support.mulesoft.com/s/article/Connectivity-issues-between-Mule-Runtime-and-Anypoint-Runtime-manager-using-an-IBM-JVM[Connectivity issues between Mule Runtime and Anypoint Runtime Manager using an IBM JVM]
+. Rename the file:
+* `anypoint-truststore.jks` — Mule Runtime 4.1.3 (Mule Agent 2.1.4) and higher
+* `truststore.jks` — Mule Runtime 4.1.2 (Mule Agent 2.1.3)
 . Copy the custom truststore into the Runtime Manager Agent `<MULE_HOME>/conf` folder.
 . Restart the Mule runtime.
 
-== Creating a Server
+== Create a Server
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
