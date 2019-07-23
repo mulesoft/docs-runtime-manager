@@ -82,13 +82,13 @@ The hybrid scenario of hosting your apps on your own servers while managing them
 
 To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see xref:managing-servers.adoc#add-a-server[Add a Server]. You then have the flexibility to group servers into xref:managing-servers.adoc#create-a-server-group[Server Groups] or xref:managing-servers.adoc#create-a-cluster[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
 
-==== Security and Hybrid Deployment 
+==== Security and Hybrid Deployment
 
 By default, no application data flows to the cloud, only metadata pushed by the  Runtime Manager agent in each Mule runtime engine.
-The agent monitors and controls Mule, and publishes its own data to the control plane. 
+The agent monitors and controls Mule, and publishes its own data to the control plane.
 Outside the Runtime Manager, you can control Mule by calling Runtime Manager agent APIs from external systems, or have Mule publish its own data to external systems.
 
-If you wish, you can change the default behavior so that the agent pushes IDs, final average numbers, or any data you find useful for monitoring or keeping control of applications. 
+If you wish, you can change the default behavior so that the agent pushes IDs, final average numbers, or any data you find useful for monitoring or keeping control of applications.
 You can also xref:anypoint-security::tokenization-example.adoc[tokenize sensitive data].
 
 ==== For More Information About Hybrid Deployment
@@ -144,7 +144,7 @@ Although the xref:general:getting-started:index.adoc[basics of building a Mule a
 
 * When deploying to CloudHub, the older "MMC Mule Agent" is used. This agent was originally created for the legacy xref:mule-management-console::index.adoc[Mule Management Console (MMC)].
 
-* When deploying to a server that you manage, whether through the cloud console or the on-premises Runtime Manager console, the Runtime Manager Agent is used.
+* When deploying to a server that you manage, whether through the cloud console or the on-premises Runtime Manager console, the Runtime Manager agent is used.
 
 
 
@@ -173,6 +173,7 @@ Although the long term plan is to converge the features of these deployment mech
 
 == Load Balancing and Domain Names
 
+
 For  requests from external clients and applications, you can use the default load balancer configuration that CloudHub includes out of the box. In that case, CloudHub provides two hosts for you:
 
 * `myapplication.cloudhub.io` - Routes information to the CloudHub load balancer
@@ -186,9 +187,7 @@ image::infrastructure-cloud-vpc.png[vpc]
 
 To utilize the load balancer, your application must use specific ports that CloudHub allocates for your HTTP and HTTPS endpoints. See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for more details.
 
-On deployments that are done to clusters and server groups on-premises, load balancing is handled automatically at the time of deployment.
-
-In the case of Pivotal Cloud Foundry deployments done to multiple instances, load balancing is also taken care of automatically.
+For deployments on your local clusters and server groups, you can manage load balancing with the tools connected to your on-premise resources.
 
 == How to Name Applications on CloudHub
 
