@@ -72,7 +72,7 @@ The Runtime Manager agent stores event tracking notifications for Mule apps, and
 
 You can reduce performance impact by specifying tracking levels at different granularities. You can specify a global event tracking level, and then override it in named Mule apps. You can further override the event tracking level in specific named flows within a Mule app.
 
-In addition to the event tracking level, you can use a message replay facility to store every message for replay. Although it might lead to duplicate message processing, the replay facility provides a mechanism for Operations to recover and replay failed transactions. As with tracking levels, you can configure the replay level globally, and then override the level for specific Mule apps, or flows within a Mule app.
+In addition to the event tracking level, you can use a message replay facility to store every message for replay. Although it might lead to duplicate message processing, the replay facility provides a mechanism for operations to recover and replay failed transactions. As with tracking levels, you can configure the replay level globally, and then override the level for specific Mule apps, or flows within a Mule app.
 
 == Event Tracking Levels
 
@@ -200,7 +200,7 @@ This table describes the tracked flows options:
 |`flow name` |  The name of the flow, as it is coded in the Mule app XML configuration file.
 |`tracking level` |  One of the values `NONE`, `BE`, `TRACKING`, or `DEBUG`. See <<Event Tracking Levels>>.
 |`replayLevel` |  One of the values `NONE`, `SOURCED`, or `ALL`. See the <<Replay,Replay Levels>> table.
-|`payloadExcluded` |  If `replayLevel` is `SOURCED` or `ALL`, this determines whether to also store the message payload for replay, or to just store the message metadata.
+|`payloadExcluded` |  Whether to also store the message payload for replay, or to just store the message metadata (if `replayLevel` is `SOURCED` or `ALL`).
 |===
 
 This example adds tracking to a flow in the `mule-flights` app. The global and Mule app tracking use the default values (`NONE`).
@@ -225,12 +225,12 @@ This example sets tracking levels: global, Mule app, and flow.
 
 Global:
 
-* `globalTrackingLevel` set to `OFF`, which is the default setting if you don't specify `globalTrackingLevel`.
+* `globalTrackingLevel` set to `NONE`, which is the default setting if you don't specify `globalTrackingLevel`.
 
 App `mule-flights`:
 
 * trackingLevel: `TRACKING` level for the apps.
-* replayLevel: `OFF` for the app. Messages are not stored and replay is disabled.
+* replayLevel: `NONE` for the app. Messages are not stored and replay is disabled.
 ** Flow `purchaseFlight`:
 *** trackingLevel: `DEBUG` level for this one flow (overrides the `TRACKING` level).
 *** replayLevel: `ALL` for this one flow. Saves every message for replay, even if the flow does not have a message source.
@@ -252,17 +252,17 @@ In `mule-agent.yml`:
 ----
 services:
   mule.agent.tracking.service:
-    globalTrackingLevel: OFF
+    globalTrackingLevel: NONE
     trackedApplications:
       - appName: mule-flights
         trackingLevel: TRACKING
-        replayLevel: OFF
+        replayLevel: NONE
         trackedFlows:
           - flowName: purchaseFlight
             trackingLevel: DEBUG
             replayLevel: ALL
           - flowName: help
-            trackingLevel: OFF
+            trackingLevel: NONE
             replayLevel: NONE
       - appName: mule-ticketing
         trackingLevel: BE
@@ -275,7 +275,7 @@ services:
 
 === Configure Tracking Using the Agent API During Runtime
 
-The agent API enables you to change the agent tracking configuration during runtime.
+The agent API enables you to change the agent tracking configuration during runtime. For example, you can use the API to change the tracking configuration of a running app.
 
 
 ==== Retrieve the Current Configuration
