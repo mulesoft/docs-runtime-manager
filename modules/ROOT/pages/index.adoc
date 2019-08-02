@@ -1,14 +1,13 @@
-= About Runtime Manager
+= Anypoint Runtime Manager
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, saas, applications, servers, clusters, sdg, runtime manager, arm
 
-Use Runtime Manager to deploy and manage all of your Mule applications from one central location, whether your apps are running in the cloud, on-premises, or on Runtime Fabric.
+Anypoint Runtime Manager is the interface to Anypoint Platform that provides a unified view of your applications, servers and APIs, no matter where they are running. Runtime Manage enables you to monitor and analyze your Mule applications from one central location, whether your apps are deployed in the cloud, on-premises, or on Runtime Fabric.
 
-Runtime Manager is designed specifically for handling Mule applications, and deploying them to the available Mule runtime instances in a xref:cloudhub.adoc[CloudHub] virtual worker, or an on-premises Mule server (server group, cluster, and so on), or Runtime Fabric. 
+Runtime Manager is designed specifically for handling Mule applications, and deploying them to the available Mule runtime instances in a xref:cloudhub.adoc[CloudHub] virtual worker, or an on-premises Mule server (server group, cluster), or Runtime Fabric. 
 
-[NOTE]
 xref:cloudhub.adoc[CloudHub] is a complete integration platform as a service (iPaaS) that covers all of your server needs out of the box, including Object Store infrastructure, Monitoring, Troubleshooting, Scheduling, and so on. Use Runtime Manager to deploy to CloudHub.
 
 == Architecture
@@ -17,7 +16,7 @@ The cloud-based version of the Anypoint Platform has a Runtime Manager with a co
 
 If you are using the on-premises Runtime Manager you can deploy anywhere _except_ CloudHub.
 
-For applications deployed to CloudHub (Cloud runtime in the diagram below) you can use xref:insight.adoc[Insight] for analytics and monitoring. For applications that you deploy on-premises or to your private cloud servers you can xref:sending-data-from-arm-to-external-analytics-software.adoc[send data to third-party Analytics applications].
+For applications deployed to CloudHub (Cloud runtime in the diagram below), you can use xref:insight.adoc[Insight] for analytics and monitoring. For applications that you deploy on-premises or to your private cloud servers you can xref:sending-data-from-arm-to-external-analytics-software.adoc[send data to third-party Analytics applications].
 
 image::arm-big-picture.png[]
 
