@@ -32,6 +32,20 @@ When Insight is enabled, data processing performance is affected. Do not enable 
 Insight does not support visibility into xref:3.8@mule-runtime::batch-processing.adoc[batch processing].
 ====
 
+== Limitations
+
+With Insight:
+
+* A single application is limited to 50,000 events per minute.
+* All applications in a single business group are limited to 100,000 events per minute. 
+
+Events over these limits are dropped. 
+
+In addition, no more than 20 custom event definitions per application definition are stored.  
+
+Do not leave Insight enabled for extended periods of time in production environments. Insight should be used for troubleshooting purposes only. 
+
+
 == Enabling Insight
 
 [NOTE]
