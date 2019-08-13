@@ -3,10 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-By providing a certificate and private key pair, you can configure an SSL endpoint for your load balancer to serve to clients.
-Each load balancer can have multiple and independent SSL endpoints. Each one is identified by their server certificate common name.
+A dedicated load balancer must have at least one certificate associated with it. At least one configured SSL endpoint is required when you create a load balancer.
 
-A dedicated load balancer must have at least one certificate associated to it.  This requires that at least one SSL endpoint must be configured when creating the load balancer.
+Configure an SSL endpoint by providing a certificate and private key pair for your load balancer to serve to clients. Each load balancer can have multiple, independent SSL endpoints. Each endpoint is identified by their respective server certificate common name.
+
+
 
 == See Also
 
