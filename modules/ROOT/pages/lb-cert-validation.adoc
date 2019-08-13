@@ -7,9 +7,9 @@ If at least one CA certificate is provided for the SSL endpoint, the load balanc
 
 == X-SSL-Client-Verify
 
-This header returns either `SUCCESS`, `FAILED`, or `NONE`
-Only after `SUCCESS`, the client is verified. +
-It returns `NONE` when the certificate is not present and `FAILED` when other validation problems occur.
+This header returns either `SUCCESS`, `FAILED`, or `NONE`.
+The client is verified only after the header returns `SUCCESS`. +
+The header returns `NONE` when the certificate is not present and `FAILED` when other validation problems occur.
 
 == X-SSL-Client-DN
 
@@ -25,12 +25,12 @@ Contains the serial number used by the CA to identify the client.
 
 == Adding Revocation Lists
 
-The CloudHub load balancer can optionally verify client requests against Certificate Revocation Lists (CRL). All CRL files need to be concatenated into a single PEM encoded file for upload. Ordering is not important.
+The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single Privacy-Enhanced Mail (PEM) encoded file for upload. The order of the CRL is not important.
 
-You can add a revocation list when creating the load balancer using the ´--crl´ option in your xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`load-balancer create`] command.
+Use the ´--crl´ option in your xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`load-balancer create`] command to add a revocation list when you create the load balancer.
 
-Additionally, if your load balancer is already created, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955[REST API] to update it. +
-You can send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadbalancers/{lbId}` endpoint adding a `revocationList` element:
+If your load balancer already exists, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955[REST API] to update it. +
+Add a `revocationList` element to send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadbalancers/{lbId}` endpoint:
 
 [source,json,linenums]
 ----
@@ -43,19 +43,15 @@ You can send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadb
 ]
 ----
 
-[NOTE]
---
-We recommend you use the CloudHub REST API to programmatically update your revocation lists. +
-In order to get the necessary `vpcId`, and loadbalancerId from the CLI, you can use a xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[`vpc JSON describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[`load-balancer JSON describe`] command respectively.
---
+You should use the CloudHub REST API to programmatically update your revocation lists. +
+To get the necessary `vpcId`, and `loadbalancerId` values from the CLI, you can use the xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[`vpc JSON describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[`load-balancer JSON describe`] commands, respectively.
 
-You can send a PATCH request to your load balancer's endpoint to update any other property.
+Send a `PATCH` request to your load balancer's endpoint to update any other property.
 
 
 == Certificate Ciphers
 
-Each one of the recommended ciphers suites listed have a good balance between compatibility and security for your SSL endpoint
-offer forward secrecy, except RC4-SHA which is there to support Internet Explorer 8.
+Each one of the recommended ciphers suites listed has a good balance between compatibility and security for your SSL endpoint. They all offer forward secrecy, except RC4-SHA, which is recommended only to support Internet Explorer 8.
 
 ----
 ECDHE-RSA-AES256-GCM-SHA384
@@ -81,7 +77,7 @@ AES128-SHA
 DES-CBC3-SHA
 ----
 
-ClourHub's dedicated load balancer supports TLSv1.1 and TLSv1.2. Additionally, you can configure TLS v1.0. However, TLS v1.0 is no longer accepted by PCi compliance due to its significant vulnerabilities.
+CloudHub's dedicated load balancer supports TLS v1.1 and TLS v1.2. You can configure TLS v1.0., but TLS v1.0 is no longer accepted by PCI compliance due to its significant vulnerabilities.
 
 == See Also
 
