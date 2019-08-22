@@ -58,11 +58,11 @@ A Mule flow defines how Mule  processes messages between different applications.
 
 == What Java version are you using?
 
-* Workers that use Mule 4.0.0 and newer run on JDK 8.
-* Workers that use Mule 3.8.0 and newer run on JDK 8.
-* Workers that use Mule 3.7.0 and newer run on JDK 8.
-* Workers that use Mule 3.5.1 and newer run on JDK 7.
-* Workers that use Mule 3.5.0 and older run on JDK 6.
+* Workers that use Mule 4.0.0 and later run on JDK 8.
+* Workers that use Mule 3.8.0 and later run on JDK 8.
+* Workers that use Mule 3.7.0 and later run on JDK 8.
+* Workers that use Mule 3.5.1 and later run on JDK 7.
+* Workers that use Mule 3.5.0 and earlier run on JDK 6.
 
 == How much storage does each worker have?
 
@@ -97,7 +97,7 @@ In the Runtime Manager Console, select your application, and click *Deployment* 
 
 Yes. The following scenarios can result in the platform restarting your application. 
 
-Keep in mind that all restarts are zero-downtime (unless the initial state of the app was down):
+Keep in mind that all restarts are xref:cloudhub-architecture.adoc#zero-downtime-updates[zero-downtime] (unless the initial state of the app was down):
 
 * *Underlying infrastructure issues*
 +
