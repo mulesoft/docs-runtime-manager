@@ -1,7 +1,35 @@
-= About Dedicated Load Balancer Architecture
+= Dedicated Load Balancer Architecture
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+
+
+
+A CloudHub dedicated load balancer is assigned to an Anypoint VPC. The dedicated load balancer then routes traffic to that Anypoint VPC within the service region of the Anypoint VPC.
+
+For a Mule application to be managed by the dedicated load balancer, the Mule application must be deployed to the Anypoint VPC for the dedicated load balancer.
+
+The CloudHub dedicated load balancer has an internal domain name to be used by applications and clients within the Anypoint VPC.
+The structure is `internal-<lb-name>.lb.anypointdns.net` where `<lb-name>` is the name you give the load balancer when you created it.
+Additionally, your dedicated load balancer exposes an external domain name resolving to 2 public IP addresses which can be reached from outside of your CloudHub Anypoint VPC network: `<lb-name>.lb.anypointdns.net` where `<lb-name>` is the name you gave the load balancer when you created it.
+
+Each Dedicated Load Balancer has a DNS A Record `<lb-name>.lb.anypointdns.net` resolving to 2 Public IP addresses of its two instances. +
+Through your DNS provider, you can add a CNAME record pointing to this A record and use your own domain names to access.
+
+If you want your load balancer to handle all connections to your application and you don't want your default domain name for your application publicly exposed, then each application needs to be listening over HTTP on port 8091 or 8092, or you can create a custom mapping policy to redirect outside requests from your load balancer to your specific application.
+
+[NOTE]
+--
+Your load balancer listens for outside requests over HTTPS and, by default, communicates internally with your worker over HTTP. If you configured your Mule application within the Anypoint VPC to listen on HTTPS, make sure you set `upstreamProtocol` to `HTTPS` when creating the mapping list using the xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[`load-balancer mappings add`] command.
+--
+
+
+
+
+
+
+You can use a CloudHub dedicated load balancer to route both internal and external traffic and route requests for multiple deployed Mule applications.
+
 
 A CloudHub dedicated load balancer lets you route external HTTP and HTTPS traffic to Mule applications deployed into CloudHub workers inside a particular Virtual Private Cloud (VPC). Each CloudHub dedicated load balancer is assigned to a particular Anypoint VPC, and that Anypoint VPC runs within a particular service region. This means that the dedicated load balancer routes traffic, both external and internally to Anypiont VPC, to CloudHub workers deployed into that Anypoint VPC.
 
