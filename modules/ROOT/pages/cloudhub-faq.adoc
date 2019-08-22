@@ -9,21 +9,20 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-== Frequently Asked Questions
 
-=== What is CloudHub?
+== What is CloudHub?
 
 CloudHub a cloud-based integration platform as a service (iPaaS) that enables developers to integrate and orchestrate applications and services while giving operations the control and visibility they require for mission-critical demands, all without the need to install or manage middleware or hardware infrastructure. You can deploy applications to CloudHub through the Runtime Manager, found on the https://anypoint.mulesoft.com[Anypoint Platform]. Read more about the CloudHub xref:cloudhub-architecture.adoc[architecture].
 
 
-=== What is an iPaaS?
+== What is an iPaaS?
 
 As the name suggests, iPaaS is a development platform for building integration applications. It provides a set of services and capabilities for integrating applications in the cloud and within the enterprise. The core tenets of iPaaS are the same as PaaS, except the services on the platform are geared towards integration. In addition to some base expectations such as multi-tenancy, elasticity and reliability, iPaaS also provides intermediation of data and events, orchestration, a service container for publishing REST and SOAP services, strong security capabilities, and monitoring and developer tooling.
 
 For more information, see https://blogs.mulesoft.com/dev/mule-dev/introducing-integration-paas-ipaas/[here].
 
 
-=== How can I create a CloudHub account?
+== How can I create a CloudHub account?
 
 As of November 2014, accounts in both the Anypoint Platform for APIs and CloudHub have been merged into a single platform.
 
@@ -32,32 +31,32 @@ An https://anypoint.mulesoft.com/#/signup[Anypoint Platform account] gives you a
 * xref:access-management::managing-your-account.adoc[Creating an Account]
 * xref:access-management::managing-permissions.adoc[Managing Accounts Roles and Permissions]
 
-=== Where can I get Anypoint Studio?
+== Where can I get Anypoint Studio?
 
 Anypoint Studio can be https://www.mulesoft.com/lp/dl/studio[downloaded here]. From Studio, you have ability to deploy directly to CloudHub or run your applications locally on an embedded Mule runtime engine (Mule).
 
-=== How much does CloudHub cost?
+== How much does CloudHub cost?
 
 For specific pricing, please reach out to your account executive, your account development representative or contact us in the https://support.mulesoft.com[Support Portal].
 
-=== What is a Worker?
+== What is a Worker?
 
 Applications that expose real time services or APIs run on one or more "workers". Each worker is an instance of Mule that runs your integration applications. See xref:cloudhub-fabric.adoc[CloudHub Fabric] for details of how workers can be shared or doubled to scale your application and provide high availability.
 
-=== What is an Integration Application?
+== What is an Integration Application?
 
 An integration application is one that integrates two or more applications or services. This may be as simple as synchronizing Salesforce data to a local database to creating a mashup using Google Apps, Facebook, and Salesforce. These applications perform functions by grabbing data from different sources and publishing it to a new location or as a REST or Web service. In the traditional 3 tier application model an integration app represents the data tier through connectivity to application data and the service tier through logic used to combine, transform and route this data to consumers.
 
-=== What is an Anypoint Connector?
+== What is an Anypoint Connector?
 
 Anypoint Connectors provide a simple and easy way to integrate with SaaS and Cloud APIs such as Salesforce, Facebook, AWS, PayPal, and then to use them as services within Mule. With these connectors you are then able to create orchestration that spans both SaaS and on-premises applications, using Mule.
 
-=== What is a Mule Flow?
+== What is a Mule Flow?
 
 A Mule flow defines how Mule  processes messages between different applications. A flow defines a series of processors that  act on a message triggered by an event in an application, a request to a Web or REST service or a scheduled trigger.
 
 
-=== What Java version are you using?
+== What Java version are you using?
 
 * Workers that use Mule 4.0.0 and newer run on JDK 8.
 * Workers that use Mule 3.8.0 and newer run on JDK 8.
@@ -65,21 +64,21 @@ A Mule flow defines how Mule  processes messages between different applications.
 * Workers that use Mule 3.5.1 and newer run on JDK 7.
 * Workers that use Mule 3.5.0 and older run on JDK 6.
 
-=== How much storage does each worker have?
+== How much storage does each worker have?
 
 Each worker has 2 GB of storage for applications to use.
 
-=== What are environment variables?
+== What are environment variables?
 
 Environment variables are properties you can set to pass in configuration to your Mule application. For example, you could create a JDBC connector where the username is set to `${db.username}`. In the environment variables you could then set the name to `db.username` and the value to the actual username when you add or update your application.
 
-=== Can I deploy my application to a different region?
+== Can I deploy my application to a different region?
 
 Yes!  https://support.mulesoft.com[File a support case] to enable global deployments for your account. Applications can be deployed to: US East (N. Virginia, Ohio), US West (N. California, Oregon), Canada, South America (Brazil - Sao Paulo), Europe (Ireland, Frankfurt), UK (London), and Asia-Pacific (Sydney, Tokyo, Singapore). Administrators can  xref:managing-cloudhub-specific-settings.adoc[set the default region] on the Organization tab in Account Settings, but that region can be adjusted when the application is deployed, if necessary.
 
 Note that applications deployed to different regions will automatically have their domain updated to reflect the region.
 
-=== I get "Failed to bind to uri" when my application starts
+== I get "Failed to bind to uri" when my application starts
 
 If you're seeing messages like this:
 
@@ -90,35 +89,54 @@ INFO 11-04-06 20:13:50 [DefaultSystemExceptionStrategy] Failed to bind to uri `+
 
 It's because you're trying to bind to a specific host instead of 0.0.0.0. Change your HTTP Connector to use 0.0.0.0 instead of your CloudHub domain name and redeploy.
 
-=== How do I stop my application?
+== How do I stop my application?
 
 In the Runtime Manager Console, select your application, and click *Deployment* in the left navigation bar. Click *Stop application*.
 
-=== Why can't I deploy more than one application?
+== Can the platform restart my Mule app running on CloudHub?
+
+Yes. The following scenarios can result in the platform restarting your application. 
+
+Keep in mind that all restarts are zero-downtime (unless the initial state of the app was down):
+
+* *Underlying infrastructure issues*
++
+If the underlying infrastructure suffers a failure, the platform migrates your application to a new worker.
+* *Infrastructure impairment*
++
+Any applications running on hardware marked as impaired or end-of-life are restarted to preemptively migrate the app to a new worker to prevent a possible outage.
+* *Security patching*
++
+If any security vulnerabilities are identified, the relevant applications are patched and restarted. See the https://www.mulesoft.com/legal/versioning-back-support-policy#critical[Critical Security Vulnerabilities] policy.
+* *Application crash*
++
+The platform recognizes an application crash (due to a problem with custom code or a bug in the underlying stack) and restarts the worker automatically if the automatic restart option is selected.
+
+== Why can't I deploy more than one application?
 
 We're limiting the Free accounts to one worker, which allows you to deploy one application. You can upgrade to a http://www.mulesoft.com/cloudhub/cloudhub-pricing[paid subscription] to deploy more applications or scale your single application across more than one worker.
 
-=== My application has deployed successfully, but when I go to mysubdomain.cloudhub.io, I see "you need to change the configuration of your docroot."
+== My application has deployed successfully, but when I go to mysubdomain.cloudhub.io, I see "you need to change the configuration of your docroot."
 
 If you are seeing this message, that means that your application's endpoint could be configured to show up in a different path. If you would like to make it show up at mysubdomain.cloudhub.io, please reconfigure your endpoint to remove the path variable. If you are using generic endpoints, you should change the address (not the path).
 
-=== How long is the HTTP read timeout?
+== How long is the HTTP read timeout?
 
 Our load balancers timeout after 300 seconds if no data is read.
 
-=== Can I get a static IP for my application?
+== Can I get a static IP for my application?
 
 Yes! You can assign a static IP to your application in the *Static IPs* tab on the application settings. For details, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub]. By default, you are allocated a number of static IPs equal to 2x the number of Production vCores in your subscription. To raise this limit, please contact MuleSoft Support.
 
-=== How do I know what my static IP is?
+== How do I know what my static IP is?
 
 The static IP(s) assigned to your application are displayed in the *Static IPs* tab in the application settings page.
 
-=== Can I modify my application after it has been assigned a static IP?
+== Can I modify my application after it has been assigned a static IP?
 
 Yes, you can stop and start the application, you may upload a new project zip file, you may change its settings and redeploy it.
 
-=== In what situations could my static IP change?
+== In what situations could my static IP change?
 
 There are some specific scenarios where your static IP may be removed or reassigned. You should be aware of the following scenarios:
 
@@ -127,23 +145,23 @@ There are some specific scenarios where your static IP may be removed or reassig
 * If a xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)] is built for your organization, any existing application that is not already in the Anypoint VPC receives a new IP address when it restarts inside the Anypoint VPC.
 * An application is redeployed to a different geographic region. You can pre-allocate a static IP in the new region in the *Static IPs* tab in the application settings page.
 
-=== Can I request a specific Static IP?
+== Can I request a specific Static IP?
 
 No. Cloudhub utilizes a pool of Static IP’s, which are only assigned to a Cloudhub Application upon first deployment. If/when that application releases that static IP, that IP address returns to the pool, and is available to other applications.
 
-=== I am running in a Cloudhub Virtual Private Network, how do I assign a Static IP to my internal private IP?
+== I am running in a Cloudhub Virtual Private Network, how do I assign a Static IP to my internal private IP?
 
 Cloudhub is able to set the worker's public IP address to Static. However, the internal private IP address always remains Dynamic. The private IP address is assigned from the range specified in the Cloudhub Worker's Address Space, which was determined at the creation of your xref:virtual-private-cloud.adoc[Anypoint VPC].
 
-=== What are the possible IP ranges that can be assigned to Static IPs?
+== What are the possible IP ranges that can be assigned to Static IPs?
 
 As CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see  http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html[Amazon EC2 Public IP Ranges].
 
-=== How can I change the timezone for my app?
+== How can I change the timezone for my app?
 
 Customers with an Enterprise account are entitled to global deployment, which means they can choose a different region to deploy their app. The actual worker is always running in the UTC timezone.
 
-=== How do I get support?
+== How do I get support?
 
 Browse and search our online http://forums.mulesoft.com[forum] archives to find answers. Or post a question and start a new thread.
 
@@ -156,7 +174,7 @@ If you have a paid plan, in addition to the forums, you also have access to the 
 . When finished, click *Submit*. The portal generates a unique case number and refer you to possibly relevant areas of the knowledge base that you can browse while you await a response to your case.
 
 
-=== Proactive Monitoring
+== Proactive Monitoring
 
 The CloudHub platform is monitored 24 hours a day, seven days a week by automated systems. In the event of any issue affecting the health and operation of the CloudHub infrastructure, our dedicated operations team is notified and will respond immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users, free and paying. The status of CloudHub services and upcoming maintenance can be found at http://status.mulesoft.com[`status.mulesoft.com`].
 
