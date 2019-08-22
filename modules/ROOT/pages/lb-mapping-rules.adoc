@@ -3,31 +3,30 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The load balancer configuration is defined by a list of mapping rules which describe how input URL should be translated into calls to different CloudHub apps.
+The load balancer configuration is defined by a list of mapping rules which describe how an input URL should be translated into calls to different CloudHub apps.
 Mapping rules are attributes of the load balancer's SSL endpoint.
 When you create a mapping rule, you need to specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
 
-When creating a simple matching rule, one input address is literally matched to the defined output: the endpoint of one of your applications.
-Instead of using literal matchings you can also use a pattern to match a variable-like input text to an endpoint.
+When creating a simple matching rule, one input address is matched to the defined output: the endpoint of one of your applications.
+Instead of using literal matchings, you can also use a pattern to match a variable, such as  input text to an endpoint.
 
 By using proxy rules, you can map a domain or subdomain to one of your Mule applications that run in CloudHub.
 
 == Using Patterns in Mapping Rules
 
-A pattern is a string that defines a template for matching an input text. Whatever is placed into curly brackets (`{   }`) is treated like a variable.
+A pattern is a string that defines a template for matching an input text. Whatever is placed into curly brackets (`{   }`) is treated as a variable.
 These variables can contain only letters (a-z) and cannot contain any other characters, such as digits, slashes, etc. The variable values can contain the characters`a-z0-1.&?-_`, but can't contain slashes.
 
-Suppose you have set up a DNS CNAME records from  `example.com` to `<lb-name>.lb.anypointdns.net`. Then, you can map `app.example.com` to a different deployed CloudHub Mule application name.
+Suppose you set up a DNS CNAME record from  `example.com` to `_lb-name_.lb.anypointdns.net`. You can then map `app.example.com` to a different deployed CloudHub Mule application name.
 
-For example, you can literally bind two hostnames for redirect:
+For example, you can bind two hostnames for redirect:
 
 [source,text,linenums]
 ----
 ‘app.example.com’ ->  application: `app` URI: `/example’
 ----
 
-In this case, external requests to `+https://app.example.com+` would be directed to `+http://app.cloudhub.io/example+`
-
+In this case, external requests to `+https://app.example.com+` are directed to `+http://app.cloudhub.io/example+`.
 
 Or you can define a pattern to hold the input value:
 
@@ -37,7 +36,7 @@ Or you can define a pattern to hold the input value:
 ----
 
 The example above causes that both `example.com/bookings` and `example.com/sales` match to `app-bookings/data` and `app-sales/data` respectively, as the variable `_mypattern_` holds these values.
-For `input=”bookings.example.com”`, the pattern can be resolved by assigning `mypattern=”bookings”` and for `input=`sales.example.com``, the pattern is resolved to assign `mypattern=”sales”`.
+For `input=”bookings.example.com”`, the pattern can be resolved by assigning `_mypattern_=”bookings”` and for `input=`sales.example.com``, the pattern is resolved to assign `_mypattern_=”sales”`.
 
 Depending on your design, you can choose to leverage your internal redirects to your endpoints using patterns or simply literal mappings.
 
@@ -47,21 +46,23 @@ Note that currently patterns in the application URI are not supported.
 
 A mapping rule is a set of fields that define an input URL, and a set of fields that describe the output URL.
 
-The input URL is described using a URI parameter which can be specified by the user:
+The input URL is described using a URI parameter which can be specified by the user. The `URI` is a string or pattern that describes the input URI.
 
-* `URI` - a String or Pattern that describes the Input URI.
-+
 The input URL follows the main load balancer’s domain and should remain constant for the same load balancer.
 
-The _Output URL_ is specified by two fields:
+The output URL is specified by two fields:
 
-* `appName` - Output the application name where the request will be forwarded.
-* `appURI` - the URI string that is passed to the resolved application.
+* `appName`
++
+Outputs the application name where the request is forwarded.
+* `appURI`
++
+Specifies the URI string that is passed to the resolved application.
 
-Both input and output URLs can be defined using patterns or literal strings.
+You can define both input and output URLs using patterns or literal strings.
 
 Mapping rules are attributes of the load balancer's SSL endpoint, which is identified by the certificate name.
-When you create a mapping rule, you need to specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
+When you create a mapping rule, you must specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
 
 If your SSL endpoint sets a https://en.wikipedia.org/wiki/Wildcard_certificate[wildcard certificate], and you want to use the subdomain portion in a mapping rule, you can use the pre-defined `{subdomain}` variable.
 
@@ -71,12 +72,9 @@ You can create, view and delete existing rules using the xref:anypoint-platform-
 
 == Mapping Rule Examples
 
-Given that the external load balancer domain name depends on the unique name you assign to it, in the following mapping rule examples, assume that the load balancer in these examples is `lb-demo`.
+The external load balancer domain name depends on the unique name you assign to it. In the following mapping rule examples, the load balancer is `lb-demo`.
 
-[IMPORTANT]
---
-By default, your load balancer listens to external requests on HTTPS and communicates internally with your worker over HTTP. If you configured your Mule application within the VPC to listen on HTTPS, make sure you set `upstreamProtocol` to `HTTPS` when creating the mapping list using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-add[load-balancer mappings add] command.
---
+By default, your load balancer listens to external requests on HTTPS and communicates internally with your worker over HTTP. If you configured your Mule application within the VPC to listen on HTTPS, make sure you set `upstreamProtocol` to `HTTPS` when creating the mapping list using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-add[`load-balancer mappings add`] command.
 
 === URL Mapping
 
@@ -89,18 +87,12 @@ You can pass the app name as an input URI and map it directly to the app name in
 | 0 | /{app}/    | {app}             | /
 |===
 
-// This rule maps `lb-demo.lb.anypointdns.net/{app}` to `{app}.cloudhub.io`. 
-
-This rule maps `example.com/{app}` to `{app}.cloudhub.io`. +
-{app} is a pattern for any application name you choose to pass in the inbound request.
-
-This example assumes that you configured a DNS CNAME record to route `example.com` to `lb-name.lb.anypointdns.net`, and that you configured the SSL endpoint with a certificate for the common name example.com.
-
+This rule maps `lb-demo.lb.anypointdns.net/{app}` to `{app}.cloudhub.io`. `{app}` is a pattern for any application name you pass in the inbound request.
 
 
 === Host Mapping
 
-If you have a wildcard certificate (like `*.example.com`), you can use the `subdomain` variable to map any subdomain:
+If you have a wildcard certificate (such as `*.example.com`), you can use the `subdomain` variable to map any subdomain:
 
 [%header,cols="10a,20a,20a,10a"]
 |===
@@ -113,16 +105,16 @@ This rule automatically maps any request passed to a subdomain of `example.com` 
 * Passing `api.example.com` would redirect to `api.cloudhub.io` +
 * Passing `application.example.com` is mapped to `application.cloudhub.io`.
 
-The same applies for the https://en.wikipedia.org/wiki/Subject_Alternative_Name[Subject Alternative Names] (SANs) of your SSL Endpoints.
+The same applies to the https://en.wikipedia.org/wiki/Subject_Alternative_Name[Subject Alternative Names] (SANs) of your SSL endpoints.
 
-Instead of using a wildcard certificate, which permits any subdomain application name to be passed through the dedicated load balancer, you can restrict the allowed subdomain names. To do this, you must have different SANs configured for a certificate's common name, you can use the ´subdomain´ variable to map the subdomain portion of your domain name to your application.
+Instead of using a wildcard certificate, which permits any subdomain application name to be passed through the dedicated load balancer, you can restrict the allowed subdomain names. To do this, you must have different SANs configured for a certificate's common name, you can use the `subdomain` variable to map the subdomain portion of your domain name to your application.
 
 In this example:
 
 * Two deployed applications:
 ** `dev-app`
 ** `qa-app`
-* An SSL endpoint with the Subject Alternative Names:
+* An SSL endpoint with the SANs:
 ** `dev.example.com`
 ** `qa.example.com`
 * Mapping rule:
@@ -136,8 +128,8 @@ In this example:
 
 This rule maps the subdomain part of your domain name to the application name:
 
-* Passing `dev.example.com` redirects to `dev-app.cloudhub.io`.
-* Passing `qa.example.com` redirects to `qa-app.cloudhub.io`.
+* `dev.example.com` redirects to `dev-app.cloudhub.io`.
+* `qa.example.com` redirects to `qa-app.cloudhub.io`.
 
 
 === 1:1 Mapping
@@ -158,7 +150,7 @@ When creating a mapping rule, assign an index to it to define the rule's priorit
 
 A rule defined first, at index `0` has higher priority against other rules defined after it. The higher the index assigned, the less priority the mapping rule has.
 
-Every rule must have a priority defined. It is highly recommended to pay attention to each rules’ order when creating them. Multiple rules might override each other.
+Every rule must have a priority defined. When creating rules, pay attention to the order for each rule to avoid having multiple rules override each other.
 
 === Ordering and Prioritizing Rules
 

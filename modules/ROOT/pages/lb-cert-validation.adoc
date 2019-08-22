@@ -29,13 +29,13 @@ Contains the serial number used by the CA to identify the client.
 
 == Add Revocation Lists
 
-The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single, unencrypted PEM-encoded file for upload. The order of the CRL is not important.
+The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single, unencrypted PEM-encoded file for upload. The order of items in the CRL is not important.
 
 
 To add a revocation list when you create the load balancer, use the `--crl` option with the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`load-balancer create`] command. 
 
 
-If your load balancer already exists, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955[REST API] to update it. To send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadbalancers/{lbId}` endpoint, add a `revocationList` element:
+If your load balancer already exists, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955[CloudHub REST API] to add or update your CRLs. To do so, send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadbalancers/{lbId}` endpoint and include a `revocationList` element:
 
 [source,json,linenums]
 ----
@@ -48,13 +48,9 @@ If your load balancer already exists, you can use the https://anypoint.mulesoft.
 ]
 ----
 
-
-Use the CloudHub REST API to programmatically update your revocation lists.
-
 To get the necessary `vpcId`, and `loadbalancerId` values from the CLI, use the xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[`vpc JSON describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[`load-balancer JSON describe`] commands.
 
 To update any other property, send a `PATCH` request to your load balancer endpoint.
-
 
 == Certificate Cipher Suites
 

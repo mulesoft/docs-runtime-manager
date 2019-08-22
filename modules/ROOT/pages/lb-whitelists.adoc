@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you want to whitelist IP addresses to your load balancers, you must to pass those IP addresses in CIDR notation using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[`load-balancer whitelist add`] command.
+If you want to whitelist IP addresses to your load balancers, you must pass those IP addresses in CIDR notation using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[`load-balancer whitelist add`] command.
 
 The whitelist works for inbound connections at the load-balancer level only, not at the CN certificate level. Make sure that you pass only IP addresses.
 

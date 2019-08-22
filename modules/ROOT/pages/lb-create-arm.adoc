@@ -24,31 +24,36 @@ Before creating a load balancer, perform the following:
 
 . Add any whitelisted classless inter-domain routing (CIDR) as required.
 +
-The IP addresses you specify here are the only IP addresses that can access the load balancer. The default value is: 0.0.0.0/0.
+The IP addresses you specify here are the only IP addresses that can access the load balancer. The default value is `0.0.0.0/0`.
 
 . Select the inbound HTTP mode for the load balancer.
 +
 This property specifies the behavior of the load balancer when receiving an HTTP request. Valid values are:
 +
-* *Off*: causes the Load Balancer to silently drop the request.
-* *On*: accepts the inbound request on the default SSL endpoint using the HTTP protocol.
-* *Redirect*: redirects the request to the same URL using the HTTPS protocol.
+* *Off*
++
+Causes the load balancer to silently drop the request.
+* *On*
++
+Accepts the inbound request on the default SSL endpoint using the HTTP protocol.
+* *Redirect*
++
+Redirects the request to the same URL using the HTTPS protocol.
 
 . Add a certificate.
 
 .. Click *Add Certificate*
-.. Add both a public and private key.
+.. Add both a public and a private key.
 .. (Optional) Select *Support TLS 1.0*.
 .. (Optional) Add a client certificate.
 +
-The client certificate is trusted CA certificate used to verify client certificates.
+The client certificate is a trusted CA certificate used to verify client certificates.
 
 .. (Optional) Add URL mapping rules.
 +
 If you add more than one URL mapping rule, order the rules in the list according to the priority in which they should be applied.
-
-... Click *Add New Rule*.
-... Specify the input path, target app, output path, and protocol.
++
+Click *Add New Rule*, and then specify the input path, target app, output path, and protocol.
 
 .. Click *Save Certificate*.
 

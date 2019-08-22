@@ -25,7 +25,6 @@ For example, to create a self-signed certificate and corresponding private key:
 
 . Enter:
 +
-[source,json,linenums]
 ----
 openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 3000 -out example-com-crt.pem
 ----
@@ -36,7 +35,6 @@ Alternatively, you can pass a certificate information configuration file to the 
 
 For example, this certificate configuration file named `example-com.cfg` defines the DNS domain `example.com` that includes some SAN (Subject Alternate Names) for two Mule applications: `app1.example.com` and `app2.example.com`.
 
-[source,json,linenums]
 ----
 [ req ]
 default_bits       = 2048
@@ -65,7 +63,6 @@ To create a wildcard certificate that maps any subdomain name to `example.com`:
 
 . Create a file that includes this configuration:
 +
-[source,json,linenums]
 ----
 [ req ]
 default_bits       = 2048
@@ -81,14 +78,12 @@ commonName                 = *.example.com
 
 . Pass the certificate configuration file in an `openssl` command:
 +
-[source,json,linenums]
 ----
 openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 3000 -out example-com-crt.pem -config example-com.cfg
 ----
 
 . Decrypt the private key using `openssl`:
 +
-[source,json,linenums]
 ----
 openssl rsa -in example-com-private.pem -out example-com-private-decrypted.pem
 ----
