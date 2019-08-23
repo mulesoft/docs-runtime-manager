@@ -33,27 +33,27 @@ An https://anypoint.mulesoft.com/#/signup[Anypoint Platform account] gives you a
 
 == Where can I get Anypoint Studio?
 
-Anypoint Studio can be https://www.mulesoft.com/lp/dl/studio[downloaded here]. From Studio, you have ability to deploy directly to CloudHub or run your applications locally on an embedded Mule runtime engine (Mule).
+Anypoint Studio can be https://www.mulesoft.com/lp/dl/studio[downloaded here]. From Studio, you can deploy directly to CloudHub or run your applications locally on an embedded Mule runtime engine (Mule).
 
 == How much does CloudHub cost?
 
-For specific pricing, please reach out to your account executive, your account development representative or contact us in the https://support.mulesoft.com[Support Portal].
+For specific pricing, please reach out to either your account executive or your account development representative, or contact us in the https://support.mulesoft.com[Support Portal].
 
-== What is a Worker?
+== What is a worker?
 
-Applications that expose real time services or APIs run on one or more "workers". Each worker is an instance of Mule that runs your integration applications. See xref:cloudhub-fabric.adoc[CloudHub Fabric] for details of how workers can be shared or doubled to scale your application and provide high availability.
+Applications that expose real-time services or APIs run on one or more "workers." Each worker is an instance of Mule that runs your integration applications. See xref:cloudhub-fabric.adoc[CloudHub Fabric] for details of how workers can be shared or doubled to scale your application and provide high availability.
 
-== What is an Integration Application?
+== What is an integration application?
 
 An integration application is one that integrates two or more applications or services. This might be as simple as synchronizing Salesforce data to a local database, or as complicated as creating a mashup using Google Apps, Facebook, and Salesforce. These applications perform functions by grabbing data from different sources and publishing it to a new location or as a REST or web service. In the traditional three-tier application model an integration app represents the data tier through connectivity to application data and the service tier through logic used to combine, transform, and route this data to consumers.
 
-== What is an Anypoint Connector?
+== What are Anypoint Connectors?
 
 Anypoint Connectors provide an easy way to integrate with SaaS and Cloud APIs, such as Salesforce, Facebook, AWS, PayPal, and then to use them as services within Mule. With these connectors you are then able to create orchestration that spans both SaaS and on-premises applications, using Mule.
 
 == What is a Mule Flow?
 
-A Mule flow defines how Mule  processes messages between different applications. A flow defines a series of processors that  act on a message triggered by an event in an application, a request to a Web or REST service or a scheduled trigger.
+A Mule flow defines how Mule processes messages between different applications. A flow defines a series of processors that act on a message triggered by an event in an application, a request to a web or REST service, or a scheduled trigger.
 
 
 == What Java version are you using?
@@ -155,11 +155,11 @@ Cloudhub is able to set the worker's public IP address to Static. However, the i
 
 == What are the possible IP ranges that can be assigned to Static IPs?
 
-As CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see  http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html[Amazon EC2 Public IP Ranges].
+Because CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html[Amazon EC2 Public IP Ranges].
 
 == How can I change the timezone for my app?
 
-Customers with an Enterprise account are entitled to global deployment, which means they can choose a different region to deploy their app. The actual worker is always running in the UTC timezone.
+Customers with an Enterprise account can choose any global region in which to deploy their app. The actual worker is always running in the UTC timezone.
 
 == How do I get support?
 
