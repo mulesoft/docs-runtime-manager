@@ -5,7 +5,7 @@ endif::[]
 
 The certificate that you upload to your load balancer must be contained in one unencrypted, PEM-encoded file.
 
-This file must contain the entire certificate chain ordered sequentially, for example: 
+This file must contain the entire certificate chain ordered sequentially: 
 
 [%header,cols="30a,70a"]
 |===
@@ -18,7 +18,7 @@ This file must contain the entire certificate chain ordered sequentially, for ex
 -----END CERTIFICATE-----
 |===
 
-You don't need to include the root certificate in the certificate chain. However, make sure to include the ASCII armor in each certificate.
+You don't need to include the root certificate in the certificate chain. However, ensure to include the ASCII armor in each certificate.
 
 When creating the load balancer, you can upload an SSL endpoint using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command from the CLI. 
 

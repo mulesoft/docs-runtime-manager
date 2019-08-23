@@ -12,20 +12,20 @@ Returns one of:
 ** `SUCCESS`
 +
 The client is verified only after `SUCCESS`.
-** `NONE` when the certificate is not present.
-** `FAILED` when other validation problems occur.
+** `NONE` when the certificate is not present
+** `FAILED` when other validation problems occur
 
 * X-SSL-Client-DN
 +
-Contains the full distinguished name of the client certificate.
+Contains the full distinguished name of the client certificate
 
 * X-SSL-Issuer
 +
-Contains the full distinguished name of the issuing certificate.
+Contains the full distinguished name of the issuing certificate
 
 * X-SSL-Client-Serial
 +
-Contains the serial number used by the CA to identify the client.
+Contains the serial number used by the CA to identify the client
 
 == Add Revocation Lists
 
@@ -48,7 +48,7 @@ If your load balancer already exists, you can use the https://anypoint.mulesoft.
 ]
 ----
 
-To get the necessary `vpcId`, and `loadbalancerId` values from the CLI, use the xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[`vpc JSON describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[`load-balancer JSON describe`] commands.
+To get the necessary `vpcId` and `loadbalancerId` values from the CLI, use the xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[`vpc JSON describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[`load-balancer JSON describe`] commands.
 
 To update any other property, send a `PATCH` request to your load balancer endpoint.
 

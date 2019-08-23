@@ -3,12 +3,12 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The load balancer configuration is defined by a list of mapping rules which describe how an input URL should be translated into calls to different CloudHub apps.
+The load balancer configuration is defined by a list of mapping rules that describe how an input URL should be translated into calls to different CloudHub apps.
 Mapping rules are attributes of the load balancer's SSL endpoint.
 When you create a mapping rule, you need to specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
 
-When creating a simple matching rule, one input address is matched to the defined output: the endpoint of one of your applications.
-Instead of using literal matchings, you can also use a pattern to match a variable, such as  input text to an endpoint.
+When you create a simple matching rule, one input address is matched to the defined output: the endpoint of one of your applications.
+Instead of using literal matchings, you can also use a pattern to match a variable, such as input text to an endpoint.
 
 By using proxy rules, you can map a domain or subdomain to one of your Mule applications that run in CloudHub.
 
@@ -46,7 +46,7 @@ Note that currently patterns in the application URI are not supported.
 
 A mapping rule is a set of fields that define an input URL, and a set of fields that describe the output URL.
 
-The input URL is described using a URI parameter which can be specified by the user. The `URI` is a string or pattern that describes the input URI.
+The input URL is described using a URI parameter that can be specified by the user. The `URI` is a string or pattern that describes the input URI.
 
 The input URL follows the main load balancer’s domain and should remain constant for the same load balancer.
 
@@ -107,7 +107,7 @@ This rule automatically maps any request passed to a subdomain of `example.com` 
 
 The same applies to the https://en.wikipedia.org/wiki/Subject_Alternative_Name[Subject Alternative Names] (SANs) of your SSL endpoints.
 
-Instead of using a wildcard certificate, which permits any subdomain application name to be passed through the dedicated load balancer, you can restrict the allowed subdomain names. To do this, you must have different SANs configured for a certificate's common name, you can use the `subdomain` variable to map the subdomain portion of your domain name to your application.
+Instead of using a wildcard certificate, which permits any subdomain application name to be passed through the dedicated load balancer, you can restrict the allowed subdomain names. To do this, you must have different SANs configured for a certificate's common name. You can use the `subdomain` variable to map the subdomain portion of your domain name to your application.
 
 In this example:
 
@@ -158,7 +158,7 @@ You can set the order of your mapping rules when creating them using the xref:an
 
 When using the API to create a rule, you cannot specify a priority order, but you can send a `PATCH` request later to the load balancer endpoint `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbalancerId}` and update your rules expressions with an order index, to match your needs based on the order logic explained above.
 
-The load balancer ID is provided to you when you create it. You can also perform a `GET` request to your endpoint `/organizations/{orgid}}/loadbalancers` to get the ID.
+The load balancer ID is provided to you when you create the load balancer. You can also perform a `GET` request to your endpoint `/organizations/{orgid}}/loadbalancers` to get the ID.
 
 == See Also
 

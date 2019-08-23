@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, runtime manager, arm, load balancing, vanity url, ssl, two way tls,
 
-The CloudHub dedicated load-balancer service enables you to automate provisioning infrastructure components. You can use this service to deploy one or more dedicated load-balancers within an Anypoint Virtual Private Cloud (VPC).
+The CloudHub dedicated load-balancer service enables you to automate provisioning infrastructure components. You can use this service to deploy one or more dedicated load balancers within an Anypoint Virtual Private Cloud (VPC).
 
 CloudHub dedicated load balancers are an optional component of Anypoint Platform. 
 
@@ -18,22 +18,22 @@ This enables you to host your applications under a single domain.
 
 To use a dedicated load balancer in your environment, you must first create an Anypoint VPC. Because you can associate multiple environments with the same Anypoint VPC, you can use the same dedicated load balancer for your different environments.
 
-You can view the load balancer and Anypoint VPC endpoints in your Anypoint Platform organization from the API Portal.
+You can view the load balancer and Anypoint VPC endpoints in your Anypoint Platform organization from the API portal.
 
 == Creating and Configuring a Dedicated Load Balancer
 
-To create and configure a load balancer, your profile must be an administrator of the organization to which the load balancer is associated.
+To create and configure a load balancer, you must be an administrator of the organization to which the load balancer is associated.
 
 There are three ways to create and configure a dedicated load balancer for your Anypoint VPC:
 
-* xref:lb-create-arm.adoc[Runtime Manager] from Anypoint Platform.
-* The xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[cloudhub load-balancer create] command from the Anypoint Platform CLI.
+* xref:lb-create-arm.adoc[Runtime Manager] from Anypoint Platform
+* The xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[cloudhub load-balancer create] command from the Anypoint Platform CLI
 * The xref:cloudhub-api.adoc[Cloudhub API] through these endpoints:
 +
 ** `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers`
 ** `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs`
 
-For a full description of `loadbalancers` and `vpcs` endpoints, see the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal]. In the API Portal, search for the CloudHub API in the Mule APIs and enter the latest version.
+For a full description of `loadbalancers` and `vpcs` endpoints, see the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal]. In the API portal, search for the CloudHub API in the Mule APIs and enter the latest version.
 
 
 == See Also
