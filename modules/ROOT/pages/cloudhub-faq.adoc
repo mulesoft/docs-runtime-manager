@@ -12,19 +12,19 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 == What is CloudHub?
 
-CloudHub a cloud-based integration platform as a service (iPaaS) that enables developers to integrate and orchestrate applications and services while giving operations the control and visibility they require for mission-critical demands, all without the need to install or manage middleware or hardware infrastructure. You can deploy applications to CloudHub through the Runtime Manager, found on the https://anypoint.mulesoft.com[Anypoint Platform]. Read more about the CloudHub xref:cloudhub-architecture.adoc[architecture].
+CloudHub a cloud-based integration platform as a service (iPaaS) that enables developers to integrate and orchestrate applications and services while giving operations the control and visibility they require for mission-critical demands, all without the need to install or manage middleware or hardware infrastructure. You can deploy applications to CloudHub through Anypoint Runtime Manager, found on the https://anypoint.mulesoft.com[Anypoint Platform]. Read more about the CloudHub xref:cloudhub-architecture.adoc[architecture].
 
 
-== What is an iPaaS?
+== What is iPaaS?
 
-As the name suggests, iPaaS is a development platform for building integration applications. It provides a set of services and capabilities for integrating applications in the cloud and within the enterprise. The core tenets of iPaaS are the same as PaaS, except the services on the platform are geared towards integration. In addition to some base expectations such as multi-tenancy, elasticity and reliability, iPaaS also provides intermediation of data and events, orchestration, a service container for publishing REST and SOAP services, strong security capabilities, and monitoring and developer tooling.
+As the name suggests, iPaaS (integration platform as a service) is a development platform for building integration applications. It provides a set of services and capabilities for integrating applications in the cloud and within the enterprise. The core tenets of iPaaS are the same as PaaS, except the services on the platform are geared towards integration. In addition to some base expectations, such as multi-tenancy, elasticity and reliability, iPaaS also provides intermediation of data and events, orchestration, a service container for publishing REST and SOAP services, strong security capabilities, and monitoring and developer tooling.
 
 For more information, see https://blogs.mulesoft.com/dev/mule-dev/introducing-integration-paas-ipaas/[here].
 
 
 == How can I create a CloudHub account?
 
-As of November 2014, accounts in both the Anypoint Platform for APIs and CloudHub have been merged into a single platform.
+As of November 2014, accounts in both CloudHub and Anypoint Platform for APIs have been merged into a single platform.
 
 An https://anypoint.mulesoft.com/#/signup[Anypoint Platform account] gives you access to both the *Runtime Manager* – for deploying and managing applications both on *CloudHub* and on other servers –  and to the Anypoint Platform for APIs – for creating and managing APIs through their entire lifecycle.
 
@@ -45,11 +45,11 @@ Applications that expose real time services or APIs run on one or more "workers"
 
 == What is an Integration Application?
 
-An integration application is one that integrates two or more applications or services. This may be as simple as synchronizing Salesforce data to a local database to creating a mashup using Google Apps, Facebook, and Salesforce. These applications perform functions by grabbing data from different sources and publishing it to a new location or as a REST or Web service. In the traditional 3 tier application model an integration app represents the data tier through connectivity to application data and the service tier through logic used to combine, transform and route this data to consumers.
+An integration application is one that integrates two or more applications or services. This might be as simple as synchronizing Salesforce data to a local database, or as complicated as creating a mashup using Google Apps, Facebook, and Salesforce. These applications perform functions by grabbing data from different sources and publishing it to a new location or as a REST or web service. In the traditional three-tier application model an integration app represents the data tier through connectivity to application data and the service tier through logic used to combine, transform, and route this data to consumers.
 
 == What is an Anypoint Connector?
 
-Anypoint Connectors provide a simple and easy way to integrate with SaaS and Cloud APIs such as Salesforce, Facebook, AWS, PayPal, and then to use them as services within Mule. With these connectors you are then able to create orchestration that spans both SaaS and on-premises applications, using Mule.
+Anypoint Connectors provide an easy way to integrate with SaaS and Cloud APIs, such as Salesforce, Facebook, AWS, PayPal, and then to use them as services within Mule. With these connectors you are then able to create orchestration that spans both SaaS and on-premises applications, using Mule.
 
 == What is a Mule Flow?
 
@@ -167,16 +167,22 @@ Browse and search our online http://forums.mulesoft.com[forum] archives to find 
 
 The CloudHub team is committed to providing the best customer experience possible. Contact the CloudHub team in the https://support.mulesoft.com[Support Portal].
 
-If you have a paid plan, in addition to the forums, you also have access to the support portal. To file a case through the support portal:
+If you have a paid plan, you also have access to the support portal. To file a case through the support portal:
 . Sign into the Anypoint Platform, then click *Support* on the top nav bar.
-. Click the *Cases* tab. Here you can browse open cases or click the *Create New Case* button to file a new one.
-. When you create a new case, fill in the required fields (marked in red). Hover over the question icons near the fields for field-specific guidelines or instructions.
-. When finished, click *Submit*. The portal generates a unique case number and refer you to possibly relevant areas of the knowledge base that you can browse while you await a response to your case.
+. Click the *Cases* tab.
++
+You can browse open cases or click *Create New Case* to open a new case.
+. When you create a new case, fill in the required fields (marked in red).
++
+Hover over icons for field-specific guidelines or instructions.
+. When finished, click *Submit*.
++
+The portal generates a unique case number and refer you to possibly relevant areas of the knowledge base that you can browse while you await a response to your case.
 
 
 == Proactive Monitoring
 
-The CloudHub platform is monitored 24 hours a day, seven days a week by automated systems. In the event of any issue affecting the health and operation of the CloudHub infrastructure, our dedicated operations team is notified and will respond immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users, free and paying. The status of CloudHub services and upcoming maintenance can be found at http://status.mulesoft.com[`status.mulesoft.com`].
+The CloudHub platform is monitored 24 hours a day, 7 days a week, by automated systems. In the event of any issue affecting the health and operation of the CloudHub infrastructure, our dedicated operations team is notified and responds immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users, free and paying. The status of CloudHub services and upcoming maintenance can be found at http://status.mulesoft.com[`status.mulesoft.com`].
 
 == See Also
 
