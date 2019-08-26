@@ -49,10 +49,14 @@ Anypoint VPN does not support these features and configurations:
 * IKEv2 with policy-based VPNs
 * A single VPC with both Direct Connect and Anypoint VPN connections
 * Advertising a default route (0.0.0.0/0) over BGP or static routing
-* Maximum of 10 VPN connections per VPC. 
-* A VPN connection consists of 2 tunnels.
-* VPN terminates in a VPC.
-* It’s at least a VPN per VPC (2 per for HA).
+
+In addition, Anypoint VPN has these limitations:
+
+* Each VPC supports a maximum of 10 VPN connections.
++
+Each VPC has at least one VPN. For High Availability Clusters, each VPC has at least two VPNs.
+* Each VPN connection consists of 2 tunnels.
+* Each VPN terminates in a VPC.
 
 [[vpn_requirements]]
 == Requirements for Static VPN Connections
@@ -135,5 +139,4 @@ These are network devices that are known to work with the Anypoint VPN. If your 
 == See Also
 
 * xref:vpn-create-arm.adoc#vpn-create-arm[Create an Anypoint VPN]
-
 * https://support.mulesoft.com/s/article/Anypoint-VPN-Knowledge-Articles[Anypoint VPN Knowledge Articles]
