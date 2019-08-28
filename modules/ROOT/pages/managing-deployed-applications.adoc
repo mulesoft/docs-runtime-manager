@@ -132,32 +132,70 @@ The information in the *Status* column depends on the context:
 [[application_status_states]]
 === Application Status States
 
+The states in this table need updating.
+
 [%header,cols="10a,30a,60a"]
 |===
 |Icon|State|Description
-|image::managing-deployed-applications-a665b.png[] |*Stopped*|The application is not running.
+|image::managing-deployed-applications-a665b.png[] 
+a|
+
+* *Stopped*
+* *Not Running*
+
+|The application is not running.
 |image::managing-deployed-applications-515a4.png[]
 a|
 
-* *Partial*
+* *Deploying*
+* *Deployment scheduled*
+* *Initializing*
 * *Starting*
 * *Stopping*
 * *Undeploying*
+* *Updating*
+* *Applying*
 |Application is in the process of transitioning to another state.
 
 |image:console-overview-green-circle.png[console_overview_green_circle]
 a|
 
+* *Deployed*
 * *Started*
-* *Updated*
+* *Applied*
+* *Running*
 |Application is running or the updated succeeded.
 
-|image:console-overview-red-circle.png[console_overview_red_circle] |*Deployment Failed* | Application deployment failed.
+|image:console-overview-red-circle.png[console_overview_red_circle] 
+a|
+
+* *Deployment Failed*
+* *Deploy Failed*
+* *Failed*
+* *Unrecoverable Runtime Error*
+
+|Application deployment failed.
 
 The cause of the failure appears in the console.
 
-| image::managing-deployed-applications-ab70d.png[] ||Application update failed.
-| image::managing-deployed-applications-de1b7.png[] |*Undeployed*|Application's status is unknown, as the server is not responding to the platform (on-premises deployments only)
+| image::managing-deployed-applications-ab70d.png[] | _status_? |Application update failed.
+
+| icon?
+a|
+
+* *Partially Deployed*
+* *Partially Started*
+
+|Application deployment not complete.
+
+
+| image::managing-deployed-applications-de1b7.png[]
+a|
+
+* *Not Deployed*
+* *Undeployed*
+
+|Application's status is unknown, as the server is not responding to the platform (on-premises deployments only)
 
 |===
 
