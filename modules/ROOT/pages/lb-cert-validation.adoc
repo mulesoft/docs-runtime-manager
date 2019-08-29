@@ -54,7 +54,7 @@ To update any other property, send a `PATCH` request to your load balancer endpo
 
 == Certificate Cipher Suites
 
-The following recommended ciphers suites provide a good balance between compatibility and security for your SSL endpoint. All cipher suites offer forward secrecy except RC4-SHA, which supports Internet Explorer 8.
+The following recommended ciphers suites provide a good balance between compatibility and security for your SSL endpoint. 
 
 ----
 ECDHE-RSA-AES256-GCM-SHA384
@@ -76,6 +76,8 @@ AES128-SHA256
 AES256-SHA
 AES128-SHA
 ----
+
+Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8) does not. For this reason, MuleSoft and Microsoft do not recommend using it.
 
 The CloudHub dedicated load balancer supports TLSv1.1 and TLSv1.2. Although you can configure TLS v1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
 
