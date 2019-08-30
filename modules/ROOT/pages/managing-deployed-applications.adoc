@@ -171,6 +171,9 @@ Replica statuses include:
 * *Started* (green)
 +
 Replica is receiving traffic.
+* *Pending*
++
+Replica is waiting to start.
 * *Starting*
 +
 Process is starting on the replica.
@@ -189,6 +192,9 @@ Replica is stopped (not receiving traffic).
 * *Failed* (red)
 +
 Configuration failed to deploy.
+* *Recovering* (red)
++
+Replica is attempting to restart after terminating.
 
 [[server_status_states]]
 === Server Status States
