@@ -1,11 +1,10 @@
-= Uploading Certificates to a Dedicated Load Balancer
+= About Uploading Certificates to a Dedicated Load Balancer
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The certificate that you upload to your load balancer must be contained in one unencrypted, PEM-encoded file.
-
-This file must contain the entire certificate chain ordered sequentially: 
+The certificate that you upload to your load balancer must be contained in one PEM encoded and unencrypted file.
+This file must contain the entire certificate chain ordered sequentially, as shown in this example:
 
 [%header,cols="30a,70a"]
 |===
@@ -18,15 +17,15 @@ This file must contain the entire certificate chain ordered sequentially:
 -----END CERTIFICATE-----
 |===
 
-You don't need to include the root certificate in the certificate chain. However, ensure to include the ASCII armor in each certificate.
+It is not required to include the root certificate in the certificate chain. However, you must include the ASCII armor in each certificate.
 
-When creating the load balancer, you can upload an SSL endpoint using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command from the CLI. 
 
-You can upload a new SSL endpoint to an existing load balancer using Runtime Manager or the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-ssl-endpoint-add[`cloudhub load-balancer ssl-endpoint add`] command from the CLI.
+When creating a load balancer, you can include an SSL Endpoint using Runtime Manager or using the `cloudhub load-balancer create` command from the CLI.
+
+After creating a load balancer, you can upload an SSL Endpoint using Runtime Manager or using the `cloudhub load-balancer ssl-endpoint add` command from the CLI.
 
 == See Also
 
-* xref:lp-ssl-endpoints[Configure SSL Endpoints]
-* xref:lb-create-arm.adoc[Create a Load Balancer (Runtime Manager)]
+* xref:lb-create-arm.adoc[To Create a Load Balancer using Runtime Manager]
 * xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[cloudhub load balancer create]
 * xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]

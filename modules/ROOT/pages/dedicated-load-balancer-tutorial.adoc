@@ -1,4 +1,4 @@
-= CloudHub Load Balancers
+= About Load Balancers (CloudHub)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -7,18 +7,14 @@ CloudHub provides a back-end load-balancing service that automatically provision
 
 CloudHub provides two types of load balancers:
 
-* Shared Load Balancer
-+
-Provides basic load balancing functionality.
-* Dedicated Load Balancer
-+
-Enables you to deploy and configure one or more custom load balancers within an Anypoint Virtual Private Cloud (Anypoint VPC).
+* Shared Load Balancer: Provides basic load balancing functionality.
+* Dedicated Load Balancer: Enables you to deploy and configure one or more custom load-balancers within an Anypoint Virtual Private Cloud (Anypoint VPC).
 
 == Shared Load Balancers
 
-CloudHub provides a default shared load balancer that is available in all environments. The shared load balancer provides basic functionality, such as TCP load balancing. Shared load balancers don't allow you to configure custom SSL certificates or proxy rules.
+CloudHub provides a default shared load balancer that is available in all environments. The shared load balancer provides basic functionality, such as TCP load balancing. Shared load balancers do not allow you to configure custom SSL certificates or configure proxy rules.
 
-Additionally, shared load balancers have lower rate limits that help ensure platform stability. MuleSoft regularly monitors and scales these limits as necessary. Rate limits on shared load balancers are applied according to region. If you are deploying an application to workers in multiple regions, the rate limit for each region might be different.
+Additionally, shared load balancers have lower rate limits that help ensure platform stability. MuleSoft regularly monitors and scales these limits as necessary. Rate limits on shared load balancers are applied according to region. Thus, if you are deploying an application to workers in multiple regions, the rate limit for each region may be different.
 
 If an application exceeds the rate limit for a shared load balancer, the load balancer returns a 503 Service Unavailable response.
 
@@ -30,19 +26,17 @@ The shared load balancer supports TLS versions 1.1 and TLS 1.2.
 
 Dedicated load balancers enable you to:
 
-* Handle load balancing among the different CloudHub workers that run your application.
+* Handle Load balancing among the different CloudHub workers that run your application.
 * Define SSL configurations to provide custom certificates and optionally enforce two-way SSL client authentication.
-* Configure proxy rules that map your applications to custom domains.
-+
-This enables you to host your applications under a single domain.
+* Configure proxy rules that map your applications to custom domains. This enables you to host your applications under a single domain.
 
-Dedicated load balancers are an optional component of Anypoint Platform. 
+Dedicated load balancers are an optional component of Anypoint Platform. To use a dedicated load balancer in your environment, you must be running an Anypoint VPC. You can associate multiple environments to the same Anypoint VPC. This enables you to use the same dedicated load balancer in different environments.
 
-For information about dedicated load balancers, see xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers].
+You can view the load balancer and Anypoint VPC endpoints in your Anypoint Platform organization from the API Portal.
 
 == See Also
 
 * https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal]
 * xref:cloudhub.adoc[CloudHub]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:lb-architecture.adoc[Dedicated Load Balancer Architecture]
+* xref:lb-architecture.adoc[About Load Balancer Architecture]
