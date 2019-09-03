@@ -1,27 +1,14 @@
-= Delete a Server From a Cluster (Hybrid)
+= Removing a Server From a Cluster (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-When deleting a cluster, consider the following:
-
-* Alert definitions and history for the cluster are deleted.
-* Servers assigned to the cluster are restarted.
-* Applications deployed to the servers in the cluster are removed.
 
 . In Runtime Manager, click the *Servers* tab.
-. Click the name of a cluster.
-. Click the drop down arrow next to the cluster status:
-
+. Click *Cluster* in the *Type* column for the cluster, then click *Manage Cluster* in the right pane.
+. In the cluster settings page, click the *Servers* tab.
+. Click the server name link, then click *Remove Server from Cluster* in the top right.
 +
-image::cluster-delete.png[Delete a Cluster]
-+
-A prompt appears asking you to confirm that you want to delete the cluster.
+image::cluster-remove-server-from.png[]
 
-. Click the checkbox to verify, then click *Delete Cluster*.
-
-After deleting the cluster, each of the servers are restarted.
-
-== See Also
-
-* xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]
+. At the prompt, click the checkbox to confirm, then click *Remove*.
