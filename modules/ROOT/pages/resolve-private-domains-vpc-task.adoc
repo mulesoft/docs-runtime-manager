@@ -14,7 +14,7 @@ You can enter up to 3 IP addresses.
 +
 image::vpc-tutorial-f7641.png[]
 +
-. Click *Add New Domain*, enter the domain name of your internal DNS server, then click *Add to List*. +
+. Click *Add New Domain*, enter your internal domain name, then click *Add to List*. +
 You only need to add the common portion of the domain name, for example: `mulesoft.com`.
 +
 You can add several private domains.
@@ -28,9 +28,9 @@ image::internal-dns-configuration.png[]
 When resolving a domain name in your internal network, consider the following:
 
 * The IP address you configure is for the DNS server of your internal network. It is not the IP address of the service you are connecting to.
-* The maximum number of characters of all the domains you configure must not exceed 239 characters. For example, adding the domains `mydomain1.com` and `mydomain2.com` requires 28 characters. Each domain name consumes an additional character because in the DNS hierarchy all domains end with a "." character.
-* Avoid entering hostnames to ensure that you do not exceed the 239 character limit.
-* All the DNS servers entered must present valid records for all the domains listed to keep a healthy view over the DNS namespace.
+* The maximum number of characters of all the domains you configure must not exceed 229 characters. For example, adding the domains `mydomain1.com` and `mydomain2.com` requires 28 characters. Each domain name consumes an additional character because in the DNS hierarchy all domains end with a "." character.
+* Avoid entering hostnames to ensure that you do not exceed the 229 character limit.
+* All DNS servers must present the same view of the DNS namespace. This means each server has valid and identical records for all of the private domains listed.
 
 == See Also
 
