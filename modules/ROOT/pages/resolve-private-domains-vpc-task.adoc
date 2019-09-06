@@ -30,7 +30,7 @@ When resolving a domain name in your internal network, consider the following:
 * The IP address you configure is for the DNS server of your internal network. It is not the IP address of the service you are connecting to.
 * The maximum number of characters of all the domains you configure must not exceed 229 characters. For example, adding the domains `mydomain1.com` and `mydomain2.com` requires 28 characters. Each domain name consumes an additional character because in the DNS hierarchy all domains end with a "." character.
 * Avoid entering hostnames to ensure that you do not exceed the 229 character limit.
-* All DNS servers must present the same view of the DNS namespace. Each server must have valid and identical records for all of the private domains listed.
+* All DNS servers must include valid and identical records for all of the private domains listed.
 
 == See Also
 
