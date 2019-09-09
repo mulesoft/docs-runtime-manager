@@ -3,13 +3,34 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Anypoint Runtime Manager monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to. The dashboards give you a view of the evolution of metrics about your apps and servers. 
+The Anypoint Runtime Manager monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to. 
 
-To view dashboards, you must have either the Runtime Manager *Read Application* permission or the Runtime Manager *Read Servers* permission for the resource.
+Anypoint Platform Private Cloud Edition doesn't support the Anypoint Monitoring dashboard feature.
 
-== Application Monitoring Dashboard
+To view dashboards, you must have either the Runtime Manager Read Applications permission or the Runtime Manager Read Servers permission for the resource.
 
-The app monitoring dashboard helps you answer questions about your integrated apps, such as:
+Anypoint Runtime Manager provides these dashboards:
+
+* <<Application Monitoring Dashboards,Application monitoring dashboards>>
++
+Displays information about applications, including deployment target and status.
++
+Runtime Manager provides two application dashboard interfaces: built-in and classic. The dashboard you see depends on the version, type, and deployment method of the selected application.
+* <<Server Monitoring Dashboard,Server monitoring dashboard>>
++
+Provides high-level information about the servers, including heap memory and CPU percentage, as well as detailed memory usage metrics.
+* <<Server Group or Cluster Monitoring Dashboard,Server group or cluster monitoring dashboards>>
++
+Displays aggregated metrics for selected servers in a group or cluster.
+
+Using the information gathered from these dashboards, you can:
+
+* Set up alerts for applications and servers to notify you automatically when any of these metrics reaches a critical value for a sustained period.
+* Use Insight to help analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
+
+== Application Monitoring Dashboards
+
+The app monitoring dashboards help you answer questions about your integrated apps, such as:
 
 * When did peaks in usage occur?
 * What impact do high traffic peaks have on response time?
@@ -17,7 +38,7 @@ The app monitoring dashboard helps you answer questions about your integrated ap
 * What impact do high traffic peaks have on the message fail rate?
 * What impact do high traffic peaks of other apps running on the same server have on the performance of a given app?
 
-=== Built-in Anypoint Monitoring Dashboard (CloudHub)
+=== Built-in Anypoint Monitoring Dashboard
 
 The Anypoint Monitoring dashboard provides a wider array of monitoring metrics than the classic application monitoring dashboard and includes several pages in which to view different types of charts. 
 
@@ -29,11 +50,9 @@ This dashboard is displayed if the selected application is:
 
 For information, see xref:monitoring::app-dashboards.adoc[Built-in Application Dashboard] in the Anypoint Monitoring documentation.
 
-Anypoint Platform Private Cloud Edition doesn't support the Anypoint Monitoring dashboard feature.
-
 === Classic Application Monitoring Dashboard
 
-The classic application monitoring dashboard displays metrics for Mule messages, CPU, and Memory.
+The classic application monitoring dashboard displays metrics for Mule messages, CPU, and memory.
 
 This dashboard is displayed if the selected application is: 
 
@@ -44,20 +63,21 @@ This dashboard is displayed if the selected application is:
 For hybrid apps, the dashboard appears if monitoring is enabled and there are CPU metrics for the last 24 hours of monitoring.
 * Not enabled for monitoring
 
-The classic application monitoring dashboard is displayed if the selected application is:
 
-== Access the Application Monitoring Dashboard
+=== Access the Application Monitoring Dashboard
+
+When you access the monitoring dashboard for an application, the dashboard you see depends on the version, type, and deployment method of the selected application.
+
+To access the application monitoring dashboard:
 
 . In Runtime Manager, click *Applications*.
 . Click the name of the application to monitor. 
-+
-The monitoring dashboard opens for the selected application. The dashboard you see depends on the version and type of application you selected. 
 
-If the built-in Anypoint Monitoring dashboard is displayed, you can click the *Switch back to classic metrics* link to view the classic application monitoring dashboard. To switch back to the Anypoint Monitoring dashboard, click the blue banner at the top of the page.
+If the built-in Anypoint Monitoring dashboard is displayed, you can click the *Switch back to classic metrics* link to view the classic application monitoring dashboard. If not, you can access the Anypoint Monitoring dashboard by clicking the blue banner at the top of the page.
 
-=== View Application Metrics
+=== Navigating the Application Monitoring Dashboard
 
-To view all graphs for different time ranges, select the time interval in the top-right corner:
+You can view all graphs for different time ranges by selecting the desired time interval in the top-right corner of the dashboard you are viewing:
 
 * Built-in Anypoint Monitoring dashboard:
 +
@@ -70,9 +90,11 @@ If your application runs on multiple workers, the workers are charted as differe
 
 If your application runs on a server group or cluster, the aggregated metrics of the servers in the group or cluster appear as a single plot line on each graph. If you want to see the metrics at the individual server level, you can look at the dashboard for the individual server. If multiple apps are running on the server, you see the overall server performance, without a distinction between each of the apps running on it.
 
-== Access the Server Monitoring Dashboard
+== Server Monitoring Dashboard
 
-The server monitoring dashboard displays high-level information about the servers, including heap memory and CPU percentage, as well as detailed metrics for memory usage.
+The server monitoring dashboard displays high-level information about the servers, including heap memory and CPU percentage, as well as detailed memory usage metrics.
+
+=== Access the Server Monitoring Dashboard
 
 To access the server monitoring dashboard:
 
@@ -85,32 +107,28 @@ image::monitoring-dashboards-server.png[]
 
 You can also navigate to a server's monitoring dashboard from the <<Access the Server Group or Cluster Dashboard,server group or cluster dashboard>> that includes the server.
 
-=== View Server Metrics
+=== Navigating the Server Monitoring Dashboard 
 
-The server monitoring dashboard displays metrics divided into two panes:
+The server monitoring dashboard displays metrics divided into two tabs:
 
-* *Overview*:
+* <<Overview Tab,Overview>>
 +
-View memory and CPU usage for the server at a high level.
-* *Breakdown*
+Displays memory and CPU usage for the server at a high level.
+* <<Breakdown Tab,Breakdown>>
 +
-View detailed metrics that track each part of the server's memory separately.
+Displays detailed metrics that track each part of the server's memory separately.
 
-To view graphs for a specific period, select the time interval on the top-right of the page:
+You can view all graphs for different time ranges by selecting the desired time interval in the top-right corner of the dashboard you are viewing:
 
 image::monitoring-dashboards-cbd92.png[]
 
-To display an overlay of numerical detail about activity that occurred at a specific time, hover your mouse over the graph:
+You can display an overlay of numerical detail about activity that occurred at a specific time by hovering over the graph:
 
 image::monitoring-dashboards-hover.png[]
 
-If your server runs multiple applications, you can view the performance of each in a separate set of charts. To do so, select the application checkboxes to display the details pane on the right with this data.
+If your server runs multiple applications, you can view the performance of each in a separate set of charts by selecting the application checkboxes to display the details pane on the right with this data.
 
-=== Server Metrics
-
-The graphs in this server dashboard provide metrics related to memory and CPU usage. You can see these metrics at a high level on the *Overview* tab or you can click *Breakdown* to see detailed memory usage metrics.
-
-The graphs in this dashboard track these values:
+The memory usage graphs on the dashboards track these values:
 
 * *Usage*
 +
@@ -124,107 +142,116 @@ The maximum amount of memory (in MB) for use by the server. The maximum amount c
 +
 The amount of memory (in MB) available for use by the Java VM. This amount varies over time. The amount of committed memory is always greater than or equal to the amount of used memory.
 
-=== JVM Heap Memory
 
-The heap is the area where all Java objects reside. The heap is created when the JVM starts and can scale up or down in size without interrupting the applications in it. When the heap becomes full, <<garbage_collection,garbage is collected>> to clear objects that are no longer used and make space for new objects.
+==== Overview Tab
 
-The non-heap memory stores per-class structures such as a runtime constant pool, field, and method data, and the code for methods and constructors.
+The graphs in the Overview tab provide high-level metrics related to memory and CPU usage.
 
-The JVM heap memory metric in the *Overview* is the total heap memory usage in MB:
-
+Heap Memory::
+The total heap memory usage in MB:
++
 * Heap memory usage
 * Total memory
 * Heap committed memory
-
-See the <<Breakdown Tab,*Breakdown* tab>> for details about each of its components.
-
++
 image::monitoring-dashboards-heap.png[]
++
+See the <<Breakdown Tab,Breakdown tab>> for details about each of the components of the heap memory.
 
-=== CPU
-
-This metric in the *Overview* tab is the total CPU usage of the server, as a percentage:
+CPU::
+This metric is not available on Windows.
++
+The total CPU usage of the server, as a percentage:
 
 * CPU usage
 * System available processing power
 * System load average
 +
-This metric is not available in Windows.
-
 image::monitoring-dashboards-cpu.png[]
 
 
-=== Thread Count
+==== Breakdown Tab 
 
-This graph displays the number of individual threads over time.
+The graphs in the Breakdown tab provide detailed metrics, including graphs that track each part of the server's memory separately.
 
+* Heap memory metrics relate to the portion of the server memory that makes up the JVM heap:
+** <<eden,Eden>>
+** <<survivor,Survivor>>
+** <<old_gen,Old Gen>>
+
+* Non-heap memory metrics refer to memory that exists outside the JVM heap:
++
+** <<code_cache,Code Cache>>
+** <<compressed_class,Compressed Class Space>>
+** <<metaspace,Metaspace>>
+
+
+[[thread_count]]
+Thread Count:: 
+The number of individual Java execution threads over time:
++
 image::monitoring-dashboards-threads.png[]
 
-Threads here refer to threads of execution in Java. The JVM allows an application to have multiple threads of execution running concurrently.
-
 [[garbage_collection]]
-=== Garbage Collection
+Garbage Collection::
+Metrics for these areas of the heap:
 
-Garbage collection involves examining the heap memory to identify which objects are not used, and then deleting them. The garbage collection graph shows metrics for these areas of the heap:
-
-* Young Generation where all new objects are allocated.
-* Old Generation where long surviving objects are stored.
-
+* Young Generation, where all new objects are allocated.
+* Old Generation, where long-surviving objects are stored.
++
 image::monitoring-dashboards-garbage.png[]
 
-=== Class Loading
-
-The class loading graph shows the number of classes that are currently loaded or being loaded, in total across all apps in the JVM.
-
+[[class_loading]]
+Class Loading::
+The total number of classes that are currently loaded or being loaded across all apps in the JVM:
++
 image::monitoring-dashboards-classloading.png[]
 
-=== Heap Memory Metrics
-
-The following metrics relate to the portion of the server memory that makes up the JVM heap.
-
-==== Eden
-
+[[eden]]
+Eden::
 The pool in the heap space from which memory is initially allocated for most objects.
-
++
 image::monitoring-dashboards-eden.png[]
 
-==== Par Survivor / Survivor Space
-
+[[survivor]]
+Survivor::
 The pool in the heap containing objects that have survived the garbage collection of the Eden space.
-
++
 image::monitoring-dashboards-survivor.png[]
 
-==== Old Gen
-
+[[old_gen]]
+Old Gen::
 The pool in the heap containing objects that have existed for some time in the survivor space.
-
++
 image::monitoring-dashboards-tenure.png[]
 
-=== Non-heap Memory Metrics
-
-The following metrics refer to memory that exists outside the JVM heap.
-
-==== Code Cache
-
+[[code_cache]]
+Code Cache::
 This non-heap space contains memory that is used for compilation and storage of native code.
-
++
 image::monitoring-dashboards-cahce.png[]
 
-==== Compressed Class Space
-
-This metric is only available when using JDK 8+.
-
+[[compressed_class]]
+Compressed Class Space::
+This metric is available only when using JDK 8+.
++
 image::monitoring-dashboards-class-space.png[]
 
-==== Metaspace
-
+[[metaspace]]
+Metaspace::
 JVM memory space that uses native memory for the representation of class metadata.
-This metric is only available when using JDK 8+.
-
++
+This metric is available only when using JDK 8+.
++
 image::monitoring-dashboards-meta.png[]
 
-== Server Group and Cluster Dashboards
 
-The server group or cluster dashboard displays three aggregated metrics:
+
+== Server Group or Cluster Monitoring Dashboard
+
+You can use the server group or cluster monitoring dashboard to view aggregated metrics for servers in a group or cluster.
+
+The server group or cluster monitoring dashboard displays these aggregated metrics:
 
 * CPU usage, as a percentage of the capacity
 * Memory usage, in MB
@@ -234,7 +261,7 @@ The aggregated metrics of the selected servers appear as a single plot line on e
 
 === Access the Server Group or Cluster Dashboard
 
-To access the dashboard of a server group or cluster for on-premises deployment:
+To view aggregated metrics for servers in a server group or cluster for on-premises deployment:
 
 . In Runtime Manager, click *Servers*.
 . Click the cluster or server group name to display the dashboard.
@@ -244,7 +271,7 @@ To access the dashboard of a server group or cluster for on-premises deployment:
 
 // image::monitoring-dashboards-5cd3c.png[]
 
-You can view graphs for specific periods by selecting the time interval in the top-right corner.
+You can view graphs for specific periods by selecting the time interval in the top-right corner:
 
 image::monitoring-dashboards-cbd92.png[]
 
@@ -253,15 +280,6 @@ You can display this information for either servers or applications by clicking 
 image::monitoring-dashboards-6fe9f.png[]
 
 From this dashboard, you can click a <<Access the Server Monitoring Dashboard,server>> or <<Access the Application Monitoring Dashboard,application>> name to access the dashboard for that item.
-
-
-== Alerts
-
-Set up xref:alerts-on-runtime-manager.adoc#conditions-on-locally-deployed-applications[alerts] for applications and servers to notify you automatically when any of these metrics reaches a critical value for a sustained period.
-
-== Insight
-
-To help you analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures, use Insight.
 
 
 == See Also
