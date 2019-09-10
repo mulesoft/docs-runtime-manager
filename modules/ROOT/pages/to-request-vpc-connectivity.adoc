@@ -3,27 +3,22 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network varies depending on the connectivity method and the date your Anypoint VPC is created. 
+How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network varies depending on the connectivity method. 
 
 [%header]
 |===
 |VPC Connection Method|How to
 |IPsec tunnel
-|How you connect using the IPsec tunnel method depends on when you initially configure your VPC.
+|For VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN]. +
+For VPNs created before November 2018, follow the steps in <<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 |VPC peering
 |<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 |CloudHub direct connect
 |<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
 |===
 
-== Request VPC Connectivity for Anypoint VPCs after November 2018
-
-For new Anypoint VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN].
-
-To add additional static routes to Anypoint VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[Adding Additional Static Routes Using the API].
-
 [[request_vpc_connectivity]]
-== Request VPC Connectivity for Anypoint VPCs before November 2018
+== Request Connectivity for Anypoint VPCs
 
 To connect your Anypoint VPC to your internal network using VPN tunnel, peering, or direct connect, you must:
 
