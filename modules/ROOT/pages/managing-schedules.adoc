@@ -22,6 +22,8 @@ The *Schedules* tab is useful in the following scenarios:
 * If a scheduled job is not triggered one or more times because the application is down, CloudHub triggers the job as soon as the application restarts.
 * CloudHub scheduler reads a schedule job configuration every time it runs. This means that if you update the schedule time, the change is not immediate. The job executes as it was initially configured before the scheduler picks up the next setting for the next time it runs. To apply your changes immediately, run your jobs after every schedule update.
 * If poll execution time takes longer than 12 hours, the scheduler fails and is re-executed.
+* CloudHub schedules cannot be managed using scripts. Use the CloudHub API or Schedules tab in Runtime Manager to manage CloudHub schedules.
+
 
 [NOTE] 
 Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.).
