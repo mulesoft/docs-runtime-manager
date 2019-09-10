@@ -86,10 +86,13 @@ DPD allows devices to rapidly identify when network conditions change. You can e
 
 == Recommendations
 
-* Adjust the maximum segment size of TCP packets entering the VPN tunnel +
-VPN headers require additional space, which reduces the amount of space available for data. +
+* Adjust the maximum segment size of TCP packets entering the VPN tunnel.
++
+VPN headers require additional space, which reduces the amount of space available for data.
++
 To limit the impact of this behavior, configure your endpoint with TCP MSS Adjustment: 1387 bytes.
-* Reset the `DF` flag on packets +
+* Reset the `DF` flag on packets.
++
 Packets might carry a Don't Fragment (`DF`) flag, indicating that the packet must not be fragmented. Some VPN devices can override the `DF` flag and fragment packets unconditionally when required. If available, enable the setting `Clear Don't Fragment (DF) Bit`.
 
 
