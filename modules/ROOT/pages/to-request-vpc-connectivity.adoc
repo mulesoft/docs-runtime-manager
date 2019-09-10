@@ -3,39 +3,36 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network varies depending on the connectivity method and the date your Anypoint VPC is created. 
+How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network varies depending on the connectivity method. 
 
 [%header]
 |===
 |VPC Connection Method|How to
 |IPsec tunnel
-|How you connect using the IPsec tunnel method depends on when you initially configure your VPC.
+a|
+
+* For VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN]. +
+* For VPNs created before November 2018, follow the steps in <<request_vpc_connectivity,Request Connectivity for Anypoint VPCs>>.
 |VPC peering
-|<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
+|<<request_vpc_connectivity,Request Connectivity for Anypoint VPCs>>
 |CloudHub direct connect
-|<<request_vpc_connectivity,Request VPC Connectivity to Your Network>>
+|<<request_vpc_connectivity,Request Connectivity for Anypoint VPCs>>
 |===
 
-== Request VPC Connectivity for Anypoint VPCs after November 2018
-
-For new Anypoint VPCs after November 2018, see xref:vpn-about.adoc[Anypoint VPN].
-
-To add additional static routes to Anypoint VPCs that were connected after November 2018, see https://support.mulesoft.com/s/article/How-to-add-an-additional-Static-route-to-an-Anypoint-VPN-tunnel[Adding Additional Static Routes Using the API].
-
 [[request_vpc_connectivity]]
-== Request VPC Connectivity for Anypoint VPCs before November 2018
+== Request Connectivity for Anypoint VPCs
 
 To connect your Anypoint VPC to your internal network using VPN tunnel, peering, or direct connect, you must:
 
-. Download link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[the Anypoint VPC discovery form], which requires at least MS Excel 2007 with macros enabled). 
+. Download the link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[Anypoint VPC discovery form], which requires at least MS Excel 2007 with macros enabled). 
 +
-[NOTE]
-When updating an existing VPN, the VPC discovery form is required only if the VPN was created prior to November 2018. For all VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN].
+When updating an existing VPN, the VPC discovery form is required only if the VPN was created before November 2018. For all VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN].
 . Enter the data to communicate the necessary details required for your connectivity method. If you need support for multiple regions, submit one copy of the discovery form for each region in which you need support.
-. Contact your MuleSoft account representative to discuss your specific requirements. +
-After the MuleSoft Support team receives your form and answers any remaining questions, they securely exchange keys, and supply instructions on how to configure your router(s).
+. Contact your MuleSoft account representative to discuss your specific requirements.
++
+After the MuleSoft Support team receives your form and answers any remaining questions, they securely exchange keys and supply instructions on how to configure your router(s).
 
-The SLA for configuring Anypoint VPC is five business days after the Anypoint VPC discovery form has been completed, returned and approved by Support, though the Anypoint VPC configuration may be completed sooner.
+The SLA for configuring Anypoint VPC is five business days after the Anypoint VPC discovery form has been completed, returned and approved by Support, though the Anypoint VPC configuration might be completed sooner.
 
 
 == See Also
