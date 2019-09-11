@@ -3,17 +3,23 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use Anypoint VPN to create a secure connection between your MuleSoft Virtual Private Cloud (VPC) and your own on-premises network. You can create multiple site-to-site VPNs if required. 
+Use Anypoint VPN to create a secure connection between your MuleSoft Virtual Private Cloud (VPC) and your on-premises network. You can create multiple site-to-site VPNs if required. 
 
 [NOTE]
 The number of VPNs you can create depends on the VPN entitlements available to your account. Contact your MuleSoft account representative if you don't know how many VPN entitlements you have on your account. 
 
-Anypoint VPN supports site-to-site Internet Protocol security (IPsec) connections. A physical or software appliance, called a VPN endpoint, is the terminator on your side of the connection. The MuleSoft side of the connection is an implementation of a virtual private gateway (VGW).
+Anypoint VPN supports site-to-site Internet Protocol security (IPsec) connections. A physical or software appliance, called a VPN endpoint, is the terminator on your side of the connection. The MuleSoft side of the connection is an implementation of a virtual private gateway (VGW). The MuleSoft VGW is associated with a single MuleSoft VPC but can support up to 10 VPN connections. 
 
 [NOTE]
 MuleSoft implementation capabilities may vary from other VGW offerings.
 
 == Anypoint VPN Features
+
+Each Anypoint VPN connection consists of two tunnels that enable you to connect to a single public IP address at a remote location. To configure connectivity to an additional public IP address at a remote location, you must create two VPN connections.
+
+A single VPN provides increased availability for your MuleSoft VPC. Routine maintenance can briefly disable one of the two tunnels of your VPN connection. During this time, your VPN connection automatically fails over to the second tunnel so access is not interrupted. For this reason, both tunnels must be configured on your endpoint. Tunnel selection depends on your VPN endpoint capabilities and the routing type selection. 
+ 
+The MuleSoft VGW implementation supports a maximum throughput of 1.25 Gbps. Multiple VPN connections to the same VPC share the throughput capabilities of a single VGW. The VPN connection throughput depends on several factors, such as the capability of your VPN endpoint, the capacity of the connection, the average packet size, the protocol, and network latency between the gateways.
 
 === IPsec Settings
 
@@ -38,7 +44,7 @@ Anypoint VPN supports dynamic or static routing for VPN connections.
 * *Dynamic routing* Your device uses Border Gateway Protocol (BGP) to advertise routes to Anypoint VPN. Use BGP routing if your device supports this protocol.
 * *Static routing* - Requires you to specify the routes (subnets) in your network that are accessible through Anypoint VPN. +
 [NOTE]
-A maximum of 95 static routes are permitted per VPC, regardless of the number of VPN connections. Consolidate networks to the fewest number possible to avoid exceeding the limit.  
+A maximum of 95 static routes is permitted per VPC, regardless of the number of VPN connections. Consolidate networks to the fewest number possible to avoid exceeding the limit.  
 
 === Limitations
 
@@ -50,14 +56,6 @@ Anypoint VPN does not support these features and configurations:
 * A single VPC with both Direct Connect and Anypoint VPN connections
 * Advertising a default route (0.0.0.0/0) over BGP or static routing
 
-In addition, Anypoint VPN has these limitations:
-
-* Each VPC supports a maximum of 10 VPN connections.
-+
-Each VPC has at least one VPN. For High Availability Clusters, each VPC has at least two VPNs.
-* Each VPN connection consists of 2 tunnels.
-* Each VPN terminates in a VPC.
-
 [[vpn_requirements]]
 == Requirements for Static VPN Connections
 
@@ -66,16 +64,15 @@ To create a static VPN connection, your VPN endpoint must be able to:
 * Establish IKE Security Associations using a Pre-Shared Key (PSK) 
 * Establish IPsec Security Associations in Tunnel mode
 * Utilize any combination of IPsec settings that MuleSoft supports
-* Fragment IP packets before encryption
-* Use one Security Association pair per tunnel
-
-=== Fragmentation Before Encryption
-
+* Fragment IP packets before encryption 
++
 You must fragment packets that are too large to transmit. Your VPN device must be able to fragment packets before encapsulation.
-
-=== Security Association (SA)
-
-Each VPN connection has two separate tunnels. Anypoint VPN supports one unique SA pair per tunnel (where a pair means one inbound, and one outbound). Some policy-based devices create an SA for each ACL entry. In this situation, you must consolidate your rules and then filter unwanted traffic.
+* Use one Security Association (SA) pair per tunnel 
++
+Anypoint VPN supports one unique SA pair per tunnel (a pair refers to one inbound and one outbound connection). Some policy-based devices create an SA for each ACL (access-control list) entry. In this situation, you must consolidate your rules and then filter unwanted traffic.
+* Allow asymmetric routing 
++
+Asymmetric routing occurs when routing policies send traffic from your network to the VPC through one tunnel and traffic returns from the VPC through the other tunnel. The MuleSoft VPN endpoint selects the tunnel using an internal algorithm, making the return path dynamic. If your device uses an active/active tunnel configuration, you must allow asymmetric routing for each Anypoint VPN connection.
 
 == Requirements for Dynamic VPN Connections
 
@@ -83,29 +80,25 @@ To create a dynamic VPN connection, in addition to the static VPN connection req
 
 * Establish BGP peering
 * Support route-based VPNs (bind tunnels to logical interfaces)
-* Use IPsec Dead Peer Detection
-
-=== IPsec Dead Peer Detection
-
-Dead Peer Detection (DPD) allows devices to rapidly identify when network conditions change. DPD is enabled on the MuleSoft endpoint. 
-
-Configure your endpoint with:
-
-* DPD Interval: `10`
-* DPD Retries: `3`
+* Use IPsec Dead Peer Detection (DPD)
++
+DPD allows devices to rapidly identify when network conditions change. You can enable DPD on the MuleSoft endpoint using `DPD Interval: 10` and `DPD Retries: 3`.
 
 == Recommendations
 
-* Adjust the maximum segment size of TCP packets entering the VPN tunnel +
-VPN headers require additional space, which reduces the amount of space available for data. +
+* Adjust the maximum segment size of TCP packets entering the VPN tunnel.
++
+VPN headers require additional space, which reduces the amount of space available for data.
++
 To limit the impact of this behavior, configure your endpoint with TCP MSS Adjustment: 1387 bytes.
-* Reset the `DF` flag on packets +
+* Reset the `DF` flag on packets.
++
 Packets might carry a Don't Fragment (`DF`) flag, indicating that the packet must not be fragmented. Some VPN devices can override the `DF` flag and fragment packets unconditionally when required. If available, enable the setting `Clear Don't Fragment (DF) Bit`.
 
 
 == Tested Network Devices
 
-These are network devices that are known to work with the Anypoint VPN. If your device does not appear in the list of tested devices, see <<vpn_requirements,Requirements>> to see if your device meets the requirements for use with Anypoint VPN.
+The following network devices are known to work with the Anypoint VPN. If your device does not appear in the list of tested devices, check the <<vpn_requirements,requirements>> to verify that your device is suitable for use with Anypoint VPN.
 
 [%header%autowidth.spread]
 |===
