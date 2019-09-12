@@ -21,11 +21,20 @@ When you create or configure an Anypoint VPN, you must provide the following inf
 * *Point-to-Point CIDR:* IP range used by the network tunnel. You must configure a unique IP address range for each tunnel. This value is auto-generated if you select *Automatic Tunnel Configuration*.
 
 
+== Access the VPN Page
+To access the *VPN* page, you must have either the *CloudHub Network Administrator*, or the *CloudHub Network Viewer* user permission. In addition, assign *Read Application* permissions for the user's default environment (defined under the user's profile). See xref:access-management::users#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users].
+
+image::vpn-permissions.png[]
+
+[NOTE]
+The VPNs page is visible to Anypoint organisations that have VPN entitlements. 
+
+
 == Create an Anypoint VPN
 
 . Sign into Anypoint Platform and select *Runtime Manager*.
 . Select the environment where you want to create an Anypoint VPN.
-. From the menu on the left, click the *VPNs* tab, then click *Create VPN*.
+. From the menu on the left, click *VPNs*, then click *Create VPN*.
 . Enter or select the following information for your Anypoint VPN: +
 * *Name* - Enter a name for your Anypoint VPN. 
 * *VPC* - From the drop-down list, select the Virtual Private Cloud for the Anypoint VPN connection.
@@ -41,9 +50,9 @@ You can select either *BGP* or *Static*. Choose the Border Gateway Protocol (BGP
 a| Select *BGP* then enter the following values:
 
 * *Remote ASN* - Enter the ASN corresponding to your backend. +
-The default value is `65001`.
+Use an existing ASN assigned to your network, or a private ASN (64512–65534) that is not already assigned to your network. The default value is `65001`.
 * *Local ASN* - Assign an ASN for the MuleSoft side. +
-The default value is `64512`
+Use a private ASN (64512–65534) that is not already assigned to your network. The default value is `64512`
 
 a| Select *Static*, then: 
 
@@ -58,7 +67,7 @@ You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is
 |===
 |To use *Automatic* tunnel configuration |To use *Custom* tunnel configuration
 a|Select *Automatic* +
-No other inputs are required. This option automatically configures the required tunnels for your Anypoint VPN.
+No other inputs are required. This option automatically configures the tunnel settings for your Anypoint VPN.
 
 a|. Select *Custom*, then enter the values for both tunnels:
 . In the *PSK* field, enter a value between 8-64 characters in length that does not begin with zero (0). + 
@@ -84,7 +93,8 @@ You cannot modify tunnel settings after you create the Anypoint VPN connection. 
 . Click *Download* to download the configuration file for you VPN endpoint. 
 +
 [NOTE]
-The provided configuration file is an example configuration using the minimum supported IPsec settings. You can adjust the configuration to fit your own requirements, using any combination of IPsec settings that are supported in Anypoint VPN.
+All configuration files represent the minimum requirement of IKEv1, AES128, SHA1, and DH Group 2. You may modify the configuration for your VPN endpoint to take advantage of the other supported IPsec Settings.
+
 . Configure your VPN endpoint. +
 Based on the configuration options you choose, additional configuration steps may be required. For help with configuring your endpoint, refer to the documentation for your specific VPN endpoint, and ensure that the components of your network are configured correctly.  
 
@@ -106,6 +116,7 @@ Depending on your configuration, tunnels may report a status of *DOWN* during no
 |`Available` |`Up\Up` or `Up\Down` |The VPN connection is created, and the remote side established the connection successfully. Depending on the type of VPN and routing, the tunnels may operate in an active/active or active/passive mode.
 |`Failed` |`DOWN\DOWN` | The VPN connection was not created successfully. You have to delete the VPN and try again. If this failure reoccurs, please contact MuleSoft Support.
 |===
+
 
 === See Also
 
