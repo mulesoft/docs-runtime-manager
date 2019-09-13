@@ -4,12 +4,12 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, runtime manager, arm, load balancing, updates,
 
-The CloudHub dedicated load-balancer service provides quarterly updates that include the latest OS and security patches. If necessary, additional patches provide new updates more often.
-These updates don't include functionality changes. 
+The CloudHub dedicated load-balancer service provides quarterly updates that include the latest OS and security patches. If necessary, additional patches provide updates more often.
+These updates don't include feature changes. 
 
 Because these updates contain required security patches, you cannot roll back these updates once applied.
 
-When new updates are available, an *Update* button appears on the load balancers page:
+When updates are available, an *Update* button appears on the load balancers page:
 
 image::lb-update-page.png[LoadBalancerUpdatePage]
 
@@ -17,18 +17,18 @@ The *Update* button also appears on the details page for the individual load bal
 
 image::lb-update-details.png[LoadBalancerUpdateDetails Page]
 
-If a load balancer that requires an update is restarted, the update occurs automatically. Conditions when the load balancers restart include recovery from an impaired state or manually restarted using Runtime Manager or the API.
+If a load balancer that requires an update is restarted, the update occurs automatically. Conditions when the load balancers restart include recovery from an impaired state and when manually restarted using Runtime Manager or the API.
 
 == Update a Load Balancer Manually
 
-The *Update* button indicates a load balancer requires an update. You can schedule the update at your convenience.
+The *Update* button indicates a load balancer requires an update. You can schedule the update to occur at your convenience.
 
 To update a load balancer:
 
 . Click the *Update* button.
-. At the Update Load Balancer prompt, click *Update*.
+. At the *Update Load Balancer* prompt, click *Update*.
 . Click the *release notes* link for details on the update. 
 
-The update results in a rolling restart with no downtime. Some inflight requests might be impacted, however. 
+The update results in a rolling restart with no downtime. However, some inflight requests might be impacted. 
 
 If you experience a sustained outage after updating, contact MuleSoft Support.
