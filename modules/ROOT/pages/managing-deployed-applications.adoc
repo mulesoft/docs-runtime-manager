@@ -47,7 +47,6 @@ An application deployed to a server group runs on every server in the group.
 
 === Servers Tab
 
-[NOTE]
 This tab is used only to deploy apps to on-premises servers. CloudHub workers aren't displayed here.
 
 In Runtime Manager, a "server" is a Mule or API gateway instance in a location other than CloudHub (on-premises or in a different cloud server) that you must first register in the Runtime Manager console. After you register and configure your server, you can deploy your applications to it from the *Applications* tab.
@@ -103,8 +102,7 @@ Deletes the application.
 [IMPORTANT]
 On CloudHub, after you delete an application, your log data is no longer accessible from the console. CloudHub archives old log data for a limited period of time before it is purged. This allows you to recover the data if needed. Open a support case at: https://support.mulesoft.com[https://support.mulesoft.com] for more information.
 
-[NOTE]
-====
+
 For applications deployed through Pivotal Cloud Foundry:
 
 * *Restart*
@@ -116,7 +114,7 @@ Destroys the virtual machine running the application but retains the entry on Ru
 * *Undeploy*
 +
 Destroys the virtual machine running the application and deletes the entry for it on Runtime Manager.
-====
+
 
 [[status_states]]
 == Status States
@@ -294,8 +292,7 @@ If you made changes to your application and want to deploy a new version:
 Within a few seconds, your application redeploys. While redeploying, the application status indicator changes to blue, and then turns green after the deployment completes.
 . For applications deployed to CloudHub, you can click *Logs* to see a live redeployment of your application.
 
-[TIP]
-If you're deploying your application to an on-premises cluster, Runtime Manager installs the new app version progressively on each server to ensure no downtime.
+If you're deploying your application to an on-premises cluster, Runtime Manager installs the new app version simultaneously on each server.
 
 To update applications deployed to Runtime Fabric, see xref:runtime-fabric::app-versioning.adoc[Application Versioning on Runtime Fabric].
 
@@ -305,7 +302,6 @@ You can set up email alerts that are sent whenever certain events occur to your 
 
 Even if you don't have permission to create alerts, you can specify whether to receive email alerts.
 
-[NOTE]
 Switching an alert off from this view switches it off for the current (signed in) user only. Other users can still have active alerts.
 
 == See Also
