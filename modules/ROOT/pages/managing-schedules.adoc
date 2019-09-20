@@ -4,33 +4,39 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: schedules, cloudhub, polling
 
-The CloudHub console includes a *Schedules* tab in the left navigation menu where you can view and control any polling elements within the flows of your deployed applications. CloudHub automatically detects the polling elements from within your flows and lists them on the *Schedules* tab. On this tab, you can select the polling elements and enable or disable them, change the polling frequency, or run them immediately – all during runtime, without making any changes in the underlying application.
+The *Schedules* tab in the left navigation menu of the CloudHub console enables you to view and control any polling elements within the flows of your deployed applications. On this tab, you can manage polling elements, change the polling frequency, or run polls immediately, all during runtime, without making any changes in the underlying application.
 
 == Use Cases
 
 The *Schedules* tab is useful in the following scenarios:
 
-* You have a job that runs nightly but you want to trigger it right now so you can debug it. You want to do this in runtime so you don’t need to update the schedule in your underlying application.
+* You have a job that runs nightly but you want to debug it now.
++
+You can trigger the job while it's running without updating the schedule in your underlying application.
 * You want to change the schedules in your application at runtime without redeploying.
 * You want to disable a scheduled job while one of the applications you are connecting to is undergoing maintenance.
 * You want runtime visibility into the schedules in your application.
 
 == Considerations
 
+When using the *Schedules* tab, consider the following:
+
 * Schedulers are managed by CloudHub and are triggered in only one worker even if more are available.
-* Setting a polling Schedule for less than a 10-second frequency between calls is not recommended.
+* Setting a polling schedule for less than a 10-second frequency between calls is not recommended.
 * If a scheduled job is not triggered one or more times because the application is down, CloudHub triggers the job as soon as the application restarts.
-* CloudHub scheduler reads a schedule job configuration every time it runs. This means that if you update the schedule time, the change is not immediate. The job executes as it was initially configured before the scheduler picks up the next setting for the next time it runs. To apply your changes immediately, run your jobs after every schedule update.
+* CloudHub scheduler reads the job configuration every time it runs.
++
+To apply your changes immediately, run your jobs manually after updating the schedule.
 * If poll execution time takes longer than 12 hours, the scheduler fails and is re-executed.
-* CloudHub schedules cannot be managed using scripts. Use the CloudHub API or Schedules tab in Runtime Manager to manage CloudHub schedules.
+* You cannot manage CloudHub schedules using scripts.
++
+Use the CloudHub API or *Schedules* tab in Runtime Manager to manage CloudHub schedules.
 
-
-[NOTE] 
-Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.).
+// Flow names can contain only letters (a-z and A-Z), numbers (0-9), hyphen (-), underscore (_), and period (.).
 
 == View Application Schedules in the Console
 
-To use the scheduling feature in Runtime Manager, deploy an application that includes one or more polling elements. For example, the application illustrated below includes two simple flows, each with a polling scope.
+To use the scheduling feature in Runtime Manager, deploy an application that includes one or more polling elements. This example includes two simple flows, each with a polling scope:
 
 [.ex]
 =====
@@ -64,53 +70,66 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 ----
 =====
 
-Because CloudHub synchronizes your schedules automatically, overriding any synchronize property set on the flows containing the polling scopes, there is no need to do any other special configuration.
+CloudHub synchronizes your schedules automatically, overriding any synchronize property set on the flows containing the polling scopes, so that you don't need to perform any other special configuration.
 
-Once it is deployed, select the application in the Runtime Manager console, and click *Schedules* in the left navigation menu. Runtime Manager lists the polling elements in your application in the order they appear in your application:
+After deploying an app, you can view the polling elements in Runtime Manager by selecting the app and clicking *Schedules* in the left navigation menu. Runtime Manager lists the polling elements in your application in the order they appear in your application:
 
-image::schedulesview.png[SchedulesView]
+image::ch-view-polling-schedule.png[View Schedules]
 
-[NOTE] 
-The name of each element is determined by the `doc:name` attribute in the polling scopes, if you add one in the XML. If you do not specify a `doc:name`, then CloudHub applies the name, *yourFlowname Poll*.
+The name of each element is determined by the `doc:name` attribute in the polling scopes, if specified in the XML. If you do not specify `doc:name`, CloudHub applies the name, *yourFlowname Poll*.
 
-The *Last Run* column shows the exact date and time of each recently run polling element. You can view the Logs to see further details about when the jobs started and ended their scheduled runs.
+The *Last Run* column shows the date and time each polling element last ran. You can view the logs to see more information about when the jobs started and ended scheduled runs.
 
 == Manage Schedules at Runtime
 
-To manage the polling elements:
+To manage schedules in Runtime Manager:
 
-. Check the boxes next to the individual elements you want to manage.
-. Click *Run now* if you want to override the schedule and run the job immediately.
-. Click *Disable* to suspend a polling element. CloudHub does not run the polling job until you *Enable* it once again.
-. In the *Schedule* column, CloudHub lists each polling element's polling frequency.
-. Click the frequency of a polling element to open the schedule editor:
+. Click *Applications* in the left pane, click the app, and then click *Schedules*:
 +
-image::scheduleschangetime.png[SchedulesChangeTime]
+image::ch-schedule-change.png[View Schedules]
 +
-. In the schedule editor, adjust the polling frequency of the element, or disable the polling frequency by unchecking *Enabled*:
-+
-image::chsetpollfreq.png[CHSetPollFreq]
-+
-. Click *Switch to advanced mode* to use Cron expressions, and click *Quick reference* for information on required fields and allowed values.  Click *more* to view the Quartz http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/tutorial-lesson-06.html[CronTrigger Tutorial]. If you change the Cron setting, click *Update*. Click *Cancel* to exit. Click *Switch to basic mode* to exit advanced mode.
-+
-image::chadvmodewithqkref.png[CHAdvModeWithQkRef]
-+
-[NOTE]
-All schedules are based in the UTC timezone, regardless of what region your CloudHub workers are on, and the timezone configuration is ignored.
+. Select the elements to manage, then:
 
-. To see the *Schedule* tab in action, select one or more of the scheduled jobs and click *Run Now*. `The schedules have been queued to run` message appears.
+** Click *Run now* to override the schedule and run the job immediately.
 +
-image::schedulesrunnow.png[SchedulesRunNow]
+** Click *Disable* to suspend a polling element.
 +
-. To check the result, click *Logs* in the left navigation menu, and view the entries to verify that the job you selected ran as expected: +
+CloudHub does not run the polling job until you reenable it.
+** Click the frequency of a polling element in the *Schedule* column to open the schedule editor:
 +
-image::scheduleslogs.png[SchedulesLogs]
+image::ch-set-poll-freq.png[Set Polling Frequency]
++
+In the schedule editor, change the polling frequency of the element or deselect *Enabled* to disable the polling schedule.
++ 
+You can also <<Use Cron Expressions,use cron expressions>> to create more specific schedules, such as "every Thursday at 3:00 pm". 
+. Click *Update* to save changed settings or click *Cancel* to exit without saving.
+. Click *Logs* in the left navigation menu to verify that the job you selected ran as expected.
 
+=== Use Cron Expressions
+
+With cron expressions, you can create more complex polling frequencies, such as "every 5 minutes between 9:00 am and 10:00 on Fridays".
+
+To use cron expressions to specify the polling frequency:
+
+. In the schedule editor, click *Switch to advanced mode*.
+. In the advanced mode page, click *Quick reference* to expand the table that lists required fields and allowed values:
++
+image::ch-schedule-adv-mode-exp.png[Schedule Advanced Mode Expanded]
++
+The cron expression in this example sets the polling schedule to every 10 seconds.
++
+On this page:
+
+* Click *more* to view the http://www.quartz-scheduler.org/documentation[Quartz documentation] for information about building cron triggers.
++
+Select a version, click *Documentation > User's Guide > Tutorial*, and then click *Lesson 6: CronTrigger*.
++
+All schedules are based in the UTC timezone, regardless of what region your CloudHub workers are in, so the timezone configuration is ignored.
+* Click *Switch to basic mode* to exit advanced mode.
+. Click *Update* to save changed cron settings or click *Cancel* to exit without saving.
 
 == See Also
 
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:deployment-strategies.adoc[Deployment Strategies]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * xref:monitoring.adoc[Monitoring Applications]
