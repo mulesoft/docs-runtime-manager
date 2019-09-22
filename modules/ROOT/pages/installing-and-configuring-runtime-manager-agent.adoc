@@ -978,25 +978,46 @@ These tables show you the ports or IPs/hostnames to add to your whitelists to al
 
 *Static IPs*
 
-There are two static IPs that must be whitelisted to access the mule-manager hosts.
+* Two static IPs must be whitelisted in `US` to access the `mule-manager` hosts:
++
 
 [%header,cols="3*a"]
 |===
 |Region |Name |IP Address
 |*US*|*mule-manager.anypoint.mulesoft.com* |52.201.174.72
 |*US*|*mule-manager.anypoint.mulesoft.com* |52.201.67.218
+|===
+
+* Four static IPs must be whitelisted in `US` to access the `runtime-manager` hosts:
++
+[%header,cols="3*a"]
+|===
+|*US*|*runtime-manager.anypoint.mulesoft.com* |107.23.158.87
+|*US*|*runtime-manager.anypoint.mulesoft.com* |54.227.160.248
+|*US*|*runtime-manager.anypoint.mulesoft.com* |54.172.124.202
+|*US*|*runtime-manager.anypoint.mulesoft.com* |3.230.47.55
+|===
+
+* Two static IPs must be whitelisted in `EU` to access the `mule-manager` hosts:
++
+[%header,cols="3*a"]
+|===
+|Region |Name |IP Address
 |*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.195.19.18
 |*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.194.245.32
 |===
 
-The following DNS endpoints do not have static IP addresses:
+* Three static IPs must be whitelisted in `EU` to access the `runtime-manager` hosts:
++
+[%header,cols="3*a"]
+|===
+|Region |Name |IP Address
+|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* |3.123.64.97
+|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* |18.194.166.104
+|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* |3.123.248.130
+|===
 
-[%header,cols="2*a"]
-|====
-|Region | Name
-|*US*|*runtime-manager.anypoint.mulesoft.com*
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com*
-|====
+
 
 *Dynamic IPs*
 
