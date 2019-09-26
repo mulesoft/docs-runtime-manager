@@ -14,10 +14,10 @@ By using proxy rules, you can map a domain or subdomain to one of your Mule appl
 
 == Using Patterns in Mapping Rules
 
-A pattern is a string that defines a template for matching an input text. Whatever is placed into curly brackets (`{   }`) is treated as a variable.
-These variables can contain only letters (a-z) and cannot contain any other characters, such as digits, slashes, etc. The variable values can contain the characters`a-z0-1.&?-_`, but can't contain slashes.
-
 IMPORTANT: Patterns in the application URI are not currently supported.
+
+A pattern is a string that defines a template for matching an input text. Whatever value is placed within curly brackets (`{   }`) is treated as a variable.
+Variable names can contain only lowercase letters (a-z) and no other characters. Variable values can contain the characters`a-z0-1.&?-_`, but can't contain slashes.
 
 Suppose you set up a DNS CNAME record from  `example.com` to `_lb-name_.lb.anypointdns.net`. You can then map `app.example.com` to a different deployed CloudHub Mule application name.
 
@@ -40,7 +40,7 @@ Or you can define a pattern to hold the input value:
 The example above causes that both `example.com/bookings` and `example.com/sales` match to `app-bookings/data` and `app-sales/data` respectively, as the variable `_mypattern_` holds these values.
 For `input=”bookings.example.com”`, the pattern can be resolved by assigning `_mypattern_=”bookings”` and for `input=`sales.example.com``, the pattern is resolved to assign `_mypattern_=”sales”`.
 
-Depending on your design, you can choose to leverage your internal redirects to your endpoints using patterns or simply literal mappings.
+Depending on your design, you can leverage your internal redirects to your endpoints by using either patterns or literal mappings.
 
 
 == Creating Mapping Rules
