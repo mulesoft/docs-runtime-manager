@@ -17,7 +17,7 @@ By using proxy rules, you can map a domain or subdomain to one of your Mule appl
 IMPORTANT: Patterns in the application URI are not currently supported.
 
 A pattern is a string that defines a template for matching an input text. Whatever value is placed within curly brackets (`{   }`) is treated as a variable.
-Variable names can contain only lowercase letters (a-z) and no other characters. Variable values can contain the characters`a-z0-1.&?-_`, but can't contain slashes.
+Variable names can contain only lowercase letters (a-z) and no other characters. Variable values can contain the characters `a-z0-1.&?-_`, but can't contain slashes.
 
 Suppose you set up a DNS CNAME record from  `example.com` to `_lb-name_.lb.anypointdns.net`. You can then map `app.example.com` to a different deployed CloudHub Mule application name.
 
