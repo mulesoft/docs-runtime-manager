@@ -1,0 +1,159 @@
+= Configure Runtime Manager Agent
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
+
+_Enterprise Edition_
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+// image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+
+At startup, Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`.
+
+
+The `mule-agent.yml` file has the following structure:
+
+* Component types
++
+Transports, services, internalHandlers, and externalHanders
+** Component name
++
+For example, `mule.agent.jmx.publisher.service`
+*** Component configuration
++
+A component can have complex object configurations, including more than one recursive level.
+
+To configure the agent, manually add or edit the configuration parameters in the `mule-agent.yml` file:
+
+[source,yaml,linenums]
+----
+muleInstanceUniqueId: validId
+organizationId: organizationId
+
+transports:
+    rest.agent.transport:
+        security:
+            keyStorePassword: rmakeystore.jks
+            keyStoreAlias: rma
+            keyStoreAliasPassword: mulesoft
+        port: 9997
+
+services:
+    mule.agent.application.service:
+        enabled: true
+
+    mule.agent.domain.service:
+        enabled: true
+
+    mule.agent.jmx.publisher.service:
+        enabled: true
+        frequency: 15
+        frequencyTimeUnit: MINUTES
+        beans:
+            -   beanQueryPattern: java.lang:type=Runtime
+                attribute: Uptime
+                monitorMessage: Monitoring memory up-time
+            -   beanQueryPattern: java.lang:type=MemoryPool,*
+                attribute: Usage.used
+                monitorMessage" : Used Memory
+
+internalHandlers:
+    domaindeploymentnotification.internal.message.handler:
+        enabled: false
+
+    applicationdeploymentnotification.internal.message.handler:
+        enabled: false
+----
+
+
+==== Configure Log Location
+
+You can log your Runtime Manager agent state in a separate file from the other Mule log info. For information, see xref:3.8@mule-runtime::logging-in-mule.adoc#configuring-logs-for-runtime-manager-agent[Logging in Mule].
+
+This is only supported in version 1.5.2 or later of Runtime Manager agent.
+
+==== Configure During Runtime
+
+Some agent components allow you to configure them during runtime. For further information, see xref:administration-service.adoc[Administration Service].
+
+== Enable Both REST Agent Transport and WebSocket Transport
+
+When you register a Mule runtime engine in Runtime Manager, the generated `mule-agent.yml` disables the REST agent transport and replaces any existing configuration.
+
+Conversely, if you run `./amc_setup -I`, you enable the REST agent transport and disable the WebSocket transport (it replaces any existing WebSocket transport configuration used to connect to Runtime Manager).
+
+To run both transports, modify the `mule-agent.yml` file with the following:
+
+[source,yaml,linenums]
+----
+transports:
+  websocket.transport:
+    consoleUri: wss://mule-manager.anypoint.mulesoft.com:443/mule
+    security:
+      keyStorePassword: <password>
+      keyStoreAlias: agent
+      keyStoreAliasPassword: <password>
+      handshake:
+        enabled: true
+        body:
+          agentVersion: 1.1.0
+          muleVersion: 3.7.0
+          gatewayVersion: 2.0.2
+  rest.agent.transport:
+    port: 8888
+
+services:
+  mule.agent.jmx.publisher.service:
+    enabled: true
+    frequency: 15
+    frequencyTimeUnit: MINUTES
+----
+
+
+== Setting up a Proxy
+
+You can configure Runtime Manager agent to send websocket messages through an HTTP proxy.
+
+Runtime Manager agent only supports the Basic Authentication proxy authentication method.
+
+
+=== Default wrapper.conf File
+
+Runtime Manager agent reads its proxy configuration from the `$MULE_HOME/conf/wrapper.conf` file, which includes these properties:
+
+* `anypoint.platform.proxy_host`
+* `anypoint.platform.proxy_port`
+* `anypoint.platform.proxy_username`
+* `anypoint.platform.proxy_password`
+
+
+=== Agent-Specific mule-agent.yml File
+
+To send the insights and monitoring information, Runtime Manager agent calls the auth-proxy service. To connect to this service, the agent reads the proxy configuration from the $MULE_HOME/conf/mule-agent.yml` file:
+
+[source,yaml,linenums]
+----
+globalConfiguration:
+  proxyConfiguration:
+    host: "http://exampleHost"
+    port: 9999
+    user: "exampleUser"
+    password: "examplePassword"
+----
+
+
+If you want to use Runtime Manager agent to send data from Runtime Manager to Splunk, an ELK stack, or other external software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
+
+
+== See Also
+
+* xref:3.8@mule-runtime::installing-an-enterprise-license.adoc[Installing an Enterprise License]
+* xref:deploying-to-pcf.adoc[Deploying to Pivotal Cloud Foundry]
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools (Hybrid)]
+* xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway]
+* xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture]
+* xref:event-tracking.adoc[Event Tracking]

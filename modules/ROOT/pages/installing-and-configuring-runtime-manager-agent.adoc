@@ -11,27 +11,24 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 // image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-Runtime Manager agent, which is installed into a Mule runtime engine (Mule), is used to register Mule with Runtime Manager. After Mule is registered, you can manage it with Runtime Manager within the specific environment and Anypoint Platform business group in which it was registered. A Mule can't be registered with multiple Runtime Manager business groups or environments.
+Runtime Manager agent, which is installed into a Mule runtime engine (Mule), is used to register Mule with Anypoint Runtime Manager. After Mule is registered, you can manage it with Runtime Manager within the specific environment and Anypoint Platform business group in which it was registered. A Mule can't be registered with multiple Runtime Manager business groups or environments.
 
 If you're deploying your applications to a Pivotal Cloud Foundry environment, you don't need to install or configure Runtime Manager agent. The Pivotal Cloud Foundry build pack automatically creates new runtime instances and agent instances and registers them with Runtime Manager. If you want to change the configuration of your agent instances, you must modify the build pack.
 
-
 == Compatibility 
 
-The version of Runtime Manager agent must support the version of Runtime Manager you are using. If the required version of the agent is different from the version bundled with Runtime Manager, downgrade the agent to support your version of Anypoint Platform.
+The version of Runtime Manager agent must support the version of Runtime Manager you are using. 
 
-The latest version of Mule is bundled with the latest version of Runtime Manager agent. You can download the latest version of Mule from the https://www.mulesoft.com/support-login[Customer Portal].
+Check the xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes] that correspond to the version of the agent to determine compatibility with your Mule runtime engine and Runtime Manager.
 
-Mule 3.7.x and earlier and the API gateway version 2.x and earlier include an earlier version of Runtime Manager agent. This earlier version doesn't provide support for exporting data to external analytics tools. If you are running these earlier versions, you can download and upgrade the agent to the latest version.
+If necessary, you can downgrade the agent to support your version of Runtime Manager.
 
-For the latest version of the agent, see the xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
+Mule 3.7.x and earlier and the API gateway 2.x and earlier include an earlier version of Runtime Manager agent. This earlier version doesn't provide support for exporting data to external analytics tools. If you are running these earlier versions, you can download and upgrade the agent to the latest version.
 
 == Prerequisites
 
 * Your enterprise license is current. 
 * You are running Mule 3.6.0 and later, and the API gateway 2.1 and later.
-
-You can download the latest version of Mule Enterprise from the http://www.mulesoft.com/support-login[customer portal].
 
 
 == Install from a Software Distribution
@@ -47,29 +44,13 @@ To install the agent:
 +
 `$MULE_HOME\bin\amc_setup.bat` (Windows)
 +
-See <<Installation Options>> for the `amc_setup` arguments.
-
-=== Mule 3.6.0 and 3.6.1 Installation
-
-To install the agent on Mule 3.6.0 or 3.6.1:
-
-. <<Download the Agent,Download the agent>.
-. Follow the steps in <<Installing the Agent from the ZIP File,Installing the Agent from the ZIP File>>.
-. Run one of these commands:
-+
-`$MULE_HOME/bin/amc_setup` (Mac and Linux)
-+
-`$MULE_HOME\bin\amc_setup.bat` (Windows)
-+
-See <<Installation Options>> for the `amc_setup` arguments.
+See <<Installation Options>> for arguments to the `amc_setup` command.
 
 == Download the Agent 
 
-You can download the latest version of the agent or an earlier version.
+If you need a different version of the agent that was included in the software distribution, you can download it from the Support Center. 
 
-=== Download the Latest Version of the Agent
-
-For the latest version of the agent, see xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
+Check the corresponding xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes] to determine compatibility with your Mule runtime engine and Runtime Manager.
 
 To download the latest version of the agent: *(NEED THE EXACT UX HERE)*
 
@@ -78,25 +59,25 @@ To download the latest version of the agent: *(NEED THE EXACT UX HERE)*
 . From the https://help.mulesoft.com/s/login/[MuleSoft Help Center], click *Downloads*.
 . Select *Runtime Manager Agent*. 
 
-=== Download an Earlier Version of the Agent
-
-To download an earlier version of the agent:
-
-. Open the xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes] for that version.
-. 
-
-THIS IS NOT TRUE: Earlier versions of the Release Notes have download links to earlier versions of Runtime Manager agent.
-
 == Install the Agent from the ZIP File
 
-After downloading the Runtime Manager agent ZIP file, determine if you can update an existing Runtime Manager agent installation. 
-
-To determine if heck on the corresponding xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
+To install the agent from the downloaded ZIP file:
 
 . Stop Mule or the API gateway runtime.
 +
-Run the `./mule stop` command or kill the process.
-. Extract the `mule-agent-_VERSION_.zip` file to the `$MULE_HOME/bin` folder.
+* Mule:
++
+$MULE_HOME/bin/mule stop (Mac and Linux)
++
+%MULE_HOME%\bin\mule.bat (Windows)
+* API gateway: 
++
+See xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway].
+. Extract the downloaded `mule-agent-_VERSION_.zip` file to either:
++
+`$MULE_HOME/bin` (Mac and Linux)
++
+`%MULE_HOME%\bin\` (Windows)
 . When prompted, overwrite any conflicting files.
 . Run one of these commands:
 +
@@ -104,59 +85,15 @@ Run the `./mule stop` command or kill the process.
 +
 `$MULE_HOME\bin\amc_setup.bat` (Windows)
 +
-See <<Installation Options>> for the `amc_setup` arguments.
+See <<Installation Options>> for arguments to the `amc_setup` command.
 
+== Upgrade an Earlier Runtime Manager Agent Installation
 
-== Update an Earlier Runtime Manager Agent Installation
+Previous releases of compatible Mule and the API gateway shipped with an earlier version of the `amc_setup` script. If you installed the agent with an earlier version of `amc_setup`, you can upgrade Runtime Manager agent and retain your existing agent configuration.
 
-You can update an earlier existing Runtime Manager agent installation. To see how to install a new Runtime Manager agent, see the <<Installation Options>> section below.
+If an earlier version of Runtime Manager agent is already installed, the `$MULE_HOME/conf` folder includes the `mule_agent.yml` configuration file. 
 
-If an earlier version of Runtime Manager agent is already installed, the `$MULE_HOME/conf` folder includes the `mule_agent.yml` configuration file.
-
-Previous releases of compatible Mule and the API gateway runtimes shipped with an earlier version of the `amc_setup` script. If you installed the agent with an earlier version of this script, you can upgrade the Runtime Manager agent software and retain your existing agent configuration.
-
-For information about starting and stopping the API gateway, see xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway].
-
-To upgrade an existing Runtime Manager agent:
-
-. Stop Mule or the API gateway runtime.
-+
-Run the `./mule stop` command or kill the process.
-. Extract the `mule-agent-_VERSION_.zip` file to the `$MULE_HOME/bin` folder.
-. When prompted, overwrite any conflicting files.
-. Run one of these commands:
-+
-`$MULE_HOME/bin/amc_setup -U` (Mac and Linux)
-+
-`$MULE_HOME\bin\amc_setup.bat -U` (Windows)
-+
-+
-This script updates Runtime Manager agent, but does not override the `$MULE_HOME/conf/mule-agent.yml` file.
-. Restart Mule:
-+
-`$MULE_HOME/bin/./mule restart` (Mac and Linux)
-`$MULE_HOME\bin\.\mule restart` (Windows)
-
-
-== Remove a Previous Installation
-
-To uninstall the agent:
-
-. Stop Mule or the API gateway runtime.
-+
-Run the `./mule stop` command or kill the process.
-. Remove these files:
-+
-** `$MULE_HOME/conf/mule-agent.jks`
-** `$MULE_HOME/conf/mule-agent.yml`
-. Restart Mule:
-+
-`$MULE_HOME/bin/./mule restart` (Mac and Linux)
-`$MULE_HOME\bin\.\mule restart` (Windows)
-
-=== About the Runtime Manager Agent Update Process
-
-The `amc_setup` script makes the following changes to your Mule runtime engine installation:
+When you upgrade the agent, the `amc_setup` script makes these changes:
 
 . Backs up the current version of the agent:
 ** Archives everything under `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER` to `$MULE_HOME/tools/mule-agent-backup.zip`
@@ -167,7 +104,75 @@ The `amc_setup` script makes the following changes to your Mule runtime engine i
 +
 This folder contains all custom modules added to the agent that are not included in the agent distribution.
 
-After the process completes, restart the Mule or API gateway instance.
+
+To upgrade an existing Runtime Manager agent:
+
+. Stop Mule or the API gateway runtime.
++
+* Mule:
++
+$MULE_HOME/bin/mule stop (Mac and Linux)
++
+%MULE_HOME%\bin\mule.bat (Windows)
+* API gateway: 
++
+See xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway].
+. Extract the downloaded `mule-agent-_VERSION_.zip` file to either:
++
+`$MULE_HOME/bin` (Mac and Linux)
++
+`%MULE_HOME%\bin\` (Windows)
+. When prompted, overwrite any conflicting files.
+. Run one of these commands:
++
+`$MULE_HOME/bin/amc_setup -U` (Mac and Linux)
++
+`$MULE_HOME\bin\amc_setup.bat -U` (Windows)
++
+This script updates Runtime Manager agent, but does not overwrite the `$MULE_HOME/conf/mule-agent.yml` file.
+. Restart Mule or the API gateway runtime:
++
+* Mule:
++
+$MULE_HOME/bin/mule restart (Mac and Linux)
++
+%MULE_HOME%\bin\mule.bat restart (Windows)
+* API gateway: 
++
+See xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway].
+
+
+== Remove a Previous Installation
+
+To uninstall the agent:
+
+. Stop Mule or the API gateway runtime.
++
+* Mule:
++
+$MULE_HOME/bin/mule stop (Mac and Linux)
++
+%MULE_HOME%\bin\mule.bat (Windows)
+* API gateway: 
++
+See xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway].
+. Remove these files:
++
+** `$MULE_HOME/conf/mule-agent.jks` (Mac and Linux)
+** `$MULE_HOME/conf/mule-agent.yml` (Mac and Linux)
+** `%MULE_HOME%\conf\mule-agent.jks` (Windows)
+** `%MULE_HOME%\conf\mule-agent.yml` (Windows)
+. Restart Mule or the API gateway runtime:
++
+* Mule:
++
+$MULE_HOME/bin/mule restart (Mac and Linux)
++
+%MULE_HOME%\bin\mule.bat restart (Windows)
+* API gateway: 
++
+See xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway].
+
 
 == Installation Options
 
@@ -213,7 +218,7 @@ MuleSoft provides several OpenSource JMX monitoring publishing modules for Cloud
 This module is included in Mule runtime engine.
 * Zabbix sends metrics to Zabbix instances.
 
-For information, see xref:runtime-manager/jmx-service[JMX].
+For information, see xref:jmx-service.adoc[JMX].
 
 == amc_setup Parameters
 
@@ -460,227 +465,6 @@ Full sample command:
 ----
 
 
-
-
-== Configure the Agent
-
-The sections that follow provide additional configuration details for Runtime Manager agent.
-
-If you want to use Runtime Manager agent to send data from Runtime Manager to Splunk, an ELK stack, or other external software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
-
-
-=== Configure mule-agent.yml
-
-At startup, Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`.
-
-To configure the agent, manually add, then edit, the configuration parameters in this file:
-
-[source,yaml,linenums]
-----
-muleInstanceUniqueId: validId
-organizationId: organizationId
-
-transports:
-    rest.agent.transport:
-        security:
-            keyStorePassword: rmakeystore.jks
-            keyStoreAlias: rma
-            keyStoreAliasPassword: mulesoft
-        port: 9997
-
-services:
-    mule.agent.application.service:
-        enabled: true
-
-    mule.agent.domain.service:
-        enabled: true
-
-    mule.agent.jmx.publisher.service:
-        enabled: true
-        frequency: 15
-        frequencyTimeUnit: MINUTES
-        beans:
-            -   beanQueryPattern: java.lang:type=Runtime
-                attribute: Uptime
-                monitorMessage: Monitoring memory up-time
-            -   beanQueryPattern: java.lang:type=MemoryPool,*
-                attribute: Usage.used
-                monitorMessage" : Used Memory
-
-internalHandlers:
-    domaindeploymentnotification.internal.message.handler:
-        enabled: false
-
-    applicationdeploymentnotification.internal.message.handler:
-        enabled: false
-----
-
-==== Configuration File Structure
-
-The `mule-agent.yml` file is structured in three levels:
-
-* First level: Component types: transports, services, internalHandlers, and externalHanders.
-** Second level: Component name, for example, `mule.agent.jmx.publisher.service`.
-*** Third level: Component configuration. A component can have complex object configurations, including more than one recursive level.
-
-==== Configure Log Location
-
-You can log your Runtime Manager agent state in a separate file from the other Mule log info. For information, see xref:3.8@mule-runtime::logging-in-mule.adoc#configuring-logs-for-runtime-manager-agent[Logging in Mule].
-
-This is only supported in version 1.5.2 or later of Runtime Manager agent.
-
-==== Configure During Runtime
-
-Some agent components allow you to configure them during runtime. For further information, see xref:administration-service.adoc[Administration Service].
-
-== Enable REST Agent Transport and WebSocket Transport
-
-When you register a Mule runtime engine in Runtime Manager, the generated `mule-agent.yml` disables the REST agent transport and replaces any existing configuration.
-
-Conversely, if you run `./amc_setup -I`, you enable the REST agent transport and disable the WebSocket transport (it replaces any existing WebSocket transport configuration used to connect to Runtime Manager).
-
-To run both transports, modify the `mule-agent.yml` file with the following:
-
-[source,yaml,linenums]
-----
-transports:
-  websocket.transport:
-    consoleUri: wss://mule-manager.anypoint.mulesoft.com:443/mule
-    security:
-      keyStorePassword: <password>
-      keyStoreAlias: agent
-      keyStoreAliasPassword: <password>
-      handshake:
-        enabled: true
-        body:
-          agentVersion: 1.1.0
-          muleVersion: 3.7.0
-          gatewayVersion: 2.0.2
-  rest.agent.transport:
-    port: 8888
-
-services:
-  mule.agent.jmx.publisher.service:
-    enabled: true
-    frequency: 15
-    frequencyTimeUnit: MINUTES
-----
-
-== Ports, IP Addresses and Hostnames to Whitelist
-
-In your network, you must whitelist the hostnames and ports of various parts of the Anypoint Platform to allow Runtime Manager agent in a customer-hosted Mule runtime engine to communicate with the MuleSoft-managed online Anypoint Platform APIs and services.
-
-These tables show you the ports or IP addresses/hostnames to add to your whitelists to allow communication between the agent and the Runtime Manager console:
-
-=== Ports
-
-[%header,cols="3*a"]
-|===
-|Region |Name |Port
-|*US*|*anypoint.mulesoft.com* | 443
-|*US*|*mule-manager.anypoint.mulesoft.com* | 443
-|*US*|*runtime-manager.anypoint.mulesoft.com* | 443
-|*US*|*analytics-ingest.anypoint.mulesoft.com* |  443
-|*US*|*arm-auth-proxy.prod.cloudhub.io* |  443
-|*US*|*data-authenticator.anypoint.mulesoft.com* |  443
-|*US*|*exchange2-asset-manager-kprod.s3.amazonaws.com* |  443
-|*EU*|*eu1.anypoint.mulesoft.com* | 443
-|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* | 443
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* | 443
-|*EU*|*analytics-ingest.eu1.anypoint.mulesoft.com* |  443
-|*EU*|*arm-auth-proxy.prod-eu.msap.io* |  443
-|*EU*|*data-authenticator.eu1.anypoint.mulesoft.com* |  443
-|*EU*|*exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com* |  443
-|===
-
-=== Static IP Addresses
-
-<<<<<<< Updated upstream
-There are two static IPs that must be whitelisted to access the mule-manager hosts.
-=======
-To access the mule-manager hosts, whitelist these static IP addresses:
->>>>>>> Stashed changes
-
-[%header,cols="3*a"]
-|===
-|Region |Name |IP Address
-|*US*|*mule-manager.anypoint.mulesoft.com* |52.201.174.72
-|*US*|*mule-manager.anypoint.mulesoft.com* |52.201.67.218
-|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.195.19.18
-|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.194.245.32
-|===
-
-The following DNS endpoints do not have static IP addresses:
-<<<<<<< Updated upstream
-
-[%header,cols="2*a"]
-|====
-|Region | Name
-|*US*|*runtime-manager.anypoint.mulesoft.com*
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com*
-|====
-=======
->>>>>>> Stashed changes
-
-[%header,cols="2*a"]
-|====
-|Region | Name
-|*US*|*runtime-manager.anypoint.mulesoft.com*
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com*
-|====
-
-=== Dynamic IP Addresses
-
-Some of the IP addresses used by Anypoint Platform services are assigned automatically by the underlying cloud infrastructure. Because these are dynamic, do not implement a whitelist based on the specific IP addresses assigned to Anypoint services.
-
-Many firewall devices allow you to define Layer 7 firewall rules so that you can filter by destination name or application type.
-
-Include the following hostnames in your Layer 7 firewall rules:
-
-[%header,cols="2*a"]
-|===
-|Region |Hostname
-|*US*|*anypoint.mulesoft.com*
-|*US*|*analytics-ingest.anypoint.mulesoft.com*
-|*US*|*arm-auth-proxy.prod.cloudhub.io*
-|*US*|*data-authenticator.anypoint.mulesoft.com*
-|*EU*|*eu1.anypoint.mulesoft.com*
-|*EU*|*analytics-ingest.eu1.anypoint.mulesoft.com*
-|*EU*|*arm-auth-proxy.prod-eu.msap.io*
-|*EU*|*data-authenticator.eu1.anypoint.mulesoft.com*
-
-|===
-
-== Setting up a Proxy
-
-You can configure Runtime Manager agent to send websocket messages through an HTTP proxy.
-
-Runtime Manager agent only supports the Basic Authentication proxy authentication method.
-
-
-=== Default wrapper.conf File
-
-Runtime Manager agent reads its proxy configuration from the `$MULE_HOME/conf/wrapper.conf` file, which includes these properties:
-
-* `anypoint.platform.proxy_host`
-* `anypoint.platform.proxy_port`
-* `anypoint.platform.proxy_username`
-* `anypoint.platform.proxy_password`
-
-
-=== Agent-Specific mule-agent.yml File
-
-To send the insights and monitoring information, Runtime Manager agent calls the auth-proxy service. To connect to this service, the agent reads the proxy configuration from the $MULE_HOME/conf/mule-agent.yml` file:
-
-[source,yaml,linenums]
-----
-globalConfiguration:
-  proxyConfiguration:
-    host: "http://exampleHost"
-    port: 9999
-    user: "exampleUser"
-    password: "examplePassword"
-----
 
 == Known Issues
 
