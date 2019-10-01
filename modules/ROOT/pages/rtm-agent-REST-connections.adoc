@@ -6,10 +6,10 @@ endif::[]
 
 _Enterprise Edition_
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-// image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
 
 
 The REST Connection amc_setup parameters work in both versions of Anypoint Platform (cloud and on-premises) to allow direct REST connections between the Mule runtime engine and any external client. This enables external clients to access and manage a Mule runtime engine directly via the xref:runtime-manager-agent-api.adoc[Runtime Manager agent REST API].
@@ -29,7 +29,7 @@ To configure Runtime Manager agent to use an unencrypted connection, use the `-I
 |`-I`
 
 `--insecure`
-a|Configures Runtime Manager agent to use an unencrypted connection.
+|Configures Runtime Manager agent to use an unencrypted connection.
 
 The default TCP port is 9999, so you can connect to Runtime Manager agent at the base URL `+http://localhost:9999/mule/agent/+`.
 

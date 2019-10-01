@@ -1,4 +1,4 @@
-= Configure the Agent in the mule-agent.yml file
+= Update Agent Configuration in the mule-agent.yml File
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -6,10 +6,10 @@ endif::[]
 
 _Enterprise Edition_
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-// image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
 
 At startup, Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`.
 
@@ -31,6 +31,7 @@ To configure the agent, manually add or edit the configuration parameters in the
 
 [source,yaml,linenums]
 ----
+
 muleInstanceUniqueId: validId
 organizationId: organizationId
 
@@ -114,7 +115,7 @@ services:
 ----
 
 
-=== External Analytics Software
+=== Sending Data to External Analytics Software
 
 If you want to use Runtime Manager agent to send data from Runtime Manager to Splunk, an ELK stack, or other external software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
 

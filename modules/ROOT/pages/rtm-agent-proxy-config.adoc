@@ -6,10 +6,9 @@ endif::[]
 
 _Enterprise Edition_
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-// image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 
 If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure Runtime Manager agent to route REST traffic through the proxy server to Runtime Manager, and optionally, encrypt the authentication password.
@@ -22,15 +21,14 @@ Running the `amc_setup` command creates the `$MULE_HOME/conf/mule-agent.yml` fil
 
 If you have previously installed Runtime Manager agent and want to change the configuration to use a proxy, you can add the proxy configuration to the `mule-agent.yml` file.
 
-To configure the proxy server connection:
+To configure the proxy server connection, run this command:
 
-. Run this command:
-+
-`$MULE_HOME/bin/amc_setup -H _token_ _server-name_ -P _proxy-host_ _proxy-port_`
-+
-If the proxy server requires a user name and password to authenticate, use this command:
-+
-`$MULE_HOME/bin/amc_setup -H _token_ _Server Name_ -P _proxy-host_ _proxy-host_ _proxy-user_ _proxy-password_`
+[source,console,linenums]
+----
+`$MULE_HOME/bin/amc_setup -H _token_ _Server Name_ -P _proxy-host_ _proxy-port _proxy-user_ _proxy-password_`
+----
+
+If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_.
 
 
 [%header,cols="20a,80a"]
@@ -39,11 +37,12 @@ If the proxy server requires a user name and password to authenticate, use this 
 |_proxy-host_ a|Specifies the hostname of the desired proxy server, for example `proxy.acme.com`.
 Do not include `http://` or `https://` in the hostname.
 |_proxy-port_|Specifies the port of the desired proxy server 
-|_proxy-user_ |(Optional) Specifies the user with which to authenticate against the proxy, if required.
+|_proxy-user_ |(Optional) Specifies the user with which to authenticate against the proxy, if required
 |_proxy-password_ | (Optional) Specifies the password for the authentication _proxy-user_, if required
+
 |===
 
-If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_.
+=== Example amc_setup command lines
 
 This example configures the agent to work with a proxy server (`acme.proxy.com`) and specifies a Runtime Manager token:
 
@@ -58,6 +57,7 @@ This example configures the agent to work with a proxy server that requires auth
 ----
 amc_setup -H token MaxRuntime -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
 ----
+
 
 
 [[encrypt_password]]
@@ -91,7 +91,7 @@ globalConfiguration:
     *password: "![PBEWITHSHA1ANDDESEDE,CmDci1pRMI+1gH89akTNFb/EjZ26pfIX]"*
 ----
 +
-The encrypted phrase starts with *!* and is enclosed in square brackets *[]*.
+The encrypted phrase starts with *!* and is enclosed in square brackets *[ ]*.
 . Start Mule and pass the master password that you used in step 2:
 +
 `$MULE_HOME/bin/mule service start -M-Dmule.agent.configuration.password=_master-password_`
@@ -108,10 +108,10 @@ Runtime Manager agent reads proxy configuration from the `$MULE_HOME/conf/wrappe
 
 To specify the proxy server configuration, add your proxy server information to the following properties in the `$MULE_HOME/conf/wrapper.conf` file:
 
-`anypoint.platform.proxy_host=_hostname_`
-`anypoint.platform.proxy_port=_port_`
-`anypoint.platform.proxy_username=_username_`
-`anypoint.platform.proxy_password=_password_`
+* `anypoint.platform.proxy_host=_hostname_`
+* `anypoint.platform.proxy_port=_port_`
+* `anypoint.platform.proxy_username=_username_`
+* `anypoint.platform.proxy_password=_password_`
 
 *IS THIS STILL APPLICABLE*
 
@@ -140,10 +140,3 @@ globalConfiguration:
 |===
 
 == See Also
-
-* xref:3.8@mule-runtime::installing-an-enterprise-license.adoc[Installing an Enterprise License]
-* xref:deploying-to-pcf.adoc[Deploying to Pivotal Cloud Foundry]
-* xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools (Hybrid)]
-* xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway]
-* xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture]
-* xref:event-tracking.adoc[Event Tracking]
