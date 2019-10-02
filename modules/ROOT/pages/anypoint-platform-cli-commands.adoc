@@ -1122,12 +1122,14 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 
 [%header,cols="30a,40a,30a"]
 |===
-|Command | Description |  Example
-| `--apiVersion` |  Asset API version .3+<.<| `exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
-| `--name`       |  Asset name
-| `--mainFile`   |  Main file of the API asset. | `exchange asset upload --mainFile 'api.yml'`
-| `--classifier` |  Asset classifier +
-Valid classifiers are `custom`, `oas`, and `wsdl`.
+| Command | Description |  Example
+| `--apiVersion` | Asset API version .4+<.<|
+`exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
+
+`exchange asset upload --mainFile 'api.yml'`
+| `--name` |Asset name 
+| `--mainFile` | Main file of the API asset 
+| `--classifier` | Valid asset classifiers are `custom`, `oas`, and `wsdl`.
 |===
 
 === exchange asset modify
