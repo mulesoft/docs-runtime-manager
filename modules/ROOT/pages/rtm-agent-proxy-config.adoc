@@ -1,4 +1,4 @@
-= Configure the Agent to Connect Through a Proxy Server 
+= Connect the Agent Through a Proxy Server 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -25,7 +25,7 @@ To configure the proxy server connection, run this command:
 
 [source,console,linenums]
 ----
-`$MULE_HOME/bin/amc_setup -H _token_ _Server Name_ -P _proxy-host_ _proxy-port _proxy-user_ _proxy-password_`
+$MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password
 ----
 
 If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_.
@@ -34,7 +34,7 @@ If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy
 [%header,cols="20a,80a"]
 |===
 |Parameter|Description
-|_proxy-host_ a|Specifies the hostname of the desired proxy server, for example `proxy.acme.com`.
+|_proxy-host_ a|Specifies the hostname of the desired proxy server, for example, `proxy.acme.com`.
 Do not include `http://` or `https://` in the hostname.
 |_proxy-port_|Specifies the port of the desired proxy server 
 |_proxy-user_ |(Optional) Specifies the user with which to authenticate against the proxy, if required
@@ -48,14 +48,14 @@ This example configures the agent to work with a proxy server (`acme.proxy.com`)
 
 [source, console,linenums]
 ----
-amc_setup -H token MaxRuntime -P acme.proxy.com 443
+amc_setup -H myToken myMuleServer -P acme.proxy.com 443
 ----
 
 This example configures the agent to work with a proxy server that requires authentication:
 
 [source,console,linenums]
 ----
-amc_setup -H token MaxRuntime -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
+amc_setup -H myToken myMuleServer -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
 ----
 
 
@@ -98,6 +98,9 @@ The encrypted phrase starts with *!* and is enclosed in square brackets *[ ]*.
 
 
 == Enable Sending WebSocket Messages Through an HTTP Proxy Server
+
+The agent uses WebSockets to communicate with both Anypoint Platform consoles. You can configure this as a WebSockets transport in the `$MULE_HOME/conf/mule-agent.yml` file. See xref:rtm-agent-proxy-config.adoc#enable-sending-websocket-messages-through-an-http-proxy-server[Enable Sending WebSocket Messages Through an HTTP Proxy Server].
+
 
 In addition to configuring the agent to connect through a proxy server, 
 you can configure the agent to send WebSocket messages through an HTTP proxy server. 

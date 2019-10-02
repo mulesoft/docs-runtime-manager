@@ -1,4 +1,4 @@
-= REST Connection amc_setup Parameters
+= Configure REST Connections With amc_setup Parameters
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -12,11 +12,11 @@ image:logo-server-active.png[link="/runtime-manager/deployment-strategies", titl
 
 
 
-The REST Connection amc_setup parameters work in both versions of Anypoint Platform (cloud and on-premises) to allow direct REST connections between the Mule runtime engine and any external client. This enables external clients to access and manage a Mule runtime engine directly via the xref:runtime-manager-agent-api.adoc[Runtime Manager agent REST API].
+The REST connection `amc_setup` parameters work in both versions of Anypoint Platform (cloud and on-premises) to allow direct REST connections between the Mule runtime engine and any external client. This enables external clients to access and manage a Mule runtime engine directly via the xref:runtime-manager-agent-api.adoc[Runtime Manager agent REST API].
 
 You can configure Runtime Manager agent to allow either insecure or secure connections.
 
-With a secure REST configuration, you need to configure Runtime Manager agent with a valid digital certificate. The insecure REST configuration option allows you to skip this step.
+With a secure REST configuration, configure Runtime Manager agent with a valid digital certificate. The insecure REST configuration option allows you to skip this step.
 
 == Insecure Connection Channel
 
@@ -81,8 +81,8 @@ After you select the secure connection channel mode, you see this menu:
 
 ----
 The communication channel for the agent will be encrypted using
-public/private key certificates. In the following steps you
-will be asked to provide the keystore and truststore.
+public/private key certificates. The following steps prompt you
+for the keystore and truststore.
 Both keystore and truststore format must be JKS.
 
 Keystore location (?):
@@ -198,7 +198,7 @@ From the `$MULE_HOME/bin` folder, run `./amc_setup -S`.
 
 . When prompted, enter the values you generated.
 +
-For example, if you ran the previous commands from the `/security` folder, enter these values:
+For example, if you run the previous commands from the `/security` folder, enter these values:
 +
 [source,console,linenums]
 ----
@@ -207,8 +207,8 @@ For example, if you ran the previous commands from the `/security` folder, enter
 
 
 The communication channel for the agent will be encrypted using public/private key certificates.
-In the following steps you are asked to provide the keystore and truststore. Both keystore and
-truststore formats must be JKS.
+The following steps prompt you for the keystore and truststore.
+Both keystore and truststore formats must be JKS.
 
 
 Keystore location (?):/security/rmakeystore.jks
@@ -315,7 +315,7 @@ Because the certificate files are self-signed, the client can't validate them wi
 +
 [source,console,linenums]
 ----
-cp anypoint-truststore.jks anypoint-truststure.jks.bkp
+cp anypoint-truststore.jks anypoint-truststore.jks.bkp
 cp mule-agent.yml mule-agent.yml.bkp
 ----
 . Export the Anypoint Platform certificate to a DES-formatted certificate file.
@@ -394,7 +394,11 @@ openssl pkcs12 -in clientkeystore.p12 -passin pass:mulesoft \
 +
 You can view the `clientkeystore.pem` file to verify both the public and private keys were exported to this file.
 
-. Submit a REST request from the client host to the Runtime Manager agent host. Verify you do not see any SSL errors and you get a response back from Runtime Manager agent. Also use the `--insecure` option (or equivalently `-k`) to skip verifying the server (Runtime Manager agent's) certificate.
+. Submit a REST request from the client host to the Runtime Manager agent host. 
++
+Verify you do not see any SSL errors and you get a response back from Runtime Manager agent. 
++
+Use the `--insecure` option to skip verifying the server (Runtime Manager agent) certificate.
 
 +
 [source,console]
