@@ -15,6 +15,10 @@ If your Mule runtime engine runs inside a firewall that restricts external commu
 
 You can also configure the agent to send WebSocket messages through an HTTP proxy server.
 
+Runtime Manager agent supports only the basic access authentication method.
+
+
+
 == Configure the Agent to Connect Through a Proxy Server 
 
 Running the `amc_setup` command creates the `$MULE_HOME/conf/mule-agent.yml` file. 
@@ -67,7 +71,7 @@ You can encrypt the proxy server authentication password to use in the `mule-age
 
 To include an encrypted password in your `mule-agent.yml` file:
 
-. Generate the master password:
+. Generate the encrypted password:
 +
 `$MULE_HOME/bin/amc_setup --encrypt`
 +
@@ -76,7 +80,7 @@ The encryption utility prompts you for the master password and phrase. The maste
 +
 The encryption utility outputs the encrypted phrase, for example:
 +
-`PBEWITHSHA1ANDDESEDE,CmDci1pRMI+1gH89akTNFb/EjZ26pfIX`
+`"!PBEWITHSHA1ANDDESEDE,CmDci1pRMI+1gH89akTNFb/EjZ26pfIX"`
 . Edit the `$MULE_HOME/conf/mule-agent.yml` file.
 +
 Replace the value of `password` in the `proxyConfiguration` element with the encrypted phrase from step 2. For example:
@@ -99,15 +103,12 @@ The encrypted phrase starts with *!* and is enclosed in square brackets *[ ]*.
 
 == Enable Sending WebSocket Messages Through an HTTP Proxy Server
 
-The agent uses WebSockets to communicate with both Anypoint Platform consoles. You can configure this as a WebSockets transport in the `$MULE_HOME/conf/mule-agent.yml` file. See xref:rtm-agent-proxy-config.adoc#enable-sending-websocket-messages-through-an-http-proxy-server[Enable Sending WebSocket Messages Through an HTTP Proxy Server].
+*I'm confused about this stuff*
 
+To send insights and monitoring information, Runtime Manager agent calls the `auth-proxy` service. To connect to this service, the agent reads the proxy configuration from the `$MULE_HOME/conf/mule-agent.yml` file.
 
-In addition to configuring the agent to connect through a proxy server, 
-you can configure the agent to send WebSocket messages through an HTTP proxy server. 
+The agent uses WebSockets to communicate with both Anypoint Platform consoles. You can configure this as a WebSockets transport in the `$MULE_HOME/conf/mule-agent.yml` file or in the `$MULE_HOME/conf/wrapper.conf` file.
 
-Runtime Manager agent supports only the basic access authentication method.
-
-Runtime Manager agent reads proxy configuration from the `$MULE_HOME/conf/wrapper.conf` file. 
 
 To specify the proxy server configuration, add your proxy server information to the following properties in the `$MULE_HOME/conf/wrapper.conf` file:
 
@@ -116,22 +117,6 @@ To specify the proxy server configuration, add your proxy server information to 
 * `anypoint.platform.proxy_username=_username_`
 * `anypoint.platform.proxy_password=_password_`
 
-*IS THIS STILL APPLICABLE*
-
-
-=== Agent-Specific mule-agent.yml File
-
-To send the insights and monitoring information, Runtime Manager agent calls the auth-proxy service. To connect to this service, the agent reads the proxy configuration from the `$MULE_HOME/conf/mule-agent.yml` file:
-
-[source,yaml,linenums]
-----
-globalConfiguration:
-  proxyConfiguration:
-    host: "http://exampleHost"
-    port: 9999
-    user: "exampleUser"
-    password: "examplePassword"
-----
 
 
 == Known Issues
