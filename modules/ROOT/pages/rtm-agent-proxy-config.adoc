@@ -11,12 +11,9 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
 
-If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure Runtime Manager agent to route REST traffic through the proxy server to Runtime Manager, and optionally, encrypt the authentication password.
-
-You can also configure the agent to send WebSocket messages through an HTTP proxy server.
+If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure Runtime Manager agent to route traffic through the proxy server to Runtime Manager, and optionally, encrypt the authentication password.
 
 Runtime Manager agent supports only the basic access authentication method.
-
 
 
 == Configure the Agent to Connect Through a Proxy Server 
@@ -33,7 +30,6 @@ $MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-use
 ----
 
 If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_.
-
 
 [%header,cols="20a,80a"]
 |===
@@ -61,7 +57,6 @@ This example configures the agent to work with a proxy server that requires auth
 ----
 amc_setup -H myToken myMuleServer -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
 ----
-
 
 
 [[encrypt_password]]
@@ -101,22 +96,16 @@ The encrypted phrase starts with *!* and is enclosed in square brackets *[ ]*.
 `$MULE_HOME/bin/mule service start -M-Dmule.agent.configuration.password=_master-password_`
 
 
-== Enable Sending WebSocket Messages Through an HTTP Proxy Server
+== Proxy Server Configuration in the wrapper.conf File
 
-*I'm confused about this stuff*
+You can configure your proxy server in either the `$MULE_HOME/conf/mule-agent.yml` file or in the `$MULE_HOME/conf/wrapper.conf` file. If you configure it in both, the agent uses the configuration in `mule-agent.yml`.
 
-To send insights and monitoring information, Runtime Manager agent calls the `auth-proxy` service. To connect to this service, the agent reads the proxy configuration from the `$MULE_HOME/conf/mule-agent.yml` file.
-
-The agent uses WebSockets to communicate with both Anypoint Platform consoles. You can configure this as a WebSockets transport in the `$MULE_HOME/conf/mule-agent.yml` file or in the `$MULE_HOME/conf/wrapper.conf` file.
-
-
-To specify the proxy server configuration, add your proxy server information to the following properties in the `$MULE_HOME/conf/wrapper.conf` file:
+To specify proxy server configuration in `wrapper.conf`, add your proxy server information to the following properties:
 
 * `anypoint.platform.proxy_host=_hostname_`
 * `anypoint.platform.proxy_port=_port_`
 * `anypoint.platform.proxy_username=_username_`
 * `anypoint.platform.proxy_password=_password_`
-
 
 
 == Known Issues
@@ -126,5 +115,3 @@ To specify the proxy server configuration, add your proxy server information to 
 |Issue |Description
 | SE-8011 | Agent setup returns `407 Proxy Authentication Required` when passing proxy information during setup.
 |===
-
-== See Also

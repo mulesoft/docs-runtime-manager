@@ -8,73 +8,73 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", tit
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-Anypoint Runtime Manager agent is a plugin extension for the Mule runtime engine that exposes the Mule API. Runtime Manager (both the MuleSoft-managed cloud console and the Anypoint Platform Private Cloud Edition) uses this agent to communicate with its registered Mule instances.
+Anypoint Runtime Manager agent is a plugin extension for Mule runtime engine that exposes the Mule API. Runtime Manager (both the MuleSoft-managed cloud console and Anypoint Platform Private Cloud Edition) uses this agent to communicate with its registered Mule instances.
+
+For information about how the Runtime Manager agent communicates with Runtime Manager, see xref:deployment-strategies.adoc[Deployment Strategies].
 
 Runtime Manager is available only for Enterprise versions of Mule, not for Community versions. The agent supports Mule 3.6.0 or later.
 
-You can use the agent to monitor and control Mule instances by calling Runtime Manager agent APIs from external systems and have Mule publish its data to external systems. Runtime Manager agent has many features, including:
+You can use the agent to monitor and control Mule instances by calling Runtime Manager agent APIs from external systems and have Mule publish its data to external systems. Runtime Manager agent features include:
 
 * Controlling applications, domains, and services:
 ** List, deploy, undeploy, or redeploy domains.
 ** List, deploy, undeploy, get status of, start, or stop applications.
 * Publishing Mule metrics to external analytics systems.
 
+== Prerequisites
 
-== Communication Protocols
-
-Runtime Manager agent supports two communication protocols: WebSockets and REST.
-
-=== WebSockets Communication
-
-WebSockets are used with a hybrid installation option (`amc_setup -H`). The command requires a token which is copied from the Runtime Manager account to where you want to register the agent. The same installation option is used with a cloud-based or on-premises version of Runtime Manager.
-
-When registering the agent with Runtime Manager (using the hybrid `-H` option), the agent first makes an outbound HTTPS connection to Runtime Manager. This connection is used to establish a new secure, full-duplex WebSocket connection between the Runtime Manager and the agent.
-
-Once configured, the agent securely connects to this Runtime Manager account every time Mule restarts.  The link that the agent establishes allows Mule to be monitored and managed remotely through an Anypoint Runtime Manager console.
-
-If this link goes down while Mule is still running, statistics and analytics are buffered until the WebSocket connection is reestablished. Additionally, there is also a reconnection strategy in place in cases the WebSocket connection drops.
-
-=== REST Communication
-
-You can configure each agent to allow other REST connections (either secure with the `-S` option or insecure with the `-I` option), for use by other management tools outside of Runtime Manager.
-
-You can manually edit the `mule-agent.yml` file to configure the agent with both communication connections, and also to modify parameters of these connections.
-
-== Installation Location
-
-Runtime Manager agent is installed into your `$MULE_HOME/plugins` directory and reads its configuration from a single `mule-agent.yml` file. For installation instructions and download links, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent].
-
-
-== Connecting to External Systems
-
-You can configure the agent plugin to connect Mule to a variety of external systems. The installation script provides options to choose particular communication methods and external systems, including controlling a Mule instance through a Runtime Manager.
-
-See xref:deployment-strategies.adoc[Deployment Strategies] for information on how the Runtime Manager agent communicates with Runtime Manager.
-
-Additionally, MuleSoft provides several open-source Runtime Manager agent modules to allow monitoring outside of Runtime Manager. These are provided as-is and receive no support from MuleSoft. To access these modules, check these GitHub repositories:
-
-* https://github.com/mulesoft/mule-agent-modules[agent modules (general)]
-* https://github.com/mulesoft/mule-agent-modules/tree/develop-mule-3.x/mule-agent-monitoring-publishers[JMX publisher modules]
-
-== Assumptions
-
-This documentation assumes:
-
-* You have the current version of Mule installed.
+* The current version of Mule is installed.
 +
 To download the latest agent, see xref:installing-and-configuring-runtime-manager-agent.adoc#download-the-agent-from-the-support-portal[Download the Agent From the Support Portal].
 * Your enterprise license is current.
 +
 For information on obtaining and installing an enterprise license, see xref:4.1@mule-runtime::installing-an-enterprise-license.adoc[Installing an Enterprise License].
 
+== Installation Location
+
+Runtime Manager agent is installed into your `$MULE_HOME/plugins` directory and reads its configuration from a single `mule-agent.yml` file. For installation instructions and download links, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent].
+
+
+== Communication Protocols
+
+Runtime Manager agent supports two communication protocols: 
+
+* *WebSockets*
++ 
+Establishes a connection from the agent to Runtime Manager (cloud-based or PCE console).
++
+When you register the agent with Runtime Manager, the agent first makes an outbound HTTPS connection to Runtime Manager. This connection establishes a new secure, full-duplex WebSocket connection between Runtime Manager and the agent. When Mule starts, the agent securely connects to Runtime Manager, enabling you to monitor and manage Mule remotely using the Runtime Manager console.
++
+If this link goes down while Mule is still running, statistics and analytics are buffered until the WebSocket connection is reestablished. Additionally, there is also a reconnection strategy in place in cases the WebSocket connection drops.
++
+For more information, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent].
+
+* *REST*
++
+Allows direct REST connections (either secure or insecure) between Mule and any external client.
++
+This enables external clients to access and manage Mule directly using the xref:runtime-manager-agent-api.adoc[Runtime Manager agent REST API].
++
+For more information, see xref:rtm-agent-REST-connections.adoc[Configure REST Connections With amc_setup Parameters].
+
+You can manually edit the `mule-agent.yml` file to configure the agent with both communication connections. See xref:rtm-agent-config-yaml.adoc#enable-both-rest-agent-transport-and-websocket-transport[Enable Both REST Agent Transport and WebSocket Transport
+].
+
+
+== Connecting to External Systems
+
+You can configure the agent plugin to connect Mule to external systems. Use parameters in the installation script (`amc_setup`) to choose communication methods and external systems.
+
+Additionally, MuleSoft provides several open-source Runtime Manager agent modules to enable monitoring outside of Runtime Manager. These module are provided as-is and receive no support from MuleSoft. To access these modules, see these GitHub repositories:
+
+* https://github.com/mulesoft/mule-agent-modules[agent modules (general)]
+* https://github.com/mulesoft/mule-agent-modules/tree/develop-mule-3.x/mule-agent-monitoring-publishers[JMX publisher modules]
+
+
 == See Also
 
 * xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent]
+* xref:installing-and-configuring-runtime-manager-agent.adoc#amc_setup-parameters[amc_setup Parameters]
 * xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture]
-* xref:administration-service.adoc[Administration Service]
-* xref:managing-applications-and-domains.adoc[Managing Applications and Domains]
-* xref:event-tracking.adoc[Event Tracking]
 * xref:jmx-service.adoc[JMX Service]
-* xref:runtime-manager-agent-notifications.adoc[Runtime Manager Agent Notifications]
-* xref:extending-the-runtime-manager-agent.adoc[Extending the Runtime Manager Agent]
-* xref:internal-handler-buffering.adoc[Internal Handler Buffering]
+* xref:extending-the-runtime-manager-agent.adoc[Extending Runtime Manager Agent]
