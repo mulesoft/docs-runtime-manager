@@ -45,7 +45,7 @@ Establishes a connection from the agent to Runtime Manager (cloud-based or PCE c
 +
 When you register the agent with Runtime Manager, the agent first makes an outbound HTTPS connection to Runtime Manager. This connection establishes a new secure, full-duplex WebSocket connection between Runtime Manager and the agent. When Mule starts, the agent securely connects to Runtime Manager, enabling you to monitor and manage Mule remotely using the Runtime Manager console.
 +
-If this link goes down while Mule is still running, statistics and analytics are buffered until the WebSocket connection is reestablished. Additionally, there is also a reconnection strategy in place in cases the WebSocket connection drops.
+If this link goes down while Mule is still running, statistics and analytics are buffered until the WebSocket connection is reestablished. Additionally, a reconnection strategy is in place in case the WebSocket connection drops.
 +
 For more information, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent].
 
