@@ -12,27 +12,27 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 The CloudHub REST API enables you to programmatically access these functions of Runtime Manager:
 
 * Create an application on CloudHub.
-* Change the application properties, including the number of workers and environment variables.
 * Deploy a new version of your application.
-* Delete your application.
+* Change the application properties, including the number of workers and environment variables.
 * Get statistics about your application.
 * Create CloudHub notifications.
 * Create email alerts triggered by your applications.
+* Delete your application.
 
 For an interactive reference that includes supported resources, methods, required properties, and expected responses, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API Portal].
 
-The CloudHub API applies only to deployments to the cloud-based version of Runtime Manager. To manage on-prem applications using an API, see https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/ae639f94-da46-42bc-9d51-180ec25cf994/apis/38784/versions/5567732[Runtime Manager API Portal].
+The CloudHub API only manages applications deployed to the cloud-based version of Runtime Manager. To manage on-prem applications using an API, see https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/ae639f94-da46-42bc-9d51-180ec25cf994/apis/38784/versions/5567732[Runtime Manager API Portal].
 
 
 == Getting Started and Authenticating with the API
 
-Before getting started, familiarize yourself with Operations for Applications.
+Before getting started, familiarize yourself with operations for applications.
 
 You can use any HTTP client with the CloudHub API. With Java, use the https://jersey.github.io/[Jersey client] or http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/codehaus/jackson[Jackson] for JSON support.
 
 To access the CloudHub API, first authenticate with Anypoint Platform. To authenticate, use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API]. Authentication requires that you supply an access token in the Authorization header. See https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/11270/versions/11646/pages/60046[Authentication] for information.
 
-Your username specifies the environment to access and is in the form "user@environment". For example, if your username is "jane" and the environment is "Development", your username is `jane@Development`. If you don't specify an environment, the API defaults to the Production environment.
+Your username specifies the environment to access and is in the form "user@environment". For example, if your username is "jane" and the environment is "Development", your username is `jane@Development`. If you don't specify an environment, the API defaults to Production.
 
 
 == Data Format
