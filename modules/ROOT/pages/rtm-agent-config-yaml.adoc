@@ -43,38 +43,32 @@ muleInstanceUniqueId: validId
 organizationId: organizationId
 
 transports:
-    rest.agent.transport:
-        security:
-            keyStorePassword: rmakeystore.jks
-            keyStoreAlias: rma
-            keyStoreAliasPassword: mulesoft
-        port: 9997
-
-services:
-    mule.agent.application.service:
-        enabled: true
-
-    mule.agent.domain.service:
-        enabled: true
-
-    mule.agent.jmx.publisher.service:
-        enabled: true
-        frequency: 15
-        frequencyTimeUnit: MINUTES
-        beans:
-            -   beanQueryPattern: java.lang:type=Runtime
-                attribute: Uptime
-                monitorMessage: Monitoring memory up-time
-            -   beanQueryPattern: java.lang:type=MemoryPool,*
-                attribute: Usage.used
-                monitorMessage" : Used Memory
-
+  rest.agent.transport:
+    enabled: false
+  websocket.transport:
+    enabled: true
+    consoleUri: wss://mule-manager.anypoint.mulesoft.com:443/mule
+    handshake:
+      enabled: true
+      body: null
+globalConfiguration:
+  security:
+    keyStorePassword: keyStorePass
+    keyStoreAlias: agent
+    keyStoreAliasPassword: keyStoreAliasPass
+  authenticationProxy:
+    endpoint: https://arm-auth-proxy.cloudhub.io
 internalHandlers:
-    domaindeploymentnotification.internal.message.handler:
-        enabled: false
-
-    applicationdeploymentnotification.internal.message.handler:
-        enabled: false
+  mule.agent.tracking.handler.analytics:
+    enabled: false
+services:
+  mule.agent.logging.service:
+    applicationLogLevels:
+    - artifactName: application-1
+      scopeLoggingConfigurations: []
+    - artifactName: application-2
+      scopeLoggingConfigurations: []
+    enabled: true
 ----
 
 
