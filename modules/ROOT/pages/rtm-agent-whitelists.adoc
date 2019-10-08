@@ -1,0 +1,100 @@
+=  Ports, IP Addresses, and Hostnames to Whitelist
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
+
+_Enterprise Edition_
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
+
+In your network, you must whitelist the hostnames and ports of various parts of the Anypoint Platform to allow Runtime Manager agent in a customer-hosted Mule runtime engine to communicate with the online Anypoint Platform APIs and services managed by MuleSoft.
+
+These tables show you the ports or IP addresses/hostnames to add to your whitelists to allow communication between the agent and the Runtime Manager console:
+
+== Ports
+
+[%header,cols="10a,50a,10a"]
+|===
+|Region |Name |Port
+|*US*|anypoint.mulesoft.com | 443
+|*US*|mule-manager.anypoint.mulesoft.com | 443
+|*US*|runtime-manager.anypoint.mulesoft.com | 443
+|*US*|analytics-ingest.anypoint.mulesoft.com |  443
+|*US*|arm-auth-proxy.prod.cloudhub.io |  443
+|*US*|data-authenticator.anypoint.mulesoft.com |  443
+|*US*|exchange2-asset-manager-kprod.s3.amazonaws.com |  443
+|*EU*|eu1.anypoint.mulesoft.com | 443
+|*EU*|mule-manager.eu1.anypoint.mulesoft.com | 443
+|*EU*|runtime-manager.eu1.anypoint.mulesoft.com | 443
+|*EU*|analytics-ingest.eu1.anypoint.mulesoft.com |  443
+|*EU*|arm-auth-proxy.prod-eu.msap.io |  443
+|*EU*|data-authenticator.eu1.anypoint.mulesoft.com |  443
+|*EU*|exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com |  443
+|===
+
+== Static IP Addresses
+
+* Whitelist these static IPs in the `US` region to access the `mule-manager` hosts:
++
+[%header,cols="10a,60a,30a"]
+|===
+|Region |Name |IP Address
+|*US*|mule-manager.anypoint.mulesoft.com |52.201.174.72
+|*US*|mule-manager.anypoint.mulesoft.com |52.201.67.218
+|===
+
+* Whitelist these static IPs in the `US` region to access the `runtime-manager` hosts:
++
+[%header,cols="10a,60a,30a"]
+|===
+|Region |Name |IP Address
+|*US*|runtime-manager.anypoint.mulesoft.com |107.23.158.87
+|*US*|runtime-manager.anypoint.mulesoft.com |54.227.160.248
+|*US*|runtime-manager.anypoint.mulesoft.com |54.172.124.202
+|*US*|runtime-manager.anypoint.mulesoft.com |3.230.47.55
+|===
+
+* Whitelist these static IPs in the `EU` region to access the `mule-manager` hosts:
++
+[%header,cols="10a,60a,30a"]
+|===
+|Region |Name |IP Address
+|*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.195.19.18
+|*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.194.245.32
+|===
+
+* Whitelist these static IPs in the `EU` region to access the `runtime-manager` hosts:
++
+[%header,cols="10a,60a,30a"]
+|===
+|Region |Name |IP Address
+|*EU*|runtime-manager.eu1.anypoint.mulesoft.com |3.123.64.97
+|*EU*|runtime-manager.eu1.anypoint.mulesoft.com |18.194.166.104
+|*EU*|runtime-manager.eu1.anypoint.mulesoft.com |3.123.248.130
+|===
+
+== Dynamic IP Addresses
+
+Some of the IP addresses used by Anypoint Platform services are assigned automatically by the underlying cloud infrastructure. Because these are dynamic, do not implement a whitelist based on the specific IP addresses assigned to Anypoint services.
+
+Many firewall devices allow you to define Layer 7 firewall rules so that you can filter by destination name or application type.
+
+Include the following hostnames in your Layer 7 firewall rules:
+
+[%header,cols="10a,60a"]
+|===
+|Region |Hostname
+|*US*|anypoint.mulesoft.com
+|*US*|analytics-ingest.anypoint.mulesoft.com
+|*US*|arm-auth-proxy.prod.cloudhub.io
+|*US*|data-authenticator.anypoint.mulesoft.com
+|*EU*|eu1.anypoint.mulesoft.com
+|*EU*|analytics-ingest.eu1.anypoint.mulesoft.com
+|*EU*|arm-auth-proxy.prod-eu.msap.io
+|*EU*|data-authenticator.eu1.anypoint.mulesoft.com
+
+|===
