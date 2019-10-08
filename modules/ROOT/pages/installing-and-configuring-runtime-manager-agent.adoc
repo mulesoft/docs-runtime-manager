@@ -182,7 +182,7 @@ Use this option alone to generate an encrypted passphrase.
 For information, see xref:rtm-agent-proxy-config.adoc#encrypt_password[Encrypt passwords in the `mule-agent.yml` file].
 
 |`--mule-home`
-| _mule-home-directory_
+| `_mule-home-directory_`
 |Specifies the location of the `$MULE_HOME` directory.
 
 Use this option if you are running the installation script from a location other than `$MULE_HOME/bin`. 
@@ -221,9 +221,9 @@ This option replaces the contents of `$MULE_HOME/conf/mule-agent.yml`.
 |`-H`
 
 `--hybrid`
-| `_token_ 
+| `_token_`
 
-_server-name_`
+`_server-name_`
 |Configures the agent to connect with either Anypoint Platform PCE or cloud-based Anypoint Platform managed by MuleSoft.
 
 * `_token_` is a base64 encoded string that specifies the exact business group and environment with which to register Mule with Runtime Manager.
@@ -235,13 +235,13 @@ This name must be unique within the business group's environment.
 |`-P`
 
 `--proxy`
-|`_proxy-host_
+|`_proxy-host_`
 
-_proxy-port_
+`_proxy-port_`
 
-_proxy-user_
+`_proxy-user_`
 
-_proxy-password_`
+`_proxy-password_`
 |Specifies the proxy configuration to use when registering with the connection.
 
 See xref:rtm-agent-proxy-config.adoc[Configure the Agent to Connect Through a Proxy Server].
@@ -368,7 +368,7 @@ You can test whether the service is available at `_AMC_HOST_/hybrid/v1`.
 |`-W`
 
 `--mcm-host`
-| `_mcm-host`
+| `_mcm-host_`
 |Specifies the service location URL of your local instance of MCM: for example, `wss://10.0.0.2:443/mule`.
 
 You can test whether the service is available at `_MCM_HOST_/mule`.

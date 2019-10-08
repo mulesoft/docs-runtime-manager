@@ -41,7 +41,6 @@ Optionally specifies the user with which to authenticate against the proxy, if r
 _proxy-password_::
 Optionally specifies the password for the authentication _proxy-user_, if required.
 
-|===
 
 === Example amc_setup Command Lines
 
@@ -86,7 +85,7 @@ Replace the value of `password` in the `proxyConfiguration` element with the enc
 globalConfiguration:
   ...
   authenticationProxy:
-    endpoint: https://arm-auth-proxy.prod.cloudhub.io
+    endpoint: +https://arm-auth-proxy.prod.cloudhub.io+
   proxyConfiguration:
     password: "![PBEWITHSHA1ANDDESEDE,CmDci1pRMI+1gH89akTNFb/EjZ26pfIX]"
 ----
