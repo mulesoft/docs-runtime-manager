@@ -122,6 +122,7 @@ Destroys the virtual machine running the application and deletes the entry for i
 The information in the *Status* column depends on the context:
 
 * <<application_status_states>>
+* <<application_deploy_states>>
 * <<replica_status_states>>
 * <<server_status_states>>
 * <<server_groups_status_states>>
@@ -130,14 +131,22 @@ The information in the *Status* column depends on the context:
 [[application_status_states]]
 === Application Status States
 
+
 [%header,cols="10a,30a,60a"]
 |===
 |Icon|State|Description
-|image::managing-deployed-applications-a665b.png[] |*Stopped*|The application is not running.
+|image::managing-deployed-applications-a665b.png[] 
+a|
+
+* *Stopped*
+* *Not Running*
+* *Undeployed*
+
+
+|The application is not running.
 |image::managing-deployed-applications-515a4.png[]
 a|
 
-* *Partial*
 * *Starting*
 * *Stopping*
 * *Undeploying*
@@ -147,17 +156,58 @@ a|
 a|
 
 * *Started*
+* *Running*
 * *Updated*
 |Application is running or the updated succeeded.
 
-|image:console-overview-red-circle.png[console_overview_red_circle] |*Deployment Failed* | Application deployment failed.
+|image:console-overview-red-circle.png[console_overview_red_circle] 
+a|
+
+* *Partially Started*
+* *Deployment Failed*
+
+|Application deployment failed or is not complete.
 
 The cause of the failure appears in the console.
 
-| image::managing-deployed-applications-ab70d.png[] ||Application update failed.
-| image::managing-deployed-applications-de1b7.png[] |*Undeployed*|Application's status is unknown, as the server is not responding to the platform (on-premises deployments only)
+| image::managing-deployed-applications-ab70d.png[] |  |Application update failed.
+
 
 |===
+
+[[application_deploy_states]]
+=== Application Deployment States
+
+[%header,cols="10a,30a,60a"]
+|===
+|Icon|State|Description
+|image::managing-deployed-applications-a665b.png[] 
+|*Deleted*
+|Application is deleted.
+|image::managing-deployed-applications-515a4.png[]
+|*Applying*
+|Application is in the process of transitioning to another state.
+
+|image:console-overview-green-circle.png[console_overview_green_circle]
+|*Applied*
+|Application is running or the updated succeeded.
+
+|image:console-overview-red-circle.png[console_overview_red_circle] 
+|*Failed*
+|Application deployment failed.
+
+The cause of the failure appears in the console.
+
+| image::managing-deployed-applications-de1b7.png[]
+|*Unknown*
+|Application's status is unknown because the server is not responding to the platform (on-premises deployments only).
+
+|===
+
+
+
+
+
 
 [[replica_status_states]]
 === Replica Status States
@@ -193,6 +243,7 @@ Configuration failed to deploy.
 * *Recovering* (red)
 +
 Replica is attempting to restart after terminating.
+
 
 [[server_status_states]]
 === Server Status States
