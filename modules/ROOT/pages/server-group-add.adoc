@@ -7,9 +7,11 @@ endif::[]
 
 Before you can add servers to a server group, you must:
 
-* Install and configure Mule.
-* Create and configure the servers.
-* Register each of the servers to Runtime Manager by downloading and installing the same version of https://www.mulesoft.com/platform/mule[Mule] and then running the xref:managing-servers.adoc#add-a-server[amc_setup] script on each.
+. Download and install the same version of the https://www.mulesoft.com/platform/mule[Mule] to register each server. 
+. Run the `amc_setup` script to create the servers.
++
+See xref:runtime-manager:servers-create.adoc[Create a Server in Runtime Manager].
+
 
 [NOTES]
 --
@@ -29,7 +31,7 @@ image::addserverstogroup.png[AddServersToGroup]
 
 == See Also
 
-* xref:installing-and-configuring-runtime-manager-agent.adoc[Install and Configure Runtime Manager Agent]
 * xref:mule-runtime::runtime-installation-task.adoc[Download and Install Mule]
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Install and Configure Runtime Manager Agent]
 * xref:servers-create.adoc[Create a Server (Hybrid)]
 * xref:server-group-about.adoc[About Server Groups (Hybrid)]

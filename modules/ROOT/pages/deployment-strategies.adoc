@@ -81,7 +81,7 @@ image::infrastructure-hybrid.png[hybrid]
 
 The hybrid scenario of hosting your apps on your own servers while managing them via the cloud allows for greater flexibility and tighter security (in case you deploy to your own secured on-premises environment). On the other hand, it requires that you sort out several considerations by your own means, such as <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
 
-To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see xref:managing-servers.adoc#add-a-server[Add a Server]. You then have the flexibility to group servers into xref:managing-servers.adoc#create-a-server-group[Server Groups] or xref:managing-servers.adoc#create-a-cluster[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
+To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:runtime-manager:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
 
 ==== Security and Hybrid Deployment
 
@@ -107,7 +107,7 @@ This alternative allows you to have have both your platform and deployments on-p
 
 This packaging of the anypoint platform is currently lacking some <<Dashboards>>, <<Insights>>, as well as some of the <<Alerts and Notifications, alerts>> that are available in other deployment modalities.
 
-To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see xref:managing-servers.adoc#add-a-server[Add a Server]. You then have the flexibility to group servers into xref:managing-servers.adoc#create-a-server-group[Server Groups] or xref:managing-servers.adoc#create-a-cluster[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
+To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:runtime-manager:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group, or cluster.
 
 [TIP]
 See the sections below to find out what specific operating features apply to this modality and how to configure them.
@@ -200,7 +200,7 @@ You can then add your own DNS records to hide this complex application name, so 
 
 CloudHub provides high availability through xref:cloudhub-fabric.adoc[CloudHub Fabric]. CloudHub Fabric provides a combination of load balancing, persistent message queues, and horizontal scaleout. In addition, the platform also actively monitors services and workers for problems. For example, in the case of hardware failure, CloudHub auto-migrates the application to a different worker using xref:managing-applications-on-cloudhub.adoc[CloudHub zero downtime updates], minimizing down time.
 
-Deploying on-premises (both via the cloud and the on-premises console) offers high availability capabilities through creating xref:managing-servers.adoc[Clusters and Server Groups]. Clustered Mule instances have xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[distributed shared memory]. This shared memory is used to provide persistent VM queues, transactions, and cluster-wide data storage.
+Deploying on-premises (both via the cloud and the on-premises console) offers high availability capabilities through creating xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters]. Clustered Mule instances have xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[distributed shared memory]. This shared memory is used to provide persistent VM queues, transactions, and cluster-wide data storage.
 
 You can set a higher xref:deploying-to-pcf.adoc#replication-factor[replication factor], which deploys your app to multiple instances. Through Pivotal Cloud Foundry settings you can configure how much each of these instances is worth in terms of scale.
 

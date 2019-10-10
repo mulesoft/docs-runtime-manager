@@ -6,20 +6,24 @@ endif::[]
 [NOTE]
 All servers that you add to a cluster must run on the same version of Mule and the same version of the Runtime Manager agent.
 
-== Prerequisite
+== Prerequisites
 
 . Download and install the same version of the https://www.mulesoft.com/platform/mule[Mule] to register each server. 
-. Run the xref:managing-servers.adoc#add-a-server[amc_setup] script on each server.
+. Run the `amc_setup` script to create the servers.
++
+See xref:runtime-manager:servers-create.adoc[Create a Server in Runtime Manager].
 
 == Add the Servers to a Cluster
 
 . In Runtime Manager, in the menu on the left, click *Servers*. 
-. In the server list, under *Type*, click the name of the cluster to which to add the server. +
+. In the server list, under *Type*, click the name of the cluster to which to add the server. 
++
 The management panel opens on the right side of the page.
 +
 image::server-details.png[]
 
-. Click *Add Server*. +
+. Click *Add Server*. 
++
 Servers that are already in a server group or part of a cluster do not appear in the list of available servers. 
 . In the list, select the servers to add to the cluster, and click *Add Servers*.
 +
