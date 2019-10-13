@@ -22,20 +22,15 @@ Runtime Manager allows you to deploy your Mule applications to Mule instances in
 
 |xref:deploying-to-your-own-servers.adoc[Your Own Mule Servers]
 
-|image:logo-pcf-active.png[link="/runtime-manager/deploying-to-pcf", title="Pivotal Cloud Foundry"]
-
-|xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
-
 | A http://docs.pivotal.io/pivotalcf/1-8/installing/pcf-docs.html[Pivotal Cloud Foundry (PCF)] repository that manages an instance of Mule runtime.
 
-xref:deploying-to-pcf.adoc[_See deployment instructions_]
+See xref:deploying-to-pcf.adoc[Deploying to Pivotal Cloud Foundry].
 |===
 
-[NOTE]
+|===
+
 To request the Anypoint Platform Private Cloud Edition, contact your sales representative.
 
-[TIP]
-====
 Every page in the Runtime Manager documentation is tagged with the following set of icons. They are a quick indicator of what deployment strategies are relevant to the content explained on the page.
 
 image:logo-cloud-active.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
@@ -45,8 +40,6 @@ image:logo-pcf-active.png[link="/runtime-manager/deploying-to-pcf", title="Pivot
 
 
 These are otherwise grayed out.
-
-====
 
 
 image::arm-vs-ch1.png[diagram1]
@@ -81,7 +74,7 @@ image::infrastructure-hybrid.png[hybrid]
 
 The hybrid scenario of hosting your apps on your own servers while managing them via the cloud allows for greater flexibility and tighter security (in case you deploy to your own secured on-premises environment). On the other hand, it requires that you sort out several considerations by your own means, such as <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
 
-To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:runtime-manager:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
+To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
 
 ==== Security and Hybrid Deployment
 
@@ -107,7 +100,7 @@ This alternative allows you to have have both your platform and deployments on-p
 
 This packaging of the anypoint platform is currently lacking some <<Dashboards>>, <<Insights>>, as well as some of the <<Alerts and Notifications, alerts>> that are available in other deployment modalities.
 
-To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:runtime-manager:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group, or cluster.
+To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group, or cluster.
 
 [TIP]
 See the sections below to find out what specific operating features apply to this modality and how to configure them.
@@ -164,12 +157,11 @@ Although the long term plan is to converge the features of these deployment mech
 | You can also configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK.
 
 | You can manage xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI.
-| You must use the xref:3.8@mule-runtime::poll-schedulers.adoc[Poll Scheduler] element in your flows to schedule tasks.
+| You must use the xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint] element in your flows to schedule tasks.
 
-| CloudHub has its own preconfigured default xref:managing-application-data-with-object-stores.adoc[Object Store] you can reference. To use it, simply add an xref:3.8@mule-runtime::mule-object-stores.adoc[Object Store connector] and set its 'config_ref' to point to the default CloudHub Object Store.
-| To use xref:3.8@mule-runtime::mule-object-stores.adoc[Object Stores] you must configure your own database to store data.
+| CloudHub has its own preconfigured default xref:managing-application-data-with-object-stores.adoc[Object Store] you can reference. To use it, simply add an  xref:connectors::object-store/object-store-connector.adoc[Object Store connector] and set its 'config_ref' to point to the default CloudHub Object Store.
+| To use xref:connectors::object-store/object-store-connector.adoc[Object Stores] you must configure your own database to store data.
 |===
-
 
 
 == Load Balancing and Domain Names
@@ -182,11 +174,11 @@ For  requests from external clients and applications, you can use the default lo
 
 You can also hide these public URLs through your DNS name servers. For example you could create A records to route requests to `myapplication.mycompany.com` to `myapplication.cloudhub.io`.
 
-Alternatively, CloudHub includes an optional xref:cloudhub-dedicated-load-balancer.adoc[dedicated Load Balancer] that you can add to a Virtual Private Cloud (VPC) for handling the DNS and load balancing of your applications within the VPC, and to define custom firewall rules within your VPC, such as to expose other inbound TCP ports besides ports 80/443 and 8081/8082. Through this, you can apply vanity domains and host your applications under any URL you choose.
+Alternatively, CloudHub includes optional xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers] that you can add to a Virtual Private Cloud (VPC) for handling the DNS and load balancing of your applications within the VPC, and to define custom firewall rules within your VPC, such as to expose other inbound TCP ports besides ports 80/443 and 8081/8082. Through this, you can apply vanity domains and host your applications under any URL you choose.
 
 image::infrastructure-cloud-vpc.png[vpc]
 
-To utilize the load balancer, your application must use specific ports that CloudHub allocates for your HTTP and HTTPS endpoints. See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for more details.
+To use the load balancer, your application must use specific ports that CloudHub allocates for your HTTP and HTTPS endpoints. See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for more details.
 
 For deployments on your local clusters and server groups, you can manage load balancing with the tools connected to your on-premise resources.
 
@@ -200,12 +192,12 @@ You can then add your own DNS records to hide this complex application name, so 
 
 CloudHub provides high availability through xref:cloudhub-fabric.adoc[CloudHub Fabric]. CloudHub Fabric provides a combination of load balancing, persistent message queues, and horizontal scaleout. In addition, the platform also actively monitors services and workers for problems. For example, in the case of hardware failure, CloudHub auto-migrates the application to a different worker using xref:managing-applications-on-cloudhub.adoc[CloudHub zero downtime updates], minimizing down time.
 
-Deploying on-premises (both via the cloud and the on-premises console) offers high availability capabilities through creating xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters]. Clustered Mule instances have xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[distributed shared memory]. This shared memory is used to provide persistent VM queues, transactions, and cluster-wide data storage.
+Deploying on-premises (both via the cloud and the on-premises console) offers high availability capabilities through creating xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters]. Clustered Mule instances have xref:mule-runtime::mule-high-availability-ha-clusters.adoc[distributed shared memory]. This shared memory is used to provide persistent VM queues, transactions, and cluster-wide data storage.
 
 You can set a higher xref:deploying-to-pcf.adoc#replication-factor[replication factor], which deploys your app to multiple instances. Through Pivotal Cloud Foundry settings you can configure how much each of these instances is worth in terms of scale.
 
 [NOTE]
-xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc#clustering-for-high-performance[Clustering for High Performance] is not supported on Pivotal Cloud Foundry.
+xref:mule-runtime::mule-high-availability-ha-clusters.adoc#clustering-for-high-performance[Clustering for High Performance] is not supported on Pivotal Cloud Foundry.
 
 
 == Managing Properties for Applications on CloudHub
@@ -299,7 +291,7 @@ For applications deployed to Pivotal Cloud Foundry, logs aren't supported but yo
 
 CloudHub provides an implementation of the user object store. This makes its usage a lot simpler, as you can simply reference the already configured CloudHub object store. It places limits on the usage of this to avoid abuse. These are detailed on the xref:managing-application-data-with-object-stores.adoc[Object Store] page.
 
-Deployments on-premises require that you set up your own object store, see xref:3.8@mule-runtime::mule-object-stores.adoc[Mule object stores].
+Deployments on-premises require that you set up your own object store, see  xref:connectors::object-store/object-store-connector.adoc[Mule object stores].
 
 [TIP]
 For deployments to Pivotal Cloud Foundry, it's recommended that you store your data outside the Mule runtime instance where your application runs, since its data will be lost whenever the application is stopped. Instead, you can for example can create a service binding to a database that runs elsewhere.
@@ -315,16 +307,16 @@ Using the CloudHub object store doesn't guarantee that writing to disk survives 
 
 Since each application deployed to CloudHub runs on a separate virtual server, there is no need to use domains to enable sharing ports or other resources between apps.
 
-When deploying on-premises, it's possible to create 'Domain' mule projects that don't hold any flows, but do hold a set of global configuration elements to share among other apps deployed to the same server. This can be of help to avoid having to configure the same settings and credentials for each application, but it's specially useful when you want multiple applications to listen on a same HTTP host and port, or on other exclusive resources. xref:3.8@mule-runtime::shared-resources.adoc[Read more].
+When deploying on-premises, it's possible to create 'Domain' mule projects that don't hold any flows, but do hold a set of global configuration elements to share among other apps deployed to the same server. This can be of help to avoid having to configure the same settings and credentials for each application, but it's specially useful when you want multiple applications to listen on a same HTTP host and port, or on other exclusive resources. xref:mule-runtime::shared-resources.adoc[Read more].
 
-Currently, you can't deploy domains through the Runtime Manager console, even to local servers where they could be needed in some scenarios. In those cases, you can still deploy your domains manually directly on your local server through xref:3.8@mule-runtime::starting-and-stopping-mule-esb.adoc[the command line].
+Currently, you can't deploy domains through the Runtime Manager console, even to local servers where they could be needed in some scenarios. In those cases, you can still deploy your domains manually directly on your local server through xref:mule-runtime::starting-and-stopping-mule-esb.adoc[the command line].
 
 
 == Scheduling
 
 CloudHub lets you define xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI that runs your flows automatically.
 
-For apps that you deploy to servers on-premises, through any modality, this is not an option. You can achieve the same by including the xref:3.8@mule-runtime::poll-schedulers.adoc[Poll Scheduler] element in the flows of your application.
+For apps that you deploy to servers on-premises, through any modality, this is not an option. You can achieve the same by including the xref:mule-runtime::scheduler-concept[Scheduler] element in the flows of your application.
 
 == JDK Versions
 
@@ -350,7 +342,7 @@ There are some components for which CloudHub has limited support for currently:
 
 == Deployment Strategy Flexibility
 
-If you want to deploy the same Mule application via various different deployment strategies – such as to an <<Cloud Console On-Premises Deployment, on-premises server>> and  <<Cloud Console CloudHub Deployment, CloudHub>>  – you should abstract some parameters of the application to xref:3.8@mule-runtime::mule-application-deployment-descriptor.adoc[application properties] that you can set with different values in each use case, without needing to alter the actual application.
+If you want to deploy the same Mule application via various different deployment strategies, such as to an <<Cloud Console On-Premises Deployment, on-premises server>> and <<Cloud Console CloudHub Deployment, CloudHub>>, abstract some parameters of the application to xref:mule-runtime::intro-packaging.adoc[application properties] that you can set with different values in each use case, without needing to alter the actual application.
 
 Create an application properties file named *mule-app.properties* in the `src/main/app` folder of your project. When using the properties tab on CloudHub or Pivotal Cloud Foundry, these properties are overriden. See <<Managing Properties>> to see how these are loaded with values in each case.
 
@@ -366,19 +358,19 @@ Once an application has been tested in a sandbox environment and is ready for pr
 
 You can also deploy and manage your applications to Mule runtimes through other methods that exist from before there was an Anypoint Platform. These methods are still currently supported, but no new features are being added to them:
 
-* Deploy to a xref:3.8@mule-runtime::deploying.adoc[standalone Mule runtime].
-* Deploy via the xref:3.8@mule-management-console::index.adoc[Mule Management Console].
+* Deploy to a xref:mule-runtime::deploying.adoc[standalone Mule runtime].
+* Deploy via the xref:mule-management-console::index.adoc[Mule Management Console].
 
 
 
 == See Also
 
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
-* xref:3.8@mule-runtime::elements-in-a-mule-flow.adoc[Elements in a Mule Flow]
+* xref:mule-runtime::about-flows.adoc[Flows and Subflows]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
+* xref:cloudhub.adoc[CloudHub]
 * xref:monitoring.adoc[Monitoring Applications]
 * xref:cloudhub-fabric.adoc[CloudHub Fabric]
 * xref:managing-queues.adoc[Managing Queues]

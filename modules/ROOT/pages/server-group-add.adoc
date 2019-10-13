@@ -10,20 +10,19 @@ Before you can add servers to a server group, you must:
 . Download and install the same version of the https://www.mulesoft.com/platform/mule[Mule] to register each server. 
 . Run the `amc_setup` script to create the servers.
 +
-See xref:runtime-manager:servers-create.adoc[Create a Server in Runtime Manager].
+See xref:servers-create.adoc[Create a Server in Runtime Manager].
 
 
-[NOTES]
---
+== Considerations 
+
 * All servers in a server group must be running the same Mule version and the same Runtime Manager agent version. 
 * You can create a server group with servers that display the statuses of `Running` or `Disconnected`, but these can't be mixed with servers that display the status `Created`. 
 * You can create a server group with servers that all display the status `Created`.
 * If you want to add a server on which existing applications are currently running to a server group, you must first stop and delete the applications from the server. 
---
 
 == Add Servers to a Group
 
-. From the *Servers* screen, click the row of the server group to view the management menu, and click *Add Server*.
+. From the *Servers* page, click the row of the server group to view the management menu, and click *Add Server*.
 +
 image::addserverstogroup.png[AddServersToGroup]
 
@@ -33,5 +32,5 @@ image::addserverstogroup.png[AddServersToGroup]
 
 * xref:mule-runtime::runtime-installation-task.adoc[Download and Install Mule]
 * xref:installing-and-configuring-runtime-manager-agent.adoc[Install and Configure Runtime Manager Agent]
-* xref:servers-create.adoc[Create a Server (Hybrid)]
+* xref::servers-create.adoc[Create a Server (Hybrid)]
 * xref:server-group-about.adoc[About Server Groups (Hybrid)]
