@@ -3,26 +3,28 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To ensure platform stability and performance, Anypoint Platform has the following recommended and hard limits on the number of deployments and servers in a hybrid deployment scenario. These limits are specific to an environment in a business group.
+To ensure platform stability and performance, Anypoint Platform provides the following recommended and hard limits on the number of deployments, targets, and servers in a hybrid deployment scenario. These limits are specific to an environment in a business group.
 
-If you need to create additional deployments or servers beyond these limits, you can use different accounts, environments or business groups. If you need to exceed these limits within the same environment, contact your customer success representative.
+To create additional deployments or servers beyond these limits, you can use different accounts, environments, or business groups. To exceed these limits within the same environment, contact your customer success representative.
 
-This table lists the recommended limits on the number of deployments in a hybrid deployment scenario:
+The recommended limits on the number of deployments in a hybrid deployment scenario are:
 
 [%header%autowidth.spread]
 |===
 | Component | Recommended Limit
 | Maximum number of deployments per environment | 1000
-| Maximum deployments per hybrid target (non runtime fabric) | 200
+| Maximum deployments per hybrid target (not Runtime Fabric) | 200
 | Maximum deployment size | 200 MB
 |===
 
-This table lists the hard limits for servers in a hybrid deployment scenario:
+The hard limits on the number of targets and servers in a hybrid deployment scenario:
 
 [%header%autowidth.spread]
 |===
 | Component | Hard Limit
-| Maximum number of servers (non runtime fabric) | 500
+| Maximum number of targets (not Runtime Fabric) | 500
 | Maximum number of servers per server group | 20
 | Maximum servers per cluster | 8
 |===
+
+As an example, if you have 500 clusters (targets) with 8 servers each, the maximum number of servers is 4000. 
