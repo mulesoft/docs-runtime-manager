@@ -3,17 +3,26 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use the `amc_setup` script to create a server by configuring the Runtime Manager agent to communicate with Runtime Manager. To make a server visible in the Runtime Manager console so you can manage it, you must first register it with the Runtime Manager agent.
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
+To create a server, use the `amc_setup` script to configure Runtime Manager agent to communicate with Runtime Manager. To make a server visible in the Runtime Manager console so you can manage it, you must first register it with the Runtime Manager agent.
 
 == Prerequisites
 
-To manage servers in a customer-hosted environment, you must perform the following:
+To manage servers in an on-premises environment, you must perform the following:
 
 * Install Mule version 3.6 or later, or API gateway version 2.0 or later.
 * Install Runtime Manager agent, version 1.1.1 or later.
-* (Optional) Configure any whitelisted IPs or ports required to connect to Anypoint Platform through a firewall.
+* (Optional) Configure any whitelisted ports, IP addresses, and ports required to connect to Anypoint Platform through a firewall.
 
-If the server you want to add is already registered with a different instance of Runtime Manager, you cannot add it until you remove if from the other instance. To do this:
+== Removing a Server from Another Runtime Manager Instance 
+
+If the server you want to add is already registered with a different instance of Runtime Manager, you cannot add it until you remove it from the other instance.
+
+To remove the server from Runtime Manager:
 
 . In Runtime Manager, delete the server from the *Server* tab.
 . Delete the `mule-agent.yaml` configuration file, which can be found in your `{RUNTIME PARENT FOLDER}/conf` folder.

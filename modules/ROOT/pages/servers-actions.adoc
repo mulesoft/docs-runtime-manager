@@ -1,4 +1,4 @@
-= Shut Down, Restart, and Delete a Server (Hybrid)
+= Shut Down, Restart, or Delete a Server (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -15,11 +15,12 @@ In a hybrid deployment scenario, after creating a server, you can control its st
 
 . Confirm that you want to perform the selected action.
 
-After shutting down the server, it cannot be restarted from Runtime Manager. You must manually restart the server on the machine where the Mule runtime engine is installed.
+After shutting down the server, you cannot restart it from Runtime Manager. You must manually restart the server on the machine where the Mule runtime engine is installed.
 
-If an error occurs in Runtime Manager during server shutdown or restart, you must manually perform the action on the machine where the Mule runtime engine is installed.  Ensure that you have access to this system.
+If an error occurs in Runtime Manager during server shutdown or restart, you must manually perform the action on the machine where the Mule runtime engine is installed. Ensure that you have access to this system.
 
 == See Also
 
+* xref:mule-runtime::starting-and-stopping-mule-esb.adoc[Starting and Stopping Mule]
 * xref:servers-create.adoc[Create a Server]
 * xref:servers-cert-renewal.adoc[Renew a Server Certificate]

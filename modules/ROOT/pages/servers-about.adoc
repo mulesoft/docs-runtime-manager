@@ -3,12 +3,18 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Manager provides a single management interface where you can manage applications running in the cloud, on local servers, on server groups that are on-premises within your data center, or on clusters of servers. Applications that are on-premises run on Mule instances on a single server or on a group of servers.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
+Runtime Manager provides a single management interface from which you can manage applications running in the cloud, on local servers, in server groups that are on-premises within your data center, or in clusters of servers. Applications that are on-premises run on Mule instances on a single server or on a group of servers.
 
 Servers enable Runtime Manager to communicate with Runtime Manager agent. After creating a server, you can use Runtime Manager to deploy applications to remote runtimes. Servers also enable you to view information about the local environment where a Mule is installed.
 
-You must create a server for each Mule you want to manage. To manage environments with multiple Mule runtime engines, you can create server groups and clusters.
+You must create a server for each Mule to manage. To manage environments with multiple Mule runtime engines, create server groups and clusters.
 
 == See Also
 
 * xref:servers-create.adoc[Create a Server]
+* xref:server-group-create.adoc[Create a Server Group]
+* xref:cluster-create.adoc[Create a Cluster]

@@ -1,37 +1,32 @@
-= View Information about a Server, API Gateway, Server Group, or Cluster (Hybrid)
+= View Information about Servers, Server Groups, Clusters, and API Gateways (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The *Servers* tab in Runtime Manager enables you to view a list of the servers, server groups, and clusters that have been created in an environment. From this tab, you can also perform actions related to these components.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
+The *Servers* tab in Runtime Manager enables you to view a list of the servers, server groups, and clusters that have been created in an environment. From this tab, you can also perform actions on these components.
 
 image::amc-servers.png[AMC_Servers]
-
-[NOTE]
-Virtual servers created through Pivotal Cloud Foundry (PCF) are not displayed on this tab.
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
 +
-Runtime Manager displays a table containing the following information:
+Runtime Manager displays a list of servers, including the following information:
 +
-|===
-| *Name* | Displays the name of the server, API gateway, server group, or cluster.
-| *Status* | Displays the current status. Possible values are:
-
-*Created*: indicates that the component was registered in Runtime Manager but has not been started.
-
-*Connected*: indicates that Runtime Manager can connect to the Runtime Manager agent for of the component.
-
-*Disconnected*: indicates that component was registered in Runtime Manager, but was shut down.
-
-*Running*: indicates that the component is running and that you can perform actions, including deploy an application.
-
-*Empty*: indicates that a server group or cluster does not contain any servers.
-
-| Type | Lists whether the component is a server, API gateway, server group, or cluster.
-| Version | Lists the version of API gateway or Mule. No value is displayed for server groups or clusters.
-|===
+*Name*:: Displays the name of the server, API gateway, server group, or cluster.
+*Status*:: Displays the current status.
+*Type*:: Indicates whether the component is a server, API gateway, server group, or cluster.
+*Version*:: Displays the version of API gateway or Mule. 
+// No value is displayed for server groups or clusters.
 
 . Click the name of the component to view its dashboard.
 . Click in the row next to the component name to view additional properties and actions for the component.
+
+== See Also
+
+* xref:managing-deployed-applications.adoc#server_status_states[Server Status States]
+* xref:managing-deployed-applications.adoc#server_groups_status_states[Server Groups Status States]
+* xref:managing-deployed-applications.adoc#cluster_status_states[Cluster Status States]
