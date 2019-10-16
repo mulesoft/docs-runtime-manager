@@ -3,24 +3,31 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-In a hybrid deployment scenario, after creating a server, you can control its status from Runtime Manager.
 
-. From the *Servers* page, select the server you want to control.
-. In the information panel, click the server status label and choose the action you want to perform from the drop-down list. You can perform the following actions:
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
+After creating a server, you can control its status from Runtime Manager.
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Click the server name.
+. Click *Settings*.
+. From the *Actions* menu, select the action to perform from the *Actions* drop-down list:
 +
-* *Shutdown*
-* *Restart*
 * *Delete*
+* *Restart*
+* *Shutdown*
 * *Renew Certificate*
 
 . Confirm that you want to perform the selected action.
 
-After shutting down the server, you cannot restart it from Runtime Manager. You must manually restart the server on the machine where the Mule runtime engine is installed.
+After shutting down the server, you cannot restart it from Runtime Manager. You must manually restart the server on the machine where Mule runtime engine is installed.
 
-If an error occurs in Runtime Manager during server shutdown or restart, you must manually perform the action on the machine where the Mule runtime engine is installed. Ensure that you have access to this system.
+If an error occurs in Runtime Manager during server shutdown or restart, you must manually perform the action on the machine where the runtime engine is installed. Ensure that you have access to this system.
 
 == See Also
 
 * xref:mule-runtime::starting-and-stopping-mule-esb.adoc[Starting and Stopping Mule]
-* xref:servers-create.adoc[Create a Server]
 * xref:servers-cert-renewal.adoc[Renew a Server Certificate]

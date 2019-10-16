@@ -3,17 +3,25 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-When registering a Mule in Runtime Manager, you must supply a certificate to ensure secure communications between Runtime Manager and the Runtime Manager agent. When the certificate expires, you can renew it directly from Runtime Manager. You can update a certificate for a specific server or multiple servers within a cluster or group.
+When registering a Mule server in Runtime Manager, you must supply a certificate to ensure secure communications between Runtime Manager and the Runtime Manager agent. When the certificate expires, you can renew it directly from Runtime Manager. You can update a certificate for a specific server or multiple servers within a cluster or group.
 
-You can view the expiration date of the certificate from the server dashboard. To update a server certificate, the server status must be *Running*.
+You can view the expiration date of the certificate in the server dashboard. 
 
-. From the *Servers* tab, select the server whose certificate you want to update.
-. In the information panel, click the *Actions* button and select *Renew Certificate*.
+To renew a certificate for a server:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Verify that the server status is *Running*.
++
+The server must be running to renew the certificate.
+. Click the server name.
+. Click *Settings*.
+. From the *Actions* drop-down list, select *Renew Certificate*.
 . Click the checkbox to confirm, then click *Renew*.
-
-To verify that the certificate was successfully renewed, check the value of *Certificate expiration* in the server dashboard.
+. Click *Dashboards* and check *Certificate expiration date* to confirm that the certificate was successfully renewed.
 
 == See Also
 
-* xref:servers-about.adoc[About Servers (Hybrid)]
+* xref:servers-about.adoc[Servers]
 * xref:servers-actions.adoc[Shut Down, Restart, or Delete a Server]
+* xref:monitoring-dashboards.adoc[Monitoring Dashboards on Runtime Manager]

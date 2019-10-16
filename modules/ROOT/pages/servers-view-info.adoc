@@ -1,4 +1,4 @@
-= View Information about Servers, Server Groups, Clusters, and API Gateways (Hybrid)
+= View Server Information (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -7,26 +7,52 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", tit
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-The *Servers* tab in Runtime Manager enables you to view a list of the servers, server groups, and clusters that have been created in an environment. From this tab, you can also perform actions on these components.
-
-image::amc-servers.png[AMC_Servers]
+The *Servers* tab in Runtime Manager enables you to view a list of the servers, server groups, clusters, and API gateways that have been created in an environment. From this tab, you can also perform actions on these components.
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
 +
-Runtime Manager displays a list of servers, including the following information:
+Runtime Manager displays a list of servers, which includes the following information:
 +
 *Name*:: Displays the name of the server, API gateway, server group, or cluster.
 *Status*:: Displays the current status.
-*Type*:: Indicates whether the component is a server, API gateway, server group, or cluster.
+*Type*:: Indicates whether the component is a Mule server, API gateway, server group, or cluster.
 *Version*:: Displays the version of API gateway or Mule. 
 // No value is displayed for server groups or clusters.
-
+. Click the status to view additional properties and actions in the details pane.
 . Click the name of the component to view its dashboard.
-. Click in the row next to the component name to view additional properties and actions for the component.
+
+== Details Pane
+
+
+The details pane displays the server status, and the Mule or Gateway version. For server groups and clusters, the details pane includes the Runtime Manager agent version and the type (unicast or multicast).
+
+For all types, the details pane includes: 
+
+* *Manage Server*, *Manage Group*, or *Manage Cluster* button, which takes you to the *Settings* page.
+* *View Dashboard* button, which takes you to the server's dashboard page.
+
+The tabs in the bottom provide more detail:
+
+* The applications running and the status of each
+* Any plugins, such as Splunk and ELK
+* Server groups and clusters display the list of servers and their statuses
+
+== Server Dashboard 
+
+The Dashboards feature isn't available on the Anypoint Platform Private Cloud Edition.
+
+The server dashboard provides detailed performance metrics, including heap memory and CPU performance. This dashboard also provides the following information:
+
+* A list of applications deployed to the server
+* The status of each application
+* Mule messages for each application
+* Error messages for each application
 
 == See Also
 
 * xref:managing-deployed-applications.adoc#server_status_states[Server Status States]
 * xref:managing-deployed-applications.adoc#server_groups_status_states[Server Groups Status States]
 * xref:managing-deployed-applications.adoc#cluster_status_states[Cluster Status States]
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
+* xref:monitoring-dashboards.adoc[Monitoring Dashboards on Runtime Manager]

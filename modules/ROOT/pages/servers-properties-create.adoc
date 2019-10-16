@@ -3,20 +3,21 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Manager enables you to define and configure server-side properties. These properties are defined as key/value pairs and are used by the JVM where the server is running. For example, you can set a property called `ENV=qa` that enables you to specify the environment of the server.
+Runtime Manager enables you to define and configure server properties. These properties are defined as key/value pairs and are used by the JVM where the server is running. For example, you can set a property called `ENV=qa` that enables you to specify the environment of the server.
 
-Server properties are stored in the `wrapper.conf` file on the remote server.
+Server properties are stored in the `$MULE_HOME/conf/wrapper.conf` file on the remote system.
 
 . From Anypoint Platform, select *Runtime Manager*.
-. Click *Servers*.
-. Select the server whose properties you want to configure, then click *Manage Server*.
-. Click the *Properties* tab, then *Custom Properties*.
+. Click the *Servers* tab.
+. Click the type, and then click *Manage Server*, *Manage Group*, or *Manage Cluster* button on the details pane.
+. Click the *Properties* tab.
 . Enter the name of the property in the *Key* field.
 . Enter the value of the property in the *Value* field.
 . Click *Save*.
 
-After creating a custom property, restart the server for the new property to be applied to the Mule configuration.
+After creating a custom property, restart the server to apply the new property to the Mule configuration.
 
 == See Also
 
 * xref:servers-properties-view.adoc[View Server Properties]
+* xref:servers-actions.adoc[Shut Down, Restart, or Delete a Server]

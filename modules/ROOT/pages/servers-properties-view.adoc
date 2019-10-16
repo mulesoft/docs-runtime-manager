@@ -1,4 +1,4 @@
-= View Server Properties (Hybrid)
+= Configure Server Properties (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -7,36 +7,41 @@ Runtime Manager enables you to view and configure properties in your Mule enviro
 
 == Custom Properties
 
-Custom properties enable you to define properties used by the JVM container of a Mule. Custom properties are defined as key/value pairs.
+Custom properties enable you to define properties used by the JVM container of a Mule instance. Custom properties are defined as key/value pairs.
 
 == Discovered Properties
 
-Discovered properties are properties defined by the remote environment of the Mule. These include environment and system properties of the machine where your Mule is located.
+Discovered properties are properties defined by the remote environment of the Mule instance. These properties include:
 
-You can view the following types of properties:
+* JVM arguments
+* Environment properties
+* System properties
 
-* JVM Arguments
-* Environment Properties
-* System Properties
+Runtime Manager retrieves the values of these properties from Runtime Manager agent which queries the `System` Java class on the remote server. 
 
-Runtime Manager retrieves the values of these properties from the Runtime Manager agent which queries the `System` Java class on the remote server. By default, Autodiscovery of remote server properties is disabled. You must click *Enable Discovery* to use this feature. After enabling this feature, Runtime Manager stores an encrypted version of these properties in its internal database.
+By default, auto-discovery of remote server properties is disabled. To use this feature, click *Enable Auto-Discovery* to use this feature. After enabling this feature, Runtime Manager stores an encrypted version of these properties in its internal database.
 
 To fully disable this feature, contact your MuleSoft customer success representative.
 
-== Viewing Server Properties
+== View Server Properties
 
-To view custom and discovered properties, perform the following:
+To view custom and discovered properties:
 
 . From Anypoint Platform, select *Runtime Manager*.
-. Click *Servers*.
-. Select the server whose properties you want to view, then click *Manage Server*.
+. Click the *Servers* tab.
+. Click the type, and then click *Manage Server*, *Manage Group*, or *Manage Cluster* button on the details pane.
 . Click the *Properties* tab.
 . Click either *Custom Properties* or *Discovered Properties*.
 +
-Before you can view discovered properties, you must click *Enable Discovery*. When this feature is enabled, these properties are stored in encrypted form in the Runtime Manager internal database.
+To view discovered properties, click *Enable Auto-Discovery*. The server state must be *Running* to auto-discover server properties.
 
-From the *Properties* tab, you can also search for properties or sort them by key, value, or property type.
+From the *Properties* tab, you can:
+
+* Search for properties.
+* Create new properties.
+* Edit existing properties. 
 
 == See Also
 
+* xref:servers-settings.adoc[Access Server Settings]
 * xref:servers-properties-create.adoc[Create Custom Server Properties]
