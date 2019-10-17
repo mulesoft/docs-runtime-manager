@@ -7,21 +7,18 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", tit
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-When deleting a server group, consider the following:
+When you delete a server group, the following actions occur:
 
 * Alert definitions and history for the server group are deleted.
-* Servers assigned to the server group are not deleted. Servers that belong to the deleted group are displayed in the main server list. They can be used individually or be paired up into other server groups or clusters.
-* Servers assigned to the group are not restarted or shutdown.
 * Applications deployed to the servers in the server group are cloned on each server.
 
+The servers assigned to the deleted server group are not deleted, restarted, or shut down. Servers that belong to the deleted group appear on the *Servers* page. You can deploy applications to them individually, or add them to other server groups or clusters.
 
-== Deleting a Server Group
+== Delete a Server Group
 
-. From the Runtime Manager *Servers* tab, click a server group entry to display the detail view on the right side of the screen.
-
-. Click the down arrow below the server name and select *Delete group*.
-
-+
-image::deletegroup.png[DeleteGroup]
-
-. A prompt appears to be sure you want to continue. Click the check box and click *Delete Server Group*
+. From Anypoint Platform, select *Runtime Manager*.
+. In Runtime Manager, click *Servers* in the left menu.
+. Click the server group name.
+. Click the *Manage Group* button, then click *Settings*.
+. On the *Settings* page for the server group, click the *Delete Server Group* button.
+. In the *Delete* confirmation popup, select the checkbox to verify that you want to delete the server group, and then click *Delete Server Group*.
