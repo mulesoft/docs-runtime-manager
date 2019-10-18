@@ -7,14 +7,9 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", tit
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
+To deploy applications to a cluster, you can either add the servers to Runtime Manager first, then create the cluster or you can create the cluster and add servers to it later.
 
-== Prerequisites
-
-Before you can create a cluster, you must perform these steps:
-
-* Install Mule version 3.7.0 or later, or API gateway runtime version 2.0 or later.
-* Install Runtime Manager Agent version 1.1.1 or later.
-* For each Mule, add the server that connects Mule to Runtime Manager.
+For Object Store persistence on all the servers in your cluster, create your cluster manually and use Quorum Management.
 
 
 == Restrictions
@@ -27,17 +22,16 @@ To add servers to a cluster:
 * Unicast servers must be in the *Running* state. 
 * All servers in a cluster must be running the same Mule runtime engine version and Runtime Manager agent version.
 
-For Object Store persistence on all the servers in your cluster, create your cluster manually and use Quorum Management.
 
 == Create a Cluster
 
 To create a cluster:
 
 . From Anypoint Platform, select *Runtime Manager*.
-. Click *Servers*.
+. Select *Servers* in the left menu.
 . Click the *Create Cluster* button.
 +
-.The arrow shows the Create Cluster button.
+.The arrow shows the *Create Cluster* button in the *Servers* page.
 image::rtm-cluster-create.png[Create Cluster button]
 
 . In the *Create Cluster* page, enter the name for the cluster.
@@ -52,8 +46,8 @@ The new cluster appears in the *Servers* list. The servers no longer appear in t
 
 == See Also:
 
-* xref:servers-create.adoc[Add Servers to Runtime Manager]
 * xref:cluster-about.adoc[Clusters]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
 * xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store Persistence]
 * xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#quorum-management[Quorum Management]
 * xref:servers-actions.adoc[Shut Down, Restart, or Delete Servers]

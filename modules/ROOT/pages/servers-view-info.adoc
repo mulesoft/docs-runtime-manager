@@ -19,30 +19,28 @@ Runtime Manager displays a list of servers, which includes the following informa
 *Type*:: Indicates whether the component is a Mule server, API gateway, server group, or cluster.
 *Version*:: Displays the version of API gateway or Mule. 
 // No value is displayed for server groups or clusters.
-. Click the status to view additional properties and actions in the details pane.
+. Click in the *Type* column to view additional properties and actions in the details pane.
 . Click the name of the component to view its dashboard.
 
 == Details Pane
 
-.The lines show the *Applications* tab, servers list, and *Plugins* tab.
-image::rtm-cluster-details-pane.png[ *Applications* tab, servers list, and *Plugins* tab]
+The details pane includes: 
 
-
-For all types, the details pane includes: 
-
-* Status
+* Status of the component
 * Mule or API gateway version
 * Runtime Manager agent version 
-* *Manage Server*, *Manage Group*, or *Manage Cluster* button, which takes you to the *Settings* page.
-* *View Dashboard* button, which takes you to the server's dashboard page.
-
-For clusters, the details pane displays the type (unicast or multicast).
+* *Manage Server*, *Manage Group*, or *Manage Cluster* button, which takes you to the *Settings* page
+* *View Dashboard* button, which takes you to the server's dashboard page
+* For clusters, the type (unicast or multicast)
 
 The tabs in the bottom provide more detail:
 
 * Server groups and clusters display the list of servers and their statuses
 * The applications running and the status of each
 * Any plugins, such as Splunk and ELK
+
+.The lines show the *Applications* tab, servers list, and *Plugins* tab.
+image::rtm-cluster-details-pane.png[ *Applications* tab, servers list, and *Plugins* tab]
 
 == Server Dashboard 
 
