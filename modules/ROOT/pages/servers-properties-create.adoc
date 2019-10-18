@@ -3,9 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
 Runtime Manager enables you to define and configure server properties. These properties are defined as key/value pairs and are used by the JVM where the server is running. For example, you can set a property called `ENV=qa` that enables you to specify the environment of the server.
 
-Server properties are stored in the `$MULE_HOME/conf/wrapper.conf` file on the remote system.
+Server properties are stored in the `$MULE_HOME/conf/wrapper.conf` file on the system where Mule is installed.
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
