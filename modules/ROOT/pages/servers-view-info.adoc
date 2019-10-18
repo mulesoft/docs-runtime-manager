@@ -24,25 +24,39 @@ Runtime Manager displays a list of servers, which includes the following informa
 
 == Details Pane
 
+.The lines show the *Applications* tab, servers list, and *Plugins* tab.
+image::rtm-cluster-details-pane.png[ *Applications* tab, servers list, and *Plugins* tab]
 
-The details pane displays the server status, and the Mule or Gateway version. For server groups and clusters, the details pane includes the Runtime Manager agent version and the type (unicast or multicast).
 
 For all types, the details pane includes: 
 
+* Status
+* Mule or API gateway version
+* Runtime Manager agent version 
 * *Manage Server*, *Manage Group*, or *Manage Cluster* button, which takes you to the *Settings* page.
 * *View Dashboard* button, which takes you to the server's dashboard page.
 
+For clusters, the details pane displays the type (unicast or multicast).
+
 The tabs in the bottom provide more detail:
 
+* Server groups and clusters display the list of servers and their statuses
 * The applications running and the status of each
 * Any plugins, such as Splunk and ELK
-* Server groups and clusters display the list of servers and their statuses
 
 == Server Dashboard 
 
-The Dashboards feature isn't available on the Anypoint Platform Private Cloud Edition.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-The server dashboard provides detailed performance metrics, including heap memory and CPU performance. This dashboard also provides the following information:
+
+The server dashboard provides detailed performance metrics, including heap memory and CPU performance. 
+
+.The lines show the *Heap Memory* graph, applications list, and *CPU* graph.
+image::rtm-server-dashboards-page.png[*Heap Memory* graph, applications list, and *CPU* graph]
+
+This dashboard also provides the following information:
 
 * A list of applications deployed to the server
 * The status of each application

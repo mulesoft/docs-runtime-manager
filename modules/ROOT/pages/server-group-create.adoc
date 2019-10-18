@@ -1,4 +1,4 @@
-= Create a Server Group (Hybrid)
+= Create Server Groups (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -7,20 +7,23 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", tit
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-To deploy applications to server groups, first create the servers, then create the server group. You can add servers to server groups when you create the group or you can add them later.
+To deploy applications to server groups, you can either create the servers first, then create the server group or you can create the group and add servers to it later.
 
 To create a server group:
 
 . From Anypoint Platform, select *Runtime Manager*.
-. In Runtime Manager, click *Servers* in the left menu.
+. Select *Servers* in the left menu.
 . Click the *Create Group* button.
-. In the *Create Server Group* page, enter the name for the server group, select the servers to include in your new server group, and click *Create Group*.
+. In the *Create Server Group* page, enter the name for the server group.
 +
 Group names can contain between 3-40 alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-). They cannot start or end with a hyphen and cannot contain spaces or other characters.
+. Select the servers to include in your new server group.
+. Click the *Create Group* button.
 
-The new server group appears in the *Servers* list. To see the list of servers in the group, click the server group name. 
+The new server group appears in the *Servers* list. The servers no longer appear in the *Servers* list. To see the list of servers in the group, click the server group name. 
+
 
 == See Also
 
-* xref:servers-create.adoc[Add a Server to Runtime Manager]
-* xref:server-group-add.adoc[Add a Server to a Server Group]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
+* xref:server-group-add.adoc[Add Servers to a Server Group]

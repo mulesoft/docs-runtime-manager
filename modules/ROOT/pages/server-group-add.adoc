@@ -1,4 +1,4 @@
-= Add a Server to a Server Group (Hybrid)
+= Add Servers to a Server Group (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,23 +9,16 @@ image:logo-server-active.png[link="/runtime-manager/deployment-strategies", titl
 
 == Prerequisites
 
-* Create at least one server.
-* Create the server group.
+* At least one server is configured.
+* The server group has been created.
 
-
-== Considerations 
-
-* All servers in a server group must be running the same Mule version and the same Runtime Manager agent version. 
-* You can create a server group with servers that display the statuses of `Running` or `Disconnected`, but these can't be mixed with servers that display the status `Created`. 
-* You can create a server group with servers that all display the status `Created`.
-* If you want to add a server on which existing applications are currently running to a server group, you must first stop and delete the applications from the server. 
 
 == Add Servers to a Group
 
 To add servers to a server group after the server group has been created:
 
 . From Anypoint Platform, select *Runtime Manager*.
-. In Runtime Manager, click *Servers* in the left menu.
+. Select *Servers* in the left menu.
 . Click the type to display the details pane on the right.
 . Click the *Add Server* button.
 +
@@ -34,8 +27,12 @@ image::addserverstogroup.png[AddServersToGroup]
 A list of available servers appears. 
 . Select the servers to add to the group, and click *Add Servers*.
 
+The servers no longer appear in the *Servers* list. 
+
 == See Also
 
-* xref:servers-create.adoc[Add a Server to Runtime Manager]
-* xref:server-group-create.adoc[Create a Server Group]
-* xref:server-group-about.adoc[About Server Groups]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
+* xref:server-group-create.adoc[Create Server Groups]
+* xref:server-group-about.adoc[Server Groups]
+* xref:servers-actions.adoc[Shut Down, Restart, or Delete Servers]
+* xref:runtime-dep-serv-limits.adoc[Deployment and Server Scaling]

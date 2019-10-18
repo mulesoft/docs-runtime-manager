@@ -1,4 +1,4 @@
-= Shut Down, Restart, or Delete a Server (Hybrid)
+= Shut Down, Restart, or Delete Servers (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -8,24 +8,29 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", tit
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-After creating a server, you can control its status from Runtime Manager.
+After creating a server, you can control its status from Runtime Manager. 
+
+After shutting down a server, you cannot restart it from Runtime Manager. You must manually restart the server on the system where Mule runtime engine is installed.
+
+If an error occurs in Runtime Manager during server shutdown or restart, you must manually start or stop the server on the system where Mule is installed.
+
 
 . From Anypoint Platform, select *Runtime Manager*.
-. Click the *Servers* tab.
+. Select *Servers* in the left menu.
 . Click the server name.
 . Click *Settings*.
-. From the *Actions* menu, select the action to perform from the *Actions* drop-down list:
++
+.The arrow shows the *Actions* menu on the *Settings* page.
+image::rtm-servers-actions-menu.png[*Actions* menu]
+. From the *Actions* menu, select the action to perform:
 +
 * *Delete*
 * *Restart*
 * *Shutdown*
 * *Renew Certificate*
 
-. Confirm that you want to perform the selected action.
+. In the confirmation popup, select the checkbox to confirm, and then click the button.
 
-After shutting down the server, you cannot restart it from Runtime Manager. You must manually restart the server on the machine where Mule runtime engine is installed.
-
-If an error occurs in Runtime Manager during server shutdown or restart, you must manually perform the action on the machine where the runtime engine is installed. Ensure that you have access to this system.
 
 == See Also
 

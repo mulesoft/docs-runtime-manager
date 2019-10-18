@@ -1,4 +1,4 @@
-= Add a Server to a Cluster (Hybrid)
+= Add Servers to a Cluster (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -11,23 +11,25 @@ All servers that you add to a cluster must run on the same version of Mule and t
 
 == Prerequisites
 
-. Download and install the same version of the https://www.mulesoft.com/platform/mule[Mule] to register each server. 
-. Run the `amc_setup` script to create the servers.
-+
-See xref:servers-create.adoc[Create a Server in Runtime Manager].
+* At least one server is configured.
+* The cluster is created.
 
-== Add the Servers to a Cluster
+== Add Servers to a Cluster
 
-. In Runtime Manager, in the menu on the left, click *Servers*. 
-. In the server list, under *Type*, click the name of the cluster to which to add the server. 
+. From Anypoint Platform, select *Runtime Manager*.
+. Click *Servers*.
+. Click *Cluster* in the *Type* column to display the details pane.
 +
-The management panel opens on the right side of the page.
-+
-image::server-details.png[]
-
+.The arrow shows the *Add Server* button in the details pane.
+image::rtm-cluster-add-server-to-cluster.png[Add Server button]
 . Click *Add Server*. 
 +
-Servers that are already in a server group or part of a cluster do not appear in the list of available servers. 
+Servers that are already in a server group or cluster don't appear in the list of available servers. 
 . In the list, select the servers to add to the cluster, and click *Add Servers*.
-+
-image::addingservertocluster-selectserver.png[Add Another Server]
+
+The servers no longer appear in the *Servers* list. To see the list of servers in the cluster, click the cluster name.
+
+
+== See also
+
+* xref:servers-create.adoc[Add Servers to Runtime Manager].

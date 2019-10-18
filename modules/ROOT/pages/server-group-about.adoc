@@ -8,11 +8,11 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", tit
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-A server group is a set of servers that act as a single deployment target for applications so that you don't have to deploy applications to each server individually. Applications are deployed to each server in the server group through a single deployment and run in isolation from the application instances running on the other servers. 
+A server group is a set of servers that act as a single deployment target for applications so that you don't have to deploy applications to each server individually. 
 
-Deploying applications to servers in server groups provides redundancy so that applications can be restored more seamlessly and quickly with less downtime. This also helps eliminate duplication of effort because there is no need to restore each application separately.  
+Deploying applications to servers in server groups provides redundancy so that applications can be restored more seamlessly and quickly with less downtime.   
 
-In Runtime Manager, you can create servers and server groups, and add servers to server groups. 
+Unlike clusters, application instances in a server group run in isolation from the application instances running on the other servers in the group. 
 
 
 == Considerations 
@@ -26,7 +26,7 @@ In Runtime Manager, you can create servers and server groups, and add servers to
 == See Also
 
 * xref:managing-deployed-applications.adoc#server_status_states[Server Status States]
-* xref:servers-create.adoc[Create a Server (Hybrid)]
-* xref:server-group-create.adoc[Create a Server Group (Hybrid)]
-* xref:server-group-add.adoc[Add a Server to a Server Group]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
+* xref:server-group-create.adoc[Create Server Groups (Hybrid)]
+* xref:server-group-add.adoc[Add Servers to a Server Group]
 * xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]
