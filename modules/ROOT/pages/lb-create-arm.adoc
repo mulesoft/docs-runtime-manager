@@ -22,7 +22,11 @@ Similarly, the administrator role of the same organization also provides the aut
 
 . Click load balancers, then click *Create Load Balancer*.
 
-. Provide a name, then select a target Anypoint VPC from the drop-down list.
+. Enter a name for your load balancer.
++
+The CloudHub dedicated load balancer name must be unique across the platform. Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdns.net` name where `_lb-name_` is the name you provide.
+
+. Select a target Anypoint VPC from the drop-down list.
 
 . Add any whitelisted classless inter-domain routing (CIDR) as required.
 +
@@ -60,6 +64,8 @@ Click *Add New Rule*, and then specify the input path, target app, output path, 
 .. Click *Save Certificate*.
 
 . Click *Save Load Balancer*.
+
+
 
 == See Also
 
