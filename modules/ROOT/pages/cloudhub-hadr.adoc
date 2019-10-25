@@ -10,35 +10,36 @@ CloudHub uses Amazon AWS for its cloud infrastructure, so availability is depend
 
 image::hadr-aws-global-infrastructure.png[]
 
-For example, if the US East region is unavailable, the CloudHub management UI as well as the various rest services that enable deployments are unavailable until the region's availability is restored. This means that new applications can't be deployed while US East is down.
+For example, if the US East region is unavailable, the CloudHub management UI, as well as the various REST services that enable deployments, are unavailable until the region's availability is restored.
+New applications can't be deployed while US East is down.
 
-CloudHub provides an internal messaging mechanism, in the form of persistent queues, that are used for message reliability. The persistent queues are highly available within a region. However, these persistent queues are lost when the region is unavailable, which could result in some data loss (usually a few second or minutes depending on the use case).
+CloudHub provides an internal messaging mechanism, in the form of persistent queues, that is used for message reliability. The persistent queues are highly available within a region. However, these persistent queues are lost when the region is unavailable (usually a few seconds or minutes), which could result in some data loss.
 
-Certain CloudHub modules, such as Anypoint Object Store v1, application settings, and Insight-related information are maintained in the US East region for all applications regardless of the region they are deployed in. xref:object-store::index.adoc[Anypoint Object Store v2] is maintained in the same region as the deployed CloudHub application. For both Anypoint Object Store v1 and v2, if a region is unavailable then the data persists and becomes available again after the region returns to service.
+Some CloudHub modules, such as Anypoint Object Store v1, application settings, and Insight-related information are maintained in the US East region for all applications regardless of the region where they are deployed. Anypoint Object Store v2 is maintained in the same region as the deployed CloudHub application. For both Anypoint Object Store v1 and v2, if a region is unavailable, the data persists and becomes available again after the region returns to service.
 
-Anypoint Virtual Privte Cloud (Anypoint VPC) setup is at the region level. So if a region is unavailable, unless a previous Anypoint VPC setup has been done for the other region, the Anypoint VPC is unavailable.
+Anypoint Virtual Private Cloud (Anypoint VPC) is set up at the region level. If a region is unavailable, the Anypoint VPC is unavailable unless a previous Anypoint VPC is set up for the other region.
 
 === Anypoint CloudHub Default Deployment Model
 
-If the application uses multiple workers CloudHub, by default, deploys the workers in separate availability zones providing HA across availability zones. The distance between the availability zones is variable and in general does not exceed more than 350 miles apart.
+If the application uses multiple workers, CloudHub deploys the workers in separate availability zones by default, providing HA across availability zones. The distance between the availability zones is variable and generally doesn't exceed 350 miles.
 
 image::hadr-am-web-services.png[]
 
-If an application uses a single worker, when the availability zone is unavailable, the application must be manually restarted once the zone becomes available. You can set up alerts in `status.mulesoft.com` to receive alerts when a failure occurs in an availability zone or region.
+If an application uses a single worker, when the availability zone is unavailable, you must manually restart the application once the zone becomes available. You can set up alerts on `status.mulesoft.com` to receive alerts when a failure occurs in an availability zone or region.
 
 === Anypoint CloudHub Alternative Deployment Model
 
-A load balancer (cloud or on-premises) can be pointed to applications deployed to different regions to provide a better disaster recovery strategy.
+You can use a load balancer (cloud or on-premises) for applications deployed to different regions to provide a better disaster recovery strategy.
 
 image::hadr-load-balancer.png[]
 
 == Keep Integrations Stateless
 
-As a general design principle it is important to ensure integrations are stateless in nature. This means that no transactional information is shared between various client invocations or the executions (in case of scheduled services). If some data must be maintained by the middleware due to a system limitation, it should be persisted in an external store such as a database or a messaging queue and not within the middleware infrastructure or memory. 
+Ensure that integrations are stateless. Transactional information isn't shared between client invocations or the executions (in case of scheduled services). If the middleware must maintain some data because of a system limitation, ensure that the data persists in an external store, such as a database or a messaging queue, and not within the middleware infrastructure or memory. 
 
-[IMPORTANT]
-As you scale, especially in the cloud, the state of and resources used by each worker or node should be independent of other workers. This model ensures better performance and scalability as well as reliability.
+As you scale, especially in the cloud, ensure that the state of and resources used by each worker or node are independent of other workers. This model provides better performance and scalability as well as reliability.
 
 === See Also
 
-xref:4.1@mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]
+* xref:4.1@mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]
+* xref:object-store::index.adoc[Anypoint Object Store v2]
