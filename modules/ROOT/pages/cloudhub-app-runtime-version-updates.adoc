@@ -4,19 +4,25 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, runtime manager, arm, runtime version, mule, updates,
 
-MuleSoft releases updates to Mule runtime engine to provide the latest OS and security patches. 
+To provide a safe cloud environment for customer applications and data, MuleSoft regularly scans apps deployed on CloudHub and updates Mule runtime engine for those apps, providing the latest OS and security patches. 
+
+When updates are available, the *Update Required* tab on the Applications page lists the apps that require updates:
+
+.The screenshot shows (*1) the *Updates Required* tab and (*2*) the *Update* button on the *Applications* page.
+image::cloudhub-app-update-req-page.png[App Updates Required page]
+
+If no apps require updates, the tab is empty.
+
+The *Update Required* button also appears on the Settings page for the individual app:
+
+.The arros shows the *Update Required* button on the *Settings* page.
+image::cloudhub-app-update-settings-page.png[App Required Settings page]
+
+You can schedule and update your apps manually or you can wait for MuleSoft to apply the updates automatically. The banner on the Applications page indicates the date when the updates will be applied automatically.
 
 To keep your apps up-to-date and secure, apply the Mule updates when they become available. 
 
 Because these updates contain required security patches, you cannot roll back these updates once applied.
-
-When updates are available, the *Update Required* tab on the Applications page lists the apps that require updates:
-
-image::app-update-req-page.png[AppUpdateRequiredPage]
-
-The *Update Required* button also appears on the Settings page for the individual app:
-
-image::app-update-settings-page.png[AppUpdateRequiredSettingsPage]
 
 == Update the App
 
@@ -24,9 +30,12 @@ The *Update Required* tab indicates an app requires an update to Mule runtime en
 
 To update the Mule version for an app:
 
-. On the *Applications* page, click the app name to display the details pane on the right.
-. Click the *Manage Application* button. 
-. On the Settings page, select the latest version from the *Runtime version* dropdown list.
+. In Runtime Manager, in the menu on the left, click *Applications*. 
+. On the *Applications* page, click the app status to display the details pane on the right.
+. In the details pane, click the *Manage Application* button.
++
+The *Settings* page for the app appears. If the Mule runtime version requires an update, *Update Required* appears in the field.
+. Select the latest version from the *Runtime version* dropdown list.
 +
 You can click the *Read release notes* link to see details about the version.
 . Click the *Apply Changes* button to update the app. 
