@@ -76,8 +76,6 @@ Clients can bypass the clustering load balancer by using a worker's direct URL. 
 
 You can use either, both, or neither clustering features in a single application.
 
-Considerations:
-
 * To take advantage of persistent queueing, set your Mule application to support this feature. See <<Building Mule Applications to Support Persistent Queues>> for more information.
 * Enabling persistent queues has a performance implication: Putting a small message (50KB or less) on a queue can take 10-20 milliseconds (ms); taking the same message off a queue can take 70-100 milliseconds.
 * Adding additional workers increases the cost of service.
