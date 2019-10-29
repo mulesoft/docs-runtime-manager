@@ -8,6 +8,10 @@ CloudHub performs constant health checks on the underlying virtual machines wher
 When a worker is impaired, CloudHub automatically attempts to restart the worker and relaunch the application. If a retry is successful, the underlying worker and the Mule application are recovered without requiring any further action.
 
 [NOTE]
-It may take up to five minutes for a worker to restart.
+It might take up to five minutes for a worker to restart.
 
-If five retry attempts fail, an application's status becomes `Failed` or `Unrecoverable Runtime Error`. In this situation, you must manually redeploy and restart the application.
+If the application fails to start after five attempts, the status of the application is *Failed* or *Unrecoverable Runtime Error*. In this case, you must manually redeploy and restart the application.
+
+== Scheduled Maintenance Activities
+
+CloudHub checks for scheduled maintenance activities on the worker instances running the Mule applications. The following maintenance activities can cause a potential downtime for the running applications: reboot, stop, start, or retirement of the instances. To avoid downtime, Cloudhub checks for these scheduled events and sends you a notification in advance to restart your application with zero downtime.
