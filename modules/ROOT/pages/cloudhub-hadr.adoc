@@ -15,7 +15,7 @@ New applications can't be deployed while US East is down.
 
 CloudHub provides an internal messaging mechanism, in the form of persistent queues, that is used for message reliability. The persistent queues are highly available within a region. However, these persistent queues are lost when the region is unavailable (usually a few seconds or minutes), which could result in some data loss.
 
-Some CloudHub modules, such as Anypoint Object Store v1, application settings, and Insight-related information are maintained in the US East region for all applications regardless of the region where they are deployed. Anypoint Object Store v2 is maintained in the same region as the deployed CloudHub application. For both Anypoint Object Store v1 and v2, if a region is unavailable, the data persists and becomes available again after the region returns to service.
+Some CloudHub modules, such as Anypoint Object Store v1, application settings, and Insight-related information, are maintained in the US East region for all applications regardless of the region where they are deployed. Anypoint Object Store v2 is maintained in the same region as the deployed CloudHub application. For both Anypoint Object Store v1 and v2, if a region is unavailable, the data persists and becomes available again after the region returns to service.
 
 Anypoint Virtual Private Cloud (Anypoint VPC) is set up at the region level. If a region is unavailable, the Anypoint VPC is unavailable unless a previous Anypoint VPC is set up for the other region.
 
