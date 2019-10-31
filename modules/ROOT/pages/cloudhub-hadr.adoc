@@ -37,7 +37,7 @@ image::hadr-load-balancer.png[]
 
 Ensure that integrations are stateless. Transactional information isn't shared between client invocations or executions (in case of scheduled services). If the middleware must maintain some data because of a system limitation, ensure that the data persists in an external store, such as a database or a messaging queue, and not within the middleware infrastructure or memory. 
 
-As you scale, especially in the cloud, ensure that the state of and resources used by each worker or node are independent of other workers. This model provides better performance and scalability as well as reliability.
+As you scale, especially in the cloud, ensure that the state of and resources used by each worker or node are independent of other workers. This model provides better performance and scalability, as well as reliability.
 
 === See Also
 
