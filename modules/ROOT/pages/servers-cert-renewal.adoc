@@ -8,9 +8,9 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
 
-When registering a Mule server in Runtime Manager, you must supply a certificate to ensure secure communications between Runtime Manager and the Runtime Manager agent. When the certificate expires, you can renew it directly from Runtime Manager. You can update a certificate for a specific server or multiple servers within a cluster or group.
+Register a Mule server in Runtime Manager requires a valid certificate provisioned and signed by Runtime Manager. The certificate ensures secure communications between Runtime Manager and the Runtime Manager agent. Before a certificate expires, you can renew it directly from Runtime Manager. You cannot renew a certificate after it expires. You can update a certificate for a specific server or multiple servers within a cluster or group.
 
-You can view the expiration date of the certificate in the server dashboard. 
+The expiration date of the certificate appears in the server dashboard. 
 
 To renew a certificate for a server:
 
