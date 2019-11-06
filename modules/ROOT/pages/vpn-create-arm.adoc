@@ -115,16 +115,29 @@ You cannot use the following CIDR blocks:
 |===
 . Click *Create VPN*.
 +
-You cannot modify tunnel settings after you create the Anypoint VPN connection. To change the settings for an existing connection, you must delete the Anypoint VPN connection and create a new one.
-. Click *Download* to download the configuration file for your VPN endpoint. 
+The status of the VPN will initially shows as *PENDING*. This is the expected status while the infrastructure is created. Continue with the next steps once the status changes to *AVAILABLE*. For more information see <<vpn_status,VPN and Tunnel Status>>. +
+[NOTE]
+You cannot modify tunnel settings after you create the Anypoint VPN connection. To change the settings for an existing connection, you must delete the Anypoint VPN connection and create a new one. +
+ 
+. Download the configuration file for your VPN endpoint. +
+* Select the newly created VPN.
+* Click on Get VPN Config.
+* In the Download VPN Config pane, use the drop-down lists to select a Vendor, Platform, and Software version that corresponds to your VPN endpoint. A `generic` option is available if your specific device type is not listed.
+* Click on View Config, then on the Copy icon in the top right corner of the pane, and paste the configuration to a text file. 
 +
-All configuration files represent the minimum requirement of IKEv1, AES128, SHA1, and DH Group 2. You can modify the configuration for your VPN endpoint to take advantage of the other supported IPsec Settings.
+[NOTE]
+All configuration files represent the minimum requirement of IKEv1, AES128, SHA1, and DH Group 2. You can modify the configuration for your VPN endpoint to take advantage of the other supported xref:vpn-about.adoc#supported_settings[IPsec Settings].
 
 . Configure your VPN endpoint. +
-Based on the configuration options you choose, additional configuration steps might be required. For help with configuring your endpoint, refer to the documentation for your specific VPN endpoint, and ensure that the components of your network are configured correctly.  
-
+* Share the confiuration file with your VPN endpoint administrator.
+* Based on the VPN options you choose, additional configuration steps might be needed. Refer to the xref:vpn-about.adoc#vpn_requirements[VPN requirements] for more information. 
++
+For help with configuring your endpoint, refer to the documentation for your specific VPN endpoint, and ensure that the components of your network are configured correctly.
++
+[NOTE]
 You must configure both tunnels on your VPN endpoint to avoid unexpected behavior. 
 
+[[vpn_status]]
 == VPN and Tunnel Status
 
 The new VPN connection you created appears in the list of VPNs. Initially, the *Status* column displays *PENDING* and both VPN tunnels display *DOWN* while the infrastructure gets created. 
