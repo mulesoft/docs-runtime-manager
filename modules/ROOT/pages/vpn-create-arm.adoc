@@ -52,13 +52,14 @@ To create an Anypoint VPN:
 . Sign into Anypoint Platform and select *Runtime Manager*.
 . Select the environment where you want to create an Anypoint VPN.
 . From the menu on the left, click *VPNs*, and then click *Create VPN*.
-. Enter or select the following information for your Anypoint VPN: +
+. Enter or select the following information for your Anypoint VPN:
++
 * *Name*
 +
 Enter a name for your Anypoint VPN. 
 * *VPC* 
 +
-From the drop-down list, select the Virtual Private Cloud for the Anypoint VPN connection.
+From the list, select the Virtual Private Cloud for the Anypoint VPN connection.
 * *Remote IP Address*
 +
 Enter the public IP address of your VPN endpoint.
@@ -86,7 +87,8 @@ a| Select *Static*, and then:
 For example: `10.0.0.0/8`
 . (Optional) To add additional subnets, click *Add New Rule*, and repeat the previous step.
 |===
-. Select the *Tunnel Configuration* type. +
+. Select the *Tunnel Configuration* type. 
++
 You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is sufficient. The following steps differ based on the tunnel type selected. 
 +
 [%header%autowidth.spread]
@@ -115,15 +117,34 @@ You cannot use the following CIDR blocks:
 |===
 . Click *Create VPN*.
 +
-You cannot modify tunnel settings after you create the Anypoint VPN connection. To change the settings for an existing connection, you must delete the Anypoint VPN connection and create a new one.
-. Click *Download* to download the configuration file for your VPN endpoint. 
+Initially, the status of the VPN is *PENDING*. This is the expected status while the infrastructure is created. After the status changes to *AVAILABLE*, continue with the next steps. 
 +
-All configuration files represent the minimum requirement of IKEv1, AES128, SHA1, and DH Group 2. You can modify the configuration for your VPN endpoint to take advantage of the other supported IPsec Settings.
+For more information see <<vpn-and-tunnel-status>>.
++
+[NOTE]
+You cannot modify tunnel settings after you create the Anypoint VPN connection. To change the settings for an existing connection, delete the Anypoint VPN connection and create a new one.
+. Download the configuration file from your Anypoint VPN:
++
+.. In Runtime Manager, click the name of the Anypoint VPN that you just created.
+.. Click *Get VPN Config*.
+.. In the *Download VPN Config* window, select a Vendor, Platform, and Software version that corresponds to your VPN endpoint device. 
++
+If your device type is not listed, select *generic*.
+.. Click *View Config* and then click the *Copy* button in the top right corner.
+.. Paste the configuration to a text file. 
++
+All configuration files represent the minimum requirement of IKEv1, AES128, SHA1, and DH Group 2. You can modify the configuration for your VPN endpoint to take advantage of the other supported xref:vpn-about.adoc#ipsec-settings[IPsec settings].
 
-. Configure your VPN endpoint. +
-Based on the configuration options you choose, additional configuration steps might be required. For help with configuring your endpoint, refer to the documentation for your specific VPN endpoint, and ensure that the components of your network are configured correctly.  
-
-You must configure both tunnels on your VPN endpoint to avoid unexpected behavior. 
+. Configure your VPN endpoint:
++
+.. Share the VPN configuration file (from Step 8) with your VPN endpoint administrator.
+.. Based on the configuration of your VPN endpoint, you might need to perform additional configuration steps.
++
+See xref:vpn-about.adoc#vpn_requirements[VPN requirements] for more information. 
++
+Refer to the documentation for your specific VPN endpoint to ensure that the components of your network are configured correctly.
++
+Configure both tunnels on your VPN endpoint to avoid unexpected behavior. 
 
 == VPN and Tunnel Status
 
