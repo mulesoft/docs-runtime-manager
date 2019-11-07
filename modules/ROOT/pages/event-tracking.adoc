@@ -7,7 +7,6 @@ endif::[]
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 
 Event tracking enables you to to view real-time information about messages being processed by a specific flow. You can view message payloads before, during, and after they are processed, and you can view information about the message processors in the flow and message metadata.
@@ -17,24 +16,15 @@ Event tracking enables you to view business transactions and events on your Mule
 == Notification Types
 
 Mule runtime engine notifies you about flow component execution.
+See xref:mule-runtime::about-mule-event.adoc[Mule Events].
 
-image::event-tracking.png[event_tracking]
+For the types of notification that Mule provides, see 
+xref:mule-runtime::mule-server-notifications.adoc#notification-interfaces[Notification Interfaces].
 
-Mule provides these notification types:
-
-* Pipeline Message Notification
-* Endpoint Message Notification
-* Component Message Notification
-* Event Notification (Custom Events)
-* Message Processor Notification
-* Async Message Notification
-* Transaction Notification
-* Exception Notification
-* Exception Strategy Notification
 
 == Pushed Event Information
 
-For each notification, the Runtime Manager agent pushes the following information to the event tracking service:
+For each notification, Runtime Manager agent pushes the following information to the event tracking service:
 
 * `timestamp`
 +
@@ -52,7 +42,7 @@ Name of the flow
 +
 (If configured) Serialized Mule message or an error message.
 
-The Runtime Manager agent doesn't send this information:
+Runtime Manager agent doesn't send this information:
 
 * Mule Message ID
 * Exception
@@ -68,7 +58,7 @@ Annotations for the component, if any
 
 == Event Tracking Notifications
 
-The Runtime Manager agent stores event tracking notifications for Mule apps, and then streams them to an event tracking service. Depending on your network topology and the design of your Mule apps, copying event tracking notifications over the network from the Runtime Manager agent to the online event tracking service can significantly impact performance.
+Runtime Manager agent stores event tracking notifications for Mule apps, and then streams them to an event tracking service. Depending on your network topology and the design of your Mule apps, copying event tracking notifications over the network from Runtime Manager agent to the online event tracking service can significantly impact performance.
 
 You can reduce performance impact by specifying tracking levels at different granularities. You can specify a global event tracking level, and then override it in named Mule apps. You can further override the event tracking level in specific named flows within a Mule app.
 
