@@ -22,7 +22,7 @@ A unicast cluster requires that you configure the IP addresses of the nodes in t
 +
 Because Mule relies on the IP address to identify the server, IP addresses can't be dynamically assigned using DHCP for servers on a unicast cluster. If a server is restarted and uses DHCP to get a new IP address, you must add the server to the cluster using its new IP address.
 +
-The server status must be *Running* to be added to a unicast cluster. 
+The server status must be Running to be added to a unicast cluster. 
 * *Multicast*:
 +
 A multicast cluster comprises servers that automatically detect each other. Servers that are part of a multicast cluster must be on the same network segment.
