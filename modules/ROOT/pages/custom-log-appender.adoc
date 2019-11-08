@@ -7,32 +7,33 @@ endif::[]
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+// image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
-With the option to disable CloudHub logs, customers can supply their own Log4j configurations to
-integrate with their own logging systems.
+You can disable CloudHub logs and integrate with your logging system using the Log4j configuration.
+
+
+* This feature is only available on request.
++
+If you do not have access to this feature, you can request it on the Support portal.
+* MuleSoft is not responsible for lost logging data due to misconfiguration of your own Log4j appender.
+* MuleSoft is not responsible for misconfigurations that result in performance degradation,
+running out of disk space, or other side effects.
+* You can use only asynchronous log appenders. Do not use synchronous log appenders.
+
+After you configure logs to flow to both your log system and CloudHub, you disable the default CloudHub application logs. Only the system logs are available. CloudHub continues to warn you that logs in CloudHub are not available. 
+
+For application worker logs, check the logging system for your application. You cannot download logs in this scenario.
 
 == Create Your Log4j Configuration
-[IMPORTANT]
-====
-* This feature is only available on request. If you do not have access to this feature, you can request it via the support portal.
-* MuleSoft is not responsible for lost logging data due to misconfiguration of your own Log4j appender.
-* MuleSoft is also not responsible for misconfigurations that result in performance degradation,
-running out of disk space, or other side effects.
-* To configure logs to flow to both your log system and CloudHub, read the directions below. Note that the UI will continue to
-warn you that logs in CloudHub will not be available.
-* When you disable the default CloudHub application logs, then only the system logs are available. For application worker logs, please check your own application's logging system. Downloading logs is not an option in this scenario.
-* Only Asynchronous log appenders can be used, Synchronous appenders should not be used.
-====
 
-To enable your own Log4j appender, you need to first create a `log4j2.xml` configuration file with your log settings. In Anypoint Studio, this file must reside in the src/main/resources directory. For details
-on creating your own Log4j configuration, please see the
+To have logs flow to both your logging system and be viewable in CloudHub, configure the CloudHub Log4j appender. The Log4j appender sends log data to CloudHub and to a local log file.
+
+To enable the Log4j appender, update the `log4j2.xml` configuration file with your logger settings.
+
+In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources` directory.
+
+For details on how to configure `log4j2.xml`, see the
 https://logging.apache.org/log4j/2.x/manual/configuration.html[Log4j documentation].
-
-If you wish to have logs flow to both your own logging system, and be viewable in CloudHub, you
-must configure the CloudHub Log4j appender. MuleSoft recommends this as the base configuration for your
-log configuration. It sends log data to CloudHub and provides a local log file in case it's needed for
-remote debugging purposes by MuleSoft staff.
 
 [source,xml,linenums]
 ----
@@ -50,21 +51,21 @@ remote debugging purposes by MuleSoft staff.
             </Policies>
         </RollingFile>
         <Log4J2CloudhubLogAppender name="CLOUDHUB"
-                                   addressProvider="com.mulesoft.ch.logging.DefaultAggregatorAddressProvider"
-                                   applicationContext="com.mulesoft.ch.logging.DefaultApplicationContext"
-                                   appendRetryIntervalMs="${sys:logging.appendRetryInterval}"
-                                   appendMaxAttempts="${sys:logging.appendMaxAttempts}"
-                                   batchSendIntervalMs="${sys:logging.batchSendInterval}"
-                                   batchMaxRecords="${sys:logging.batchMaxRecords}"
-                                   memBufferMaxSize="${sys:logging.memBufferMaxSize}"
-                                   journalMaxWriteBatchSize="${sys:logging.journalMaxBatchSize}"
-                                   journalMaxFileSize="${sys:logging.journalMaxFileSize}"
-                                   clientMaxPacketSize="${sys:logging.clientMaxPacketSize}"
-                                   clientConnectTimeoutMs="${sys:logging.clientConnectTimeout}"
-                                   clientSocketTimeoutMs="${sys:logging.clientSocketTimeout}"
-                                   serverAddressPollIntervalMs="${sys:logging.serverAddressPollInterval}"
-                                   serverHeartbeatSendIntervalMs="${sys:logging.serverHeartbeatSendIntervalMs}"
-                                   statisticsPrintIntervalMs="${sys:logging.statisticsPrintIntervalMs}">
+                addressProvider="com.mulesoft.ch.logging.DefaultAggregatorAddressProvider"
+                applicationContext="com.mulesoft.ch.logging.DefaultApplicationContext"
+                appendRetryIntervalMs="${sys:logging.appendRetryInterval}"
+                appendMaxAttempts="${sys:logging.appendMaxAttempts}"
+                batchSendIntervalMs="${sys:logging.batchSendInterval}"
+                batchMaxRecords="${sys:logging.batchMaxRecords}"
+                memBufferMaxSize="${sys:logging.memBufferMaxSize}"
+                journalMaxWriteBatchSize="${sys:logging.journalMaxBatchSize}"
+                journalMaxFileSize="${sys:logging.journalMaxFileSize}"
+                clientMaxPacketSize="${sys:logging.clientMaxPacketSize}"
+                clientConnectTimeoutMs="${sys:logging.clientConnectTimeout}"
+                clientSocketTimeoutMs="${sys:logging.clientSocketTimeout}"
+                serverAddressPollIntervalMs="${sys:logging.serverAddressPollInterval}"
+                serverHeartbeatSendIntervalMs="${sys:logging.serverHeartbeatSendIntervalMs}"
+                statisticsPrintIntervalMs="${sys:logging.statisticsPrintIntervalMs}">
 
             <PatternLayout pattern="[%d{MM-dd HH:mm:ss}] %-5p %c{1} [%t]: %m%n"/>
         </Log4J2CloudhubLogAppender>
@@ -89,13 +90,15 @@ remote debugging purposes by MuleSoft staff.
 </Configuration>
 ----
 
+
 == Enable Custom Log4j Configurations in CloudHub
 
-Once you've configured your Log4j appenders, deploy the application to CloudHub
-and tell CloudHub you are supplying your own Log4j configuration:
+Once you configure the Log4j appenders, deploy the application to CloudHub
+and disable CloudHub logs:
 
-. Log into https://anypoint.mulesoft.com/#/signin[Anypoint Platform] and click *CloudHub*.
-. Click an application to expand the details view:
+. From Anypoint Platform, select *Runtime Manager*.
+. Click *Applications* in the left menu.
+. Click an application to display the details pane:
 +
 image::chapps.png[CHApps]
 +
@@ -111,9 +114,7 @@ image::disablechlogsverification.png[DisableCHLogsVerification]
 . Review your application settings to ensure they are correct.
 . Click *Apply Changes* to restart your application.
 
-Once your application starts, logs should start flowing to your custom Log4j appender and will be
-viewable in your target system.
+Once your application starts, logs start flowing to your custom Log4j appender and are viewable on your target logging system.
 
-If you did not use the CloudHub Log4j appender specified above, only system logs will be available.
-System logs tell you the status of your worker deployment and if your application started correctly,
-but do not provide any application logs.
+If you did not use the CloudHub Log4j appender specified above, only system logs are available.
+System logs provide the status of your worker deployment and whether your application started correctly, but do not provide any application logs.
