@@ -1,32 +1,49 @@
-= Updating the Mule Runtime Version for Apps 
+= Updating the Mule Version for CloudHub Apps 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, runtime manager, arm, runtime version, mule, updates,
 
-To provide a safe cloud environment for customer applications and data, MuleSoft regularly scans apps deployed on CloudHub and updates Mule runtime engine for those apps, providing the latest OS and security patches. 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-When updates are available, the *Update Required* tab on the Applications page lists the apps that require updates:
+To provide a safe cloud environment for applications and data, MuleSoft regularly scans apps deployed on CloudHub and identifies apps that require updates to Mule runtime engine.
+These updates provide the latest OS and security patches. To keep your apps up-to-date and secure, apply the Mule updates when they become available.
 
-.The screenshot shows (*1*) the *Updates Required* tab and (*2*) the *Update* button on the *Applications* page.
-image::cloudhub-app-update-req-page.png[App Updates Required page]
+You can schedule and update your apps manually at your convenience or you can wait for MuleSoft to apply the updates automatically.
 
-If no apps require updates, the tab is empty.
+MuleSoft updates CloudHub apps automatically, based on the environment, on this schedule:
 
-The *Update Required* button also appears on the Settings page for the individual app:
+[%header,cols="2"]
+|===
+|Environment |App Update Schedule 
+|*Production*|Every three months
+|*Sandbox*|Once every month
+|===
 
-.The arrow shows the *Update Required* button on the *Settings* page.
-image::cloudhub-app-update-settings-page.png[App Required Settings page]
 
-You can schedule and update your apps manually or you can wait for MuleSoft to apply the updates automatically. The banner on the Applications page indicates the date when the updates will be applied automatically.
+When a new version of Mule is available and CloudHub application updates are required:
 
-To keep your apps up-to-date and secure, apply the Mule updates when they become available. 
+* The *Update Required* button appears on the *Settings* page for the app that requires updates.
+* The *Applications* page displays a banner.
+* The *Update Required* tab on the *Applications* page lists the apps that require updates:
+
+.The screen shows (*1*) the banner and (*2*) the *Updates Required* tab on the *Applications* page.
+image::cloudhub-app-update-req-page.png[Applications page with banner and Updates Required tab]
+
+// The banner on the Applications page indicates the date when the updates will be applied automatically.
+
+If no apps require updates, no banner appears and the *Updates Required* tab is empty.
 
 Because these updates contain required security patches, you cannot roll back these updates once applied.
 
-== Update the App
 
-The *Update Required* tab indicates an app requires an update to Mule runtime engine. You can schedule the update to occur at your convenience. Before updating apps in the Production environment, update them in the Sandbox environment and run required tests.
+== Update the App Manually 
+
+The *Update Required* tab indicates one or more apps require an update to Mule. You can schedule the update to occur at your convenience.
+
+Before updating apps in the Production environment, update them in the Sandbox environment and run required tests.
 
 To update the Mule version for an app:
 
@@ -34,10 +51,13 @@ To update the Mule version for an app:
 . On the *Applications* page, click the app status to display the details pane on the right.
 . In the details pane, click the *Manage Application* button.
 +
-The *Settings* page for the app appears. If the Mule runtime version requires an update, *Update Required* appears in the field.
-. Select the latest version from the *Runtime version* dropdown list.
+The *Settings* page for the app appears. If the Mule runtime version requires an update, *Update Required* appears in the *Runtime version* field:
 +
-You can click the *Read release notes* link to see details about the version.
+.The screen shows (*1*) the *Update Required* button and (*2*) the *Runtime version* menu on the *Settings* page.
+image::cloudhub-app-update-settings-page.png[App Required Settings page]
+
+. Select the latest version from the *Runtime version* menu.
+. If you want to see details about the version, click the *Read release notes* link.
 . Click the *Apply Changes* button to update the app. 
 
 CloudHub updates app with the Mule runtime engine version you selected and displays a message indicating success or failure.
