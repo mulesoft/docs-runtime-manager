@@ -6,7 +6,8 @@ endif::[]
 
 Runtime Manager allows you to deploy your Mule applications to Mule instances in several ways, depending on your Mule runtime server topology. These are the different deployment strategies available to date.
 
-[%header]
+[%header,cols="10,40,40"]
+
 |===
 |Indicator Icon|Runtime Manager Location |App Deployment Target
 |image:logo-cloud-active.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
@@ -21,6 +22,10 @@ Runtime Manager allows you to deploy your Mule applications to Mule instances in
 |xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
 |xref:deploying-to-your-own-servers.adoc[Your Own Mule Servers]
 
+|image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
+|xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric]
+|xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Runtime Fabric]
+
 
 |===
 
@@ -31,8 +36,17 @@ Every page in the Runtime Manager documentation is tagged with the following set
 image:logo-cloud-active.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
 
-If the content doesn't apply to a deployment strategy, the icon appears grayed out: image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
+
+If the content doesn't apply to a deployment strategy, the icon appears grayed out:
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
+
+
 
 In xref:studio::index.adoc[Anypoint Studio], clicking the *Play* icon (or right-clicking project on the *Package Explorer* and selecting *Run As* > *Mule Application*), deploys your application to an embedded test server that is built into Studio. This server is not meant for production deployment and uptime restrictions apply. Ultimately you deploy your application into one of the deployment options described below. All of these are supported by the Runtime Manager.
 
@@ -43,6 +57,10 @@ This section gives you an overview of each basic architecture that the Runtime M
 === Runtime Manager to CloudHub Deployment
 
 image:logo-cloud-active.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
+
 
 image::infrastructure-simple-cloud.png[ch]
 
@@ -58,7 +76,11 @@ See the sections below to find out what specific operating features apply to thi
 
 === Cloud Console to Your Own Servers (Hybrid)
 
+image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
+
 
 image::infrastructure-hybrid.png[hybrid]
 
@@ -80,7 +102,14 @@ You can also xref:anypoint-security::tokenization-example.adoc[tokenize sensitiv
 * See the sections below to find out which features are available in this type of hybrid deployment, and how to configure them.
 * For more information about Mule agents, see xref:runtime-manager-agent.adoc[The Runtime Manager Agent] and xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture].
 
-=== On-Premises Console On-Premises Deployment image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
+=== On-Premises Console On-Premises Deployment
+
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
+
 
 image::infrastructure-onprem.png[onprem]
 
