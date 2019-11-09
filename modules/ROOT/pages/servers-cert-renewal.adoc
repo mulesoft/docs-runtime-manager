@@ -1,4 +1,4 @@
-menu= Renew Server Certificates (Hybrid)
+= Renew Server Certificates (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -8,17 +8,18 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
 
-Register a Mule server in Runtime Manager requires a valid certificate provisioned and signed by Runtime Manager. The certificate ensures secure communications between Runtime Manager and the Runtime Manager agent. Before a certificate expires, you can renew it directly from Runtime Manager. You cannot renew a certificate after it expires. You can update a certificate for a specific server or multiple servers within a cluster or group.
+Registering a Mule server in Runtime Manager requires a valid certificate provisioned and signed by Runtime Manager. The certificate ensures secure communications between Runtime Manager and the Runtime Manager agent. 
 
-The expiration date of the certificate appears in the server dashboard. 
+However, certificates expire, and you cannot renew them after they expire. Before a certificate expires, renew it directly from Runtime Manager. You can see the expiration date on the server dashboard.
+
+A server must be running for you to update its certificate. You can update a certificate for a specific server or multiple servers within a cluster or group.
+
 
 To renew a certificate for a server:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
-. Verify that the server status is *Running*.
-+
-The server must be running to renew the certificate.
+. Verify that the server status is Running.
 . Click the server name.
 . Click *Settings*.
 . From the *Actions* menu, select *Renew Certificate*.

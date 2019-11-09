@@ -12,7 +12,7 @@ Runtime Manager enables you to view and configure properties in your Mule enviro
 
 == Custom Properties
 
-Custom properties enable you to define properties used by the JVM container of a Mule instance. Custom properties are defined as key/value pairs.
+Custom properties enable you to define properties used by the JVM container of a Mule instance. Custom properties are defined as key-value pairs.
 
 == Discovered Properties
 
@@ -26,7 +26,7 @@ Runtime Manager retrieves the values of these properties from Runtime Manager ag
 
 By default, auto-discovery of remote server properties is disabled. To use this feature, click *Enable Auto-Discovery*. After enabling this feature, Runtime Manager stores an encrypted version of these properties in its internal database.
 
-To fully disable this feature, contact your MuleSoft customer success representative.
+You can fully disable this feature to prevent Runtime Manager from storing discovered properties. Contact your MuleSoft customer success representative.
 
 == View Server Properties
 
@@ -35,7 +35,7 @@ To view custom and discovered properties:
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
 . Click the *Type* column to display the details pane.
-. In the details pane, click *Manage Server*, *Manage Group*, or *Manage Cluster*.
+. Click *Manage Server*, *Manage Group*, or *Manage Cluster*.
 . On the *Settings* page, click the *Properties* tab.
 . Click either *Custom Properties* or *Discovered Properties*.
 +
@@ -44,7 +44,7 @@ To view discovered properties, select *Discovered Properties* and then click *En
 .The screen shows the *Discovered Properties* and *Enable Auto-Discovery* buttons on the *Properties* tab.
 image::rtm-server-enable-autodiscovery.png[*Discovered Properties* and *Enable Auto-Discovery* buttons]
 +
-The server state must be *Running* to auto-discover server properties.
+The server state must be Running to auto-discover server properties.
 +
 From the *Properties* tab, you can:
 +
