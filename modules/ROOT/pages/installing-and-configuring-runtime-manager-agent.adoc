@@ -26,7 +26,7 @@ When you run `amc_setup`, the agent creates the `$MULE_HOME/conf/mule-agent.yml`
 Some configuration options, such as extending JMX monitoring to other external services, are not possible using `amc_setup`. You must manually add them to `mule-agent.yml`. See xref:rtm-agent-config-yaml.adoc[Update Agent Configuration in mule-agent.yml].
 
 
-=== Requirements and Restrictions
+== Requirements and Restrictions
 
 * Do not register a single Mule runtime engine with more than one Runtime Manager business group or environment.
 * Do not register Mule with Runtime Manager more than once.
@@ -315,7 +315,7 @@ With Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), all Runtim
 
 To register Mule with PCE Runtime Manager:
 
-. Lot in to an Anypoint Platform PCE account.
+. Log in to an Anypoint Platform PCE account.
 . Ensure that you have correctly set up the DNS entry for your platform.
 +
 See xref:access-management::private-cloud-edition-features.adoc#dns-or-ip[DNS or IP].
@@ -401,13 +401,11 @@ You can test whether the service is available at `_API_PLATFORM_HOST_/apiplatfor
 |===
 
 
-
-
 == See Also
 
-* xref:3.8@mule-runtime::installing-an-enterprise-license.adoc[Installing an Enterprise License]
-* xref:4.2@mule-runtime::starting-and-stopping-mule-esb[Starting and Stopping Mule]
-* xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway]
+* xref:mule-runtime::installing-an-enterprise-license.adoc[Installing an Enterprise License]
+* xref:mule-runtime::starting-and-stopping-mule-esb.adoc[Starting and Stopping Mule]
+* xref:api-manager::runtime-agw-landing-page.adoc[Runtime - API Gateway]
 * xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture]
 * xref:servers-create.adoc[Create a Server in Runtime Manager (Hybrid)]
-* xref:1.1@private-cloud::installing-anypoint-on-premises.adoc#adding-a-server-to-your-anypoint-platform-on-premises[Adding a Server to Your Anypoint Platform On-Premises]
+* xref:private-cloud::install-workflow.adoc[Anypoint Private Cloud Installers]
