@@ -78,7 +78,7 @@ Each worker is a dedicated instance of Mule that runs your integration applicati
 [NOTE]
 Along with less available memory, workers that use a https://aws.amazon.com/ec2/instance-types/#burst[fraction of a vCore] have more limited CPU and IO, which are usually only appropriate for smaller workloads.
 
-With xref:cloudhub-fabric.adoc[CloudHub Fabric], you can also scale your applications horizontally by adding multiple workers and load distribution over queues. For more information about scaling workers, see xref:cloudhub-fabric.adoc[Worker Scaleout]. For more information about using persistent queues on CloudHub, see xref:cloudhub-fabric.adoc[Persistent Queues].
+With xref:cloudhub-fabric.adoc[Clustering], you can also scale your applications horizontally by adding multiple workers and load distribution over queues. For more information about scaling workers, see xref:cloudhub-fabric.adoc[Worker Scaleout]. For more information about using persistent queues on CloudHub, see xref:cloudhub-fabric.adoc[Persistent Queues].
 
 [TIP]
 You can xref:worker-monitoring.adoc[monitor your workers] and verify that they are all operating well. You can also enable automatic restarts in case any issue occurs with one.
@@ -119,7 +119,7 @@ Because different levels of security and isolation are needed depending on the s
 
 == CloudHub Availability and Scalability
 
-CloudHub has been designed to be highly available and scalable through redundancy, intelligent healing, and zero downtime updates. It also provides customers with the ability to scale and have added reliability through xref:cloudhub-fabric.adoc[CloudHub Fabric].
+CloudHub has been designed to be highly available and scalable through redundancy, intelligent healing, and zero downtime updates. It also provides customers with the ability to scale and have added reliability through xref:cloudhub-fabric.adoc[Clustering].
 
 === Redundant Platform
 
@@ -135,14 +135,14 @@ For more information about application monitoring and automatic restarts, see xr
 
 CloudHub supports updating your applications at runtime so end users of your HTTP APIs experience zero downtime. While your application update is deploying, CloudHub keeps the old version of your application running. Your domain points to the old version of your application until the newly uploaded version is fully started. This allows you to keep servicing requests from your old application while the new version of your application is starting.
 
-=== CloudHub Fabric
+=== Clustering
 
-CloudHub Fabric provides scalability, workload distribution, and added reliability to applications on CloudHub. These capabilities are powered by CloudHub's scalable load-balancing service,
-xref:cloudhub-fabric.adoc#worker-scaleout[CloudHub Fabric worker scaleout], and xref:cloudhub-fabric.adoc#persistent-queues[persistent queueing] features.
+Clustering provides scalability, workload distribution, and added reliability to applications on CloudHub. These capabilities are powered by CloudHub's scalable load-balancing service,
+xref:cloudhub-fabric.adoc#worker-scaleout[worker scaleout], and xref:cloudhub-fabric.adoc#persistent-queues[persistent queueing] features.
 
 ==== Worker Scale-Out and Data Center Redundancy
 
-With xref:cloudhub-fabric.adoc[CloudHub Fabric], you can add multiple workers to your application to make it horizontally scale. This also adds additional reliability. CloudHub automatically distributes multiple workers for the same application across two or more datacenters for maximum reliability.
+With xref:cloudhub-fabric.adoc[Clustering], you can add multiple workers to your application to make it horizontally scale. This also adds additional reliability. CloudHub automatically distributes multiple workers for the same application across two or more datacenters for maximum reliability.
 
 When deploying your application to two or more workers, the HTTP load balancing service distributes requests across these workers, allowing you to scale your services horizontally. Requests are distributed on a round-robin basis.
 
@@ -152,7 +152,7 @@ Persistent queues ensure zero message loss and allow you to distribute non-HTTP 
 
 Persistent queues also guarantee delivery of your messages; even if one or more workers or datacenters go down, persistent queues facilitate disaster recovery and provide resilience to hardware or application failures.
 
-For more details about worker scale-out and persistent queues, refer to xref:cloudhub-fabric.adoc[CloudHub Fabric].
+For more details about worker scale-out and persistent queues, refer to xref:cloudhub-fabric.adoc[Clustering].
 
 == Security
 
