@@ -157,7 +157,7 @@ You can then add your own DNS records to hide this complex application name, so 
 
 == High Availability
 
-CloudHub provides high availability through xref:cloudhub-fabric.adoc[CloudHub Fabric]. CloudHub Fabric provides a combination of load balancing, persistent message queues, and horizontal scaleout. In addition, the platform also actively monitors services and workers for problems. For example, in the case of hardware failure, CloudHub auto-migrates the application to a different worker using xref:managing-applications-on-cloudhub.adoc[CloudHub zero downtime updates], minimizing down time.
+CloudHub provides high availability through xref:cloudhub-fabric.adoc[clustering]. Clustering provides a combination of load balancing, persistent message queues, and horizontal scale out. It also actively monitors services and workers for problems. For example, in the case of hardware failure, CloudHub automatically migrates the application to a different worker using xref:managing-applications-on-cloudhub.adoc[CloudHub zero-downtime updates], minimizing downtime.
 
 Deploying on-premises (both via the cloud and the on-premises console) offers high availability capabilities through creating xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters]. Clustered Mule instances have xref:mule-runtime::mule-high-availability-ha-clusters.adoc[distributed shared memory]. This shared memory is used to provide persistent VM queues, transactions, and cluster-wide data storage.
 
@@ -329,7 +329,7 @@ You can also deploy and manage your applications to Mule runtimes through other 
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * xref:cloudhub.adoc[CloudHub]
 * xref:monitoring.adoc[Monitoring Applications]
-* xref:cloudhub-fabric.adoc[CloudHub Fabric]
+* xref:cloudhub-fabric.adoc[Clustering]
 * xref:managing-queues.adoc[Managing Queues]
 * xref:managing-schedules.adoc[Managing Schedules]
 * xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]

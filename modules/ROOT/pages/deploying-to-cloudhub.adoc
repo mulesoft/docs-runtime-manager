@@ -256,7 +256,7 @@ Depending on how many vCores are allocated to your account, some of these option
 [IMPORTANT]
 If you select more vCores than are available in your account, CloudHub allows you to create the application using the console, but you cannot start your application until the vCores are available.
 
-When deploying an application with more than one worker, CloudHub automatically load-balances any incoming traffic across your allocated workers. For more information, see xref:cloudhub-fabric.adoc[CloudHub Fabric].
+When deploying an application with more than one worker, CloudHub automatically balances any incoming traffic load across your allocated workers. For more information, see xref:cloudhub-fabric.adoc[Clustering].
 
 [[region]]
 === Region
@@ -281,7 +281,7 @@ Read more about xref:worker-monitoring.adoc[Worker Monitoring].
 [[persistent_queues]]
 === Persistent Queues
 
-Select this box to enable persistent queues on your application. Persistent queues protect against message loss and allow you to distribute workloads across a set of workers. Before you can take advantage of persistent queueing, your application must be set up to use queues. See xref:cloudhub-fabric.adoc[CloudHub Fabric] for more information.
+Select this box to enable persistent queues on your application. Persistent queues protect against message loss and enable you to distribute workloads across a set of workers. Before you can take advantage of persistent queueing, your application must be set up to use queues. See xref:cloudhub-fabric.adoc[Clustering] for more information.
 
 [IMPORTANT]
 ====
