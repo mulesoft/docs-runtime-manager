@@ -78,7 +78,7 @@ Each worker is a dedicated instance of Mule that runs your integration applicati
 [NOTE]
 Along with less available memory, workers that use a https://aws.amazon.com/ec2/instance-types/#burst[fraction of a vCore] have more limited CPU and IO, which are usually only appropriate for smaller workloads.
 
-With xref:cloudhub-fabric.adoc[Clustering], you can also scale your applications horizontally by adding multiple workers and load distribution over queues. For more information about scaling workers, see xref:cloudhub-fabric.adoc[Worker Scaleout]. For more information about using persistent queues on CloudHub, see xref:cloudhub-fabric.adoc[Persistent Queues].
+With xref:cloudhub-fabric.adoc[clustering], you can also scale your applications horizontally by adding multiple workers and load distribution over queues. For more information about scaling workers, see xref:cloudhub-fabric.adoc[Worker Scaleout]. For more information about using persistent queues on CloudHub, see xref:cloudhub-fabric.adoc[Persistent Queues].
 
 [TIP]
 You can xref:worker-monitoring.adoc[monitor your workers] and verify that they are all operating well. You can also enable automatic restarts in case any issue occurs with one.
