@@ -1,368 +1,425 @@
-= Deployment Strategies
+= Deployment Options
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: general:getting-started:deploy-to-server.adoc
 
-Runtime Manager allows you to deploy your Mule applications to Mule instances in several ways, depending on your Mule runtime server topology. These are the different deployment strategies available to date.
 
-[%header,cols="10,40,40"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
+
+
+When you run an app in Anypoint Studio, the app deploys to an embedded test server in Studio. Because this server is not meant for production deployment and uptime restrictions apply, deploy your Mule app using one of the deployment options supported by Runtime Manager.
+
+* *<<CloudHub>>*
++
+Deploy your apps from https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:cloudhub.adoc[CloudHub].
+* *<<Hybrid>>*
++
+Deploy your apps from https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them on your Mule servers.
+* *<<Anypoint Platform Private Cloud Edition>>*
++
+Deploy your apps from your on-premises Runtime Manager provided with xref:private-cloud::index.adoc[Anypoint Platform PCE] and host them on your Mule servers.
+* *<<Anypoint Runtime Fabric>>*
++
+Deploy your apps from https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:runtime-fabric::index.adoc[Runtime Fabric].
+
+
+== Icons Identify Content for Each Deployment
+
+Icons appear at the top of each page in the Runtime Manager documentation, indicating the deployment options to which the content applies. If the content doesn't apply to a deployment strategy, the icon appears grayed out.
+
+[%header,cols="20,10,10"]
 
 |===
-|Indicator Icon|Runtime Manager Location |App Deployment Target
+|Deployment|Content Applies |Content Doesn't Apply
+|CloudHub
 |image:logo-cloud-active.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
-|Runtime Manager https://anypoint.mulesoft.com[Cloud console]
-|xref:deploying-to-cloudhub.adoc[CloudHub]
+|image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
 
-|image:logo-hybrid-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
-|Runtime Manager https://anypoint.mulesoft.com[Cloud console]
-|xref:deploying-to-your-own-servers.adoc[Your Own Mule Servers]
+|Hybrid
+|image:logo-hybrid-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid"]
+|image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid"]
 
-|image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform On-Premises"]
-|xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
-|xref:deploying-to-your-own-servers.adoc[Your Own Mule Servers]
+|Anypoint Platform Private Cloud Edition 
+|image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform PCE"]
+|image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform PCE"]
 
-|image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
-|xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric]
-|xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Runtime Fabric]
-
+|Anypoint Runtime Fabric
+|image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
+|image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
 
 |===
 
-To request the Anypoint Platform Private Cloud Edition, contact your sales representative.
 
-Every page in the Runtime Manager documentation is tagged with the following set of icons. They are a quick indicator of what deployment strategies are relevant to the content explained on the page.
+The following sections give an overview of the deployment options you can use with Runtime Manager to host and manage your Mule applications.
+
+
+
+== CloudHub
 
 image:logo-cloud-active.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
-image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
-
-
-If the content doesn't apply to a deployment strategy, the icon appears grayed out:
-
-image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid"]
 image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
 image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
 
 
-
-In xref:studio::index.adoc[Anypoint Studio], clicking the *Play* icon (or right-clicking project on the *Package Explorer* and selecting *Run As* > *Mule Application*), deploys your application to an embedded test server that is built into Studio. This server is not meant for production deployment and uptime restrictions apply. Ultimately you deploy your application into one of the deployment options described below. All of these are supported by the Runtime Manager.
-
-== Deployment Scenarios
-
-This section gives you an overview of each basic architecture that the Runtime Manager enables you to set up for hosting and managing your Mule applications.
-
-=== Runtime Manager to CloudHub Deployment
-
-image:logo-cloud-active.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
-image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
-
+CloudHub is a complete integration platform as a service (iPaaS) that provides server functionality out of the box.
+You deploy your apps to CloudHub from the Runtime Manager cloud console without having to configure a hosting environment.
+Based on your contract, you control how many resources to assign to your application.
 
 image::infrastructure-simple-cloud.png[ch]
 
-xref:cloudhub.adoc[CloudHub] is a complete Platform as a Service that covers all of your server needs out of the box, including <<Object Store>> infrastructure, <<Monitoring>>, <<Troubleshooting>>, <<Scheduling>>, etc.
-
-Through the https://anypoint.mulesoft.com[Cloud console] of the Runtime Manager, you can easily xref:deploying-to-cloudhub.adoc[deploy to CloudHub] without needing any prior configuration of other elements.
-
-You can pick what portion of the resources that your contract allows you to use to assign to your application. If your application runs on multiple CloudHub workers, a load balancer automatically takes care of dividing incoming traffic evenly. See <<Load Balancing and Domain Names>> for more on this.
-
-[TIP]
-See the sections below to find out what specific operating features apply to this modality and how to configure them. Also, see xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for the specific things that need to be set up on applications that are deployed in this way.
+The following features and limitations apply when using Runtime Manager to manage CloudHub deployments:
 
 
-=== Cloud Console to Your Own Servers (Hybrid)
+* *Distributed locks*
++
+CloudHub does not coordinate invocations of FTP and File endpoints across multiple workers.
+
+* *High availability*
++
+CloudHub provides high availability with the clustering feature, which includes load balancing, persistent message queues, and horizontal scaleout. 
++
+See xref:cloudhub-fabric.adoc[Clustering].
++
+CloudHub also actively monitors services and workers for problems and corrects issues. For example, in the case of hardware failure, CloudHub auto-migrates the application to a different worker using CloudHub zero downtime updates.
+
+* *JDK versions*
++
+The version of JDK that CloudHub implements for all apps built with Mule runtime 3.5.1 or greater is JDK 1.7. Mule runtime 3.7.0 also supports JDK 1.8. Apps built with runtime 3.5.0 or older are deployed with JDK 1.6.
+* *Load balancing*
++
+If your app runs on multiple workers, the CloudHub shared load automatically balances incoming traffic evenly.
++
+Alternatively, you can use the optional dedicated load balancer (DLB) component to
+route external traffic to multiple Mule applications deployed to CloudHub workers in a Virtual Private Cloud (VPC).
++
+See xref:dedicated-load-balancer-tutorial.adoc[CloudHub Load Balancers].
+
+* *Logging*
++
+CloudHub provides a logging service for customizing log levels, searching, and downloading logs.
++
+See xref:viewing-log-data.adoc[Viewing Log Data]. 
+
+* *Monitoring*
++
+The Runtime Manager cloud console includes dashboards that provide performance metrics for all deployed applications.
++
+With Runtime Manager, you can set up alerts based on alert conditions on deployed apps, and standard notifications to inform you when events occur in your applications.
++
+You can also set up custom alerts and notifications that are triggered by any event by adding a CloudHub connector to your app's flows.
++
+See xref:monitoring.adoc[Monitoring Applications and Servers].
+
+* *Object store*
++
+CloudHub provides a preconfigured default object store that you can reference using the Object Store Connector.
++
+See xref:managing-application-data-with-object-stores.adoc[Managing Application Data Storage with Object Stores].
++
+One limitation of the CloudHub object store is that idempotent routers work with in-memory stores.
+
+* *Scheduling*
++
+You can manage schedules for CloudHub apps using the Runtime Manager UI.
++
+See xref:managing-schedules.adoc[Managing Schedules].
+
+* *Security updates*
++
+When a security update is available for the runtime version for an app, you can see and apply the update in Runtime Manager. 
+
+* *Shared resource support*
++
+Because each application deployed to CloudHub runs on a separate virtual server, you don't need to use domains to share ports or other resources between apps.
+
+* *Troubleshooting*
++
+CloudHub provides the Insight troubleshooting tool that provides in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager.
++
+See xref:insight.adoc[Insight].
+
+
+
+== Hybrid 
 
 image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
+image:logo-hybrid-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid"]
 image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
 image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
 
 
+With the hybrid deployment option, you deploy your apps from the Runtime Manager cloud console to your Mule servers and use Runtime Manager to manage them.
+This option allows for flexibility and control over your on-premises security but requires you to provide the hosting infrastructure.
+
+To use the hybrid option, you first register your Mule servers with Runtime Manager agent.
+Then, from Runtime Manager, you can optionally add those servers to server groups or clusters 
+to provide high availability.
+Finally, you deploy your applications from Runtime Manager to either a server, server group, or cluster.
+
 image::infrastructure-hybrid.png[hybrid]
 
-The hybrid scenario of hosting your apps on your own servers while managing them via the cloud allows for greater flexibility and tighter security (in case you deploy to your own secured on-premises environment). On the other hand, it requires that you sort out several considerations by your own means, such as <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
+The following features and limitations apply when using Runtime Manager to manage hybrid deployments:
 
-To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group or cluster.
 
-==== Security and Hybrid Deployment
+* *High availability*
++
+For high availability capabilities in hybrid deployments, use server groups or clusters.
+Clustered Mule instances have distributed shared memory, which used to provide persistent VM queues, transactions, and cluster-wide data storage.
++
+See xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview].
 
-By default, no application data flows to the cloud, only metadata pushed by the  Runtime Manager agent in each Mule runtime engine.
-The agent monitors and controls Mule, and publishes its own data to the control plane.
-Outside the Runtime Manager, you can control Mule by calling Runtime Manager agent APIs from external systems, or have Mule publish its own data to external systems.
 
-If you wish, you can change the default behavior so that the agent pushes IDs, final average numbers, or any data you find useful for monitoring or keeping control of applications.
-You can also xref:anypoint-security::tokenization-example.adoc[tokenize sensitive data].
+* *JDK versions*
++
+For hybrid deployments, see the release notes of the Mule runtime engine to determine the minimum JDK supported version.
++
+See xref:release-notes::mule-runtime/mule-esb.adoc[Mule Runtime Release Notes].
 
-==== For More Information About Hybrid Deployment
+* *Load balancing*
++
+Load balancing is not provided for hybrid deployments. 
+You can manage load balancing with the tools connected to your on-premises resources.
 
-* See the sections below to find out which features are available in this type of hybrid deployment, and how to configure them.
-* For more information about Mule agents, see xref:runtime-manager-agent.adoc[The Runtime Manager Agent] and xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture].
+* *Logging*
++
+The Runtime Manager logging feature is not available for hybrid deployments.
+You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs.
++
+See xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 
-=== On-Premises Console On-Premises Deployment
+
+* *Monitoring*
++
+The Runtime Manager cloud console includes dashboards that provide performance metrics for all deployed applications.
++
+With Runtime Manager, you can set up alerts based on alert conditions on deployed apps, and standard notifications to inform you when events occur in your applications.
+You can also create alerts that are triggered by events related to the servers on which they run, such as reaching a certain CPU usage threshold or adding a new node to a cluster.
++
+See xref:monitoring.adoc[Monitoring Applications and Servers].
+
+* *Object store* 
++
+The object store infrastructure is not available for hybrid deployments. 
+To use object stores, you must configure a database to store data.
++
+See xref:connectors::object-store/object-store-connector.adoc[Object Stores].
+
+
+* *Scheduling*
++
+The scheduling feature is not available for hybrid deployments.
+To schedule tasks, use the Scheduler Endpoint element in your flows.
++
+See xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint].
+
+* *Security updates*
++
+After an application is deployed and running, you must apply any updates for the selected runtime version manually.
+
+
+* *Shared resource support*
++
+See <<Shared Resource Support for On-Premises App Deployments>>.
+
+* *Troubleshooting*
++
+The Insight troubleshooting tool is not available for hybrid deployments.
+
+=== Security for Hybrid Deployments
+
+By default, no application data flows to the cloud, only metadata pushed by the Runtime Manager agent in each Mule runtime engine.
+
+The agent monitors and controls Mule, and publishes its data to the control plane.
+You can control Mule from external systems by calling Runtime Manager agent APIs, or specify that Mule publishes its data to external systems.
+
+You can change the default behavior so that the agent pushes IDs, final average numbers, or any data you find useful for monitoring or keeping control of applications.
+See xref:runtime-manager-agent.adoc[Runtime Manager Agent]. 
+
+You can also tokenize sensitive data.
+See xref:anypoint-security::tokenization-example.adoc[Tokenization Service Components].
+
+
+
+
+== Anypoint Platform Private Cloud Edition 
 
 
 image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid Deployment"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid"]
 image:logo-server-active.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
 image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
 
+Anypoint Platform Private Cloud Edition is a containerized distribution of the management and engagement capabilities of Anypoint Platform that you host on-premises or in your organization's private cloud environment.
+
+If your organization has strict regulatory or compliance requirements that limit the use of cloud solutions, you can use Anypoint Platform PCE to deploy and host your apps on-premises.
 
 image::infrastructure-onprem.png[onprem]
 
-For customers with strict regulatory or compliance requirements that limit the use of cloud solutions, MuleSoft offers Anypoint Platform Private Cloud Edition--a containerized distribution of the management and engagement capabilities of Anypoint Platform deployable on-premises or in a customer’s private cloud environment.
 
-This alternative allows you to have have both your platform and deployments on-premises. Keep in mind that implementing it requires that you do some extra leg work, and is currently lacking some operating features. As with the hybrid scenario, you need to take extra steps to work out <<Object Store>> infrastructure, <<Shared Resource Support>> and <<Logging>>.
+To use the Anypoint Platform PCE option, you first register your Mule servers with Runtime Manager agent.
+Then, from your on-premises Runtime Manager, you can optionally add those servers to server groups or clusters 
+to provide high availability.
+Finally, you deploy your applications from your on-premises Runtime Manager to either a server, server group, or cluster.
 
-This packaging of the anypoint platform is currently lacking some <<Dashboards>>, <<Insights>>, as well as some of the <<Alerts and Notifications, alerts>> that are available in other deployment modalities.
+The following features and limitations apply when using Runtime Manager to manage Anypoint Platform PCE deployments:
 
-To make a server visible to Runtime Manager, you must first register it by running an instruction on the server's command line, see See xref:servers-create.adoc[Create a Server in Runtime Manager]. You then have the flexibility to group servers into xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters] to make them a <<High Availability>> deployment target. You can then choose to xref:deploying-to-your-own-servers.adoc[deploy your applications] to either a server, server group, or cluster.
+* *High availability*
++
+For high availability capabilities in Anypoint Platform PCE deployments, use server groups or clusters.
+Clustered Mule instances have distributed shared memory, which used to provide persistent VM queues, transactions, and cluster-wide data storage.
++
+See xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview]
 
-[TIP]
-See the sections below to find out what specific operating features apply to this modality and how to configure them.
+* *JDK versions*
++
+For Anypoint Platform PCE deployments, see the release notes of the Mule runtime engine to determine the minimum JDK supported version.
++
+See xref:release-notes::mule-runtime/mule-esb.adoc[Mule Runtime Release Notes].
 
+* *Load Balancing*
++
+Anypoint Platform PCE does not include the load balancing feature. 
+You can manage load balancing with the tools connected to your on-premise resources.
+* *Logging*
++
+The Runtime Manager logging feature is not available for Anypoint Platform PCE deployments.
+You can configure apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs.
++
+See xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 
-== Management Features
 
-Building applications for CloudHub or an on-premises server is easy. However, there are some differences as you move from an on-premises deployment to CloudHub. CloudHub provides more out-of-the-box functionality, such as load balancing, but has some limitations which you may need to adapt your application to.
+* *Monitoring*
++
+Anypoint Platform PCE does not support Runtime Manager dashboards.
++
+With Runtime Manager, you can set up alerts based on alert conditions on deployed apps, and standard notifications to inform you when events occur in your applications.
+You can also create alerts that are triggered by events related to the servers on which they run, such as reaching a certain CPU usage threshold or adding a new node to a cluster.
++
+See xref:monitoring.adoc[Monitoring Applications and Servers].
 
-See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub], which illustrates the differences between apps destined for cloud and on-premises deployments, and shows some best practices for developing applications for CloudHub.
 
-Although the xref:general:getting-started:index.adoc[basics of building a Mule application] are the same, the different deployment modalities offer distinct management features. One major reason is that each modality uses a different Agent when communicating with servers:
+* *Object store* 
++
+The object store infrastructure is not available for Anypoint Platform PCE deployments. 
+To use object stores, you must configure a database to store data.
++
+See xref:connectors::object-store/object-store-connector.adoc[Object Stores].
 
-* When deploying to CloudHub, the older "MMC Mule Agent" is used. This agent was originally created for the legacy xref:mule-management-console::index.adoc[Mule Management Console (MMC)].
 
-* When deploying to a server that you manage, whether through the cloud console or the on-premises Runtime Manager console, the Runtime Manager agent is used.
+* *Scheduling*
++
+The scheduling feature is not available for Anypoint Platform PCE deployments.
+To schedule tasks, use the Scheduler Endpoint element in your flows.
++
+See xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint].
 
+* *Security updates*
++
+After an application is deployed and running, you must apply any updates for the selected runtime version manually.
 
+* *Shared resource support*
++
+See <<Shared Resource Support for On-Premises App Deployments>>.
 
-image::arm-vs-ch2.png[diagram1]
 
+* *Troubleshooting*
++
+Anypoint Platform PCE does not include the Insight troubleshooting tool. 
 
-Although the long term plan is to converge the features of these deployment mechanisms so that they all offer the whole set of capabilities, currently they differ as follows:
 
-[%header,cols="2*"]
-|===
-| Deploying to a CloudHub worker | Deploying to a server you manage
-| xref:viewing-log-data.adoc[Logs are handled] by CloudHub.
-| You can configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK.
 
-| CloudHub has its own xref:insight.adoc[Insight Engine]
-| You can also configure the Runtime Manager to send data xref:sending-data-from-arm-to-external-analytics-software.adoc[to External Analytics Software] such as Splunk or ELK.
 
-| You can manage xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI.
-| You must use the xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint] element in your flows to schedule tasks.
 
-| CloudHub has its own preconfigured default xref:managing-application-data-with-object-stores.adoc[Object Store] you can reference. To use it, simply add an  xref:connectors::object-store/object-store-connector.adoc[Object Store connector] and set its 'config_ref' to point to the default CloudHub Object Store.
-| To use xref:connectors::object-store/object-store-connector.adoc[Object Stores] you must configure your own database to store data.
-|===
 
+== Anypoint Runtime Fabric
 
-== Load Balancing and Domain Names
 
-For  requests from external clients and applications, you can use the default load balancer configuration that CloudHub includes out of the box. In that case, CloudHub provides two hosts for you:
+image:logo-cloud-disabled.png[link="/runtime-manager/deploying-to-cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deploying-to-your-own-servers", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Anypoint Runtime Fabric"]
 
-* `myapplication.cloudhub.io` - Routes information to the CloudHub load balancer
-* `mule-worker-myapplication.cloudhub.io` - Routes information directly to your application, bypassing the load balancer. If you have multiple workers, then this DNS round-robins between them.
+Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule applications and API gateways. Runtime Fabric runs within a customer-managed infrastructure on AWS, Azure, virtual machines (VMs), and bare-metal servers.
 
-You can also hide these public URLs through your DNS name servers. For example you could create A records to route requests to `myapplication.mycompany.com` to `myapplication.cloudhub.io`.
 
-Alternatively, CloudHub includes optional xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers] that you can add to a Virtual Private Cloud (VPC) for handling the DNS and load balancing of your applications within the VPC, and to define custom firewall rules within your VPC, such as to expose other inbound TCP ports besides ports 80/443 and 8081/8082. Through this, you can apply vanity domains and host your applications under any URL you choose.
+Runtime Fabric contains all of the components it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
 
-image::infrastructure-cloud-vpc.png[vpc]
+To use the Runtime Fabric option, you first create a Runtime Fabric using Runtime Manager.
+Then, you install Runtime Fabric on your infrastructure.
+Finally, you deploy your applications from your on-premises Runtime Manager to either a server, server group, or cluster.
 
-To use the load balancer, your application must use specific ports that CloudHub allocates for your HTTP and HTTPS endpoints. See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for more details.
+The following features and limitations apply when using Runtime Manager to manage Runtime Fabric deployments:
 
-For deployments on your local clusters and server groups, you can manage load balancing with the tools connected to your on-premise resources.
 
-== How to Name Applications on CloudHub
+* *High availability*
++
+Runtime Fabric provides automatic application fail-over.
 
-Even if you use a dedicated load balancer, the actual deployed application is always deployed with a public application name `myapplication.cloudhub.io`. The application name must be globally unique among every application, across every CloudHub customer. For this reason, it is a good idea to agree on a naming convention for your applications that is protected by your company domain. For example you might always prefix your applications with `mycompany` and perhaps with a department name, so for example you might use a naming convention of `mycompany-mydept-myapplication`.
-
-You can then add your own DNS records to hide this complex application name, so for example you can route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
-
-== High Availability
-
-CloudHub provides high availability through xref:cloudhub-fabric.adoc[CloudHub Fabric]. CloudHub Fabric provides a combination of load balancing, persistent message queues, and horizontal scaleout. In addition, the platform also actively monitors services and workers for problems. For example, in the case of hardware failure, CloudHub auto-migrates the application to a different worker using xref:managing-applications-on-cloudhub.adoc[CloudHub zero downtime updates], minimizing down time.
-
-Deploying on-premises (both via the cloud and the on-premises console) offers high availability capabilities through creating xref:server-group-about.adoc[Server Groups] or xref:cluster-about.adoc[Clusters]. Clustered Mule instances have xref:mule-runtime::mule-high-availability-ha-clusters.adoc[distributed shared memory]. This shared memory is used to provide persistent VM queues, transactions, and cluster-wide data storage.
-
-You can set a higher xref:deploying-to-pcf.adoc#replication-factor[replication factor], which deploys your app to multiple instances. Through Pivotal Cloud Foundry settings you can configure how much each of these instances is worth in terms of scale.
-
-[NOTE]
-xref:mule-runtime::mule-high-availability-ha-clusters.adoc#clustering-for-high-performance[Clustering for High Performance] is not supported on Pivotal Cloud Foundry.
-
-
-== Managing Properties for Applications on CloudHub
-
-The easiest way to load properties on applications deployed to CloudHub is to use the xref:deploying-to-cloudhub.adoc#properties-tab[*Properties*] tab on the Runtime Manager. There you specify Java system environment variables which will function in the same way as adding environment variables when you deploy to an on-premises server.
-
-Just like with on-premises Mule deployments, you could instead add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts.
-
-On CloudHub, it's not recommended to configure an external location to add property placeholders.
-
-When your application is deployed, entries in the CloudHub *Properties* tab override any other property with the same name that you may have defined in the bundled files within the application.
-
-It is possible to change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive. You do this by changing options in the Property Placeholder element in the Mule application. See http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information on non-default property placeholder options.
-
-Note that you can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. See xref:secure-application-properties.adoc[Secure Application Properties] for more information.
-
-See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for best practices on how to handle properties on CloudHub.
-
-
-== Managing Properties for Applications On Premises
-
-With an on-premises Mule runtime you can add properties in several ways. The most common one is to add a `mule-app.properties` file in the application .zip bundle listing these. The Runtime then loads these properties into the application when the application starts.
-
-Otherwise, there are several ways you can override the property values in this file bundled inside the application.
-
-. You can configure an external location to add property placeholders or secure property placeholder files to override properties.
-
-. You can set Java system environment variables at deployment time to override properties.
-
-To use the second option, with an on-premises server you could deploy your application through the following command:
-
-----
-mule -M-Dsecret.key=toSecretPassword -M-Denv=prod -M-Ddb.password=secretPassword -app myApp.zip
-----
-
-In this case all the values typed into the command would only be stored in memory and must be provided every time, they are never stored in any file.
-
-=== For Applications on Pivotal Cloud Foundry
-
-
-In Pivotal Cloud Foundry, you can also set properties that are specific to binded services, such as credentials that are directed to a bound MySQL data base. These properties are set on the xref:deploying-to-pcf.adoc#service-bindings-tab[Service Bindings Tab].
-
-
-== Monitoring
-
-=== Alerts and Notifications
-
-Most scenarios include the possibility of setting up xref:alerts-on-runtime-manager.adoc[Alerts] for when certain events occur. The available alerts differ depending on the deployment modality, see xref:alerts-on-runtime-manager.adoc[Alerts] for a full reference.
-
-Besides the established list of events that can trigger an alert, CloudHub allows you to set up xref:custom-application-alerts.adoc[Custom Application Alerts and Notifications]. These can be triggered by any event that you wish, by adding a CloudHub connector to your app's flows.
-
-CloudHub also features a set of standard xref:notifications-on-runtime-manager.adoc[Notifications] that pop up to inform of certain events regarding your applications.
-
-When deploying to your own servers (both via the cloud and the on-premises console) you can also create alerts that are triggered by events related to the servers they run on, such as reaching a certain CPU usage threshold or adding a new node to a cluster.
-
-Alerts are not supported on Pivotal Cloud Foundry deployments.
-
-=== Dashboards
-
-The https://anypoint.mulesoft.com/[Cloud console] of the Runtime Manager displays xref:monitoring-dashboards.adoc[dashboards] with performance metrics for all applications deployed, both to CloudHub workers and to servers on-premises. It also shows dashboards for the on-premise servers your applications run on.
-
-[NOTE]
-The Anypoint Platform Private Cloud Edition doesn't currently support the dashboard feature.
-
-
-
-== Troubleshooting
-
-=== Insights
-
-Transactions carried out on applications deployed to CloudHub can be scrutinized through the xref:insight.adoc[Insight] Engine.
-
-Anypoint Platform Private Cloud Edition doesn't currently support the insights feature.
-
-=== Logging
-
-
-CloudHub provides a xref:viewing-log-data.adoc[logging service] for allowing logs to be searched, downloaded, or log levels to be customized. See xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] for more details.
-
-On-premises applications can send data to external tools to manage your logs, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software]. You can use custom `log4j` properties files.
-
-For applications deployed to Pivotal Cloud Foundry, logs aren't supported but you can view logs directly on Pivotal's console.
-
-== Object Store
-
-CloudHub provides an implementation of the user object store. This makes its usage a lot simpler, as you can simply reference the already configured CloudHub object store. It places limits on the usage of this to avoid abuse. These are detailed on the xref:managing-application-data-with-object-stores.adoc[Object Store] page.
-
-Deployments on-premises require that you set up your own object store, see  xref:connectors::object-store/object-store-connector.adoc[Mule object stores].
-
-
-=== Disk Persistence
-
-Using the CloudHub object store doesn't guarantee that writing to disk survives hardware failures. Instead, you might prefer to use an external storage mechanism to store information. For small amounts of data, you can use the Object Store. For applications that have large data storage requirements, we recommend use of a cloud service such as Amazon S3. For temporary storage, the File connector is still available and can be used with the /tmp directory.
-
-
-== Shared Resource Support
-
-Since each application deployed to CloudHub runs on a separate virtual server, there is no need to use domains to enable sharing ports or other resources between apps.
-
-When deploying on-premises, it's possible to create 'Domain' mule projects that don't hold any flows, but do hold a set of global configuration elements to share among other apps deployed to the same server. This can be of help to avoid having to configure the same settings and credentials for each application, but it's specially useful when you want multiple applications to listen on a same HTTP host and port, or on other exclusive resources. xref:mule-runtime::shared-resources.adoc[Read more].
-
-Currently, you can't deploy domains through the Runtime Manager console, even to local servers where they could be needed in some scenarios. In those cases, you can still deploy your domains manually directly on your local server through xref:mule-runtime::starting-and-stopping-mule-esb.adoc[the command line].
-
-
-== Scheduling
-
-CloudHub lets you define xref:managing-schedules.adoc[Schedules] through the Runtime Manager UI that runs your flows automatically.
-
-For apps that you deploy to servers on-premises, through any modality, this is not an option. You can achieve the same by including the xref:mule-runtime::scheduler-concept[Scheduler] element in the flows of your application.
-
-== JDK Versions
-
-The version of JDK that CloudHub implements for all apps built with Mule runtime 3.5.1 or greater is JDK 1.7. Mule runtime 3.7.0 also supports JDK 1.8. Apps built with runtime 3.5.0 or older are deployed with JDK 1.6.
-
-For apps deployed on-premises, see the xref:release-notes::mule-runtime/mule-esb.adoc[runtime release notes] of the specific runtimes you're using to know the minimum JDK supported version.
-
-== Automatic Security Updates
-
-Certain updates are automatically applied to applications deployed to CloudHub. Once deployed and running, if any security patches, OS updates, or critical bug fixes are released for the selected runtime version, then you will be prompted about this change. You will be able to control exactly when each update is applied. If you take no action, updates will be applied automatically for you after 30 days to ensure your applications run with the latest security patches.
-
-
-For applications that are deployed elsewhere, you must carry out these Runtime updates manually.
-
-
-== Other Components
-
-There are some components for which CloudHub has limited support for currently:
-
-* Distributed locks: currently, CloudHub cannot coordinate invocations of FTP and File endpoints across multiple workers.
-* Idempotent routers works with in memory stores and according to the limitations of the CloudHub Object Store if you configure it to use it. If those options do not fit your needs, you can use another Object Store.
-
-
-== Deployment Strategy Flexibility
-
-If you want to deploy the same Mule application via various different deployment strategies, such as to an <<Cloud Console On-Premises Deployment, on-premises server>> and <<Cloud Console CloudHub Deployment, CloudHub>>, abstract some parameters of the application to xref:mule-runtime::intro-packaging.adoc[application properties] that you can set with different values in each use case, without needing to alter the actual application.
-
-Create an application properties file named *mule-app.properties* in the `src/main/app` folder of your project. When using the properties tab on CloudHub or Pivotal Cloud Foundry, these properties are overriden. See <<Managing Properties>> to see how these are loaded with values in each case.
-
-== Using Different Environments
-
-The Anypoint Platform enables you to handle separate xref:access-management::environments.adoc[Environments], such as production, QA, Dev, or any other custom one you may want to create. You can set some of these to be _sandbox_ environments, which allows you the freedom to test and experiment away from the public eye.
-
-Regardless of the deployment strategy used, deployments are always done onto a specific environment. Each manages a different set of deployments, and accessing each requires a different set of xref:access-management::managing-permissions.adoc[permissions], allowing you to divide roles clearly between the different teams of your organization.
-
-Once an application has been tested in a sandbox environment and is ready for production, it can be directly promoted to a production environment, without needing to upload the application again. See  xref:deploying-to-your-own-servers.adoc#from-sandbox[deploying to your own servers] or xref:deploying-to-cloudhub.adoc#from-sandbox[deploying to cloudhub] to see how to do this.
-
-== Legacy Alternatives
-
-You can also deploy and manage your applications to Mule runtimes through other methods that exist from before there was an Anypoint Platform. These methods are still currently supported, but no new features are being added to them:
-
-* Deploy to a xref:mule-runtime::deploying.adoc[standalone Mule runtime].
-* Deploy via the xref:mule-management-console::index.adoc[Mule Management Console].
-
+* *Load balancing*
++
+Runtime Fabric does not include the load balancing feature. 
+You can manage load balancing with the tools connected to your infrastructure.
+
+* *Logging*
++
+Runtime Fabric uses Ops Center to view and configure logs. 
+You can use forward logs from Runtime Fabric to a rsyslog server.
++
+See xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric].
+
+* *Monitoring*
++
+Runtime Fabric provides dashboards and alerts in Ops Center for viewing performance and availability metrics. To receive and send alerts, use an SMTP server.
++
+See https://docs.mulesoft.com/runtime-fabric/1.4/configure-alerting.adoc[Configure Alerting on Runtime Fabric].
++
+You can also use Anypoint Monitoring to view application metrics with Anypoint Platform.
++
+See xref:runtime-fabric::manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric].
+
+* *Object store*
++
+Runtime Fabric does not support Object Store.
+
+* *Scheduling*
++
+The scheduling feature is not available for Runtime Fabric deployments.
+To schedule tasks, use the Scheduler Endpoint element in your flows.
++
+See xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint].
+
+
+* *Security updates*
++
+When a security update is available for the runtime version for an app, you can see and apply the update in Runtime Manager.
+
+* *Troubleshooting*
++
+Runtime Fabric does not include the Insight troubleshooting tool. 
+Instead, use the command-line tools provided to obtain the health status of the cluster and components.
++
+See xref:runtime-fabric::troubleshoot-guide.adoc[Troubleshooting Guide for Runtime Fabric].
+
+
+== Shared Resource Support for On-Premises App Deployments
+
+When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other apps deployed to the same server.
+
+Use this strategy to avoid configuring the same settings and credentials for each application. 
+You can also use it to configure multiple applications to listen on the same HTTP host and port, or other exclusive resources. 
+
+See xref:mule-runtime::shared-resources.adoc[Shared Resources].
 
 
 == See Also
 
+* xref:studio::index.adoc[Anypoint Studio]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
-* xref:mule-runtime::about-flows.adoc[Flows and Subflows]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
-* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:cloudhub.adoc[CloudHub]
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:cloudhub-fabric.adoc[CloudHub Fabric]
-* xref:managing-queues.adoc[Managing Queues]
-* xref:managing-schedules.adoc[Managing Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Command Line Tools]
-* xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:penetration-testing-policies.adoc[Penetration Testing Policies]
+* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+* xref:runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]

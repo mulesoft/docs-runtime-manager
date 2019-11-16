@@ -1,0 +1,32 @@
+= Managing Properties for Applications on CloudHub
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
+
+
+The easiest way to load properties on applications deployed to CloudHub is to use the *Properties* tab in Runtime Manager.
+
+There you specify Java system environment variables which will function in the same way as adding environment variables when you deploy to an on-premises server.
+
+Just like with on-premises Mule deployments, you could instead add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts.
+
+On CloudHub, it's not recommended to configure an external location to add property placeholders.
+
+When your application is deployed, entries in the CloudHub *Properties* tab override any other property with the same name that you may have defined in the bundled files within the application.
+
+It is possible to change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive. You do this by changing options in the Property Placeholder element in the Mule application. See http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information on non-default property placeholder options.
+
+Note that you can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. 
+
+
+== See Also
+
+* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] 
+* xref:secure-application-properties.adoc[Secure Application Properties]

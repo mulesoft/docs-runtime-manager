@@ -1,19 +1,35 @@
-= Switch Environments Using Runtime Manager
+= Using Different Environments in Runtime Manager
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
+
+Anypoint Platform enables you to create and use different environments, such as production, QA, or Dev, to manage your deployments. Regardless of the deployment option you use, you deploy an application into a specific environment. 
+
+Servers and applications are always associated to a particular environment and are visible only from within the environment where they are created. Each environment requires a different set of xref:access-management::managing-permissions.adoc[permissions], enabling you to divide roles clearly between the different teams of your organization.
+
+After an application is tested in a sandbox environment and is ready for production, you can promote it directly to a production environment, without uploading the application again. 
+
+== Switch Environments Using Runtime Manager
 
 If you have multiple environments in your organization, you can switch between them. From any application in Anypoint Platform, you can switch to a different environment.
 
 image::managing-deployed-applications-0e10f.png[]
 
 . Click the current environment in the top left corner of Runtime Manager.
-. Select the environment you want to switch to.
+. Select the environment to which you want to switch.
 . Click *Switch*.
 
-Servers and applications are always associated to a particular environment. They are only visible from within the environment where they are created.
 
 == See Also
 
+* xref:access-management::environments.adoc[Environments]
+* xref:deploying-to-your-own-servers.adoc#from-sandbox[Deploying to Your Own Servers from Sandbox]
+* xref:deploying-to-cloudhub#move_app_from_sandbox_to_prod[Move an Application from Sandbox to Production]
 * xref:managing-servers.adoc[About Servers, Server Groups, and Clusters]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]

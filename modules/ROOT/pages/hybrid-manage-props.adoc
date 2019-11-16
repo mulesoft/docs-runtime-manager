@@ -1,0 +1,29 @@
+= Managing Properties for Applications On Premises
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
+
+
+In an on-premises deployment, there are several you can add properties to an application: 
+
+The most common method is to include a `mule-app.properties` file containing the properties in the application .zip bundle. The Mule runtime engine then loads these properties into the application when the application starts.
+
+Alternatively, you can override the property values in this file bundled inside the application in one of these ways:
+
+* Configure an external location to add property placeholders or secure property placeholder files to override properties.
+
+* Set Java system environment variables at deployment time to override properties.
++
+In this case, you deploy the app using the following command:
+
+----
+mule -M-Dsecret.key=toSecretPassword -M-Denv=prod -M-Ddb.password=secretPassword -app myApp.zip
+----
+
+In this case, all the values typed into the command are stored only in memory and must be provided every time. The values are never stored in any file.
