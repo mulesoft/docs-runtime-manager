@@ -11,18 +11,14 @@ image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", tit
 
 
 The easiest way to load properties on applications deployed to CloudHub is to use the *Properties* tab in Runtime Manager.
+You specify Java system environment variables which function the same as adding environment variables when you deploy to an on-premises server.
 
-There you specify Java system environment variables which will function in the same way as adding environment variables when you deploy to an on-premises server.
+Just like with on-premises Mule deployments, you can add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts. This method isn't recommended on CloudHub because, when your application is deployed, entries in the CloudHub *Properties* tab override any other property with the same name defined in the bundled files within the application. 
 
-Just like with on-premises Mule deployments, you could instead add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts.
+You can change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive.
+To do this, change options in the Property Placeholder element in the Mule application. See https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information on non-default property placeholder options.
 
-On CloudHub, it's not recommended to configure an external location to add property placeholders.
-
-When your application is deployed, entries in the CloudHub *Properties* tab override any other property with the same name that you may have defined in the bundled files within the application.
-
-It is possible to change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive. You do this by changing options in the Property Placeholder element in the Mule application. See http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information on non-default property placeholder options.
-
-Note that you can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. 
+You can also flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. 
 
 
 == See Also
