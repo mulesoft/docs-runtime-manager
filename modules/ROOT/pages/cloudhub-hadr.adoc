@@ -25,7 +25,11 @@ If the application uses multiple workers, CloudHub deploys the workers in separa
 
 image::hadr-am-web-services.png[]
 
-If an application uses a single worker, when the availability zone is unavailable, you must manually restart the application after the zone becomes available. You can set up `status.mulesoft.com` to receive alerts when a failure occurs in an availability zone or region.
+If an application uses a single worker, when the availability zone is unavailable, CloudHub automatically restarts the application in a different availability zone.
+In this case, the application might experience downtime.
+
+You can set up `status.mulesoft.com` to receive alerts when a failure occurs in an availability zone or region.
+
 
 === Anypoint CloudHub Alternative Deployment Model
 
