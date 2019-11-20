@@ -69,6 +69,10 @@ Firewall rules are inbound and use the following parameters:
 * *Source*: Source IP address
 * *Port Range*: The only two ports exposed externally are 8081 (http.port) and 8082 (https.port). You can use this parameter to open additional ports inside the VPC.
 
+[NOTE]
+====
+Firewall rules for ports below 1024 cannot be configured.
+
 === Add or Edit Firewall Rules
 
 . Sign into Anypoint Platform as a user with the *Organization Administrators* role.
