@@ -5,14 +5,18 @@ endif::[]
 :keywords: cloudhub, monitoring, worker, restarts
 
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
+
 
 [NOTE]
 Worker Monitoring is a feature that is only available for applications deployed to CloudHub workers. It is not available for applications that you deploy using the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Strategies] and xref:monitoring.adoc[Monitoring Applications] for more details.
 
-CloudHub supports worker monitoring and automatic restarts for unresponsive applications. Monitoring allows you the option to receive notifications and diagnostic information if your application becomes unresponsive. Optionally, enable automatic restarts so that your application can recover automatically without your intervention. CloudHub gives you the flexibility to conduct monitoring with or without enabling automatic restarts.
+CloudHub supports worker monitoring and automatic restarts for unresponsive applications.
+Monitoring allows you the option to receive notifications and diagnostic information if your application becomes unresponsive.
+Optionally, enable automatic restarts so that your application can recover automatically without your intervention.
+CloudHub gives you the flexibility to conduct monitoring with or without enabling automatic restarts.
 
 Monitoring is enabled by default on all applications deployed on CloudHub. Applications already deployed before the monitoring feature was introduced need to be redeployed for monitoring to take effect. 
 
@@ -22,25 +26,36 @@ You can activate the automatic restart feature on a per-application basis using 
 
 This document assumes that you are familiar with xref:deploying-to-cloudhub.adoc[Deploying to CloudHub] and that you are deploying to runtime 3.4.n, 3.5.n, or newer.
 
-== Enabling Automatic Restarts
+== Enable Automatic Restarts
 
-During deployment, you have the option to enable automatic restarts for your application.
+You can enable automatic restarts when you initially deploy an app or after the app is deployed.
 
-Click *Settings* > *Automatically restart application when not responding*, or you can click the same setting from the *Deploy Application* menu:
+* During app deployment:
+.. In Runtime Manager, click *Applications* in the menu on the left.
+.. Click *Deploy Application* and select *CloudHub* from *Deployment Target*.
+.. Select the *Automatically restart application when not responding* option:
++
+.The arrow shows the *Automatically restart application when not responding* option.
+image::cloudhub-app-deploy-autorestart.png[Automatically restart application when not responding option]
+.. Click *Deploy Application*.
 
-image::workermonitoring.png[WorkerMonitoring]
+* After the app is deployed:
+.. In Runtime Manager, click *Applications* in the menu on the left.
+.. Click the app status to display the details pane on the right
+.. Click the *Manage Application* button to display the *Settings* page for the app.
+.. Select the *Automatically restart application when not responding* option:
++
+.The arrow shows the *Automatically restart application when not responding* option.
+image::cloudhub-app-manage-autorestart.png[Automatically restart application when not responding option]
+.. Click *Apply Changes*.
 
-If you are setting this from the *Deploy Application* menu, click *Deploy Application*.
+For applications running on Mule 3.8.x and earlier, upon deployment, CloudHub inserts a monitoring ping flow into your application.
 
-If you are setting this from the *Manage Application* menu, click *Apply Changes*.
+When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application:
 
-For applications running on Mule 3.8.x and earlier, upon deployment, CloudHub inserts a monitoring ping flow into your application. When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application.
+.The arrow shows the `Monitoring enabled` and `Registering ping flow injector` messages in the logs.
+image::cloudhub-app-manage-monitor-enabled.png[Monitoring enabled and Registering ping flow injector message in the logs]
 
-image::logpingflowinjector.png[LogPingFlowInjector]
-
-After your application fully starts, the log displays an additional message to indicate that monitoring has started: `Mule system health monitoring started for your application.`
-
-image::chmulesystemhealthmsg.png[CHMuleSystemHealthMsg]
 
 == How Monitoring Works
 
@@ -82,21 +97,8 @@ If the restart fails, CloudHub continues to attempt restarting up to five times.
 
 == See Also
 
-* Read more about  xref:alerts-on-runtime-manager.adoc[configuring alerts based on worker problems].
-
-* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:alerts-on-runtime-manager.adoc[Configure Alerts]
+* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
-* xref:cloudhub.adoc[CloudHub Overview]
-* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
-* xref:deployment-strategies.adoc[Deployment Strategies]
-* xref:cloudhub-architecture.adoc[CloudHub architecture]
-* xref:cloudhub-fabric.adoc[Clustering]
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:managing-queues.adoc[Managing Queues]
-* xref:managing-schedules.adoc[Managing Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Command Line Tools]
-* xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:penetration-testing-policies.adoc[Penetration Testing Policies]
+* xref:monitoring.adoc[Monitoring Applications and Servers]
