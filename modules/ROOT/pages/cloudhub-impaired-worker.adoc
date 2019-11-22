@@ -1,4 +1,4 @@
-= Impaired Workers
+= Impaired Worker Monitoring 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -8,21 +8,32 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
 
-CloudHub continuously performs health checks on the underlying virtual machines where Mule applications are running.
-
-A worker is impaired when there is a hardware or software failure that negatively impacts the running application deployed on the worker. Examples of hardware and software failures include network unavailability, memory issues, server hardware failures, file corruption, and so on.
-
+CloudHub continuously performs health checks on the underlying virtual machines where Mule applications are running. 
 When a worker is impaired, CloudHub automatically attempts to restart the worker and relaunch applications.
 
-* If a retry is successful, the underlying worker and the Mule application are recovered without requiring any further action.
+A worker is impaired when there is a hardware or software failure that negatively impacts the running application deployed on the worker.
+Hardware and software failures include network unavailability, memory issues, server hardware failures, and file corruption.
+
+When CloudHub restarts the worker:
+
+* If a retry is successful, the underlying worker and app restart without any further action.
 +
 It might take up to five minutes for a worker to restart.
 * If the application fails to start after five attempts, the status of the application is *Failed* or *Unrecoverable Runtime Error*.
 +
-In this case, you must manually redeploy and restart the application.
+In this case, you must manually restart the application.
+
+The logs indicate when a worker is restarted automatically and any failures.
+
+The automatic worker-restart functionality is different from the automatic application-restart functionality, which is configurable using the *Automatically restart application when not responding* option on the app *Settings* page. 
+CloudHub automatically attempts to restart impaired workers, regardless of the app setting. 
 
 == Scheduled Maintenance Activities
 
 CloudHub checks for scheduled maintenance activities for worker instances that cause potential downtime for the running applications: reboot, stop, start, or retirement of the instances.
 
-To prevent downtime, Cloudhub sends you a notification in advance to restart your application with zero downtime.
+To help you avoid downtime, Cloudhub sends you a notification in advance alerting you to any maintenance activities.
+
+== See Also
+
+* xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts]

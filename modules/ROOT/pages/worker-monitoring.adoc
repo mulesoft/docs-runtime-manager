@@ -1,4 +1,4 @@
-= Worker Monitoring
+= Application Monitoring and Automatic Restarts
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -10,27 +10,45 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
 
 
-[NOTE]
-Worker Monitoring is a feature that is only available for applications deployed to CloudHub workers. It is not available for applications that you deploy using the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Strategies] and xref:monitoring.adoc[Monitoring Applications] for more details.
+CloudHub monitors all applications and enables you to receive notifications and diagnostic information if your application becomes unresponsive.
 
-CloudHub supports worker monitoring and automatic restarts for unresponsive applications.
-Monitoring allows you the option to receive notifications and diagnostic information if your application becomes unresponsive.
-Optionally, enable automatic restarts so that your application can recover automatically without your intervention.
-CloudHub gives you the flexibility to conduct monitoring with or without enabling automatic restarts.
+You can enable automatic restarts so that your application can recover automatically without your intervention.
 
-Monitoring is enabled by default on all applications deployed on CloudHub. Applications already deployed before the monitoring feature was introduced need to be redeployed for monitoring to take effect. 
 
-You can activate the automatic restart feature on a per-application basis using the Runtime Manager console when you deploy a new application or redeploy an existing application.
+== How Application Monitoring Works
 
-== Prerequisites
+Monitoring works differently depending on your Mule version.
 
-This document assumes that you are familiar with xref:deploying-to-cloudhub.adoc[Deploying to CloudHub] and that you are deploying to runtime 3.4.n, 3.5.n, or newer.
+* Mule 4.x
++
+Every 30 seconds, CloudHub checks the PID of the Mule process.
++
+If CloudHub detects the application process is not running three times in a row, the logs print a warning.
+
+* Mule 3.8.x
++
+When you deploy, CloudHub inserts a monitoring ping flow into your application.
++
+When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application:
++
+.The arrow shows the `Monitoring enabled` and `Registering ping flow injector` messages in the logs.
+image::cloudhub-app-monitor-enabled.png[Monitoring enabled and Registering ping flow injector message in the logs]
++
+Every 30 seconds, CloudHub sends an HTTP GET request to the ping flow within the application.
++
+If the application is running normally, the ping flow sends a response.
+If CloudHub receives no response from the ping three times in a row, the logs display a warning and a full thread dump.
+
+In both cases, CloudHub triggers a notification to the console to alert you that a worker for an application stopped responding.
+
+If you configure email alerts, the non-responsive worker also triggers an email alert based on the `Worker Not Responding` event.
+
 
 == Enable Automatic Restarts
 
-You can enable automatic restarts when you initially deploy an app or after the app is deployed.
+You can enable automatic restarts when you deploy a new application or redeploy an existing application.
 
-* During app deployment:
+* Deploy a new app:
 .. In Runtime Manager, click *Applications* in the menu on the left.
 .. Click *Deploy Application* and select *CloudHub* from *Deployment Target*.
 .. Select the *Automatically restart application when not responding* option:
@@ -39,7 +57,7 @@ You can enable automatic restarts when you initially deploy an app or after the 
 image::cloudhub-app-deploy-autorestart.png[Automatically restart application when not responding option]
 .. Click *Deploy Application*.
 
-* After the app is deployed:
+* Redeploy an existing app:
 .. In Runtime Manager, click *Applications* in the menu on the left.
 .. Click the app status to display the details pane on the right
 .. Click the *Manage Application* button to display the *Settings* page for the app.
@@ -49,51 +67,22 @@ image::cloudhub-app-deploy-autorestart.png[Automatically restart application whe
 image::cloudhub-app-manage-autorestart.png[Automatically restart application when not responding option]
 .. Click *Apply Changes*.
 
-For applications running on Mule 3.8.x and earlier, upon deployment, CloudHub inserts a monitoring ping flow into your application.
 
-When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application:
+=== How Automatic Restarts Work
 
-.The arrow shows the `Monitoring enabled` and `Registering ping flow injector` messages in the logs.
-image::cloudhub-app-manage-monitor-enabled.png[Monitoring enabled and Registering ping flow injector message in the logs]
-
-
-== How Monitoring Works
-
-=== Mule 3.x.x 
-
-Every 30 seconds, CloudHub sends an HTTP get request to the ping flow within the application. If the application is running normally, the ping flow sends a response. If CloudHub receives no response from the ping three times in a row, the logs print a warning and display a full thread dump.
-
-image::ch-monitoring-threaddump.png[CH-monitoring-threaddump]
-
-=== Mule 4.x.x
-
-Every 30 seconds, CloudHub checks the PID of the Mule process. If CloudHub detects the application process is not running three times in a row, the logs print a warning.
-
-In both cases, CloudHub triggers a notification to the console to alert you that a worker for any application stopped responding.
-
-If you have configured email alerts, the non-responsive worker also triggers an email alert based on the `Worker Not Responding` event. See  xref:alerts-on-runtime-manager.adoc[Alerts] for more information about configuring these alerts.
-
-== How Automatic Restarts Work
-
-If you check the box labeled **Automatically restart application when not responding**, CloudHub follows the same procedure described above, but also automatically triggers redeployment of the application.
-
-If you do not have this box checked, CloudHub only produces a notification and a log message and takes no further action.
-
-image::ch-monitoring-notification2.png[CH-monitoring-notification2]
-
-image::ch-monitoring-logs5.png[CH-monitoring-logs5]
-
-The monitoring script exits and the application is left unchanged until you manually intervene.
-
-If you have enabled automatic restart, CloudHub produces a notification to signal that the restart has been triggered and another to report the success or failure of the restart:
-
-image::ch-monitoring-notifications.png[CH-monitoring-notifications]
-
-The logs report the details of the restart procedure. If the restart succeeds, the ping script is reinitialized so that monitoring continues.
-
-image::ch-successfulrestart.png[CH-successfulrestart]
-
-If the restart fails, CloudHub continues to attempt restarting up to five times. Once the maximum number of restart attempts is exceeded, CloudHub takes no further action. The monitoring script exits and the application is left unchanged until you manually intervene.
+* If you select the *Automatically restart application when not responding* option, CloudHub monitors the worker and also automatically restarts the application if necessary.
++
+CloudHub displays a notification that the app is restarting and another to report the success or failure of the restart.
++
+** If the restart succeeds, the ping script is reinitialized so that monitoring continues.
+** If the restart fails, CloudHub continues to attempt restarting the app up to five times.
++
+Once the maximum number of restart attempts is exceeded, CloudHub takes no further action. The monitoring script exits and the application is left unchanged until you manually intervene.
++
+The logs report the details of the restart procedure.
+* If you don't select  the *Automatically restart application when not responding* option, the monitoring script exits and the application is left unchanged until you manually restart.
++
+CloudHub displays a notification and a log message and takes no further action.
 
 == See Also
 
