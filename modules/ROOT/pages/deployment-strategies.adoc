@@ -139,7 +139,7 @@ For  requests from external clients and applications, you can use the default lo
 * `myapplication.cloudhub.io` - Routes information to the CloudHub load balancer
 * `mule-worker-myapplication.cloudhub.io` - Routes information directly to your application, bypassing the load balancer. If you have multiple workers, then this DNS round-robins between them.
 
-You can also hide these public URLs through your DNS name servers. For example you could create A records to route requests to `myapplication.mycompany.com` to `myapplication.cloudhub.io`.
+You can also hide these public URLs through your DNS name servers. For example you could create A records to route requests to `myapplication.mycompany.com` from `myapplication.cloudhub.io`.
 
 Alternatively, CloudHub includes optional xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers] that you can add to a Virtual Private Cloud (VPC) for handling the DNS and load balancing of your applications within the VPC, and to define custom firewall rules within your VPC, such as to expose other inbound TCP ports besides ports 80/443 and 8081/8082. Through this, you can apply vanity domains and host your applications under any URL you choose.
 
