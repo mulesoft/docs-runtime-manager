@@ -14,7 +14,7 @@ When a worker is impaired, CloudHub automatically attempts to restart the worker
 A worker is impaired when there is a hardware or software failure that negatively impacts the running application deployed on the worker.
 Hardware and software failures include network unavailability, memory issues, server hardware failures, and file corruption.
 
-When CloudHub restarts the worker:
+When CloudHub restarts the impaired worker:
 
 * If a retry is successful, the underlying worker and app restart without any further action.
 +
@@ -33,7 +33,7 @@ CloudHub automatically attempts to restart impaired workers, regardless of the a
 
 CloudHub checks for scheduled maintenance activities for worker instances that cause potential downtime for the running applications: reboot, stop, start, or retirement of the instances.
 
-A notification appears in the top right of the *Settings* page for the application page, notifying you of upcoming maintenance activities:
+A notification appears in the top right of the *Settings* page for the application page and the *Applications* page, notifying you of upcoming maintenance activities:
 
 .The arrow shows the notification icon in the *Settings* page.
 image::cloudhub-notification-icon.png[Notification icon in the *Settings* page]
