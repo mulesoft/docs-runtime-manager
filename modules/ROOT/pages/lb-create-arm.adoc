@@ -3,8 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can use Runtime Manager to create a dedicated load balancer in your CloudHub environment.
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
+
+You can use Runtime Manager to create a dedicated load balancer (DLB) in your CloudHub environment.
 
 == Prerequisites
 
@@ -24,7 +29,10 @@ Similarly, the administrator role of the same organization also provides the aut
 
 . Enter a name for your load balancer.
 +
-The CloudHub dedicated load balancer name must be unique across the platform. Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdns.net` name where `_lb-name_` is the name you provide.
+The CloudHub DLB name must be unique across all DLBs defined in Anypoint Platform (by all MuleSoft customers).
+For this reason, you might want to append your organization name to your DLB name.
++
+Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdns.net` name where `_lb-name_` is the name you provide.
 
 . Select a target Anypoint VPC from the drop-down list.
 
