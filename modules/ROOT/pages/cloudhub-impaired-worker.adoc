@@ -33,14 +33,25 @@ CloudHub automatically attempts to restart impaired workers, regardless of the a
 
 CloudHub checks for scheduled maintenance activities for worker instances that cause potential downtime for the running applications: reboot, stop, start, or retirement of the instances.
 
-A notification appears in the top right of the *Settings* page for the application and on the *Applications* page, notifying you of upcoming maintenance activities:
+A notification appears in the top right of both the *Applications* page and the *Settings* page for the application, notifying you of upcoming maintenance activities:
 
-.The arrow shows the notification icon in the *Settings* page.
-image::cloudhub-notification-icon.png[Notification icon in the *Settings* page]
+.The arrow shows the notification icon on the *Settings* page for the application.
+image::cloudhub-notification-icon.png[Notification icon on the *Settings* page for the application]
 
 Click the icon to display the notification, which includes the date that CloudHub will automatically restart the worker.
-You can restart your apps manually or wait for CloudHub to restart them automatically. 
 
+
+You can restart your apps manually or wait for CloudHub to restart them automatically. A reminder notification appears one week before the automatic application restart.
+
+If CloudHub restarts the app, the following message appears in the application log:
+
+[source,console]
+----
+Your application was running on an impaired worker instance. To avoid any downtime, the platform has restarted the application.
+----
+
+
+You also see a notification indicating that the restart occurred.
 
 == See Also
 
