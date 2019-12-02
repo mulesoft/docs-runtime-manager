@@ -27,7 +27,7 @@ Anypoint VPN supports any combination of the following IPsec settings:
 
 * IKE version 1
 * IKE version 2 for route-based VPNs only
-* AES 128 or 256-bit encryption
+* AES 128 or 256-bit encryption operating in the Chain Block Cipher (CBC) mode
 * SHA or SHA-2 (256) hashing
 * Diffie-Hellman Phase1 groups 2, 14-18, 22, 23, 24
 * Diffie-Hellman Phase2 groups 2, 5, 14-18, 22, 23, 24
@@ -44,7 +44,7 @@ Anypoint VPN supports dynamic or static routing for VPN connections.
 * *Dynamic routing* Your device uses Border Gateway Protocol (BGP) to advertise routes to Anypoint VPN. Use BGP routing if your device supports this protocol.
 * *Static routing* - Requires you to specify the routes (subnets) in your network that are accessible through Anypoint VPN. +
 [NOTE]
-A maximum of 95 static routes is permitted per VPC, regardless of the number of VPN connections. Consolidate networks to the fewest number possible to avoid exceeding the limit.  
+A maximum of 95 route table entries is permitted per VPC, regardless of the number of VPN connections. Consolidate networks to the fewest number possible to avoid exceeding the limit.  
 
 === Limitations
 
