@@ -42,7 +42,7 @@ For logs to both flow to your logging system and be viewable in CloudHub, config
 To enable the Log4j appender, update the `log4j2.xml` configuration file with your logger settings.
 In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources` directory.
 
-For information on configuring `log4j2.xml`, see the
+For information about configuring `log4j2.xml`, see the
 https://logging.apache.org/log4j/2.x/manual/configuration.html[Log4j documentation].
 
 [source,xml,linenums]
@@ -113,7 +113,7 @@ After you configure the Log4j appender, deploy the application to CloudHub and f
 +
 .The arrow shows the *Disable CloudHub logs* option in the *Settings* page.
 image::cloudhub-disable-logs.png[Disable CloudHub logs option in the Applications Settings page]
-. In the *Disabling CloudHub logs* confirmation windows, select the checkboxes to verify that you want to disable CloudHub Loggers the server group:
+. In the *Disabling CloudHub logs* confirmation window, select the checkboxes to verify that you want to disable CloudHub logs:
 +
 .The screen shows the *Disabling CloudHub logs* confirmation window.
 image::cloudhub-disable-logs-verify.png[Disabling CloudHub logs confirmation window]
@@ -122,7 +122,7 @@ image::cloudhub-disable-logs-verify.png[Disabling CloudHub logs confirmation win
 . Review your application settings to ensure they are correct.
 . Click *Apply Changes* to restart your application.
 
-Once your application starts, logs start flowing to your custom Log4j appender and are viewable on your target logging system.
+After your application starts, logs start flowing to your custom Log4j appender and are viewable on your target logging system.
 
 == See Also 
 
