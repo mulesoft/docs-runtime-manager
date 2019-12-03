@@ -34,7 +34,7 @@ When the application starts, the logs display a message to indicate that monitor
 .The arrow shows the `Monitoring enabled` and `Registering ping flow injector` messages in the logs.
 image::cloudhub-app-monitor-enabled.png[Monitoring enabled and Registering ping flow injector message in the logs]
 +
-Every 30 seconds, CloudHub sends an HTTP GET request to the ping flow within the application.
+Every 30 seconds, CloudHub sends an HTTP GET request to the ping flow.
 +
 If the application is running normally, the ping flow sends a response.
 If CloudHub receives no response from the ping three times in a row, the logs display a warning and a full thread dump.
