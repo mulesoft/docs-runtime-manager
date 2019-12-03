@@ -70,18 +70,19 @@ image::cloudhub-app-autorestart.png[Automatically restart application when not r
 
 == How Automatic Restarts Work
 
-* If you select the *Automatically restart application when not responding* option, CloudHub monitors the worker and also automatically restarts the application if necessary.
-+
+If you select the *Automatically restart application when not responding* option, CloudHub monitors the worker and also automatically restarts the application if necessary.
+
 CloudHub displays a notification that the app is restarting and another to report the success or failure of the restart.
-+
-** If the restart succeeds, the ping script is reinitialized so that monitoring continues.
-** If the restart fails, CloudHub continues to attempt restarting the app up to five times.
-+
-Once the maximum number of restart attempts is exceeded, CloudHub takes no further action. The monitoring script exits and the application is left unchanged until you manually intervene.
-+
+
+* If the restart succeeds, the ping script is reinitialized so that monitoring continues.
+* If the restart fails, CloudHub continues to attempt restarting the app up to a total of five times.
+
+After the maximum number of restart attempts is exceeded, CloudHub takes no further action. The monitoring script exits and the application is left unchanged until you manually intervene.
+
 The logs report the details of the restart procedure.
-* If you don't select the *Automatically restart application when not responding* option, the monitoring script exits and the application is left unchanged until you manually restart.
-+
+
+If you don't select the *Automatically restart application when not responding* option, the monitoring script exits and the application is left unchanged until you manually restart.
+
 CloudHub displays a notification and a log message and takes no further action.
 
 == See Also
