@@ -37,7 +37,7 @@ image::cloudhub-app-monitor-enabled.png[Monitoring enabled and Registering ping 
 Every 30 seconds, CloudHub sends an HTTP GET request to the ping flow.
 +
 If the application is running normally, the ping flow sends a response.
-If CloudHub receives no response from the ping three times in a row, the logs display a warning and a full thread dump.
+If CloudHub receives no response from three consecutive pings, the logs display a warning and a full thread dump.
 
 In both cases, CloudHub triggers a notification to the console to alert you that a worker for an application stopped responding.
 
