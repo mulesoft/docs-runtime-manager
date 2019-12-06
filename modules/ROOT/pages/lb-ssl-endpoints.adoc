@@ -29,7 +29,15 @@ For example, to create a self-signed certificate and corresponding private key:
 openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 3000 -out example-com-crt.pem
 ----
 . When prompted, enter the certificate information.
-
++
+This command creates two `.pem` files:
++
+----
+example-com-crt.pem	
+example-com-private.pem 
+----
++
+You pass these `.pem` files on the command line when you add an SSL endpoint to the load balancer.
 
 Alternatively, you can pass a certificate information configuration file to the `openssl` command.
 

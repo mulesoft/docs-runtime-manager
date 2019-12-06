@@ -1,9 +1,9 @@
-= Uploading Certificates to a Dedicated Load Balancer
+= Adding Certificates to a Dedicated Load Balancer
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The certificate that you upload to your load balancer must be contained in one unencrypted, PEM-encoded file.
+The certificate that you add to your load balancer must be contained in one unencrypted, PEM-encoded file.
 
 This file must contain the entire certificate chain ordered sequentially: 
 
@@ -20,13 +20,56 @@ This file must contain the entire certificate chain ordered sequentially:
 
 You don't need to include the root certificate in the certificate chain. However, ensure to include the ASCII armor in each certificate.
 
-When creating the load balancer, you can upload an SSL endpoint using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command from the CLI. 
+== Add a Certificate When Creating a Load Balancer
 
-You can upload a new SSL endpoint to an existing load balancer using Runtime Manager or the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-ssl-endpoint-add[`cloudhub load-balancer ssl-endpoint add`] command from the CLI.
+You can add a certificate when creating a load balancer using Runtime Manager or the command-line interface.
+
+To add a certificate using Runtime Manager:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*, then click *Create Load Balancer*.
+. Complete the fields.
+. In the *Certificates* section, click *Add certificate*.
++
+.The arrow shows the *Add certificate* option in the *Create Load Balancer* page.
+image::lb-cert-upload-create.png[Add certificate option in the Create Load Balancer page]
+. On the *Create Load Balancer | Add certificate* page, select *Choose File* to upload the public key and private key files.
+. Click *Save Certificate*.
+. Click *Create Load Balancer*. 
+
+To add a certificate when creating a load balancer using the CLI: 
+
+----
+cloudhub load-balancer create myVPC myLB_name example-com-crt.pem example-com-private.pem
+----
+
+
+== Add a New Certificate to an Existing Load Balancer
+
+You can add a certificate to an existing load balancer using Runtime Manager or the command-line interface.
+
+To upload a certificate using Runtime Manager:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*, then click the load balancer name.
+. In the *Certificates* tab, click *Add certificate*.
++
+.The arrow shows the *Add certificate* option in the *Certificates* tab.
+image::lb-cert-upload-update.png[Add certificate option in the load balancer settings page]
+. Select *Choose File* to upload the public key and private key files.
+. Click *Save Certificate*.
+
+To add a certificate to an existing load balancer using the CLI: 
+
+----
+cloudhub load-balancer ssl-endpoint add myLB_name example-com-crt.pem example-com-private.pem
+----
+
 
 == See Also
 
 * xref:lp-ssl-endpoints[Configure SSL Endpoints]
 * xref:lb-create-arm.adoc[Create a Load Balancer (Runtime Manager)]
-* xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[cloudhub load balancer create]
-* xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]
+* xref:lb-create-cli.adoc[Create a Load Balancer (Anypoint Platform CLI)]
+* xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-create[cloudhub load balancer create]
+* xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]
