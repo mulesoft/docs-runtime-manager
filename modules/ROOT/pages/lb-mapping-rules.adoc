@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 The load balancer configuration is defined by a list of mapping rules that describe how an input URL should be translated into calls to different CloudHub apps.
 Mapping rules are attributes of the load balancer's SSL endpoint.
 When you create a mapping rule, you need to specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
