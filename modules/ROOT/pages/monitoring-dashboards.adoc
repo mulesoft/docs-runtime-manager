@@ -38,6 +38,10 @@ The app monitoring dashboards help you answer questions about your integrated ap
 * What impact do high traffic peaks have on the message fail rate?
 * What impact do high traffic peaks of other apps running on the same server have on the performance of a given app?
 
+
+[NOTE]
+After the worker is restarted, the CPU and memory information is not available in the dashboards. To retain these statistics, use the `dashboardStats` API. Alternatively, you can use Anypoint Monitoring with a Titanium subscription to store this data.
+
 === Built-in Anypoint Monitoring Dashboard
 
 The Anypoint Monitoring dashboard provides a wider array of monitoring metrics than the classic application monitoring dashboard and includes several pages in which to view different types of charts. 
@@ -284,6 +288,8 @@ From this dashboard, you can click a <<Access the Server Monitoring Dashboard,se
 
 == See Also
 
+* xref:monitoring::index.adoc[Anypoint Monitoring Overview]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/1.0.11/console/method/%231708/[CloudHub API dashboardStats]
 * xref:monitoring::configure-monitoring-cloudhub.adoc[Configure and Enable Anypoint Monitoring for Mule Apps (CloudHub)]
 * xref:monitoring::app-dashboards.adoc[Built-in Application Dashboard]
 * xref:cloudhub.adoc[CloudHub] 
