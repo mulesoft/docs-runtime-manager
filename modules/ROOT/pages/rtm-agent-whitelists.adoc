@@ -13,7 +13,14 @@ image:logo-server-active.png[link="/runtime-manager/deployment-strategies", titl
 
 In your network, you must whitelist the hostnames and ports of various parts of the Anypoint Platform to allow Runtime Manager agent in a customer-hosted Mule runtime engine to communicate with the online Anypoint Platform APIs and services managed by MuleSoft.
 
-These tables show you the ports or IP addresses/hostnames to add to your whitelists to allow communication between the agent and the Runtime Manager console:
+These tables show you the ports or IP addresses/hostnames to add to your whitelists to allow communication between the agent and the Runtime Manager console.
+
+Because the following endpoints use mutual TLS authentication, you must configure SSL passthrough: 
+
+* mule-manager.anypoint.mulesoft.com
+* runtime-manager.anypoint.mulesoft.com
+* arm-auth-proxy.prod.cloudhub.io
+* data-authenticator.anypoint.mulesoft.com
 
 == Ports
 
@@ -35,6 +42,7 @@ These tables show you the ports or IP addresses/hostnames to add to your whiteli
 |*EU*|data-authenticator.eu1.anypoint.mulesoft.com |  443
 |*EU*|exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com |  443
 |===
+
 
 == Static IP Addresses
 
