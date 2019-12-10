@@ -4,6 +4,11 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, runtime manager, arm, load balancing, ssl, two way tls,
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 A dedicated load balancer must have at least one certificate associated with it. To configure an SSL endpoint for your load balancer to serve to clients, provide a certificate and private key pair for your load balancer. 
 
 A load balancer can have multiple and independent SSL endpoints, each identified by its server certificate common name.
@@ -37,9 +42,9 @@ example-com-crt.pem
 example-com-private.pem 
 ----
 +
-You pass these `.pem` files on the command line when you add an SSL endpoint to the load balancer.
+You upload these `.pem` files in Runtime Manager or pass them on the command line when you add an SSL endpoint to the load balancer.
 
-Alternatively, you can pass a certificate information configuration file to the `openssl` command.
+Alternatively, you can pass a certificate information configuration file to the `openssl` command using the `-config` option.
 
 For example, this certificate configuration file named `example-com.cfg` defines the DNS domain `example.com` that includes some SANs (Subject Alternate Names) for Mule applications `app1.example.com` and `app2.example.com`.
 
@@ -62,6 +67,13 @@ subjectAltName = @alt_names
 DNS.1   = app1.example.com
 DNS.2   = app2.example.com
 ----
+
+Run the following command:
+
+----
+openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 3000 -out example-com-crt.pem -config example-com.cfg
+----
+
 
 === Create a Wildcard Certificate
 
