@@ -42,9 +42,9 @@ example-com-crt.pem
 example-com-private.pem 
 ----
 +
-You pass these `.pem` files on the command line when you add an SSL endpoint to the load balancer.
+You upload these `.pem` files in Runtime Manager or pass them on the command line when you add an SSL endpoint to the load balancer.
 
-Alternatively, you can pass a certificate information configuration file to the `openssl` command.
+Alternatively, you can pass a certificate information configuration file to the `openssl` command using the `-config` option.
 
 For example, this certificate configuration file named `example-com.cfg` defines the DNS domain `example.com` that includes some SANs (Subject Alternate Names) for Mule applications `app1.example.com` and `app2.example.com`.
 
@@ -67,6 +67,13 @@ subjectAltName = @alt_names
 DNS.1   = app1.example.com
 DNS.2   = app2.example.com
 ----
+
+Run the following command:
+
+----
+openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 3000 -out example-com-crt.pem -config example-com.cfg
+----
+
 
 === Create a Wildcard Certificate
 
