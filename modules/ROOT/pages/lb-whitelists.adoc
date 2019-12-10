@@ -9,16 +9,16 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 
-If you want to allow IP addresses access to your dedicated load balancer (DLB), you must pass those IP addresses in CIDR notation.
+If you want to allow IP addresses access to your dedicated load balancer (DLB), you must add those IP addresses to the DLB in CIDR notation.
 
 [NOTE]
 The whitelist works for inbound connections at the load-balancer level only, not at the CN certificate level.
 
 You can either add the whitelisted IP addresses when you create the DLB or add them to an existing DLB using either Runtime Manager or the command-line interface.
 
-== Add IPs to Whitelist to an Existing Load Balancer
+== Add an IP address to the Whitelist of an Existing Load Balancer
 
-To add an IP address to the whitelist for a DLB using Runtime Manager:
+To add an IP address to the whitelist of a DLB using Runtime Manager:
 
 . From Anypoint Platform, click *Runtime Manager*.
 . Click *Load Balancers* and then click the load balancer name.
@@ -27,8 +27,6 @@ To add an IP address to the whitelist for a DLB using Runtime Manager:
 .The arrow shows the *Add New CIDR* option in the *Whitelisted CIDRs* tab.
 image::lb-whitelist-update.png[*Add New CIDR* option in the load balancer settings page]
 . Enter the IP address in valid CIDR format (for example, `10.2.0.0/16`).
-+
-The IP address must be in valid CIDR format. For example: `10.2.0.0/16`.
 . Click *Add To List*.
 . If you want to delete a CIDR, hover over the *...* icon to display the trash can icon.
 . Click *Apply Changes*.
