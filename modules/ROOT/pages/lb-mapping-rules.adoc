@@ -3,14 +3,76 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The load balancer configuration is defined by a list of mapping rules that describe how an input URL should be translated into calls to different CloudHub apps.
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
+The CloudHub dedicated load balancer (DLB) provides the ability to create mapping rules, which define how to translate an input URL into a call to CloudHub apps.
+
+----
+You can also use mapping rules to rename requests to the CloudHub dedicated load balancer to a different Mule application domain name.
+Alternatively, you can create a custom mapping policy to redirect outside requests from your load balancer to your specific application.
+
+You can create a mapping rule to rename the Mule application, so it can be accessed through a different domain name.
+
+For example, suppose you deploy a Mule application named myApp-myCompany-prod.cloudhub.io. CloudHub domain names must be globally unique among every other MuleSoft customer and Mule application. A dedicated load balancer helps you hide this naming complexity within your corporate DNS domain name.
+
+You can set a mapping rule in your dedicated load balancer so external clients can access the Mule application on http://myApp.lb-name.lb.anypointdns.net, or https://myApp.lb-name.lb.anypointdns.net:443.
+
+In addition, you can set a CNAME record in your corporate DNS nameserver to mask the lb-name.lb.anypointdns.net domain to your company’s "vanity" domain.
+
+For example, suppose your company owns the DNS domain example.com. You can create a CNAME record to route requests to myapp.example.com to myApp.lb-name.lb.anypointdns.net. This hides the complexity of the CloudHub domain name in the cloudhub.io domain.
+
+----
+
+
+
+
 Mapping rules are attributes of the load balancer's SSL endpoint.
-When you create a mapping rule, you need to specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
 
 When you create a simple matching rule, one input address is matched to the defined output: the endpoint of one of your applications.
 Instead of using literal matchings, you can also use a pattern to match a variable, such as input text to an endpoint.
 
 By using proxy rules, you can map a domain or subdomain to one of your Mule applications running in CloudHub.
+
+
+
+When you create a mapping rule, you need to specify a certificate Common Name (CN).
+Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
+
+
+== Creating Mapping Rules
+
+A mapping rule defines an input URL and an output URL.
+
+* The input URL is described using a URI parameter that the user can specify.
+
+
+The `URI` is a string or pattern that describes the input URI.
+
+The input URL follows the main load balancer’s domain and should remain constant for the same load balancer.
+
+The output URL is specified by two fields:
+
+* `appName`
++
+Outputs the application name where the request is forwarded.
+* `appURI`
++
+Specifies the URI string that is passed to the resolved application.
+
+You can define both input and output URLs using patterns or literal strings.
+
+Mapping rules are attributes of the load balancer's SSL endpoint, which is identified by the certificate name.
+When you create a mapping rule, you must specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
+
+If your SSL endpoint sets a https://en.wikipedia.org/wiki/Wildcard_certificate[wildcard certificate], and you want to use the subdomain portion in a mapping rule, you can use the pre-defined `{subdomain}` variable.
+
+The rule which is defined first has high priority against other ones defined after it. This means that the first matched rule will be applied.
+You can create, view and delete existing rules using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-add[`mappings add`], xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-describe[`mappings describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-remove[`mappings remove`] commands respectively.
+
+
 
 == Using Patterns in Mapping Rules
 
@@ -42,33 +104,6 @@ For `input=”bookings.example.com”`, the pattern can be resolved by assigning
 
 Depending on your design, you can leverage your internal redirects to your endpoints by using either patterns or literal mappings.
 
-
-== Creating Mapping Rules
-
-A mapping rule is a set of fields that define an input URL, and a set of fields that describe the output URL.
-
-The input URL is described using a URI parameter that can be specified by the user. The `URI` is a string or pattern that describes the input URI.
-
-The input URL follows the main load balancer’s domain and should remain constant for the same load balancer.
-
-The output URL is specified by two fields:
-
-* `appName`
-+
-Outputs the application name where the request is forwarded.
-* `appURI`
-+
-Specifies the URI string that is passed to the resolved application.
-
-You can define both input and output URLs using patterns or literal strings.
-
-Mapping rules are attributes of the load balancer's SSL endpoint, which is identified by the certificate name.
-When you create a mapping rule, you must specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
-
-If your SSL endpoint sets a https://en.wikipedia.org/wiki/Wildcard_certificate[wildcard certificate], and you want to use the subdomain portion in a mapping rule, you can use the pre-defined `{subdomain}` variable.
-
-The rule which is defined first has high priority against other ones defined after it. This means that the first matched rule will be applied.
-You can create, view and delete existing rules using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-add[`mappings add`], xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-describe[`mappings describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-remove[`mappings remove`] commands respectively.
 
 
 == Mapping Rule Examples
@@ -155,7 +190,7 @@ Every rule must have a priority defined. When creating rules, pay attention to t
 
 === Ordering and Prioritizing Rules
 
-You can set the order of your mapping rules when creating them using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-mappings-add[`cloudhub load-balancer mappings add`] command in the Anypoint Platform CLI and specifying an index value.
+You can set the order of your mapping rules when creating them using the xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add] command in the Anypoint Platform CLI and specifying an index value.
 
 When using the API to create a rule, you cannot specify a priority order, but you can send a `PATCH` request later to the load balancer endpoint `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbalancerId}` and update your rules expressions with an order index, to match your needs based on the order logic explained above.
 
