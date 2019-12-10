@@ -101,7 +101,7 @@ If you have a wildcard certificate (such as `*.example.com`), you can use the `s
 |   |  *URI*   |       *appName*    |  *appURI*
 | 0 | /        | {subdomain}   | /
 |===
-This rule automatically maps any request passed to a subdomain of `example.com` to the corresponding `appName`. For example:
+This rule automatically maps any request passed to a subdomain of `example.com` to the corresponding `appName`:
 
 * Passing `api.example.com` would redirect to `api.cloudhub.io` +
 * Passing `application.example.com` is mapped to `application.cloudhub.io`.
