@@ -9,7 +9,7 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybr
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-In a CloudHub deployment, there are several ways to add properties to an application. 
+In a CloudHub deployment, you can add properties to an application using Anypoint Runtime Manager or the `mule-app.properties` file.
 
 == Add Properties in Runtime Manager 
 
@@ -29,14 +29,15 @@ image::hybrid-app-props.png[*Properties* tab, *Key* and *Value* fields, and *...
 . Enter the property name in the *Key* field.
 . Enter the property value in the *Value* field.
 . Click *Save*, and then *Redeploy Application*.
-. You can edit or delete a property using options in the *...* menu.
 
-== Manage Properties in mule-app.properties 
+You can edit or delete a property using options in the *...* menu.
+
+== Add Properties with the mule-app.properties file
 
 You can add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts. This method isn't recommended on CloudHub because, when your application is deployed, entries in the CloudHub *Properties* tab override any other property with the same name defined in the bundled files within the application. 
 
 You can change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive.
-To do this, change options in the Property Placeholder element in the Mule application. See https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information about non-default property placeholder options.
+To do this, change options in the Property Placeholder element in the Mule application. See https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information about nondefault property placeholder options.
 
 You can also flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. 
 
