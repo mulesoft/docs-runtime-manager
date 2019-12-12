@@ -97,7 +97,7 @@ CloudHub also actively monitors services and workers for problems and corrects i
 
 * *JDK versions*
 +
-The version of JDK that CloudHub implements for all apps built with Mule runtime 3.5.1 or greater is JDK 1.7. Mule runtime 3.7.0 also supports JDK 1.8. Apps built with runtime 3.5.0 or earlier are deployed with JDK 1.6.
+The version of JDK that CloudHub implements for all apps built with Mule runtime 3.5.1 or later is JDK 1.7. Mule runtime 3.7.0 also supports JDK 1.8. Apps built with runtime 3.5.0 or earlier are deployed with JDK 1.6.
 * *Load balancing*
 +
 If your app runs on multiple workers, the CloudHub shared load automatically balances incoming traffic.
@@ -221,13 +221,13 @@ See xref:connectors::object-store/object-store-connector.adoc[Object Stores].
 * *Scheduling*
 +
 The scheduling feature is not available for hybrid deployments.
-To schedule tasks, use the Scheduler Endpoint element in your flows.
+To schedule tasks, use the Scheduler endpoint element in your flows.
 +
 See xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint].
 
 * *Security updates*
 +
-After an application is deployed and running, you must apply any updates for the selected runtime version manually.
+After an application is deployed and running, you must apply any security updates for the selected runtime version manually.
 
 
 * *Shared resource support*
@@ -412,7 +412,7 @@ See xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High
 * *Scheduling*
 +
 The scheduling feature is not available for Runtime Fabric deployments.
-To schedule tasks, use the Scheduler Endpoint element in your flows.
+To schedule tasks, use the Scheduler endpoint element in your flows.
 +
 See xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint].
 
