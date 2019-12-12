@@ -19,7 +19,7 @@ Some CloudHub modules, such as Anypoint Object Store v1, application settings, a
 
 Anypoint Virtual Private Cloud (Anypoint VPC) is set up at the region level. If a region is unavailable, Anypoint VPC is unavailable unless a previous Anypoint VPC instance is set up for the other region.
 
-=== Anypoint CloudHub Default Deployment Model
+== Anypoint CloudHub Default Deployment Model
 
 If the application uses multiple workers, CloudHub deploys the workers in separate availability zones by default, providing HA across availability zones. The distance between the availability zones is variable and generally doesn't exceed 350 miles.
 
@@ -31,7 +31,7 @@ In this case, the application might experience downtime.
 You can set up `status.mulesoft.com` to receive alerts when a failure occurs in an availability zone or region.
 
 
-=== Anypoint CloudHub Alternative Deployment Model
+== Anypoint CloudHub Alternative Deployment Model
 
 You can use a load balancer (cloud or on-premises) for applications deployed to different regions to provide a better disaster recovery strategy.
 
