@@ -3,8 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can use Runtime Manager to create a dedicated load balancer in your CloudHub environment.
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
+
+You can use Runtime Manager to create a dedicated load balancer (DLB) in your CloudHub environment.
 
 == Prerequisites
 
@@ -24,7 +29,10 @@ Similarly, the administrator role of the same organization also provides the aut
 
 . Enter a name for your load balancer.
 +
-The CloudHub dedicated load balancer name must be unique across the platform. Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdns.net` name where `_lb-name_` is the name you provide.
+The CloudHub DLB name must be unique across all DLBs defined in Anypoint Platform (by all MuleSoft customers).
+For this reason, you might want to append your organization name to your DLB name.
++
+Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdns.net` name where `_lb-name_` is the name you provide.
 
 . Select a target Anypoint VPC from the drop-down list.
 
@@ -48,28 +56,32 @@ Redirects the request to the same URL using the HTTPS protocol.
 
 . Add a certificate.
 
-.. Click *Add Certificate*
-.. Add both a public and a private key.
-.. (Optional) Select *Support TLS 1.0*.
-.. (Optional) Add a client certificate.
+.. Click *Add certificate*.
++
+.The arrow shows the *Add certificate* option in the *Create Load Balancer* page.
+image::lb-cert-upload-create.png[Add certificate option in the Create Load Balancer page]
+.. On the *Create Load Balancer | Add certificate* page, select *Choose File* to upload both public key and private key files.
+.. If you want to add a client certificate, click *Choose File* to upload the file.
 +
 The client certificate is a trusted CA certificate used to verify client certificates.
 
-.. (Optional) Add URL mapping rules.
+.. If you want to add URL mapping rules, click the *>* icon to display the options:
++
+.The arrow shows the expand icon in the *Create Load Balancer | Add certificate* page.
+image::lb-create-mapping-rules.png[Expand icon in the *Create Load Balancer | Add certificate* page.]
 +
 If you add more than one URL mapping rule, order the rules in the list according to the priority in which they should be applied.
 +
 Click *Add New Rule*, and then specify the input path, target app, output path, and protocol.
-
 .. Click *Save Certificate*.
-
-. Click *Save Load Balancer*.
+. Click *Create Load Balancer*. 
 
 
 
 == See Also
 
 * xref:access-management::index.adoc[Access Management]
-* xref:lb-cert-upload.adoc[Uploading Certificates]
+* xref:lb-cert-upload.adoc[Adding Certificates]
 * xref:lb-whitelists.adoc[Whitelists]
 * xref:lb-mapping-rules.adoc[Mapping Rules]
+* xref:lb-create-cli.adoc[Create a Load Balancer (Anypoint Platform CLI)]

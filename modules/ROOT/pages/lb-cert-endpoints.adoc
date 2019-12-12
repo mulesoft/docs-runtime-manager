@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 A dedicated load balancer must have at least one certificate associated with it. At least one configured SSL endpoint is required when you create a load balancer.
 
 Configure an SSL endpoint by providing a certificate and private key pair for your load balancer to serve to clients. Each load balancer can have multiple, independent SSL endpoints. Each endpoint is identified by their respective server certificate common name.
@@ -11,5 +16,5 @@ Configure an SSL endpoint by providing a certificate and private key pair for yo
 
 == See Also
 
-* xref:lb-cert-upload.adoc[Uploading Certificates]
+* xref:lb-cert-upload.adoc[Adding Certificates]
 * xref:lb-cert-validation.adoc[Certificate Validation]

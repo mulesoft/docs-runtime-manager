@@ -4,6 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, runtime manager, arm, load balancing, vanity url, ssl, two way tls,
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 CloudHub dedicated load balancers (DLBs) are an optional component of Anypoint Platform that enable you to route external HTTP and HTTPS traffic to multiple Mule applications deployed to CloudHub workers in a Virtual Private Cloud (VPC).
 
@@ -22,6 +26,8 @@ You can view the load balancer and Anypoint VPC endpoints in your Anypoint Platf
 == Creating and Configuring a Dedicated Load Balancer
 
 To create and configure a load balancer, you must be an administrator of the organization to which the load balancer is associated.
+
+DLB names must be unique across all DLBs defined in Anypoint Platform (by all MuleSoft customers).
 
 There are three ways to create and configure a dedicated load balancer for your Anypoint VPC:
 
