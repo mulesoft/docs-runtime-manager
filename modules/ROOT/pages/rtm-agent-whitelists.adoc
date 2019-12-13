@@ -15,12 +15,17 @@ In your network, you must whitelist the hostnames and ports of various parts of 
 
 These tables show you the ports or IP addresses/hostnames to add to your whitelists to allow communication between the agent and the Runtime Manager console.
 
-Because the following endpoints use mutual TLS authentication, you must configure SSL passthrough: 
+Because the following endpoints use mutual TLS authentication, to establish the connection, you must configure SSL passthrough to allow the certificates: 
 
 * mule-manager.anypoint.mulesoft.com
 * runtime-manager.anypoint.mulesoft.com
 * arm-auth-proxy.prod.cloudhub.io
 * data-authenticator.anypoint.mulesoft.com
+
+In addition, the following endpoints use WebSockets:
+
+* _This one_ 
+* _That one_
 
 == Ports
 
