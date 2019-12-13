@@ -1,4 +1,4 @@
-= Updating the Mule Version for CloudHub Apps 
+= Updating the Runtime Version for CloudHub Apps 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -8,8 +8,8 @@ image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title
 image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-To provide a safe cloud environment for applications and data, MuleSoft regularly scans apps deployed on CloudHub and identifies apps that require updates to Mule runtime engine.
-These updates provide the latest OS and security patches. To keep your apps up-to-date and secure, apply the Mule updates when they become available.
+To provide a safe cloud environment for applications and data, MuleSoft regularly scans apps deployed on CloudHub and identifies apps that require updates to the CloudHub runtimes.
+These updates provide the latest OS and security patches. To keep your apps up-to-date and secure, apply the updates when they become available.
 
 You can schedule and update your apps manually at your convenience or you can wait for MuleSoft to apply the updates automatically.
 
@@ -23,7 +23,7 @@ MuleSoft updates CloudHub apps automatically, based on the environment, on this 
 |===
 
 
-When a new version of Mule is available and CloudHub application updates are required:
+When a new version is available and CloudHub application updates are required:
 
 * The *Applications* page displays a banner and the *Update Required* tab lists the apps that require updates:
 +
@@ -35,9 +35,6 @@ image::cloudhub-app-update-req-page.png[Applications page with banner and Update
 .The screenshot shows (*1*) the banner and (*2*) the *Update Required* button on the *Settings* page.
 image::cloudhub-app-settings-update-req.png[Settings page with banner and Update Required button]
 
-// Is this a future enhancement?
-// The banner on the Applications page indicates the date when the updates will be applied automatically.
-
 If no apps require updates, no banner appears and the *Update Required* tab is empty.
 
 Because these updates contain required security patches, you cannot roll back these updates once applied.
@@ -45,7 +42,7 @@ Because these updates contain required security patches, you cannot roll back th
 
 == Update the App Manually 
 
-The *Update Required* tab indicates one or more apps require an update to Mule. You can schedule the update to occur at your convenience.
+The *Update Required* tab indicates one or more apps require an update. You can schedule the update to occur at your convenience.
 
 Before updating apps in the Production environment, update them in the Sandbox environment and run required tests.
 
@@ -56,7 +53,7 @@ To update an app to the latest security patch:
 . Click the app status to display the details pane on the right.
 . Click the *Manage Application* button to display the *Settings* page for the app.
 +
-If the app requires an update to Mule runtime engine, *Update Required* appears in the *Runtime version* field:
+If the app requires an update, *Update Required* appears in the *Runtime version* field:
 +
 .The screenshot shows (*1*) the *Update Required* button and (*2*) the *Runtime version* menu on the *Settings* page.
 image::cloudhub-app-update-settings-page.png[App Required Settings page]
@@ -67,11 +64,8 @@ Although the version number of the update might be the same as the installed ver
 . If you want to see details about the version, click the *Read release notes* link.
 . Click the *Apply Changes* button to update the app. 
 
-CloudHub updates app with the Mule runtime engine version you selected and displays a message indicating success or failure.
+CloudHub updates app with the version you selected and displays a message indicating success or failure.
 
 If the app update was successful, the app no longer appears in the *Update Required* tab on the *Applications* page.
 
-If the app update was unsuccessful, the app remains in the *Update Required* tab .
-
-// Include this or not?
-// If you experience a sustained outage after updating, contact MuleSoft Support.
+If the app update was unsuccessful, the app remains in the *Update Required* tab.
