@@ -13,8 +13,6 @@ CloudHub continuously verifies the health of the workers running Mule applicatio
 When a worker is impaired by hardware or software failures, including network unavailability, memory issues, server hardware failures, or file corruption, CloudHub automatically attempts to restart the app on a new worker.
 After the app is completely up and running, CloudHub switches the traffic to the new app instance and deletes the old app instance, ensuring zero downtime.
 
-If successful, the worker and app restart within five minutes without any further action.
-
 If the application fails to start after five attempts, its status is *Failed* or *Unrecoverable Runtime Error* and you must manually restart the application.
 
 You see a notification indicating that the automatic restart occurred. The application log indicates when an app is restarted automatically and any failures. For example:
