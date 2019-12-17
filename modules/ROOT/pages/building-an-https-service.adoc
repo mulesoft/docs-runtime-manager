@@ -31,7 +31,7 @@ Before you begin, build a service (such as a simple "Hello World" service) and d
 
 == Modify Your Service to Use HTTPS
 
-For detailed information about the Anypoint Connector for HTTP, see the xref:3.8@mule-runtime::http-connector.adoc[HTTP Connector for Mule 3] documentation.
+For detailed information about the Anypoint Connector for HTTP (HTTP Connector), see the xref:3.8@mule-runtime::http-connector.adoc[HTTP Connector for Mule 3] documentation.
 
 To modify your existing service to use HTTPS:
 
@@ -48,7 +48,7 @@ You must specify the hostname (`SAN=DNS:localhost,IP:127.0.0.1` in the example) 
 +
 This command creates a file named `keystore.jks`.
 . Add `keystore.jks` to your Mule app in the folder `src/main/resources` in Studio.
-. Configure an HTTP Connector in your Mule app:
+. Configure HTTP Connector in your Mule app:
 +
 [source,xml,linenums]
 ----
@@ -60,7 +60,7 @@ This command creates a file named `keystore.jks`.
  </http:listener-config>
 ...
 ----
-In the HTTP Connector, specify:
+In HTTP Connector, specify:
 
 * Any host IP addresses you want to use with the HTTPS scheme for the value of `host` 
 * The `${https.port} variable for the value of `port`
