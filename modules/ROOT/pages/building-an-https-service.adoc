@@ -44,7 +44,7 @@ You can create a `keystore` file using the JDK `keytool` utility on the command 
 keytool -genkeypair -keystore keystore.jks   -dname "CN=localhost, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown"  -keypass password  -storepass password  -keyalg RSA  -sigalg SHA1withRSA  -keysize 2048  -alias mule  -ext SAN=DNS:localhost,IP:127.0.0.1 -validity 9999
 ----
 +
-You must specify the hostname (`SAN=DNS:localhost,IP:127.0.0.1` in the example) on the command line to  generate a self-signed certificate.
+You must specify the hostname (`SAN=DNS:localhost,IP:127.0.0.1` in the example) on the command line to generate a self-signed certificate.
 +
 This command creates a file named `keystore.jks`.
 . Add `keystore.jks` to your Mule app in the folder `src/main/resources` in Studio.
