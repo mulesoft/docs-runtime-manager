@@ -5,9 +5,9 @@ endif::[]
 :keywords: cloudhub, managing, monitoring, deploy, runtime manager, arm
 
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 After you deploy an application to xref:deploying-to-cloudhub.adoc[CloudHub], you can use the Runtime Manager to manage your application at runtime.
 
@@ -112,40 +112,40 @@ To delete an existing environment variable, either delete the line in text forma
 
 When you complete adding, deleting, or editing your environment variables, click *Apply Changes* to save the changes and redeploy them.
 
-[NOTE]
-====
-*Secure Environment Variables*
+CloudHub also supports xref:secure-application-properties.adoc[safely hiding application properties] to protect sensitive information.
 
-CloudHub also supports xref:secure-application-properties.adoc[secure environment variables] to protect sensitive information.
-====
-
-== Downloading a Copy of Your Deployed Application
+== Download a Copy of Your Deployed Application
 
 The application most recently deployed is always available for download from the console. Select the *Properties* tab on the application *Settings* page, then click *Choose file*. Specify a location on your computer to save the file.
 
 image::downloadappfile.png[DownloadAppFile]
 
+
 [NOTE]
-====
-*Link not available?*
-
 If you can see the application name, but the name is not a live link, your administrator has disabled application downloads for users with developer and support account types. Contact your administrator if you need a copy of the application.
-====
 
 
+== Update Your Application
 
-== Updating Your Application
-
-If you made changes to your applications and would like to upload a new version:
+If you made changes to your applications and want to upload a new version:
 
 . Click *Choose file* on the Deployment screen for that application. The new filename appears in italicized text. 
-. Click *Apply changes* to use the new file for deployment. +
+. Click *Apply changes* to use the new file for deployment.
++
 Within a few seconds, your application successfully redeploys. While redeploying, the application status indicator changes to blue, and then turns green after the deployment completes. 
 . You can click *Logs* to see a live redeployment of your application.
 
-[NOTE]
 After successfully starting a new worker with the application's latest version, CloudHub overwrites the previous version and you can no longer download the previous archive or revert back to the previous version of application.
 
+=== Update the Mule Version for an Application
+
+If your application is running on an older version of Mule, you can upgrade your application to use the latest Mule version. To update, click *Runtime version*, select the version labeled *New*, and then click *Apply Changes*.
+
+.The arrow shows the *New* label for the *Runtime version* on the application *Settings* page.
+image::apps-update-runtime-version.png[New label for updating runtime version for an app]
+
+
+To update multiple apps at the same time, use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/1.0.13/console/method/%231545/[CloudHub API Bulk Action] operation.
 
 === Zero Downtime Updates with CloudHub
 
@@ -163,7 +163,7 @@ CloudHub supports updating your application so users of your HTTP APIs experienc
 
 CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab on your application settings page, then enable the *Use Static IP* checkbox. A static IP is allocated to your application and displayed in the table below; it will be used by the application when it restarts. If your application is not running, you can pre-allocate a static IP before starting the application. For details, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
 
-[CAUTION]
+[IMPORTANT]
 If your application is deleted, the static IP will be lost and you must request a new one.
 
 
@@ -180,20 +180,15 @@ CloudHub specifies this port for you and automatically load-balances your domain
 
 == See Also
 
-Additional tools for managing your applications:
-
-
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
-* xref:deployment-strategies.adoc[Deployment Strategies]
-* xref:monitoring.adoc[Monitoring Applications] shows you how you can set up email alerts for whenever certain events occur with your application or workers
+* xref:deployment-strategies.adoc[Deployment Options]
+* xref:monitoring.adoc[Monitoring Applications]
 * xref:cloudhub-fabric.adoc[Clustering]
 * xref:managing-queues.adoc[Managing Queues]
 * xref:managing-schedules.adoc[Managing Schedules]
 * xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Command Line Tools]
-* xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:penetration-testing-policies.adoc[Penetration Testing Policies]
+* xref:anypoint-platform-cli.adoc[Anypoint Platform CLI]
+* xref:secure-application-properties.adoc[Safely Hiding Application Properties]
