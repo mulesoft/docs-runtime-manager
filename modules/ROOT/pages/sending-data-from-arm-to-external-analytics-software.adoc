@@ -385,8 +385,8 @@ image::elk-config-advanced.jpg[ELK advanced]
 
 Before you can set up the connection to external software through the Runtime Manager UI, you must first make some changes to the API gateway to prepare it for this.
 
-. In your API gateway standalone directory, look for the `conf/wrapper.conf` file
-. In it find the following line and make sure that the property is set to "true"
+. In your API gateway standalone directory, open the `conf/wrapper.conf` file.
+. Ensure that the following property is set to `true` and that the line is uncommented:
 +
 [source,java,linenums]
 ----
