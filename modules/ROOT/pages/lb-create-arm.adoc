@@ -65,21 +65,25 @@ The DLB only encodes the `%20` and `%23` characters. If a requesting URL include
 
 . Add a certificate:
 
-.. Click *Add Certificate*
-.. Add both a public and a private key.
-.. Add a client certificate, if required.
+.. Click *Add certificate*.
++
+.The arrow shows the *Add certificate* option in the *Create Load Balancer* page.
+image::lb-cert-upload-create.png[Add certificate option in the Create Load Balancer page]
+.. On the *Create Load Balancer | Add certificate* page, select *Choose File* to upload both public key and private key files.
+.. If you want to add a client certificate, click *Choose File* to upload the file.
 +
 The client certificate is a trusted CA certificate used to verify client certificates.
 
-.. Add URL mapping rules, if required.
+.. If you want to add URL mapping rules, click the *>* icon to display the options:
++
+.The arrow shows the expand icon in the *Create Load Balancer | Add certificate* page.
+image::lb-create-mapping-rules.png[Expand icon in the *Create Load Balancer | Add certificate* page.]
 +
 If you add more than one URL mapping rule, order the rules in the list according to the priority in which they should be applied.
 +
-Click *Add New Rule*, specify the input path, target app, output path, and protocol, and then click *Add Rule*.
-
+Click *Add New Rule*, and then specify the input path, target app, output path, and protocol.
 .. Click *Save Certificate*.
-
-. Click *Create Load Balancer*.
+. Click *Create Load Balancer*. 
 
 
 
@@ -91,3 +95,4 @@ Click *Add New Rule*, specify the input path, target app, output path, and proto
 * xref:lb-mapping-rules.adoc[Mapping Rules]
 * xref:lb-create-cli.adoc[Create a Load Balancer (Anypoint Platform CLI)]
 * xref:lb-create-api.adoc[Create a Load Balancer (CloudHub API)]
+

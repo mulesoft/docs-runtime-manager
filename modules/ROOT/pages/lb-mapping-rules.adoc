@@ -8,8 +8,9 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
+
 The CloudHub dedicated load balancer (DLB) routes requests from clients to Mule apps deployed within the VPC.
-Mapping rules enable you to rename requests to the DLB (input URL) to a different Mule application name and domain.
+_Mapping rules_ enable you to rename requests to the DLB (input URL) to a different Mule application name and domain.
 
 You can either define mapping rules when you create the DLB or add them to an existing DLB using Runtime Manager, the command-line interface (CLI), or the CloudHub API.
 
@@ -188,6 +189,7 @@ you can then use a mapping rule to map `app.example.com` to a different deployed
 |2 | /api/v1/secondapp | second-app | /api/v1	http
 |===
 
+
 You can route external requests to `+https://app.example.com+` to `+http://app.cloudhub.io/example+`:
 
 [%header,cols="10a,20a,20a,20a,10a"]
@@ -272,7 +274,7 @@ This rule maps the subdomain part of your domain name to the application name:
 
 == See Also
 
-* xref:anypoint-platform-cli-commands#commands-for-managing-your-cloudhub-dedicated-load-balancer[Commands for Managing your CloudHub Dedicated Load Balancer]
+* xref:anypoint-platform-cli-commands.adoc#commands-for-managing-your-cloudhub-dedicated-load-balancer[Commands for Managing your CloudHub Dedicated Load Balancer]
 * xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/version/V1/pages/home/[CloudHub API]
 * xref:lb-cert-upload.adoc[Adding Certificates]
