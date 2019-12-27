@@ -142,7 +142,7 @@ To determine the load balancer ID, perform a `GET` request to your endpoint:
 
 [source,text,linenums]
 ----
-`/organizations/{orgid}}/loadbalancers`
+/organizations/{orgid}}/loadbalancers
 ----
 
 
@@ -172,8 +172,8 @@ This rule matches the `dev-misc-mythellotest-v1-myapp` app:
 
 A _pattern_ is a string that defines a template for matching an input text. The value in curly brackets (`{   }`) is treated as a variable.
 
-* Variable *names* can contain only lowercase letters (a-z) and no other characters.
-* Variable *values* can contain the characters `a-z0-1.&?-_`, but can't contain slashes.
+* Variable *names* can contain only lowercase letters (`a-z`) and no other characters.
+* Variable *values* can contain the characters `a-z0-1.&?-_`, but can't contain slash characters (`/`).
 
 
 [IMPORTANT]
