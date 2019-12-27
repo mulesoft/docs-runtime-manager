@@ -61,7 +61,7 @@ Redirects the request to the same URL using the HTTPS protocol.
 [IMPORTANT]
 The DLB only encodes the `%20` and `%23` characters. If a requesting URL includes other special characters, they are not encoded and result in errors, such as `Illegal character in path`. See https://help.mulesoft.com/s/article/Some-Special-Characters-Do-Not-Work-in-URLs-to-DLB[DLB and Special Characters].
 * *Support TLS 1.0* supports Transport Layer Security (TLS) v1 encryption in addition to TLS v1.1 and TLS v1.2.
-* *Upstream TLS 1.2* enables TLS v1.2 encryption on upstream traffic.
+* *Upstream TLS 1.2* enables TLS v1.2 encryption on upstream traffic to the Mule workers behind the DLB.
 
 . Add a certificate:
 
@@ -95,4 +95,3 @@ Click *Add New Rule*, and then specify the input path, target app, output path, 
 * xref:lb-mapping-rules.adoc[Mapping Rules]
 * xref:lb-create-cli.adoc[Create a Load Balancer (Anypoint Platform CLI)]
 * xref:lb-create-api.adoc[Create a Load Balancer (CloudHub API)]
-
