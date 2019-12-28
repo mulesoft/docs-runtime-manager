@@ -48,6 +48,7 @@ image::cloudhub-dlb-mapping-rules.png[the *Add New Rule* icon and the fields req
 + 
 The URL that the client requests: for example, `/{app}/`
 +
+[IMPORTANT]
 _What does this mean:_
 The input URL follows the main load balancer’s domain and should remain constant for the same load balancer.
 * *Target App* (`appName`)
@@ -66,6 +67,7 @@ By default, the load balancer listens to external requests on HTTPS and communic
 
 You can use either literal strings or patterns to define the input and output path.
 
+[IMPORTANT]
 _Remove this?_
 Depending on your design, you can leverage internal redirects to your endpoints by using either patterns or literal mappings.
 
@@ -177,7 +179,7 @@ A _pattern_ is a string that defines a template for matching an input text. The 
 
 
 [IMPORTANT]
-Patterns in the *Output Path* (`appURI`) are not supported.
+DLBs don't support patterns in the *Output Path* (`appURI`).
 
 If you set up a DNS CNAME record to map `example.com` to `_lb-name_.lb.anypointdns.net`,
 you can then use a mapping rule to map `app.example.com` to a different deployed CloudHub Mule application name.
