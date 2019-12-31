@@ -3,25 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Create an Anypoint VPN using Runtime Manager. 
-
-When you create or configure an Anypoint VPN, you must provide the following information:
-
-* *Remote IP address:*
-+
-The public IP address of your VPN endpoint.
-* *Remote and Local Autonomous System Number (ASN)*:
-+
-Specifies the collection of routing prefixes. You must configure both a remote and local ASN before creating an Anypoint VPN. This is required only if you are using dynamic routing.
-* *Classless Inter-Domain Routing (CIDR)*:
-+
-Specifies the routing address of your network. This is required only if you are using static routing.
-* *Pre-shared Key (PSK):*
-+
-Shared secret used by the network tunnel that connects Anypoint Platform and your network. This value is auto-generated if you select *Automatic Tunnel Configuration*.
-* *Point-to-Point CIDR:*
-+
-IP range used by the network tunnel. You must configure a unique IP address range for each tunnel. This value is auto-generated if you select *Automatic Tunnel Configuration*.
+Create an Anypoint VPN connection using Runtime Manager. 
 
 
 == Prerequisites
@@ -43,6 +25,22 @@ See xref:access-management::users#granting-permissions-and-roles-to-users[Granti
 The VPNs page is visible to Anypoint organizations that have VPN entitlements. 
 
 
+== Checklist
+
+When you create or configure an Anypoint VPN, you must provide the following information:
+[%noheader%autowidth.spread]
+|===
+| |*Remote IP address:* +
+The public IP address of your VPN endpoint. This must be a single, static IP address.
+| |*Static Routes (CIDR)*: +
+The subnets in your network that need to be accessible via the VPN. This is required only if you are using static routing.
+| |*Remote and Local ASN*: +
+The Autonomous System Number specifies the collection of routing prefixes. You must configure both a remote and local ASN. This is required only if you are using dynamic routing.
+| |*Pre-shared Key (PSK):* +
+Shared secret for the VPN tunnels. These values are auto-generated if you select *Automatic Tunnel Configuration*.
+| |*Point-to-Point CIDR:* +
+Private IP range for the VPN tunnel interfaces. These values are auto-generated if you select *Automatic Tunnel Configuration*.
+|===
 
 
 == Create an Anypoint VPN
@@ -87,6 +85,8 @@ a| Select *Static*, and then:
 For example: `10.0.0.0/8`
 . (Optional) To add additional subnets, click *Add New Rule*, and repeat the previous step.
 |===
+[NOTE]
+A maximum of 95 route table entries is permitted per VPC, regardless of the number of VPN connections. Consolidate networks to the fewest number possible to avoid exceeding the limit.
 . Select the *Tunnel Configuration* type. 
 +
 You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is sufficient. The following steps differ based on the tunnel type selected. 
@@ -97,6 +97,8 @@ You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is
 a|Select *Automatic*.
 
 No other inputs are required. This option automatically configures the tunnel settings for your Anypoint VPN.
+
+The tunnel settings are visible after VPN creation. 
 
 a|. Select *Custom*, and then enter the values for both tunnels:
 . In the *PSK* field, enter a value between 8-64 characters in length that does not begin with zero (0). + 
@@ -154,11 +156,11 @@ Depending on your configuration, tunnels might report a status of *DOWN* during 
 
 [%header%autowidth.spread]
 |===
-|Status |Tunnel 1/Tunnel 2 |Description
-|`Pending` |`DOWN\DOWN` |The VPN connection is recently created, and actions are pending in the background. You might see this status for 10-15 minutes after creating a VPN
+|Status |Tunnel 1/2 |Description
+|`Pending` |`DOWN\DOWN` |The VPN connection is recently created, and actions are pending in the background. You might see this status for 10-15 minutes after creating a VPN.
 |`Available` |`DOWN\DOWN` |The VPN connection is created, but the remote side is not configured or is not sending traffic.
-|`Available` |`Up\Up` or `Up\Down` |The VPN connection is created, and the remote side established the connection successfully. Depending on the type of VPN and routing, the tunnels might operate in an active/active or active/passive mode.
-|`Failed` |`DOWN\DOWN` | The VPN connection was not created successfully. You have to delete the VPN and try again. If this failure reoccurs, contact MuleSoft Support.
+|`Available` |`Up\Up` or `Up\Down` |The VPN connection is created, and the remote side established the connection successfully. Tunnels operate in active/active or active/passive mode, depending on the routing configuration and your VPN device type. 
+|`Failed` |`DOWN\DOWN` | The VPN connection is not created. Delete the VPN and try again. If this failure reoccurs, contact MuleSoft Support.
 |===
 
 
