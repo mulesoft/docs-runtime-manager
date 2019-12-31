@@ -1,0 +1,55 @@
+= Update an Anypoint VPN Connection
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Update an Anypoint VPN connection using Runtime Manager. 
+
+== IP Addresses
+You cannot modify the Remote IP Address, or the Tunnel Configuration after you create the Anypoint VPN connection. To change these settings, you must recreate the Anypoint VPN, and update your VPN endpoint to reflect the changes.
+
+* Local External IP Addresses are dynamically assigned during VPN creation. It is not possible to reserve or re-use external IP addresses. If you recreate the VPN, new Local External IP Addresses are assigned.
+
+* Point-To-Point IP Addresses, and PSKs are defined during VPN creation. You may use Automaic Tunnel Configuration to generate values for these settings, or use the Custom Tunnel Configuration to define your own values for these settings. See xref:vpn-create-arm#create-an-anypoint-vpn[Create an Anypoint VPN] for more information.
+
+
+== Routing
+You cannot modify the Routing Type, or ASNs after you create the Anypoint VPN connection. To change these settings, you must recreate the Anypoint VPN, and update your VPN endpoint to reflect the changes.
+
+
+== Networks 
+
+* The local network is inherited from the VPC. It is not possible to subnet the VPC CIDR block.
+* You can modify the remote networks for an Anypoint VPN after creation. The following steps differ based on the routing type configured.
+[NOTE]
+A maximum of 95 route table entries is permitted per VPC, regardless of the number of VPN connections. Consolidate networks to the fewest number possible to avoid exceeding the limit.
+
+==== Static Routes
+. Sign into Anypoint Platform and select *Runtime Manager*.
+. From the menu on the left, click *VPNs*, and then select the VPN you want to update.
+. Under Static Routes, click *Add New Rule*.
+. In the *CIDR* field, enter a subnet that needs to be accessible via the VPN. +
+For example: `10.0.0.0/8`
+. (Optional) To add additional subnets, click *Add New Rule*, and repeat the previous step.
+. Click *Apply Changes* to add the new rules to the route table.
+. Review the Firewall Rules for the corresponding VPC. By default, all traffic to your VPC is blocked unless it’s explicitly allowed in a firewall rule. See: xref:vpc-firewall-rules-concept#add-or-edit-firewall-rules[VPC Firewall Rules].
+
+==== Dynamic Routes 
+. Update the BGP configuration on your own VPN endpoint. Refer to the documentation
+. The route table automatically updates when the changes are propagated by BGP.
+. Review the Firewall Rules for the corresponding VPC. By default, all traffic to your VPC is blocked unless it’s explicitly allowed in a firewall rule. See: xref:vpc-firewall-rules-concept#add-or-edit-firewall-rules[VPC Firewall Rules].
+
+
+== IPsec
+
+The Anypoint VPN endpoint acts only as a responder, meaning all IPsec settings are defined on your endpoint.
+
+* You can modify the VPN configuration of your endpoint to take advantage of any supported xref:vpn-about#ipsec-settings [IPsec Settings]. 
+* No changes are needed on the MuleSoft side.
+
+
+=== See Also
+
+* xref:vpn-about.adoc[Anypoint VPN]
+* xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud]
+* https://help.mulesoft.com/s/article/Anypoint-VPN-Knowledge-Articles[Anypoint VPN Knowledge Articles]
