@@ -65,41 +65,48 @@ From the list, select the Virtual Private Cloud for the Anypoint VPN connection.
 Enter the public IP address of your VPN endpoint.
 . Select the routing type to use. 
 +
-You can select either *BGP* or *Static*. Choose the Border Gateway Protocol (BGP) type if your device supports it.
+You can select either *BGP* (dynamic) or *Static*. Choose the Border Gateway Protocol (BGP) type if your device supports it.
 +
-* *To use dynamic routing*, select *BGP*, and then enter the following values:
+*To use dynamic routing*:
 +
-** *Remote ASN*
+.. Select *BGP*.
+.. Define the remote ASN.
 +
-Enter the ASN corresponding to your backend.
+Enter the ASN corresponding to your backend. You can use an existing ASN assigned to your network or a private ASN (64512–65534) that is not already assigned to your network. The default value is `65001`.
+.. Define the local ASN.
 +
-Use an existing ASN assigned to your network, or a private ASN (64512–65534) that is not already assigned to your network. The default value is `65001`.
-** *Local ASN*
+Assign an ASN for the MuleSoft side. Use a private ASN (64512–65534) that is not already assigned to your network. The default value is `64512`.
 +
-Assign an ASN for the MuleSoft side.
+
 +
-Use a private ASN (64512–65534) that is not already assigned to your network. The default value is `64512`
-* *To use static routing*, select *Static*, and then: 
+*To use static routing*:
 +
-.. In the *CIDR* field, enter a subnet that needs to be accessible via the VPN, for example, `10.0.0.0/8`.
+.. Select *Static*. 
+.. In the *CIDR* field, enter a subnet to make accessible through the VPN, for example, `10.0.0.0/8`.
 .. If you want to add additional subnets, click *Add New Rule*, and repeat the previous step.
 
 +
 A maximum of 95 route table entries is allowed per VPC, regardless of the number of VPN connections. To avoid exceeding the limit, consolidate networks to the fewest number possible.
 . Select the *Tunnel Configuration* type. 
 +
-You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is sufficient. The steps differ depending on the selected tunnel type: 
+You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is sufficient. The steps differ depending on the selected tunnel type.
 +
-* *To use Automatic tunnel configuration*, select *Automatic*.
+*To use Automatic tunnel configuration*:
++
+.. Select *Automatic*.
 +
 No other inputs are required. This option automatically configures the tunnel settings for your Anypoint VPN.
 +
 The tunnel settings are visible after VPN creation. 
-* *To use Custom tunnel configuration*, select *Custom*, and then enter the values for both tunnels:
-.. In the *PSK* field, enter a value between 8-64 characters in length that does not begin with zero (0).
++
+
+*To use Custom tunnel configuration*:
++
+.. Select *Custom*.
+.. In the *PSK* field for each tunnel, enter a value between 8-64 characters that does not begin with zero (0).
 + 
 Use only alphanumeric characters, periods (.), and underscores (&#95;). 
-.. In the *Point-to-Point CIDR* field, enter the IP address range for the internal address of the VPN tunnel.
+.. In the *Point-to-Point CIDR* field for each tunnel, enter the IP address range for the internal address of the VPN tunnel.
 +
 You can specify a size /30 CIDR block from the `169.254.0.0/16` range. The CIDR block must be unique across all VPN connections. 
 +
