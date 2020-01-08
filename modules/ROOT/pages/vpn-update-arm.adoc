@@ -16,7 +16,7 @@ You can update some Anypoint VPN connection settings using Runtime Manager.
 After you create the Anypoint VPN connection, you cannot modify the *Remote IP Address* or *Tunnel Configuration* settings. To change these settings, you must recreate the Anypoint VPN and update your VPN endpoint with the new values.
 
 Local external IP addresses are dynamically assigned during VPN creation.
-You can't reserve or reuse external IP addresses. When you recreate the VPN, new local external IP addresses are assigned.
+You cannot reserve or reuse external IP addresses. When you recreate the VPN, new local external IP addresses are assigned.
 
 Point-to-point IP addresses and Pre-Shared Keys (PSK) are defined during VPN creation.
 You can use *Automatic Tunnel Configuration* to generate values for these settings or use the *Custom Tunnel Configuration* to define your values for these settings. 
@@ -30,7 +30,7 @@ After you create the Anypoint VPN connection, you cannot modify the routing type
 
 == Networks 
 
-The local network is inherited from Anypoint VPC. You can't subnet the Anypoint VPC CIDR block.
+The local network is inherited from Anypoint VPC. MuleSoft does not allow you to subnet the Anypoint VPC CIDR block.
 
 You can modify the remote networks for an Anypoint VPN after creation. The steps differ depending on the configured routing type (static or dynamic).
 
@@ -57,11 +57,11 @@ By default, all traffic to your Anypoint VPC is blocked unless a firewall rule e
 
 To modify the remote networks for an Anypoint VPN that uses dynamic routing:
 
-. Update the Border Gateway Patrol (BGP) configuration on your VPN endpoint
+. Update the Border Gateway Protocol (BGP) configuration on your VPN endpoint.
 +
 See the documentation for your device.
 +
-The route table automatically updates when the changes are propagated by the BGP.
+When BGP propagates the changes, the route table updates automatically.
 . Review the firewall rules for the corresponding Anypoint VPC.
 +
 See xref:vpc-firewall-rules-concept#add-or-edit-firewall-rules[Add or Edit Firewall Rules].
