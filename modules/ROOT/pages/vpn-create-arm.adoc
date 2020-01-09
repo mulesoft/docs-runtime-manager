@@ -54,21 +54,21 @@ To create an Anypoint VPN:
 . From the menu on the left, click *VPNs*, and then click *Create VPN*.
 . Enter or select the following information for your Anypoint VPN:
 +
-* *Name*
-+
+--
+*Name*::
 Enter a name for your Anypoint VPN. 
-* *VPC* 
-+
+*VPC*::
 From the list, select the Virtual Private Cloud for the Anypoint VPN connection.
-* *Remote IP Address*
-+
+*Remote IP Address*::
 Enter the public IP address of your VPN endpoint.
+--
 . Select the routing type to use. 
 +
 You can select either *BGP* (dynamic) or *Static*. Choose the Border Gateway Protocol (BGP) type if your device supports it.
 +
 *To use dynamic routing*:
 +
+--
 .. Select *BGP*.
 .. Define the remote ASN.
 +
@@ -76,32 +76,35 @@ Enter the ASN corresponding to your backend. You can use an existing ASN assigne
 .. Define the local ASN.
 +
 Assign an ASN for the MuleSoft side. Use a private ASN (64512–65534) that is not already assigned to your network. The default value is `64512`.
-+
-
+--
 +
 *To use static routing*:
 +
+--
 .. Select *Static*. 
 .. In the *CIDR* field, enter a subnet to make accessible through the VPN, for example, `10.0.0.0/8`.
 .. If you want to add additional subnets, click *Add New Rule*, and repeat the previous step.
 
 +
 A maximum of 95 route table entries is allowed per VPC, regardless of the number of VPN connections. To avoid exceeding the limit, consolidate networks to the fewest number possible.
+--
 . Select the *Tunnel Configuration* type. 
 +
 You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is sufficient. The steps differ depending on the selected tunnel type.
 +
 *To use Automatic tunnel configuration*:
 +
+--
 .. Select *Automatic*.
 +
 No other inputs are required. This option automatically configures the tunnel settings for your Anypoint VPN.
 +
 The tunnel settings are visible after VPN creation. 
+--
 +
-
 *To use Custom tunnel configuration*:
 +
+--
 .. Select *Custom*.
 .. In the *PSK* field for each tunnel, enter a value between 8-64 characters that does not begin with zero (0).
 + 
@@ -122,9 +125,9 @@ You cannot use the following CIDR blocks:
 169.254.169.252/30
 ----
 
-+
 [NOTE]
 You cannot modify tunnel settings after you create the Anypoint VPN connection. To change the settings for an existing connection, delete the Anypoint VPN connection and create a new one.
+--
 . Click *Create VPN*.
 +
 Initially, the status of the VPN is `PENDING`. This is the expected status while the infrastructure is created. After the status changes to `AVAILABLE`, continue with the next steps. 
