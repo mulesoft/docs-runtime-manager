@@ -35,7 +35,7 @@ The local network is inherited from Anypoint VPC. MuleSoft does not allow you to
 You can modify the remote networks for an Anypoint VPN after creation. The steps differ depending on the configured routing type (static or dynamic).
 
 [NOTE]
-A maximum of 95 route-table entries is allowed per Anypoint VPC, regardless of the number of VPN connections. To avoid exceeding this limit, consolidate networks to the fewest number possible.
+A maximum of 95 route table entries is allowed per Anypoint VPC, regardless of the number of VPN connections. To avoid exceeding this limit, consolidate networks to the fewest number possible.
 
 === Static Routes
 
@@ -46,27 +46,33 @@ To modify the remote networks for an Anypoint VPN that uses static routing:
 . Under *Static Routes*, click *Add New Rule*.
 . In the *CIDR* field, enter a subnet to make accessible through the VPN, for example, `10.0.0.0/8`.
 . If you want to add additional subnets, click *Add New Rule* and repeat step 4.
-. Click *Apply Changes* to add the new rules to the route table.
+. Click *Apply Changes* to add the new rules.
 . Review the firewall rules for the corresponding Anypoint VPC.
 +
 See xref:vpc-firewall-rules-concept#add-or-edit-firewall-rules[Add or Edit Firewall Rules].
 +
-By default, all traffic to your Anypoint VPC is blocked unless a firewall rule explicitly allows it. 
+By default, all traffic to your Anypoint VPC is blocked unless a firewall rule explicitly allows it.
+. Update the configuration on your VPN endpoint.
++
+See the documentation for your device.
++
+When the tunnel is active, the route table updates automatically. 
 
 === Dynamic Routes 
 
 To modify the remote networks for an Anypoint VPN that uses dynamic routing:
 
-. Update the Border Gateway Protocol (BGP) configuration on your VPN endpoint.
-+
-See the documentation for your device.
-+
-When BGP propagates the changes, the route table updates automatically.
 . Review the firewall rules for the corresponding Anypoint VPC.
 +
 See xref:vpc-firewall-rules-concept#add-or-edit-firewall-rules[Add or Edit Firewall Rules].
 +
 By default, all traffic to your Anypoint VPC is blocked unless a firewall rule explicitly allows it. 
+. Update the Border Gateway Protocol (BGP) configuration on your VPN endpoint.
++
+See the documentation for your device.
++
+When BGP propagates the changes, the route table updates automatically.
+
 
 == IPsec
 
