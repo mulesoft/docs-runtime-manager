@@ -10,7 +10,12 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-Insight is a troubleshooting tool that gives you in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers. Insight tracks everything your data does in an app and replays your transactions instantly, so you can find and recover from errors that occur during message processing.
+Insight is a troubleshooting tool that provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers. Insight tracks everything your data does in an app so you can find and recover from errors that occur during message processing.
+
+For Mule 3 apps, you can also replay transactions.
+
+The Insight dashboard enables you to view events that occur within the flows that handle your business transactions.
+You can drill down into event-related data to analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
 
 Insight helps you answer questions about your integrated apps, such as:
 
@@ -19,9 +24,6 @@ Insight helps you answer questions about your integrated apps, such as:
 * What was the result of a transaction?
 * If something went wrong during processing, at what point did the failure occur?
 
-Use the Insight Dashboard to view events that occur within the flows that handle your business transactions.
-Drill down into event-related data to analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
-
 [IMPORTANT]
 Enabling Insight can significantly impact data processing performance and memory consumption. 
 For this reason, do not enable Insight for long periods of time for production environments.
@@ -29,16 +31,14 @@ Use Insight for troubleshooting only.
 
 For information on tools to use for monitoring a production environment, see xref:monitoring.adoc[Monitoring Applications and Servers].
 
-
 After you enable Insight, the following events are tracked by default:
 
 * Data that passes through endpoints (inbound and outbound) in your Mule applications
 * Flow initiation and completion
-* Custom business events you embed in your Mule flows
+* Custom business events that you embed in your Mule flows
 
-Logs for applications deployed to servers on-premises contain event information, but not message contents.
 
-== Requirements and Restrictions 
+== Limits and Limitations  
 
 The following limits apply to events:
 
@@ -49,9 +49,19 @@ Events over these limits are dropped.
 
 In addition, no more than 20 custom event definitions per application definition are stored.  
 
-Insight does not support visibility into batch processing. See xref:mule-runtime::batch-processing.adoc[Batch Processing].
+Insight does not support visibility into batch processing. See xref:mule-runtime::batch-processing.adoc[Batch
+ Processing].
 
 Insight does not preserve replay data when switching regions. Ensure that this doesn't violate any of your compliance requirements.
+Logs for applications deployed to on-premises servers contain event information, but not message contents.
+
+
+== Data Persistence
+
+Insight does not limit the size of transactions. Insight displays all transactions in your application for 30 days and keeps events for two days.
+
+Replay data for applications created before October 7, 2017 is stored in the default region, us-east-1.
+Data for applications deployed, or deployed to a different region, after October 7, 2017 is stored in the region where the application is deployed.
 
 === Payload Transformation
 
@@ -82,15 +92,10 @@ MediaType.TEXT));
 For all other types, Mule Agent attempts to transform payloads to another format, based on the Stream type that Mule runtime engine exposes to the Mule Agent.
 For example, Mule Agent converts payloads in `CURSOR_STREAM_PROVIDER` type to a byte array.
 
-In these cases, any Streams that are not mapped to String by default appear in the logs. 
+Any Streams that are not mapped to String by default appear in the logs. 
 
 
-== Data Persistence
 
-Insight does not have a size limit and displays all transactions in your application for 30 days. Events are kept for two days.
-
-Replay data for applications created before October 7, 2017 is stored in the default region, us-east-1.
-Data for applications deployed, or deployed to a different region, after October 7, 2017 is stored in the region where the application is deployed.
 
 
 == Enable or Disable Insight
