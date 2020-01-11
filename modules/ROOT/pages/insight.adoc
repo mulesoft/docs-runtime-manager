@@ -204,7 +204,7 @@ image::rtm-insight-edit-search.png[Saved search being edited]
 Click *Done* to save your changes.
 * To delete a saved search, click the *Edit* link, and then click the delete icon (trash can) to the right of the search name.
 
-=== Filtering Events
+=== Filter Events
 
 You can refine the types of events that Insight displays for each transaction. 
 
@@ -233,7 +233,7 @@ When Insight reports a failed transaction, you can diagnose the problem and fix 
 
 For Mule 3 applications and flows with inbound endpoints, you can use the Insight message replay feature to replay the transaction that failed.
  
-=== Transaction Failed
+=== Transaction Failed Status
 
 For example, when a transaction fails because an application exceeds the limited number of API calls for a Salesforce account, Insight displays the status of the transaction as `Failed`. 
 
@@ -242,7 +242,7 @@ Click to expand the transaction, then examine the individual events within that 
 image::chexcmsg.png[CHExcMsg]
 
 
-=== Replay (Mule 3 apps)
+=== Replay Transaction (Mule 3 apps)
 
 After investigating the logs and resolving the issue (for example, by purchasing more API capacity) that caused the transaction failure, you can replay the transaction.
 
