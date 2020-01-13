@@ -259,7 +259,7 @@ Insight displays an information popup indicating that the transaction was replay
 To delete all existing replay data for that application, click the *Purge Replay Data* button.
 
 [WARNING]
-This action cannot be reversed.
+You can't restore replay data that has been purged.
 
 == Insight Status States 
 
@@ -283,19 +283,13 @@ You can configure business events in your Mule applications by embedding custom 
 Include custom business event elements at relevant points within the flows of your application to surface the processing information that is most relevant for your business to track.
 * *Event Tracking*
 +
-Track more granular events by enabling default event tracking for your entire flow or for specific message processors or endpoints within your flow. When you configure the flows in your application, you can explicitly configure the scope for default event tracking.
-+
-When deploying your application with Runtime Manager, select either *Metadata* or *Metadata and Replay* on the *Insight* tab of the *Settings* page.
-
-(xref)
+Track more granular events by enabling default event tracking for your entire flow or for specific message processors or endpoints within your flow. When you configure the flows in your application, you can explicitly configure the scope for default event tracking. See xref:mule-runtime::business-events-in-components.adoc[Configure Default Events Tracking].
 
 == Customizing the Transaction ID
 
 For transaction-level events, Insight might display long numeric values in the ID column. You can customize the transaction IDs to display more intuitive values that are relevant to your business requirements. 
 
-To do this, use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number.
-
-(need an xref here)
+To do this, use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number. See xref:mule-runtime::business-events-in-components.adoc#customize-the-transaction-id[Customize the Transaction ID].
 
 == See Also
 
@@ -305,3 +299,4 @@ To do this, use a Mule expression to configure your Mule application to return m
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * https://blogs.mulesoft.com/dev/anypoint-platform-dev/announcing-cloudhub-insight-real-time-visibility-message-replay-and-root-cause-analysis/[CloudHub Insight on the MuleSoft Blog]
+* xref:mule-runtime::business-events.adoc[Business Events]
