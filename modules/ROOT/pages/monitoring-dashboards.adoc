@@ -88,11 +88,24 @@ You can view all graphs for different time ranges by selecting the desired time 
 image::monitoring-dashboards-time-ranges.png[]
 * Classic application monitoring dashboard:
 +
+--
 image::monitoring-dashboards-cbd92.png[]
+
+Depending on the selected time range, the graphs show the average, minimum, and maximum:
+
+[%header,cols="18,20,20,25"]
+|===
+| Selected Time Range | Number of Mule Messages | Number of Errors | Response Time (in milliseconds) 
+| 3 Hours | Per minute | Per minute | Per minute
+| 24 Hours | Per 8 minutes | Per 8 minutes | Per 8 minute
+| 7 Days | Per hour | Per hour | Per hour 
+| 2 Weeks | Per 2 hours | Per 2 hours | Per 2 hours 
+|===
 
 If your application runs on multiple workers, the workers are charted as different curves on the same graphs, differentiated by different colors.
 
 If your application runs on a server group or cluster, the aggregated metrics of the servers in the group or cluster appear as a single plot line on each graph. If you want to see the metrics at the individual server level, you can look at the dashboard for the individual server. If multiple apps are running on the server, you see the overall server performance, without a distinction between each of the apps running on it.
+--
 
 == Server Monitoring Dashboard
 
