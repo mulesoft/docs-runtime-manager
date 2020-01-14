@@ -5,6 +5,9 @@ endif::[]
 
 You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using an IPsec tunnel, VPC peering, and CloudHub Direct Connect.
 
+[NOTE]
+A maximum of 95 route table entries is allowed per VPC, regardless of the number of connections. To avoid exceeding the limit, consolidate networks to the fewest number possible.
+
 == IPsec Tunnel
 
 You can use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your Anypoint VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances. 
