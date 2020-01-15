@@ -12,7 +12,7 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 Insight is a troubleshooting tool that provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers. Insight tracks everything your data does in an app so you can find and recover from errors that occur during message processing.
 
-For Mule 3 apps, Insight supports the ability to replay transactions for advanced error recovery. 
+For Mule 3 apps only, Insight supports the ability to replay transactions for advanced error recovery. Replay is not supported for Mule 4 apps.
 
 
 
@@ -242,9 +242,10 @@ Click to expand the transaction, then examine the individual events within that 
 image::chexcmsg.png[CHExcMsg]
 
 
-=== Replay Transaction (Mule 3 apps)
+=== Replay Transaction (Mule 3 apps only)
 
 After investigating the logs and resolving the issue (for example, by purchasing more API capacity) that caused the transaction failure, you can replay the transaction.
+Replay is not supported for Mule 4 apps.
 
 . Click the replay icon (circular arrow) to the right of the first event in the failed transaction to replay it:
 +
