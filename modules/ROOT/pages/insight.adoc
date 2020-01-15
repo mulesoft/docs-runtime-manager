@@ -22,7 +22,7 @@ Enabling Insight can significantly impact data processing performance and memory
 For this reason, do not enable Insight for long periods for production environments.
 Use Insight for troubleshooting only.
 
-For information on tools to use for monitoring a production environment, see xref:monitoring.adoc[Monitoring Applications and Servers].
+For information about tools to use for monitoring a production environment, see xref:monitoring.adoc[Monitoring Applications and Servers].
 --
 
 The Insight dashboard enables you to view events that occur within the flows that handle your business transactions.
@@ -35,9 +35,9 @@ Insight helps you answer questions about your integrated apps, such as:
 * What was the result of a transaction?
 * If something went wrong during processing, at what point did the failure occur?
 
-After you enable Insight, the following events are tracked by default:
+After you enable Insight, the following items are tracked by default:
 
-* Data that passes through endpoints (inbound and outbound) in your Mule applications
+* Data passing through endpoints (inbound and outbound) in your Mule applications
 * Flow initiation and completion
 * Custom business events that you embed in your Mule flows
 
@@ -64,8 +64,9 @@ Logs for applications deployed to on-premises servers contain event information 
 
 Insight does not limit the size of transactions. Insight displays all transactions in your application for 30 days and keeps events for two days.
 
-Replay data for applications created before October 7, 2017, is stored in the default region us-east-1.
-Data for applications deployed, or deployed to a different region, after October 7, 2017 is stored in the region where the application is deployed.
+Replay data for Mule 3 applications created before October 7, 2017, is stored in the default region us-east-1.
+Data for Mule 3 applications initially deployed, or moved to a different region, after October 7, 2017 is stored in the region where the application is currently deployed.
+
 
 === Payload Transformation
 
@@ -75,25 +76,24 @@ The following MIME types are always mapped as Strings:
 ----
 application/javascript
 application/json
-application/xml
 application/csv
 application/rtf
 application/vnd.mozilla.xul+xml
 application/x-csh
 application/x-sh
-application/xml+html
 application/xml
+application/xml+html
 images/svg+xml
 text/calendar
 text/css
 text/csv
 text/html
-text/xml
 text/plain
+text/xml
 ----
 
-For all other types, Mule Agent attempts to transform payloads to another format, based on the Stream type that Mule runtime engine exposes to the Mule Agent.
-For example, Mule Agent converts payloads in `CURSOR_STREAM_PROVIDER` type to a byte array.
+For all other types, Mule agent attempts to transform payloads to another format, based on the Stream type that Mule runtime engine exposes to the Mule agent.
+For example, Mule agent converts `CURSOR_STREAM_PROVIDER` payloads to a byte array.
 
 Any streams that are not mapped to String by default appear in the logs. 
 
@@ -158,7 +158,7 @@ On the *Insight* page, you can search or filter data to refine the results displ
 
 * A specific transaction by transaction ID
 * Transactions within a specific date range
-* Transactions according to flow name, exception message, processing time, and/or any custom business data
+* Transactions according to flow name, exception message, processing time, and any custom business data
 +
 To enable the *Business Data* field your app must have business events configured. See <<Setting Up Business Events>>.
 
@@ -195,14 +195,16 @@ image::rtm-insight-save-search.png[Save search icon on the Insight dashboard]
 +
 Runtime Manager saves the search to the name you specify.
 
-* To run a saved search, click the search name.
-* To edit a saved search, hover over the search name and click the *Edit* link:
+After you save a search, you can:
+
+* Run a saved search by clicking the search name.
+* Edit a saved search by hovering over the search name and click the *Edit* link:
 +
 .The arrow shows the saved search being edited.
 image::rtm-insight-edit-search.png[Saved search being edited]
 +
 Click *Done* to save your changes.
-* To delete a saved search, click the *Edit* link, and then click the delete icon (trash can) to the right of the search name.
+* Delete a saved search by clicking the *Edit* link, and then clicking the delete icon (trash can) to the right of the search name.
 
 === Filter Events
 
@@ -242,14 +244,14 @@ Click to expand the transaction, and then examine the individual events within t
 image::chexcmsg.png[CHExcMsg]
 
 
-=== Replay Transaction (Mule 3 apps only)
+=== Replay Transaction
 
 After investigating the logs and resolving the issue (for example, by purchasing more API capacity) that caused the transaction failure, you can replay the transaction.
-Replay is not supported for Mule 4 apps.
+Replay is available for Mule 3 apps only. It is not supported for Mule 4 apps.
 
-. Click the replay icon (circular arrow) to the right of the first event in the failed transaction to replay it:
+. Click the replay transaction icon image:rtm-insight-replay-icon.png[2.5%,2.5%] to the right of the first event in the failed transaction to replay it:
 +
-.The screenshot shows (*1*) the replay icon and (*2*) the *Purge Replay Data* button.
+.The screenshot shows (*1*) the replay transaction icon and (*2*) the *Purge Replay Data* button.
 image::rtm-insight-replay-purge.png[Replay icon and Purge Replay Data button]
 . At the prompt, click *Replay Transaction* to confirm.
 +
@@ -262,7 +264,9 @@ To delete all existing replay data for that application, click the *Purge Replay
 [WARNING]
 You can't restore replay data that has been purged.
 
-== Insight Status States 
+== Table of Insight Status States 
+
+The following table describes the status states that Insight reports:
 
 [%header,cols="20,60a"]
 |===
