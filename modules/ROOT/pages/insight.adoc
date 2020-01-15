@@ -267,7 +267,7 @@ You can't restore replay data that has been purged.
 [%header,cols="20,60a"]
 |===
 |Status |Description
-|`FAILED`|The event failed while being processed and has an associated exception associated.
+|`FAILED`|The event failed while being processed and has an associated exception.
 |`COMPLETED`|The event processed fully and successfully.
 |`IN_PROGRESS`|The event has started and has not yet completed.
 |`STALLED`|The event has been put on hold due to the maximum number of events to be processed per transaction (10000). Any event above this mark is set as stalled and then processed after this event is no longer stalled.
