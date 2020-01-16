@@ -10,7 +10,12 @@ This guide is for cloud deployments using the cloud-based version of Runtime Man
 
 CloudHub provides a variety of tools to architect your integrations and APIs so they are maintainable, secure, and scalable. This guide covers the basic network architecture, DNS, and firewall rules.
 
-image::cloudhub-networking-guide-1.jpg[CloudHub+Networking+Guide-1]
+.The image shows the CloudHub components: Load Balancer, Virtual Private Cloud, and the DNS records of the Mule workers.
+image::ch-networking-guide.png[CloudHub Network Overview]
+
+See the sections below for information about load balancing and DNS records.
+For information about VPC, see xref:virtual-private-cloud.adoc[Virtual Private Cloud].
+
 
 == Load Balancing
 
@@ -18,7 +23,7 @@ CloudHub provides a load balancing service for all integrations. You can use the
 
 The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub].
 
-Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`).
+Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.region.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`).
 
 The following ports are assigned on the Mule worker:
 
@@ -45,7 +50,7 @@ If other values for `http.port` and `https.port` are specified in the `mule-app.
 
 [NOTE]
 --
-For each request a client makes through CloudHub's load balancer (`myapp.cloudhub.io`), the load balancer maintains two connections. One connection ​is from​ the client and one is to your worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection. If no data is sent or received during this time period, the load balancer closes ​both connections.
+For each request a client makes through CloudHub's load balancer (`myapp.region.cloudhub.io`), the load balancer maintains two connections. One connection ​is from​ the client and one is to your worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection. If no data is sent or received during this time period, the load balancer closes ​both connections.
 
 For connections that take longer than 300 seconds to process from either side, consider handling the processing asynchronously.
 --
@@ -57,9 +62,9 @@ The following DNS records for your applications are exposed when they are deploy
 
 [cols="2*a"]
 |===
-|*myapp.cloudhub.io* |Load balancer. Ports 80 and 443 forward to  `${http.port}` and `${https.port}` respectively.
-|*mule-worker-myapp.cloudhub.io* |The external IP address of the Mule workers. Public HTTP services are exposed on: `${http.port}` and `${https.port}`
-|*mule-worker-internal-myapp.cloudhub.io* |The internal IP address of the Mule workers. The IP addresses for this DNS record are accessible only within a customer's private xref:virtual-private-cloud.adoc[Anypoint VPC]. *These IP addresses are not accessible for workers running in the MuleSoft shared VPC.* Internal HTTP services are exposed on: `${http.private.port}` and `${https.private.port}`. The default assigned ports are 8091 and 8092 respectively, and cannot be changed.
+|*myapp.region.cloudhub.io* |Load balancer. Ports 80 and 443 forward to  `${http.port}` and `${https.port}` respectively.
+|*mule-worker-myapp.region.cloudhub.io* |The external IP address of the Mule workers. Public HTTP services are exposed on: `${http.port}` and `${https.port}`
+|*mule-worker-internal-myapp.region.cloudhub.io* |The internal IP address of the Mule workers. The IP addresses for this DNS record are accessible only within a customer's private xref:virtual-private-cloud.adoc[Anypoint VPC]. *These IP addresses are not accessible for workers running in the MuleSoft shared VPC.* Internal HTTP services are exposed on: `${http.private.port}` and `${https.private.port}`. The default assigned ports are 8091 and 8092 respectively, and cannot be changed.
 |===
 
 In certain situations, you may want to know an application’s internal IP addresses, for example:
@@ -67,7 +72,7 @@ In certain situations, you may want to know an application’s internal IP addre
 * When communicating with the worker directly within the customer's xref:virtual-private-cloud.adoc[Anypoint VPC] without sending data over the public internet
 * When setting up your own load balancer
 
-You can access these IP addresses through the `mule-worker-internal-myapp.cloudhub.io` record from within the Anypoint VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
+You can access these IP addresses through the `mule-worker-internal-myapp.region.cloudhub.io` record from within the Anypoint VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
 
 == IP Ranges and Static IPs
 
