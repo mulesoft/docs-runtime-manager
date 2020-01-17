@@ -93,14 +93,15 @@ image::monitoring-dashboards-cbd92.png[]
 
 Depending on the selected time range, the graphs show the average, minimum, and maximum:
 
-[%header,cols="18,20,20,25"]
+[%header,cols="15,15,15,15,15"]
 |===
-| Selected Time Range | Number of Mule Messages | Number of Errors | Response Time (in milliseconds) 
-| 3 Hours | Per minute | Per minute | Per minute
-| 24 Hours | Per 8 minutes | Per 8 minutes | Per 8 minute
-| 7 Days | Per hour | Per hour | Per hour 
-| 2 Weeks | Per 2 hours | Per 2 hours | Per 2 hours 
+| 4+| *Selected Time Range* 
+|*Average, Minimum, Maximum*| *3 Hours* | *24 Hours* | *7 Days* | *2 Weeks*
+| Number of Mule Messages .3+| Per minute .3+| Per 8 minutes .3+| Per hour .3+| Per 2 hours
+| Number of Errors
+| Response Time (in milliseconds)
 |===
+
 
 If your application runs on multiple workers, the workers are charted as different curves on the same graphs, differentiated by different colors.
 
