@@ -173,8 +173,10 @@ The total heap memory usage in MB:
 * Heap memory usage
 * Total memory
 * Heap committed memory
+
 +
 image::monitoring-dashboards-heap.png[]
+
 +
 See the <<Breakdown Tab,Breakdown tab>> for details about each of the components of the heap memory.
 
@@ -184,10 +186,11 @@ CPU::
 This metric is not available on Windows.
 +
 The total CPU usage of the server, as a percentage:
-+
+
 * CPU usage
 * System available processing power
 * System load average
+
 +
 image::monitoring-dashboards-cpu.png[]
 
@@ -212,6 +215,7 @@ The graphs in the Breakdown tab provide detailed metrics, including graphs that 
 Thread Count:: 
 The number of individual Java execution threads over time:
 +
+
 image::monitoring-dashboards-threads.png[]
 
 [[garbage_collection]]
@@ -221,6 +225,7 @@ Metrics for these areas of the heap:
 * Young Generation, where all new objects are allocated.
 * Old Generation, where long-surviving objects are stored.
 +
+
 image::monitoring-dashboards-garbage.png[]
 
 [[class_loading]]
