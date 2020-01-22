@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 The load balancer configuration is defined by a list of mapping rules that describe how an input URL should be translated into calls to different CloudHub apps.
 Mapping rules are attributes of the load balancer's SSL endpoint.
 When you create a mapping rule, you need to specify a certificate CN. Omitting the `[certificateName]` parameter adds the mappings to the default endpoint.
@@ -10,7 +15,7 @@ When you create a mapping rule, you need to specify a certificate CN. Omitting t
 When you create a simple matching rule, one input address is matched to the defined output: the endpoint of one of your applications.
 Instead of using literal matchings, you can also use a pattern to match a variable, such as input text to an endpoint.
 
-By using proxy rules, you can map a domain or subdomain to one of your Mule applications that run in CloudHub.
+By using proxy rules, you can map a domain or subdomain to one of your Mule applications running in CloudHub.
 
 == Using Patterns in Mapping Rules
 
@@ -101,7 +106,7 @@ If you have a wildcard certificate (such as `*.example.com`), you can use the `s
 |   |  *URI*   |       *appName*    |  *appURI*
 | 0 | /        | {subdomain}   | /
 |===
-This rule automatically maps any request passed to a subdomain of `example.com` to the corresponding `appName`. For example:
+This rule automatically maps any request passed to a subdomain of `example.com` to the corresponding `appName`:
 
 * Passing `api.example.com` would redirect to `api.cloudhub.io` +
 * Passing `application.example.com` is mapped to `application.cloudhub.io`.
@@ -163,5 +168,5 @@ The load balancer ID is provided to you when you create the load balancer. You c
 
 == See Also
 
-* xref:lb-cert-upload.adoc[Uploading Certificates]
+* xref:lb-cert-upload.adoc[Adding Certificates]
 * xref:lb-whitelists.adoc[Whitelists]

@@ -1,32 +1,38 @@
-= About Clusters (Hybrid)
+= Clusters (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-A cluster is a set of servers that act as a single deployment target where instances of the application are aware of one another and share common information and synchronize statuses. An on-premise cluster enables up to eight servers to participate in a high availability processing unit so that in case one server should fail, another server takes over processing applications. A cluster can run multiple applications.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-Before creating a  cluster, you must create each of the Mule runtimes that are part of the cluster. You must download and install the same version of the Mule runtime. The supported versions of these components are:
+A cluster is a set of up to eight servers that act as a single deployment target and high-availability processing unit. Unlike in server groups, application instances in a cluster are aware of each other, share common information, and synchronize statuses. If one server fails, another server takes over processing applications. A cluster can run multiple applications.
 
-* Mule version 3.7.0 and later
-* Runtime Manager Agent version 1.1.1 and later
+Before creating a cluster, you must create the Mule runtime engine instances and add the Mule servers to Anypoint Runtime Manager.
 
-Before creating a cluster, you must also create each of the servers that connects Mule to Runtime Manager.
 
 == Multicast vs Unicast Clusters
 
-A cluster can be created in the Runtime Manager from servers that are already registered with the Runtime Manager console. While configuring a cluster, you can specify either unicast or multicast options for identifying a node within the cluster:
 
-* *Unicast*: A unicast cluster requires that you configure the IP addresses of which nodes to associate together. No special network configuration is necessary other than to indicate which are the server IP addresses that make up the cluster. Each server needs to be in Running status when it is added to a unicast cluster. If a server has multiple interfaces, use the internal IP, the one that allows a node to have a direct communication with other nodes. Clustering across different subnets is not supported.
-+
-Mule relies on the IP address as the unique handle for identifying a server, which means it is impossible to have IP addresses dynamically assigned using DHCP for servers on a unicast cluster. If a server is restarted and uses DHCP to get a new IP address, it needs to be rejoined with the cluster using its new IP address.
+While configuring a cluster, specify either unicast or multicast options for identifying a node within the cluster:
 
-* *Multicast*: A multicast cluster groups servers that automatically detect each other. Servers that are part of a multicast cluster should be on the same network segment.
+* *Unicast*:
 +
-One advantage of using multicast is that a server does not need to be running to be configured as a node in a cluster. Another is that you can add nodes to the cluster dynamically without restarting the cluster.
+A unicast cluster requires that you configure the IP addresses of the nodes in the cluster. If a server has multiple interfaces, use the internal IP address that allows the node to communicate directly with other nodes. Clustering across different subnets is not supported.
 +
-Check with your network administrator to determine if multicast is allowed within your network, as many networks block multicast functionalities.
+Because Mule relies on the IP address to identify the server, IP addresses can't be dynamically assigned using DHCP for servers on a unicast cluster. If a server is restarted and uses DHCP to get a new IP address, you must add the server to the cluster using its new IP address.
++
+The server status must be Running to be added to a unicast cluster. 
+* *Multicast*:
++
+A multicast cluster comprises servers that automatically detect each other. Servers that are part of a multicast cluster must be on the same network segment.
++
+One advantage of multicast clusters is that the server status doesn't need to be Running to configure it as a node in a cluster. Another is that you can add nodes to the cluster dynamically without restarting the cluster.
++
+Check with your network administrator to determine if multicast is allowed within your network, because many networks block multicast functionalities.
 
 == See Also
 
-* xref:servers-create.adoc[Create a Server in Runtime Manager]
-* xref:3.8@mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
+* xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]

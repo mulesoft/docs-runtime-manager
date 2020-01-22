@@ -4,26 +4,33 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, deploy, manage, runtime manager, arm
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 You can deploy Mule applications to CloudHub using:
 
 * Runtime Manager
 * Anypoint Studio
-* The CloudHub API
+* CloudHub API
 * CloudHub CLI
 * Mule-Maven Plugin
 
 == Naming an Application
 
-When you deploy an application, you must assign a name to it. The application name is the `cloudhub.io` domain name that you use to access your application, therefore, application names must be unique to avoid domain conflicts.
+Applications are always deployed with public application names in the `cloudhub.io` domain. Application names must be globally unique across CloudHub to avoid domain conflicts. 
+
+For this reason, create a naming convention for your applications. For example, you can always prefix your applications with `mycompany` and optionally a department name: `mycompany-mydept-myapplication`. You can then add your own DNS records to hide this complex application name. For example, you can route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
+
 
 The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints. The format of the URL is `+http://myapplicationdomain.cloudhub.io+`. For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
 
 image::deployappname.png[DeployAppName]
+
+
 
 [TIP]
 With the CloudHub dedicated load balancer, you can then optionally implement xref:cloudhub-dedicated-load-balancer.adoc#mapping-rules[mapping rules] to set your application's public URL to any other path you choose, as long as you own the domain.
@@ -86,6 +93,14 @@ Select from the following options: +
 [NOTE]
 This option appears only if it is enabled for your organization and you have a Titanium subscription to Anypoint Monitoring.
 . Click *Deploy Application*.
+
+== Set Up a Deployment Failed Alert
+
+To be notified by email when there is an error during deployment, set up a deployment failed alert:
+
+image::deployfailedalert.jpg[DeployAppFirstScreen]
+
+Complete the form and choose *Deployment failed* as the alert condition.
 
 == Deployment Execution
 
@@ -248,7 +263,7 @@ Depending on how many vCores are allocated to your account, some of these option
 [IMPORTANT]
 If you select more vCores than are available in your account, CloudHub allows you to create the application using the console, but you cannot start your application until the vCores are available.
 
-When deploying an application with more than one worker, CloudHub automatically load-balances any incoming traffic across your allocated workers. For more information, see xref:cloudhub-fabric.adoc[CloudHub Fabric].
+When deploying an application with more than one worker, CloudHub automatically balances any incoming traffic load across your allocated workers. For more information, see xref:cloudhub-fabric.adoc[Clustering].
 
 [[region]]
 === Region
@@ -273,7 +288,7 @@ Read more about xref:worker-monitoring.adoc[Worker Monitoring].
 [[persistent_queues]]
 === Persistent Queues
 
-Select this box to enable persistent queues on your application. Persistent queues protect against message loss and allow you to distribute workloads across a set of workers. Before you can take advantage of persistent queueing, your application must be set up to use queues. See xref:cloudhub-fabric.adoc[CloudHub Fabric] for more information.
+Select this box to enable persistent queues on your application. Persistent queues protect against message loss and enable you to distribute workloads across a set of workers. Before you can take advantage of persistent queueing, your application must be set up to use queues. See xref:cloudhub-fabric.adoc[Clustering] for more information.
 
 [IMPORTANT]
 ====

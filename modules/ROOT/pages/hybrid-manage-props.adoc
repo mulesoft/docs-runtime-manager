@@ -1,0 +1,61 @@
+= Managing Properties for Applications On-Premises
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
+In an on-premises (hybrid or Anypoint Platform PCE) deployment, you can add properties to an application using the `mule-app.properties` file or Anypoint Runtime Manager.
+
+== Add Application Properties with the mule-app.properties file
+
+The most common method to add properties to an app is to include a `mule-app.properties` file containing the properties in the application .zip bundle.
+
+Mule runtime engine then loads these properties into the application when the application starts.
+ 
+
+== Add Application Properties in Runtime Manager 
+
+You can override the property values in the `mule-app.properties` file bundled inside the application in Runtime Manager:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Applications* tab.
+. Click the *Status* column to display the details pane.
+. Click *Manage Application*.
+. On the *Settings* page, click the *Properties* tab:
++
+.The screenshot shows (*1*) the *Properties* tab, (*2*) the *Key* and *Value* fields, and (*3*) the *...* menu on the application  *Settings* page.
+image::hybrid-app-props.png[*Properties* tab, *Key* and *Value* fields, and *...* menu on the *Settings* page]
+. Enter the property name in the *Key* field.
+. Enter the property value in the *Value* field.
+. Click *Save*, and then *Redeploy Application*.
+
+You can edit or delete a property using options in the *...* menu.
+
+
+== Other Methods for Overriding App Properties
+
+The following are some alternative methods for overriding app properties:
+
+* Configure an external location to add property placeholders or secure property placeholder files to override properties.
+
+* Set Java system environment variables at deployment time to override properties.
++
+To do this, deploy the app using the following command:
++
+----
+mule -M-Dsecret.key=toSecretPassword -M-Denv=prod -M-Ddb.password=secretPassword -app myApp.zip
+----
++
+In this case, all the values typed into the command are stored only in memory and must be provided every time. The values are never stored in any file.
+
+== See Also 
+
+* xref:mule-runtime::configuring-properties.adoc[Configuring Properties]
+* xref:mule-runtime::deploying-to-multiple-environments.adoc[Configuring Environment Properties]
+* xref:mule-runtime::deploying-to-multiple-environments.adoc#setting-a-specific-environment-when-starting-mule-on-premises[Setting a Specific Environment when Starting Mule On-Premises]

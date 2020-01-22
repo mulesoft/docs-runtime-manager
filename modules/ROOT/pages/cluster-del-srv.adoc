@@ -1,17 +1,23 @@
-= Remove a Server From a Cluster (Hybrid)
+= Remove Servers from a Cluster (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
 You can remove a server from a cluster without affecting the server or cluster.
+
 
 To remove a server from a cluster:
 
-. In Runtime Manager, click the *Servers* tab.
-. Click *Cluster* in the *Type* column for the cluster, then click *Manage Cluster* in the right pane.
-. In the cluster settings page, click the *Servers* tab.
-. Click the server name link, then click *Remove Server from Cluster* in the top right.
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Servers* in the left menu.
+. Click *Cluster* in the *Type* column to display the details pane.
+. Click the *X* icon to the right of the server to remove the server from the cluster:
 +
-image::cluster-remove-server-from.png[]
+.The arrow shows the *X* icon in the details pane.
+image::rtm-remove-server-from-cluster.png[X icon]
 
-. At the prompt, click the checkbox to confirm, then click *Remove*.
+. In the *Remove* confirmation window, select the checkbox to verify that you want to remove the server from the cluster, and then click the *Remove* button.

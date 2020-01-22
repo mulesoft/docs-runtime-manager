@@ -1,23 +1,26 @@
-= Delete a Server Group for Hybrid
+= Delete Server Groups (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-When deleting a server group, consider the following:
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
+When you delete a server group, the following actions occur:
 
 * Alert definitions and history for the server group are deleted.
-* Servers assigned to the server group are not deleted. Servers that belong to the deleted group are displayed in the main server list. They can be used individually or be paired up into other server groups or clusters.
-* Servers assigned to the group are not restarted or shutdown.
-* Applications deployed to the servers in the server group are cloned on each server.
+* Applications deployed to each server in the server group are cloned on each server.
 
+The servers assigned to the deleted server group are not deleted, restarted, or shut down. Servers that belong to the deleted group appear on the *Servers* page. You can deploy applications to them individually or add them to other server groups or clusters.
 
-== Deleting a Server Group
+== Delete a Server Group
 
-. From the Runtime Manager *Servers* tab, click a server group entry to display the detail view on the right side of the screen.
-
-. Click the down arrow below the server name and select *Delete group*.
-
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Servers* in the left menu.
+. Click *Group* in the *Type* column to display the details pane.
+. Click the group status and select *Delete* from the menu:
 +
-image::deletegroup.png[DeleteGroup]
-
-. A prompt appears to be sure you want to continue. Click the check box and click *Delete Server Group*
+.The arrow shows the *Delete* option in the details pane.
+image::rtm-group-delete.png[Delete option]
+. In the *Delete* confirmation window, select the checkbox to verify that you want to delete the server group, and then click the *Delete Server Group* button.

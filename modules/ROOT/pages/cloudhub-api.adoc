@@ -1,4 +1,4 @@
-= CloudHub API
+= Using the CloudHub API
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,27 +9,35 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The CloudHub REST API provides a way for you to programmatically access many of the things you can do through the Runtime Manager. It allows you to:
+The CloudHub REST API enables you to programmatically access these functions of Runtime Manager:
 
-* Create an application on CloudHub
-* Change the application properties, including the number of workers and environment variables
-* Deploy a new version of your application
-* Delete your application
-* Get statistics about your application
-* Create CloudHub notifications
-* Create e-mail alerts triggered by your applications
+* Create an application on CloudHub.
+* Deploy a new version of your application.
+* Change the application properties, including the number of workers and environment variables.
+* Get statistics about your application.
+* Create CloudHub notifications.
+* Create email alerts triggered by your applications.
+* Delete your application.
 
-Before getting started with specific operations, be sure you're familiar with Operations for Applications.
+For an interactive reference that includes supported resources, methods, required properties, and expected responses, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API Portal].
 
-[NOTE]
-====
-This API deals only with cloud deployments via the cloud-based version of the Runtime Manager. See xref:deployment-strategies.adoc[Deployment Strategies] for a better understanding of the different possible deployment scenarios. For managing on-prem applications via an API, see the
-https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/ae639f94-da46-42bc-9d51-180ec25cf994/apis/38784/versions/5567732[Runtime Manager API Portal]
-====
+The CloudHub API only manages applications deployed to the cloud-based version of Runtime Manager. To manage on-prem applications using an API, see https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/ae639f94-da46-42bc-9d51-180ec25cf994/apis/38784/versions/5567732[Runtime Manager API Portal].
+
+
+== Getting Started and Authenticating with the API
+
+Before getting started, familiarize yourself with operations for applications.
+
+You can use any HTTP client with the CloudHub API. With Java, use the https://jersey.github.io/[Jersey client] or http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/codehaus/jackson[Jackson] for JSON support.
+
+To access the CloudHub API, first authenticate with Anypoint Platform. To authenticate, use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API]. Authentication requires that you supply an access token in the Authorization header. See https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/11270/versions/11646/pages/60046[Authentication] for information.
+
+Your username specifies the environment to access and is in the form "user@environment". For example, if your username is "jane" and the environment is "Development", your username is `jane@Development`. If you don't specify an environment, the API defaults to Production.
+
 
 == Data Format
 
-All resources or methods that return or accept a type use the JSON as the data format. As an example, here's data you might receive, in JSON format, in response to a request to get an application:
+Resources and methods that return or accept a type use the JSON data format. Here is an example of data received in JSON format in response to a request to get an application:
 
 [source,json,linenums]
 ----
@@ -54,13 +62,6 @@ All resources or methods that return or accept a type use the JSON as the data f
 }
 ----
 
-== Getting Started and Authenticating with the API
-
-To use the API, you can use any HTTP client. All APIs use JSON as the data format. If you use Java, we recommend you use the https://jersey.github.io/[Jersey client] or http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/codehaus/jackson[Jackson] for JSON support.
-
-// commented out per Kane Sun 2.28.2017 kris All APIs require HTTP basic authentication.
-
-Your username controls which environment you're accessing and is of the form "user@enviornment". For example, if your username is jane and you have an environment called "Development", your username is jane@Development. If you don't specify an environment, it defaults to production.
 
 == Status Codes and Error Handling
 
@@ -70,13 +71,17 @@ When you call the REST APIs, the following status codes are returned:
 |===
 |Status Code |Description
 |200 |The operation was successful.
-|201 |The resource (such as, application) was created. The Location header  contains the location of the resource.
+|201 |The resource (such as an application) was created.
+
+The Location header contains the location of the resource.
 |404 |The resource was not found.
-|409 |When creating a resource (such as, server, server group, or deployment), a resource with that name already exists.
-|500 |The operation was unsuccessful. See the HTTP body for details.
+|409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
+|500 |The operation was unsuccessful.
+
+See the HTTP body for details.
 |===
 
-When errors occur (for example, a 500 status code), the HTTP response contains a JSON response with an error message. For example:
+When errors occur (such as a 500 status code), the HTTP response contains a JSON response with an error message:
 
 [source,json,linenums]
 ----
@@ -90,25 +95,15 @@ Date: Mon, 10 Aug 2015 00:12:55 GMT
 }
 ----
 
-[TIP]
-====
-Check out the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[API Portal] of the CloudHub API to see an interactive reference of all the supported resources, methods, required properties and expected responses.
-====
 
 == See Also
 
-* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
-* xref:cloudhub.adoc[About CloudHub]
-* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API Portal]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API Portal]
 * xref:deployment-strategies.adoc[Deployment Strategies]
+* xref:cloudhub.adoc[CloudHub]
+* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:monitoring.adoc[Monitoring Applications]
-* xref:cloudhub-fabric.adoc[CloudHub Fabric]
-* xref:managing-queues.adoc[Managing Queues]
-* xref:managing-schedules.adoc[Managing Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Command Line Tools]
 * xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:penetration-testing-policies.adoc[Penetration Testing Policies]

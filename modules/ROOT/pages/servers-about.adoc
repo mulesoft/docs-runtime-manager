@@ -1,14 +1,20 @@
-= About Servers (Hybrid)
+= Servers (Hybrid)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Manager provides a single management interface where you can manage applications running in the cloud, on local servers, on server groups that are on-premises within your data center, or on clusters of servers. Applications that are on-premises run on Mule instances on a single server or on a group of servers.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-Servers enable Runtime Manager to communicate with Runtime Manager agent. After creating a server, you can use Runtime Manager to deploy applications to remote runtimes. Servers also enable you to view information about the local environment where a Mule is installed.
+Anypoint Runtime Manager provides an interface you use to manage your on-premises Mule runtime engine instances (servers). You can manage servers either individually or in server groups or clusters.
 
-You must create a server for each Mule you want to manage. To manage environments with multiple Mule runtime engines, you can create server groups and clusters.
+Servers communicate with Runtime Manager using Runtime Manager agent. After adding a server, use Runtime Manager to deploy applications to the Mule instance. You can also view information about the environment where you installed Mule.
+
+For each Mule instance that you want to manage, add a server to Runtime Manager. In environments with multiple Mule instances, use server groups and clusters for redundancy, high availability, and ease of management. 
 
 == See Also
 
-* xref:servers-create.adoc[Create a Server]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
+* xref:server-group-about.adoc[Server Groups]
+* xref:cluster-about.adoc[Clusters]

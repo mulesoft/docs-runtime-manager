@@ -136,6 +136,7 @@ You can pass the `--fields` option after a command to get a list of all possible
 // |<<runtime-mgr cloudhub-application downgrade-runtime>>| Downgrades application runtime to the previous runtime version or if a version is specified, to that version.
 |===
 
+[[standalone-management]]
 == Commands for Managing your Locally Deployed Applications Managed by Runtime Manager
 
 [CAUTION]
@@ -1122,12 +1123,14 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 
 [%header,cols="30a,40a,30a"]
 |===
-|Command | Description |  Example
-| `--apiVersion` |  Asset API version .3+<.<| `exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
-| `--name`       |  Asset name
-| `--mainFile`   |  Main file of the API asset. | `exchange asset upload --mainFile 'api.yml'`
-| `--classifier` |  Asset classifier +
-Valid classifiers are `custom`, `oas`, and `wsdl`.
+| Command | Description |  Example
+| `--apiVersion` | Asset API version .4+<.<|
+`exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
+
+`exchange asset upload --mainFile 'api.yml'`
+| `--name` |Asset name 
+| `--mainFile` | Main file of the API asset 
+| `--classifier` | Valid asset classifiers are `custom`, `oas`, and `wsdl`.
 |===
 
 === exchange asset modify
@@ -1422,6 +1425,7 @@ This command does not prompt twice before deleting. If you send a delete instruc
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
+[[deploy-to-cloudhub]]
 === runtime-mgr cloudhub-application deploy
 
 ----

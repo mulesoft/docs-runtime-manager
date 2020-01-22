@@ -1,4 +1,4 @@
-= Install and Configure the Runtime Manager Agent
+= Install or Update Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,276 +9,283 @@ _Enterprise Edition_
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The Runtime Manager Agent is installed into a Mule runtime engine (Mule), and is used to register the Mule with Runtime Manager. After the Mule runtime engine is registered, it can be managed by Runtime Manager within the specific environment and Anypoint Platform business group in which it was registered. A Mule can't be registered with multiple Runtime Manager business groups or environments.
+Anypoint Runtime Manager agent registers Mule runtime engine (Mule) with Runtime Manager. After Mule is registered, you can manage it using Runtime Manager within the specific environment and Anypoint Platform business group in which Mule was registered. You cannot register Mule with multiple Runtime Manager business groups or environments.
 
-The latest version of Mule is bundled with the latest version of the Runtime Manager agent. You can download the latest version of Mule from the https://www.mulesoft.com/support-login[Customer Portal].
+Use the `amc_setup` command to install and configure the agent, using different parameters depending on the type of console to which you are connecting the agent:
 
-[NOTE]
-You must download and install the version of the Runtime Manager agent that supports the version of Anypoint Platform Runtime Manager you are using. The version of Runtime Manager agent you need may be different from the version bundled with the current version of Runtime Manager. You may need to downgrade the version of Runtime Manager agent to support your version of Anypoint Platform.
-
-If you use an earlier version of the Mule runtime engine, or an earlier API gateway, or if a later version of the Runtime Manager agent is released in between Mule releases, then you can download and install the latest version of the Runtime Manager agent from the
-https://www.mulesoft.com/support-login[Customer Portal].
+* <<Register Mule with the Cloud-Based Runtime Manager,Anypoint Platform Runtime Manager cloud-based console>>
+* <<Register Mule with Anypoint Platform PCE Runtime Manager,Anypoint Platform Private Cloud Edition Runtime Manager console>>
 
 
-[NOTE]
-====
-For the latest version of the Runtime Manager agent, see the xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
-====
+When you run `amc_setup`, the agent creates the `$MULE_HOME/conf/mule-agent.yml` with the configuration options you specified. After initial installation, you can:
 
-[IMPORTANT]
-====
-Mule 3.7.x and API gateway version 2.x provide an xref:runtime-manager-agent.adoc[earlier version of the Runtime Manager agent]. This earlier version doesn't provide support for xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software]. If you are running these earlier versions, you may need to upgrade the Runtime Manager agent software.
-====
+* Rerun `amc_setup` to change the agent configuration or to update the agent version.
+* Modify `mule-agent.yml` to change the agent configuration.
++
+Some configuration options, such as extending JMX monitoring to other external services, are not possible using `amc_setup`. You must manually add them to `mule-agent.yml`. See xref:rtm-agent-config-yaml.adoc[Update Agent Configuration in mule-agent.yml].
 
-[NOTE]
-====
-If you're deploying your applications to a xref:deploying-to-pcf.adoc[Pivotal Cloud Foundry] environment, then you don't need to worry about installing or configuring the Runtime Manager agent. In that scenario, the agent functions as usual as the link between the Mule and the Runtime Manager. However, the same PCF build pack that automatically creates new runtime instances also creates agent instances and registers these to the Runtime Manager. If you want to change the configuration of your agent instances, you must modify the build pack.
-====
+
+== Requirements and Restrictions
+
+* Do not register a single Mule runtime engine with more than one Runtime Manager business group or environment.
+* Do not register Mule with Runtime Manager more than once.
+* Do not register a Mule runtime engine with both an older xref:mule-management-console::index.adoc[Mule Management Console (MMC)] and Runtime Manager.
++
+If Mule is currently managed in MMC, first unregister it with MMC before running `amc_setup`.
++
+MuleSoft support provides migration scripts to migrate from MMC to Runtime Manager.
+
+
+== Compatibility 
+
+The version of Runtime Manager agent must support the version of Mule and Runtime Manager you are using. To determine compatibility, check the xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
+
+Mule 3.7.x and earlier and the API gateway 2.x and earlier include an earlier version of Runtime Manager agent, which doesn't provide support for exporting data to external analytics tools. If you are running these earlier versions, you can download and update the agent to the latest version.
 
 == Prerequisites
 
-The Runtime Manager agent is bundled with the Mule and API gateway software distributions; however, you may need to download and use the new ZIP version to update your Runtime Manager agent to the latest version.
-
-This document assumes that your enterprise license is current. See xref:3.8@mule-runtime::installing-an-enterprise-license.adoc[Installing an Enterprise License] for information on obtaining and installing an enterprise license.
-
-The Runtime Manager agent works with Mule 3.6.0 and later, and API gateway 2.1 and later.
-
-[TIP]
-====
-We recommend that you run the latest version of Mule Enterprise. You can download the latest version from the http://www.mulesoft.com/support-login[customer portal].
-====
-
-== Install from a Software Distribution
-
-The agent comes bundled with your Mule runtime engine installation. You can install it by running `$MULE_HOME/bin/amc_setup` (or `$MULE_HOME\bin\amc_setup.bat` if on Windows).
-
-*See the <<Installation Options>> section below for the arguments that can be used when running this command.*
-
-[IMPORTANT]
-====
-Currently, Mule 3.7.x and earlier, and API gateway 2.x and earlier provide an xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[earlier version of the Runtime Manager agent]. This version doesn't provide support for xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software]. Later versions that do provide support for this must be downloaded separately.
-
-*Mule 3.6.0 and 3.6.1 Installation:*
-
-Download the agent and follow the steps in the <<Installing the Agent from the ZIP File,Installing the Agent from the ZIP File>> section. Then depending on your OS, run `amc_setup` or `amc_setup.bat`.
-====
-
-== Download the Latest Version of the Agent
+* Your enterprise license is current. 
+* You are running Mule 3.6.0 and later, and the API gateway 2.1 and later.
+* If you must download the agent, you must have an Enterprise support account.
 
 
-You can find the latest version of the Runtime Manager agent available by checking the
-xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager agent release notes].
+These instructions use paths for Mac or Linux. If you are using Windows, replace the `$MULE_HOME` path with `%MULE_HOME%`.
 
-Earlier versions of the Release Notes have download links to earlier versions of Runtime Manager agent.
+== Install the Agent from a Mule Installation
 
-== Installing the Agent from the ZIP File
+The agent is bundled with the Mule runtime engine installation.
 
-. Stop Mule or the API gateway runtime. +
-You can stop Mule with the `./mule stop` command or by killing the process.
-. Expand the `mule-agent-[VERSION].zip` file to the `$MULE_HOME/bin` Mule software distribution folder.
-. When prompted, replace (overwrite) any conflicting files (`amc_setup` and `amc_setup.bat`).
+To install the agent:
+
+. xref:4.2@mule-runtime::runtime-installation-task.adoc[Download and install Mule].
+. Run `$MULE_HOME/bin/amc_setup` and specify parameters for your installation.
 +
-[TIP]
-====
-The agent ZIP file contains these three files.
+See <<amc_setup Parameters>>.
 
-* `amc_setup` - Mac and Linux installation file
-* `amc_setup.bat` - Windows installation file
-* `agent-setup-<version>.jar` - Called by the installation files
-====
+== Install the Agent From a .zip File
+
+If you need a different version of the agent than the version included in the software distribution, you can download it from the Support Portal. 
+
+=== Download the Agent from the Support Portal
+
+To verify compatibility with your Mule runtime engine and Runtime Manager, check the corresponding xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes]. 
+
+To download the agent:
+
+. Open https://help.mulesoft.com/s/[MuleSoft Help Center].
+. Click the *Support* tile.
+. Click *Login* in the upper right and log in using your Anypoint Platform credentials.
 +
-. Depending on your OS, run `amc_setup` or `amc_setup.bat` on the command line to install or update the Runtime Manager agent plugin.
+IMPORTANT: You must have an Enterprise support account to download the agent.
+. In the MuleSoft Support page, click the *Downloads* tab.
+. Click *Mule Agent*.
+. Locate the agent to install and click *Download* in the Action column. 
 
+=== Install the Agent
 
-*See the <<Installation Options>> section below for the arguments that can be used when running this command.*
+To install the agent from the downloaded .zip file:
 
-The installed Runtime Manager agent works correctly with Mule and API gateway runtime versions that already include the Runtime Manager agent in the distribution.
-
-After downloading the Runtime Manager agent ZIP file, determine if you can update an existing Runtime Manager agent installation. Check on the corresponding xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
-
-== Update an Earlier Runtime Manager Agent Installation
-
-You can update an earlier existing Runtime Manager agent installation. To see how to install a new Runtime Manager agent, see the <<Installation Options>> section below.
-
-[TIP]
-====
-If you're not sure if an earlier version of Runtime Manager agent is already installed, check the `$MULE_HOME/conf` folder. If an earlier version was installed, then a `mule_agent.yml` configuration file is in the folder.
-====
-
-Previous releases of compatible Mule and API gateway runtimes shipped with an earlier version of the `amc_setup` script. If you already ran an earlier version of this script to install Runtime Manager agent, you can upgrade the Runtime Manager agent software, but you should keep your existing Runtime Manager agent configuration and modifications.
-
-To upgrade an existing Runtime Manager agent:
-
-. Stop your Mule runtime engine.
-. Uncompress the Runtime Manager agent ZIP file in your `$MULE_HOME/bin` folder.
+. Stop Mule or the API gateway runtime.
+. Extract the downloaded `agent-setup-_VERSION_.zip` file to `$MULE_HOME/bin`.
 +
-This may replace the `amc_debug`, `amc_setup` and `amc_setup.bat` files.
-. Run `./amc_setup -U` to update the agent version.
+If prompted, overwrite any conflicting files.
+. Run `$MULE_HOME/bin/amc_setup` and specify parameters for your installation.
 +
-This script updates the Runtime Manager agent, but does not override the `$MULE_HOME/conf/mule-agent.yml` file.
-. Restart your Mule runtime engine.
-
-[NOTE]
-====
-If you are using Windows, run `amc_setup.bat -U` instead of `./amc_setup -U`, and restart Mule with the `$MULE_HOME/bin/./mule restart` command.
-
-*See the <<Installation Options>> section below for the arguments you can use when running this command.*
-====
-
-[NOTE]
-====
-For information on starting and stopping API gateway, see xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway].
-====
-
-== Remove a Previous Installation
-
-The installation of the Runtime Manager agent creates two configuration files: `$MULE_HOME/conf/mule-agent.jks` and `$MULE_HOME/conf/mule-agent.yml`.  To uninstall the agent configuration, just remove these files and restart the instance.
-
-=== About the Runtime Manager Agent Update Process
-
-The `amc_setup` script makes the following changes to your Mule runtime engine installation:
-
-. Backs up the current version of the agent:
-** Everything under `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER` is archived into  `$MULE_HOME/tools/mule-agent-backup.zip`.
-** Any custom modules you have installed (usually located in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules`) are archived into  `$MULE_HOME/tools/mule-agent-modules-backup.zip`.
-. Updates agent libs under `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib`
-. Keeps the current `$MULE_HOME/conf/mule-agent.yml` configuration file.
-. Keeps modules under `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules` unchanged (all custom modules added to the agent that are not included in the agent distribution should be installed in this folder).
-. No reregistration is needed after the process is done, just restart the Mule or API gateway instance.
+See <<amc_setup Parameters>>.
+. Restart Mule or the API gateway runtime.
 
 
-== Installation Options
+== Update Runtime Manager Agent
 
-If you are not updating a previous Runtime Manager agent installation, or if you want to change some of the configuration options, you may need to run the `amc_setup` command with other options.
+If you previously installed the agent with an earlier version of `amc_setup`, you can update the agent and retain your existing agent configuration in `$MULE_HOME/conf/mule-agent.yml`.
 
-There are three different ways to install and configure a Runtime Manager agent.
+To update an existing Runtime Manager agent:
 
-* Connect a Runtime Manager agent with an Anypoint Platform Runtime Manager cloud-based console.
-* Connect a Runtime Manager agent with an Anypoint Platform Private Cloud Edition Runtime Manager console.
-* Connect a Runtime Manager agent with a third party monitoring console.
+. Stop Mule or the API gateway runtime.
+. Extract the downloaded `agent-setup-_VERSION_.zip` file to `$MULE_HOME/bin`.
+. When prompted, overwrite any conflicting files.
+. Run `$MULE_HOME/bin/amc_setup -U`.
++
+When you run `amc_setup` with the `-U` parameter, you can't include other parameters on the command line.
+. Restart Mule or the API gateway runtime.
 
-Each configuration choice has a different set of options for the `amc_setup` command.
 
-You can run `./amc_setup --help` to see the available options for the installation command.
+=== What Happens When You Update the Agent
 
-=== Editing the Runtime Manager Agent Configuration File
+When you update the agent, the `amc_setup` script:
 
-Most of the Runtime Manager agent configuration options add or replace configuration text to the `$MULE_HOME/conf/mule-agent.yml` file. Often you can combine several configuration options into a single `amc_setup` command, or you can add additional configurations later by re-running the `amc_setup` command with different (non-conflicting) options. For example, you can configure a Runtime Manager agent to communicate with both a Runtime Manager server and with a third party console.
+* Backs up the current version of the agent:
+** Archives the `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER` to `$MULE_HOME/tools/mule-agent-backup.zip`
+** Archives any custom modules (usually located in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules`) to `$MULE_HOME/tools/mule-agent-modules-backup.zip`
+* Updates agent libraries in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib`
+* Retains the current `$MULE_HOME/conf/mule-agent.yml` configuration file
+* Leaves modules in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules` unchanged
++
+This folder contains all custom modules added to the agent (not included in the agent distribution).
 
-=== Selecting and Configuring Monitoring Console Options
+== Uninstall the Agent
 
-Normally, you configure a Runtime Manager agent to communicate and exchange monitoring information with an Anypoint Platform Runtime Manager cloud console. This type of installation is performed using the `-H` option, along with the security token provided by the Anypoint Platform Runtime Manager cloud console. Communication with either type of Anypoint Runtime Manager console is through WebSockets, and will be configured as a WebSockets transport in the `$MULE_HOME/conf/mule-agent.yml` file.
+To uninstall the agent:
 
-=== Combining Monitoring Console Options
+. Stop Mule or the API gateway runtime.
+. Remove these files:
++
+`$MULE_HOME/conf/mule-agent.jks`
++
+`$MULE_HOME/conf/mule-agent.yml`
+. Restart Mule or the API gateway runtime.
 
-You can configure a Runtime Manager agent to communicate with other management consoles using one or more REST transports. These options are supported by the `-I` and `-S` options.
-
-If you run `amc_setup` with the `-I` or `-S` options, your previous `$MULE_HOME/conf/mule-agent.yml` file is completely replaced.
-
-Some configuration options are not possible using the `amc_setup` command, such as extending JMX monitoring to other external services. You must manually add them to the `$MULE_HOME/conf/mule-agent.yml` file. You can also back up various configuration options in the `$MULE_HOME/conf/mule-agent.yml` file.
-
-=== Configure JMX Monitoring Publication Services
-
-MuleSoft provides several OpenSource JMX monitoring publishing modules for Cloudwatch, Graphite, Nagios, and Zabbix. The Nagios module is already included in Mule runtime engine.
-
-Cloudwatch publishers: allows users to send JMX metrics to Amazon Cloudwatch.
-
-Graphite: provides Graphite JMX metrics integration.
-
-Nagios: provides integration with Nagios.
-
-Zabbix: module to send metrics to Zabbix instances.
-
-For further information, check the JMX section in Runtime Manager agent documentation.
 
 == amc_setup Parameters
 
-The `amc_setup` command has various parameters to fulfill different use cases:
+Parameters to `amc_setup` enable you to:
 
-* Register a Mule runtime engine with a Runtime Manager console
-* Manage a Mule runtime engine via the local Runtime Manager agent REST API interface, either via HTTP or HTTPS
-* Update the Runtime Manager agent software
-* Get Help
+* Register Mule with a Runtime Manager console:
 
-The required arguments differ depending on if you're registering your server to manage using the cloud console of Runtime Manager, or to manage using the Anypoint Platform Private Cloud Edition.
+** <<Register Mule with the Cloud-Based Runtime Manager>>.
+** <<Register Mule with Anypoint Platform PCE Runtime Manager>>.
++
+Registering Mule with Anypoint Platform PCE requires additional `amc_setup` parameters. See <<PCE Runtime Manager amc_setup Parameters>>.
+* xref:rtm-agent-proxy-config.adoc#configure-the-agent-to-connect-through-a-proxy-server[Configure the agent to connect through a proxy server].
+* xref:rtm-agent-proxy-config.adoc#encrypt_password[Encrypt passwords in the `mule-agent.yml` file].
+* xref:rtm-agent-REST-connections.adoc[Manage Mule using the local Runtime Manager agent REST API interface].
+* <<Update Runtime Manager Agent,Update the agent>>.
 
-The following tables provide details about the parameters you use for these different use cases.
+To see available options, run `./amc_setup --help`.
 
 
-=== General amc_setup Parameters
-
-These arguments work in CloudHub and Anypoint Platform Private Cloud Edition.
-
-[%header,cols="30a,60a"]
+[%header,cols="30a,30a,40a"]
 |===
-|Parameter|Description
+|Parameter|Value|Description
 
 |`--help`
-|See a help listing print out to the command-line.
+|
+|Displays help for the command on the command line.
 
 |`-U`
 
 `--update`
-|Update the Runtime Manager agent software. Preserves the existing mule-agent.yml configuration.
+|
+|Updates the agent, preserving the existing `mule-agent.yml` configuration file.
+
+IMPORTANT: When you update a previous agent installation using `-U`, you can't include other parameters on the command line.
 
 |`-E`
 
 `--encrypt`
-|Utility to encrypt the passwords used on the mule-agent.yml file.
+|
+|Encrypts a passphrase to use in the `mule-agent.yml` file.
 
+Use this option alone to generate an encrypted passphrase.
+
+For information, see xref:rtm-agent-proxy-config.adoc#encrypt_password[Encrypt passwords in the `mule-agent.yml` file].
 
 |`--mule-home`
-|The location of the `$MULE_HOME` directory. Use this option if you are not running the installation script from `$MULE_HOME/bin`. The mule-agent.yml file is read from `../conf`, relative to this `--mule-home` location.
+| `_mule-home-directory_`
+|Specifies the location of the `$MULE_HOME` directory.
+
+Use this option if you are running the installation script from a location other than `$MULE_HOME/bin`. 
+
+The _amc_setup_ script reads the `mule-agent.yml` file from `../conf`, relative to the directory specified by `--mule-home`. For example, if the value of `--mule-home` is `/tmp/Mule/bin`, _amc_setup_ reads `mule-agent.yml` from `/tmp/Mule/conf`.
 
 |`--skip-gateway-clientid`
-|Skip Anypoint API gateway `client_id` and `client_secret` configuration.
+|
+|Skips configuration of the API gateway `client_id` and `client_secret`.
+
+
+|`-I`
+
+`--insecure`
+|
+|Configures the agent to use an unencrypted REST connection.
+
+See xref:rtm-agent-REST-connections.adoc#insecure-connection-channel[Insecure Connection Channel].
+
+Do not use this parameter with the <<PCE Runtime Manager amc_setup Parameters,PCE `amc_setup` parameters>>.
+
+This option replaces the contents of `$MULE_HOME/conf/mule-agent.yml`. 
+
+|`-S`
+
+`--secure`
+|
+|Configures the agent to establish a TLS connection with an on-premises administration console.
+
+See xref:rtm-agent-REST-connections.adoc#secure-connection-channel[Secure Connection Channel]
+
+Do not use this parameter with the <<PCE Runtime Manager amc_setup Parameters,PCE `amc_setup` parameters>>.
+
+This option replaces the contents of `$MULE_HOME/conf/mule-agent.yml`.
+
+|`-H`
+
+`--hybrid`
+| `_token_`
+
+`_server-name_`
+|Configures the agent to connect with either Anypoint Platform PCE or cloud-based Anypoint Platform managed by MuleSoft.
+
+* `_token_` is a base64 encoded string that specifies the exact business group and environment with which to register Mule with Runtime Manager.
++
+* `_server-name_` is the instance name used to identify Mule in the Runtime Manager console.
++
+This name must be unique within the business group's environment.
+
+|`-P`
+
+`--proxy`
+|`_proxy-host_`
+
+`_proxy-port_`
+
+`_proxy-user_`
+
+`_proxy-password_`
+|Specifies the proxy configuration to use when registering with the connection.
+
+See xref:rtm-agent-proxy-config.adoc[Connect the Agent Through a Proxy Server].
 |===
 
 
-=== Hybrid Runtime Manager Management
 
-Configures the Runtime Manager agent to create a hybrid management connection with a Runtime Manager. The connection is to a specific environment for a specific business group. The business group can exist in an account in the MuleSoft managed (cloud-based) Anypoint Platform, or in an Anypoint Platform Private Cloud Edition installation which you are responsible for managing.
+== Register Mule with the Cloud-Based Runtime Manager
 
+To register Mule with the Anypoint Platform Runtime Manager cloud-based console, you need:
 
-The simplest way to manage a Mule runtime engine is to register the Mule runtime engine with the MuleSoft managed Anypoint Platform Runtime Manager console.
-This option, configurable on the installation command through the '-H' argument, configures the Runtime Manager agent to connect to the Runtime Manager. This option requires a token (provided by the Runtime Manager console) and an instance name. For details, see xref:managing-servers.adoc#add-a-server[Managing Servers].
-
-The `-H` parameter is required to register a Mule runtime engine with Runtime Manager. You must provide a valid registration token to this parameter. The registration token is generated by the Runtime Manager console, for a specific environment within a specific business group. The Mule runtime engine will then be managed within this particular Anypoint Platform business group's environment.  The term *hybrid* indicates that the same `-H` parameter is used for both types of Runtime Manager installations: MuleSoft managed (cloud-based) Anypoint Platform accounts, and Anypoint Platform Private Cloud Editions accounts.
-
-In the Runtime Manager console, you can see a full example of the code you need to run by clicking the xref:managing-servers.adoc#add-a-server[Add Server] button. This example command already includes the registration token with you specific organization's ID and the current environment, so it is ready to use in case you don't need to configure anything beyond the default settings.
+* A valid registration token, which identifies a specific environment for a specific business group in Anypoint Platform
+* An instance name, which identifies Mule in the Runtime Manager console
 
 
-[%header,cols="20a,80a"]
-|===
-|Parameter|Description
+To register Mule:
 
-|`-H <token> <server-name>`
+. In Runtime Manager, click *Servers* in the left menu.
+. Click the *Add Server* button.
++
+Runtime Manager generates the `amc_setup` command, including `_token_` and `_server-name_`, to use to register Mule in your environment. 
++
+The registration token includes your organization's ID and the current environment.
+. Click *Copy* to copy the command.
+. In a terminal window, change to the `$MULE_HOME/bin` directory for the Mule instance that you're registering.
+. Paste the command on the command line.
+. Change the instance name `server-name` to the unique name to use to label Mule in the Runtime Manager console.
++
+The `server-name` value is unique across environments. The `server-name` can be the same for the same organization in different environments.
++
+. Include any other parameters on the `amc_setup` command line.
++ 
+See <<amc_setup Parameters>>.
++
+Here is an example `amc_setup` command:
++
+[source,console,linenums]
+----
+./amc_setup -H myToken myMuleServer --proxy myProxy-host myProxy-port myProxy-user myProxy-password
+----
 
-`--hybrid <token> <server-name>`
-|Configures the Runtime Manager agent to create a hybrid management connection with a Runtime Manager. The connection is to a specific environment for a specific business group in Anypoint Platform. The same command is used for all types of Runtime Manager installations: MuleSoft managed (cloud-based) Anypoint Platform accounts, and Anypoint Platform Private Cloud Editions accounts.
+The `amc_setup` command generates the `$MULE_HOME/conf/mule-agent.yml` file. 
 
-`<token>` is a base64 encoded string that specifies the exact business group and environment with which to register the Mule runtime engine with the Runtime Manager. You obtain this token using the *Add Server* button in a Runtime Manager console, and the token is generated by Runtime Manager.
-
-`<server-name>` is the instance name with which to label the Mule runtime engine in the Runtime Manager console. This name must be unique within the business group's environment.
-
-|`-P <PROXY_HOST> <PROXY_PORT> <PROXY_USER> <PROXY_PASSWORD>`
-
-`--proxy <PROXY_HOST> <PROXY_PORT> <PROXY_USER> <PROXY_PASSWORD>`
-|Proxy configuration to use when registering with the connection. This option defines proxy details. See <<Installation Via Proxy>>.
-
-|===
-
-==== Obtaining a Registration Token
-The `-H` parameter is required to register a Mule runtime engine with Runtime Manager. You must provide a valid registration token to this parameter. The access_token is copied from the Runtime Manager console, for a specific environment within a specific business group. The Mule runtime engine will then be managed within this particular Anypoint Platform business group's environment.  The `-H` is used for both regular (cloud-based) Anypoint Platform and Anypoint Platform Private Cloud Editions.
-
-To obtain the registration token, you need to use the *Add Server* option in the Runtime Manager. This presents a complete command to register the Mule runtime engine in the format `./amc_setup -H <token> <server-name>`. After you have the command with the registration token, copy-paste it into the `$MULE_HOME/bin` folder for each Mule runtime engine you wish to register. Make sure to change the instance name `server-name` to the unique instance name you wish to use to label this Mule runtime engine in the Runtime Manager console.
-
-[NOTE]
-====
-You can use the same copied registration command for multiple Mule runtimes, but make sure to change the default instance name `server-name` to a different and unique instance name for each Mule runtime engine.
-====
+=== Example mule-agent.yml File
 
 Here is an example `mule-agent.yml` file generated by the `-H` option:
 
@@ -301,793 +308,104 @@ globalConfiguration:
     endpoint: https://arm-auth-proxy.prod.cloudhub.io
 ----
 
-[WARNING]
-====
-Do not register a single Mule runtime engine with multiple Runtime Manager business groups or environments.
 
-You can register each individual Mule with Runtime Manager only once.
+== Register Mule with Anypoint Platform PCE Runtime Manager
 
-Do not register a Mule runtime engine with both an older xref:mule-management-console::index.adoc[Mule Management Console (MMC)] and Runtime Manager. If the Mule runtime engine is currently managed in MMC, first unregister the Mule runtime engine with MMC before running the `amc_setup -H` script.
-====
+With Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), all Runtime Manager services run on-premises rather than in a cloud environment managed by MuleSoft.
 
-[TIP]
-====
-MuleSoft support can provide you with some migration scripts to help you migrate from MMC to Runtime Manager.
+To register Mule with PCE Runtime Manager:
 
-For details, see xref:managing-servers.adoc#add-a-server[Managing Servers].
-====
-
-=== Installation Via Proxy
-
-If your Mule runtime engine will run inside a firewall what restricts external communication through a proxy server, you can configure the Runtime Manager agent to route REST traffic through the proxy server to Runtime Manager.
-
-To configure the proxy server, pass in the '-P' argument along with the -H argument.
-
-Format: `amc_setup -H <token> <Server Name>  -P <Proxy Host> <Proxy Port> [<Proxy User> <Proxy Password>]`
-
-Where:
-
-* _Proxy Host_ - The host of the desired proxy. You should be able to just specify the hostname. For example you can specify `proxy.acme.com`, not the full URL `+http://proxy.acme.com+` nor `+https://proxy.acme.com+`. If you include `http://` or `https://` in the hostname, you may get an error.
-* _Proxy Port_ - The port of the desired proxy.
-* _Proxy User_ - (Optional) The user with which to authenticate against the proxy, if the proxy server requires authentication.
-* _Proxy Password_ - (Optional) The password with which to authenticate against the proxy, if the proxy server requires authentication.
-
-[NOTE]
-====
-the _Proxy User_ and _Proxy Password_ are optional and may be omitted if the proxy doesn't require authentication.
-====
-
-Here is an example of configuring the Runtime Manager agent with a Runtime Manager token, and also configure a proxy server:
-
-
-[source,console,linenums]
-----
-amc_setup -H <token> MaxRuntime -P acme.proxy.com 443
-----
-
-Here is an example for a proxy server that requires authentication:
-
-
-[source,console,linenums]
-----
-amc_setup -H <token> MaxRuntime -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
-----
-
-If you have already installed the Runtime Manager agent and want to change its configuration to use a proxy, you can do so by editing the `mule-agent.yml` file.
-
-In addition to configuring the proxy server in the Runtime Manager agent, you should also configure the proxy server in the `wrapper.conf` file, to also enable API related communication and analytics. For details, see <<Setting up a Proxy>>.
-
-
-==== Register with an Anypoint Platform Private Cloud Edition Runtime Manager
-
-With Anypoint Platform Private Cloud Edition, all the Runtime Manager related services run on-premises rather than in a MuleSoft hosted cloud environment.
-
-The steps to register a Mule runtime engine with an on-premises Runtime Manager are similar to how you register a Mule runtime engine with a MuleSoft managed (cloud-based) Anypoint Platform Runtime Manager, with the following additional final steps:
-
-. Log into an Anypoint Platform Private Cloud Edition account.
-. Ensure that you have correctly setup the DNS entry for your platform. See xref:access-management::private-cloud-edition-features.adoc#dns-or-ip[DNS or IP]
-. Select a business group and environment to register the Mule runtime engine.
-. Within the selected environment, select *Servers* from the left side navigation menu, then click *Add Server*.
-. Copy the registration command and paste it into the `$MULE_HOME/bin` folder of the Mule runtime engine you want to register with this Runtime Manager environment. The registration command has the syntax: `./amc_setup -H <token> _server-name_`.
-. Replace `_server-name_` with a name for this Mule runtime engine in the Runtime Manager console.
-. Add additional parameters to specify the URL of required Anypoint Platform services.
+. Log in to an Anypoint Platform PCE account.
+. Ensure that you have correctly set up the DNS entry for your platform.
 +
-
-The registration command has the same format `./amc_setup -H <token> _server-name_` as the MuleSoft managed Anypoint Platform Runtime Manager, but the registration token will not work in the MuleSoft managed Anypoint Platform. At this point, you need to append some additional parameters to the registration command (after the server name). These parameters specify the URLs for the various services used by Runtime Manager to manage your Mules.
-
-[NOTE]
-====
-You must supply all the correct values for the registration command parameters to properly register the Mule runtime engine with the on-premises Runtime Manager. All of these parameters are used only to append the `-H` parameter. They are not used with the `-I` or `S` parameters to configure non Runtime Manager REST API connections.
-====
-
-==== Specify URLs of On-Premises Services
-
-This table describes all the additional parameters you need to append to the `./amc_setup -H <token> <server-name>` command to register a Mule runtime engine with an Anypoint Platform Private Cloud Edition Runtime Manager.
-
-[%header,cols="20a,80a"]
-|===
-|Parameter|Description
-|`-A <AMC_HOST>`
-
-`--amc-host <AMC_HOST>`
-|Service URL location of your local instance of Runtime Manager, e.g. `+https://10.0.0.1:8080/hybrid/v1+`. You can test if the service is available at `<AMC_HOST>/hybrid/v1`.
-
-|`-W <MCM_HOST>`
-
-`--mcm-host <MCM_HOST>`
-|Service URL location of your local instance of MCM, for example `wss://10.0.0.2:443/mule`. You can test if the service is
-available at `<MCM_HOST>/mule`.
-
-|`-C <CORE_SERVICES_HOST>`
-
-`--cs-host <CORE_SERVICES_HOST>`
-|Service URL of your local instance of Access Management, for example `+https://10.0.0.3:8080/accounts+`.
-You can test if the service is available at  `<CORE_SERVICES_HOST>/accounts`.
-
-|`-D <CONTRACT_CACHING_SERVICE_HOST>`
-
-`--contract-caching-service-host <CONTRACT_CACHING_SERVICE_HOST>`
-|Service URL location of your local instance of Contract Caching Service, for example: `+https://10.0.0.4:8080+`.
-
-
-|`-F <API_PLATFORM_HOST>`
-
-`--api-platform-host <API_PLATFORM_HOST>`
-|Service URL location of your local instance of API Manager, for example `+https://10.0.0.5:8080/apiplatform+`. I
-You can test if the service is available at `<API_PLATFORM_HOST>/apiplatform`.
-
-|`-Z <AUTH_PROXY_SERVICE_HOST>`
-
-`--auth-proxy-host <AUTH_PROXY_SERVICE_HOST>`
-|Service URL location of your Auth Proxy, for example: +https://10.0.0.3:8080+.
-
-|===
-
-Full sample command:
-
-[source,console,linenums]
-----
-./amc_setup -H <token> <server-name> -A +http://$DOCKER_IP_ADDRESS:8080/hybrid/api/v1+ -W "wss://<Anypoint Platform host>:8443/mule" -C https://<AnypointPlatform host>/accounts -F https://<Anypoint Platform host>/apiplatform
-----
-
-=== REST Connection amc_setup Parameters
-
-These arguments work in both versions of Anypoint Platform (cloud and on-premises), to allow direct REST connections between the Mule runtime engine and any external client. This allows external clients to access and manage a Mule runtime engine directly via the xref:runtime-manager-agent-api.adoc[Runtime Manager agent's REST API].
-
-You can configure the Runtime Manager agent to allow either insecure or secure connections.
-
-With a secure REST configuration, you need to configure the Runtime Manager agent with a valid digital certificate. The insecure REST configuration option allows you to skip this step.
-
-=== Insecure Connection Channel
-
-
-This option, configurable on the installation command through the '-I' parameter, configures the Runtime Manager agent to use an unencrypted connection. It is valid for the REST transport only. You can interact with the API using a browser or other tool for making HTTP requests.
-
-[%header,cols="20a,80a"]
-|===
-|Parameter|Description
-
-|`-I`
-
-`--insecure`
-|Configures the Runtime Manager agent to use an unencrypted connection. It is valid for the REST transport only. You can interact with the API using a browser or other tool for making HTTP requests. The default TCP port is 9999, so you can connect to the Runtime Manager agent at the base URL `+http://localhost:9999/mule/agent/+`.
-
-|===
-
-
-Here is an example `mule-agent.yml` file generated by the `-I` parameter:
-
-[source,yaml,linenums]
-----
-transports:
-  websocket.transport:
-    enabled: false
-
-  rest.agent.transport:
-    port: 9999
-
-services:
-  mule.agent.jmx.publisher.service:
-    enabled: true
-    frequency: 15
-    frequencyTimeUnit: MINUTES
-----
-
-=== Secure Connection Channel
-
-You can configure Runtime Manager agent to establish a TLS connection by using the `-S` argument on the installation command line. This option enables a TLS channel for REST communications only.
-
-You can use this option when managing the agent manually. For detailed steps, see <<Configure Two-Way TLS for Mule Runtime Engine Without the Control Plane>>.
-
-If you're using the Anypoint Platform Runtime Manager cloud console to manage the agent, see <<Configure Two-Way TLS for Mule Runtime Engine Managed by Control Plane>>.
-
-
-[%header,cols="20a,80a"]
-|===
-|Parameter|Description
-
-
-|`-S`
-
-`--secure`
-|Configures the Runtime Manager agent to establish a TLS connection with an on-premises administration console.
-
-Provide the keystore (public-private key pair) and truststore files in JKS format.
-
-|===
-
-After you select the secure connection channel mode, you see the following menu:
-
-----
-The communication channel for the agent will be encrypted using
-public/private key certificates. In the following steps you
-will be asked to provide the keystore and truststore.
-Both keystore and truststore format must be JKS.
-
-Keystore location (?):
-Truststore location (?):
-Keystore Password (?):
-Keystore Alias (?):
-Keystore Alias Password (?):
-INFO: Mule agent was successfully configured to use a TLS channel for REST communications.
-----
-
-* *Keystore location* (Required)
+See xref:access-management::private-cloud-edition-features.adoc#dns-or-ip[DNS or IP].
+. Select a business group and environment with which to register Mule.
+. Within the selected environment, click *Servers* in the left menu.
+. Click the *Add Server* button.
 +
-Specifies the location of the keystore file to encrypt the communication channel. The keystore file must be in JKS format.
-* *Truststore location*
+Runtime Manager generates the `amc_setup` command, including `_token_` and `_server-name_`, to use to register Mule in your environment. 
 +
-Specifies the location of the truststore file that you want to accept incoming requests from the administration console. The truststore must be in JKS format and must not have a password.
-* *Keystore Password*
+The registration token includes your organization's ID and the current environment.
+. Click *Copy* to copy the command.
+. In a terminal window, change to the `$MULE_HOME/bin` directory for the Mule instance that you're registering.
+. Paste the command on the command line.
+. Change the instance name `server-name` to the unique name to use to label Mule in the Runtime Manager console.
+. Include any other parameters on the `amc_setup` command line.
 +
-Provides the password that the agent uses to read the keystore. The agent uses the password to open the keystore.
-* *Keystore Alias*
+See <<amc_setup Parameters>>.
+. Append parameters to the command line to specify the URLs of services used by Runtime Manager to manage your Mule instance.
 +
-Specifies the alias of the key stored in the keystore.
-* *Keystore Alias Password*
+See <<PCE Runtime Manager amc_setup Parameters>>.
 +
-The alias password in the keystore.
-
-Here is an example `mule-agent.yml` file generated by the `-S` parameter:
-
-[source,yaml,linenums]
-----
-transports:
-  websocket.transport:
-    enabled: false
-
-  rest.agent.transport:
-    restSecurity:
-      keyStoreFile: server.jks
-      keyStorePassword: P@ssword
-      keyStoreAlias: serverkey
-      keyStoreAliasPassword: P@ssword
-    port: 9999
-
-services:
-  mule.agent.jmx.publisher.service:
-    enabled: true
-    frequency: 15
-    frequencyTimeUnit: MINUTES
-----
-
-=== Configure Two-Way TLS for Mule Runtime Engine Without the Control Plane
-
-To configure two-way TLS when Mule is not connected to the control plane, use the `amc_setup -S` option.
-
-. Generate a keystore (public-private key pair) to identify the Runtime Manager agent (server).
-+
-Set the CN to match the Runtime Manager agent hostname or IP address:
+Here is an example `amc_setup` command:
 +
 [source,console,linenums]
 ----
-echo "Generate a new keystore to identify the Runtime Manager agent. Use CN=localhost"
-
-keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
--alias rma \
--dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
+./amc_setup -H myToken myMuleServer -A +http://$DOCKER_IP_ADDRESS:8080/hybrid/api/v1+ -W "wss://_Anypoint Platform host_:8443/mule" -C https://_AnypointPlatform host_/accounts -F https://AnypointPlatformHost/apiplatform
 ----
 
-. Export the Runtime Manager agent certificate (only the public key) to a DES-formatted certificate file.
+The `amc_setup` command generates the `$MULE_HOME/conf/mule-agent.yml` file. 
 
-+
-[source,console,linenums]
-----
-echo "Export the rma alias' certificate from the rmakeystore.jks key store"
-keytool -export -alias rma -file rma.crt -keystore rmakeystore.jks -storepass mulesoft
-----
 
-. For each REST client that connects to the Runtime Manager agent, generate a keystore (public-private key pair) to identify the REST client.
+=== PCE Runtime Manager amc_setup Parameters 
 
-+
-[source,console,linenums]
-----
-echo "Generate a new keystore to be used by client requestors. Use CN=localhost"
-keytool -keystore clientkeystore.jks -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
--alias client \
--dname "CN=localhost, OU=RMA Client, O=MuleSoft, L=San Francisco, S=California, C=US"
-----
+This table lists additional parameters required to register Mule with Anypoint Platform PCE Runtime Manager. Append these parameters to the `./amc_setup -H _token_ _server-name_` command.
 
-. Export the REST client certificate (the public key only) to a DES-formatted certificate file.
+Do not use these parameters with the `-I` or `S` parameters to configure REST API connections.
 
-+
-[source,console,linenums]
-----
-echo "Export the client alias' certificate from the clientkeystore.jks key store"
-keytool -export -alias client -file client.crt -keystore clientkeystore.jks -storepass mulesoft
-----
 
-+
-. Create the truststore file.
-+
-[source,console,linenums]
-----
-echo "Import client and server public keys into a common cacerts.jks truststore file"
-
-keytool -import -v -trustcacerts -alias rma -file rma.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
-
-keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
-----
-+
-Because the certificate files are self-signed, the client can't validate them with a Certificate Authority (CA). To emulate CA signing the certificates, you must create a truststore file containing both the client and RMA certificates (public keys). In a production environment, the server and client certificates are both signed by a trusted CA, and then published or shared with the client and server machines.
-
-. Configure Mule runtime engine with the `rmakeystore.jks` file and the `cacerts.jks` truststore.
-+
-From the `$MULE_HOME/bin` folder, run `./amc_setup -S`.
-
-. When prompted, enter the values you generated.
-+
-For example, if you ran the previous commands from the `/security` folder, enter these values:
-+
-[source,console,linenums]
-----
--> Mule Agent Unpacked
-
-
-
-The communication channel for the agent will be encrypted using public/private key certificates.
-In the following steps you are asked to provide the keystore and truststore. Both keystore and
-truststore formats must be JKS.
-
-
-Keystore location (?):/security/rmakeystore.jks
-Keystore Password (?): mulesoft
-Truststore location (?):/security/cacerts.jks
-Keystore Alias (?):rma
-Keystore Alias Password (?): mulesoft
-
-        INFO: Mule agent was successfully configured to use a TLS channel for REST communications.
-
-
-> more ..\conf\mule-agent.yml
-
-transports:
-  websocket.transport:
-    enabled: false
-
-  rest.agent.transport:
-    restSecurity:
-      keyStoreFile: clientkeystore.jks
-      keystorePassword: mulesoft
-      keyStoreAlias: client
-      keyStoreAliasPassword: mulesoft
-    port: 9999
-
-services:
-  mule.agent.jmx.publisher.service:
-    enabled: true
-    frequency: 15
-    frequencyTimeUnit: MINUTES
-
-----
-+
-This command imports the `/security/cacerts.jks` truststore file into the `$MULE_HOME/conf` folder and renames it  `anypoint-truststore.jks`.
-+
-[NOTE]
-In Runtime Manager agent version 1.10.0 and later, the name of the default truststore is `anypoint-truststore.jks`. In earlier versions of Runtime Manager agent, the name is `truststore.jks`.
-
-. Restart Mule runtime engine and verify that the Runtime Manager agent REST interface starts successfully.
-. Add SSL debugging to the Mule runtime engine logging:
-+
-`./mule -M-Djavax.net.debug=all`
-
-=== Configure Two-Way TLS for Mule Runtime Engine Managed by Control Plane
-
-To configure two-way TLS when Mule is connected to the control plane:
-
-. Generate a keystore (public-private key pair) to identify the Runtime Manager agent (server).
-+
-Set the CN to match the Runtime Manager agent hostname or IP address.
-+
-[source,console,linenums]
-----
-echo "Generate a new keystore to identify the Runtime Manager Agent. Use CN=localhost"
-
-keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
--alias rma \
--dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
-----
-
-. Export the Runtime Manager agent certificate (only the public key) to a DES-formatted certificate file.
-
-+
-[source,console,linenums]
-----
-echo "Export the rma alias' certificate from the rmakeystore.jks key store"
-keytool -export -alias rma -file rma.crt -keystore rmakeystore.jks -storepass mulesoft
-----
-
-. For each REST client that connects to the Runtime Manager agent, generate a keystore (public-private key pair) to identify the REST client.
-+
-[source,console,linenums]
-----
-echo "Generate a new keystore to be used by client requestors. Use CN=localhost"
-keytool -keystore clientkeystore.jks -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
--alias client \
--dname "CN=localhost, OU=RMA Client, O=MuleSoft, L=San Francisco, S=California, C=US"
-----
-
-. Export the REST client certificate (the public key only) to a DES-formatted certificate file.
-+
-[source,console,linenums]
-----
-echo "Export the client alias' certificate from the clientkeystore.jks key store"
-keytool -export -alias client -file client.crt -keystore clientkeystore.jks -storepass mulesoft
-----
-
-. Create the truststore file containing both the client and RMA certificates.
-
-+
-[source,console,linenums]
-----
-echo "Import client and server public keys into a common cacerts.jks truststore file"
-
-keytool -import -v -trustcacerts -alias rma -file rma.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
-
-keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
-----
-+
-Because the certificate files are self-signed, the client can't validate them with a Certificate Authority (CA). To emulate CA signing the certificates, you must create a truststore file containing both the client and RMA certificates (public keys). In a production environment, the server and client certificates are both signed by a trusted CA, and then published or shared with the client and server machines.
-
-. Back up the `anypoint-truststore.jks` and `mule-agent.yml` files.
-
-+
-[source,console,linenums]
-----
-cp anypoint-truststore.jks anypoint-truststure.jks.bkp
-cp mule-agent.yml mule-agent.yml.bkp
-----
-. Export the Anypoint Platform certificate to a DES-formatted certificate file.
-+
-If prompted for a password, press Enter.
-+
-[source,console,linenums]
-----
-keytool -export -alias hybrid -file hybrid.crt -keystore anypoint-truststore.jks
-----
-
-. Create the truststore file containing these certificates: client, RMA, and Anypoint Platform.
-+
-----
-keytool -import -v -trustcacerts -alias rma -file rma.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
-keytool -import -v -trustcacerts -alias client -file client.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
-keytool -import -v -trustcacerts -alias hybrid -file hybrid.crt -keystore cacerts.jks -keypass mulesoft -storepass mulesoft -noprompt
-----
-+
-Because the certificate files are self-signed, the client can't validate them with a Certificate Authority (CA). To emulate CA signing these certificates, you must create a truststore file containing both the client and RMA certificates. The truststore file must also contain the Anypoint Platform certificate to retain connectivity with the control plane. In a production environment, the server and client certificates are both signed by a trusted CA, and then published or shared with the client and server machines.
-
-. Shut down Mule runtime engine and modify the `mule-agent.yml` file to configure the secure REST API endpoint.
-+
-----
-transports:
-  rest.agent.transport:
-    restSecurity:
-      keyStoreFile: rmakeystore.jks
-      keyStorePassword: mulesoft
-      keyStoreAlias: rma
-      keyStoreAliasPassword: mulesoft
-    port: 9995
-----
-
-. Rename the newly created `cacerts.jks` file to `anypoint-truststore.jks`. This file is your new truststore for Runtime Manager agent as well as Anypoint Platform connectivity.
-+
-----
-mv cacerts.jks anypoint-truststore.jks
-----
-+
-[NOTE]
-In Runtime Manager agent version 1.10.0 and later, the name of the default truststore is `anypoint-truststore.jks`. In earlier versions of Runtime Manager agent, the name is `truststore.jks`.
-
-. Start Mule runtime engine, and verify the Runtime Manager agent REST interface starts up successfully and verify that it is still connected to Runtime Manager in Anypoint Platform.
-
-. Add SSL debugging to the Mule logging:
-+
-`./mule -M-Djavax.net.debug=all`
-
-
-==== Submit Two-Way TLS REST Requests
-
-. Convert the JKS keystore to a P12 keystore.
-
-+
-[source,console,linenums]
-----
-echo "Export client keystore PKCS12 format from JKS"
-keytool -importkeystore -srckeystore clientkeystore.jks -srcstoretype JKS -srcstorepass mulesoft \
--destkeystore clientkeystore.p12 -deststoretype PKCS12 -deststorepass mulesoft \
--srcalias client -destalias client
-----
-
-. Use the `openssl` tool to export a base64 encoded text file of the full client certificate (public and private keys):
-
-+
-[source,console,linenums]
-----
-echo "Export full PEM (public and private keys) for use by client requests (cURL)"
-openssl pkcs12 -in clientkeystore.p12 -passin pass:mulesoft \
--out clientkeystore.pem -passout pass:mulesoft
-----
-
-+
-You can view the `clientkeystore.pem` file to verify both the public and private keys were exported to this file.
-
-. Submit a REST request from the client host to the Runtime Manager agent host. Verify you do not see any SSL errors and you get a response back from the Runtime Manager agent. Also use the `--insecure` option (or equivalently `-k`) to skip verifying the server (Runtime Manager agent's) certificate.
-
-+
-[source,console]
-----
-$ curl -X GET https://localhost:9999/mule/agent/components --cert clientkeystore.pem --insecure
-
-Enter PEM pass phrase:
-
-[{"componentId":"components.configure.request.handler","enabled":true},{"componentId":"clustering.request.handler","enab
-led":true},{"componentId":"applications.request.handler","enabled":true},{"componentId":"domains.request.handler","enabl
-ed":true},{"componentId":"flows.request.handler","enabled":true},{"componentId":"installer.request.handler","enabled":tr
-ue},{"componentId":"logging.request.handler","enabled":true},{"componentId":"monitoring.request.handler","enabled":true}
-,{"componentId":"properties.request.handler","enabled":true},{"componentId":"tracking.request.handler","enabled":true},{
-"componentId":"application.deployment.notification.internal.message.handler","enabled":true},{"componentId":"domain.depl
-oyment.notification.internal.message.handler","enabled":true},{"componentId":"flow.status.notification.internal.message.
-handler","enabled":true},{"componentId":"membership.change.notification.internal.message.handler","enabled":true},{"comp
-onentId":"primary.node.notification.internal.message.handler","enabled":true},{"componentId":"tracking.notification.inte
-rnal.message.handler","enabled":false},{"componentId":"mule.agent.tracking.handler.log","enabled":false},{"componentId":
-"mule.agent.gw.http.handler.log","enabled":false},{"componentId":"mule.agent.nagios.jmx.internal.handler","enabled":fals
-e},{"componentId":"mule.agent.tracking.handler.splunk","enabled":false},{"componentId":"mule.agent.gw.http.handler.splun
-k","enabled":false},{"componentId":"mule.agent.application.service","enabled":true},{"componentId":"mule.agent.clusterin
-g.service","enabled":true},{"componentId":"mule.agent.domain.service","enabled":true},{"componentId":"mule.agent.gw.http
-.service","enabled":false},{"componentId":"mule.agent.installer.service","enabled":true},{"componentId":"mule.agent.logg
-ing.service","enabled":true},{"componentId":"mule.agent.application.metrics.publisher.service","enabled":true},{"compone
-ntId":"mule.agent.jmx.publisher.service","enabled":true},{"componentId":"mule.agent.properties.service","enabled":true},
-{"componentId":"mule.agent.tracking.service","enabled":true}]
-----
-
-
-
-
-== Configure the Agent
-
-The sections that follow provide additional configuration details for Runtime Manager agent.
-
-[NOTE]
-If you want to use the Runtime Manager agent to send data from the Runtime Manager to Splunk, an ELK stack or other external software, then you must configure it in a different way from the one described below. See xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from the Runtime Manager to External Analytics Software] for details.
-
-
-=== Configure mule-agent.yml
-
-At startup, the Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`. You must manually add, then edit this file with your installation's configuration parameters.
-
-[source,yaml,linenums]
-----
-muleInstanceUniqueId: validId
-organizationId: organizationId
-
-transports:
-    rest.agent.transport:
-        security:
-            keyStorePassword: rmakeystore.jks
-            keyStoreAlias: rma
-            keyStoreAliasPassword: mulesoft
-        port: 9997
-
-services:
-    mule.agent.application.service:
-        enabled: true
-
-    mule.agent.domain.service:
-        enabled: true
-
-    mule.agent.jmx.publisher.service:
-        enabled: true
-        frequency: 15
-        frequencyTimeUnit: MINUTES
-        beans:
-            -   beanQueryPattern: java.lang:type=Runtime
-                attribute: Uptime
-                monitorMessage: Monitoring memory up-time
-            -   beanQueryPattern: java.lang:type=MemoryPool,*
-                attribute: Usage.used
-                monitorMessage" : Used Memory
-
-internalHandlers:
-    domaindeploymentnotification.internal.message.handler:
-        enabled: false
-
-    applicationdeploymentnotification.internal.message.handler:
-        enabled: false
-----
-
-==== Configuration File Structure
-
-The `mule-agent.yml` file is structured in three levels:
-
-* First level: Component types: transports, services, internalHandlers, and externalHanders.
-** Second level: Component name, for example, `mule.agent.jmx.publisher.service`.
-*** Third level: Component configuration. A component can have complex object configurations, including more than one recursive level.
-
-To learn more on how to configure the Runtime Manager agent, refer to the documentation of each component.
-
-==== Configure Log Location
-
-You can log your Runtime Manager agent state in a separate file from the other Mule log info, to set this up, see xref:3.8@mule-runtime::logging-in-mule.adoc#configuring-logs-for-runtime-manager-agent[Logging in Mule].
-
-[NOTE]
-This is only supported in version 1.5.2 or later of the Runtime Manager agent.
-
-==== Configure During Runtime
-
-Some agent components allow you to configure them during runtime. For further information, see xref:administration-service.adoc[Administration Service].
-
-== Enable REST Agent Transport and WebSocket Transport
-
-When you register a Mule runtime engine in the Runtime Manager, the generated `mule-agent.yml` disables the REST agent Transport (it replaces any existing configuration).
-
-Conversely, if you run `./amc_setup -I`, you enable the REST agent Transport and disable the WebSocket Transport (it replaces any existing WebSocket Transport configuration used to connect to Runtime Manager).
-
-To run both transports, modify the `mule-agent.yml` file with the following pattern:
-
-[source,yaml,linenums]
-----
-transports:
-  websocket.transport:
-    consoleUri: wss://mule-manager.anypoint.mulesoft.com:443/mule
-    security:
-      keyStorePassword: <password>
-      keyStoreAlias: agent
-      keyStoreAliasPassword: <password>
-      handshake:
-        enabled: true
-        body:
-          agentVersion: 1.1.0
-          muleVersion: 3.7.0
-          gatewayVersion: 2.0.2
-  rest.agent.transport:
-    port: 8888
-
-services:
-  mule.agent.jmx.publisher.service:
-    enabled: true
-    frequency: 15
-    frequencyTimeUnit: MINUTES
-----
-
-== Ports IPs and hostnames to Whitelist
-
-In your network, you may need to whitelist the hostnames and ports of various parts of the Anypoint Platform to allow the Runtime Manager agent in a customer-hosted Mule runtime engine to communicate with the MuleSoft-managed online Anypoint Platform APIs and services.
-
-These tables show you the ports or IPs/hostnames to add to your whitelists to allow communication between the Runtime Manager agent and the Runtime Manager console:
-
-*Ports*
-
-[%header,cols="3*a"]
+[%header,cols="30a,30a,40a"]
 |===
-|Region |Name |Port
-|*US*|*anypoint.mulesoft.com* | 443
-|*US*|*mule-manager.anypoint.mulesoft.com* | 443
-|*US*|*runtime-manager.anypoint.mulesoft.com* | 443
-|*US*|*analytics-ingest.anypoint.mulesoft.com* |  443
-|*US*|*arm-auth-proxy.prod.cloudhub.io* |  443
-|*US*|*data-authenticator.anypoint.mulesoft.com* |  443
-|*US*|*exchange2-asset-manager-kprod.s3.amazonaws.com* |  443
-|*EU*|*eu1.anypoint.mulesoft.com* | 443
-|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* | 443
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* | 443
-|*EU*|*analytics-ingest.eu1.anypoint.mulesoft.com* |  443
-|*EU*|*arm-auth-proxy.prod-eu.msap.io* |  443
-|*EU*|*data-authenticator.eu1.anypoint.mulesoft.com* |  443
-|*EU*|*exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com* |  443
-|===
+|Parameter|Value| Description
+|`-A`
 
-*Static IPs*
+`--amc-host`
+| `_amc-host_`
 
-* Two static IPs must be whitelisted in `US` to access the `mule-manager` hosts:
-+
+|Specifies the service location URL of your local instance of Runtime Manager, such as `+https://10.0.0.1:8080/hybrid/v1+`.
 
-[%header,cols="3*a"]
-|===
-|Region |Name |IP Address
-|*US*|*mule-manager.anypoint.mulesoft.com* |52.201.174.72
-|*US*|*mule-manager.anypoint.mulesoft.com* |52.201.67.218
-|===
+You can test whether the service is available at `_AMC_HOST_/hybrid/v1`.
+|`-W`
 
-* Four static IPs must be whitelisted in `US` to access the `runtime-manager` hosts:
-+
-[%header,cols="3*a"]
-|===
-|*US*|*runtime-manager.anypoint.mulesoft.com* |107.23.158.87
-|*US*|*runtime-manager.anypoint.mulesoft.com* |54.227.160.248
-|*US*|*runtime-manager.anypoint.mulesoft.com* |54.172.124.202
-|*US*|*runtime-manager.anypoint.mulesoft.com* |3.230.47.55
-|===
+`--mcm-host`
+| `_mcm-host_`
+|Specifies the service location URL of your local instance of MCM: for example, `wss://10.0.0.2:443/mule`.
 
-* Two static IPs must be whitelisted in `EU` to access the `mule-manager` hosts:
-+
-[%header,cols="3*a"]
-|===
-|Region |Name |IP Address
-|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.195.19.18
-|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.194.245.32
-|===
+You can test whether the service is available at `_MCM_HOST_/mule`.
 
-* Three static IPs must be whitelisted in `EU` to access the `runtime-manager` hosts:
-+
-[%header,cols="3*a"]
-|===
-|Region |Name |IP Address
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* |3.123.64.97
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* |18.194.166.104
-|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* |3.123.248.130
-|===
+|`-C`
 
+`--cs-host`
+|`_core-services-host_`
+|Specifies the service URL of your local instance of Access Management, for example, `+https://10.0.0.3:8080/accounts+`.
 
+You can test whether the service is available at  `_core-services-host_/accounts`.
+|`-D`
 
-*Dynamic IPs*
+`--contract-caching-service-host`
+|`_contract-caching-service-host_`
+|Specifies the service location (URL) of your local instance of Contract Caching Service: for example, `+https://10.0.0.4:8080+`.
+|`-F`
 
-Some of the IP addresses used by Anypoint Platform services are assigned automatically by the underlying cloud infrastructure, and hence we can't guarantee that they are not going to change in the future.
+`--api-platform-host`
+|`_api-platform-host_`
+|Specifies the service location URL of your local instance of API Manager, for example, `+https://10.0.0.5:8080/apiplatform+`.
 
-For this reason, you should not implement a whitelist based on the specific IP addresses being assigned to Anypoint services.
+You can test whether the service is available at `_API_PLATFORM_HOST_/apiplatform`.
+|`-Z`
 
-Nowadays, many firewall devices allow you to define Layer 7 Firewall Rules, where you could be able to filter by destination name or application type.
-
-The hostnames that you should include in your Layer 7 Firewall rules include:
-
-[%header,cols="2*a"]
-|===
-|Region |Hostname
-|*US*|*anypoint.mulesoft.com*
-|*US*|*analytics-ingest.anypoint.mulesoft.com*
-|*US*|*arm-auth-proxy.prod.cloudhub.io*
-|*US*|*data-authenticator.anypoint.mulesoft.com*
-|*EU*|*eu1.anypoint.mulesoft.com*
-|*EU*|*analytics-ingest.eu1.anypoint.mulesoft.com*
-|*EU*|*arm-auth-proxy.prod-eu.msap.io*
-|*EU*|*data-authenticator.eu1.anypoint.mulesoft.com*
+`--auth-proxy-host` 
+|`_auth-proxy-host_`
+|Specifies the service location URL of your Auth Proxy, for example, `+https://10.0.0.3:8080+`.
 
 |===
 
-== Setting up a Proxy
-
-You can configure the Runtime Manager agent to send websocket messages through an HTTP proxy.
-
-The only proxy authentication method supported by the Runtime Manager agent is Basic Authentication.
-
-The Runtime Manager agent reads its proxy configuration from the `wrapper.conf` file, located under Mule's `conf/` directory.
-
-=== Default wrapper.conf File
-
-`$MULE_HOME/conf/wrapper.conf`.
-
-In this file the properties that define proxy configuration are:
-
-* `anypoint.platform.proxy_host`
-* `anypoint.platform.proxy_port`
-* `anypoint.platform.proxy_username`
-* `anypoint.platform.proxy_password`
-
-To send the insights and monitoring information, the Runtime Manager agent calls the auth-proxy service. To connect to this service, the Runtime Manager agent reads the proxy configuration from the file `mule-agent.yml`, in the `conf/` directory.
-
-=== Agent-Specific mule-agent.yml File
-
-`$MULE_HOME/conf/mule-agent.yml`.
-
-[source,yaml,linenums]
-----
-globalConfiguration:
-  proxyConfiguration:
-    host: "http://exampleHost"
-    port: 9999
-    user: "exampleUser"
-    password: "examplePassword"
-----
-
-== Known Issues
-
-[%header,cols="15a,85a"]
-|===
-|Issue |Description
-| SE-8011 | Agent setup returning '407 Proxy Authentication Required' when passing proxy information during setup.
-|===
 
 == See Also
 
-* xref:1.x@api-manager::configuring-an-api-gateway.adoc[Configuring an API Gateway]
+* xref:mule-runtime::installing-an-enterprise-license.adoc[Installing an Enterprise License]
+* xref:mule-runtime::starting-and-stopping-mule-esb.adoc[Starting and Stopping Mule]
+* xref:api-manager::runtime-agw-landing-page.adoc[Runtime - API Gateway]
 * xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture]
-* xref:event-tracking.adoc[Event Tracking]
+* xref:servers-create.adoc[Create a Server in Runtime Manager (Hybrid)]
+* xref:private-cloud::install-workflow.adoc[Anypoint Private Cloud Installers]
