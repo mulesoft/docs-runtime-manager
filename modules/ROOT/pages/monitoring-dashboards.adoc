@@ -88,11 +88,38 @@ You can view all graphs for different time ranges by selecting the desired time 
 image::monitoring-dashboards-time-ranges.png[]
 * Classic application monitoring dashboard:
 +
+--
 image::monitoring-dashboards-cbd92.png[]
+
+
+The following table lists the time units for each selected time range:
+
+////
+[%header,cols="15,15,15,15,15"]
+|===
+| 4+| *Selected Time Range* 
+|*Average, Minimum, Maximum*| *3 Hours* | *24 Hours* | *7 Days* | *2 Weeks*
+| Number of Mule Messages .3+| Per minute .3+| Per 8 minutes .3+| Per hour .3+| Per 2 hours
+| Number of Errors
+| Response Time (in milliseconds)
+|===
+////
+
+[%header,cols="15,15,15,15"]
+|===
+| 3+| *Graphs Display the Average, Minimum, and Maximum:* 
+| *Selected Time Range* | *Number of Mule Messages* | *Number of Errors* | *Response Time (milliseconds)*
+| *3 Hours* | Per minute | Per minute | Per minute
+| *24 Hours* | Per 8 minutes | Per 8 minutes | Per 8 minutes
+| *7 Days*  | Per hour | Per hour | Per hour 
+| *2 Weeks* | Per 2 hours | Per 2 hours | Per 2 hours
+|===
+
 
 If your application runs on multiple workers, the workers are charted as different curves on the same graphs, differentiated by different colors.
 
 If your application runs on a server group or cluster, the aggregated metrics of the servers in the group or cluster appear as a single plot line on each graph. If you want to see the metrics at the individual server level, you can look at the dashboard for the individual server. If multiple apps are running on the server, you see the overall server performance, without a distinction between each of the apps running on it.
+--
 
 == Server Monitoring Dashboard
 
@@ -151,17 +178,23 @@ The amount of memory (in MB) available for use by the Java VM. This amount varie
 
 The graphs in the Overview tab provide high-level metrics related to memory and CPU usage.
 
+[[heap_memory]]
 Heap Memory::
 The total heap memory usage in MB:
 +
+
 * Heap memory usage
 * Total memory
 * Heap committed memory
+
 +
 image::monitoring-dashboards-heap.png[]
+
 +
 See the <<Breakdown Tab,Breakdown tab>> for details about each of the components of the heap memory.
 
+
+[[cpu]]
 CPU::
 This metric is not available on Windows.
 +
@@ -170,6 +203,7 @@ The total CPU usage of the server, as a percentage:
 * CPU usage
 * System available processing power
 * System load average
+
 +
 image::monitoring-dashboards-cpu.png[]
 
@@ -194,6 +228,7 @@ The graphs in the Breakdown tab provide detailed metrics, including graphs that 
 Thread Count:: 
 The number of individual Java execution threads over time:
 +
+
 image::monitoring-dashboards-threads.png[]
 
 [[garbage_collection]]
@@ -203,6 +238,7 @@ Metrics for these areas of the heap:
 * Young Generation, where all new objects are allocated.
 * Old Generation, where long-surviving objects are stored.
 +
+
 image::monitoring-dashboards-garbage.png[]
 
 [[class_loading]]
