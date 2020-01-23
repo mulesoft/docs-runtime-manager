@@ -8,45 +8,16 @@ image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title
 image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-To provide a safe cloud environment for applications and data, MuleSoft regularly scans apps deployed on CloudHub and identifies apps that require updates to the CloudHub runtimes.
-These updates provide the latest OS and security patches.
-To keep your apps up-to-date and secure, apply the updates when they become available.
+When you deploy an application to CloudHub, you have access to the validated OS updates, security patches, and bug fixes that MuleSoft provides regularly.
 
-Because these updates contain required security patches, you cannot roll back these updates once applied.
+You can keep your CloudHub applications up to date by manually updating your apps at your convenience or you can let MuleSoft apply the updates automatically.
 
-
-You can schedule and update your apps manually at your convenience or you can wait for MuleSoft to apply the updates automatically.
-
-MuleSoft updates CloudHub apps automatically, based on the environment, on this schedule:
-
-[%header,cols="2"]
-|===
-|Environment |App Update Schedule 
-|*Production*|Every three months
-|*Sandbox*|Once every month
-|===
-
-When a new version is available and CloudHub application updates are required, the *Applications* page displays a banner and the *Update Required* tab lists the apps that require updates:
+When a new runtime version is available for your CloudHub application, the *Applications* page displays a banner and the *Update Required* tab lists the apps that require updates:
 
 .The screenshot shows (*1*) the banner and (*2*) the *Update Required* tab on the *Applications* page.
 image::cloudhub-app-update-req-page.png[Applications page with banner and Update Required tab]
-
-////
-When a new version is available and CloudHub application updates are required:
-
-* The *Applications* page displays a banner and the *Update Required* tab lists the apps that require updates:
-+
-.The screenshot shows (*1*) the banner and (*2*) the *Update Required* tab on the *Applications* page.
-image::cloudhub-app-update-req-page.png[Applications page with banner and Update Required tab]
-
-* The *Settings* page for the app that requires updates displays a banner and the *Update Required* button appears in the *Runtime version* field:
-+
-.The screenshot shows (*1*) the banner and (*2*) the *Update Required* button on the *Settings* page.
-image::cloudhub-app-settings-update-req.png[Settings page with banner and Update Required button]
-////
 
 If no apps require updates, no banner appears and the *Update Required* tab is empty.
-
 
 == Update the App Manually 
 
@@ -65,10 +36,7 @@ If the app requires an update, *Update available* appears in the *Runtime versio
 +
 .The screenshot shows (*1*) the *Update available* button and (*2*) the *Runtime version* menu on the *Settings* page.
 image::cloudhub-app-update-available-setting.png[Update available on the application Settings page]
-// If the app requires an update, *Update Required* appears in the *Runtime version* field:
-// +
-// .The screenshot shows (*1*) the *Update Required* button and (*2*) the *Runtime version* menu on the *Settings* page.
-// image::cloudhub-app-update-settings-page.png[App Required Settings page]
+
 . Select the latest version from the *Runtime version* menu.
 +
 Although the version number of the update might be the same as the installed version, the date distinguishes the update.
