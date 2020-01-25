@@ -23,7 +23,7 @@ Runtime Manager agent version 1.6.2 and earlier attempts to convert all payload 
 == Default Conversion Behavior
 
 The following table lists the payload formats and specifies whether Runtime Manager agent converts them to the String type and passes the payload message.
-If the *Converted to String* column shows `FALSE`, Runtime Manager agent passes only the payload class type.
+If the *Converted to String* column shows FALSE, Runtime Manager agent passes only the payload class type.
 
 
 [%header,cols="15,35,25,20"]
@@ -90,8 +90,7 @@ If the *Converted to String* column shows `FALSE`, Runtime Manager agent passes 
 
 == Customize Conversion Behavior
 
-You can override the default behavior and configure the agent to forward all payload formats or none by adding
-properties to the `conf/mule-agent.yml` file.
+You can override the default behavior and configure the agent to forward all payload formats or none by adding properties to the `conf/mule-agent.yml` file.
 
 For example, you might want to exclude some formats from the external logs if your organization is concerned about the security of sharing certain types of data.
 
@@ -125,7 +124,7 @@ To exclude all payloads for all apps:
 You might want to convert and forward payload formats that Runtime Manager agent considers not convertible.
 
 [IMPORTANT]
-If you force conversion for all payload formats, the payload might break.
+If you force conversion for all payload formats, the payload sent might be the payload class type, not the payload message content.
 
 To include all payloads for a specific application: 
 
