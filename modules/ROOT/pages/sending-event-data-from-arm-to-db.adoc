@@ -24,24 +24,27 @@ Ensure that the following software is installed:
 * Mule version 3.6 or later
 * API gateway standalone version 2.1.0 or later
 * Runtime Manager agent version 1.3.0 or later
++
+For information about updating the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent].
 
-== Install or Update Runtime Manager Agent
 
-Runtime Manager agent sends messages from Mule runtime engine.
-To send event information to third-party software, you must have version 1.3.0 or later of Runtime Manager agent.
+== Install Event-Tracking Database Internal Handlers
 
-See xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent].
+Depending on your version of Runtime Manager agent, you might need to install the Event-Tracking Database Internal Handlers ZIP file.
 
-== Install Event Tracking Database Internal Handlers
+For the following agent versions, you don't need to install the ZIP file because the required JAR files are included in the agent plugin:
 
-Depending on your version of Mule agent, you might need to install the Event Tracking Database Internal Handlers ZIP file.
+* 1.14.3 and later 
+* 2.4.5 and later
 
-For Mule agent versions later than 1.14.3 and 2.4.5, you don't need to install the ZIP file.
-The required JAR files are included in the Mule agent plugin.
+For the following agent versions, you must download and install the ZIP file manually:
 
-For Mule agent versions earlier than 1.14.3 and 2.4.5:
+* 1.14.2 and earlier
+* 2.4.4 and earlier
 
-. Request the Event Tracking Database Internal Handlers ZIP file (`mule-agent-internal-handlers-db-1.5.1.zip`) from Support.
+To install the ZIP file:
+
+. Request the Event-Tracking Database Internal Handlers ZIP file (`mule-agent-internal-handlers-db-1.5.1.zip`) from Support.
 . Extract the ZIP file to the `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules` folder.
 
 

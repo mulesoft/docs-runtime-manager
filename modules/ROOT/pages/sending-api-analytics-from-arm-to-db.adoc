@@ -10,7 +10,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-You can configure Runtime Manager agent to store HTTP API analytics data from Mule apps running on the API gateway runtime in a database.
+You can configure Runtime Manager agent to store in a database HTTP API analytics data from Mule apps running on the API gateway runtime.
 
 Sending data to third-party software is available only for applications deployed to local servers.
 It is not available for applications that you deploy to CloudHub using Runtime Manager.
@@ -23,24 +23,27 @@ Ensure that the following software is installed:
 
 * API gateway standalone version 2.1.0 or later
 * Runtime Manager agent version 1.3.0 or later
-
-== Install or Update Runtime Manager Agent
-
-Runtime Manager agent sends messages from Mule runtime engine.
-To send event information to third-party software, you must have version 1.3.0 or later of Runtime Manager agent.
-
++
 For information about updating the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent].
 
-== Install API Analytics Tracking Database Internal Handlers
 
-Depending on your version of Mule agent, you might need to install the API Analytics Tracking Database Internal Handlers ZIP file.
+== Install API Analytics-Tracking Database Internal Handlers
 
-For Mule agent versions later than 1.14.3 and 2.4.5, you don't need to install the ZIP file.
-The required JAR files are included in the Mule agent plugin.
+Depending on your version of Runtime Manager agent, you might need to install the API Analytics-Tracking Database Internal Handlers ZIP file.
 
-For Mule agent versions earlier than 1.14.3 and 2.4.5:
+For the following agent versions, you don't need to install the ZIP file because the required JAR files are included in the agent plugin:
 
-. Request the API Analytics Tracking Database Internal Handlers ZIP file (`mule-agent-internal-handlers-db-1.5.1.zip`) from Support.
+* 1.14.3 and later 
+* 2.4.5 and later
+
+For the following agent versions, you must download and install the ZIP file manually:
+
+* 1.14.2 and earlier
+* 2.4.4 and earlier
+
+To install the ZIP file:
+
+. Request the API Analytics-Tracking Database Internal Handlers ZIP file (`mule-agent-internal-handlers-db-1.5.1.zip`) from Support.
 . Extract the ZIP file to the `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules` folder.
 
 
