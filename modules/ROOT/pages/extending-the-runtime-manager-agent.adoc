@@ -1,13 +1,18 @@
-= Extending the Runtime Manager Agent for Hybrid
+= Extending Runtime Manager Agent for Hybrid
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic contains an overview of how to extend the Runtime Manager agent. It provides instructions on implementing a complete service, external handler and internal hander using a method to revert a string.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+This topic contains an overview of how to extend Anypoint Runtime Manager agent. It provides instructions on implementing a complete service, external handler and internal hander using a method to revert a string.
 
 == Runtime Manager Agent Extensible Component
 
-The Runtime Manager agent contains the following extensible components:
+Runtime Manager agent contains the following extensible components:
 
 * Services
 * External message handlers
@@ -426,7 +431,7 @@ This internal message handler writes the message processed by the service to a f
 ----
 **
  * <p>
- * Implementations of this interface provides new functionality to the Runtime Manager agent. These services handle data from the
+ * Implementations of this interface provides new functionality to Runtime Manager agent. These services handle data from the
  * Mule server and interact with mule.
  * </p>
  *
