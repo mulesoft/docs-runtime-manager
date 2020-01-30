@@ -14,13 +14,13 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 The REST connection `amc_setup` parameters work in both versions of Anypoint Platform (cloud and on-premises) to allow direct REST connections between the Mule runtime engine and any external client. This enables external clients to access and manage a Mule runtime engine directly via the xref:runtime-manager-agent-api.adoc[Runtime Manager agent REST API].
 
-You can configure Runtime Manager agent to allow either insecure or secure connections.
+You can configure the Runtime Manager agent to allow either insecure or secure connections.
 
-With a secure REST configuration, configure Runtime Manager agent with a valid digital certificate. The insecure REST configuration option allows you to skip this step.
+With a secure REST configuration, configure the Runtime Manager agent with a valid digital certificate. The insecure REST configuration option allows you to skip this step.
 
 == Insecure Connection Channel
 
-To configure Runtime Manager agent to use an unencrypted connection, use the `-I` parameter on the installation command line. It is only valid for the REST transport. You can interact with the API using a browser or other tool for making HTTP requests.
+To configure the Runtime Manager agent to use an unencrypted connection, use the `-I` parameter on the installation command line. It is only valid for the REST transport. You can interact with the API using a browser or other tool for making HTTP requests.
 
 [%header,cols="20a,80a"]
 |===
@@ -29,9 +29,9 @@ To configure Runtime Manager agent to use an unencrypted connection, use the `-I
 |`-I`
 
 `--insecure`
-|Configures Runtime Manager agent to use an unencrypted connection.
+|Configures the Runtime Manager agent to use an unencrypted connection.
 
-The default TCP port is 9999, so you can connect to Runtime Manager agent at the base URL `+http://localhost:9999/mule/agent/+`.
+The default TCP port is 9999, so you can connect to the Runtime Manager agent at the base URL `+http://localhost:9999/mule/agent/+`.
 
 |===
 
@@ -56,7 +56,7 @@ services:
 
 == Secure Connection Channel
 
-You can configure Runtime Manager agent to establish a TLS connection by using the `-S` argument on the installation command line. This option enables a TLS channel for REST communications only.
+You can configure the Runtime Manager agent to establish a TLS connection by using the `-S` argument on the installation command line. This option enables a TLS channel for REST communications only.
 
 You can use this option when managing the agent manually. For detailed steps, see <<Configure Two-Way TLS for Mule Runtime Engine Without the Control Plane>>.
 
@@ -71,7 +71,7 @@ If you're using the Anypoint Platform Runtime Manager cloud console to manage th
 |`-S`
 
 `--secure`
-|Configures Runtime Manager agent to establish a TLS connection with an on-premises administration console.
+|Configures the Runtime Manager agent to establish a TLS connection with an on-premises administration console.
 
 Provide the keystore (public-private key pair) and truststore files in JKS format.
 
@@ -136,20 +136,20 @@ services:
 
 To configure two-way TLS when Mule is not connected to the control plane, use the `amc_setup -S` option.
 
-. Generate a keystore (public-private key pair) to identify Runtime Manager agent (server).
+. Generate a keystore (public-private key pair) to identify the Runtime Manager agent (server).
 +
-Set the CN to match Runtime Manager agent hostname or IP address:
+Set the CN to match the Runtime Manager agent hostname or IP address:
 +
 [source,console,linenums]
 ----
-echo "Generate a new keystore to identify Runtime Manager agent. Use CN=localhost"
+echo "Generate a new keystore to identify the Runtime Manager agent. Use CN=localhost"
 
 keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
 -alias rma \
 -dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
 ----
 
-. Export Runtime Manager agent certificate (only the public key) to a DES-formatted certificate file.
+. Export the Runtime Manager agent certificate (only the public key) to a DES-formatted certificate file.
 
 +
 [source,console,linenums]
@@ -158,7 +158,7 @@ echo "Export the rma alias' certificate from the rmakeystore.jks key store"
 keytool -export -alias rma -file rma.crt -keystore rmakeystore.jks -storepass mulesoft
 ----
 
-. For each REST client that connects to Runtime Manager agent, generate a keystore (public-private key pair) to identify the REST client.
+. For each REST client that connects to the Runtime Manager agent, generate a keystore (public-private key pair) to identify the REST client.
 
 +
 [source,console,linenums]
@@ -245,7 +245,7 @@ services:
 This command imports the `/security/cacerts.jks` truststore file into the `$MULE_HOME/conf` folder and renames it  `anypoint-truststore.jks`.
 +
 [NOTE]
-In Runtime Manager agent version 1.10.0 and later, the name of the default truststore is `anypoint-truststore.jks`. In earlier versions of Runtime Manager agent, the name is `truststore.jks`.
+In the Runtime Manager agent version 1.10.0 and later, the name of the default truststore is `anypoint-truststore.jks`. In earlier versions of the Runtime Manager agent, the name is `truststore.jks`.
 
 . Restart Mule runtime engine and verify that the Runtime Manager agent REST interface starts successfully.
 . Add SSL debugging to the Mule runtime engine logging:
@@ -256,13 +256,13 @@ In Runtime Manager agent version 1.10.0 and later, the name of the default trust
 
 To configure two-way TLS when Mule is connected to the control plane:
 
-. Generate a keystore (public-private key pair) to identify Runtime Manager agent (server).
+. Generate a keystore (public-private key pair) to identify the Runtime Manager agent (server).
 +
 Set the CN to match the Runtime Manager agent hostname or IP address.
 +
 [source,console,linenums]
 ----
-echo "Generate a new keystore to identify Runtime Manager agent. Use CN=localhost"
+echo "Generate a new keystore to identify the Runtime Manager agent. Use CN=localhost"
 
 keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
 -alias rma \
@@ -278,7 +278,7 @@ echo "Export the rma alias' certificate from the rmakeystore.jks key store"
 keytool -export -alias rma -file rma.crt -keystore rmakeystore.jks -storepass mulesoft
 ----
 
-. For each REST client that connects to Runtime Manager agent, generate a keystore (public-private key pair) to identify the REST client.
+. For each REST client that connects to the Runtime Manager agent, generate a keystore (public-private key pair) to identify the REST client.
 +
 [source,console,linenums]
 ----
@@ -350,14 +350,14 @@ transports:
     port: 9995
 ----
 
-. Rename the newly created `cacerts.jks` file to `anypoint-truststore.jks`. This file is your new truststore for Runtime Manager agent as well as Anypoint Platform connectivity.
+. Rename the newly created `cacerts.jks` file to `anypoint-truststore.jks`. This file is your new truststore for the Runtime Manager agent as well as Anypoint Platform connectivity.
 +
 ----
 mv cacerts.jks anypoint-truststore.jks
 ----
 +
 [NOTE]
-In Runtime Manager agent version 1.10.0 and later, the name of the default truststore is `anypoint-truststore.jks`. In earlier versions of Runtime Manager agent, the name is `truststore.jks`.
+In the Runtime Manager agent version 1.10.0 and later, the name of the default truststore is `anypoint-truststore.jks`. In earlier versions of the Runtime Manager agent, the name is `truststore.jks`.
 
 . Start Mule runtime engine, and verify the Runtime Manager agent REST interface starts up successfully and verify that it is still connected to Runtime Manager in Anypoint Platform.
 
@@ -396,7 +396,7 @@ You can view the `clientkeystore.pem` file to verify both the public and private
 
 . Submit a REST request from the client host to the Runtime Manager agent host. 
 +
-Verify you do not see any SSL errors and you get a response back from Runtime Manager agent. 
+Verify you do not see any SSL errors and you get a response back from the Runtime Manager agent. 
 +
 Use the `--insecure` option to skip verifying the server (Runtime Manager agent) certificate.
 

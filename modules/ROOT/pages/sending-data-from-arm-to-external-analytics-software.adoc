@@ -31,7 +31,7 @@ Integration between Runtime Manager and third-party analytics software looks lik
 
 image::amc-onprem-diagram-detail.jpg[]
 
-The xref:runtime-manager-agent.adoc[Runtime Manager Agent] acts in between Runtime Manager and the third party software. The agent enables integration and sends event notifications to your third party analytics tool.
+The xref:runtime-manager-agent.adoc[Runtime Manager agent] acts in between Runtime Manager and the third party software. The agent enables integration and sends event notifications to your third party analytics tool.
 
 == Prerequisites
 
@@ -47,13 +47,13 @@ image::steps-for-external-logs.png[steps]
 === Update the Runtime Manager Agent
 
 First you must install the latest version of the Runtime Manager agent, which is in charge of sending messages out of mule. In order to send event information to third party software, you need to have version 1.2.0 or later of the Runtime Manager agent.
-See xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent].
+See xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent].
 
 [NOTE]
 ====
-Although Runtime Manager agent exists by default bundled with Mule as of version 3.7, all Mule versions older than 3.7.2 contain an old version of Runtime Manager agent that doesn't support this feature. You must download the latest version of the Runtime Manager agent separately if your Mule version is older than 3.7.2.
+Although the Runtime Manager agent exists by default bundled with Mule as of version 3.7, all Mule versions older than 3.7.2 contain an old version of the Runtime Manager agent that doesn't support this feature. You must download the latest version of the Runtime Manager agent separately if your Mule version is older than 3.7.2.
 
-http://mule-agent.s3.amazonaws.com/1.2.0/mule-agent-1.2.0.zip[Download Runtime Manager Agent]
+http://mule-agent.s3.amazonaws.com/1.2.0/mule-agent-1.2.0.zip[Download the Runtime Manager Agent]
 ====
 
 === Register the Runtime Manager Agent
@@ -119,7 +119,7 @@ If you update the Runtime Manager agent version, it isn't necessary to undeploy 
 
 
 [TIP]
-For more information on how to install or Update the Runtime Manager agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent]
+For more information on how to install or update the Runtime Manager agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent].
 
 
 image::agent-server.jpg[]
@@ -247,7 +247,7 @@ and the index doesn't exist, then the internal handler will create it.
 
 === Rest API
 
-This feature requires Runtime Manager agent 1.2.0 version or later.
+This feature requires the Runtime Manager agent 1.2.0 version or later.
 
 . Select the server whose information you want to send out.
 . In the menu on the right, click *Manage Server* to access the server's settings.
@@ -276,7 +276,7 @@ image::agent-to-splunk-restapi-advanced.png[splunk]
 This feature require 1.3.1 agent version or later.
 
 [NOTE]
-This feature requires Runtime Manager agent version 1.3.1 or later.
+This feature requires the Runtime Manager agent version 1.3.1 or later.
 
 . First you must obtain a token from Splunk. To do so:
 .. Sign in to your Splunk account.

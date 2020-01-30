@@ -1,4 +1,4 @@
-= Troubleshooting Runtime Manager Agent
+= Troubleshooting the Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,7 +9,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-You can use the `$MULE_HOME/bin/amc_debug` script to collect information used by Support to troubleshoot Anypoint Runtime Manager agent installation issues. If you experience issues with the Runtime Manager agent plug-in or with managing applications on Anypoint Platform, run the script and save the output before filing a support ticket.
+You can use the `$MULE_HOME/bin/amc_debug` script to collect information used by Support to troubleshoot the Anypoint Runtime Manager agent installation issues. If you experience issues with the Runtime Manager agent plug-in or with managing applications on Anypoint Platform, run the script and save the output before filing a support ticket.
 
 The `amc_debug` script performs the following actions:
 
@@ -21,7 +21,7 @@ This step can cause delays in running applications.
 +
 . Extracts the Java version, CPU usage, memory usage, and disk usage
 . Copies all logs
-. Copies Runtime Manager agent configuration files
+. Copies the Runtime Manager agent configuration files
 . Archives all the information collected in a .zip file
 
 == Run the amc_debug Script
@@ -44,8 +44,8 @@ If you experience connectivity issues, check the JVM you are using. If you are u
 
 == See Also
 
-* xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update Runtime Manager Agent]
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent]
 * xref:event-tracking.adoc[Event Tracking]
 * xref:runtime-manager-agent-notifications.adoc[Runtime Manager Agent Notifications]
-* xref:extending-the-runtime-manager-agent.adoc[Extending Runtime Manager Agent]
+* xref:extending-the-runtime-manager-agent.adoc[Extending the Runtime Manager Agent]
 * xref:internal-handler-buffering.adoc[Internal Handler Buffering]

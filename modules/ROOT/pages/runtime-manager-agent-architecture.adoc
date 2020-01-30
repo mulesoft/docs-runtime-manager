@@ -9,7 +9,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-Anypoint Runtime Manager agent is a Mule plugin that exposes the Mule JAVA API as a service, allowing users to manipulate and monitor Mule instances from external systems.
+The Anypoint Runtime Manager agent is a Mule plugin that exposes the Mule JAVA API as a service, allowing users to manipulate and monitor Mule instances from external systems.
 
 This document shows an overview of the Runtime Manager agent architecture and its main components.
 
@@ -80,9 +80,9 @@ Below is an outline of a typical sequence of component interaction:
 
 == Runtime Manager Agent Configuration
 
-At startup, Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`. You must manually add, then edit this file with your installation's configuration parameters. The format is self-explanatory; a sample file is available for download.
+At startup, the Runtime Manager agent reads its configuration from the file `$MULE_HOME/conf/mule-agent.yml`. You must manually add, then edit this file with your installation's configuration parameters. The format is self-explanatory; a sample file is available for download.
 
-During installation, you also have the option to configure Runtime Manager agent using a quick-start script. For details, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager agent]
+During installation, you also have the option to configure the Runtime Manager agent using a quick-start script. For details, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring the Runtime Manager agent]
 
 == Configurable Components
 
@@ -102,15 +102,15 @@ public class MyRequestHandler implements ExternalMessageHandler
 }
 ----
 
-== The Runtime Manager Agent WebSocket Protocol
+== Runtime Manager Agent WebSocket Protocol
 
 Communication over WebSockets to the agent implements the HTTP protocol. All messages sent to and from the agent are HTTP messages sent as binary messages or text (depending on the agent configuration) over WebSocket. These HTTP messages are the same as those used in the agent REST communication.
 
-=== The WebSocket Handshake
+=== WebSocket Handshake
 
 Handshaking is a process specific to the WebSocket transport. On startup, the agent sends a handshake request to the WebSocket address corresponding to the console (obtained from the agent configuration). After this, the agent ignores all incoming messages not recognizable as a handshake response. When it receives a message that it identifies as a handshake response, it checks that the response is valid. If it is, the agent begins responding to all incoming messages.
 
-==== The Handshake Request
+==== Handshake Request
 
 Below is an example of a handshake request.
 ----

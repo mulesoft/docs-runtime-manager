@@ -25,7 +25,7 @@ xref:mule-runtime::mule-server-notifications.adoc#notification-interfaces[Notifi
 
 == Pushed Event Information
 
-For each notification, Runtime Manager agent pushes the following information to the event tracking service:
+For each notification, the Runtime Manager agent pushes the following information to the event tracking service:
 
 * `timestamp`
 +
@@ -43,7 +43,7 @@ Name of the flow
 +
 (If configured) Serialized Mule message or an error message.
 
-Runtime Manager agent doesn't send this information:
+The Runtime Manager agent doesn't send this information:
 
 * Mule Message ID
 * Exception
@@ -59,7 +59,7 @@ Annotations for the component, if any
 
 == Event Tracking Notifications
 
-Runtime Manager agent stores event tracking notifications for Mule apps, and then streams them to an event tracking service. Depending on your network topology and the design of your Mule apps, copying event tracking notifications over the network from Runtime Manager agent to the online event tracking service can significantly impact performance.
+The Runtime Manager agent stores event tracking notifications for Mule apps, and then streams them to an event tracking service. Depending on your network topology and the design of your Mule apps, copying event tracking notifications over the network from the Runtime Manager agent to the online event tracking service can significantly impact performance.
 
 You can reduce performance impact by specifying tracking levels at different granularities. You can specify a global event tracking level, and then override it in named Mule apps. You can further override the event tracking level in specific named flows within a Mule app.
 
