@@ -129,7 +129,7 @@ To add a new JMX publisher, implement the Runtime Manager agent `InternalMessage
 
 Your custom JMX publisher should meet the following requirements:
 
-* It must be thread-safe
+* It must be thread-safe.
 * It must implement all publishing logic in the handle method defined in `InternalMessageHandler`.
 
 ==== Writing Your JMX Publisher

@@ -8,7 +8,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-This topic contains an overview of how to extend the Anypoint Runtime Manager agent. It provides instructions on implementing a complete service, external handler and internal hander using a method to revert a string.
+You can extend the Anypoint Runtime Manager agent, including implementing a complete service, external message handler, and internal message hander using a method to revert a string.
 
 == Runtime Manager Agent Extensible Component
 
@@ -431,8 +431,8 @@ This internal message handler writes the message processed by the service to a f
 ----
 **
  * <p>
- * Implementations of this interface provides new functionality to the Runtime Manager agent. These services handle data from the
- * Mule server and interact with mule.
+ * Implementations of this interface provides new functionality to the Runtime Manager agent. These services handle data from
+ * Mule and interact with Mule.
  * </p>
  *
  * @see com.mulesoft.agent.handlers.ExternalMessageHandler , InternalMessageHandler

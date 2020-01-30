@@ -17,7 +17,7 @@ This document shows an overview of the Runtime Manager agent architecture and it
 
 === Mule Service
 
-Connects to the Mule API. This component is not aware of the transport layer (how the messages are going to be communicated by/to the user).
+Connects to Mule. This component is not aware of the transport layer (how the messages are going to be communicated by/to the user).
 
 === Transport
 
@@ -59,7 +59,7 @@ The agent's architecture is quite simple:
 
 * The transports handle communication.
 * The external message handlers dispatch messages.
-* The services connect to Mule API.
+* The services connect to Mule.
 * The internal message handlers dispatch Mule notifications.
 
 The interaction of each component is shown in the diagram below for each of the three types of messages (synchronous, asynchronous and push):
