@@ -4,12 +4,12 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-The Runtime Manager agent publishes notifications, in JSON format, about events that occur in the Mule instance. This allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager agent architecture documentation).
+The Anypoint Runtime Manager agent publishes notifications, in JSON format, about events that occur in the Mule instance. This allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager agent architecture documentation).
 
 == Configure the Mule Agent Notifications Callback URL
 

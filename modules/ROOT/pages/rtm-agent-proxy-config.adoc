@@ -6,21 +6,22 @@ endif::[]
 
 _Enterprise Edition_
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure Runtime Manager agent to route traffic through the proxy server to Runtime Manager and, optionally, encrypt the authentication password.
+If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure the Runtime Manager agent to route traffic through the proxy server to Runtime Manager and, optionally, encrypt the authentication password.
 
-Runtime Manager agent supports only the basic access authentication method.
+The Runtime Manager agent supports only the basic access authentication method.
 
 
 == Configure the Agent to Connect Through a Proxy Server 
 
 Running the `amc_setup` command creates the `$MULE_HOME/conf/mule-agent.yml` file. 
 
-If you have previously installed Runtime Manager agent and want to change the configuration to use a proxy, you can add the proxy configuration to the `mule-agent.yml` file.
+If you have previously installed the Runtime Manager agent and want to change the configuration to use a proxy, you can add the proxy configuration to the `mule-agent.yml` file.
 
 To configure the proxy server connection, run this command:
 
