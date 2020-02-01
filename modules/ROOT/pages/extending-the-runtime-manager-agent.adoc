@@ -18,7 +18,7 @@ The Runtime Manager agent contains the following extensible components:
 * External message handlers
 * Internal message handlers
 
-== Runtime Manager agent Custom Component Structure
+== Runtime Manager Agent Custom Component Structure
 
 A Runtime Manager agent custom component should comply with the following structure:
 
@@ -89,6 +89,16 @@ For this example, in order to acquire the libraries necessary to extend the agen
     </plugins>
 </build>
 ----
+
+
+[NOTE]
+====
+Contact MuleSoft Support for access to this repository:
+[source,xml,linenums]
+----
+https://repository-master.mulesoft.org/nexus/content/repositories/releases-ee/
+----
+====
 
 The corresponding JAR should be added under the `lib` folder within the `mule-agent` plugin, which is contained in the `plugins` folder of the Mule instance. For example, `$MULE_HOME/plugins/mule-agent/lib/<component name>.jar`.
 
