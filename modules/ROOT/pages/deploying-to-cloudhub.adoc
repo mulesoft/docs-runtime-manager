@@ -114,9 +114,8 @@ When deployment is complete, the application status indicator changes to green, 
 Successfully deployed [mule application name]
 ----
 
-[Note]
-While deploying an application on mule runtime versions 4.1.x and above, the https://docs.mulesoft.com/api-manager/2.x/gatekeeper#how-gatekeeper-works[gatekeeper] mechanism is in place to help determine the readiness of a deployment. If gatekeeper considers the application not ready in 5 mins, then the deployment will be considered a failed one.
-This mechanism is used in conjunction with the https://docs.mulesoft.com/api-manager/2.x/api-auto-discovery-new-concept[API Autodiscovery].
+[NOTE]
+While you deploy an application on Mule runtime engine version 4.1.x and later, the xref:api-manager::gatekeeper.adoc#how-gatekeeper-works[Gatekeeper] works with xref:api-manager::api-auto-discovery-new-concept.adoc[API Autodiscovery] to help determine the readiness of a deployment. If the Gatekeeper considers the application not ready in five minutes, then the deployment status is failed.
 
 
 == Deploy from CloudHub CLI
