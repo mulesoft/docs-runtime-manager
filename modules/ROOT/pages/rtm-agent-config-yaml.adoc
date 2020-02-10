@@ -126,12 +126,19 @@ You can configure the agent to log its state in a different location than the de
 
 This option is supported only in the Runtime Manager agent 1.5.2 or later.
 
+== Configuring a Callback URL
+
+If you want to forward Runtime Manager agent notifications to an external or internal URL, configure a `callback` URL for the REST agent transport in the `mule-agent.yml` file. 
+
+For information, see xref:runtime-manager-agent-notifications.adoc#configure-the-mule-agent-notifications-callback-url[Configure the Agent Notifications Callback URL].
+
 
 == See Also
 
 * xref:administration-service.adoc[Administration Service]
-* xref:rtm-agent-proxy-config.adoc[Configure the Agent to Connect Through a Proxy Server]
+* xref:rtm-agent-proxy-config.adoc[Connect the Agent Through a Proxy Server]
 * xref:rtm-agent-whitelists.adoc[Ports, IP Addresses, and Hostnames to Whitelist]
 * xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools (Hybrid)]
-* xref:jmx-service.adoc[JMX]
+* xref:jmx-service.adoc[JMX Service]
 * xref:event-tracking.adoc[Event Tracking]
+* xref:runtime-manager-agent-notifications.adoc[Runtime Manager Agent Notifications]
