@@ -5,35 +5,48 @@ endif::[]
 
 How you request Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network varies depending on the connectivity method. 
 
-[%header]
-|===
-|VPC Connection Method|How to
-|IPsec tunnel
-a|
+The SLA for provisoning an Anypoint VPC connection is five business days after the VPC discovery form has been completed, returned and approved by Support, though the configuration might be completed sooner.
 
-* For VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN]. +
-* For VPNs created before November 2018, follow the steps in <<request_vpc_connectivity,Request Connectivity for Anypoint VPCs>>.
-|VPC peering
-|<<request_vpc_connectivity,Request Connectivity for Anypoint VPCs>>
-|CloudHub direct connect
-|<<request_vpc_connectivity,Request Connectivity for Anypoint VPCs>>
-|===
 
-[[request_vpc_connectivity]]
-== Request Connectivity for Anypoint VPCs
+[[request_ipsec_vpn]]
+== IPsec VPN Connections
+* For all VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN].
+* It is not possible to create new VPN connections sing the legacy solution.
+* To update existing legacy VPN connections, download the link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[Anypoint VPC discovery form], which requires at least MS Excel 2007 (with macros enabled). 
+** Complete all fields under the Overview and IPsec tabs. 
+** Completing the VPC discovery form is a requirement for both new connections and updates to existing configurations.
+** Incomplete forms will be rejected and consequently increase the time required to complete the request.
+** Please provide one copy of the form per VPC where you wish to make changes. 
+** Open a Support ticket (one per VPC), and submit your completed VPC discovery form.
+* The MuleSoft Support team reviews your form, and updates the VPN configuration using the details provided.
+* You will be notified via the Support case when all actions are complete.
 
-To connect your Anypoint VPC to your internal network using VPN tunnel, peering, or direct connect, you must:
 
-. Download the link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[Anypoint VPC discovery form], which requires at least MS Excel 2007 (with macros enabled). 
-+
-When updating an existing VPN, the VPC discovery form is required only if the VPN was created before November 2018. For all VPNs created after November 2018, follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN].
-. Enter the data to communicate the necessary details required for your connectivity method. If you need support for multiple regions, submit one copy of the discovery form for each region in which you need support.
-. Contact your MuleSoft account representative to discuss your specific requirements.
-+
-After the MuleSoft Support team receives your form and answers any remaining questions, they securely exchange keys and supply instructions on how to configure your router(s).
+[[request_vpc_peering]]
+== VPC Peering Connections
+* VPC Peering is possible when MuleSoft is the requestor.
+* We do not support inter-region peering, so both VPCs must reside in the same region.
+* To request new, or update existing VPC Peering connections, download the link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[Anypoint VPC discovery form], which requires at least MS Excel 2007 (with macros enabled). 
+** Complete all fields under the Overview and VPC Peering tabs. 
+** Completing the VPC discovery form is a requirement for both new connections and updates to existing configurations.
+** Incomplete forms will be rejected and consequently increase the time required to complete the request.
+** Please provide one copy of the form per VPC where you wish to make changes.
+** Open a Support ticket (one per VPC), and submit your completed VPC discovery form.
+* The MuleSoft Support team reviews your form, and creates a new Peering request using the details provided.
+* The resulting Peering ID will be shared via the Support case when all actions are complete.
 
-The SLA for configuring Anypoint VPC is five business days after the Anypoint VPC discovery form has been completed, returned and approved by Support, though the Anypoint VPC configuration might be completed sooner.
 
+[[request_dx]]
+== Direct Connect (DX) Connections
+* Establish Direct Connect connections to your own AWS account (or your partner's) AWS account, and create a private Virtual Interface (VIF) request towards the MuleSoft Account ID.
+* To request new, or update existing DX connections, download the link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[Anypoint VPC discovery form], which requires at least MS Excel 2007 (with macros enabled). 
+** Complete all fields under the Overview and Direct Connect tabs. 
+** Completing the VPC discovery form is a requirement for both new connections and updates to existing configurations.
+** Incomplete forms will be rejected and consequently increase the time required to provison the connection.
+** Please provide one copy of the form per VPC where you wish to make changes.
+** Open a Support ticket (one per VPC), and submit your completed VPC discovery form.
+* The MuleSoft Support team reviews your form, and accepts the VIF request(s).
+* You will be notified via the Support case when all actions are complete.
 
 == See Also
 
