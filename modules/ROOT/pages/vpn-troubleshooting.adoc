@@ -38,7 +38,7 @@ To solve this, ensure that only one unique SA is used per VPN tunnel connection.
 
 == Anypoint VPN Tunnel Disconnects After Period of Inactivity
 
-IPsec is established by sending "interesting traffic" (traffic that should be encrypted over the Anypoint VPN connection). If there is no interesting traffic, the tunnel disconnects. This is the expected behavior, and the timeout value could vary.
+IPsec is established by sending "interesting traffic" (traffic that should be encrypted over the Anypoint VPN connection). If there is no interesting traffic, the tunnel disconnects. This is the expected behavior, and the timeout value might vary.
 
 Some VPN configurations require additional steps to keep the tunnel active, which means you need to ensure you periodically send interesting traffic. For example, sending ICMP requests every 5 seconds to a CloudHub worker's internal IP address or FQDN will keep the tunnel active.
 
