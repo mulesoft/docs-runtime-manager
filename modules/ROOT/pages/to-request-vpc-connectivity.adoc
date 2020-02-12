@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The process for requesting or updating Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network depends on the connectivity method you use: IPSec, VPC peering, or Direct Connect.
+The process for requesting or updating Anypoint Virtual Private Cloud (Anypoint VPC) connectivity to your network depends on the connectivity method you use: IPsec, VPC peering, or Direct Connect.
 
 [NOTE]
 The SLA for provisioning an Anypoint VPC connection is five business days after MuleSoft Support receives and approves your completed VPC discovery form.
@@ -14,7 +14,7 @@ The SLA for provisioning an Anypoint VPC connection is five business days after 
 As of November 2018, MuleSoft Support no longer creates new VPN connections.
 For all new VPNs, you must follow the self-service steps in xref:vpn-create-arm.adoc[Create an Anypoint VPN].
 
-To update *existing* IPsec VPN connections that were created by MuleSoft Support to add new connections or update configurations:
+To update *existing* IPsec VPN connections that were created by MuleSoft Support before November 2018:
 
 . Download the link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[Anypoint VPC discovery form].
 +
@@ -22,7 +22,7 @@ This form requires Microsoft Excel 2007 or later (with macros enabled).
 . For each VPC connection to update, complete and submit a separate VPC form:
 .. Complete all fields in the *Overview* and *IPSec* tabs.
 +
-To avoid processing delays, ensure that you complete all required fields on both tabs.
+To avoid processing delays, ensure that you complete all fields on both tabs.
 .. Open a Support ticket and submit your completed form.
 
 The MuleSoft Support team updates the VPN configuration using the details provided in the VPC discovery form.
@@ -31,11 +31,9 @@ Support updates your ticket to notify you when your request is complete.
 
 == Request or Update Connectivity for VPC Peering Connections
 
-*What does this mean:*
-VPC Peering is possible when MuleSoft is the requestor.
+MuleSoft must all initiate VPC peering requests.
 
 Because MuleSoft does not support inter-region peering, both VPCs must reside in the same region.
-
 
 To request new or update existing VPC peering connections:
 
@@ -48,18 +46,18 @@ You must complete the VPC discovery form for both new connections and updates to
 
 .. Complete all fields in the *Overview* and *VPC Peering* tabs.
 +
-To avoid processing delays, ensure that you complete all required fields on both tabs.
+To avoid processing delays, ensure that you complete all fields on both tabs.
 .. Open a Support ticket and submit your completed form.
 
 The MuleSoft Support team creates or updates the VPC peering connection request using the details provided in the VPC discovery form.
-Support updates your ticket with the resulting peering ID when your request is complete.
-
+Support updates your ticket to notify you when your request is complete.
 
 == Request or Update Connectivity for Direct Connect (DX) Connections
 
-*Is this correct?*
-To establish DX connections to your AWS account or partner's AWS account and create a private Virtual Interface (VIF) request with the MuleSoft Account ID:
+To request new or update existing VPC DX connections:
 
+. Establish DX connections to your AWS account or partner's AWS account.
+. Create a private Virtual Interface (VIF) request with the MuleSoft Account ID.
 . Download the link:https://docs.mulesoft.com/downloads/runtime-manager/VPC-form-v9.4-template.xlsx[Anypoint VPC discovery form].
 +
 This form requires Microsoft Excel 2007 or later (with macros enabled).
@@ -69,7 +67,7 @@ You must complete the VPC discovery form for both new connections and updates to
 
 .. Complete all fields in the *Overview* and *Direct Connect* tabs.
 +
-To avoid processing delays, ensure that you complete all required fields on both tabs.
+To avoid processing delays, ensure that you complete all fields on both tabs.
 .. Open a Support ticket and submit your completed form.
 
 The MuleSoft Support team accepts the VIF requests.
