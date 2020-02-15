@@ -55,14 +55,23 @@ CloudHub's platform services are responsible for coordinating all aspects of the
 
 === CloudHub Workers
 
-Applications on CloudHub are run by one or more instances of Mule, called *workers*. These have the following characteristics:
+Applications on CloudHub are run by one or more instances of Mule, called *workers*.
+Each worker is a dedicated instance of Mule that runs your integration application.
 
-* *Capacity*: Each worker has a specific amount of capacity to process data, you can select the size of your workers when configuring an application.
-* *Isolation*: Each worker runs in a separate container from every other application.
-* *Manageability*: Each worker is deployed and monitored independently.
-* *Locality*: Each worker runs in a specific worker cloud, the US, EU, Asia-Pacific, etc.
+Workers have the following characteristics:
 
-Each worker is a dedicated instance of Mule that runs your integration application. Workers may have a different memory capacity and processing power depending on how you configure them at application level. Workers can be scaled vertically by selecting one of the available worker sizes:
+*Capacity*::
+Each worker has a specific amount of capacity to process data. Select the size of your workers when configuring an application.
+*Isolation*::
+Each worker runs in a separate container from every other application.
+*Manageability*::
+Each worker is deployed and monitored independently.
+*Locality*::
+Each worker runs in a specific worker cloud, such as the US, EU, or Asia-Pacific.
+
+The memory capacity and processing power of a worker depends on how you configure them at the application level. 
+
+You can scale workers vertically by selecting one of the available worker sizes:
 
 *Worker Sizes:*
 
@@ -74,14 +83,17 @@ Each worker is a dedicated instance of Mule that runs your integration applicati
 * 8 vCores + 15 GB Heap Memory
 * 16 vCores + 32 GB Heap Memory
 
+In addition to less memory available, workers that use a fraction of a vCore are allocated limited CPU and IO and are generally only appropriate for smaller workloads.
 
-[NOTE]
-Along with less available memory, workers that use a https://aws.amazon.com/ec2/instance-types/#burst[fraction of a vCore] have more limited CPU and IO, which are usually only appropriate for smaller workloads.
 
-With xref:cloudhub-fabric.adoc[clustering], you can also scale your applications horizontally by adding multiple workers and load distribution over queues. For more information about scaling workers, see xref:cloudhub-fabric.adoc[Worker Scaleout]. For more information about using persistent queues on CloudHub, see xref:cloudhub-fabric.adoc[Persistent Queues].
+[IMPORTANT]
+The metaspace limit for apps deployed to CloudHub is 256 MB, regardless of the worker size. Increasing worker size doesn't change the metaspace limit.
 
-[TIP]
-You can xref:worker-monitoring.adoc[monitor your workers] to verify that they are all operating properly, and you can enable automatic restarts if one or more workers is not.
+You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
+See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
+
+CloudHub monitors workers to verify that they are operating properly.
+If you enable automatic restarts, CloudHub also automatically restarts applications, if necessary.
 
 === Global Worker Clouds
 
@@ -129,7 +141,7 @@ All of CloudHub's platform services, from load balancing to the API layer, have 
 
 CloudHub monitors the worker clouds for any type of problems and provides a self-healing mechanism to recover from problems. If the underlying hardware suffers a failure, the platform migrates your application to a new worker automatically. In the case of an application crash – whether due to a problem with custom code or a bug in the underlying stack – the platform recognizes the crash and can xref:worker-monitoring.adoc#enabling-automatic-restarts[restart the worker automatically].
 
-For more information about application monitoring and automatic restarts, see xref:worker-monitoring.adoc[Worker Monitoring].
+For more information about application monitoring and automatic restarts, see xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts].
 
 === Zero Downtime Updates
 
@@ -168,9 +180,12 @@ For more information about MuleSoft’s approach to security, please see the htt
 
 == See Also
 
-* xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide].
-* xref:cloudhub-faq.adoc[CloudHub FAQ].
-* xref:deployment-strategies.adoc[Deployment Strategies].
-* xref:maintenance-and-upgrade-policy.adoc[Maintenance and Upgrade Policy].
-* http://forums.mulesoft.com[forums] resources.
-* http://status.mulesoft.com/[status.mulesoft.com].
+* xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide]
+* xref:cloudhub-faq.adoc[CloudHub FAQ]
+* xref:deployment-strategies.adoc[Deployment Options]
+* xref:maintenance-and-upgrade-policy.adoc[Maintenance and Upgrade Policy]
+* http://status.mulesoft.com/[status.mulesoft.com]
+* http://eu1-status.mulesoft.com/[eu1-status.mulesoft.com]
+* xref:cloudhub-fabric.adoc[Clustering]
+* xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts]
+* https://aws.amazon.com/ec2/instance-types/[Amazon EC2 Instance Types]
