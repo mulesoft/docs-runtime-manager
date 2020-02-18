@@ -66,6 +66,15 @@ Your load balancer listens for outside requests over HTTPS and, by default, comm
 
 The internal HTTP mode lets you configure how HTTP requests are managed. They are either silently ignored, mapped HTTPS on the default SSL endpoint, or the URL is mapped straight through to the corresponding HTTPS URL.
 
+== Encoding UTF-8 Characters in DLB URLs
+
+You can specify to encode UTF-8 characters in DLB URLs: 
+
+* If you select *Keep URL encoding*, all UTF-8 characters in the DLB URL are encoded.
++
+The change takes place after restarting the DLB.
+* If you deselect *Keep URL encoding*, only the `%20` and `%23` characters in the DLB URL are encoded.
+
 == See Also
 
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]

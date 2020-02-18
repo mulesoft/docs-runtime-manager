@@ -57,6 +57,12 @@ Accepts the inbound request on the default SSL endpoint using the HTTP protocol.
 * *Redirect*
 +
 Redirects the request to the same URL using the HTTPS protocol.
+. Specify options:
++
+* *Disable Static IPs* specifies to use dynamic IPs, which do not persist when the DLB restarts.
+* *Keep URL encoding* specifies to encode all UTF-8 characters in the DLB URLs.
++
+If you deselect this option, only the space (`%20`) and hash (`%23`) special characters are encoded in the DLB URLs.
 
 . Add a certificate.
 
