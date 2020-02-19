@@ -57,6 +57,12 @@ Accepts the inbound request on the default SSL endpoint using the HTTP protocol.
 * *Redirect*
 +
 Redirects the request to the same URL using the HTTPS protocol.
+. Specify options:
++
+* *Disable Static IPs* specifies to use dynamic IPs, which do not persist when the DLB restarts.
+* *Keep URL encoding* specifies to pass the entire request URI to the CloudHub worker as is (unchanged).
++
+If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
 
 . Add a certificate.
 
