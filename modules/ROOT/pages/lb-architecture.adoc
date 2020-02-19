@@ -66,9 +66,9 @@ Your load balancer listens for outside requests over HTTPS and, by default, comm
 
 The internal HTTP mode lets you configure how HTTP requests are managed. They are either silently ignored, mapped HTTPS on the default SSL endpoint, or the URL is mapped straight through to the corresponding HTTPS URL.
 
-== Encoding UTF-8 Characters in DLB URLs
+== DLB URL Encoding
 
-You can specify to encode UTF-8 characters in DLB URLs: 
+You can configure the DLB to pass request URIs unchanged or decoded: 
 
 * If you select *Keep URL encoding*, the DLB passes the entire request URI to the CloudHub worker as is (unchanged).
 * If you deselect *Keep URL encoding*, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
