@@ -70,10 +70,8 @@ The internal HTTP mode lets you configure how HTTP requests are managed. They ar
 
 You can specify to encode UTF-8 characters in DLB URLs: 
 
-* If you select *Keep URL encoding*, all UTF-8 characters in the DLB URL are encoded.
-+
-The change takes place after restarting the DLB.
-* If you deselect *Keep URL encoding*, only the `%20` and `%23` characters in the DLB URL are encoded.
+* If you select *Keep URL encoding*, the DLB passes the entire request URI to the CloudHub worker as is (unchanged).
+* If you deselect *Keep URL encoding*, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
 
 == See Also
 
