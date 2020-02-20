@@ -11,7 +11,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 
-xref:cloudhub.adoc[CloudHub] is designed to provide enterprises with a multitenant, secure, elastic, and highly available integration platform as a service (iPaaS). To maximize your use of CloudHub, It is important to understand how the underlying mechanisms of the CloudHub platform work to achieve these goals.
+xref:cloudhub.adoc[CloudHub] is designed to provide enterprises with a multitenant, secure, elastic, and highly available integration platform as a service (iPaaS). To maximize your use of CloudHub, you should to understand how the underlying mechanisms of the CloudHub platform work to achieve these goals.
 
 Manage CloudHub with the Anypoint Runtime Manager console in Anypoint Platform. You can also xref:deploying-to-cloudhub.adoc[deploy] to it directly from Anypoint Studio, via the xref:cloudhub-api.adoc[CloudHub API] or via the xref:anypoint-platform-cli.adoc[Anypoint Platform command-line interface].
 
@@ -93,8 +93,7 @@ You can scale workers vertically by selecting one of the available worker sizes:
 For workers that use a fraction of a vCore, CloudHub allocates limited CPU and I/O, as well as less memory. 
 Use these worker sizes for apps with smaller workloads.
 
-The metaspace limit for apps deployed to CloudHub is 256 MB, regardless of the worker size.
-MuleSoft might change this limit in the future.
+The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
 
 You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
 See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
