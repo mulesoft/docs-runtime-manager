@@ -4,13 +4,20 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, manage, mmc, api, worker, runtime manager, arm
 
-xref:cloudhub.adoc[CloudHub] has been built from the ground up to provide enterprises with a multi-tenant, secure, elastic, and highly available integration platform as a service (iPaaS). This document describes how the underlying mechanisms of the CloudHub platform work to achieve these goals.
 
-Manage CloudHub with the Runtime Manager console in the Anypoint Platform. You can also xref:deploying-to-cloudhub.adoc[deploy] to it directly from Anypoint Studio, via the xref:cloudhub-api.adoc[CloudHub API] or via the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface (Anypoint CLI)].
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
+
+xref:cloudhub.adoc[CloudHub] is designed to provide enterprises with a multitenant, secure, elastic, and highly available integration platform as a service (iPaaS). To maximize your use of CloudHub, you should to understand how the underlying mechanisms of the CloudHub platform work to achieve these goals.
+
+Manage CloudHub with the Anypoint Runtime Manager console in Anypoint Platform. You can also xref:deploying-to-cloudhub.adoc[deploy] to it directly from Anypoint Studio, via the xref:cloudhub-api.adoc[CloudHub API] or via the xref:anypoint-platform-cli.adoc[Anypoint Platform command-line interface].
 
 [NOTE]
 ====
-See xref:deployment-strategies.adoc[Deployment Strategies] for a better understanding of the different possible deployment scenarios, including on-premises and Anypoint Platform Private Cloud Edition (Anypoint PCE).
+See xref:deployment-strategies.adoc[Deployment Options] for a better understanding of the different possible deployment scenarios, including on-premises and Anypoint Platform Private Cloud Edition (Anypoint PCE).
 ====
 
 == CloudHub Architecture
@@ -55,14 +62,23 @@ CloudHub's platform services are responsible for coordinating all aspects of the
 
 === CloudHub Workers
 
-Applications on CloudHub are run by one or more instances of Mule, called *workers*. These have the following characteristics:
+Applications on CloudHub are run by one or more instances of Mule, called *workers*.
+Each worker is a dedicated instance of Mule that runs your integration application.
 
-* *Capacity*: Each worker has a specific amount of capacity to process data, you can select the size of your workers when configuring an application.
-* *Isolation*: Each worker runs in a separate container from every other application.
-* *Manageability*: Each worker is deployed and monitored independently.
-* *Locality*: Each worker runs in a specific worker cloud, the US, EU, Asia-Pacific, etc.
+Workers have the following characteristics:
 
-Each worker is a dedicated instance of Mule that runs your integration application. Workers may have a different memory capacity and processing power depending on how you configure them at application level. Workers can be scaled vertically by selecting one of the available worker sizes:
+*Capacity*::
+Each worker has a specific amount of capacity to process data. Select the size of your workers when configuring an application.
+*Isolation*::
+Each worker runs in a separate container from every other application.
+*Manageability*::
+Each worker is deployed and monitored independently.
+*Locality*::
+Each worker runs in a specific worker cloud, such as the US, EU, or Asia-Pacific.
+
+The memory capacity and processing power of a worker depends on how you configure it at the application level. 
+
+You can scale workers vertically by selecting one of the available worker sizes:
 
 *Worker Sizes:*
 
@@ -74,14 +90,16 @@ Each worker is a dedicated instance of Mule that runs your integration applicati
 * 8 vCores + 15 GB Heap Memory
 * 16 vCores + 32 GB Heap Memory
 
+For workers that use a fraction of a vCore, CloudHub allocates limited CPU and I/O, as well as less memory. 
+Use these worker sizes for apps with smaller workloads.
 
-[NOTE]
-Along with less available memory, workers that use a https://aws.amazon.com/ec2/instance-types/#burst[fraction of a vCore] have more limited CPU and IO, which are usually only appropriate for smaller workloads.
+The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
 
-With xref:cloudhub-fabric.adoc[clustering], you can also scale your applications horizontally by adding multiple workers and load distribution over queues. For more information about scaling workers, see xref:cloudhub-fabric.adoc[Worker Scaleout]. For more information about using persistent queues on CloudHub, see xref:cloudhub-fabric.adoc[Persistent Queues].
+You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
+See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
 
-[TIP]
-You can xref:worker-monitoring.adoc[monitor your workers] to verify that they are all operating properly, and you can enable automatic restarts if one or more workers is not.
+CloudHub monitors workers to verify that they are operating properly.
+If you enable automatic restarts, CloudHub also automatically restarts applications, if necessary.
 
 === Global Worker Clouds
 
@@ -106,7 +124,7 @@ The complete list of supported regions is:
 |Asia Pacific (Singapore)| `sg-s1.cloudhub.io`
 |===
 
-The domain provided for your application is based on the region your application is deployed to. For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
+The domain provided for your application is based on the region to which your application is deployed. For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
 
 For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]. For more information about CloudHub's security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance whitepaper].
 
@@ -127,9 +145,9 @@ All of CloudHub's platform services, from load balancing to the API layer, have 
 
 === Intelligent Healing
 
-CloudHub monitors the worker clouds for any type of problems and provides a self-healing mechanism to recover from problems. If the underlying hardware suffers a failure, the platform migrates your application to a new worker automatically. In the case of an application crash – whether due to a problem with custom code or a bug in the underlying stack – the platform recognizes the crash and can xref:worker-monitoring.adoc#enabling-automatic-restarts[restart the worker automatically].
+CloudHub monitors the worker clouds for problems and provides a self-healing mechanism to recover from them. If the underlying hardware suffers a failure, the platform migrates your application to a new worker automatically. In the case of an application crash, whether due to a problem with custom code or a bug in the underlying stack, the platform recognizes the crash and can xref:worker-monitoring.adoc#enabling-automatic-restarts[restart the worker automatically].
 
-For more information about application monitoring and automatic restarts, see xref:worker-monitoring.adoc[Worker Monitoring].
+For more information about application monitoring and automatic restarts, see xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts].
 
 === Zero Downtime Updates
 
@@ -168,9 +186,12 @@ For more information about MuleSoft’s approach to security, please see the htt
 
 == See Also
 
-* xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide].
-* xref:cloudhub-faq.adoc[CloudHub FAQ].
-* xref:deployment-strategies.adoc[Deployment Strategies].
-* xref:maintenance-and-upgrade-policy.adoc[Maintenance and Upgrade Policy].
-* http://forums.mulesoft.com[forums] resources.
-* http://status.mulesoft.com/[status.mulesoft.com].
+* xref:cloudhub-networking-guide.adoc[CloudHub Networking Guide]
+* xref:cloudhub-faq.adoc[CloudHub FAQ]
+* xref:deployment-strategies.adoc[Deployment Options]
+* xref:maintenance-and-upgrade-policy.adoc[Maintenance and Upgrade Policy]
+* http://status.mulesoft.com/[status.mulesoft.com]
+* http://eu1-status.mulesoft.com/[eu1-status.mulesoft.com]
+* xref:cloudhub-fabric.adoc[Clustering]
+* xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts]
+* https://aws.amazon.com/ec2/instance-types/[Amazon EC2 Instance Types]
