@@ -146,7 +146,7 @@ All of CloudHub's platform services, from load balancing to the API layer, have 
 
 === Intelligent Healing
 
-CloudHub monitors the worker clouds for any type of problems and provides a self-healing mechanism to recover from problems. If the underlying hardware suffers a failure, the platform migrates your application to a new worker automatically. In the case of an application crash – whether due to a problem with custom code or a bug in the underlying stack – the platform recognizes the crash and can xref:worker-monitoring.adoc#enabling-automatic-restarts[restart the worker automatically].
+CloudHub monitors the worker clouds for problems and provides a self-healing mechanism to recover from them. If the underlying hardware suffers a failure, the platform migrates your application to a new worker automatically. In the case of an application crash, whether due to a problem with custom code or a bug in the underlying stack, the platform recognizes the crash and can xref:worker-monitoring.adoc#enabling-automatic-restarts[restart the worker automatically].
 
 For more information about application monitoring and automatic restarts, see xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts].
 
