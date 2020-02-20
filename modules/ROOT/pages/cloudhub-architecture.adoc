@@ -93,7 +93,7 @@ You can scale workers vertically by selecting one of the available worker sizes:
 For workers that use a fraction of a vCore, CloudHub allocates limited CPU and IO as well as less memory. 
 Use these worker sizes for apps with smaller workloads.
 
-For apps deployed to CloudHub with worker sizes of 0.1, 0.2, and 1 vCore, the metaspace limit is 256 MB.
+The metaspace limit for apps deployed to CloudHub is 256 MB, regardless of the worker size.
 MuleSoft might change this limit in the future.
 
 You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
