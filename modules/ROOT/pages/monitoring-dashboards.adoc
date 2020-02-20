@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 The Anypoint Runtime Manager monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to. 
 
 Anypoint Platform Private Cloud Edition doesn't support the Anypoint Monitoring dashboard feature.
@@ -29,6 +34,12 @@ Using the information gathered from these dashboards, you can:
 * Use Insight to help analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
 
 == Application Monitoring Dashboards
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 
 The app monitoring dashboards help you answer questions about your integrated apps, such as:
 
@@ -122,6 +133,12 @@ If your application runs on a server group or cluster, the aggregated metrics of
 --
 
 == Server Monitoring Dashboard
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 
 The server monitoring dashboard displays high-level information about the servers, including heap memory and CPU percentage, as well as detailed memory usage metrics.
 
@@ -284,10 +301,16 @@ The JVM memory space that uses native memory for the representation of class met
 This metric is available only when using JDK 8+.
 +
 image::monitoring-dashboards-meta.png[]
-
-
++
+The metaspace limit is 256 MB.
+MuleSoft might change this limit in the future.
 
 == Server Group or Cluster Monitoring Dashboard
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 You can use the server group or cluster monitoring dashboard to view aggregated metrics for servers in a group or cluster.
 

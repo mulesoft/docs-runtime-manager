@@ -4,13 +4,20 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, manage, mmc, api, worker, runtime manager, arm
 
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
+
 xref:cloudhub.adoc[CloudHub] has been built from the ground up to provide enterprises with a multi-tenant, secure, elastic, and highly available integration platform as a service (iPaaS). This document describes how the underlying mechanisms of the CloudHub platform work to achieve these goals.
 
 Manage CloudHub with the Runtime Manager console in the Anypoint Platform. You can also xref:deploying-to-cloudhub.adoc[deploy] to it directly from Anypoint Studio, via the xref:cloudhub-api.adoc[CloudHub API] or via the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface (Anypoint CLI)].
 
 [NOTE]
 ====
-See xref:deployment-strategies.adoc[Deployment Strategies] for a better understanding of the different possible deployment scenarios, including on-premises and Anypoint Platform Private Cloud Edition (Anypoint PCE).
+See xref:deployment-strategies.adoc[Deployment Options] for a better understanding of the different possible deployment scenarios, including on-premises and Anypoint Platform Private Cloud Edition (Anypoint PCE).
 ====
 
 == CloudHub Architecture
@@ -83,11 +90,11 @@ You can scale workers vertically by selecting one of the available worker sizes:
 * 8 vCores + 15 GB Heap Memory
 * 16 vCores + 32 GB Heap Memory
 
-In addition to less memory available, workers that use a fraction of a vCore are allocated limited CPU and IO and are generally only appropriate for smaller workloads.
+For workers that use a fraction of a vCore, CloudHub allocates limited CPU and IO as well as less memory. 
+Use these worker sizes for apps with smaller workloads.
 
-
-[IMPORTANT]
-The metaspace limit for apps deployed to CloudHub is 256 MB, regardless of the worker size. Increasing worker size doesn't change the metaspace limit.
+For apps deployed to CloudHub with worker sizes of 0.1, 0.2, and 1 vCore, the metaspace limit is 256 MB.
+MuleSoft might change this limit in the future.
 
 You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
 See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
@@ -118,7 +125,7 @@ The complete list of supported regions is:
 |Asia Pacific (Singapore)| `sg-s1.cloudhub.io`
 |===
 
-The domain provided for your application is based on the region your application is deployed to. For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
+The domain provided for your application is based on the region to which your application is deployed. For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
 
 For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]. For more information about CloudHub's security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance whitepaper].
 
