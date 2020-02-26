@@ -36,7 +36,7 @@ Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdn
 
 . Select a target Anypoint VPC from the drop-down list.
 
-. Specify the amount of time the DLB waits for a response from the Mule application in the *Timeout in Seconds* field. 
+. Specify the amount of time the DLB waits for a response from the Mule application in the *Timeout in Seconds* field.
 +
 The default value is 300 seconds.
 
@@ -63,7 +63,9 @@ Redirects the request to the same URL using the HTTPS protocol.
 * *Keep URL encoding* specifies to pass the entire request URI to the CloudHub worker as is (unchanged).
 +
 If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
-
++
+* *Support TLS 1.0* specifies to support TLS 1.0 between the client and the DLB.
+* *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
 . Add a certificate.
 
 .. Click *Add certificate*.
@@ -84,7 +86,7 @@ If you add more than one URL mapping rule, order the rules in the list according
 +
 Click *Add New Rule*, and then specify the input path, target app, output path, and protocol.
 .. Click *Save Certificate*.
-. Click *Create Load Balancer*. 
+. Click *Create Load Balancer*.
 
 
 
