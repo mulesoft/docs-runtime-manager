@@ -87,6 +87,9 @@ To create an environment variable or application property:
 
 . Select the *Properties* tab in the *Settings* section. 
 . Define a variable by using either a text `key=value` format, or by using the list format with two text boxes. 
+[NOTE]
+If you are using Chrome's password autofill feature and you have a username for anypoint.mulesoft.com that matches a variable you wish to define/update, Chrome will overwrite your configured value for the variable with the password stored in Chrome for the username that matches the variable. 
+This is a limitation, please use incognito mode or use a different browser in this case.
 . After you've made the change, click *Apply changes*. Here's an example using the text format:
 +
 image::setproperties.png[Set Properties]
