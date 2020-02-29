@@ -11,10 +11,13 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 In a CloudHub deployment, you can add properties to an application using Anypoint Runtime Manager or the `mule-app.properties` file.
 
+If you set properties both in `mule-app.properties` in your application and in Runtime Manager, the values set in Runtime Manager always override the values in `mule-app.properties` when your application deploys.
+
+
 == Add Application Properties in Runtime Manager 
 
 The easiest way to load properties to applications deployed to CloudHub is to use the *Properties* tab in Anypoint Runtime Manager.
-In the tab page, specify Java system environment variables, which function the same as adding environment variables when you deploy to an on-premises server.
+
 
 To add properties: 
 
@@ -24,13 +27,46 @@ To add properties:
 . Click *Manage Application*.
 . On the *Settings* page, click the *Properties* tab:
 +
-.The screenshot shows (*1*) the *Properties* tab, (*2*) the *Key* and *Value* fields, and (*3*) the *...* menu on the application  *Settings* page.
+.The screenshot shows (*1*) the *Properties* tab, (*2*) the *Key* and *Value* fields, and (*3*) the *...* menu on the application *Settings* page.
 image::hybrid-app-props.png[*Properties* tab, *Key* and *Value* fields, and *...* menu on the *Settings* page]
 . Enter the property name in the *Key* field.
 . Enter the property value in the *Value* field.
-. Click *Save*, and then *Redeploy Application*.
++
+If the password autofill feature of Chrome is enabled and includes a username for anypoint.mulesoft.com that matches a variable you are creating, Chrome overwrites the configured value with the stored password for the username that matches the variable. 
+To work around this limitation, use Chrome in incognito mode or another browser.
 
-You can edit or delete a property using options in the *...* menu.
+. Click *Apply Changes*.
+. Select *Restart* to redeploy the application.
+
+To change a key or value, edit the text in the field. To delete a property, click the *X*.
+
+
+=== Example: Using Properties to Set Environment Variables 
+
+You can specify Java system environment variables, which function the same as adding environment variables when you deploy to an on-premises server.
+
+You can also configure environment variables for your application.
+Properties enable you to externalize settings that change depending on the environment you're deploying to.
+For example, if you use a Mule application locally, you might configure your database host to be `0.0.0.0`.
+If you deploy the same app to CloudHub, you might configure the database host to be an Amazon RDS server.
+
+To create set an environment variable using an application property:
+
+. Select the *Properties* tab in the *Settings* section. 
+. Define the variable by entering it in the *Text* view as a `key=value` format:
++
+.The arrow shows the variable on the *Properties* tab of the application *Settings* page.
+image::rtm-env-variables.png[*Properties* tab on the *Settings* page]
+
+. Use the environment variable in your Mule app configuration:
++
+[source,xml,linenums]
+----
+<spring:bean id="jdbcDataSource" class="org.enhydra.jdbc.standard.StandardDataSource" destroy-method="shutdown">
+   <spring:property name="driverName" value="com.mysql.jdbc.Driver"/>
+   <spring:property name="url" value="${database.url}"/>
+</spring:bean>
+----
 
 == Add Application Properties with the mule-app.properties file
 
@@ -41,10 +77,12 @@ Although this method is not the best practice on CloudHub (because CloudHub *Pro
 
 To prevent CloudHub properties from overriding properties bundled with the deployable archive, change options in the `Property Placeholder` element in the Mule application. See https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information about nondefault property placeholder options.
 
-You can also flag application properties as safely hidden so that their values are not visible to users at runtime or passed between the server and the console. 
+
+
 
 == See Also
 
+* xref:mule-runtime::configuring-properties.adoc[Configuring Properties]
 * xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub] 
 * xref:secure-application-properties.adoc[Safely Hiding Application Properties]
