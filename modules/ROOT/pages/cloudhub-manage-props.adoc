@@ -27,18 +27,21 @@ To add properties:
 . Click *Manage Application*.
 . On the *Settings* page, click the *Properties* tab:
 +
-.The screenshot shows (*1*) the *Properties* tab, (*2*) the *Key* and *Value* fields, and (*3*) the *...* menu on the application *Settings* page.
-image::hybrid-app-props.png[*Properties* tab, *Key* and *Value* fields, and *...* menu on the *Settings* page]
-. Enter the property name in the *Key* field.
-. Enter the property value in the *Value* field.
+.The screenshot shows (*1*) the *Properties* tab, (*2*) the *List* button, (*3*) the key and value fields, and (*4*) the *X* icon on the application *Settings* page.
+image::cloudhub-app-props.png[*Properties* tab, key and value fields, and *X* icon on the application *Settings* page]
+. Click *List*.
 +
-If the password autofill feature of Chrome is enabled and includes a username for anypoint.mulesoft.com that matches a variable you are creating, Chrome overwrites the configured value with the stored password for the username that matches the variable. 
-To work around this limitation, use Chrome in incognito mode or another browser.
-
+Alternatively, you can enter the key-value pair in the *Text* field in this format: `key=value`.
+. Enter the property name in the key field.
+. Enter the property value in the value field.
++
+If the save password feature of Chrome is enabled and includes a username for `anypoint.mulesoft.com` that matches the contents of the key field, Chrome overwrites the value field with the stored password associated with that username. 
+To work around this limitation, use Chrome in incognito mode or use another browser.
+. If you want to change a key or value, edit the text in the field.
+. If you want to delete a property, click the *X*.
 . Click *Apply Changes*.
-. Select *Restart* to redeploy the application.
+. Select *Restart* from the menu in the top right to restart the application.
 
-To change a key or value, edit the text in the field. To delete a property, click the *X*.
 
 
 === Example: Using Properties to Set Environment Variables 
@@ -52,8 +55,8 @@ If you deploy the same app to CloudHub, you might configure the database host to
 
 To create set an environment variable using an application property:
 
-. Select the *Properties* tab in the *Settings* section. 
-. Define the variable by entering it in the *Text* view as a `key=value` format:
+. Click the *Properties* tab in the *Settings* section. 
+. Define the variable by entering it in the *Text* view in `key=value` format:
 +
 .The arrow shows the variable on the *Properties* tab of the application *Settings* page.
 image::rtm-env-variables.png[*Properties* tab on the *Settings* page]
@@ -68,16 +71,15 @@ image::rtm-env-variables.png[*Properties* tab on the *Settings* page]
 </spring:bean>
 ----
 
-== Add Application Properties with the mule-app.properties file
+== Add Application Properties in the mule-app.properties File
 
 You can add a `mule-app.properties` file inside the deployable application archive file. CloudHub then loads these properties into the application when the application starts. 
 
 Although this method is not the best practice on CloudHub (because CloudHub *Properties* tab values override any with the same name in the file), you can work around this by changing options in the Mule app.
 
 
-To prevent CloudHub properties from overriding properties bundled with the deployable archive, change options in the `Property Placeholder` element in the Mule application. See https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information about nondefault property placeholder options.
-
-
+To prevent CloudHub properties from overriding properties bundled with the deployable archive, change options in the `Property Placeholder` element in the Mule application.
+For more information about nondefault property placeholder options, see the https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options].
 
 
 == See Also
