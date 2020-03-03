@@ -61,16 +61,16 @@ The URI string to pass to the app: for example, `/`.
 The output path cannot contain patterns.
 * *Protocol* (`upstreamProtocol`)
 +
---
 The protocol on which the application listens:
 +
+--
 ** `http` (port 8091)
 ** `https` (port 8092)
 ** `ws` WebSockets (port 8091)
 ** `wss` Web Service Security (8092)
---
-+
+
 By default, the load balancer listens to external requests on HTTPS and communicates internally with your worker over HTTP. If you configured your Mule application within the VPC to listen on HTTPS, make sure you set *Protocol* to `https` when you create the mapping rule list.
+--
 
 You can use either literal strings or patterns to define the input path. 
 For the output path, you can use only literal strings.
