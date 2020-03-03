@@ -16,6 +16,7 @@ You can either define mapping rules when you create the DLB or add them to an ex
 
 When you create a simple matching rule, one input address matches the defined output: the endpoint of an application.
 You can also use a pattern to match a variable, such as input text to an endpoint.
+The *Output Path* (`appURI`) cannot contain patterns.
 
 By using proxy rules, you can map a domain or subdomain to a Mule application running in CloudHub.
 
@@ -37,7 +38,7 @@ If you omit the certificate name, the mappings are added to the default endpoint
 
 === Create Mapping Rules in Runtime Manager 
 
-To create mapping rules in the certificate for a DLB in Runtime Manager:
+To create mapping rules in an SSL endpoint for a DLB in Runtime Manager:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Select *Load Balancers* in the left menu.
@@ -65,15 +66,11 @@ URI string to pass to the app: for example, `/`.
 The *Output Path* cannot contain patterns.
 * *Protocol* (`upstreamProtocol`)
 +
-The protocol on which the application listens: `http` (port 8091), `https` (8092), `ws` (WebSockets), or `wss` (Web Service Security).
+The protocol on which the application listens: `http` (port 8091), `https` (8092), `ws` WebSockets (8091), or `wss` Web Service Security (8092).
 +
 By default, the load balancer listens to external requests on HTTPS and communicates internally with your worker over HTTP. If you configured your Mule application within the VPC to listen on HTTPS, make sure you set *Protocol* to `https` when you create the mapping rule list.
 
 You can use either literal strings or patterns to define the input and output path.
-
-[IMPORTANT]
-_Remove this?_
-Depending on your design, you can leverage internal redirects to your endpoints by using either patterns or literal mappings.
 
 === Create a Mapping Rule Using the CLI 
 
@@ -192,7 +189,7 @@ you can then use a mapping rule to map `app.example.com` to a different deployed
 |===
 | Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
 |1 | /api/v1/ | default-app | /api/v1/ | http
-|2 | /api/v1/secondapp | second-app | /api/v1	http
+|2 | /api/v1/secondapp | second-app | /api/v1	| http
 |===
 
 
