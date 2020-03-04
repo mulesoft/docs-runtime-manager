@@ -77,43 +77,6 @@ image::workersize.png[WorkerSize]
 [IMPORTANT]
 By default, all applications are limited to no more than four workers of any size. Free and professional accounts are limited to a single worker per app. If you need more workers or more total vCore capacity, update your subscription. If you need more than four workers for a single domain, https://help.mulesoft.com[MuleSoft Help Center] directly.
 
-== Updating Environment Variables and Application Properties
-
-You can configure xref:3.8@mule-runtime::configuring-properties.adoc[environment variables] for your application using CloudHub. This allows you to externalize important pieces of configurations, which may switch depending on the environment in which you're deploying. 
-
-For example, if you use a Mule application locally you might configure your database host to be `0.0.0.0`. But if you use CloudHub, you might configure it to be an Amazon RDS server.
-
-To create an environment variable or application property:
-
-. Select the *Properties* tab in the *Settings* section. 
-. Define a variable by using either a text `key=value` format, or by using the list format with two text boxes. 
-. After you've made the change, click *Apply changes*. Here's an example using the text format:
-+
-image::setproperties.png[Set Properties]
-+
-Here is another example using the list format:
-
-image::setpropertieslist.png[SetPropertiesList]
-
-These environment variables can be used inside your Mule configuration. For example:
-
-[source,xml,linenums]
-----
-<spring:bean id="jdbcDataSource" class="org.enhydra.jdbc.standard.StandardDataSource" destroy-method="shutdown">
-   <spring:property name="driverName" value="com.mysql.jdbc.Driver"/>
-   <spring:property name="url" value="${database.url}"/>
-</spring:bean>
-----
-
-[NOTE]
-If you also have the same variables set in a `mule-app.properties` file inside your application, the environment variables you set here in the console always override the values in 'mule-app.properties' when your application deploys.
-
-To delete an existing environment variable, either delete the line in text format, or in the list format, hover over the variable on the page and select the "X" button on the right side. To edit an existing variable, just select the name or value on the page and edit it.
-
-When you complete adding, deleting, or editing your environment variables, click *Apply Changes* to save the changes and redeploy them.
-
-CloudHub also supports xref:secure-application-properties.adoc[safely hiding application properties] to protect sensitive information.
-
 == Download a Copy of Your Deployed Application
 
 The application most recently deployed is always available for download from the console. Select the *Properties* tab on the application *Settings* page, then click *Choose file*. Specify a location on your computer to save the file.
@@ -167,7 +130,7 @@ CloudHub supports allocating a static IP for applications so that they can be wh
 If your application is deleted, the static IP will be lost and you must request a new one.
 
 
-== Creating HTTP Services For Your Application
+== Creating HTTP Services for Your Application
 
 To make HTTP-based services available under your domain, use the `${http.port}` variable in your configuration. For example:
 
@@ -182,7 +145,7 @@ CloudHub specifies this port for you and automatically load-balances your domain
 
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
+* xref:cloudhub.adoc[CloudHub]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:deployment-strategies.adoc[Deployment Options]
 * xref:monitoring.adoc[Monitoring Applications]
