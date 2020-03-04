@@ -9,26 +9,27 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-rtf-active.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
 
-CloudHub supports safely hidden application properties, which means the name of a property is visible in the Runtime Manager console, but the value is not displayed or retrievable by any user. CloudHub resolves the property at runtime without exposing the sensitive information.
+CloudHub supports safely hidden application properties, in which the name of the property is visible in Anypoint Runtime Manager, but the value is not displayed or retrievable by any user.
+CloudHub resolves the property at runtime without exposing the sensitive information.
 
-Internally, safely hidden application properties are encrypted and stored in a MuleSoft managed CloudHub properties database, which is encrypted per user organization.
+Internally, safely hidden application properties are encrypted and stored in a MuleSoft-managed CloudHub properties database, which is encrypted per user organization.
 
-For applications deployed to CloudHub workers or hybrid deployments, you can use the Runtime Manager UI to set hidden properties. For applications that you deploy through another deployment option, you must use secure property placeholder files bundled with your application's ZIP file.
+For applications deployed to CloudHub workers or hybrid deployments, you can use Runtime Manager to set hidden properties.
+For applications that you deploy using another deployment option, you must use secure property placeholder files bundled with your application ZIP file.
 
 [IMPORTANT]
-Safely hidden application properties are a separate feature and concept from encrypted Mule application properties that are stored in secure configuration files. 
+Safely hidden application properties are a separate feature and concept from the encrypted Mule application properties that are stored in secure configuration files. 
 See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties].
 
 == Overview
 
-Application properties are variables that act as placeholders in your Mule application, and are set at runtime. When you deploy an application, or update an existing application in the Runtime Manager console, Mule runtime engine supplies the values for the property variables using information you configure in the Runtime Manager application *Properties* tab.
+Application properties are variables that act as placeholders in your Mule application and are set at runtime.
+When you deploy an application or update an existing application in Runtime Manager, Mule runtime engine supplies the values for the property variables using the information you configure in the *Properties* tab.
 
+For example, you can configure a JDBC connector in which the username is set to `${dbUsername}` and the password is set to `${dbPassword}`.
+In Runtime Manager, you can set these two properties as application properties.
 
-For example, you can configure a JDBC connector in which the username is set to `${dbUsername}` and the password is set to `${dbPassword}`. In the Runtime Manager console, you can set these two properties as application properties, as shown below.
-
-image::dbproperties.png[]
-
-For sensitive information, you can flag these properties as hidden so that, after they are entered and saved in the Runtime Manager console, their values are neither visible in the console nor passed between the console and the CloudHub server.
+For sensitive information, you can flag these properties as hidden so that, after they are entered and saved in Runtime Manager, their values are neither visible in the console nor passed between the console and the CloudHub server.
 
 == Create Safely Hidden Application Properties
 
@@ -44,12 +45,12 @@ For Mule 4.0 and later, in the `mule-artifact.json` file under the `secureProper
 ----
 {
   "configs": [
-    "secure-properties.xml"
+    "testprops-app.xml"
   ],
   "secureProperties": ["password", "birthdate"],
   "redeploymentEnabled": true,
   "name": "secure-properties",
-  "minMuleVersion": "4.1.1",
+  "minMuleVersion": "4.2.1",
   "requiredProduct": "MULE_EE",
   "classLoaderModelLoaderDescriptor": {
     "id": "mule",
@@ -67,8 +68,7 @@ Line 5 shows two secure properties.
 
 The `secureProperties` entry affects all properties regardless of where or if they are defined.
 
-
-If you want to perform local testing, create a `.yaml` file that defines four properties with values:
+If you want to perform local testing, create a `.yaml` file that defines properties with values and add it to the `src/main/resources` folder:
 
 [source,yaml,linenums]
 ----
@@ -92,25 +92,28 @@ secure.properties=db.password,salesforce.password
 --
 
 . Deploy the Mule application to CloudHub.
-. Enter your application properties in the *Properties* tab.
+. In the *Applications* page, click the application name, then click *Settings*.
+. In the *Properties* tab, click *List*, and then enter your application properties:
 +
-image::dbproperties2.png[]
+.The screenshot shows (*1*) the *Properties* tab and (*2*) the key-value properties on the application *Settings* page.
+image::rtm-hide-props.png[Properties tab and key-value properties on the application Settings page]
 
-. Commit your deployment or update.
+. Click *Apply Changes*. 
+. Redeploy or restart the app.
 +
-After your application is deployed, navigate to the *Deployment* tab and check the application properties.
-The values for all properties that you marked as safely hidden are now no longer visible to you or any other user.
+After redeploying your app, navigate to the *Properties* tab.
+The values for properties that you marked as safely hidden are now no longer visible to you or any other user.
++
 In the following example, birthdate and password are safely hidden, but username is not:
 +
-image::dbproperties3.png[]
+.The arrow shows the hidden values in the *Properties* tab on the application *Settings* page.
+image::rtm-hidden-props.png[Hidden values in the Properties tab on the application Settings page]
 
 
 After the values are committed and the application is uploaded, the safely hidden properties are not displayed on the console, or sent and received between the console and the CloudHub server.
 
-After you set the property, you can't retrieve it, however, you can overwrite the property with a new value. 
-To update a value, enter a new value into the field:
-
-image::dbproperties4.png[]
+After you set the property, you can't retrieve it; however, you can overwrite the property with a new value. 
+To update a value, enter a new value into the field.
 
 After an application is deployed with safely hidden application properties, CloudHub maintains the security flag for those properties.
 Even if you edit your application file to remove the `secureProperties` definitions from your `mule-artifact.json` file and then upload that edited application file to CloudHub, CloudHub maintains the invisibility of the properties previously flagged as safely hidden.
@@ -220,6 +223,7 @@ If you don't want to encrypt properties for Mule applications that are deployed 
 == See Also
 
 * xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties]
-* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:cloudhub-manage-props.adoc[Managing Properties for Applications on CloudHub]
+* xref:hybrid-manage-props.adoc[Managing Properties for Applications On-Premises]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
