@@ -3,25 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Create an Anypoint VPN using Runtime Manager. 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-When you create or configure an Anypoint VPN, you must provide the following information:
 
-* *Remote IP address:*
-+
-The public IP address of your VPN endpoint.
-* *Remote and Local Autonomous System Number (ASN)*:
-+
-Specifies the collection of routing prefixes. You must configure both a remote and local ASN before creating an Anypoint VPN. This is required only if you are using dynamic routing.
-* *Classless Inter-Domain Routing (CIDR)*:
-+
-Specifies the routing address of your network. This is required only if you are using static routing.
-* *Pre-shared Key (PSK):*
-+
-Shared secret used by the network tunnel that connects Anypoint Platform and your network. This value is auto-generated if you select *Automatic Tunnel Configuration*.
-* *Point-to-Point CIDR:*
-+
-IP range used by the network tunnel. You must configure a unique IP address range for each tunnel. This value is auto-generated if you select *Automatic Tunnel Configuration*.
+You can create an Anypoint VPN connection using Runtime Manager. 
 
 
 == Prerequisites
@@ -42,7 +30,20 @@ See xref:access-management::users#granting-permissions-and-roles-to-users[Granti
 
 The VPNs page is visible to Anypoint organizations that have VPN entitlements. 
 
+=== Checklist for Creating an Anypoint VPN
 
+When you create or configure an Anypoint VPN, you must provide the following information:
+
+Remote IP address::
+The public IP address of your VPN endpoint. This must be a single, static IP address.
+Static Routes (CIDR)::
+The subnets in your network to make accessible through the VPN. This information is required only if you are using static routing.
+Remote and Local ASN::
+The Autonomous System Number specifies the collection of routing prefixes. You must configure both a remote and local ASN. This is required only if you are using dynamic routing.
+Pre-shared Key (PSK)::
+The shared secret for the VPN tunnels. These values are auto-generated if you select *Automatic Tunnel Configuration*.
+Point-to-Point CIDR::
+Private IP range for the VPN tunnel interfaces. These values are auto-generated if you select *Automatic Tunnel Configuration*.
 
 
 == Create an Anypoint VPN
@@ -54,57 +55,67 @@ To create an Anypoint VPN:
 . From the menu on the left, click *VPNs*, and then click *Create VPN*.
 . Enter or select the following information for your Anypoint VPN:
 +
-* *Name*
-+
+--
+*Name*::
 Enter a name for your Anypoint VPN. 
-* *VPC* 
-+
+*VPC*::
 From the list, select the Virtual Private Cloud for the Anypoint VPN connection.
-* *Remote IP Address*
-+
+*Remote IP Address*::
 Enter the public IP address of your VPN endpoint.
-. Select the routing type to use: 
+--
+. Select the routing type to use. 
 +
-You can select either *BGP* or *Static*. Choose the Border Gateway Protocol (BGP) type if your device supports it.
+You can select either *BGP* (dynamic) or *Static*. Choose the Border Gateway Protocol (BGP) type if your device supports it.
 +
-[%header%autowidth.spread]
-|===
-|To use dynamic routing |To use static routing
-a| Select *BGP*, and then enter the following values:
+*To use dynamic routing*:
++
+--
+.. Select *BGP*.
+.. Define the remote ASN.
++
+Enter the ASN corresponding to your backend. You can use an existing ASN assigned to your network or a private ASN (64512–65534) that is not already assigned to your network. The default value is `65001`.
+.. Define the local ASN.
++
+Assign an ASN for the MuleSoft side. Use a private ASN (64512–65534) that is not already assigned to your network. The default value is `64512`.
+--
++
+*To use static routing*:
++
+--
+.. Select *Static*. 
+.. In the *CIDR* field, enter a subnet to make accessible through the VPN, for example, `10.0.0.0/8`.
+.. If you want to add additional subnets, click *Add New Rule*, and repeat the previous step.
 
-* *Remote ASN*
 +
-Enter the ASN corresponding to your backend. +
-Use an existing ASN assigned to your network, or a private ASN (64512–65534) that is not already assigned to your network. The default value is `65001`.
-* *Local ASN*
-+
-Assign an ASN for the MuleSoft side. +
-Use a private ASN (64512–65534) that is not already assigned to your network. The default value is `64512`
-
-a| Select *Static*, and then: 
-
-. In the *CIDR* field, enter a subnet that needs to be accessible via the VPN. +
-For example: `10.0.0.0/8`
-. (Optional) To add additional subnets, click *Add New Rule*, and repeat the previous step.
-|===
+A maximum of 95 route table entries is allowed per VPC, regardless of the number of VPN connections. To avoid exceeding the limit, consolidate networks to the fewest number possible.
+--
 . Select the *Tunnel Configuration* type. 
 +
-You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is sufficient. The following steps differ based on the tunnel type selected. 
+You can select either *Automatic* or *Custom*. In most scenarios, *Automatic* is sufficient. The steps differ depending on the selected tunnel type.
 +
-[%header%autowidth.spread]
-|===
-|To use *Automatic* tunnel configuration |To use *Custom* tunnel configuration
-a|Select *Automatic*.
-
+*To use Automatic tunnel configuration*:
++
+--
+.. Select *Automatic*.
++
 No other inputs are required. This option automatically configures the tunnel settings for your Anypoint VPN.
-
-a|. Select *Custom*, and then enter the values for both tunnels:
-. In the *PSK* field, enter a value between 8-64 characters in length that does not begin with zero (0). + 
++
+The tunnel settings are visible after VPN creation. 
+--
++
+*To use Custom tunnel configuration*:
++
+--
+.. Select *Custom*.
+.. In the *PSK* field for each tunnel, enter a value between 8-64 characters that does not begin with zero (0).
++ 
 Use only alphanumeric characters, periods (.), and underscores (&#95;). 
-. In the *Point-to-Point CIDR* field, enter the IP address range for the internal address of the VPN tunnel. +
-You can specify a size /30 CIDR block from the `169.254.0.0/16` range. The CIDR block must be unique across all VPN connections. +
+.. In the *Point-to-Point CIDR* field for each tunnel, enter the IP address range for the internal address of the VPN tunnel.
++
+You can specify a size /30 CIDR block from the `169.254.0.0/16` range. The CIDR block must be unique across all VPN connections. 
++
 You cannot use the following CIDR blocks:
-
++
 ----
 169.254.0.0/30
 169.254.1.0/30
@@ -114,15 +125,17 @@ You cannot use the following CIDR blocks:
 169.254.5.0/30
 169.254.169.252/30
 ----
-|===
+
+[NOTE]
+You cannot modify tunnel settings after you create the Anypoint VPN connection. To change the settings for an existing connection, delete the Anypoint VPN connection and create a new one.
+--
 . Click *Create VPN*.
 +
-Initially, the status of the VPN is *PENDING*. This is the expected status while the infrastructure is created. After the status changes to *AVAILABLE*, continue with the next steps. 
+Initially, the status of the VPN is `PENDING`. This is the expected status while the infrastructure is created. After the status changes to `AVAILABLE`, continue with the next steps. 
 +
 For more information see <<vpn-and-tunnel-status>>.
 +
-[NOTE]
-You cannot modify tunnel settings after you create the Anypoint VPN connection. To change the settings for an existing connection, delete the Anypoint VPN connection and create a new one.
+
 . Download the configuration file from your Anypoint VPN:
 +
 .. In Runtime Manager, click the name of the Anypoint VPN that you just created.
@@ -133,7 +146,7 @@ If your device type is not listed, select *generic*.
 .. Click *View Config* and then click the *Copy* button in the top right corner.
 .. Paste the configuration to a text file. 
 +
-All configuration files represent the minimum requirement of IKEv1, AES128, SHA1, and DH Group 2. You can modify the configuration for your VPN endpoint to take advantage of the other supported xref:vpn-about.adoc#ipsec-settings[IPsec settings].
+All configuration files represent the minimum requirement of IKEv1, AES128, SHA1, and DH Group 2. You can modify the configuration for your VPN endpoint to take advantage of the other supported IPsec settings. See xref:vpn-about.adoc#ipsec-settings[IPsec settings].
 
 . Configure your VPN endpoint:
 +
@@ -148,17 +161,17 @@ Configure both tunnels on your VPN endpoint to avoid unexpected behavior.
 
 == VPN and Tunnel Status
 
-The new VPN connection you created appears in the list of VPNs. Initially, the *Status* column displays *PENDING* and both VPN tunnels display *DOWN* while the infrastructure gets created. 
+The new VPN connection you created appears in the list of VPNs. Initially, the *Status* column displays `PENDING` and both VPN tunnels display `DOWN` while the infrastructure gets created. 
 
-Depending on your configuration, tunnels might report a status of *DOWN* during normal operations.
+Depending on your configuration, tunnels might report a status of `DOWN` during normal operations.
 
 [%header%autowidth.spread]
 |===
-|Status |Tunnel 1/Tunnel 2 |Description
-|`Pending` |`DOWN\DOWN` |The VPN connection is recently created, and actions are pending in the background. You might see this status for 10-15 minutes after creating a VPN
+|Status |Tunnel 1/2 |Description
+|`Pending` |`DOWN\DOWN` |The VPN connection is recently created, and actions are pending in the background. You might see this status for 10-15 minutes after creating a VPN.
 |`Available` |`DOWN\DOWN` |The VPN connection is created, but the remote side is not configured or is not sending traffic.
-|`Available` |`Up\Up` or `Up\Down` |The VPN connection is created, and the remote side established the connection successfully. Depending on the type of VPN and routing, the tunnels might operate in an active/active or active/passive mode.
-|`Failed` |`DOWN\DOWN` | The VPN connection was not created successfully. You have to delete the VPN and try again. If this failure reoccurs, contact MuleSoft Support.
+|`Available` |`Up\Up` or `Up\Down` |The VPN connection is created, and the remote side established the connection successfully. Tunnels operate in active/active or active/passive mode, depending on the routing configuration and your VPN device type. 
+|`Failed` |`DOWN\DOWN` | The VPN connection is not created. Delete the VPN and try again. If this failure recurs, contact MuleSoft Support.
 |===
 
 

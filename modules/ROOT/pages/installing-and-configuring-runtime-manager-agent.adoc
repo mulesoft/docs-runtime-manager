@@ -1,4 +1,4 @@
-= Install or Update Runtime Manager Agent
+= Install or Update the Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -6,11 +6,12 @@ endif::[]
 
 _Enterprise Edition_
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-Anypoint Runtime Manager agent registers Mule runtime engine (Mule) with Runtime Manager. After Mule is registered, you can manage it using Runtime Manager within the specific environment and Anypoint Platform business group in which Mule was registered. You cannot register Mule with multiple Runtime Manager business groups or environments.
+The Anypoint Runtime Manager agent registers Mule runtime engine (Mule) with Runtime Manager. After Mule is registered, you can manage it using Runtime Manager within the specific environment and Anypoint Platform business group in which Mule was registered. You cannot register Mule with multiple Runtime Manager business groups or environments.
 
 Use the `amc_setup` command to install and configure the agent, using different parameters depending on the type of console to which you are connecting the agent:
 
@@ -41,7 +42,7 @@ MuleSoft support provides migration scripts to migrate from MMC to Runtime Manag
 
 The version of Runtime Manager agent must support the version of Mule and Runtime Manager you are using. To determine compatibility, check the xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
 
-Mule 3.7.x and earlier and the API gateway 2.x and earlier include an earlier version of Runtime Manager agent, which doesn't provide support for exporting data to external analytics tools. If you are running these earlier versions, you can download and update the agent to the latest version.
+Mule 3.7.x and earlier and the API gateway 2.x and earlier include an earlier version of the Runtime Manager agent, which doesn't provide support for exporting data to external analytics tools. If you are running these earlier versions, you can download and update the agent to the latest version.
 
 == Prerequisites
 
@@ -96,7 +97,7 @@ See <<amc_setup Parameters>>.
 . Restart Mule or the API gateway runtime.
 
 
-== Update Runtime Manager Agent
+== Update the Runtime Manager Agent
 
 If you previously installed the agent with an earlier version of `amc_setup`, you can update the agent and retain your existing agent configuration in `$MULE_HOME/conf/mule-agent.yml`.
 
@@ -150,7 +151,7 @@ Registering Mule with Anypoint Platform PCE requires additional `amc_setup` para
 * xref:rtm-agent-proxy-config.adoc#configure-the-agent-to-connect-through-a-proxy-server[Configure the agent to connect through a proxy server].
 * xref:rtm-agent-proxy-config.adoc#encrypt_password[Encrypt passwords in the `mule-agent.yml` file].
 * xref:rtm-agent-REST-connections.adoc[Manage Mule using the local Runtime Manager agent REST API interface].
-* <<Update Runtime Manager Agent,Update the agent>>.
+* <<Update the Runtime Manager Agent,Update the agent>>.
 
 To see available options, run `./amc_setup --help`.
 
@@ -251,6 +252,12 @@ See xref:rtm-agent-proxy-config.adoc[Connect the Agent Through a Proxy Server].
 
 == Register Mule with the Cloud-Based Runtime Manager
 
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
 To register Mule with the Anypoint Platform Runtime Manager cloud-based console, you need:
 
 * A valid registration token, which identifies a specific environment for a specific business group in Anypoint Platform
@@ -310,6 +317,12 @@ globalConfiguration:
 
 
 == Register Mule with Anypoint Platform PCE Runtime Manager
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 
 With Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), all Runtime Manager services run on-premises rather than in a cloud environment managed by MuleSoft.
 

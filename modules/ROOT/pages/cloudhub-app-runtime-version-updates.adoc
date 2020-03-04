@@ -1,0 +1,58 @@
+= Updating the Runtime Version for CloudHub Apps 
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, runtime manager, arm, runtime version, mule, updates,
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
+When you deploy an application to CloudHub, you have access to the validated OS updates, security patches, and bug fixes that MuleSoft provides regularly.
+
+You can keep your CloudHub applications up to date by manually updating them at your convenience.
+If you don't update apps manually, MuleSoft applies the updates automatically.
+
+When a new runtime version is available for your CloudHub application, the *Applications* page displays a banner and the *Update Available* tab lists the apps that require updates:
+
+.The screenshot shows (*1*) the banner and (*2*) the *Update Available* tab on the *Applications* page.
+image::cloudhub-app-update-req-page.png[Applications page with banner and Update Available tab]
+
+If no apps require updates, no banner appears and the *Update Available* tab is empty.
+
+== Update the App Manually 
+
+The *Update Available* tab indicates that one or more apps require an update. You can schedule the update to occur at your convenience.
+
+Before updating apps in the Production environment, update them in the Sandbox environment and run required tests.
+
+To update an app to the latest security patch:
+
+. In the Runtime Manager left menu, click *Applications*.
+. Click the *Update Available* tab.
+. Click in the *Status* column for the app to display the details pane on the right.
+. Click the *Manage Application* button to display the *Settings* page for the app.
++
+If the app requires an update, *Update available* appears in the *Runtime version* field:
++
+.The screenshot shows (*1*) the *Update available* button and (*2*) the *Runtime version* menu on the *Settings* page.
+image::cloudhub-app-update-available-setting.png[Update available on the application Settings page]
+
+. Select the latest version from the *Runtime version* menu.
++
+Although the version number of the update might be the same as the installed version, a later date identifies the update:
++
+.The arrow shows the version update date in the *Runtime version* menu.
+image::cloudhub-app-update-available-versions.png[Version update date in the Runtime version menu]
+
+. If you want to see details about the version, click the *Read release notes* link.
+. Click the *Apply Changes* button to update the app. 
+
+CloudHub updates the app with the version you selected and displays a message indicating success or failure.
+
+If the app update was successful, the app no longer appears in the *Update Available* tab on the *Applications* page.
+
+If the app update was unsuccessful, the app remains in the *Update Available* tab.
+In this case, the app continues to run correctly on the previous runtime version and no action is required.

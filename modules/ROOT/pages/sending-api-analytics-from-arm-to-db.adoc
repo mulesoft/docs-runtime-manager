@@ -10,31 +10,44 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-The HTTP API analytics produced by applications running on the API gateway runtime can be easily stored in a database by configuring a few settings.
+You can configure the Runtime Manager agent to store in a database HTTP API analytics data from Mule apps running on the API gateway runtime.
 
-[NOTE]
-====
-Sending data to third party software is a feature that is currently only available for applications deployed to local servers. It is not available for applications that you deploy via the Runtime Manager to xref:cloudhub.adoc[CloudHub]. See xref:deployment-strategies.adoc[Deployment Strategies].
-====
+Sending data to third-party software is available only for applications deployed to local servers.
+It is not available for applications that you deploy to CloudHub using Runtime Manager.
 
-To see how to send this same information to Splunk, ELK or other third party software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Sending data from Runtime Manager to External Analytics Software].
+For information about sending this data to Splunk, ELK, or another third-party software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 
 == Prerequisites
 
-* API gateway standalone – version 2.1.0 or later
-* Runtime Manager agent plugin version 1.3.0 or later
+Ensure that the following software is installed:
 
-== Install the Runtime Manager Agent
+* API gateway standalone version 2.1.0 or later
+* Runtime Manager agent version 1.3.0 or later
++
+For information about updating the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent].
 
-The Runtime Manager agent is in charge of sending messages out of Mule. To send event information to third party software, you must have version 1.3.0 or later of the Runtime Manager agent.
 
-For help installing the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Installing and Configuring Runtime Manager Agent].
+== Install API Analytics-Tracking Database Internal Handlers
 
-== Install API Analytics Tracking Database Internal Handlers
+Depending on your version of the Runtime Manager agent, you might need to install the API Analytics-Tracking Database Internal Handlers ZIP file.
 
-Download http://mule-agent.s3.amazonaws.com/1.5.1/mule-agent-internal-handlers-db-1.5.1.zip[the API Analytics Tracking Database Internal Handlers] and unzip them in the `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules` folder.
+For the following agent versions, you don't need to install the ZIP file because the required JAR files are included in the agent plugin:
 
-== Agent Configurable Fields
+* 1.14.3 and later 
+* 2.4.5 and later
+
+For the following agent versions, you must download and install the ZIP file manually:
+
+* 1.14.2 and earlier
+* 2.4.4 and earlier
+
+To install the ZIP file:
+
+. Request the API Analytics-Tracking Database Internal Handlers ZIP file (`mule-agent-internal-handlers-db-1.5.1.zip`) from Support.
+. Extract the ZIP file to the `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules` folder.
+
+
+== Agent-Configurable Fields
 
 Once you have the latest Runtime Manager agent and the API analytics tracking database internal handlers installed on your API gateway standalone server, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
 
@@ -280,9 +293,10 @@ ALTER TABLE MULE_API_ANALYTICS ALTER COLUMN policy_violation_policy_id VARCHAR(5
 
 == See Also
 
-* See other ways you can xref:monitoring.adoc[Monitor Applications]
-* xref:managing-servers.adoc[Managing Servers]
-* Learn how to first xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications] contains more information on how to manage your application once deployed
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers] contains more information specific to on-premise deployments
-* A https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST APIs] is also available for deployment to your servers.
+* xref:monitoring.adoc[Monitoring Applications and Servers]
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
+* xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
+* xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST API]

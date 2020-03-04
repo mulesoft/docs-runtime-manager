@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 The Anypoint Runtime Manager monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to. 
 
 Anypoint Platform Private Cloud Edition doesn't support the Anypoint Monitoring dashboard feature.
@@ -29,6 +34,12 @@ Using the information gathered from these dashboards, you can:
 * Use Insight to help analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
 
 == Application Monitoring Dashboards
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 
 The app monitoring dashboards help you answer questions about your integrated apps, such as:
 
@@ -88,13 +99,46 @@ You can view all graphs for different time ranges by selecting the desired time 
 image::monitoring-dashboards-time-ranges.png[]
 * Classic application monitoring dashboard:
 +
+--
 image::monitoring-dashboards-cbd92.png[]
+
+
+The following table lists the time units for each selected time range:
+
+////
+[%header,cols="15,15,15,15,15"]
+|===
+| 4+| *Selected Time Range* 
+|*Average, Minimum, Maximum*| *3 Hours* | *24 Hours* | *7 Days* | *2 Weeks*
+| Number of Mule Messages .3+| Per minute .3+| Per 8 minutes .3+| Per hour .3+| Per 2 hours
+| Number of Errors
+| Response Time (in milliseconds)
+|===
+////
+
+[%header,cols="15,15,15,15"]
+|===
+| 3+| *Graphs Display the Average, Minimum, and Maximum:* 
+| *Selected Time Range* | *Number of Mule Messages* | *Number of Errors* | *Response Time (milliseconds)*
+| *3 Hours* | Per minute | Per minute | Per minute
+| *24 Hours* | Per 8 minutes | Per 8 minutes | Per 8 minutes
+| *7 Days*  | Per hour | Per hour | Per hour 
+| *2 Weeks* | Per 2 hours | Per 2 hours | Per 2 hours
+|===
+
 
 If your application runs on multiple workers, the workers are charted as different curves on the same graphs, differentiated by different colors.
 
 If your application runs on a server group or cluster, the aggregated metrics of the servers in the group or cluster appear as a single plot line on each graph. If you want to see the metrics at the individual server level, you can look at the dashboard for the individual server. If multiple apps are running on the server, you see the overall server performance, without a distinction between each of the apps running on it.
+--
 
 == Server Monitoring Dashboard
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
 
 The server monitoring dashboard displays high-level information about the servers, including heap memory and CPU percentage, as well as detailed memory usage metrics.
 
@@ -151,17 +195,23 @@ The amount of memory (in MB) available for use by the Java VM. This amount varie
 
 The graphs in the Overview tab provide high-level metrics related to memory and CPU usage.
 
+[[heap_memory]]
 Heap Memory::
 The total heap memory usage in MB:
 +
+
 * Heap memory usage
 * Total memory
 * Heap committed memory
+
 +
 image::monitoring-dashboards-heap.png[]
+
 +
 See the <<Breakdown Tab,Breakdown tab>> for details about each of the components of the heap memory.
 
+
+[[cpu]]
 CPU::
 This metric is not available on Windows.
 +
@@ -170,6 +220,7 @@ The total CPU usage of the server, as a percentage:
 * CPU usage
 * System available processing power
 * System load average
+
 +
 image::monitoring-dashboards-cpu.png[]
 
@@ -194,6 +245,7 @@ The graphs in the Breakdown tab provide detailed metrics, including graphs that 
 Thread Count:: 
 The number of individual Java execution threads over time:
 +
+
 image::monitoring-dashboards-threads.png[]
 
 [[garbage_collection]]
@@ -203,6 +255,7 @@ Metrics for these areas of the heap:
 * Young Generation, where all new objects are allocated.
 * Old Generation, where long-surviving objects are stored.
 +
+
 image::monitoring-dashboards-garbage.png[]
 
 [[class_loading]]
@@ -248,10 +301,15 @@ The JVM memory space that uses native memory for the representation of class met
 This metric is available only when using JDK 8+.
 +
 image::monitoring-dashboards-meta.png[]
-
-
++
+The metaspace limit is currently 256 MB.
 
 == Server Group or Cluster Monitoring Dashboard
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 You can use the server group or cluster monitoring dashboard to view aggregated metrics for servers in a group or cluster.
 

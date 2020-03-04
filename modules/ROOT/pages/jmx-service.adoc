@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 The Runtime Manager agent JMX service allows you to track specific JMX metrics and publish them to external services. The service can be configured to track specific beans and to change the frequency with which it publishes their value.
 
@@ -125,11 +125,11 @@ HTTP 200
 
 === Adding a New JMX Publisher
 
-To add a new JMX publisher, you need to implement the Runtime Manager agent's `InternalMessageHandler` interface.
+To add a new JMX publisher, implement the Runtime Manager agent `InternalMessageHandler` interface.
 
 Your custom JMX publisher should meet the following requirements:
 
-* It must be thread-safe
+* It must be thread-safe.
 * It must implement all publishing logic in the handle method defined in `InternalMessageHandler`.
 
 ==== Writing Your JMX Publisher

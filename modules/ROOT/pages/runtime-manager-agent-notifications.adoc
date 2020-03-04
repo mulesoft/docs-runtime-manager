@@ -4,28 +4,39 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-The Runtime Manager agent publishes notifications, in JSON format, about events that occur in the Mule instance. This allows you to implement your own system for receiving and handling notifications. Notifications are sent over both the REST and WebSocket transports (for more information on transports refer to the Runtime Manager agent architecture documentation).
+The Anypoint Runtime Manager agent publishes notifications, in JSON format, about events that occur in the Mule instance.
+This enables you to implement a system for receiving and handling notifications.
+Notifications are sent over both the REST and WebSocket transports.
+For more information about transports, see xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture].
 
-== Configure the Mule Agent Notifications Callback URL
+== Configure the Agent Notifications Callback URL
 
-To receive notifications on the specified URL, you must first configure the `callback` URL in the `mule-agent.yml` file inside the REST transport section as shown below.
+To forward Runtime Manager agent notifications to a URL over the REST transport, configure a `callback` URL in the `mule-agent.yml` file.
 
-[TIP]
-To enable notification to be sent, you must enable the `rest.agent.transport` section. Also ensure the configured URL ends with a trailing slash (`/`). This is required since the agent will append the path to it.
+To configure the `callback` URL:
 
+. Add the `callback` URL to the `mule-agent.yml` file:
++
 [source,yaml,linenums]
 ----
+transports:
   rest.agent.transport:
     enabled: true
     callback:
       url: http://localhost:8080/
     port: 8888
 ----
++
+The values for `port` and `url` depend on the external server that will receive the notifications.
++
+The configured URL must end with a trailing slash (`/`) because the agent appends the path to the URL.
+. Restart Mule runtime engine.
+
 
 == Application Deployment Notifications
 
@@ -177,3 +188,7 @@ Valid deployment statuses:
 * `UNDEPLOYED`
 * `DEPLOYMENT_FAILED`
 * `UNDEPLOYMENT_FAILED`
+
+== See Also 
+
+* xref:rtm-agent-config-yaml.adoc[Update Agent Configuration in mule-agent.yml]

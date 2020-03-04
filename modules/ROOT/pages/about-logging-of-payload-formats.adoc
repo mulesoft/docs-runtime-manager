@@ -1,27 +1,30 @@
-= About Logging of Payload Formats
+= Payload Formats and Logging 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 :keywords: analytics, monitoring, splunk, elk, elastisearch, logstash, kibana, logs, mule events, logging, apy analytics, metrics, traceability, arm, anypoint runtime manager
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-In order to send message payload data xref:sending-data-from-arm-to-external-analytics-software.adoc[to external analytics software], it must first be serialized and converted to text.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-Some payload formats can't be converted to plain text. Because of this, the Runtime Manager Agent differentiates formats accordingly and only converts those that are considered to work.
 
-When the payload format isn't of a convertible type, the agent only passes on the full qualified name of the payload class type, not its content.
+To send message payload data to external analytics software, Runtime Manager agent must first serialize and convert the data to text.
 
-[WARNING]
-The information on this document only applies as of version xref:release-notes::runtime-manager-agent/runtime-manager-agent-1.6.3-release-notes.adoc[1.6.3] of the Runtime Manager agent. Prior versions attempt to convert all formats, causing failures on some.
+Because some payload formats can't be converted to plain text, Runtime Manager agent converts only those formats that are considered to work. 
+When the payload format can't be converted, the agent passes only the fully qualified name of the payload class type, not the payload message content.
+
+[NOTE]
+Runtime Manager agent version 1.6.2 and earlier attempts to convert all payload formats, which results in failures for some formats.
 
 == Default Conversion Behavior
 
-The Runtime Manager agent only passes on payload messages where the *Converted to String* column reads `TRUE` in the table below:
+The following table lists the payload formats and specifies whether Runtime Manager agent converts them to the String type and passes the payload message.
+If the *Converted to String* column shows FALSE, Runtime Manager agent passes only the payload class type.
+
 
 [%header,cols="15,35,25,20"]
 |===
@@ -85,13 +88,16 @@ The Runtime Manager agent only passes on payload messages where the *Converted t
 |	|Multipart|	"multipart/mixed, multipart/alternative, multipart/digest multipart/parallel"	|FALSE||
 |===
 
-== Customizing Conversion Behavior
+== Customize Conversion Behavior
 
-You can override the default behavior make the agent forward all payload formats or none. This is achieved by adding certain properties to the `conf/mule-agent.yml` file.
+You can override the default behavior and configure the agent to forward all payload formats or none by adding properties to the `conf/mule-agent.yml` file.
 
-You may want to force the exclusion of certain formats from the external logs. This may be because of security concerns around shearing certain types of data:
+For example, you might want to exclude some formats from the external logs if your organization is concerned about the security of sharing certain types of data.
 
-.Force exclusion on a specific application:
+=== Exclude Payloads 
+
+To exclude all payloads for a specific application:
+
 [source,yaml,linenums]
 ----
     mule.agent.tracking.service:
@@ -103,7 +109,8 @@ You may want to force the exclusion of certain formats from the external logs. T
               payloadExcluded: true
 ----
 
-.Force exclusion globally:
+To exclude all payloads for all apps:
+
 [source,yaml,linenums]
 ----
     mule.agent.tracking.service:
@@ -112,14 +119,15 @@ You may want to force the exclusion of certain formats from the external logs. T
         globalPayloadExclusion: true
 ----
 
-You may also want to force the conversion and forwarding of formats that are considered to not be convertible.
+=== Include Payloads 
 
-[WARNING]
-Note that by doing this there's a risk of breaking the payload.
+You might want to convert and forward payload formats that Runtime Manager agent considers not convertible.
 
+[IMPORTANT]
+If you force conversion for all payload formats, the payload sent might be the payload class type, not the payload message content.
 
+To include all payloads for a specific application: 
 
-.Force inclusion on a specific application
 [source,yaml,linenums]
 ----
     mule.agent.tracking.service:
@@ -131,7 +139,8 @@ Note that by doing this there's a risk of breaking the payload.
               forcePayloadInclusion: true
 ----
 
-.Force inclusion globally
+To include all payloads for all apps:
+
 [source,yaml,linenums]
 ----
     mule.agent.tracking.service:
@@ -141,13 +150,7 @@ Note that by doing this there's a risk of breaking the payload.
 ----
 
 
-
-
 == See Also
 
-* xref:managing-servers.adoc[Managing Servers]
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST APIs]
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager API]

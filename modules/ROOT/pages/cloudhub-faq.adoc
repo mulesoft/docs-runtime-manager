@@ -37,7 +37,39 @@ Anypoint Studio can be downloaded https://www.mulesoft.com/lp/dl/studio[here]. F
 
 == How much does CloudHub cost?
 
-For specific pricing, please reach out to either your account executive or your account development representative, or contact us in the https://help.mulesoft.com[MuleSoft Help Center].
+For specific pricing, reach out to either your account executive or your account development representative, or contact the https://help.mulesoft.com[MuleSoft Help Center].
+
+
+== How do I get support?
+
+The CloudHub team is committed to providing the best customer experience possible. Contact the CloudHub team in the https://help.mulesoft.com[MuleSoft Help Center].
+
+You can browse and search the online https://help.mulesoft.com/s/forum[forum] to find answers. Or post a question and start a new thread.
+
+If you have a paid plan, you can access the Support portal.
+
+To file a case through the Support portal:
+
+. Sign in to Anypoint Platform. 
+. From the *?* menu, select *Support Center*.
+. Click the *Support* tile.
++
+You can browse open cases or click *Contact Support* to open a new case.
+. When you create a new case, complete the required fields (marked in red).
++
+Provide a detailed description of your issue and any supporting information. Hover over the information (*i*) icon for field-specific guidelines or instructions. 
+. When finished, click *Submit*.
++
+The portal generates a unique case number and refers you to possibly relevant areas of the knowledge base that you can browse while you await a response to your case.
+
+== What happens when my subscription expires?
+
+Seven days before your Anypoint Platform account subscription expires, you receive an email notifying you that your account is about to expire and prompting you to contact your account representative to retain your account.
+
+When your subscription expires, you can't restart existing apps or create new apps. Running apps might stop without notice at the discretion of MuleSoft.
+
+To renew your subscription, contact your account representative.
+
 
 == What is a worker?
 
@@ -139,13 +171,14 @@ Yes, you can stop and start the application, upload a new project zip file, chan
 Your static IP might be removed or reassigned in a couple of specific situations:
 
 * Deleting an application also removes its static IP. If you create a new application with the same name, it has a new dynamically assigned IP address.
-* Adding a new application by moving it from Sandbox to Production. This requires a new application name, hence a new Static IP
+* Adding a new application by moving it from Sandbox to Production
+This requires a new application name and a new static IP.
 * If xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)] is built for your organization, any existing application that is not already in Anypoint VPC receives a new IP address when it restarts inside Anypoint VPC.
 * An application is redeployed to a different geographic region.
 +
 You can preallocate a static IP in the new region in the *Static IPs* tab in the application settings page.
 
-== Can I request a specific Static IP address?
+== Can I request a specific static IP address?
 
 No. CloudHub uses a pool of static IP addresses that are assigned to a CloudHub application only upon first deployment. If that application releases that static IP, then that IP address returns to the pool and is available to other applications.
 
@@ -161,28 +194,10 @@ Because CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon 
 
 Customers with an Enterprise account can choose any global region in which to deploy their app. The actual worker is always running in the UTC timezone.
 
-== How do I get support?
-
-Browse and search our online http://forums.mulesoft.com[forum] archives to find answers. Or post a question and start a new thread.
-
-The CloudHub team is committed to providing the best customer experience possible. Contact the CloudHub team in the https://help.mulesoft.com[MuleSoft Help Center].
-
-If you have a paid plan, you also have access to the support portal. To file a case through the support portal:
-. Sign into the Anypoint Platform, then click *Support* on the top nav bar.
-. Click the *Cases* tab.
-+
-You can browse open cases or click *Create New Case* to open a new case.
-. When you create a new case, fill in the required fields (marked in red).
-+
-Hover over icons for field-specific guidelines or instructions.
-. When finished, click *Submit*.
-+
-The portal generates a unique case number and refer you to possibly relevant areas of the knowledge base that you can browse while you await a response to your case.
-
 
 == Proactive Monitoring
 
-The CloudHub platform is monitored 24 hours a day, 7 days a week, by automated systems. In the event of any issue affecting the health and operation of the CloudHub infrastructure, our dedicated operations team is notified and responds immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users, free and paying. The status of CloudHub services and upcoming maintenance can be found at http://status.mulesoft.com[`status.mulesoft.com`].
+The CloudHub platform is monitored 24 hours a day, 7 days a week, by automated systems. Should any issue affect the health of the CloudHub infrastructure, the operations team is notified and responds immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users. You can view the current status of CloudHub services and upcoming maintenance at http://status.mulesoft.com[`status.mulesoft.com`] and http://eu1-status.mulesoft.com[`eu1-status.mulesoft.com`].
 
 == See Also
 

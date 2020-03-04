@@ -37,13 +37,20 @@ For application worker logs, check the logging system for your application.
 
 == Create Your Log4j Configuration
 
-For logs to both flow to your logging system and be viewable in CloudHub, configure the CloudHub Log4j appender. The Log4j appender sends log data to CloudHub and to a local log file.
+For logs to both flow to your logging system and be viewable in CloudHub, configure the CloudHub Log4j appender. 
+
+You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
+https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax].
 
 To enable the Log4j appender, update the `log4j2.xml` configuration file with your logger settings.
 In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources` directory.
 
-For information about configuring `log4j2.xml`, see the
-https://logging.apache.org/log4j/2.x/manual/configuration.html[Log4j documentation].
+The two example Log4j appenders in the `log4j2.xml` file are:
+
+Log4J2CloudhubLogAppender::
+Sends log data to CloudHub.
+RollingFile::
+Sends log data to the filesystem of the VM.
 
 [source,xml,linenums]
 ----
@@ -127,3 +134,4 @@ After your application starts, logs start flowing to your custom Log4j appender 
 == See Also 
 
 * xref::deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* https://help.mulesoft.com/s/global-search/%40uri#q=log4j&t=SalesforceArticle&f:@sfdcproduct=[CloudHub Log4j Knowledge Articles]
