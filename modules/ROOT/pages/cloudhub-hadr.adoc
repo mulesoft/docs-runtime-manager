@@ -13,7 +13,9 @@ image::hadr-aws-global-infrastructure.png[]
 For example, if the US East region is unavailable, the CloudHub management UI, as well as the various REST services that enable deployments, are unavailable until the region's availability is restored.
 New applications can't be deployed while US East is down.
 
-CloudHub provides an internal messaging mechanism, in the form of persistent queues, that is used for message reliability. The persistent queues are highly available within a region. However, these persistent queues are lost when the region is unavailable (usually a few seconds or minutes), which could result in some data loss.
+CloudHub provides an internal messaging mechanism, in the form of persistent queues, that is used for message reliability.
+While persistent queues are highly available within a region, they might not be accessible if the region or part of the region is unavailable (usually a few seconds or minutes), which could result in some data loss.
+After the region is available again, CloudHub resumes communication with the queues.
 
 Some CloudHub modules, such as Anypoint Object Store v1, application settings, and Insight-related information, are maintained in the US East region for all applications regardless of the region where they are deployed. Anypoint Object Store v2 is maintained in the same region as the deployed CloudHub application. For both Anypoint Object Store v1 and v2, if a region is unavailable, the data persists and becomes available again after the region returns to service.
 
