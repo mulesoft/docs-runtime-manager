@@ -24,17 +24,26 @@ Go to the https://git-scm.com/downloads[Git download site] to get this resource.
 
 == Installation
 
-Depending on the configuration of your system, you might have to run these commands using administrator's credentials.
+Depending on the configuration of your system, you might need to run these commands using administrator credentials.
 
-[source]
+[source,text,linenums]
 ----
 $ npm install -g anypoint-cli@2.3.2
 ----
 
-[NOTE]
---
-If during the installation process, npm throws a `fatal: read error: Invalid argument` error, make sure that the git client installed on your computer, and that the git protocol is not blocked by your firewall or network.
---
+If the installation command fails with the following error, make sure that the git client is installed on your computer and the git protocol is not blocked by your firewall or network:
+
+[source,text,linenums]
+----
+fatal: read error: Invalid argument
+----
+
+If the git protocol is blocked, you can configure git to use `https://` instead of `git://`:
+
+[source,text,linenums]
+----
+git config --global url."https://".insteadOf git://
+----
 
 == Reference
 
