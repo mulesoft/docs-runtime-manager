@@ -4,60 +4,37 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, deploy, manage, runtime manager, arm
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 
 Before you can deploy to a server, you must first:
 
-. xref:mule-runtime::mule-standalone.adoc[Install Mule]
-. xref:servers-create.adoc[Create a Server in Runtime Manager]
+. xref:mule-runtime::mule-standalone.adoc[Download and install Mule].
+. xref:servers-create.adoc[Add a server to Runtime Manager].
 
 You can deploy a Mule application to a local server using:
 
-* xref:deployment-strategies.adoc#cloud-console-on-premises-deployment[The Runtime Manager cloud console]
-* xref:deployment-strategies.adoc#on-premises-console-on-premises-deployment[The Anypoint Platform Private Cloud Edition]
+* xref:deployment-strategies.adoc#cloud-console-on-premises-deployment[Runtime Manager cloud console]
+* xref:deployment-strategies.adoc#on-premises-console-on-premises-deployment[Anypoint Platform Private Cloud Edition]
 * The https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager API]
-* The xref:3.9@mule-runtime::mule-maven-plugin.adoc[Mule-Maven Plugin]
+* xref:mule-runtime::deploy-on-premises.adoc[Mule Maven plugin]
 
-[TIP]
-====
-To request the Anypoint Platform Private Cloud Edition, contact your sales representative.
+When you use Runtime Manager to manage a server, you cannot use other deployment and management methods or tools to manage the server.
 
-When you use Runtime Manager to manage a server, you cannot use other deployment and management methods or tools (MMC and manual deployment) to manage the server.
-====
 
-== Deploying an Application
+== Deploy an Application from Anypoint Platform
 
-=== From Anypoint Platform
-
-. Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
-
-. Click *Runtime Manager*:
-+
-image::deploying-to-your-own-servers-get-to-arm.png[]
-+
+. Sign in to https://anypoint.mulesoft.com[Anypoint Platform].
+. Select *Runtime Manager*.
 . Click *Deploy application*:
-+
-image::deployappfromconsole.png[DeployAppFromConsole]
-+
-[TIP]
-For more information on the *Servers* tab, see xref:managing-servers.adoc[Managing Servers].
-+
-.  The Deploy Application page opens:
-+
-image::deployappfirstscreen.png[DeployAppFirstScreen]
-
-
-=== From Anypoint Exchange
-
-. From Anypoint Platform, select *Runtime Manager*.
-. Click *Applications*, then click *Deploy Application*.
 . Provide a name for your application.
 . Select a deployment target from the drop-down list.
 +
-The target must be a registered server, server group or cluster.
+The target must be a registered server, server group, or cluster.
 
 . Click *Choose File*, then select *Import File from Exchange* from the drop-down menu.
 +
@@ -71,10 +48,9 @@ You can see a full list of applications in Anypoint Exchange. Your application s
 
 The new application appears in the list of deployed applications in the Applications tab.
 
-=== From Sandbox
+== Deploy an Application from a Sandbox Environment
 
 If you created an application in a sandbox environment and tested it, you probably will eventually want to migrate it to production.
-
 
 . Once logged into your Anypoint Platform account, go to one of your non-sandbox environments
 . In the *Applications* tab, click the *Deploy Application* button
@@ -111,24 +87,6 @@ Also, be mindful of the Mule versions being used by the servers in both environm
 * To avoid domain name conflict, an application cannot exist in two environments at the same time. Alter the application's name slightly to deploy it to another environment.
 * Runtime Manager prevents you from having duplicate application names in a single environment. If a name is already taken, you are prompted to provide a new name.
 
-////
-=== From Anypoint Studio
-
-. With your application open in Anpoint Studio as a Mule Project, right-click on the project node in the package explorer. Then select *Deploy to Anypoint Platform* > *Runtime Manager* from the cascading menu.
-+
-image::deploy-to-cloudhub.png[deploy+to+cloudhub]
-+
-. If this is your first time deploying in this way, a popup menu asks you to provide your login credentials for the Anypoint Platform. Studio stores your credentials and uses them automatically the next time you deploy to CloudHub.
-
-+
-[TIP]
-You can manage these credentials through the Studio *Preferences* menu, in *Anypoint Studio* > *Authentication*.
-
-. After you sign in, the Deploy Application menu opens.
-+
-image::deployappfirstscreen.png[DeployAppFirstScreen]
-
-////
 
 == Creating an Application Name
 
@@ -226,6 +184,6 @@ If an error occurs and the application cannot be deployed, the application statu
 == See Also
 
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-servers.adoc[About Servers, Server Groups, and Clusters]
-* xref:monitoring.adoc[Monitor your Applications]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST APIs]
+* xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
+* xref:monitoring.adoc[Monitoring Applications and Servers]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST APIs]
