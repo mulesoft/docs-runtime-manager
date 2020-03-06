@@ -54,7 +54,7 @@ For each worker deployed to CloudHub, the following IP assignation takes place:
 * A few IP addresses are reserved for infrastructure.
 * At least two IP addresses per worker to perform at zero-downtime.
 
-Due to this structure, the smallest network subnet block you can assign for your Anypoint VPC is /24 and the largest /16. +
+Due to this structure, the smallest network subnet block you can assign for your Anypoint VPC is /24 and the largest /16.
 
 The safe rule of thumb for deciding the size of your Anypoint VPC subnet is to calculate 10 times the maximum number of expected apps to deploy in the VPC.
 
