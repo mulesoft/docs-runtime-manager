@@ -210,7 +210,7 @@ The new value is hidden once the application is deployed and can never be viewed
 
 This means that when you override a secure property in the CloudHub *Properties* tab for the application, the value doesn't need to be encrypted. In this scenario, only users who have access to the values in the application's source files when they deploy or redeploy a secure application can override secure properties. 
 
-An example of when to override secure properties is if you need to update the database user and password stored in two properties named `db.user` and `db.password` in a production application. You can enter the new `db.user` and `db.password` in the CloudHub *Properties* tab for the application and then start or restart the application. This allows the new application to upgrade the secure login information with zero downtime. 
+An example of when to override secure properties is if you need to update the database user and password stored in two properties named `db.user` and `db.password` in a production application. You can enter the new `db.user` and `db.password` values in the CloudHub *Properties* tab for the application and then start or restart the application. This allows the new application to upgrade the secure login information with zero downtime. 
 After all dependent applications are migrated, the old account can be decommissioned.
 
 [NOTE]
