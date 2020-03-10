@@ -131,7 +131,7 @@ The task must then extract the organization identifier from the location 'user.o
 [TIP]
 The organization `id` retrieved in Step 2 must be passed as part of the API URI. The environment `id` must be extracted from the path 'data[i].id', where 'data[i].name == inputEnvironment' (it can take values like 'Dev', 'Test', 'Production', or any valid environment name that is set up in your Anypoint Platform).
 
-To use the https://anypoint.mulesoft.com/exchange/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-deployment-target-registry/1.0.1/pages/home/[Runtime Manager Target Registry] API:
+To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-deployment-target-registry[AMC Deployment Target Registry] API:
 
 . Call the `/targets` on the Target Registry API, passing the provider `id`, as well as the retrieved organization `id` and environment `id`. This returns all of the registered targets for the organization, including the `targetId`.
 
