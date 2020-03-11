@@ -3,14 +3,16 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+
+
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-To send the event notifications of your Mule applications to 3rd party tool such as Splunk and ELK, configure Runtime Manager to export data to external analytics tools.
 
-This functionality is only available in hybrid deployment scenarios. It is not available for applications deployed to CloudHub.
+To send the event notifications of your Mule applications to a third-party tool such as Splunk and ELK, configure Runtime Manager to export data to external analytics tools.
+
 
 
 If you intend to export your payload's contents to be logged, keep in mind that not all formats can be exported. See xref:about-logging-of-payload-formats.adoc[Payload Formats and Logging].
@@ -20,16 +22,12 @@ If you intend to export your payload's contents to be logged, keep in mind that 
 
 The Runtime Manager exists as:
 
-* a component of the Anypoint Platform.
-* a component of the Anypoint Platform Private Cloud Edition that you can install on-premises.
+* a component of the Anypoint Platform
+* a component of the Anypoint Platform Private Cloud Edition that you can install on-premises
 
 Anypoint Platform Private Cloud Edition has a Runtime Manager that handles only applications that are deployed on-premises. The cloud-based version of Anypoint Platform has a Runtime Manager that allows you manage applications deployed to xref:index.adoc[CloudHub] as well as applications that are deployed on-premises and to your own cloud servers. When using whichever version of the Runtime Manager, there's always a way to monitor your applications.
 
 Applications deployed to CloudHub can use xref:insight.adoc[Insight]: MuleSoft’s Analytics & Monitoring feature. Applications that you deploy on-premises or to your own cloud servers can be integrated into third-party analytics applications, which is what this document describes.
-
-////
-Applications deployed on Cloud can either use Insights (MuleSoft’s Analytics & Monitoring feature) or be integrated into third party analytics applications for a unified view of monitoring and analytics. Apps deployed on on-prem must be integrated into third party analytics applications.
-////
 
 If you deploy apps from Runtime Manager to customer-managed Mule servers, you can send your Mule app event and analytics data to third party analytics software such as Elk and Splunk.
 
