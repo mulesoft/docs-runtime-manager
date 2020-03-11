@@ -10,11 +10,29 @@ image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoi
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
+
 In an on-premises (hybrid or Anypoint Platform PCE) deployment, you can add properties to an application using the `mule-app.properties` file or Anypoint Runtime Manager.
 
-== Add Application Properties with the mule-app.properties file
+For example, you can define application-specific properties in a properties file, then later add environment-specific properties from Runtime Manager during deployment.
 
-The most common method to add properties to an app is to include a `mule-app.properties` file containing the properties in the application .zip bundle.
+Specifying properties in Runtime Manager enables you to define properties in one place rather than having multiple application property files for a single application in multiple environments.
+
+After deploying an application, you can modify application properties or create new ones from the application *Settings* page.
+The values of properties defined on this tab override any application properties defined in the `mule-app.properties` or other properties of Mule.
+
+If you change properties after an application is deployed, you must restart the application and any server group or cluster where the application is deployed.
+
+The following security considerations apply to properties:
+
+* Values sent between Runtime Manager and Mule runtime engine are encrypted over HTTPS.
+* Values stored in the Runtime Manager internal database are encrypted.
+* By default, Runtime Manager does not display the values of the properties.
+* Only users that have access to the *Settings* page can view properties.
+
+
+== Add Application Properties in the mule-app.properties File
+
+The most common method to add properties to an app is to include a `mule-app.properties` file containing the properties in the application ZIP bundle.
 
 Mule runtime engine then loads these properties into the application when the application starts.
  
@@ -29,11 +47,11 @@ You can override the property values in the `mule-app.properties` file bundled i
 . Click *Manage Application*.
 . On the *Settings* page, click the *Properties* tab:
 +
-.The screenshot shows (*1*) the *Properties* tab, (*2*) the *Key* and *Value* fields, and (*3*) the *...* menu on the application  *Settings* page.
-image::hybrid-app-props.png[*Properties* tab, *Key* and *Value* fields, and *...* menu on the *Settings* page]
+.The screenshot shows (*1*) the *Properties* tab, (*2*) the *Key* and *Value* fields, and (*3*) the *...* menu on the application *Settings* page.
+image::rtm-manage-props.png[*Properties* tab, *Key* and *Value* fields, and *...* menu on the *Settings* page]
 . Enter the property name in the *Key* field.
 . Enter the property value in the *Value* field.
-. Click *Save*, and then *Redeploy Application*.
+. Click *Save* and then click *Redeploy Application*.
 
 You can edit or delete a property using options in the *...* menu.
 
@@ -59,3 +77,5 @@ In this case, all the values typed into the command are stored only in memory an
 * xref:mule-runtime::configuring-properties.adoc[Configuring Properties]
 * xref:mule-runtime::deploying-to-multiple-environments.adoc[Configuring Environment Properties]
 * xref:mule-runtime::deploying-to-multiple-environments.adoc#setting-a-specific-environment-when-starting-mule-on-premises[Setting a Specific Environment when Starting Mule On-Premises]
+* xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+* xref:secure-application-properties.adoc[Safely Hiding Application Properties]
