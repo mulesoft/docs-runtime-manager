@@ -1,0 +1,94 @@
+= CloudHub Application Update Policy
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, runtime manager, arm, runtime version, mule, updates,
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
+MuleSoft patches runtimes when a vulnerability is discovered.
+To ensure the security of CloudHub and your applications, apply these patches.
+
+The automated patching process will update application runtimes in CloudHub to the latest service pack version (also known as a date patch) when a vulnerable library or component is discovered within the Mule runtime engine, JVM or the underlying Operating System.
+
+Updates will be performed using a blue/green deployment and date patch versions contain only backward compatible bug fixes and security patches.
+
+The new automation will ensure consistency and that vulnerabilities are always patched within Salesforce security SLAs. 
+
+
+All updates will be automatically applied using a blue/green deployment and contain only backward compatible bug fixes and security patches.
+If your apps restart without downtime, no action is required. 
+
+What is a date patch version?
+
+Currently, if you deploy an application, it gets deployed to the latest date patch version of the Mule Runtime at the time of deployment.
+For example, the app below was deployed to 3.9.1 06-07-2019 version in June 2019. 
+
+
+The release notes show several date patch updates to 3.9.1 between June and November, these patches contain backward compatible bug fixes and updated OS, libraries and security patches.
+However, in the past, the application would remain on this outdated version unless you manually take the latest update as seen in the screenshot above.
+Not updating the applications regularly leaves applications susceptible to bugs and vulnerabilities that have been discovered and fixed in the latest date patch version. 
+
+This month, we will update all runtimes to the latest date patch version to ensure no application on our Cloud Platform is running on vulnerable libraries or components.
+Going forward, we will automatically update your current application runtimes to the newest date patch version when a vulnerability is discovered.
+As an example, if the update were to happen in November, an app running on 3.9.1 06-07-2019 version will get updated to the latest patch available for that version available in November: 3.9.1 11-06-2019. 
+
+What is a blue/green deployment?
+
+Runtimes will be updated to the latest date patch version using a blue/green deployment.
+
+We first bring up a new version of your application on the latest date patch version. CloudHub will wait for the Mule application to be responsive (see Application Monitoring) and a further 3 minutes before the application domain and related Static IPs (if used) are moved to the new version. Using this process, we strive to achieve zero-downtime updates.
+If the new application is unresponsive after an update is applied, the existing version of the application will continue to run on the older date patch version.
+An entry by user “Anypoint Staff” will be created in your audit log which indicates the date and time an update occurred and whether it was successful.
+
+
+What action do I need to take?
+
+
+None. Date patches can only contain backward compatible bug fixes and security patches. 
+These are thoroughly tested before release.
+All updates will be automatically applied using a blue/green deployment and. If your apps restart without downtime, no action is required. 
+
+However, if that’s not the case and your production Mule application cannot be restarted with zero-downtime, please update the application to be cloud-ready. 
+
+There are two known cases under zero-downtime restarts will not work:
+
+
+Your CloudHub application is a durable subscriber.
+In this case, there can only be one unique subscriber at a time.
+Such applications would require a stop and start to take the latest update.
+
+
+After your CloudHub application starts up, it will wait until a connection is established to an external dependency that is unavailable, unresponsive or requires warm-up.
+CloudHub will give your application up to 3 minutes to connect with any post-startup dependencies before the application domain and related Static IPs (if used) are moved to the new version of the application.
+
+If your applications have these scenarios, please work with Support and your CSM to get advice on updating the application to be cloud-ready.
+
+How often will such updates take place?
+
+At MuleSoft, we take the security of our platform and all applications running on it very seriously.
+We run regular scans to identify security vulnerabilities.
+For identified security issues, the following SLAs are adhered to:
+
+Severity Level
+Severity Definition
+SLA
+P0
+Critical
+7 days
+P1
+High
+30 days
+P2
+Medium
+90 days
+P3
+Low
+120 days
+
+As a proactive and preventative step, we automatically update all applications at least once a month to keep the mule runtime and the OS up to date.
+An entry by user “Anypoint Staff” will be created in your audit log which indicates the date and time an update occurred and whether it was successful.
