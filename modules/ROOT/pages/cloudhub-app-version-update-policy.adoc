@@ -16,19 +16,22 @@ These updates contain only backward-compatible bug fixes and security patches to
 
 When an update is available, the date patch appears in the *Runtime version* menu in the *Settings* page for the application:
 
-.The arrow shows the date patch version in the *Runtime version* menu.
-image::cloudhub-app-update-available-versions.png[Date patch version update in the Runtime version menu]
+.The screenshot shows (*1*) the date patch version update and (*2*) the current date patch version in the *Runtime version* menu.
+image::cloudhub-app-update-versions.png[Date patch version update and the current date patch version in the Runtime version menu.]
 
 To keep your apps up-to-date and secure, apply the latest date patch version updates when they become available.
-See xref:cloudhub-app-runtime-version-updates.adoc[Updating the Runtime Version for CloudHub Apps].
+See xref:cloudhub-app-runtime-version-updates.adoc#update-the-app-manually[Update the App Manually].
+
+If you don't update apps manually, MuleSoft applies the updates automatically.
 
 == Automatic Updates 
 
 To adhere to Salesforce Security SLAs, CloudHub automatically updates your application runtime
 to the latest date patch version at least once a month.
+MuleSoft also regularly runs scans to identify security vulnerabilities.
 
+The automatic updates use blue-green deployment, which ensures zero downtime.
 
-Also, MuleSoft regularly runs scans to identify security vulnerabilities.
 For identified security issues, MuleSoft adheres to the following SLAs:
 
 [%header,cols="3"]
@@ -40,10 +43,8 @@ For identified security issues, MuleSoft adheres to the following SLAs:
 |P3 | Low | 120 days
 |===
 
-
-Your audit log contains an entry by user `Anypoint Staff`, which shows the date and time an update occurred and whether it was successful.
-
-The updates use blue-green deployment, which ensures zero downtime.
+When an automatic update occurs, the audit log for your app contains an entry by user `Anypoint Staff`,
+which shows the date and time an update occurred and whether it was successful.
 
 If the update is successful, no action is required.
 
@@ -58,11 +59,12 @@ For these applications, you must manually stop and start the application to take
 
 * The CloudHub application connects to an external dependency that is unavailable, unresponsive, or requires warmup.
 +
-In this case, CloudHub waits for up to 3 minutes for the application to connect with any post-startup dependencies before moving the application domain and related static IP addresses (if used) to the new version of the application.
+In this case, CloudHub waits up to 3 minutes for the application to connect to any dependencies before assigning the application domain and related static IP addresses (if used) to the new version of the application.
 
-If either case applies to your applications, contact Support and your CSM for information about updating the application to be cloud-ready.
+If either case applies to your application, contact Support and your CSM account representative for information about updating the application to be cloud-ready.
 
 
 == See Also 
 
+* xref:cloudhub-app-runtime-version-updates.adoc[Updating the Runtime Version for CloudHub Apps]
 * xref:cloudhub-architecture.adoc#zero-downtime-updates[Zero Downtime Updates]
