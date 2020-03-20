@@ -64,8 +64,14 @@ Ensure that this limitation doesn't violate your compliance requirements.
 
 * Insight returns consistent results only when searching for terms that are an exact match.
 +
+--
 Because Insight limits the number of terms that are included in a query, it might not find all matches when searching for a pattern.
-To work around this limitation, search for an exact term or transaction ID.
+
+To work around this limitation, either:
+
+** Search for an exact transaction ID.
+** Tag transactions with custom business events, and then search for transactions based on the custom business events. See <<Setting Up Business Events>>.
+--
 
 
 === Data Persistence
@@ -166,7 +172,7 @@ On the *Insight* page, you can search or filter data to refine the results displ
 
 * A specific transaction by transaction ID
 * Transactions within a specific date range
-* Transactions according to flow name, exception message, processing time, and any custom business data
+* Transactions according to exact flow name, exact exception message, processing time, and any custom business data
 +
 To enable the *Business Data* field your app must have business events configured. See <<Setting Up Business Events>>.
 
