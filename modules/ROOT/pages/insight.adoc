@@ -21,8 +21,7 @@ Replay is not supported for Mule 4 apps or for free or trial user accounts.
 Enabling Insight can significantly impact data processing performance and memory consumption. 
 For this reason, do not enable Insight for long periods for production environments.
 
-Use Insight only for troubleshooting specific transactions by searching for an exact term, 
-such as transaction ID or a unique text string.
+Use Insight only for troubleshooting specific transactions by searching for a transaction ID or a unique text string.
 
 For information about tools to use for monitoring a production environment, see xref:monitoring.adoc[Monitoring Applications and Servers].
 --
@@ -63,9 +62,10 @@ See xref:mule-runtime::batch-processing-concept.adoc[Batch Processing].
 Ensure that this limitation doesn't violate your compliance requirements.
 * Logs for applications deployed to on-premises servers contain event information but not message contents.
 
-* Insight does not return consistent results when searching for terms that are not an exact match.
+* Insight returns consistent results only when searching for terms that are an exact match.
 +
-Because Insight limits the number of terms that are included in the search, it might not search for all available terms. To work around this limitation, search for an exact term.
+Because Insight limits the number of terms that are included in a query, it might not find all matches.
+To work around this limitation, search for an exact term or transaction ID.
 
 
 === Data Persistence
