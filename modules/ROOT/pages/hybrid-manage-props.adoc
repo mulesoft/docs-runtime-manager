@@ -11,7 +11,7 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 
 
-In an on-premises (hybrid or Anypoint Platform PCE) deployment, you can add properties to an application using the `mule-app.properties` file or Anypoint Runtime Manager.
+In an on-premises (hybrid or Anypoint Platform PCE) deployment, you can add properties to an application using a properties file or Anypoint Runtime Manager.
 
 For example, you can define application-specific properties in a properties file and then later add environment-specific properties from Runtime Manager during deployment.
 
@@ -20,7 +20,7 @@ Specifying properties in Runtime Manager enables you to define an application's 
 After deploying an application, you can modify application properties or create new ones from the application *Settings* page.
 If you change properties after an application is deployed, you must restart the application and any server group or cluster where the application is deployed.
 
-The values of properties defined on the *Settings* page override any application properties defined in `mule-app.properties` or other properties of Mule.
+The values of properties defined on the *Settings* page override any application properties defined in the properties file or other properties of Mule.
 
 The following security considerations apply to properties:
 
@@ -29,16 +29,22 @@ The following security considerations apply to properties:
 * Runtime Manager displays the values of the properties only in the *Settings* page.
 
 
-== Add Application Properties Using the mule-app.properties File
+== Add Application Properties Using a Properties File
 
-The most common method to add properties to an app is to include a `mule-app.properties` file containing the properties in the deployable application archive file.
+You can add properties to an app by including a file in the deployable application archive file:
 
-Mule runtime engine then loads these properties into the application when the application starts.
- 
+* Property placeholder YAML file (Mule 4)
++
+See xref:mule-runtime::configuring-properties.adoc[Configuring Properties].
+* `mule-app.properties` (Mule 3)
++
+See xref:mule-runtime:3.9:configuring-properties.adoc[Configuring Properties].
+
+Mule runtime engine then loads these properties or property placeholders into the application when the application starts.
 
 == Add Application Properties in Runtime Manager 
 
-You can override the property values in the `mule-app.properties` file bundled inside the application in Runtime Manager:
+You can override the property values in the properties file bundled inside the application in Runtime Manager:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Applications* tab.
