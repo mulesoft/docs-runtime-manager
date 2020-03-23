@@ -111,7 +111,7 @@ In the following example, the `/api/v1/secondapp` URL maps to the `default-app` 
 |===
 |Priority|Input Path	|Target App| Output Path| Protocol
 |1 | /api/v1/ | default-app | /api/v1/ | http
-|2 | /api/v1/secondapp | second-app | /api/v1 |	http
+|2 | /api/v1/secondapp/ | second-app | /api/v1 |	http
 |===
 
 For the rule to match only `second-app`, the rule priority must be:
@@ -119,7 +119,7 @@ For the rule to match only `second-app`, the rule priority must be:
 [%header,cols="10a,20a,20a,20a,10a"]
 |===
 |Priority|Input Path	|Target App| Output Path| Protocol
-|1 | /api/v1/secondapp | second-app | /api/v1 |	http
+|1 | /api/v1/secondapp/ | second-app | /api/v1 |	http
 |2 | /api/v1/ | default-app | /api/v1/ | http
 |===
 
