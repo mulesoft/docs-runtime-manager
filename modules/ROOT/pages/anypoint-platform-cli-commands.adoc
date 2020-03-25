@@ -203,7 +203,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr serverGroup remove server>> | Removes server from a server group
 |===
 
-== Commands for Administrating your Local Cluster Servers
+== Commands for Administering your Local Cluster Servers
 
 [%header,cols="35a,65a"]
 |===
@@ -229,7 +229,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr standalone-alert list>> | Lists all alerts for standalone runtimes in the environment
 |===
 
-== Commands for Managing your CloudHub Dedicated Load balancer
+== Commands for Managing Your CloudHub Dedicated Load Balancer
 
 [%header,cols="35a,65a"]
 |===
@@ -249,7 +249,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<cloudhub load-balancer whitelist remove>>| Remove an IP or range of IPs from the Load balancer whitelist
 |<<cloudhub load-balancer mappings describe>>| Lists the proxy mapping rules for a Load balancer. If no `certificateName` is given, the mappings for the default SSL endpoint are shown
 |<<cloudhub load-balancer mappings add>>| Add a proxy mapping rule at the specified index. If no `certificateName` is given, the mappings for the default SSL endpoint are shown
-|<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping ruleIf no `certificateName` is given, the mappings for the default SSL endpoint are shown
+|<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping rule. If no `certificateName` is given, the mappings for the default SSL endpoint are shown.
 |<<cloudhub load-balancer dynamic-ips enable>>| Enables dynamic IPs
 |<<cloudhub load-balancer dynamic-ips disable>>| Disables dynamic IPs
 |<<cloudhub region list>>| Lists all supported regions
@@ -2317,14 +2317,14 @@ If no `certificateName` is passed, Anypoint Platform CLI adds the mappings to th
 
 For the values in the example above, for an input call to `my-superapp.api.example.com/status?limit=10`, the endpoint `my-superapp-example: /status?limit=10` will be called for the application.
 
-This command also takes the `--upstreamProtocol` option. +
+This command also takes the `--upstreamProtocol` option.
 The `--upstreamProtocol` option sets the protocol used by your application to communicate internally with your load balancer. If no upstream protocol is set, HTTP is used as default.
 
-[%header,cols="12a,68a,20a"]
+[%header,cols="25a,60a"]
 |===
 | Option | Description
-| `--upstreamProtocol <protocol>` | Look for upstream applications in HTTP port 8091 or HTTPS port 8092. +
-Supported Values: `http`, `https` |
+| `--upstreamProtocol <protocol>` | Look for upstream applications in HTTP port 8091 or HTTPS port 8092.
+Supported Values: `http`, `https`
 | `--certificateName <certificate name>` | Optional parameter
 |===
 
