@@ -17,7 +17,8 @@ You can either define mapping rules when you create the DLB, or you can define a
 When you create a simple matching rule, one input address matches the defined output: the endpoint of an application.
 Instead of using literal matchings, you can use a pattern to match a variable, such as input text to an endpoint.
 
-The order of the rules determines their priority. The first rule in the list that matches is applied. 
+The order of the rules determines their priority.
+The first rule in the list that matches is applied. 
 
 [NOTE]
 If you don't define any mapping rules, the DLB creates and uses a default mapping rule.
@@ -27,10 +28,15 @@ You can change the default mapping rule later.
 == Create Mapping Rules
 
 Mapping rules are attributes of the load balancer's SSL endpoint, which is identified by the certificate Common Name (CN).
-When you create mapping rules with:
 
-* Runtime Manager, you define mapping rules within a certificate definition. 
-* The CLI or CloudHub API, you must specify a certificate CN.
+The certificate is associated when you create mapping rules:
+
+* Runtime Manager
++
+You define mapping rules within a certificate definition. 
+* CLI or CloudHub API
++
+You must specify a certificate CN.
 +
 If you omit the certificate name, the mappings are added to the default endpoint.
 
@@ -73,7 +79,7 @@ The protocol on which the application listens:
 By default, the load balancer listens to external requests on HTTPS and communicates internally with your worker over HTTP. If you configured your Mule application within the VPC to listen on HTTPS, set *Protocol* to `https` when you create the mapping rule list.
 --
 
-You can use either literal strings or patterns to define the input path. 
+You can use either patterns or literal strings to define the input path. 
 For the output path, you can use only literal strings.
 
 === Create a Mapping Rule Using the CLI 
@@ -97,39 +103,6 @@ anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbala
 ----
 
 See https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/version/V1/pages/home/[CloudHub API].
-
-
-== Using a Literal 1:1 Mapping
-
-Instead of using a pattern, you can map literal app names.
-In this case, the rules must match the applications exactly.
-
-This rule maps the default load balancer `lb-demo.lb.anypointdns.net` directly to the `myApp.cloudhub.io` app in CloudHub:
-
-[%header,cols="10a,20a,20a,20a,10a"]
-|===
-| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
-| 1 | / | myApp | / | http 
-|===
-
-This rule matches the `dev-misc-myhellotest-v1-myapp` app if the input URI is `/misc/myhellotest/v1/ping` but not `/misc/myhellootest/v1/ping`:
-
-[%header,cols="10a,20a,20a,20a,10a"]
-|===
-| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
-| 1 | /{layera}/{domaina}/v{versiona}/ | dev-{layera}-{domaina}-{versiona}-myapp | /api/ | http
-|===
-
-
-You can also use literal 1:1 mappings for multiple applications by changing the *Input Path* to be static instead of a defined pattern:
-
-[%header,cols="10a,20a,20a,20a,10a"]
-|===
-| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
-| 1 | /v1/applicationX | application-x | /api/ | http
-| 2 | /v1/applicationY | application-y | /api/ | http
-| 3 | /v2/applicationx | application-x-v2 | /api/ | http
-|===
 
 
 == Using Patterns in Mapping Rules
@@ -197,10 +170,10 @@ This rule automatically maps any request passed to a subdomain of `example.com` 
 * Passing `api.example.com` redirects to `api.cloudhub.io`.
 * Passing `application.example.com` maps to `application.cloudhub.io`.
 
-The same behavior applies to the https://en.wikipedia.org/wiki/Subject_Alternative_Name[Subject Alternative Names] (SANs) of your SSL endpoints.
+You can also use the `subdomain` variable with the https://en.wikipedia.org/wiki/Subject_Alternative_Name[Subject Alternative Names] (SANs) of your SSL endpoints.
 
 Instead of using a wildcard certificate, which permits any subdomain application name to pass through the DLB, you can specify which subdomain names to allow.
-To do this, you must have different SANs configured for a certificate's common name.
+To do this, you must configure those SANs for a certificate's common name.
 You can use the `subdomain` variable to map the subdomain portion of your domain name to your application.
 
 This example includes:
@@ -225,6 +198,37 @@ This rule maps the subdomain part of your domain name to the application name:
 * `qa.example.com` redirects to `qa-app.cloudhub.io`.
 
 
+== Using a Literal 1:1 Mapping
+
+Instead of using a pattern, you can map literal app names.
+In this case, the rules must match the applications exactly.
+
+This rule maps the default load balancer `lb-demo.lb.anypointdns.net` directly to the `myApp.cloudhub.io` app in CloudHub:
+
+[%header,cols="10a,20a,20a,20a,10a"]
+|===
+| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
+| 1 | / | myApp | / | http 
+|===
+
+This rule matches the `dev-misc-myhellotest-v1-myapp` app if the input URI is `/misc/myhellotest/v1/ping` but not `/misc/myhellootest/v1/ping`:
+
+[%header,cols="10a,20a,20a,20a,10a"]
+|===
+| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
+| 1 | /{layera}/{domaina}/v{versiona}/ | dev-{layera}-{domaina}-{versiona}-myapp | /api/ | http
+|===
+
+
+You can also use literal 1:1 mappings for multiple applications by changing the *Input Path* to be static instead of a defined pattern:
+
+[%header,cols="10a,20a,20a,20a,10a"]
+|===
+| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
+| 1 | /v1/applicationX | application-x | /api/ | http
+| 2 | /v1/applicationY | application-y | /api/ | http
+| 3 | /v2/applicationx | application-x-v2 | /api/ | http
+|===
 
 == Mapping Rule Priority
 
@@ -275,8 +279,9 @@ See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add
 
 === Change the Priority of Mapping Rules Using the CloudHub API 
 
-When using the API to create a mapping rule, you cannot specify a priority order. 
-However, you can update the order of the rules later by sending a `PATCH` request to the load balancer endpoint:
+When using the API to create a mapping rule, you cannot specify a priority order.
+The new rule is appended to the list. 
+You can update the order of the rules later by sending a `PATCH` request to the load balancer endpoint:
 
 [source,text,linenums]
 ----
