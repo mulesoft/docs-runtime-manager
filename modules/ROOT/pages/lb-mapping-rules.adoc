@@ -12,7 +12,7 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title
 The CloudHub dedicated load balancer (DLB) routes requests from clients to Mule apps deployed within the VPC.
 _Mapping rules_ enable you to forward requests to the DLB (input URL) to a different Mule application name and domain.
 
-You can either define mapping rules when you create the DLB or add them to an existing DLB using Runtime Manager, the command-line interface (CLI), or the CloudHub API.
+You can either define mapping rules when you create the DLB, or you can define and add them to an existing DLB using Runtime Manager, the command-line interface (CLI), or the CloudHub API.
 
 When you create a simple matching rule, one input address matches the defined output: the endpoint of an application.
 Instead of using literal matchings, you can use a pattern to match a variable, such as input text to an endpoint.
@@ -21,6 +21,7 @@ The order of the rules determines their priority. The first rule in the list tha
 
 [NOTE]
 If you don't define any mapping rules, the DLB creates and uses a default mapping rule.
+You can change the default mapping rule later.
 
 
 == Create Mapping Rules
@@ -97,70 +98,6 @@ anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbala
 
 See https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/version/V1/pages/home/[CloudHub API].
 
-== Mapping Rule Priority
-
-Every rule must have a priority defined.
-The first rule in the list has a higher priority than rules lower in the list.
-
-The DLB always uses the first rule that matches, regardless of whether a more exact match appears later in the list.
-When creating rules, pay attention to the order for each rule to avoid multiple rules overriding each other.
-
-In the following example, the `/api/v1/secondapp` URL maps to the `default-app` app:
-
-[%header,cols="10a,20a,20a,20a,10a"]
-|===
-|Priority|Input Path	|Target App| Output Path| Protocol
-|1 | /api/v1/ | default-app | /api/v1/ | http
-|2 | /api/v1/secondapp/ | second-app | /api/v1 |	http
-|===
-
-For the rule to match only `second-app`, the rule priority must be:
-
-[%header,cols="10a,20a,20a,20a,10a"]
-|===
-|Priority|Input Path	|Target App| Output Path| Protocol
-|1 | /api/v1/secondapp/ | second-app | /api/v1 |	http
-|2 | /api/v1/ | default-app | /api/v1/ | http
-|===
-
-=== Change the Priority of Mapping Rules in Runtime Manager 
-
-To change the priority of mapping rules in Runtime Manager:
-
-. From Anypoint Platform, select *Runtime Manager*.
-. Select *Load Balancers* in the left menu.
-. Click a load balancer name, and then click a certificate name.
-. In the *URL Mapping Rules* section, mouse over the rule to display the handle:
-+
-.The arrow shows the handle to use to reorder a mapping rule.
-image::cloudhub-dlb-mapping-rules-reorder.png[Handle to use to reorder a mapping rule]
-. Grab the handle to move the rule up or down in the list.
-. Click *Done Editing*.
-
-=== Change the Priority of Mapping Rules Using the CLI 
-
-To specify the mapping rule priority when creating a mapping rule with the CLI, use the `index` value.
-The rule at index `0` has the highest priority. The higher the index assigned, the lower the priority.
-
-See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
-
-=== Change the Priority of Mapping Rules Using the CloudHub API 
-
-When using the API to create a mapping rule, you cannot specify a priority order. 
-However, you can update the order of the rules later by sending a `PATCH` request to the load balancer endpoint:
-
-[source,text,linenums]
-----
-anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbalancerId}
-----
-
-To determine the load balancer ID, perform a GET request to your endpoint:
-
-[source,text,linenums]
-----
-/organizations/{orgid}/loadbalancers
-----
-
 
 == Using a Literal 1:1 Mapping
 
@@ -228,10 +165,8 @@ Alternatively, you can define a pattern to hold the input value:
 
 In this case, both `example.com/bookings` and `example.com/sales` match `app-bookings/data` and `app-sales/data` respectively, because the variable `_myPattern_` holds these values.
 
-If the input is:
-
-* `bookings.example.com`, the pattern resolves if the value of `_myPattern_` is `bookings`. 
-* `sales.example.com`, the pattern resolves if the value of `_myPattern_` is `sales`.
+* If the input is `bookings.example.com`, the pattern resolves if the value of `_myPattern_` is `bookings`. 
+* If the input is `sales.example.com`, the pattern resolves if the value of `_myPattern_` is `sales`.
 
 
 === URL Mapping
@@ -288,6 +223,72 @@ This rule maps the subdomain part of your domain name to the application name:
 
 * `dev.example.com` redirects to `dev-app.cloudhub.io`.
 * `qa.example.com` redirects to `qa-app.cloudhub.io`.
+
+
+
+== Mapping Rule Priority
+
+Every rule must have a priority defined.
+The first rule in the list has a higher priority than rules lower in the list.
+
+The DLB always uses the first rule that matches, regardless of whether a more exact match appears later in the list.
+When creating rules, pay attention to the order for each rule to avoid multiple rules overriding each other.
+
+In the following example, the `/api/v1/secondapp` URL maps to the `default-app` app:
+
+[%header,cols="10a,20a,20a,20a,10a"]
+|===
+|Priority|Input Path	|Target App| Output Path| Protocol
+|1 | /api/v1/ | default-app | /api/v1/ | http
+|2 | /api/v1/secondapp/ | second-app | /api/v1 |	http
+|===
+
+For the rule to match only `second-app`, the rule priority must be:
+
+[%header,cols="10a,20a,20a,20a,10a"]
+|===
+|Priority|Input Path	|Target App| Output Path| Protocol
+|1 | /api/v1/secondapp/ | second-app | /api/v1 |	http
+|2 | /api/v1/ | default-app | /api/v1/ | http
+|===
+
+=== Change the Priority of Mapping Rules in Runtime Manager 
+
+To change the priority of mapping rules in Runtime Manager:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Load Balancers* in the left menu.
+. Click a load balancer name, and then click a certificate name.
+. In the *URL Mapping Rules* section, hover over the rule to display the handle:
++
+.The arrow shows the handle to use to reorder a mapping rule.
+image::cloudhub-dlb-mapping-rules-reorder.png[Handle to use to reorder a mapping rule]
+. Click and drag the handle to move the rule up or down in the list.
+. Click *Done Editing*.
+
+=== Change the Priority of Mapping Rules Using the CLI 
+
+To specify the mapping rule priority when creating a mapping rule with the CLI, use the `index` value.
+The rule at index `0` has the highest priority. The higher the index assigned, the lower the priority.
+
+See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
+
+=== Change the Priority of Mapping Rules Using the CloudHub API 
+
+When using the API to create a mapping rule, you cannot specify a priority order. 
+However, you can update the order of the rules later by sending a `PATCH` request to the load balancer endpoint:
+
+[source,text,linenums]
+----
+anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers/{loadbalancerId}
+----
+
+To determine the load balancer ID, perform a GET request to your endpoint:
+
+[source,text,linenums]
+----
+/organizations/{orgid}/loadbalancers
+----
 
 
 == See Also
