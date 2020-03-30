@@ -13,7 +13,7 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title
 [TIP]
 This document deals with calling the xref:cloudhub-api.adoc[CloudHub API]. For instructions on how to perform these same tasks more easily via the Runtime Manager UI, see xref:cloudhub.adoc[CloudHub] and its child pages.
 
-Use the GET operation on `/applications/{application}/logs` resource to list all log messages. This call returns a maximum of 10,000 lines of log data for each invocation. However, using repeated calls with contiguous time windows as search criteria, the entire log may be downloaded.
+Use the GET operation on `/applications/{application}/logs` resource to list all log messages. This call returns a maximum of 2,500 lines of log data for each invocation. However, using repeated calls with contiguous time windows as search criteria, the entire log may be downloaded.
 
 The following query parameters are supported:
 
