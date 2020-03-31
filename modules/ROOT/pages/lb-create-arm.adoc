@@ -1,4 +1,4 @@
-= Create a Load Balancer (Runtime Manager)
+= Create a Load Balancer with Runtime Manager
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -36,7 +36,7 @@ Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdn
 
 . Select a target Anypoint VPC from the drop-down list.
 
-. Specify the amount of time the DLB waits for a response from the Mule application in the *Timeout in Seconds* field. 
+. Specify the amount of time the DLB waits for a response from the Mule application in the *Timeout in Seconds* field.
 +
 The default value is 300 seconds.
 
@@ -57,7 +57,15 @@ Accepts the inbound request on the default SSL endpoint using the HTTP protocol.
 * *Redirect*
 +
 Redirects the request to the same URL using the HTTPS protocol.
-
+. Specify options:
++
+* *Disable Static IPs* specifies to use dynamic IPs, which do not persist when the DLB restarts.
+* *Keep URL encoding* specifies to pass the entire request URI to the CloudHub worker as is (unchanged).
++
+If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
++
+* *Support TLS 1.0* specifies to support TLS 1.0 between the client and the DLB.
+* *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
 . Add a certificate.
 
 .. Click *Add certificate*.
@@ -78,7 +86,7 @@ If you add more than one URL mapping rule, order the rules in the list according
 +
 Click *Add New Rule*, and then specify the input path, target app, output path, and protocol.
 .. Click *Save Certificate*.
-. Click *Create Load Balancer*. 
+. Click *Create Load Balancer*.
 
 
 
@@ -88,4 +96,5 @@ Click *Add New Rule*, and then specify the input path, target app, output path, 
 * xref:lb-cert-upload.adoc[Adding Certificates]
 * xref:lb-whitelists.adoc[Whitelists]
 * xref:lb-mapping-rules.adoc[Mapping Rules]
-* xref:lb-create-cli.adoc[Create a Load Balancer (Anypoint Platform CLI)]
+* xref:lb-create-cli.adoc[Create a Load Balancer with the Anypoint Platform CLI]
+* xref:lb-create-api.adoc[Create a Load Balancer with the CloudHub API]

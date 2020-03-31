@@ -1,4 +1,4 @@
-= VPC Connectivity Methods
+= Anypoint VPC Connectivity Methods
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -35,8 +35,10 @@ image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
 
 [NOTE]
 --
-To use Direct Connect, your AWS Direct Connect Location and Anypoint VPCs must be located in the same region. Direct Connect gateways are not supported.
-Direct Connect requires the use of the Border Gateway Protocol (BGP) for dynamic routing. 
+To use Direct Connect, your AWS Direct Connect Partner and the Anypoint VPCs must be located in the same region. Direct Connect gateways are not supported.
+Direct Connect requires the use of the Border Gateway Protocol (BGP) for dynamic routing.
+
+For high availability, use multiple Direct Connect connections from different AWS Direct Connect Locations.
 --
 
 == See Also

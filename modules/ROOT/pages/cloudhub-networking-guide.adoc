@@ -133,7 +133,7 @@ supports some of the same regions that the U.S. control plane supports, the DNS 
 are different. For more on the EU control plane, see
 xref:eu-control-plane::index.adoc[About the EU Control Plane].
 
-Deploying to a region also affects your internal and external worker DNS address. For example, if you deploy in Ireland, the DNS records for internal and external IP addresses are `mule-worker-myapp.ir-e1.cloudhub.io` and `mule-worker-internal-myapp.ir-e1.cloudhub.io`.
+Deploying to a region also affects your internal and external worker DNS address. For example, if you are using the US control plane and deploy to the Ireland region, the DNS records for internal and external IP addresses are `mule-worker-myapp.ir-e1.cloudhub.io` and `mule-worker-internal-myapp.ir-e1.cloudhub.io`.
 
 == Firewall Rules and Port Access
 
@@ -147,7 +147,7 @@ In some cases, you may want to set up a custom load balancing layer for your Mul
 
 Traffic can be routed from your load balancer to CloudHub workers through the internal or external DNS record for your workers. This record contains an IP address for every worker in the application. It is recommended that you set your DNS timeout to between 20-60 seconds so that any DNS changes are propagated quickly and minimize impact.
 
-You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface (Anypoint Platform CLI)] by configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC].
+You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform CLI] by configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC].
 
 == Avoiding Public Discoverability for Applications on CloudHub
 

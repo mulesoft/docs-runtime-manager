@@ -228,6 +228,7 @@ If the index doesn't exist, the internal handler creates it if the user has perm
 
 The ELK (Elasticsearch, Logstash, Kibana) stack enables you to store, search, and analyze the log data.
 
+
 You can configure the Runtime Manager agent to send event notifications from Mule runtime flows to a configurable log file.
 Logstash captures and indexes the data.
 Then, you can use Elasticsearch and Kibana to generate graphs, reports, alerts, dashboards, and visualizations.
@@ -258,6 +259,7 @@ image::hybrid-export-elk-configure.png[Log file location and Show more options s
 +
 .The arrow shows the expanded options in the ELK configuration window.
 image::hybrid-export-elk-configure-advanced.png[Expanded options in the ELK configuration window]
+
 
 . Click *Apply* to save your changes.
 
@@ -324,6 +326,7 @@ wrapper.java.additional.<n>=-Danypoint.platform.analytics_multiple_consumers_ena
 
 === Configure API Analytics to Connect with Splunk or ELK
 
+
 After you've configured your API gateway, configure Splunk or ELK in Runtime Manager:
 
 . From Anypoint Platform, select *Runtime Manager*.
@@ -335,12 +338,14 @@ After you've configured your API gateway, configure Splunk or ELK in Runtime Man
 .The arrow shows the *API Analytics* options on the server *Plugins* tab.
 image::hybrid-export-api-analytics.png[API Analytics options on the server Plugins tab.]
 
+
 . Under *API Analytics*, enable *ELK* or *Splunk*.
 
 . Click the gear icon and continue with step 8 in the following sections to complete the configuration:
 +
 * <<Configure Splunk Integration in Runtime Manager>>
 * <<Configure the Log File for Your ELK Stack>> 
+
 
 
 == See Also

@@ -12,15 +12,16 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 Insight is a troubleshooting tool that provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers. Insight tracks everything your data does in an app so you can find and recover from errors that occur during message processing.
 
-For Mule 3 apps only, Insight supports the ability to replay transactions for advanced error recovery. Replay is not supported for Mule 4 apps.
-
+For Mule 3 apps and flows with inbound endpoints deployed to CloudHub, Insight supports the ability to replay transactions for advanced error recovery.
+Replay is not supported for Mule 4 apps or for free or trial user accounts.
 
 
 [IMPORTANT]
 --
 Enabling Insight can significantly impact data processing performance and memory consumption. 
 For this reason, do not enable Insight for long periods for production environments.
-Use Insight for troubleshooting only.
+
+Use Insight only for troubleshooting specific transactions by searching for a transaction ID or a unique text string.
 
 For information about tools to use for monitoring a production environment, see xref:monitoring.adoc[Monitoring Applications and Servers].
 --
@@ -42,22 +43,35 @@ After you enable Insight, the following items are tracked by default:
 * Custom business events that you embed in your Mule flows
 
 
-== Limits and Limitations  
+== Limits and Limitations
 
-The following limits apply to events:
+The following limits and limitations apply when using Insight:
 
-* A single application is limited to 50,000 events per minute.
-* All applications in a single business group are limited to 100,000 events per minute. 
+* Insight drops events over the following limits: 
++
+** A single application is limited to 50,000 events per minute.
+** All applications in a single business group are limited to 100,000 events per minute. 
++
+* Insight stores no more than 20 custom event definitions per application definition.  
+* Insight does not support long-running processes that contain more than 10,000 events in a single transaction. 
++
+For this reason, Insight might not provide visibility into batch processing.
+See xref:mule-runtime::batch-processing-concept.adoc[Batch Processing].
+* Insight does not preserve replay data when switching regions.
++
+Ensure that this limitation doesn't violate your compliance requirements.
+* Logs for applications deployed to on-premises servers contain event information but not message contents.
 
-Events over these limits are dropped. 
+* Insight returns consistent results only when searching for terms that are an exact match.
++
+--
+Because Insight limits the number of terms that are included in a query, it might not find all matches when searching for a pattern.
 
-Also, no more than 20 custom event definitions per application definition are stored.  
+To work around this limitation, either:
 
-Insight does not support visibility into batch processing. See xref:mule-runtime::batch-processing-concept.adoc[Batch Processing].
-
-Insight does not preserve replay data when switching regions. Ensure that this doesn't violate any of your compliance requirements.
-
-Logs for applications deployed to on-premises servers contain event information but not message contents.
+** Search for an exact transaction ID.
+** Tag transactions with custom business events, and then search for transactions based on the custom business events. See <<Setting Up Business Events>>.
+--
 
 
 === Data Persistence
@@ -65,7 +79,7 @@ Logs for applications deployed to on-premises servers contain event information 
 Insight does not limit the size of transactions. Insight displays all transactions in your application for 30 days and keeps events for two days.
 
 Replay data for Mule 3 applications created before October 7, 2017, is stored in the default region us-east-1.
-Data for Mule 3 applications initially deployed, or moved to a different region, after October 7, 2017 is stored in the region where the application is currently deployed.
+Data for Mule 3 applications initially deployed, or moved to a different region, after October 7, 2017, is stored in the region where the application is currently deployed.
 
 
 === Payload Transformation
@@ -117,8 +131,8 @@ image::rtm-insight-tab.png[Insight tab in the Settings page]
 ** *Metadata* to track only events
 ** *Metadata and Replay* to track events and enable the ability to instantly replay a transaction from the console
 +
-This option is available only for Mule 3 applications deployed to CloudHub.
-Replay only works for flows that have inbound endpoints.
+The *Metadata and Replay* option is available for Mule 3 apps with flows that have inbound endpoints deployed to CloudHub.
+This option is unavailable for Mule 4 apps or for free or trial user accounts.
 +
 For more information, see <<Diagnosing Problems and Replaying Transactions>>.
 --
@@ -158,7 +172,7 @@ On the *Insight* page, you can search or filter data to refine the results displ
 
 * A specific transaction by transaction ID
 * Transactions within a specific date range
-* Transactions according to flow name, exception message, processing time, and any custom business data
+* Transactions according to exact flow name, exact exception message, processing time, and any custom business data
 +
 To enable the *Business Data* field your app must have business events configured. See <<Setting Up Business Events>>.
 
@@ -233,7 +247,8 @@ The default events filter setting displays custom events, endpoint events, and m
 
 When Insight reports a failed transaction, you can diagnose the problem and fix the root issue. 
 
-For Mule 3 applications and flows with inbound endpoints, you can use the Insight message replay feature to replay the transaction that failed.
+For Mule 3 apps with flows that have inbound endpoints, you can also use the Insight message replay feature to replay the transaction that failed.
+
  
 === Transaction Failed Status
 
@@ -246,8 +261,15 @@ image::chexcmsg.png[CHExcMsg]
 
 === Replay Transaction
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 After investigating the logs and resolving the issue (for example, by purchasing more API capacity) that caused the transaction failure, you can replay the transaction.
-Replay is available for Mule 3 apps only. It is not supported for Mule 4 apps.
+
+Replay is supported only for Mule 3 apps with flows that have inbound endpoints.
+It is not available for Mule 4 apps or for free or trial user accounts.
 
 . Click the replay transaction icon image:rtm-insight-replay-icon.png[2.5%,2.5%] to the right of the first event in the failed transaction to replay it:
 +
@@ -258,6 +280,11 @@ image::rtm-insight-replay-purge.png[Replay icon and Purge Replay Data button]
 Insight displays an information popup indicating that the transaction was replayed and displays the replayed transactions immediately on the dashboard and in the *Logs* tab.
 
 === Purge Replay Data
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 To delete all existing replay data for that application, click the *Purge Replay Data* button.
 

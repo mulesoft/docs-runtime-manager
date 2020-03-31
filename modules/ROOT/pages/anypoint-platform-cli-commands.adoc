@@ -203,7 +203,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr serverGroup remove server>> | Removes server from a server group
 |===
 
-== Commands for Administrating your Local Cluster Servers
+== Commands for Administering your Local Cluster Servers
 
 [%header,cols="35a,65a"]
 |===
@@ -229,7 +229,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr standalone-alert list>> | Lists all alerts for standalone runtimes in the environment
 |===
 
-== Commands for Managing your CloudHub Dedicated Load balancer
+== Commands for Managing Your CloudHub Dedicated Load Balancer
 
 [%header,cols="35a,65a"]
 |===
@@ -249,7 +249,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<cloudhub load-balancer whitelist remove>>| Remove an IP or range of IPs from the Load balancer whitelist
 |<<cloudhub load-balancer mappings describe>>| Lists the proxy mapping rules for a Load balancer. If no `certificateName` is given, the mappings for the default SSL endpoint are shown
 |<<cloudhub load-balancer mappings add>>| Add a proxy mapping rule at the specified index. If no `certificateName` is given, the mappings for the default SSL endpoint are shown
-|<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping ruleIf no `certificateName` is given, the mappings for the default SSL endpoint are shown
+|<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping rule. If no `certificateName` is given, the mappings for the default SSL endpoint are shown.
 |<<cloudhub load-balancer dynamic-ips enable>>| Enables dynamic IPs
 |<<cloudhub load-balancer dynamic-ips disable>>| Disables dynamic IPs
 |<<cloudhub region list>>| Lists all supported regions
@@ -377,7 +377,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > account environment describe [options] <name>
 ----
 
-This command deletes the environment specified in `<name>` +
+This command returns information about the environment specified in `<name>` +
 If no `<name>` is provided, this command returns information about the current session's environment.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
@@ -1444,6 +1444,7 @@ The options this command can take are:
 Use this option to specify the name and version of the runtime you want to deploy. +
 Some examples of this value are `2.1.1-API-Gateway`, `3.9.1-visualizer` or   `4.1.1`. +
 Tap your `tab` key after this option for the CLI to show you all your available options.
+(This value is the latest CloudHub Runtime version by default.)
 |--workers                                      | Number of workers. (This value is '1' by default)
 |--workerSize                               | Size of the workers in vCores. (This value is '1' by default)
 |--region                                        | Name of the region to deploy to. +
@@ -1456,9 +1457,9 @@ Character `:` is not supported for the property's name.
 |--propertiesFile                        | Overwrite all properties with values from this file. The file format is 1 or more lines in `name:value` format. Set the absolute path of the properties file in your local hard drive.
 |--persistentQueues                   | Enable or disable persistent queues. Can take `true` or `false` values. (This value is `false` by default)
 |--persistentQueuesEncrypted  | Enable or disable persistent queue encryption. Can take `true` or `false` values. (This value is `false` by default)
-|--staticIPsEnabled                                      | Enable or disable static IPs. Can take 'Enable' or 'Disabled' values. (This value is 'Disabled' by default)
+|--staticIPsEnabled                                      | Enable or disable static IPs. Can take 'Enable' or 'Disabled' values. (This value is 'Disabled' by default.)
 |--objectStoreV1                   | Enable or disable Object Store V1. Can take `true` or `false` values
-|--autoRestart                            | Automatically restart app when not responding. Can take `true` or `false` values. (This value is `false` by default)
+|--autoRestart                            | Automatically restart app when not responding. Can take `true` or `false` values. (This value is `true` by default.)
 |--help                                                  | output usage information
 |===
 Note that from Anypoint Platform CLI you won't be able to allocate static IPs. You can simply enable and disable them.
@@ -2316,14 +2317,14 @@ If no `certificateName` is passed, Anypoint Platform CLI adds the mappings to th
 
 For the values in the example above, for an input call to `my-superapp.api.example.com/status?limit=10`, the endpoint `my-superapp-example: /status?limit=10` will be called for the application.
 
-This command also takes the `--upstreamProtocol` option. +
+This command also takes the `--upstreamProtocol` option.
 The `--upstreamProtocol` option sets the protocol used by your application to communicate internally with your load balancer. If no upstream protocol is set, HTTP is used as default.
 
-[%header,cols="12a,68a,20a"]
+[%header,cols="25a,60a"]
 |===
 | Option | Description
-| `--upstreamProtocol <protocol>` | Look for upstream applications in HTTP port 8091 or HTTPS port 8092. +
-Supported Values: `http`, `https` |
+| `--upstreamProtocol <protocol>` | Look for upstream applications in HTTP port 8091 or HTTPS port 8092.
+Supported Values: `http`, `https`
 | `--certificateName <certificate name>` | Optional parameter
 |===
 
