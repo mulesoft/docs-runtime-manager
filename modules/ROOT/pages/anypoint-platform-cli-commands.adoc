@@ -487,7 +487,8 @@ This command does not take any options, except for the default ones: `--help`, `
 > api-mgr api delete [options] <apiInstanceId>
 ----
 
-This command deltes the API Instance passed in `<apiInstanceId>`. +
+This command deletes the API instance passed in `<apiInstanceId>`.
++
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === api-mgr api deploy
@@ -496,7 +497,10 @@ This command does not take any options, except for the default ones: `--help`, `
 > api-mgr api deploy [options] <apiInstanceId>
 ----
 
-This command deploys the API instanced passed in <apiInstanceId> to the deployment target specified using the options described below.
+This command deploys the API instance passed in <apiInstanceId> to the deployment target specified using the options described below.
+
+[NOTE]
+This command is only supported for non-proxy API apps.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
