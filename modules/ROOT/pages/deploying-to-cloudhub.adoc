@@ -13,53 +13,64 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 You can deploy Mule applications to CloudHub using:
 
-* Runtime Manager
-* Anypoint Studio
-* CloudHub API
-* CloudHub CLI
-* Mule-Maven Plugin
 
-== Naming an Application
-
-Applications are always deployed with public application names in the `cloudhub.io` domain. Application names must be globally unique across CloudHub to avoid domain conflicts. 
-
-For this reason, create a naming convention for your applications. For example, you can always prefix your applications with `mycompany` and optionally a department name: `mycompany-mydept-myapplication`. You can then add your own DNS records to hide this complex application name. For example, you can route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
+* xref:deploying-to-cloudhub.adoc#deploy-an-application-to-cloudhub-from-runtime-manager[Runtime Manager]
+* xref:deploying-to-cloudhub.adoc#deploy-an-application-to-cloudhub-from-studio[Anypoint Studio]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
+* xref:deploying-to-cloudhub.adoc#deploy-from-cloudhub-cli[CloudHub CLI]
+* xref:mule-runtime::deploy-to-cloudhub.adoc[Mule Maven plugin]
 
 
-The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints. The format of the URL is `+http://myapplicationdomain.cloudhub.io+`. For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
+== Application Names 
 
-image::deployappname.png[DeployAppName]
+Applications are always deployed with public application names in the `cloudhub.io` domain.
+Application names must be globally unique across CloudHub to avoid domain conflicts. 
+
+For this reason, create a naming convention for your applications.
+For example, you can always prefix your applications with `mycompany` and optionally a department name: `mycompany-mydept-myapplication`.
+You can then add your own DNS records to hide this complex application name.
+For example, you can route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
+
+The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints.
+The format of the URL is `+http://myapplicationdomain.cloudhub.io+`.
+For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
 
 
 
 [TIP]
-With the CloudHub dedicated load balancer, you can then optionally implement xref:cloudhub-dedicated-load-balancer.adoc#mapping-rules[mapping rules] to set your application's public URL to any other path you choose, as long as you own the domain.
+With the CloudHub dedicated load balancer, you can then optionally implement xref:runtime-manager/lb-mapping-rules[mapping rules] to set your application's public URL to any other path you choose, as long as you own the domain.
 
 == Deployment Target
 
 If you already have servers registered to the Anypoint Platform, you see a *Deployment Target* field in the *Deploy Application* page. Use it to specify where you want to deploy your application, in this case, CloudHub.
 
-For more information about deploying to on-premises servers, server groups, and clusters, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers].
+For more information about deploying to on-premises servers, server groups, and clusters, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers].
 
 
 == Deploy an Application to CloudHub from Studio
 
-You can deploy your applications to CloudHub from Studio. This is helpful if you're still developing the application and want to deploy it often to an online test environment.
+You can deploy your applications to CloudHub from Studio.
+This is helpful if you're still developing the application and want to deploy it often to an online test environment.
 
-. In Studio, open your application as a Mule Project.
-. In *Package Explorer*, right-click the project node, then select *Anypoint Platform*, then *Deploy to CloudHub*.
-. If this is your first time deploying from Studio, a popup dialog box asks you to provide your login credentials for Anypoint Platform. Studio stores your credentials and uses them automatically the next time you deploy to CloudHub.
-+
-[TIP]
-You can manage these credentials through the Studio *Preferences* menu, in *Anypoint Studio* > *Authentication*.
-. After you sign in, the *Deploy Application* dialog opens.
-+
-image::deployappfirstscreen.png[DeployAppFirstScreen]
-+
 [NOTE]
 --
-You cannot deploy an application from Studio to the CloudHub *Design* environment. The *Design* environment is specific to applications created in Anypoint Platform Design Center.
+You cannot deploy an application from Studio to the CloudHub *Design* environment.
+The *Design* environment is specific to applications created in Anypoint Platform Design Center.
 --
+
+
+To deploy from Studio:
+
+. Open your application in Studio.
+. In *Package Explorer*, right-click the project folder and select *Anypoint Platform > Deploy to CloudHub*.
+. If this is your first time deploying from Studio, provide your login credentials for Anypoint Platform at the prompt.
++
+Studio stores your credentials and uses them the next time you deploy to CloudHub.
++
+You can manage these credentials from the *Anypoint Studio* > *Preferences* menu, in *Anypoint Studio* > *Authentication*.
+. After you sign in, the *Deploy Application* dialog opens.
+
+
 
 == Deploy an Application to CloudHub from Runtime Manager
 
@@ -430,6 +441,6 @@ If an error occurs and the application cannot be deployed, the application statu
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:anypoint-platform-cli.adoc[CloudHub Command Line Interface]
 * xref:cloudhub-api.adoc[REST API]
-* xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+* xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers]
 * xref:monitoring::index.adoc[Anypoint Monitoring]
 * xref:visualizer::index.adoc[Anypoint Visualizer]
