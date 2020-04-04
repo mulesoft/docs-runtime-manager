@@ -21,74 +21,92 @@ You can deploy Mule applications to CloudHub using:
 * xref:mule-runtime::deploy-to-cloudhub.adoc[Mule Maven plugin]
 
 
-== Application Names 
+== Deploy an Application from Runtime Manager to CloudHub
 
-Applications are always deployed with public application names in the `cloudhub.io` domain.
-Application names must be globally unique across CloudHub to avoid domain conflicts. 
-
-For this reason, create a naming convention for your applications.
-For example, you can always prefix your applications with `mycompany` and optionally a department name: `mycompany-mydept-myapplication`.
-You can then add your own DNS records to hide this complex application name.
-For example, you can route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
-
-The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints.
-The format of the URL is `+http://myapplicationdomain.cloudhub.io+`.
-For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
-
-
-
-[TIP]
-With the CloudHub dedicated load balancer, you can then optionally implement xref:runtime-manager/lb-mapping-rules[mapping rules] to set your application's public URL to any other path you choose, as long as you own the domain.
-
-== Deployment Target
-
-If you already have servers registered to the Anypoint Platform, you see a *Deployment Target* field in the *Deploy Application* page. Use it to specify where you want to deploy your application, in this case, CloudHub.
-
-For more information about deploying to on-premises servers, server groups, and clusters, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers].
-
-
-== Deploy an Application to CloudHub from Studio
-
-You can deploy your applications to CloudHub from Studio.
-This is helpful if you're still developing the application and want to deploy it often to an online test environment.
-
-[NOTE]
---
-You cannot deploy an application from Studio to the CloudHub *Design* environment.
-The *Design* environment is specific to applications created in Anypoint Platform Design Center.
---
-
-
-To deploy from Studio:
-
-. Open your application in Studio.
-. In *Package Explorer*, right-click the project folder and select *Anypoint Platform > Deploy to CloudHub*.
-. If this is your first time deploying from Studio, provide your login credentials for Anypoint Platform at the prompt.
+. Sign in to Anypoint Platform.
+. Select *Runtime Manager*.
+. In the *Applications* page, click *Deploy application*.
+. Provide a name for your application.
 +
-Studio stores your credentials and uses them the next time you deploy to CloudHub.
+The application name identifies your application in Runtime Manager and must be unique across environments.
+Runtime Manager alerts you if the name is already in use.
 +
-You can manage these credentials from the *Anypoint Studio* > *Preferences* menu, in *Anypoint Studio* > *Authentication*.
-. After you sign in, the *Deploy Application* dialog opens.
-
-
-
-== Deploy an Application to CloudHub from Runtime Manager
-
-. In Anypoint Platform, go to *Management Center > Runtime Manager*.
-. In the *Applications* tab, click *Deploy application*.
-. In the *Deploy Application* page: +
-* Enter an *Application Name* +
-[NOTE]
-An application with the same name cannot be deployed in two environments at the same time. Valid names have a minimum of 3 and a maximum of 42 characters and can contain alphanumeric characters and dashes. Runtime Manager alerts you if the name is available or already reserved by another user.
-* In the *Deployment Target* drop-down list, select *CloudHub*.
-* Click *Choose File*, then select either:
-** *Import file from Exchange*
-** *Upload file*
+Application names can contain between 3 and 42 alphanumeric characters (a-z, A-Z, 0-9) and dashes (-).
+They cannot contain spaces or other characters.
+. In the *Deployment Target* menu, select *CloudHub*.
+. Specify the application file:
 +
-[NOTE]
+
+** Import a file from Exchange:
+
+.. Click *Choose file* and then select *Import file from Exchange*.
+.. Select *Application* for the type.
+.. Enter the name of your application in the search box.
+.. Select the application to deploy, select a version from the *Version* menu, and then click *Select*.
+
+** Upload an application ZIP file:
+
+.. Click *Choose file* and then select *Upload file*.
+.. Select the file to upload and then click *Open*.
++
 The application file size limit is 200 MB.
-. (Optional) To deploy an the application that is in the sandbox environment, you must first <<move_app_from_sandbox_to_prod,move the application from the sandbox>> environment to the production environment. To do this, click *Get from sandbox*. +
-If the *Get from sandbox* button does not appear, you first need to create a non-production environment.
+
+** Copy an application from a non-production environment:
+
+.. Click *Get from sandbox*.
++
+--
+This button is available only if a non-production environment exists.
+
+.. Select the environment, such as Sandbox, from which to get the application.
+.. If necessary, search for the application to deploy.
+.. Select the application and then click *Apply*.
+
+Only applications that are deployed to CloudHub appear in the list.
+Applications deployed to CloudHub can only be promoted to run on other CloudHub workers.
+
+To deploy to a local server, see xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers].
+--
+
+. Click tabs to configure application options:
++
+.The arrow shows the configuration tabs on the *Deploy Application* page.
+image::rtm-deploy-to-own-servers.png[Configuration tabs on the Deploy Application page]
+--
++
+*Runtime* tab::
+Blah
+*Properties* tab::
+Specify properties (key-value pairs) that the application uses during deployment and while running.
++
+When you deploy an application from a non-production environment (*Get from sandbox*), the new application inherits any properties defined in the original application.
+You can update these properties as required on the *Properties* tab before deploying the application.
++
+See xref:cloudhub-manage-props.adoc[Managing Properties for Applications on CloudHub] and xref:secure-application-properties.adoc[Safely Hiding Application Properties].
+
+*Insight* tab::
+Specify metadata options for the Insight analytics feature.
+See xref:insight.adoc[Insight].
+
+*Logging* tab::
+Configure the logging level for the application: DEBUG`, `WARN`, `ERROR`, or `INFO`.
++
+Alternatively, you can configure logging by modifying the `level` value in the `log4j2.xml` file.
+See xref:mule-runtime::logging-in-mule.adoc#configuring-custom-logging-settings[Configuring Custom Logging Settings] and https://logging.apache.org/log4j/2.x/manual/configuration.html[Apache Logging Services].
++
+After you deploy the application, two additional tabs are available:
+
+*Autoscaling* tab::
+*Static IPs* tab::
+--
+
+. Click *Deploy Application*.
+
+
+
+
+
+
 . In the *Runtime* tab, select the values from the drop-down lists for: +
 * *Runtime version*
 * *<<worker_sizing,Worker size>>*
@@ -104,6 +122,53 @@ Select from the following options: +
 [NOTE]
 This option appears only if it is enabled for your organization and you have a Titanium subscription to Anypoint Monitoring.
 . Click *Deploy Application*.
+
+
+
+== Deploy an Application from Studio to CloudHub
+
+You can deploy your applications directly from Studio to CloudHub.
+This is helpful if you're still developing the application and want to deploy it often to an online test environment.
+
+[NOTE]
+--
+You cannot deploy an application from Studio to the CloudHub *Design* environment.
+The *Design* environment is specific to applications created in Anypoint Platform Design Center.
+--
+
+To deploy from Studio:
+
+. Open your application in Studio.
+. In *Package Explorer*, right-click the project folder and select *Anypoint Platform > Deploy to CloudHub*.
+. If this is your first time deploying from Studio, provide your login credentials for Anypoint Platform at the prompt.
++
+Studio stores your credentials and uses them the next time you deploy to CloudHub.
++
+You can manage these credentials by selecting *Anypoint Studio > Preferences > Anypoint Studio > Authentication*.
++
+After you sign in, you see the *Deploy Application* page.
+
+
+
+== Application Names 
+
+Applications are always deployed with public application names in the `cloudhub.io` domain.
+Application names must be globally unique across CloudHub to avoid domain conflicts. 
+
+For this reason, create a naming convention for your applications.
+For example, you can always prefix your applications with `mycompany` and optionally a department name: `mycompany-mydept-myapplication`.
+You can then add your own DNS records to hide this complex application name.
+For example, you can route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
+
+The application domain identifies your application in Runtime Manager and also provides you with a public URL for accessing the application if it exposes any inbound endpoints.
+The format of the URL is `+http://myapplicationdomain.cloudhub.io+`.
+For example, an application named `abcde` is accessible at `+http://abcde.cloudhub.io+`.
+
+With the CloudHub dedicated load balancer, you can optionally implement mapping rules to set your application's public URL to any other path you choose, as long as you own the domain.
+
+
+
+
 
 == Set Up a Deployment Failed Alert
 
@@ -406,20 +471,6 @@ If an application has static IP addresses reserved in multiple regions, it picks
 If you need to free up some of your overall static IP allocation, you can release a static IP that is currently allocated to an application.
 
 
-== Configuring a Deployed Application
-
-Most of the settings you specified when deploying the application can be edited after the application is deployed to CloudHub.
-
-To edit an application's settings:
-
-. In the *Applications* tab, select an application entry and click *Manage Application*.
-+
-image::amc-manageapplication.png[AMC_ManageApplication]
-+
-. Click the *Settings* tab.
-+
-image::viewingdeployedapp.png[ViewingDeployedApp]
-
 
 == Auto-Deploy a Proxy from API Manager
 
@@ -427,13 +478,31 @@ If you have registered an API in the Anypoint Platform, you can easily run it th
 
 From a menu in the API version page, you can trigger the deployment of your proxy and set up the CloudHub application name, environment, and gateway version to use. Then you can optionally access the Runtime Manager deployment menu for this proxy and configure advanced settings.
 
+
+
+
+== Changing a Deployed Application
+
+You can change most of the settings after deploying application to CloudHub.
+
+To edit an application's settings:
+
+. In the *Applications* tab, select an application entry and click *Manage Application*.
+. Click the *Settings* tab.
+
+
 == Deployment Errors
 
-If an error occurs and the application cannot be deployed, the application status indicator changes to `Failed`. You are alerted in the status area that an error occurred. Check the log details for any application deployment errors. You need to correct the error, upload the application, and deploy again.
+If an error occurs and the application cannot be deployed, the application status indicator changes to `Failed` and the status area indicates that an error occurred.
+Check the log details for any application deployment errors.
+Correct the error, upload the application, and redeploy the application.
+
 
 
 == See Also
 
+* xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers]
+* xref:lb-mapping-rules[Mapping Rules] 
 * xref:cloudhub.adoc[CloudHub]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
