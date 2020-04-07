@@ -87,7 +87,7 @@ With http://www.splunk.com/[Splunk], you can capture and index Mule event notifi
 
 === Configure the Agent in Your Splunk Instance 
 
-To integrate with Splunk, you must create a new source type on your Splunk instance with the correct configuration to parse the HTTP events sent by the Runtime Manager agent.
+To integrate with Splunk, you must create and configure a new source type on your Splunk instance that can parse the HTTP events sent by the Runtime Manager agent.
 
 . If necessary, create the `$SPLUNK_HOME/opt/splunk/etc/system/local/props.conf` file.
 . Append the following source type to the `props.conf` file:
