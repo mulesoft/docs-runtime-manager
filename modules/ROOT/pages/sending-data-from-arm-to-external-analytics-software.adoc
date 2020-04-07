@@ -53,7 +53,10 @@ To send data to Splunk using the HTTP Event Collector, you must first set up the
 . Sign in to your Splunk account.
 . Navigate to *Settings* > *Data Inputs*.
 . For the *HTTP Event Collector* type, click *Add new*.
-// image::splunk-datainput-setup.png[Splunk settings]
++
+.The arrow shows the *Add new* option for the HTTP Event Collector in the Splunk Data Inputs page.
+image::hybrid-export-splunk-config-http-collector.png[Add new option for the HTTP Event Collector in the Splunk Data Inputs page]
+
 . Follow the steps to set up the data input and obtain the token.
 
 To send data to Splunk over TCP, you must first enable the input source in Splunk:
@@ -61,7 +64,9 @@ To send data to Splunk over TCP, you must first enable the input source in Splun
 . Sign in to your Splunk account.
 . Navigate to *Settings* > *Data Inputs*.
 . For the *TCP* type, click *Add new*.
-// image::splunk-datainput-setup-tcp.png[splunk settings]
++
+.The arrow shows the *Add new* option for TCP in the Splunk Data Inputs page.
+image::hybrid-export-splunk-config-tcp.png[Add new option for TCP in the Splunk Data Inputs page]
 . Follow the steps to set up the data input.
 
 For more information about setting up data inputs, see the https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/WhatSplunkcanmonitor[Splunk documentation].
@@ -124,7 +129,7 @@ image::hybrid-export-splunk-elk.png[Event Tracking options, Level menu, and gear
 . Under *Event Tracking*, enable *Splunk*.
 . Select the type of information to send from the *Level* menu. 
 +
-See <<Logging Level Options>>.
+See <<Logging-Level Options>>.
 . Click the gear icon to specify your Splunk configuration:
 +
 .The screenshot shows (*1*) the protocol option, (*2*) the data input types, and (*3*) the *Show more options* switch in the Splunk configuration window.
@@ -189,7 +194,7 @@ Possible values are http, https, and tcp.
 |https
 
 |SSL Protocol (REST API only)
-a|SSL Security Protocol to use for the https connection
+a|SSL Security Protocol to use for the HTTPS connection
 
 Possible values are TLSv1_2, TLSv1_1, TLSv1, and SSLv3.
 |TLSv1_2
@@ -205,7 +210,7 @@ If the index doesn't exist, the internal handler creates it if the permissions a
 |mule-events 
 
 |Splunk Type 
-|The sourcetype used for events sent to Splunk
+|The source type used for events sent to Splunk
 |mule
 
 |Date Format
@@ -229,8 +234,8 @@ If the index doesn't exist, the internal handler creates it if the permissions a
 The ELK (Elasticsearch, Logstash, Kibana) stack enables you to store, search, and analyze the log data.
 
 
-You can configure the Runtime Manager agent to send event notifications from Mule runtime flows to a configurable log file.
-Logstash captures and indexes the data.
+You can configure the Runtime Manager agent to send event notifications from Mule flows to a configurable log file.
+Logstash first captures and indexes the data.
 Then, you can use Elasticsearch and Kibana to generate graphs, reports, alerts, dashboards, and visualizations.
 
 === Configure the Log File for Your ELK Stack
@@ -248,7 +253,7 @@ image::hybrid-export-splunk-elk.png[Event Tracking options, Level menu, and gear
 
 . Select the type of information to send from the *Level* menu.
 +
-See <<Logging Level Options>>.
+See <<Logging-Level Options>>.
 . Under *Event Tracking*, enable *ELK*.
 . Click the gear icon to configure the log file location for ELK:
 +
@@ -272,7 +277,7 @@ To integrate API Analytics with Splunk or ELK:
 . <<Configure API Analytics to Connect with Splunk or ELK>>.
 
 [WARNING]
-If you configure the API gateway `wrapper.conf` (step 1) but don't assign an external destination for your data (step 2), the analytics data accumulates in a queue in the API gateway server, which could cause the system to crash.
+If you configure the API gateway `wrapper.conf` (Step 1) but don't assign an external destination for your data (Step 2), the analytics data accumulates in a queue in the API gateway server, which could cause the system to crash.
 
 
 === Configure the API Gateway
