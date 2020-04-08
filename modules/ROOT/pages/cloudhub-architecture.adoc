@@ -93,7 +93,7 @@ You can scale workers vertically by selecting one of the available worker sizes:
 For workers that use a fraction of a vCore, CloudHub allocates limited CPU and I/O, as well as less memory. 
 Use these worker sizes for apps with smaller workloads.
 
-The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
+The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size. MetaspaceSize property is also set so that the gc starts to collect metaspace once a 128 MB threshold is reached.
 
 You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
 See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
