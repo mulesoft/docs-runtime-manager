@@ -94,6 +94,7 @@ For workers that use a fraction of a vCore, CloudHub allocates limited CPU and I
 Use these worker sizes for apps with smaller workloads.
 
 The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
+The initial metaspace size is 128 MB; metaspace garbage collection begins after the metaspace reaches that threshold.
 
 You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
 See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
