@@ -42,7 +42,7 @@ To add a revocation list when you create the load balancer, use the `--crl` opti
 
 If your load balancer already exists, you can use the 
 https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
-to add or update your CRLs. To do so, send a `PATCH` request to the `/organizations/{MyOrgID}/vpcs/{myVpcID}/loadbalancers/{myDlbID}` endpoint and include a `revocationList` element:
+to add or update your CRLs. To do so, send a `PATCH` request to the `/organizations/{myOrgID}/vpcs/{myVpcID}/loadbalancers/{myDlbID}` endpoint and include a `revocationList` element:
 
 [source,json,linenums]
 ----
@@ -95,7 +95,7 @@ To generate your authorization bearer token for Anypoint Platform:
 +
 [source,json,linenums]
 ----
-curl -X POST 'https://anypoint.mulesoft.com/accounts/login' -H 'Content-Type: application/json' -d '{"username":"myUsername,"password":"myPassword"}'
+curl -X POST 'https://anypoint.mulesoft.com/accounts/login' -H 'Content-Type: application/json' -d '{"username":"myUsername","password":"myPassword"}'
 ----
 +
 This command returns the access token, for example:
