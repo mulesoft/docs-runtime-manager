@@ -95,7 +95,7 @@ To generate your authorization bearer token for Anypoint Platform:
 +
 [source,json,linenums]
 ----
-curl -H "Content-Type: application/json" -X POST -d '{"username":"myUsername]","password":"myPassword"}' \https://anypoint.mulesoft.com/accounts/login
+curl -X POST 'https://anypoint.mulesoft.com/accounts/login' -H 'Content-Type: application/json' -d '{"username":"myUsername,"password":"myPassword"}'
 ----
 +
 This command returns the access token, for example:
@@ -127,9 +127,7 @@ The output includes `ciphers`, for example:
 
 [source,json,linenums]
 ----
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                               Dload  Upload   Total   Spent    Left  Speed
-100  1259    0  1259    0     0   1604      0 --:--:-- --:--:-- --:--:--  1605
+
 {
   "data": [
       {
