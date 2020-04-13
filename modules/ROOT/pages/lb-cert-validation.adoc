@@ -59,18 +59,9 @@ To get the values for `myVpcID` and `myDlbID` values from the CLI, use the xref:
 
 To update any other property, send a `PATCH` request to your load balancer endpoint.
 
-== Manage Certificate Cipher Suites
+== Prepare to Manage Certificate Cipher Suites
 
-Using the CloudHub API, you can:
-
-* <<List Available Cipher Suites>>
-* <<Display the Default Cipher Suite for a DLB>> 
-* <<Rotate the Cipher by Replacing the Default Cipher Suite>>
-
-
-=== Prerequisites
-
-To manage cipher suites with the CloudHub API:
+To manage cipher suites with the CloudHub API, you must first:
 
 * <<Generate Authorization Bearer Token, Generate your authorization bearer token>>.
 * Retrieve your organization ID using the CloudHub API.
@@ -110,6 +101,16 @@ This command returns the access token:
 ----
 . Copy the value of `access_token` to use in the API calls.
 
+== Manage Certificate Cipher Suites
+
+Using the CloudHub API, you can:
+
+* <<List Available Cipher Suites,List available cipher suites>>.
+* <<Display the Default Cipher Suite for a DLB,Display the default cipher suite for a DLB>>.
+* <<Rotate the Cipher by Replacing the Default Cipher Suite,Rotate the cipher by replacing the default cipher suite>>.
+
+
+
 === List Available Cipher Suites 
 
 To list available cipher suites for an organization using the Cloudhub API, run this GET call:
@@ -119,7 +120,7 @@ To list available cipher suites for an organization using the Cloudhub API, run 
 curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/loadbalancers/ciphersuites -H 'Authorization: Bearer myAccessToken' | jq
 ----
 
-* _myOrgID_ is the Organization ID.
+* _myOrgID_ is the organization ID.
 * _myAccessToken_ is the access token you generated.
 
 
@@ -174,7 +175,7 @@ curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpc
 
 In the command: 
 
-* _myOrgID_ is the Organization ID.
+* _myOrgID_ is the organization ID.
 * _myVpcID_ is the ID for the VPC.
 * _myDlbID_ is the ID for the DLB.
 * _myAccessToken_ is the access token you generated.
@@ -197,7 +198,7 @@ curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/v
 
 In the command: 
 
-* _myOrgID_ is the Organization ID.
+* _myOrgID_ is the organization ID.
 * _myVpcID_ is the ID for the VPC.
 * _myDlbID_ is the ID for the DLB.
 * _myAccessToken_ is the access token you generated.
