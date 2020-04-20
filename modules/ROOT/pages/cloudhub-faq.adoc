@@ -146,6 +146,10 @@ The platform recognizes an application crash (due to a problem with custom code 
 
 MuleSoft is limiting the free accounts to one worker, which allows you to deploy one application. You can upgrade to a http://www.mulesoft.com/cloudhub/cloudhub-pricing[paid subscription] to deploy more applications, or you can scale your single application across more than one worker.
 
+=== Is there a limit on the number of applications I can have?
+
+Yes, apart from vcores, Cloudhub limits the number of applications per environmnet per organization. This limit is calculated multiplying the environment vCores allocation by 20. For instance, if you have a Sandbox environment with a 2 vCores allocation, you will be able to have up to 20 0.1 vCores running applications and up to 20 0.1 vCores not-running applications in the same environment at the same time. 
+
 == My application has deployed successfully, so why do I see "you need to change the configuration of your docroot" when I go to mysubdomain.cloudhub.io?
 
 If you are seeing this message, your application's endpoint might be configured to show up in a different path. If you want to make it show up at mysubdomain.cloudhub.io, reconfigure your endpoint to remove the path variable. If you are using generic endpoints, change the address (not the path).
