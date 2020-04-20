@@ -149,8 +149,8 @@ MuleSoft is limiting the free accounts to one worker, which allows you to deploy
 === Is there a limit on the total number of applications I can have?
 
 Yes, in addition to limiting vCores, Cloudhub limits the number of applications per environment per organization.
-This limit is calculated by multiplying the environment vCores allocation by 20.
-For instance, if your Sandbox environment has 2 vCores allocated, you can have a total of 40 0.1 vCores applications (20 0.1 vCores running applications and 20 0.1 vCores not-running applications) in the same environment at the same time. 
+This limit is calculated by multiplying the allocation of vCores in the environment by 20.
+For example, if your Sandbox environment has 2 vCores allocated, you can have a total of 40 applications with 0.1 vCores  (20 running applications and 20 not-running applications, each with 0.1 vCores) in the same environment at the same time. 
 
 == My application has deployed successfully, so why do I see "you need to change the configuration of your docroot" when I go to mysubdomain.cloudhub.io?
 
