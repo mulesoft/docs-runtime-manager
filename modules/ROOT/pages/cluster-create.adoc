@@ -1,13 +1,18 @@
-= Create Clusters in Runtime Manager (Hybrid)
+= Create Clusters in Runtime Manager
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 
 To deploy applications to a cluster, you can either add the servers to Runtime Manager first and then create the cluster, or you can create the cluster and add servers to it later.
+
+[IMPORTANT]
+When you add a server to a cluster, all existing servers in the cluster are restarted.
 
 For Object Store persistence on all the servers in your cluster, create your cluster manually and use Quorum Management.
 
