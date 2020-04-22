@@ -249,6 +249,14 @@ This name must be unique within the business group's environment.
 |Specifies the proxy configuration to use when registering with the connection.
 
 See xref:rtm-agent-proxy-config.adoc[Connect the Agent Through a Proxy Server].
+
+
+|`-R`
+
+`--region`
+|`_region_`
+|Specifies the region to deploy to. Available regions are `prod` and `eu1`.
+
 |===
 
 
@@ -357,7 +365,7 @@ Here is an example `amc_setup` command:
 +
 [source,console,linenums]
 ----
-./amc_setup -H myToken myMuleServer -A +http://$DOCKER_IP_ADDRESS:8080/hybrid/api/v1+ -W "wss://_Anypoint Platform host_:8443/mule" -C https://_AnypointPlatform host_/accounts -F https://AnypointPlatformHost/apiplatform
+./amc_setup -H myToken myMuleServer -A +http://$DOCKER_IP_ADDRESS:443/hybrid/api/v1+ -W "wss://AnypointPlatformHost:8889/mule" -C https://AnypointPlatformHost/accounts -F https://AnypointPlatformHost/apiplatform
 ----
 
 The `amc_setup` command generates the `$MULE_HOME/conf/mule-agent.yml` file. 
@@ -378,14 +386,14 @@ Do not use these parameters with the `-I` or `S` parameters to configure REST AP
 `--amc-host`
 | `_amc-host_`
 
-|Specifies the service location URL of your local instance of Runtime Manager, such as `+https://10.0.0.1:8080/hybrid/v1+`.
+|Specifies the service location URL of your local instance of Runtime Manager, such as `+https://10.0.0.1:443/hybrid/v1+`.
 
 You can test whether the service is available at `_AMC_HOST_/hybrid/v1`.
 |`-W`
 
 `--mcm-host`
 | `_mcm-host_`
-|Specifies the service location URL of your local instance of MCM: for example, `wss://10.0.0.2:443/mule`.
+|Specifies the service location URL of your local instance of MCM: for example, `wss://10.0.0.2:8889/mule`.
 
 You can test whether the service is available at `_MCM_HOST_/mule`.
 
@@ -393,7 +401,7 @@ You can test whether the service is available at `_MCM_HOST_/mule`.
 
 `--cs-host`
 |`_core-services-host_`
-|Specifies the service URL of your local instance of Access Management, for example, `+https://10.0.0.3:8080/accounts+`.
+|Specifies the service URL of your local instance of Access Management, for example, `+https://10.0.0.3:443/accounts+`.
 
 You can test whether the service is available at  `_core-services-host_/accounts`.
 |`-D`
@@ -405,7 +413,7 @@ You can test whether the service is available at  `_core-services-host_/accounts
 
 `--api-platform-host`
 |`_api-platform-host_`
-|Specifies the service location URL of your local instance of API Manager, for example, `+https://10.0.0.5:8080/apiplatform+`.
+|Specifies the service location URL of your local instance of API Manager, for example, `+https://10.0.0.5:443/apiplatform+`.
 
 You can test whether the service is available at `_API_PLATFORM_HOST_/apiplatform`.
 |`-Z`
