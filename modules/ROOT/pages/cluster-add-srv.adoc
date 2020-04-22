@@ -11,8 +11,10 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 All servers that you add to a cluster must run on the same version of Mule and the same version of Runtime Manager agent.
 
-[IMPORTANT]
-When you add a server to a cluster, all existing servers in the cluster are restarted.
+
+//CLUSTER-SERVER SHARED 
+include::partial$cluster-server.adoc[tag=addServerToCluster]
+
 
 == Prerequisites
 

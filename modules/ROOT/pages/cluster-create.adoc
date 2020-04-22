@@ -11,8 +11,9 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 To deploy applications to a cluster, you can either add the servers to Runtime Manager first and then create the cluster, or you can create the cluster and add servers to it later.
 
-[IMPORTANT]
-When you add a server to a cluster, all existing servers in the cluster are restarted.
+//CLUSTER-SERVER SHARED 
+include::partial$cluster-server.adoc[tag=addServerToCluster]
+
 
 For Object Store persistence on all the servers in your cluster, create your cluster manually and use Quorum Management.
 
