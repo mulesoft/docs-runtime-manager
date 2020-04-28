@@ -31,6 +31,9 @@ In Runtime Manager, you can set these two properties as application properties.
 
 For sensitive information, you can flag these properties as hidden so that, after they are entered and saved in Runtime Manager, their values are neither visible in the console nor passed between the console and the CloudHub server.
 
+[IMPORTANT]
+In the case of hybrid deployments, the values will keep visible, even after the re-deployment.
+
 == Create Safely Hidden Application Properties
 
 To create safely hidden application properties:
@@ -206,7 +209,7 @@ The decrypted values are stored securely in the Mule worker's memory and the enc
 
 So for any encrypted property that is also marked as hidden in the Mule application's `secureProperties` entry, you can safely replace any encrypted property with a clear-text value. The clear-text value is then securely stored in the CloudHub properties database, and securely passed into the Mule application every time the Mule application is started.
 
-The new value is hidden once the application is deployed and can never be viewed again.
+In the case of a CloudHub deployment, the new value is hidden once the application is deployed and can never be viewed again. In the case of a hybrid deployment, it will keep visible, even after the re-deployment.
 
 This means that when you override a secure property in the CloudHub *Properties* tab for the application, the value doesn't need to be encrypted. In this scenario, only users who have access to the values in the application's source files when they deploy or redeploy a secure application can override secure properties. 
 
