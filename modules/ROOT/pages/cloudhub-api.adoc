@@ -1,43 +1,85 @@
-= Using the CloudHub API
+= CloudHub REST API
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloudhub api, manage, api, rest
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-The CloudHub REST API enables you to programmatically access these functions of Runtime Manager:
+The CloudHub REST API enables you to programmatically access the functions of Anypoint Runtime Manager, such as:
 
-* Create an application on CloudHub.
-* Deploy a new version of your application.
-* Change the application properties, including the number of workers and environment variables.
-* Get statistics about your application.
-* Create CloudHub notifications.
-* Create email alerts triggered by your applications.
-* Delete your application.
+* Manage applications:
+** Create, deploy, start, stop, list, and delete an application on CloudHub.
+** Update application metadata, including the number of workers, Mule runtime engine version, and system properties. 
+** Retrieve statistics for an application or worker.
+** Retrieve application transactions and events for a transaction.
+** Check for replay data, replay the flow for a transaction, and delete replay data for an application.
+** Manage static IP addresses and release unused IP addresses associated with an application.
+** Download the Mule package file for the application.
+** Update, enable, disable, or run all or some schedules.
+
+
+* Manage logs, notifications, and alerts:
+** Add, update, or retrieve log levels for an application.
+** Download the log file for an application or instance.
+** Create, update, or retrieve a notification.
+** Mark a notification as read or unread.
+** Create, update, or delete an alert triggered by an application.
+** Retrieve an alert and alert history.
+
+* Manage load balancers:
+** Create, update, or delete a load balancer.
+** List load balancers in an organization.
+** Test load balancer rules and return the number of the rule applied to the input.
+
+* Manage VPCs and VPNs:
+** Create, update, list, and remove a VPC.
+** Create or delete a VPN connection.
+
+* Manage persistent queues:
+** Retrieve statistics for persistent queues.
+** Clear the entries from a persistent queue.
+
+* Retrieve additional information about:
+** Supported Mule versions
+** The current organization, including usage statistics
+** Workers, including thread dumps and worker regions
+** Users, including permissions
+** Available domain names
+
+
 
 For an interactive reference that includes supported resources, methods, required properties, and expected responses, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API Portal].
 
-The CloudHub API only manages applications deployed to the cloud-based version of Runtime Manager. To manage on-prem applications using an API, see https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/ae639f94-da46-42bc-9d51-180ec25cf994/apis/38784/versions/5567732[Runtime Manager API Portal].
+The CloudHub API manages only applications deployed to CloudHub, the cloud-based version of Runtime Manager.
+To manage on-premises applications using the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST Services].
 
 
-== Getting Started and Authenticating with the API
+== Get Started and Authenticate with the API
 
 Before getting started, familiarize yourself with operations for applications.
 
-You can use any HTTP client with the CloudHub API. With Java, use the https://jersey.github.io/[Jersey client] or http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/codehaus/jackson[Jackson] for JSON support.
+You can use any HTTP client with the CloudHub API.
+With Java, use the https://jersey.github.io/[Jersey client] or http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/codehaus/jackson[Jackson] for JSON support.
 
-To access the CloudHub API, first authenticate with Anypoint Platform. To authenticate, use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API]. Authentication requires that you supply an access token in the Authorization header. See https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/11270/versions/11646/pages/60046[Authentication] for information.
+To access the CloudHub API, first authenticate with Anypoint Platform.
+To authenticate, use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API].
+Authentication requires that you supply an access token in the `Authorization` header.
+See https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/11270/versions/11646/pages/60046[Authentication] for information.
 
-Your username specifies the environment to access and is in the form "user@environment". For example, if your username is "jane" and the environment is "Development", your username is `jane@Development`. If you don't specify an environment, the API defaults to Production.
+Your username specifies the environment to access.
+For example, if your username is `jane` and the environment is `Development`, 
+your username is `jane@Development`.
+If you don't specify an environment, the API defaults to `Production`.
 
 
 == Data Format
 
-Resources and methods that return or accept a type use the JSON data format. Here is an example of data received in JSON format in response to a request to get an application:
+Resources and methods that return or accept a type use the JSON data format.
+Here is an example of data received in JSON format in response to a request to get an application:
 
 [source,json,linenums]
 ----
@@ -81,7 +123,7 @@ The Location header contains the location of the resource.
 See the HTTP body for details.
 |===
 
-When errors occur (such as a 500 status code), the HTTP response contains a JSON response with an error message:
+When errors occur, such as a 500 status code, the HTTP response contains a JSON response with an error message:
 
 [source,json,linenums]
 ----
@@ -98,12 +140,11 @@ Date: Mon, 10 Aug 2015 00:12:55 GMT
 
 == See Also
 
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API Portal]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API Portal]
-* xref:deployment-strategies.adoc[Deployment Strategies]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API]
+* xref:deployment-strategies.adoc[Deployment Options]
 * xref:cloudhub.adoc[CloudHub]
 * xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:secure-application-properties.adoc[Secure Application Properties]
+* xref:monitoring.adoc[Monitoring Applications and Servers]
