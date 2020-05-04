@@ -99,7 +99,16 @@ See <<amc_setup Parameters>>.
 
 == Update the Runtime Manager Agent
 
-If you previously installed the agent with an earlier version of `amc_setup`, you can update the agent and retain your existing agent configuration in `$MULE_HOME/conf/mule-agent.yml`. Keep in mind, when upgrading to >1.12.0 / >2.2.0) that if you keep your mule-agent.yml you need to ensure these changes are applied: https://docs.mulesoft.com/release-notes/runtime-manager-agent/runtime-manager-agent-1.12.0-release-notes#upgrade-requirements / https://docs.mulesoft.com/release-notes/runtime-manager-agent/runtime-manager-agent-2.2.0-release-notes#upgrade-requirements 
+If you previously installed the agent with an earlier version of `amc_setup`, you can update the agent and retain your existing agent configuration in `$MULE_HOME/conf/mule-agent.yml`.
+
+If you keep your `mule-agent.yml` file, ensure that these changes are applied: 
+
+* When upgrading to versions 1.12.0 and later:
++
+See xref:release-notes::runtime-manager-agent/runtime-manager-agent-1.12.0-release-notes.adoc#upgrade-requirements[Upgrade Requirements].
+* When upgrading to versions 2.2.0 and later:
++
+See xref:release-notes::runtime-manager-agent/runtime-manager-agent-2.2.0-release-notes.adoc#upgrade-requirements[Upgrade Requirements].
 
 To update an existing Runtime Manager agent:
 
