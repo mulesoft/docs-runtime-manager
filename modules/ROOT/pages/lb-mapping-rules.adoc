@@ -74,7 +74,7 @@ The protocol on which the application listens:
 ** `http` (port 8091)
 ** `https` (port 8092)
 ** `ws` WebSockets (port 8091)
-** `wss` Web Service Security (8092)
+** `wss` WebSockets over SSL/TLS (8092)
 
 By default, the load balancer listens to external requests on HTTPS and communicates internally with your worker over HTTP. If you configured your Mule application within the VPC to listen on HTTPS, set *Protocol* to `https` when you create the mapping rule list.
 --
