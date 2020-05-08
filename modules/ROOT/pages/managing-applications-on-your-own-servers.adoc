@@ -1,13 +1,14 @@
-= Managing Applications on Your Own Servers
+= Managing Applications on Your Servers
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, managing, monitoring, deploy, runtime manager, arm
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 
 After you xref:servers-create.adoc[add a server] and xref:deploying-to-your-own-servers.adoc[deploy an application] to it, you can use the Runtime Manager to monitor and manage your application.
 
@@ -77,6 +78,14 @@ image::managing-applications-on-your-own-servers-96463.png[]
 
 [NOTE]
 Note that the server must be running for this option to be available. In case of a Cluster or Server Group, at least one of its nodes must be running.
+
+== Download an Application Archive
+
+Runtime Manager doesn't support downloading the application archive (ZIP or JAR file) for an app deployed to an on-premises server from the application *Settings* page.
+However, you can download the app archive using an ARM REST Services API call or the Anypoint command-line interface.
+
+For information, see https://help.mulesoft.com/s/article/How-to-Download-an-Archive-of-an-Application-Deployed-in-Hybrid-On-Premise-from-Anypoint-Platform-using-API-and-CLI[How to Download an Archive of an Application Deployed in Hybrid from Anypoint Platform using API and CLI].
+
 
 == See Also
 
