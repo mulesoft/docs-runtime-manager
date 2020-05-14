@@ -151,7 +151,7 @@ You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load b
 
 == Avoiding Public Discoverability for Applications on CloudHub
 
-If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-dedicated-load-balancer.adoc[CloudHhub dedicated load balancer], you can prevent your applications hosted in CloudHub from being publicly accessible:
+If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-dedicated-load-balancer.adoc[CloudHub dedicated load balancer], you can prevent your applications hosted in CloudHub from being publicly accessible:
 
 . Remove the xref:virtual-private-cloud.adoc#firewall-rules[Anypoint VPC firewall rule] for ports 8081 and 8082 using:
 .. The *Firewall Rules* tab in your Anypoint VPC management center. Remove both rules with *source* `Anywhere (0.0.0.0/0)` and ports 8081 and 8082.
