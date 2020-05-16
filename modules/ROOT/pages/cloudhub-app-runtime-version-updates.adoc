@@ -10,11 +10,14 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
+Because CloudHub is an integration platform as a service (iPaaS), 
+the platform manages patches and updates to the operating system and Mule runtime engine,
+enabling you to focus on developing and updating your applications.
 
-To ensure the security and stability of CloudHub, MuleSoft releases security updates
-and monthly patches and applies them automatically on a schedule.
+CloudHub applies security patches as needed to ensure that your application is secure. 
+Once per month, CloudHub updates Mule to maintain the stability of your application.
 
-Automatic updates use blue-green deployment, which ensures zero downtime.
+All patches and updates use blue-green deployment, which ensures zero downtime.
 
 == Security Updates 
 
@@ -28,14 +31,12 @@ and the underlying operating system, and then automatically applies security pat
 |P1 | High | 30 days
 |===
 
-To minimize disruption, the monthly date patch update always includes patches for any P1 security issues.
-P0 security patches might be included in the monthly update or released separately, depending on the SLA requirements.
 
 == Monthly Date Patch Updates 
 
 Once per month, MuleSoft releases a _date patch_ update, 
 which includes backward-compatible bug fixes to address any issues discovered in Mule runtime engine.
-The monthly date patch update might also include security patches.
+The monthly date patch update might include security patches if the scheduled date is within the security SLA.
 
 The format of the version number for these updates is:
 
@@ -45,16 +46,16 @@ Here's an example version number, including the patch date:
 
 `4.2.2 - 05-04-2020`
 
+The monthly patches only update applications to the latest date patch for the patch version.
+They do not change the patch version number.
+
+
 === Update Schedule 
 
 The schedule for date patch updates is:
 
-* First Monday of the month, MuleSoft releases the patch.
-+
-You can apply the update manually or let MuleSoft apply the patch automatically.
-+
-See <<Update the Runtime Version Manually>>
-* Third Saturday of the month, MuleSoft automatically applies the patch.
+* In the first full week of the month, MuleSoft releases the date patch.
+* In the third week of the month, MuleSoft automatically applies the date patch that was released in the first week of the month.
 +
 When an automatic update occurs, the audit log for your app contains an entry by user `Anypoint Staff`,
 which shows the date and time an update occurred and whether it was successful.
