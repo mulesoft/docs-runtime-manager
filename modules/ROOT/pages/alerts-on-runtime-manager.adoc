@@ -25,70 +25,111 @@ You can view alerts in Runtime Manager in a few ways.
 
 Anypoint Platform enforces rate limits that determine how often an alert is triggered. These limits prevent excessive emails from being sent. The rate limit is determined by several factors, including:
 
-* CloudHub: When using CloudHub-Connector to trigger notifications and alerts, there is a limit of five custom application alerts per IP address, per second. If an application uses multiple workers, this limit is multiplied by the number of workers assigned to the application, since the limitation is enforced per IP. +
+* CloudHub
++
+When using CloudHub-Connector to trigger notifications and alerts, there is a limit of five custom application alerts per IP address, per second. If an application uses multiple workers, this limit is multiplied by the number of workers assigned to the application, since the limitation is enforced per IP. +
 Custom notifications that trigger emails are also subject to the rate limit on email notifications described below.
-* Alert emails: Both standard and custom alerts have a rate limit where only one alert notification email is sent every 2.5 seconds. This limit is enforced by a combination of organization, environment, alert (name/ID), and resource (application, server, server group, or cluster).
+* Alert emails
++
+Both standard and custom alerts have a rate limit where only one alert notification email is sent every 2.5 seconds. This limit is enforced by a combination of organization, environment, alert (name/ID), and resource (application, server, server group, or cluster).
 
 
 == Create an Alert
 
-If you access the alerts screen through any of the paths listed above and you don't have any alerts set up yet, you will see the following screen:
+If you access the alerts screen through any of the paths listed above and you don't have any alerts set up yet, you see the following screen:
 
-image::create-first-alert.png[first-alert]
+.The arrow shows the *Create your first alert* option.
+image::alerts-no-alerts.png[Alerts page with no alerts set up]
 
-. Click the plus sign next to *Create your first alert*
+. Click the blue plus (*+*) icon to create your first alert.
 +
-image::create-alert.png[]
+image::alerts-create-alert.png[Create an Alert page]
 
 . Fill in the required fields:
 
-* *Name* - Unique and meaningful name for the alert
-* *Severity Level* - (Critical, Warning or Info)
+* *Name*
++
+Unique and meaningful name for the alert
+* *Severity Level*
++
+Severity level: Critical, Warning, or Info
 +
 [NOTE]
 Different severity levels currently have no effect on alerts, but will in the future when further features are released.
 
-* *Source* - Determines if this alert is associated with applications or servers. This field may not appear if your Anypoint Platform account doesn't support xref:managing-servers.adoc[local servers].
-* *Application Type* - Associate the alert with applications deployed to xref:deployment-strategies.adoc[CloudHub or local servers].
+* *Source*
++
+The source of the alert: applications or servers
++
+This field appears only if your Anypoint Platform account supports local servers.
+* *Application type* 
++
+When the source is *Applications*, applications deployed to either CloudHub or local servers
 +
 [NOTE]
 You can't create a single alert that spans applications deployed to both CloudHub and local servers. You must create two separate alerts to reach both types.
 +
-* *Server Type* - For servers, determine if you're managing a single server, a server group, or a cluster. If your servers aren't available on your menu, see xref:managing-servers.adoc[Managing Servers].
-* *Application(s)* or *Server(s)* - Select the application or server to which to apply the alert.
-* *Condition* - The condition that triggers the alert. The options depend on whether your alert is linked to a server, an application running on CloudHub, or an application running locally. Certain conditions require additional data, which is explained in a <<Alert Conditions, section below>>.
-* *Subject* - Subject of the email that will be sent. Your subject may include variable <<Alert Properties>>.
-* *Message* - Enter the body text for the email. Your message may include variable <<Alert Properties>>.
-* *Recipients* - List the recipients of this email. You can select users of the platform, or enter email addresses of people who aren't in the organization.
+* *Server type*
++
+When the source is *Servers*, the type of server: single server, server group, or cluster.
++
+If your servers aren't available on your menu, see xref:managing-servers.adoc[Servers, Server Groups, and Clusters].
+* *Applications* or *Servers*
++
+The application or server to apply the alert to
+* *Condition*
++
+The condition that triggers the alert
++
+The options depend on whether your alert is linked to a server, an application running on CloudHub, or an application running locally.
+Some conditions require additional data. See <<Alert Conditions>>.
+* *Subject*
++
+Subject of the alert email that will be sent.
++
+The subject can include variables. See <<Alert Properties>>.
+* *Message*
++
+The body text for the email.
+The message can include variables. See <<Alert Properties>>.
+* *Recipients*
++
+The recipients of the alert email
++
+You can select platform users or enter any email address.
 
 . Click *Create Alert*.
 
 . If an event that meets an alert condition occurs, an email like the following is sent:
 +
-image::alertemailmsg.png[AlertEmailMsg]
+image::alerts-alert-email.png[Anypoint Platform Alert Notification email]
 
-
-See below for more information on the alert conditions available for each alert source.
 
 == Alert Conditions
 
-Depending on what your alert's source is, you can select different event types. Some event types are simple success or failure notifications such as 'Application Deployment Success' and more complex notifications which require you to define parameters that appear as new fields in the form.
+You can select different conditions depending on the alert source.
+Some conditions are simple success or failure notifications such as `Deployment success`.
+Some more complex conditions require you to define parameters that appear as new fields in the form.
 
 === Conditions on CloudHub Deployed Applications
 
-For applications deployed to CloudHub, you can choose any of the following alert conditions:
+For applications deployed to CloudHub, the following alert conditions apply:
 
-* *CPU Usage* - CPU usage of the CloudHub worker(s) that run the application.
+* *CPU usage - Cloudhub*
 +
-image::cpu-usage.png[cpu]
+CPU usage of the CloudHub workers that run the application
 +
-To enable this condition, you must specify the duration and capacity threshold that triggers the alert.
+image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
++
+To enable this condition, you must specify capacity threshold and duration that triggers the alert.
 
-* *Memory Usage* - Percentage of total memory allocated to the CloudHub worker(s) that run the application (includes the memory consumed by the JVM itself).
+* *Memory usage - Cloudhub*
 +
-image::memory-usage.png[memo]
+Percentage of total memory allocated to the CloudHub workers that run the application, including the memory consumed by the JVM itself
 +
-To enable this condition, you must specify the duration and capacity threshold that triggers the alert.
+image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
++
+To enable this condition, you must specify the capacity threshold and duration that triggers the alert.
 
 * *Custom Notification alert* – Looks at custom notifications and alerts when one contains specified text.
 +
@@ -165,33 +206,39 @@ This alert is currently not available on the xref:deployment-strategies.adoc#dep
 The available alert events vary depending on the *Server Type* field. The alerts detailed below are available on all target types (servers, server groups, and clusters):
 
 
-* *CPU Usage* - CPU usage of the servers.
+* *CPU Usage*
 +
-image::cpu-usage.png[cpu]
+CPU usage of the servers.
 +
-To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
-
-
-
-* *Memory Usage* - Total memory usage in MB on the server.
-+
-image::memory-usage.png[memo]
+image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
 +
 To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
 
-* *Server Load Average* - Average processing for a given time period.
 
+
+* *Memory Usage*
 +
-image::alerts-on-runtime-manager-load-average.png[]
+Total memory usage in MB on the server.
++
+image::alerts-conditions-servers-memory.png[Server memory usage alert condition]
++
+To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
+
+* *Server Load Average*
++
+Average processing for a given time period.
++
+image::alerts-conditions-servers-load-avg.png[Server load average alert condition]
 
 +
 [NOTE]
 Windows environments don’t provide this information, so this metric isn't available on Windows environments.
 
-* *Server Thread Count* - Number of threads on the JVM.
-
+* *Server Thread Count*
 +
-image::alerts-on-runtime-manager-thread-count.png[]
+Number of threads on the JVM.
++
+image::alerts-conditions-servers-thread-count.png[Server thread count alert condition]
 
 
 
