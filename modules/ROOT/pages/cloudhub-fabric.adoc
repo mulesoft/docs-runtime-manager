@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 Clustering provides scalability, workload distribution, and added reliability to your applications on CloudHub. This functionality is powered by CloudHub's scalable load-balancing service, worker scale-out, and persistent queues features.
 
@@ -26,7 +26,8 @@ CloudHub allows you to select an amount and a size for the workers of your appli
 
 Use the drop-down menus next to *workers* to select the number and size of workers of your application and to configure the computing power that you need.
 
-Each application can be deployed with up to 8 workers of any kind, totaling up to 128 vCores. However, you may be limited to fewer vCores than those you need, based on how many are available in your subscription. See xref:deploying-to-cloudhub.adoc#worker-size-and-vcores[Worker Size and vCores] for information about deploying to multiple vCores.
+Depending on your subscription, you can deploy your application with up to 8 workers of any kind, up to a maximum of 128 vCores per application.
+To ensure that you have sufficient resources, see xref:deploying-to-cloudhub.adoc#worker-size-and-vcores[Worker Size and vCores].
 
 Worker scale out also adds additional reliability. Mule runtime engine (Mule) automatically distributes multiple workers for the same application across two or more data centers for maximum reliability.
 

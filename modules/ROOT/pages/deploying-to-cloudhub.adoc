@@ -16,7 +16,7 @@ You can deploy Mule applications to CloudHub using:
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-runtime-manager[Anypoint Runtime Manager]
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-studio[Anypoint Studio]
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-the-command-line[CloudHub CLI]
-* xref:design-center::promote-app-prod-env-design-center.adoc[Anypoint Design Center - Flow Designer]
+* xref:design-center::promote-app-prod-env-design-center.adoc[Flow Designer in Anypoint Design Center]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
 * xref:mule-runtime::deploy-to-cloudhub.adoc[Mule Maven plugin]
 
@@ -44,7 +44,7 @@ image::cloudhub-deploy-app.png[Application Name field, Choose file menu, and the
 +
 See <<Application Names>>.
 
-. In the *Deployment Target* menu, select *CloudHub*, if necessary.
+. In the *Deployment Target* menu, select *CloudHub*, if it is not already selected.
 . Specify the application file:
 +
 --
@@ -92,10 +92,9 @@ To deploy from Studio to CloudHub:
 
 . Open your application in Studio.
 . In *Package Explorer*, right-click the project folder and select *Anypoint Platform > Deploy to CloudHub*.
-. If this is your first time deploying from Studio, provide your Anypoint Platform login credentials at the prompt.
+. If this is your first time deploying from Studio, provide your Anypoint Platform credentials at the prompt.
 +
 Studio stores your credentials for future use.
-+
 You can manage these credentials by selecting *Anypoint Studio > Preferences > Anypoint Studio > Authentication*.
 +
 After you sign in, you see the *Deploying Application* page:

@@ -4,6 +4,13 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cluster, managing, monitoring, runtime manager, arm
 
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
 This guide is for cloud deployments using the cloud-based version of Runtime Manager. See xref:deployment-strategies.adoc[Deployment Strategies] for information about different deployment scenarios.
 
 == Overview
@@ -80,7 +87,7 @@ CloudHub IP addresses are chosen from the Amazon EC2 IP pool. For a list of thes
 
 CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://help.mulesoft.com[MuleSoft Help Center].
 
-After a static IP has been allocated for your application, it is visible in the *Static IPs* tab in the application settings. For more details, see xref:deploying-to-cloudhub.adoc#static-ips[Static IPs].
+After a static IP has been allocated for your application, the IP address is visible in the *Static IPs* tab in the application settings. For more information about static IPs, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
 
 [NOTE]
 Static IP addresses are not supported for private IP addresses inside an Anypoint VPC.
@@ -147,7 +154,7 @@ In some cases, you may want to set up a custom load balancing layer for your Mul
 
 Traffic can be routed from your load balancer to CloudHub workers through the internal or external DNS record for your workers. This record contains an IP address for every worker in the application. It is recommended that you set your DNS timeout to between 20-60 seconds so that any DNS changes are propagated quickly and minimize impact.
 
-You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform CLI] by configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC].
+You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface (Anypoint Platform CLI)] by configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC].
 
 == Avoiding Public Discoverability for Applications on CloudHub
 
