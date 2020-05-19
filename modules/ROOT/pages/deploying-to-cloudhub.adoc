@@ -386,7 +386,7 @@ Workers with 1 or more vCores:
 * Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later.
 
 Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
-If your application requires more storage (for example, verbose logging), use a worker size of 2 vCores or larger.
+If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access the additional storage in `/tmp`.
 Those applications can access the additional storage in `/tmp`.
 
 Depending on how many vCores are allocated to your account, some options might not be available.
