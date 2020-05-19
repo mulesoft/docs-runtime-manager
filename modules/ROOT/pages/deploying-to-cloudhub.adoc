@@ -383,7 +383,7 @@ If you need consistent performance, use workers with more vCores.
 Workers with 1 or more vCores:
 
 * Provide performance consistency
-* Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later.
+* Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later
 
 Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
 If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access the additional storage in `/tmp`.
@@ -397,9 +397,9 @@ If you select more vCores than are available in your account, CloudHub allows yo
 
 You can change most application settings after deploying an application to CloudHub.
 
-To edit the settings for an application:
+To edit the settings of a deployed application:
 
-. In the *Applications* tab, the application name.
+. In the *Applications* tab, select the application name.
 . Click the *Settings* tab.
 . Make your changes and click *Apply Changes*
 
@@ -409,12 +409,12 @@ CloudHub redeploys the application with zero downtime.
 
 == Deployment Progress   
 
-CloudHub uploads your application and begins the deployment process, switching
-the view to *Logs* so that you can monitor the deployment progress.
+When CloudHub uploads your application and begins deploying it, CloudHub switches its user interface
+to the *Logs* view so that you can monitor deployment progress.
 
 The application status indicator changes to yellow to indicate the deployment is in progress.
 When the deployment is complete, the application status indicator changes to green, a message
-appears in the status area and in the logs to indicate that the application has deployed successfully. 
+appears in the status area and in the logs to indicate that the application is successfully deployed. 
 
 [NOTE]
 While you deploy an application on Mule runtime engine version 4.1.x and later, the xref:api-manager::gatekeeper.adoc#how-gatekeeper-works[Gatekeeper] mechanism works with xref:api-manager::api-auto-discovery-new-concept.adoc[API Autodiscovery] to help determine the readiness of a deployment.
