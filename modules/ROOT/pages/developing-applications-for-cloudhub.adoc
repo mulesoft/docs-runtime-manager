@@ -36,7 +36,7 @@ If you want to deploy a same Mule application via various different xref:deploym
 
 Create an application properties file named `mule-app.properties` in the `src/main/app` folder of your project. You need to do this whether you work in Anypoint Studio (Studio) or another IDE and want to deploy to Studio's built-in server. Creating a properties file allows you to define a local value for the variable `http.port` or `https.port`.
 
-If you have other runtime settings that you want to configure differently when running locally, you may also place them in the application properties file and refer to them using the syntax `${propertyname}` in your Mule application configuration. Each application can declare a set of environment variables when it is deploys to provide a different value when deploying on CloudHub. You can define these environment variables using the xref:deploying-to-cloudhub.adoc[Runtime Manager Console] or the xref:anypoint-platform-cli.adoc[Command Line Interface].
+If you have other runtime settings that you want to configure differently when running locally, you may also place them in the application properties file and refer to them using the syntax `${propertyname}` in your Mule application configuration. Each application can declare a set of environment variables when it is deploys to provide a different value when deploying on CloudHub. You can define these environment variables using the xref:deploying-to-cloudhub.adoc[Runtime Manager Console] or the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface].
 
 == Logging
 
@@ -83,7 +83,7 @@ Applications deployed to CloudHub can have a web UI using HTML and JavaScript. T
 * xref:cloudhub-fabric.adoc[Clustering]
 * xref:managing-queues.adoc[Managing Queues]
 * xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Command Line Tools]
+* xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
 * xref:secure-application-properties.adoc[Secure Application Properties]
 * xref:viewing-log-data.adoc[Viewing Log Data]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
