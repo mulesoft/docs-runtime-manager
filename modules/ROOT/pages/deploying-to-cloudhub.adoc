@@ -64,14 +64,12 @@ The application file size limit is 200 MB.
 
 ** Copy an application from a nonproduction environment.
 +
-See <<Move an Application from Sandbox to Production>>.
+See <<Copy an Application from Sandbox to Production>>.
 --
 . Click tabs to configure application options.
 +
 See <<Configure Application Settings>>.
 . Click *Deploy Application*.
-+
-See <<Deployment Progress>>.
 
 
 
@@ -106,10 +104,6 @@ image::cloudhub-deploy-app-studio.png[Application Name field and the Deploy Appl
 +
 See <<configure-application-settings,Configure Application Settings>>.
 . Click *Deploy Application*.
-+
-See <<Deployment Progress>>.
-
-
 
 
 
@@ -172,65 +166,63 @@ For a complete list of the commands, see xref:anypoint-platform-cli.adoc[Anypoin
 
 
 
-
-== Move an Application from Sandbox to Production
+== Copy an Application from Sandbox to Production
 
 If you create and test an application in a sandbox environment, you must move it to the 
 production environment before deploying it.
 You must have the CloudHub Admin role to move applications between environments.
 
-To avoid domain name conflict, do not deploy an application under the same name in two environments simultaneously.
-at the same time.
-You must modify the application name to deploy it to another environment.
+To avoid name conflicts, rename the application before you deploy it to another environment.
 
-Runtime Manager prevents you from duplicating applications in a single environment, so you cannot move an application into the environment it's already in.
-To deploy the same or similar application in a single environment, modify the filename of one application.
+Runtime Manager prevents you from duplicating applications in a single environment,
+so you cannot move an application into the environment it's already in.
+If you want to duplicate an application in a single environment, rename the filename of one application
+before you deploy it.
 
 To move an application from sandbox to production:
 
 . Sign in to Anypoint Platform.
-. Select *Runtime Manager* and change to your production environment.
+. Select *Runtime Manager* and switch to your production environment.
++
+See xref:runtime-manager-switch-env.adoc##switch-environments-using-runtime-manager[Switch Environments Using Runtime Manager].
 . In the *Applications* page, click *Deploy application*.
 +
 You see the *Deploy Application* page:
 +
 .The screenshot shows (*1*) the *Application Name* field, (*2*) the *Get from sandbox* button, and (*3*) the *Deploy Application* button on the *Deploy Application* page.
 image::cloudhub-deploy-app-sandbox.png[Application Name field and Get from sandbox and Deploy Application buttons]
-. Provide a unique name by which your application will be identified in production, and click *Get from sandbox*.
+. Provide a unique name for your application in production and click *Get from sandbox*.
 +
-This button is available only if a non-production environment exists.
+This button is unavailable if no nonproduction environment exists.
 . Select your sandbox environment and then the application that you want to move to production.
 +
-Only applications that are deployed to CloudHub appear in the list.
-You can promote only applications deployed to CloudHub to run on other CloudHub workers.
+Only applications that are deployed to CloudHub appear in the list because you can move only apps
+that are currently deployed to CloudHub to other CloudHub workers. 
+For example, you can't move an app that is currently deployed on a local server to CloudHub.
 . If you want to copy the environment variables and Mule version from the source application, select *Merge environment variables and mule version*.
 . Click *Apply*.
 . Click tabs to configure application options.
 +
 See <<configure-application-settings,Configure Application Settings>>.
 . Click *Deploy Application*.
-+
-See <<Deployment Progress>>.
 
 == Application Names 
 
-The application name identifies your application not only in Runtime Manager but also in the public `cloudhub.io` domain.
-public application name in the `cloudhub.io` domain.
-For example, an application named `myapplication` is accessible at `+http://myapplication.cloudhub.io+`.
-
-The application name must be globally unique across CloudHub to avoid domain conflicts.
-Runtime Manager prevents you from choosing a name that is already in use.
-
-To avoid domain conflicts, create a naming convention for your applications, such as adding a prefix to 
-your applications: `mycompany-mydept-myapplication`.
-You can then add DNS records to hide this complex application name.
-For example, you can route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
-
-With the CloudHub dedicated load balancer, you can optionally implement mapping rules to set your application's public URL to any other path, as long as you own the domain.
-See xref:lb-mapping-rules.adoc[Mapping Rules].
-
 The application name can contain between 3 and 42 alphanumeric characters (a-z, A-Z, 0-9) and dashes (-).
 They cannot contain spaces or other characters.
+
+The application name identifies your application not only in Runtime Manager but also in the public `cloudhub.io` domain.
+For example, an application named `myapplication` is accessible at `+http://myapplication.cloudhub.io+`.
+
+To avoid domain conflicts, the application name must be globally unique across CloudHub.
+For this reason, create a naming convention to ensure unique application names.
+For example, you could prepend your company name and department to all application names,
+such as `mycompany-mydept-myapplication`.
+You can then add DNS records to hide the complex application name.
+For example, you might route requests to `myapplication.mycompany.com` to `mycompany-mydept-myapplication.cloudhub.io`.
+
+Using the CloudHub dedicated load balancer, you can also implement mapping rules to set your application's public URL to any other path, as long as you own the domain.
+See xref:lb-mapping-rules.adoc[Mapping Rules].
 
 == Configure Application Settings 
 
@@ -240,16 +232,16 @@ You can configure the application deployment by clicking the tabs on the *Deploy
 image::cloudhub-deploy-app-config-tabs.png[Configuration tabs on the Deploy Application page]
 
 
-* <<Runtime>>
-* <<Autoscaling>>
-* <<Properties>>
-* <<Insight>>
-* <<Logging>>
-* <<Static IPs>>
+* <<Runtime Tab Settings,Runtime>>
+* <<Autoscaling Tab Settings,Autoscaling>>
+* <<Properties Tab Settings,Properties>>
+* <<Insight Tab Settings,Insight>>
+* <<Logging Tab Settings,Logging>>
+* <<Static IPs Tab Settings,Static IPs>>
 
 
 
-=== Runtime
+=== Runtime Tab Settings 
 
 The *Runtime* tab includes the following settings:
 
@@ -302,25 +294,32 @@ This option appears only you if have a Titanium subscription to Anypoint Monitor
 See xref:monitoring::index.adoc[Anypoint Monitoring] and xref:visualizer::index.adoc[Anypoint Visualizer].
 
 
-=== Properties 
+=== Autoscaling Tab Settings
+
+Autoscaling enables you to define policies that respond to CPU or memory usage thresholds by scaling up or down the processing resources used by an application.
+
+This tab doesn't appear by default.
+See xref:autoscaling-in-cloudhub.adoc[Autoscaling in CloudHub] for information.
+
+
+=== Properties Tab Settings
 
 You can specify properties (key-value pairs) that the application uses during deployment and while running in the *Properties* tab.
 
 [NOTE]
-When you deploy an application from a non-production environment (*Get from sandbox*), the new application inherits any properties defined in the original application.
+When you deploy an application from a nonproduction environment (*Get from sandbox*), the new application inherits any properties defined in the original application.
 You can update these properties as required on the *Properties* tab before deploying the application.
 
 See xref:cloudhub-manage-props.adoc[Managing Properties for Applications on CloudHub] and xref:secure-application-properties.adoc[Safely Hiding Application Properties].
 
 
-
-=== Insight
+=== Insight Tab Settings
 
 You can enable the Insight analytics feature and specify metadata options on the *Insight* tab.
 See xref:insight.adoc[Insight].
 
-=== Logging
 
+=== Logging Tab Settings
 
 CloudHub stores activity logs, which can be viewed or downloaded from Runtime Manager.
 See xref:viewing-log-data.adoc[Viewing Log Data].
@@ -330,7 +329,7 @@ You can configure the logging level (`DEBUG`, `WARN`, `ERROR`, or `INFO`) for th
 Alternatively, you can configure logging by modifying the `level` value in the `log4j2.xml` file.
 See xref:mule-runtime::logging-in-mule.adoc#configuring-custom-logging-settings[Configuring Custom Logging Settings] and https://logging.apache.org/log4j/2.x/manual/configuration.html[Apache Logging Services].
 
-=== Static IPs 
+=== Static IPs Tab Settings
 
 You can allocate a static IP address for your application deployed in specific regions in the *Static IPs* tab.
 
@@ -348,12 +347,6 @@ If you need to free up some of your static IP allocations, you can release unuse
 If you need to increase the quota, contact MuleSoft Support.
 
 
-=== Autoscaling
-
-Autoscaling enables you to define policies that respond to CPU or memory usage thresholds by scaling up or down the processing resources used by an application.
-
-This tab doesn't appear by default.
-See xref:autoscaling-in-cloudhub.adoc[Autoscaling in CloudHub] for information.
 
 
 
@@ -411,7 +404,6 @@ To edit the settings for an application:
 . Make your changes and click *Apply Changes*
 
 CloudHub redeploys the application with zero downtime.
-
 
 
 
