@@ -304,19 +304,21 @@ See xref:autoscaling-in-cloudhub.adoc[Autoscaling in CloudHub] for information.
 
 === Properties Tab Settings
 
-You can specify properties (key-value pairs) that the application uses during deployment and while running in the *Properties* tab.
+On the *Properties* tab, you can specify properties (key-value pairs) that the application uses during deployment and while running.
 
 [NOTE]
 When you deploy an application from a nonproduction environment (*Get from sandbox*), the new application inherits any properties defined in the original application.
 You can update these properties as required on the *Properties* tab before deploying the application.
 
-See xref:cloudhub-manage-props.adoc[Managing Properties for Applications on CloudHub] and xref:secure-application-properties.adoc[Safely Hiding Application Properties].
+For more information about specifying properties, including hiding them in Runtime Manager, 
+see xref:cloudhub-manage-props.adoc[Managing Properties for Applications on CloudHub]
+and xref:secure-application-properties.adoc[Safely Hiding Application Properties].
 
 
 === Insight Tab Settings
 
 You can enable the Insight analytics feature and specify metadata options on the *Insight* tab.
-See xref:insight.adoc[Insight].
+For information about using this tool, see xref:insight.adoc[Insight].
 
 
 === Logging Tab Settings
@@ -331,31 +333,26 @@ See xref:mule-runtime::logging-in-mule.adoc#configuring-custom-logging-settings[
 
 === Static IPs Tab Settings
 
-You can allocate a static IP address for your application deployed in specific regions in the *Static IPs* tab.
+Use the *Static IPs* tab to allocate a static IP address to your application deployed in a specific region.
 
-If an application has static IP addresses allocated in multiple regions, the static IP address is assigned when the application is deployed to that region.
-You can preconfigure IP address rules for multiple regions for disaster recovery (DR) scenarios.
+You can also preconfigure static IP addresses for multiple regions for disaster recovery (DR) scenarios.
+If an application has static IP addresses allocated in multiple regions, 
+the static IP address is assigned when the application is deployed to a new region.
 
 If your application is already running, applying the static IP address change restarts it using the newly applied static IP address.
 
 
 By default, the number of static IP addresses allocated to your organization is equal 
-to twice the number of production vCores in your subscription.
-This number is displayed under the *Use Static IP* checkbox.
+to twice the number of production vCores in your subscription and appears under the *Use Static IP* checkbox.
 
 If you need to free some of your static IP allocations, you can release unused IP addresses from an application.
 If you need to increase your allocation of static IP addresses, contact MuleSoft Support.
 
 
 
-
-
 == Worker Size and vCores 
 
 On each application, workers are responsible for executing the application logic.
-
-Only running applications count toward workers usage.
-Stopped applications do not consume vCore availability.
 
 Worker sizes have different compute, memory, and storage capacities:
 
@@ -386,12 +383,13 @@ Workers with 1 or more vCores:
 * Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later
 
 Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
-If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access the additional storage in `/tmp`.
-Those applications can access the additional storage in `/tmp`.
+If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access additional storage in `/tmp`.
 
-Depending on how many vCores are allocated to your account, some options might not be available.
-If you select more vCores than are available in your account, CloudHub allows you to create the application, but you cannot start your application until the specified vCores are available.
+Only running applications count toward workers usage.
 
+If your applications require more vCores than you are allocated, CloudHub allows you to create the application, but you cannot start it until the additional vCores become available.
+To increase vCore allocation, stop another application or contact your account manager to increase the vCore allocation in your subscription.
+ 
 
 == Change Settings of a Deployed Application
 
@@ -399,7 +397,7 @@ You can change most application settings after deploying an application to Cloud
 
 To edit the settings of a deployed application:
 
-. In the *Applications* tab, select the application name.
+. On the *Applications* tab, select the application name.
 . Click the *Settings* tab.
 . Make your changes and click *Apply Changes*
 
@@ -412,25 +410,28 @@ CloudHub redeploys the application with zero downtime.
 When CloudHub uploads your application and begins deploying it, CloudHub switches its user interface
 to the *Logs* view so that you can monitor deployment progress.
 
-The application status indicator changes to yellow to indicate the deployment is in progress.
-When the deployment is complete, the application status indicator changes to green, a message
+The application status changes to `Deploying` to indicate the deployment is in progress.
+When the deployment is complete, the application status changes to `Started` and a message
 appears in the status area and in the logs to indicate that the application is successfully deployed. 
 
 [NOTE]
 While you deploy an application on Mule runtime engine version 4.1.x and later, the xref:api-manager::gatekeeper.adoc#how-gatekeeper-works[Gatekeeper] mechanism works with xref:api-manager::api-auto-discovery-new-concept.adoc[API Autodiscovery] to help determine the readiness of a deployment.
-If Gatekeeper considers the application not ready in five minutes, the deployment status is failed.
+If Gatekeeper considers the application not ready within five minutes of deployment initiation,
+the application status is `Deploy failed`.
 
-== Deployment Errors
+== Deployment Failure
 
-If an error occurs and the application cannot be deployed, the application status indicator
-changes to `Failed`, and the status area indicates that an error occurred.
-The logs include details on the application deployment errors.
+If an error occurs and the application cannot be deployed, the application status
+changes to `Deploy failed`.
+The *Logs* tab includes details on the application deployment errors.
+
 
 
 == See Also
 
 * xref:managing-cloudhub-specific-settings.adoc[Managing CloudHub-Specific Settings] 
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:managing-deployed-applications.adoc#application_status_states[Application Status States]
 * xref:monitoring.adoc[Monitoring Applications]
 * xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
 * xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
