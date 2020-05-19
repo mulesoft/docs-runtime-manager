@@ -374,28 +374,28 @@ Worker sizes have different compute, memory, and storage capacities:
 
 Workers with 0.1 vCores and 0.2 vCores:
 
-* Provide limited CPU and IO for smaller workloads.
-* Have the ability to burst to higher CPU speeds for a short duration of time.
+* Provide limited CPU and I/O for smaller workloads
+* Can burst to higher CPU speeds for a short time
 +
-This ability helps to improve application startup times and process infrequent large workloads.
+This ability helps to improve application startup times and to process infrequent, large workloads.
 If you need consistent performance, use workers with more vCores.
 
-Workers with 1 vCore and larger:
+Workers with 1 or more vCores:
 
-* Provide performance consistency.
+* Provide performance consistency
 * Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later.
 
 Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
-If your application requires more storage (for example, verbose logging), use a worker size of 2 vCores or larger.
+If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access the additional storage in `/tmp`.
 Those applications can access the additional storage in `/tmp`.
 
 Depending on how many vCores are allocated to your account, some options might not be available.
 If you select more vCores than are available in your account, CloudHub allows you to create the application, but you cannot start your application until the specified vCores are available.
 
 
-== Change a Deployed Application
+== Change Settings of a Deployed Application
 
-You can change most of the settings after deploying an application to CloudHub.
+You can change most application settings after deploying an application to CloudHub.
 
 To edit the settings for an application:
 
