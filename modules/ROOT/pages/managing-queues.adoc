@@ -85,6 +85,21 @@ image::enable-encripting.png[enable+encripting]
 [IMPORTANT]
 If you enable encryption and then disable it, any messages that were previously encrypted become unreadable.
 
+
+== Batch Component and Persistent Queues 
+
+If your Mule application is using a Batch component and persistent queues,
+you might see batch records being processed multiple times.
+All batch records are stored in Amazon SQS and the visibility of the message is set to 70 seconds by default.
+If your batch process takes longer than 70 seconds,
+batch processes might see the same message again and process it multiple times.
+
+To avoid this issue, set the `persistent.queue.min.timeout` system parameter to a larger value in the *Properties* tab of the application *Settings* page.
+For example, if your batch process takes 30 minutes to complete,
+set the value to `persistent.queue.min.timeout=2700000` milliseconds (45 Minutes).
+The maximum value is 43000000 milliseconds (12 hours).
+
+
 == Limitations
 
 When enabling persistent queues in your application, be aware of the following:
@@ -97,9 +112,9 @@ When enabling persistent queues in your application, be aware of the following:
 
 * Learn more about the advantages of xref:cloudhub-fabric#persistent-queues[persistent queueing].
 * Learn how to xref:mule-runtime::reliability-patterns#implementing-a-reliability-pattern[set up your applications in reliability patterns] to reap the benefits of persistent queueing.
-* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
 * Learn the xref:6@studio::index.adoc[Anypoint Studio Essentials].
-* xref:deployment-strategies.adoc[Deployment Strategies]
+* xref:deployment-strategies.adoc[Deployment Options]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
 * Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
@@ -108,7 +123,7 @@ When enabling persistent queues in your application, be aware of the following:
 * xref:monitoring.adoc[Monitoring Applications]
 * xref:managing-schedules.adoc[Managing Schedules]
 * xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Command Line Tools]
+* xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
 * xref:secure-application-properties.adoc[Secure Application Properties]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:penetration-testing-policies.adoc[Penetration Testing Policies]
