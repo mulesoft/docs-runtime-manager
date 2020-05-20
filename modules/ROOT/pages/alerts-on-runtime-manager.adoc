@@ -7,8 +7,8 @@ endif::[]
 
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
 Set up alerts that send an email notification when certain application or server events occur. 
@@ -121,6 +121,13 @@ Some more complex conditions require you to define parameters that appear as new
 
 === Conditions on CloudHub Deployed Applications
 
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
 For applications deployed to CloudHub, the following alert conditions apply:
 
 * *CPU usage - Cloudhub*
@@ -141,7 +148,7 @@ To enable this condition, you must specify the capacity threshold and duration t
 
 * *Custom Notification alert* – Looks at custom notifications and alerts when one contains specified text.
 +
-image::custom-alert.png[custom]
+image::alerts-conditions-custom.png[Custom application alerts]
 +
 To enable this condition, you must specify the notifications that are the output of a CloudHub connector. This connector must exist in your Mule application. An alert is raised when the text in one of the notifications matches or contains the string that you provide in the *Contains* field. See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
 +
@@ -150,7 +157,7 @@ On *Custom Notification Alerts*, you can access a set of alert properties that y
 
 * *Exceeds event traffic threshold*
 +
-image::alert-traffic.png[traffic]
+image::alerts-conditions-exceeds-traffic.png[Exceeds event traffic threshold]
 +
 To enable this condition, you must specify the duration and capacity threshold that triggers the alert. This threshold applies to all events of any type.
 If during a certain period you get more than N events, you get an alert.
@@ -166,49 +173,47 @@ For more information on event tracking, see xref:mule-runtime::business-events.a
 
 === Conditions on Locally Deployed Applications
 
-On an application that's deployed to local servers, both via the xref:deployment-strategies.adoc#deployment-scenarios[cloud console or the Anypoint Platform Private Cloud Edition], you can select any of these alert conditions:
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
+On an application deployed to local servers, you can select any of these alert conditions:
 
 * *Number of errors*
-
 +
-image::alerts-on-runtime-manager-387e2.png[]
-
+image::alerts-conditions-number-errors.png[Number of errors]
 +
 You must provide the number of errors that triggers the alert.
 The time unit is per minute. An alarm is triggered when the error count goes over the threshold number in the timeslot of one minute.
-+
-[NOTE]
-This alert is currently not available on the xref:deployment-strategies.adoc#deployment-scenarios[Anypoint Platform Private Cloud Edition].
+
 
 * *Number of Mule messages*
-
 +
-image::alerts-on-runtime-manager-51033.png[]
-
+image::alerts-conditions-number-mule-messages.png[Number of Mule messages]
 +
 You must provide the number of Mule messages, since the application was started, that trigger the alert.
 
-+
-[NOTE]
-This alert is currently not available on the xref:deployment-strategies.adoc#deployment-scenarios[Anypoint Platform Private Cloud Edition].
 
 * *Response time*
 +
-image::alerts-on-runtime-manager-45785.png[]
-
+image::alerts-conditions-response-time.png[Response time]
 +
 You must provide the maximum accepted response time--anything over this value triggers the alert.
 
-+
-[NOTE]
-This alert is currently not available on the xref:deployment-strategies.adoc#deployment-scenarios[Anypoint Platform Private Cloud Edition].
 
 * *Application Deployment success*
 * *Application Deployment failure*
 * *Application undeployed*
 
 
-=== Conditions on Mule Servers
+=== Conditions on Servers
+
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
 The available alert events vary depending on the *Server Type* field. The alerts detailed below are available on all target types (servers, server groups, and clusters):
@@ -249,23 +254,22 @@ Number of threads on the JVM.
 image::alerts-conditions-servers-thread-count.png[Server thread count alert condition]
 
 
+The following alerts vary according to the target type (server, server groups, or clusters), and require no additional parameters:
 
-[NOTE]
-None of the alerts listed above are currently available on the xref:deployment-strategies.adoc#deployment-scenarios[Anypoint Platform Private Cloud Edition].
-
-The following alerts vary according to the target type (server, server groups, or clusters), and require no additional parameters.
-
-==== Servers
-
+Servers::
++
+--
 * *Server up*
 * *Server disconnected*
 * *New server registered*
 * *Agent's version changed*
 * *Runtime's version changed*
 * *Server deleted*
+--
 
-==== Server Groups
-
+Server Groups::
++
+--
 * *Server added to a Server Group*
 * *Server removed from a Server Group*
 * *Server added to a Server Group*
@@ -275,9 +279,11 @@ The following alerts vary according to the target type (server, server groups, o
 * *Server group is down*
 * *A server group's node came up*
 * *A server group's node went down*
+--
 
-==== Clusters
-
+Clusters::
++
+--
 * *Cluster Created*
 * *Cluster Deleted*
 * *Server added to a Cluster*
@@ -287,7 +293,7 @@ The following alerts vary according to the target type (server, server groups, o
 * *A cluster's node came up*
 * *A cluster's node went down*
 * *Cluster presents visibility issues*
-
+--
 
 
 == Alert Properties
@@ -314,59 +320,83 @@ The following properties are available and can be used in the alert Email to, Su
 
 |===
 
-== Editing Existing Alerts
+== Manage Alerts
 
-To see the alerts for an application or server, click the *View Alerts* link in the panel for that application or server. You can also click the *Alerts* link in the left panel to view a list of all alerts.
+To see the alerts for an application or server:
 
-image::view-alerts.png[alerts]
+. In the *Applications* or *Servers* list, click the status of the application or server.
+. Click the *View Associated Alerts* link in the details pane.
++
+.The arrow shows the *View Associated Alerts* link in the details pane.
+image::alerts-view-details-pane.png[View Associated Alerts link in the details pane]
+
+To see a list of all alerts, click *Alerts* in the left panel:
+.The arrow shows the *Alerts* tab.
+image::alerts-view-all-alerts-tab.png[Alerts tab]
 
 
-From this menu you can filter the displayed alerts, click on an alert name to directly edit it, or click the icon next to one to open its panel and view its settings. From this panel you can click the *edit* icon next to the name to edit the same options you have when creating a new alert.
+From this page you can filter the displayed alerts, click on an alert name to change its settings,
+or click the icon next to one to open its panel and view its settings.
 
-image::edit-alert.png[edit]
+=== Switch an Alert On or Off
+
+To change an alert's state, select one or more alerts and toggle the switch.
+
+To turn alerts off, toggle the switch:
+
+.The arrow shows the alert switch on.
+image::alerts-switch-on.png[Alert switch on]
+
+The value in the *Active* column changes from *Yes* to *No*.
+
+To turn alerts on, toggle this switch:
+
+.The arrow shows the alert switch off.
+image::alerts-switch-off.png[Alert switch off]
+
+The value in the *Active* column changes from *No* to *Yes*.
 
 
-
-=== Switching an Alert On or Off
-
-To change an alert's state, select one or more alerts and click the switch to *on* or *off*.
-
-image::alert-on.png[on]
-
-All users of Anypoint Platform, even those without permissions to create alerts, can control whether email alerts are sent by setting each alert to an *Active* or *Inactive* state.
+All users of Anypoint Platform, even those without permissions to create alerts, can control whether email alerts are sent by setting each alert to active or inactive.
 
 [NOTE]
 When an alert is disabled or enabled the change is applied for all users who receive email notifications for that alert.
 
-=== Duplicating an Alert
+=== Duplicate an Alert
 
-Select one or several alerts and then, from the alert panel, click the *duplicate* icon. You can then edit your new alert.
-
-image::duplicate-alert.png[duplicate]
-
-
-=== Deleting an Alert
-
-Select one or several alerts and then, from the alert panel, click the *delete* icon.
-
-image::delete-alert.png[duplicate]
+Select one or several alerts and then, from the alert panel, click the *Duplicate* icon.
+You can then edit your new alert.
 
 
-== Viewing Alert History
+.The arrow shows the *Duplicate* alert icon.
+image::alerts-duplicate.png[Duplicate alert icon]
+
+
+=== Delete an Alert
+
+Select one or several alerts and then, from the alert panel, click the *Delete* (trash can) icon.
+
+.The arrow shows the *Delete* alert (trash can) icon.
+image::alerts-delete.png[Delete (trash can) icon]
+
+
+== View Alert History
 
 
 From the *Alerts* page, click an alert name to open its corresponding panel. From this panel you can <<Editing Existing Alerts, edit the alert>>, view its status and settings, and view a full history of all of the times the alert has been triggered:
 
-image::alerts-history.png[history]
+.The arrow shows the alert history in the details pane.
+image::alerts-history.png[Alert history in the details pane]
 
 
 You can also see the alert history record of an individual server or of an application that's deployed to one.
 
 . On the *Applications* tab, click the *Manage Application* button (for applications deployed on premises), or click the *Manage Server* button on the *Servers* tab.
 . Click the *Alerts History* tab. +
-The history record for the alert is displayed.
-
-image::alerts-on-runtime-manager-3afb7.png[]
+The history record for the alert is displayed:
++
+.The arrow shows the *Alerts History* tab on the *Settings* page.
+image::alerts-settings-alerts-history-tab.png[Alerts History tab on the Settings page]
 
 == See Also
 
