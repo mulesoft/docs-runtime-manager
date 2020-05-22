@@ -1,4 +1,4 @@
-= Configure Alerts
+= Alerts
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -11,45 +11,55 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-Set up alerts that send an email notification when certain application or server events occur. 
-Runtime Manager includes several *standard alert* types that trigger notifications for common events:
+You to set up alerts to send an email notification when specific application or server events occur. 
 
-* An application exceeds a certain number of events processed within a certain time period.
+Runtime Manager includes several standard alert types that trigger notifications for common events:
+
+* An application exceeds a specific number of events processed within a time period.
 * A deployment completes with success or failure.
 * CloudHub encounters a problem with the worker on an application via the worker monitoring system.
 * A server is disconnected or deleted.
 
-CloudHub also enables you to create a custom alert for an application. Custom alerts are triggered by notifications that your application sends to Runtime Manager console using the CloudHub Connector. See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information. Custom alerts are available only for applications deployed to CloudHub. You cannot configure an alert for an application deployed to a customer-hosted runtime.
-
-== Access Alerts
-
-You can view alerts in Runtime Manager in a few ways.
-
-* In Runtime Manager, click the *Alerts* tab to display a full list of alerts on your account.
-* In the menu on the left, click the *Applications* tab, click an application to open the xref:managing-deployed-applications.adoc#applications-dashboard[application dashboard], then click the *View Associated Alerts* link.
-* In the menu on the left, click the *Servers* tab, click a server to open the xref:managing-servers.adoc#servers-dashboard[servers dashboard], then click the *View Associated Alerts* link.
+You can also create custom alerts for applications deployed to CloudHub.
+Custom alerts are triggered by notifications that your application sends to the Runtime Manager console
+using Anypoint Connector for CloudHub.
+See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
 
 == Rate Limits on Alerts
 
-Anypoint Platform enforces rate limits that determine how often an alert is triggered. These limits prevent excessive emails from being sent. The rate limit is determined by several factors, including:
+Anypoint Platform enforces rate limits that determine how often an alert is triggered.
+These limits prevent excessive emails from being sent.
+The rate limit is determined by several factors, including:
 
 * CloudHub
 +
-When using CloudHub-Connector to trigger notifications and alerts, there is a limit of five custom application alerts per IP address, per second. If an application uses multiple workers, this limit is multiplied by the number of workers assigned to the application, since the limitation is enforced per IP. +
-Custom notifications that trigger emails are also subject to the rate limit on email notifications described below.
+When using CloudHub Connector to trigger notifications and alerts,
+the limit is five custom application alerts per IP address, per second.
+If an application uses multiple workers, this limit is multiplied by the number of workers
+assigned to the application, because the limitation is enforced per IP address.
++
+Custom notifications that trigger emails are also subject to the rate limit on email notifications.
 * Alert emails
 +
-Both standard and custom alerts have a rate limit where only one alert notification email is sent every 2.5 seconds. This limit is enforced by a combination of organization, environment, alert (name/ID), and resource (application, server, server group, or cluster).
-
+For both standard and custom alerts, the rate limit is one alert notification email sent every 2.5 seconds.
+This limit is enforced by a combination of organization, environment, alert (name/ID), and resource (application, server, server group, or cluster).
 
 == Create an Alert
 
-If you access the alerts screen through any of the paths listed above and you don't have any alerts set up yet, you see the following screen:
+To create an alert:
 
+. In Runtime Manager, click *Alerts* in the left navigation pane.
++
+** If no alerts are set up yet, you see:
++
 .The arrow shows the *Create your first alert* option.
 image::alerts-no-alerts.png[Alerts page with no alerts set up]
+** If your account already has associated alerts, you see:
++
+.The arrow shows the blue plus (*+*) icon in the *Alerts* page.
+image::alerts-create-additional-alert.png[Alerts page with blue plus (+) icon]
 
-. Click the blue plus (*+*) icon to create your first alert.
+. Click the blue plus (*+*) icon to create an alert.
 +
 image::alerts-create-alert.png[Create an Alert page]
 
@@ -60,10 +70,7 @@ image::alerts-create-alert.png[Create an Alert page]
 Unique and meaningful name for the alert
 * *Severity Level*
 +
-Severity level: Critical, Warning, or Info
-+
-[NOTE]
-Different severity levels currently have no effect on alerts, but will in the future when further features are released.
+The severity level for the alert: critical, warning, or info
 
 * *Source*
 +
@@ -74,8 +81,8 @@ This field appears only if your Anypoint Platform account supports local servers
 +
 When the source is *Applications*, applications deployed to either CloudHub or local servers
 +
-[NOTE]
-You can't create a single alert that spans applications deployed to both CloudHub and local servers. You must create two separate alerts to reach both types.
+You can't create an alert that applies to both applications deployed to CloudHub and to local servers.
+You must create separate alerts for each type.
 +
 * *Server type*
 +
@@ -89,17 +96,21 @@ The application or server to apply the alert to
 +
 The condition that triggers the alert
 +
-The options depend on whether your alert is linked to a server, an application running on CloudHub, or an application running locally.
-Some conditions require additional data. See <<Alert Conditions>>.
+The available options depend on whether your alert is linked to a server,
+an application running on CloudHub, or an application running locally.
+Some conditions require additional data.
+See <<Alert Conditions>>.
 * *Subject*
 +
-Subject of the alert email that will be sent.
+Subject of the alert email to send when the alert is triggered.
 +
-The subject can include variables. See <<Alert Properties>>.
+The subject can include variables.
+See <<Alert Properties>>.
 * *Message*
 +
-The body text for the email.
-The message can include variables. See <<Alert Properties>>.
+The body text for the email to send when the alert is triggered.
+The message body can include variables.
+See <<Alert Properties>>.
 * *Recipients*
 +
 The recipients of the alert email
@@ -108,8 +119,8 @@ You can select platform users or enter any email address.
 
 . Click *Create Alert*.
 
-. If an event that meets an alert condition occurs, an email like the following is sent:
-+
+When an event that meets an alert condition occurs, an email like the following is sent:
+
 image::alerts-alert-email.png[Anypoint Platform Alert Notification email]
 
 
@@ -117,188 +128,208 @@ image::alerts-alert-email.png[Anypoint Platform Alert Notification email]
 
 You can select different conditions depending on the alert source.
 Some conditions are simple success or failure notifications such as `Deployment success`.
-Some more complex conditions require you to define parameters that appear as new fields in the form.
+Some more complex conditions require that you define parameters that appear as new fields in the form.
 
-=== Conditions on CloudHub Deployed Applications
-
+=== Conditions for Applications Deployed to CloudHub 
 
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
 image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-
 For applications deployed to CloudHub, the following alert conditions apply:
 
-* *CPU usage - Cloudhub*
+CPU usage - Cloudhub::
 +
+--
 CPU usage of the CloudHub workers that run the application
-+
+
 image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
-+
+
 To enable this condition, you must specify capacity threshold and duration that triggers the alert.
+--
 
-* *Memory usage - Cloudhub*
+Custom application alert::
 +
-Percentage of total memory allocated to the CloudHub workers that run the application, including the memory consumed by the JVM itself
-+
-image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
-+
-To enable this condition, you must specify the capacity threshold and duration that triggers the alert.
+--
+Send alerts when a custom notification contains the specified text
 
-* *Custom Notification alert* – Looks at custom notifications and alerts when one contains specified text.
-+
 image::alerts-conditions-custom.png[Custom application alerts]
-+
-To enable this condition, you must specify the notifications that are the output of a CloudHub connector. This connector must exist in your Mule application. An alert is raised when the text in one of the notifications matches or contains the string that you provide in the *Contains* field. See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
-+
-On *Custom Notification Alerts*, you can access a set of alert properties that you can compile into the notification message to provide more context.
 
+To enable this condition, you must specify the notifications that are the output of CloudHub Connector
+in your Mule application.
+When the text in one of the notifications matches or contains the string that you provide in the *Contains* field, an alert is sent.
+See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
+--
 
-* *Exceeds event traffic threshold*
+Exceeds event traffic threshold::
 +
+--
 image::alerts-conditions-exceeds-traffic.png[Exceeds event traffic threshold]
-+
-To enable this condition, you must specify the duration and capacity threshold that triggers the alert. This threshold applies to all events of any type.
+
+To enable this condition, specify the capacity threshold and duration that triggers the alert.
+This threshold applies to all events of any type.
 If during a certain period you get more than N events, you get an alert.
 The meaning of this depends on the events you are tracking on your application.
 For more information on event tracking, see xref:mule-runtime::business-events.adoc[Business Events].
+--
+
+Memory usage - Cloudhub::
++
+--
+Percentage of total memory allocated to the CloudHub workers that run the application, including the memory consumed by the JVM itself
+
+image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
+
+To enable this condition, you must specify the capacity threshold and duration that triggers the alert.
+--
 
 
-* *Secure data gateway disconnected*
-* *Secure data gateway connected*
-* *Worker not responding*
-* *Deployment success*
-* *Deployment failure*
 
-=== Conditions on Locally Deployed Applications
+The following alerts for applications deployed to CloudHub require no additional parameters:
+
+* Deployment failed
+* Deployment success
+* Secure data gateway connected
+* Secure data gateway disconnected
+* Worker not responding
+
+
+=== Conditions for Applications Deployed to Local Servers 
 
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
+For applications deployed to local servers, the following alert conditions apply:
 
-On an application deployed to local servers, you can select any of these alert conditions:
-
-* *Number of errors*
+Number of errors::
 +
+--
 image::alerts-conditions-number-errors.png[Number of errors]
-+
+
 You must provide the number of errors that triggers the alert.
 The time unit is per minute. An alarm is triggered when the error count goes over the threshold number in the timeslot of one minute.
+--
 
-
-* *Number of Mule messages*
+Number of Mule messages::
 +
+--
 image::alerts-conditions-number-mule-messages.png[Number of Mule messages]
-+
+
 You must provide the number of Mule messages, since the application was started, that trigger the alert.
+--
 
-
-* *Response time*
+Response time::
 +
+--
 image::alerts-conditions-response-time.png[Response time]
-+
+
 You must provide the maximum accepted response time--anything over this value triggers the alert.
+--
 
 
-* *Application Deployment success*
-* *Application Deployment failure*
-* *Application undeployed*
+The following alerts for applications deployed to local servers require no additional parameters:
+
+* Application undeployed
+* Deployment failure
+* Deployment success
 
 
-=== Conditions on Servers
+=== Conditions for Local Servers
 
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
+The available alert events depends on server type.
+The following alerts are available on all target types (servers, server groups, and clusters):
 
-The available alert events vary depending on the *Server Type* field. The alerts detailed below are available on all target types (servers, server groups, and clusters):
 
-
-* *CPU Usage*
+Server CPU usage::
 +
+--
 CPU usage of the servers.
-+
+
 image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
-+
+
 To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
+--
 
-
-
-* *Memory Usage*
+Server Load average::
 +
-Total memory usage in MB on the server.
-+
-image::alerts-conditions-servers-memory.png[Server memory usage alert condition]
-+
-To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
-
-* *Server Load Average*
-+
+--
 Average processing for a given time period.
-+
+
 image::alerts-conditions-servers-load-avg.png[Server load average alert condition]
 
-+
 [NOTE]
 Windows environments don’t provide this information, so this metric isn't available on Windows environments.
+--
 
-* *Server Thread Count*
+Server Memory usage::
 +
+--
+Total memory usage in MB on the server.
+
+image::alerts-conditions-servers-memory.png[Server memory usage alert condition]
+
+To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
+--
+
+Server Thread count::
++
+--
 Number of threads on the JVM.
-+
+
 image::alerts-conditions-servers-thread-count.png[Server thread count alert condition]
+--
 
-
-The following alerts vary according to the target type (server, server groups, or clusters), and require no additional parameters:
+The following alerts vary according to the target type (server, server groups, or clusters),
+and require no additional parameters:
 
 Servers::
 +
 --
-* *Server up*
-* *Server disconnected*
-* *New server registered*
-* *Agent's version changed*
-* *Runtime's version changed*
+* *Agent version changed*
+* *Runtime version changed*
+* *Server connected*
 * *Server deleted*
+* *Server disconnected*
 --
 
 Server Groups::
 +
 --
-* *Server added to a Server Group*
-* *Server removed from a Server Group*
-* *Server added to a Server Group*
-* *Server removed from a Server Group*
-* *Server group is up*
-* *Server group is partially up (some servers are not running)*  !!!!!!
-* *Server group is down*
-* *A server group's node came up*
-* *A server group's node went down*
+* *Server Group connected*
+* *Server Group deleted*
+* *Server Group disconnected*
+* *Server Group's node connected*
+* *Server Group's node disconnected*
+* *Server added to Server Group*
+* *Server removed from Server Group*
 --
 
 Clusters::
 +
 --
-* *Cluster Created*
-* *Cluster Deleted*
-* *Server added to a Cluster*
-* *Server removed from a Cluster*
-* *Cluster is up*
-* *Cluster is down*
-* *A cluster's node came up*
-* *A cluster's node went down*
+
+* *Cluster connected*
+* *Cluster deleted*
+* *Cluster disconnected*
 * *Cluster presents visibility issues*
+* *Cluster's node connected*
+* *Cluster's node disconnected*
+* *Server added to Cluster*
+* *Server removed from Cluster*
 --
 
 
 == Alert Properties
 
-The following properties are available and can be used in the alert Email to, Subject, and body fields.
+You can use the following properties in the alert email *Subject* and *Message* fields:
 
 [%header%autowidth.spread]
 |===
@@ -320,83 +351,99 @@ The following properties are available and can be used in the alert Email to, Su
 
 |===
 
-== Manage Alerts
+== Access Alerts
 
-To see the alerts for an application or server:
+You can access alerts in Runtime Manager in several ways.
 
-. In the *Applications* or *Servers* list, click the status of the application or server.
-. Click the *View Associated Alerts* link in the details pane.
+To display all the alerts associated with your account, click *Alerts* in the left navigation pane:
+
+.The arrow shows the *Alerts* menu.
+image::alerts-view-all-alerts-tab.png[Alerts menu]
+
+From this page you can:
+
+* Search for a string in an alert name.
+* Filter the displayed alerts by source, condition, severity, or status.
+* Click an alert name to change its settings.
+* Select an alert to display its status, settings, and history in the details pane:
++
+.The arrow shows the alert history in the details pane.
+image::alerts-history.png[Alert history in the details pane]
+
+To display the alerts associated with an application or server:
+
+. In the *Applications* or *Servers* list, click the *Status* column for the application or server.
+. Click the *View Associated Alerts* link in the details pane:
 +
 .The arrow shows the *View Associated Alerts* link in the details pane.
 image::alerts-view-details-pane.png[View Associated Alerts link in the details pane]
 
-To see a list of all alerts, click *Alerts* in the left panel:
-.The arrow shows the *Alerts* tab.
-image::alerts-view-all-alerts-tab.png[Alerts tab]
+
+To display the alert history for an application or server:
+
+. In the *Applications* or *Servers* list, click the application or server name.
+. Click *Settings* in the left navigation pane.
+. Click the *Alerts History* tab:
++
+.The arrow shows the *Alerts History* tab on the *Settings* page.
+image::alerts-settings-alerts-history-tab.png[Alerts History tab on the Settings page]
 
 
-From this page you can filter the displayed alerts, click on an alert name to change its settings,
-or click the icon next to one to open its panel and view its settings.
 
-=== Switch an Alert On or Off
+== Manage Alerts
 
-To change an alert's state, select one or more alerts and toggle the switch.
+To manage alerts from the *Alerts* page, select one or more alerts in the list 
+and select an action in the details pane:
 
-To turn alerts off, toggle the switch:
+.The screenshot shows (*1*) the select toggle, (*2*) the alert state switch, (*3*) the *Duplicate* icon, and (*4*) the *Delete* icon.
+image::alerts-multi-select-manage.png[Select toggle, alert state switch, Duplicate icon, and Delete icon]
 
+
+Switch an alert on or off::
++
+--
+All users of Anypoint Platform, even those without permissions to create alerts,
+can control whether email alerts are sent by switching an alert on or off.
+
+When you change the state of an alert, the change is applied for all users who 
+receive email notifications for that alert.
+
+* To turn alerts off, click the toggle switch:
++
 .The arrow shows the alert switch on.
 image::alerts-switch-on.png[Alert switch on]
-
++
 The value in the *Active* column changes from *Yes* to *No*.
 
-To turn alerts on, toggle this switch:
-
+* To turn alerts on, click the toggle switch:
++
 .The arrow shows the alert switch off.
 image::alerts-switch-off.png[Alert switch off]
-
++
 The value in the *Active* column changes from *No* to *Yes*.
+--
 
-
-All users of Anypoint Platform, even those without permissions to create alerts, can control whether email alerts are sent by setting each alert to active or inactive.
-
-[NOTE]
-When an alert is disabled or enabled the change is applied for all users who receive email notifications for that alert.
-
-=== Duplicate an Alert
-
-Select one or several alerts and then, from the alert panel, click the *Duplicate* icon.
-You can then edit your new alert.
-
+Create a copy of an alert::
++
+--
+Select one or more alerts and click the *Duplicate* icon in the details pane:
 
 .The arrow shows the *Duplicate* alert icon.
 image::alerts-duplicate.png[Duplicate alert icon]
 
+Runtime Manager creates a copy of the alert with `-copy` appended to the name of the original alert.
+--
 
-=== Delete an Alert
-
-Select one or several alerts and then, from the alert panel, click the *Delete* (trash can) icon.
+Delete an alert::
++
+--
+Select one or more alerts and click the *Delete* (trash can) icon in the details pane:
 
 .The arrow shows the *Delete* alert (trash can) icon.
 image::alerts-delete.png[Delete (trash can) icon]
 
-
-== View Alert History
-
-
-From the *Alerts* page, click an alert name to open its corresponding panel. From this panel you can <<Editing Existing Alerts, edit the alert>>, view its status and settings, and view a full history of all of the times the alert has been triggered:
-
-.The arrow shows the alert history in the details pane.
-image::alerts-history.png[Alert history in the details pane]
-
-
-You can also see the alert history record of an individual server or of an application that's deployed to one.
-
-. On the *Applications* tab, click the *Manage Application* button (for applications deployed on premises), or click the *Manage Server* button on the *Servers* tab.
-. Click the *Alerts History* tab. +
-The history record for the alert is displayed:
-+
-.The arrow shows the *Alerts History* tab on the *Settings* page.
-image::alerts-settings-alerts-history-tab.png[Alerts History tab on the Settings page]
+When prompted, click *OK* to confirm deletion.
+--
 
 == See Also
 
