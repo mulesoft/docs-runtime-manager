@@ -119,13 +119,14 @@ When you call the REST APIs, the following status codes are returned:
 The Location header contains the location of the resource.
 |404 |The resource was not found.
 |409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
+|429 |The operation was unsuccessful due to rate lmit. 
+
+See below for details
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
-|502 |The operation was unsuccessful due to rate lmit. 
-
-Please refer to the RAML specs in https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API Portal] for more information.
 |===
+
 
 When errors occur, such as a 500 status code, the HTTP response contains a JSON response with an error message:
 
@@ -139,6 +140,12 @@ Date: Mon, 10 Aug 2015 00:12:55 GMT
 {
   message : "Some error message."
 }
+----
+
+For a 429 status code. The folling rate limits are in effect 
+----
+1.Logs query is allowled one call per second on each application
+2.Logs download is allowled one call per minute on each application
 ----
 
 
