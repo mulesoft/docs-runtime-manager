@@ -119,9 +119,10 @@ When you call the REST APIs, the following status codes are returned:
 The Location header contains the location of the resource.
 |404 |The resource was not found.
 |409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
-|429 |The operation was unsuccessful due to rate lmit. 
+|429 a|The operation was unsuccessful due to rate limit.
 
-See below for details
+* Logs query limit is one call per second on each application.
+* Logs download limit is one call per minute on each application.
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
@@ -142,11 +143,7 @@ Date: Mon, 10 Aug 2015 00:12:55 GMT
 }
 ----
 
-For a 429 status code. The folling rate limits are in effect 
-----
-1.Logs query is allowed one call per second on each application
-2.Logs download is allowed one call per minute on each application
-----
+
 
 
 == See Also
