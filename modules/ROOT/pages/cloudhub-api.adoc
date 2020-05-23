@@ -121,8 +121,8 @@ The Location header contains the location of the resource.
 |409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
 |429 a|The operation was unsuccessful due to rate limit.
 
-* Logs query limit is one call per second on each application.
-* Logs download limit is one call per minute on each application.
+* Logs query('v2/applications/{domain}/logs','v2/applications/{domain}/deployments/{deploymentId}/logs','v2/applications/{domain}/instances/{instanceId}/logs') limit is one call per second on each application.
+* Logs download(v2/applications/{domain}/instances/{instanceId}/log-file) limit is one call per minute on each application.
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
