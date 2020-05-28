@@ -11,38 +11,39 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-You to set up alerts to send an email notification when specific application or server events occur. 
+You can set up alerts, which send email notifications when application or server events occur. 
 
 Runtime Manager includes several standard alert types that trigger notifications for common events:
 
-* An application exceeds a specific number of events processed within a time period.
+* An application exceeds a specific number of events processed within a timeframe.
 * A deployment completes with success or failure.
 * CloudHub encounters a problem with the worker on an application via the worker monitoring system.
 * A server is disconnected or deleted.
 
 You can also create custom alerts for applications deployed to CloudHub.
-Custom alerts are triggered by notifications that your application sends to the Runtime Manager console
-using Anypoint Connector for CloudHub.
-See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
+Custom alerts are triggered when your application sends notifications to the Runtime Manager console
+using Anypoint Connector for CloudHub (CloudHub Connector).
+See xref:custom-application-alerts.adoc[Custom Application Alerts] for information.
 
 == Rate Limits on Alerts
 
-Anypoint Platform enforces rate limits that determine how often an alert is triggered.
-These limits prevent excessive emails from being sent.
-The rate limit is determined by several factors, including:
+Anypoint Platform enforces rate limits that determine how often an alert is triggered and prevent excessive emails from being sent.
+The following factors determine the rate limit:
 
 * CloudHub
 +
 When using CloudHub Connector to trigger notifications and alerts,
-the limit is five custom application alerts per IP address, per second.
+the rate limit is five custom application alerts per IP address, per second.
+This limit is enforced by IP address. 
 If an application uses multiple workers, this limit is multiplied by the number of workers
-assigned to the application, because the limitation is enforced per IP address.
+assigned to the application.
 +
 Custom notifications that trigger emails are also subject to the rate limit on email notifications.
 * Alert emails
 +
 For both standard and custom alerts, the rate limit is one alert notification email sent every 2.5 seconds.
-This limit is enforced by a combination of organization, environment, alert (name/ID), and resource (application, server, server group, or cluster).
+This limit is enforced by a combination of organization, environment, alert (name/ID), and resource
+(application, server, server group, or cluster).
 
 == Create an Alert
 
@@ -50,13 +51,13 @@ To create an alert:
 
 . In Runtime Manager, click *Alerts* in the left navigation pane.
 +
-** If no alerts are set up yet, you see:
+** If no alerts are set up, you see:
 +
 .The arrow shows the *Create your first alert* option.
 image::alerts-no-alerts.png[Alerts page with no alerts set up]
 ** If your account already has associated alerts, you see:
 +
-.The arrow shows the blue plus (*+*) icon in the *Alerts* page.
+.The arrow shows the blue plus (*+*) icon on the *Alerts* page.
 image::alerts-create-additional-alert.png[Alerts page with blue plus (+) icon]
 
 . Click the blue plus (*+*) icon to create an alert.
@@ -81,8 +82,8 @@ This field appears only if your Anypoint Platform account supports local servers
 +
 When the source is *Applications*, applications deployed to either CloudHub or local servers
 +
-You can't create an alert that applies to both applications deployed to CloudHub and to local servers.
-You must create separate alerts for each type.
+You can't create an alert that applies to both applications deployed to CloudHub and local servers.
+You must create separate alerts for each deployment type.
 +
 * *Server type*
 +
@@ -102,7 +103,7 @@ Some conditions require additional data.
 See <<Alert Conditions>>.
 * *Subject*
 +
-Subject of the alert email to send when the alert is triggered.
+The subject of the alert email to send when the alert is triggered.
 +
 The subject can include variables.
 See <<Alert Properties>>.
@@ -127,7 +128,7 @@ image::alerts-alert-email.png[Anypoint Platform Alert Notification email]
 == Alert Conditions
 
 You can select different conditions depending on the alert source.
-Some conditions are simple success or failure notifications such as `Deployment success`.
+Some conditions are simple success or failure notifications, such as `Deployment success`.
 Some more complex conditions require that you define parameters that appear as new fields in the form.
 
 === Conditions for Applications Deployed to CloudHub 
@@ -142,48 +143,47 @@ For applications deployed to CloudHub, the following alert conditions apply:
 CPU usage - Cloudhub::
 +
 --
-CPU usage of the CloudHub workers that run the application
+The CPU usage of the CloudHub workers that run the application reaches a capacity threshold in a specified period.
 
 image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
 
-To enable this condition, you must specify capacity threshold and duration that triggers the alert.
+To enable this condition, specify the capacity threshold and duration that triggers the alert.
 --
 
 Custom application alert::
 +
 --
-Send alerts when a custom notification contains the specified text
+The custom notification contains the specified text.
 
 image::alerts-conditions-custom.png[Custom application alerts]
 
-To enable this condition, you must specify the notifications that are the output of CloudHub Connector
+To enable this condition, specify the notification text from the CloudHub Connector
 in your Mule application.
-When the text in one of the notifications matches or contains the string that you provide in the *Contains* field, an alert is sent.
+When the text in one of the notifications contains the string, an alert is sent.
 See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
 --
 
 Exceeds event traffic threshold::
 +
 --
+The number of events of any type exceeds a threshold in a specified period.
+
 image::alerts-conditions-exceeds-traffic.png[Exceeds event traffic threshold]
 
 To enable this condition, specify the capacity threshold and duration that triggers the alert.
-This threshold applies to all events of any type.
-If during a certain period you get more than N events, you get an alert.
-The meaning of this depends on the events you are tracking on your application.
-For more information on event tracking, see xref:mule-runtime::business-events.adoc[Business Events].
+This alert condition depends on the events you are tracking in your application.
+For information, see xref:mule-runtime::business-events.adoc[Business Events].
 --
 
 Memory usage - Cloudhub::
 +
 --
-Percentage of total memory allocated to the CloudHub workers that run the application, including the memory consumed by the JVM itself
+The percentage of the total memory allocated to the CloudHub workers that run the application, including the memory consumed by the JVM itself, reaches a capacity threshold for a specified period.
 
 image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
 
-To enable this condition, you must specify the capacity threshold and duration that triggers the alert.
+To enable this condition, specify the capacity threshold and duration that triggers the alert.
 --
-
 
 
 The following alerts for applications deployed to CloudHub require no additional parameters:
@@ -207,26 +207,32 @@ For applications deployed to local servers, the following alert conditions apply
 Number of errors::
 +
 --
+The number of errors in one minute reaches a threshold.
+
 image::alerts-conditions-number-errors.png[Number of errors]
 
-You must provide the number of errors that triggers the alert.
-The time unit is per minute. An alarm is triggered when the error count goes over the threshold number in the timeslot of one minute.
+To enable this condition, specify the number of errors per minute that triggers the alert.
+
 --
 
 Number of Mule messages::
 +
 --
+The number of Mule messages, since the application started, reaches the specified limit.
+
 image::alerts-conditions-number-mule-messages.png[Number of Mule messages]
 
-You must provide the number of Mule messages, since the application was started, that trigger the alert.
+To enable this condition, specify the number of Mule messages that triggers the alert.
 --
 
 Response time::
 +
 --
+The response time reaches the specified limit.
+
 image::alerts-conditions-response-time.png[Response time]
 
-You must provide the maximum accepted response time--anything over this value triggers the alert.
+To enable this condition, specify the maximum response time that triggers the alert.
 --
 
 
@@ -244,47 +250,51 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-The available alert events depends on server type.
-The following alerts are available on all target types (servers, server groups, and clusters):
+The available alert events depend on the server type.
+The following alerts are available for all target types (servers and nodes in server groups and clusters):
 
 
 Server CPU usage::
 +
 --
-CPU usage of the servers.
+The CPU usage of the servers that run the application reaches a capacity threshold in a specified period.
 
 image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
 
-To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
+To enable this condition, specify the CPU usage threshold and duration that triggers the alert.
 --
 
 Server Load average::
 +
 --
-Average processing for a given time period.
+The average processing load of the server is above or below a threshold in a specified period.
 
 image::alerts-conditions-servers-load-avg.png[Server load average alert condition]
 
+To enable this condition, specify the load threshold and duration that triggers the alert.
+
 [NOTE]
-Windows environments don’t provide this information, so this metric isn't available on Windows environments.
+Windows environments don't provide this information, so this metric isn't available on Windows environments.
 --
 
 Server Memory usage::
 +
 --
-Total memory usage in MB on the server.
+The total memory usage (in MB) on the server is above or below a threshold in a specified period.
 
 image::alerts-conditions-servers-memory.png[Server memory usage alert condition]
 
-To enable this condition, specify values in the duration and capacity threshold parameters that, when crossed, trigger the alert.
+To enable this condition, specify the memory usage threshold and duration that triggers the alert.
 --
 
 Server Thread count::
 +
 --
-Number of threads on the JVM.
+The thread count on the JVM is above or below a threshold for a specified period.
 
 image::alerts-conditions-servers-thread-count.png[Server thread count alert condition]
+
+To enable this condition, specify the thread count threshold and duration that triggers the alert.
 --
 
 The following alerts vary according to the target type (server, server groups, or clusters),
@@ -335,18 +345,18 @@ You can use the following properties in the alert email *Subject* and *Message* 
 |===
 |Variable |Description |Applicable Alerts
 
-|`${app}` |Name of the application triggering the alert. |All app alerts
+|`${app}` |Name of the application triggering the alert |All app alerts
 |`${currentValue}` |Current value of metric that triggers the alert |Conditional
-|`${message}` |Message from the notification triggering the alert. |Custom Application Notification
-|`${name}` |Name of the target (server, server group, or cluster) triggering the alert. |All server alerts
+|`${message}` |Message from the notification triggering the alert |Custom Application Notification
+|`${name}` |Name of the target (server, server group, or cluster) triggering the alert |All server alerts
+|`${operator}` | An operator, such as: < > = |Conditional
 |`${period}` |Timeframe over which to measure |Conditional
 |`${periodTimeUnit}` |Period time unit |Conditional
-|`${operator}` | An operator, such as: < > = |Conditional
-|`${priority}` |Priority of the notification triggering the alert. |Custom Application Notification
-|`${resource}` | Name of the resource triggering the alert, such as server or app. | All
-|`${severity}` | Severity of the alert. |All
-|`${state}` | State of the resource triggering the alert, such as Running or Disconnected. | All
-|`${threshold}` |Count over timeframe which triggers the alert |Conditional
+|`${priority}` |Priority of the notification triggering the alert |Custom Application Notification
+|`${resource}` | Name of the resource triggering the alert, such as server or app | All
+|`${severity}` | Severity of the alert |All
+|`${state}` | State of the resource triggering the alert, such as Running or Disconnected| All
+|`${threshold}` |Count over the timeframe which triggers the alert |Conditional
 |`${value}` | A value associated with an element | Conditional
 
 |===
@@ -360,8 +370,9 @@ To display all the alerts associated with your account, click *Alerts* in the le
 .The arrow shows the *Alerts* menu.
 image::alerts-view-all-alerts-tab.png[Alerts menu]
 
-From this page you can:
+From this page, you can:
 
+* Create an alert.
 * Search for a string in an alert name.
 * Filter the displayed alerts by source, condition, severity, or status.
 * Click an alert name to change its settings.
@@ -402,7 +413,7 @@ image::alerts-multi-select-manage.png[Select toggle, alert state switch, Duplica
 Switch an alert on or off::
 +
 --
-All users of Anypoint Platform, even those without permissions to create alerts,
+All users of Anypoint Platform, even those without permission to create alerts,
 can control whether email alerts are sent by switching an alert on or off.
 
 When you change the state of an alert, the change is applied for all users who 
@@ -442,7 +453,7 @@ Select one or more alerts and click the *Delete* (trash can) icon in the details
 .The arrow shows the *Delete* alert (trash can) icon.
 image::alerts-delete.png[Delete (trash can) icon]
 
-When prompted, click *OK* to confirm deletion.
+When prompted, click *OK* to confirm the deletion.
 --
 
 == See Also
