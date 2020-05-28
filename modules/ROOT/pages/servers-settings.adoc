@@ -1,22 +1,35 @@
-= To Access Server Settings (Hybrid)
+= Access Server Settings
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The *Settings* page can be accessed by either:
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-* Clicking the *Manage Server*, *Manage Group*, or *Manage Cluster* button on the right panel that opens when you select a server.
+Use the *Settings* page to configure server properties and view alerts. You can also perform other actions from this page, such as deleting a server group.  
 
+To access the server *Settings* page:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click *Servers* in the left menu.
+. Either: 
 +
-image::managing-servers-ebc52.png[]
-
-* Directly clicking on the name of the server, group, or cluster on the table.
-
+** Click the *Type* column to display the details pane and click *Manage Server*, *Manage Group*, or *Manage Cluster*:
 +
-image::managing-servers-baa89.png[]
+.The arrow shows the *Manage Server* button in the details pane.
+image::rtm-view-server-settings.png[*Manage Server* button]
+** Click the name of the server, server group, or cluster on the *Servers* page and then click *Settings*:
++
+.The arrow shows the option to navigate to the *Settings* page.
+image::rtm-server-settings-page.png[*Settings* page]
 
-The *Settings* page contains the same information that's accessible on the right panel of the *Servers* section, with the addition of an *Alerts History* tab, that displays a record of the triggered alerts on this server. 
+
 
 == See Also
 
-xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager]
+* xref:alerts-on-runtime-manager.adoc[Alerts]
+* xref:servers-properties-view.adoc[Configure Server Properties]
+* xref:servers-properties-create.adoc[Create Custom Server Properties]
+* xref:servers-actions.adoc[Shut Down, Restart, or Delete Servers]

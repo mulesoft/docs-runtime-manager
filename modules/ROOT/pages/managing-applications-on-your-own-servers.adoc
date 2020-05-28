@@ -1,22 +1,23 @@
-= Managing Applications On Your Own Servers
+= Managing Applications on Your Servers
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, managing, monitoring, deploy, runtime manager, arm
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-After you have xref:managing-servers.adoc#add-a-server[added a server] and xref:deploying-to-your-own-servers.adoc[deployed an application] to it, you can use the Runtime Manager to monitor and manage your application.
+
+After you xref:servers-create.adoc[add a server] and xref:deploying-to-your-own-servers.adoc[deploy an application] to it, you can use the Runtime Manager to monitor and manage your application.
 
 Depending on if your application is deployed to xref:deploying-to-cloudhub.adoc[CloudHub] or to xref:deploying-to-your-own-servers.adoc[your own servers], there is a different set of possible actions you can perform on it, once deployed. This page focuses on the actions that are specific to applications deployed to your own servers. To view the basic management tools that are common to both types of deployment targets, see xref:managing-deployed-applications.adoc[Managing Deployed Applications].
 
-With applications deployed to xref:managing-applications-on-your-own-servers.adoc[your own servers] you can do the following:
+With applications deployed to your own servers, you can:
 
-* xref:monitoring.adoc[Monitor Applications] and the servers they run on
-* xref:managing-servers.adoc[Manage Servers]
+* xref:monitoring.adoc[Monitor applications] and the servers they run on
+* xref:managing-servers.adoc[Manage servers]
 
 [NOTE]
 This doc covers deployments on-premises that are deployed both through the https://anypoint.mulesoft.com[cloud based] or the Private Cloud Edition of the Anypoint Platform. Some of the features described in this page are not yet available on the Anypoint Platform Private Cloud Edition. See xref:deployment-strategies.adoc[Deployment Strategies] for a clear distinction. If you’re interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
@@ -30,7 +31,7 @@ If you select any of the applications on the Applications tab, a panel opens on 
 
 image::managing-applications-on-your-own-servers-26ef4.png[]
 
-What this dashboard displays depends on if your application is deployed on xref:managing-applications-on-cloudhub.adoc[CloudHub] or on xref:managing-applications-on-your-own-servers.adoc[Mule].
+What this dashboard displays depends on if your application is deployed on xref:managing-applications-on-cloudhub.adoc[CloudHub] or on Mule.
 
 Applications deployed to Mule show you the status, the time of the last modification and the deployed application ZIP file – which you can change from this menu through the *Choose File* button. Applications deployed on clusters and server groups additionally display the list of servers and the status of each.
 
@@ -78,11 +79,19 @@ image::managing-applications-on-your-own-servers-96463.png[]
 [NOTE]
 Note that the server must be running for this option to be available. In case of a Cluster or Server Group, at least one of its nodes must be running.
 
+== Download an Application Archive
+
+Runtime Manager doesn't support downloading the application archive (ZIP or JAR file) from the application *Settings* page for an application deployed to an on-premises server.
+However, you can download the archive using an ARM REST Services API call or the Anypoint command-line interface.
+
+For information, see https://help.mulesoft.com/s/article/How-to-Download-an-Archive-of-an-Application-Deployed-in-Hybrid-On-Premise-from-Anypoint-Platform-using-API-and-CLI[How to Download an Archive of an Application Deployed in Hybrid from Anypoint Platform using API and CLI].
+
+
 == See Also
 
 Additional tools for managing your applications:
 
-* xref:managing-servers.adoc[Managing Servers] contains information about how to register servers, server groups and clusters to be able to deploy to them and how to manage them.
+* xref:managing-servers.adoc[Managing Servers] contains information about how to register servers, server groups, and clusters to be able to deploy to them and how to manage them.
 * Learn how to first xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
 * xref:managing-deployed-applications.adoc[Managing Deployed Applications] contains more information on how to manage your application once deployed
 * See how you can xref:monitoring.adoc[Monitor your Applications]

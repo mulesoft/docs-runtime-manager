@@ -1,17 +1,34 @@
-= About Server Groups (Hybrid)
+= Server Groups
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-A server group is a set of servers that act as a single deployment target for applications, which provides the advantage of not having to deploy an application to each server individually. Applications are deployed to each server in the server group through a single deployment and run in isolation from the application instances running on the other servers. 
 
-Deploying applications to servers in server groups provides redundancy so that even in cases of disaster, applications can be restored more seamlessly and quickly with less downtime. This also helps eliminate duplication of effort because there is no need to restore each application separately.  
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-In Runtime Manager, you can create servers and server groups, and add servers to server groups. 
+A server group is a set of servers that act as a single deployment target for applications so that you don't have to deploy applications to each server individually. 
+
+Deploying applications to servers in server groups provides redundancy so you can restore applications more seamlessly and quickly, with less downtime.   
+
+Unlike clusters, application instances in a server group run in isolation from the application instances running on the other servers in the group. If you experience concurrency issues with server groups, consider grouping servers in clusters. 
+
+
+== Requirements and Restrictions 
+
+* All servers in a server group must be running the same version of Mule runtime engine and the same version of Runtime Manager agent.
+* You can create a server group with servers with the Running or the Disconnected status, but these can't be in the same group as servers with the Created status. 
+* You can create a server group with servers with the Created status.
+* To add a server on which existing applications are currently running to a server group, first stop and delete the applications from the server. 
+
 
 == See Also
 
-* xref:servers-create.adoc[Create a Server (Hybrid)]
-* xref:server-group-create.adoc[Create a Server Group (Hybrid)]
-* xref:server-group-add.adoc[Add a Server to a Server Group]
+* xref:managing-deployed-applications.adoc#server_status_states[Server Status States]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
+* xref:server-group-create.adoc[Create Server Groups (Hybrid)]
+* xref:server-group-add.adoc[Add Servers to a Server Group]
 * xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]
+* xref:mule-runtime::mule-high-availability-ha-clusters.adoc#the-benefits-of-clustering[Benefits of Clustering]
+* xref:mule-runtime::mule-high-availability-ha-clusters.adoc#concurrency-issues-solved-by-clusters[Concurrency Issues Solved by Clusters]

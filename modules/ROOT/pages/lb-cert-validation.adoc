@@ -3,34 +3,46 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If at least one CA certificate is provided for the SSL endpoint, the load balancer passes the client certificate data to the API using the HTTP headers below:
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
-== X-SSL-Client-Verify
+If at least one CA certificate is provided for the SSL endpoint, the load balancer passes the client certificate data to the API using these HTTP headers:
 
-This header returns either `SUCCESS`, `FAILED`, or `NONE`
-Only after `SUCCESS`, the client is verified. +
-It returns `NONE` when the certificate is not present and `FAILED` when other validation problems occur.
+* X-SSL-Client-Verify
++
+Returns one of:
 
-== X-SSL-Client-DN
+** `SUCCESS`
++
+The client is verified only after `SUCCESS`.
+** `NONE` when the certificate is not present
+** `FAILED` when other validation problems occur
 
-Contains the full distinguished name of the client certificate.
+* X-SSL-Client-DN
++
+Contains the full distinguished name of the client certificate
 
-== X-SSL-Issuer
+* X-SSL-Issuer
++
+Contains the full distinguished name of the issuing certificate
 
-Contains the full distinguished name of the issuing certificate.
+* X-SSL-Client-Serial
++
+Contains the serial number used by the CA to identify the client
 
-== X-SSL-Client-Serial
+== Add Revocation Lists
 
-Contains the serial number used by the CA to identify the client.
+The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single, unencrypted PEM-encoded file for upload. The order of items in the CRL is not important.
 
-== Adding Revocation Lists
 
-The CloudHub load balancer can optionally verify client requests against Certificate Revocation Lists (CRL). All CRL files need to be concatenated into a single PEM encoded file for upload. Ordering is not important.
+To add a revocation list when you create the load balancer, use the `--crl` option with the xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command. 
 
-You can add a revocation list when creating the load balancer using the ´--crl´ option in your xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[`load-balancer create`] command.
 
-Additionally, if your load balancer is already created, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955[REST API] to update it. +
-You can send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadbalancers/{lbId}` endpoint adding a `revocationList` element:
+If your load balancer already exists, you can use the 
+https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
+to add or update your CRLs. To do so, send a `PATCH` request to the `/organizations/{myOrgID}/vpcs/{myVpcID}/loadbalancers/{myDlbID}` endpoint and include a `revocationList` element:
 
 [source,json,linenums]
 ----
@@ -43,19 +55,166 @@ You can send a `PATCH` request to the `/organizations/{orgid}/vpcs/{vpcId}/loadb
 ]
 ----
 
-[NOTE]
---
-We recommend you use the CloudHub REST API to programmatically update your revocation lists. +
-In order to get the necessary `vpcId`, and loadbalancerId from the CLI, you can use a xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[`vpc JSON describe`] and xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-describe-json[`load-balancer JSON describe`] command respectively.
---
+To get the values for `myVpcID` and `myDlbID` values from the CLI, use the xref:anypoint-platform-cli-commands.adoc#cloudhub-vpc-describe-json[`cloudhub vpc describe-json`] and xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-describe-json[`cloudhub load-balancer describe-json`] commands.
 
-You can send a PATCH request to your load balancer's endpoint to update any other property.
+To update any other property, send a `PATCH` request to your load balancer endpoint.
+
+== Prepare to Manage Certificate Cipher Suites
+
+To manage cipher suites with the CloudHub API, you must first:
+
+* <<Generate Authorization Bearer Token, Generate your authorization bearer token>>.
+* Retrieve your organization ID using the CloudHub API.
++
+See https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/minor/1.0/console/method/%233736/[Retrieve a single organization].
+* Retrieve your VPC ID using the CloudHub CLI.
++
+See xref:anypoint-platform-cli-commands.adoc#cloudhub-vpc-describe-json[cloudhub vpc describe-json].
+* Retrieve your DLB ID using the CloudHub CLI.
++
+See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-describe-json[cloudhub load-balancer describe-json].
+* Install `jq` to format the JSON output.
++
+See https://stedolan.github.io/jq/[jq].
 
 
-== Certificate Ciphers
+=== Generate Authorization Bearer Token 
 
-Each one of the recommended ciphers suites listed have a good balance between compatibility and security for your SSL endpoint
-offer forward secrecy, except RC4-SHA which is there to support Internet Explorer 8.
+To generate your authorization bearer token for Anypoint Platform:
+
+. Send your Anypoint Platform user name and password to the CloudHub API:
++
+[source,json,linenums]
+----
+curl -X POST 'https://anypoint.mulesoft.com/accounts/login' -H 'Content-Type: application/json' -d '{"username":"myUsername","password":"myPassword"}'
+----
++
+This command returns the access token:
++
+[source,linenums]
+----
+{
+  "access_token": "myAccessToken",
+  "token_type": "bearer",
+  "redirectUrl": "/home/"
+}
+----
+. Copy the value of `access_token` to use in the API calls.
+
+== Manage Certificate Cipher Suites
+
+Using the CloudHub API, you can:
+
+* <<List Available Cipher Suites,List available cipher suites>>.
+* <<Display the Default Cipher Suite for a DLB,Display the default cipher suite for a DLB>>.
+* <<Rotate the Cipher by Replacing the Default Cipher Suite,Rotate the cipher by replacing the default cipher suite>>.
+
+
+
+=== List Available Cipher Suites 
+
+To list available cipher suites for an organization using the Cloudhub API, run this GET call:
+
+[source,linenums]
+----
+curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/loadbalancers/ciphersuites -H 'Authorization: Bearer myAccessToken' | jq
+----
+
+* _myOrgID_ is the organization ID.
+* _myAccessToken_ is the access token you generated.
+
+
+The output includes `ciphers`:
+
+[source,json,linenums]
+----
+
+{
+  "data": [
+      {
+          "id": "5b4a36e1e65c892316abd4d1",
+          "name": "NewDefault",
+          "ciphers": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384",
+          "description": "Default ciphers (new version)",
+          "defaultSuite": true
+      },
+      {
+          "id": "5b4a36e1e65c892316abd4d2",
+          "name": "OldDefault",
+          "ciphers": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4",
+          "description": "Default ciphers (old version)",
+          "defaultSuite": false
+      },
+      {
+          "id": "5b4bfedee4b0f45ab1de6979",
+          "name": "EcdheEcdsaRsa",
+          "ciphers": "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384",
+          "description": "ECDHE ECDSA RSA ciphers",
+          "defaultSuite": false
+      },
+      {
+          "id": "5ba28106e4b00522d78f40b6",
+          "name": "RestrictCiphers",
+          "ciphers": "AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256",
+          "description": "Restricted Ciphers",
+          "defaultSuite": false
+      }
+  ],
+  "total": 4
+}
+----
+
+=== Display the Default Cipher Suite for a DLB 
+
+To display the default cipher suite for a DLB using the Cloudhub API, run this GET call:
+
+[source,linenums]
+----
+curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID -H 'Authorization: Bearer myAccessToken' | jq
+----
+
+In the command: 
+
+* _myOrgID_ is the organization ID.
+* _myVpcID_ is the ID for the VPC.
+* _myDlbID_ is the ID for the DLB.
+* _myAccessToken_ is the access token you generated.
+
+The output includes `defaultSuite`:
+
+[source,linenums]
+----
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
+----
+
+=== Rotate the Cipher by Replacing the Default Cipher Suite
+
+To rotate the cipher by replacing the default cipher suite for a DLB using the Cloudhub API, run this GET call:
+
+[source,json,linenums]
+----
+curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID  -H 'Authorization: Bearer myAccessToken' -H 'Content-Type: application/json' -d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"NewDefault"}]' | jq
+----
+
+In the command: 
+
+* _myOrgID_ is the organization ID.
+* _myVpcID_ is the ID for the VPC.
+* _myDlbID_ is the ID for the DLB.
+* _myAccessToken_ is the access token you generated.
+* `NewDefault` is the value of `name` for a cipher suite from the list of available cipher suites that you generated in <<List Available Cipher Suites>>.
+
+The output now includes `defaultCipherSuite`:
+
+[source,linenums]
+----
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384"
+----
+
+
+=== Recommended Cipher Suites 
+
+The following recommended cipher suites provide a good balance between compatibility and security for your SSL endpoint:
 
 ----
 ECDHE-RSA-AES256-GCM-SHA384
@@ -70,21 +229,25 @@ DHE-RSA-AES256-SHA256
 DHE-RSA-AES128-SHA256
 DHE-RSA-AES256-SHA
 DHE-RSA-AES128-SHA
-ECDHE-RSA-DES-CBC3-SHA
-EDH-RSA-DES-CBC3-SHA
 AES256-GCM-SHA384
 AES128-GCM-SHA256
 AES256-SHA256
 AES128-SHA256
 AES256-SHA
 AES128-SHA
-DES-CBC3-SHA
 ----
 
-ClourHub's dedicated load balancer supports TLSv1.1 and TLSv1.2. Additionally, you can configure TLS v1.0. However, TLS v1.0 is no longer accepted by PCi compliance due to its significant vulnerabilities.
+Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8) does not.
+For this reason, MuleSoft and Microsoft do not recommend using it.
+
+The CloudHub dedicated load balancer supports TLSv1.1 and TLSv1.2.
+Although you can configure TLSv1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
+
+
 
 == See Also
 
-* xref:lb-cert-upload.adoc[About Uploading Certificates]
-* xref:lb-whitelists.adoc[About Whitelists]
-* xref:lb-mapping-rules.adoc[About Mapping Rules]
+* xref:lb-ssl-endpoints.adoc[Configure SSL Endpoints]
+* xref:lb-cert-upload.adoc[Adding Certificates]
+* xref:lb-whitelists.adoc[Whitelists]
+* xref:lb-mapping-rules.adoc[Mapping Rules]

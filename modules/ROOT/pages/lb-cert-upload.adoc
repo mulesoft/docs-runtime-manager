@@ -1,10 +1,20 @@
-= About Uploading Certificates to a Dedicated Load Balancer
+= Adding Certificates to a Dedicated Load Balancer
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The certificate that you upload to your load balancer must be contained in one PEM encoded and unencrypted file.
-This file must contain the entire certificate chain ordered sequentially, as shown in this example:
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
+
+When you create a dedicated load balancer (DLB), you must add at least one certificate.
+You can add additional certificates to a DLB using Runtime Manager or the command-line interface.
+
+The certificate must be contained in one unencrypted, PEM-encoded file.
+
+This file must contain the entire certificate chain ordered sequentially: 
 
 [%header,cols="30a,70a"]
 |===
@@ -17,15 +27,57 @@ This file must contain the entire certificate chain ordered sequentially, as sho
 -----END CERTIFICATE-----
 |===
 
-It is not required to include the root certificate in the certificate chain. However, you must include the ASCII armor in each certificate.
+You don't need to include the root certificate in the certificate chain.
+However, ensure that you include the ASCII armor in each certificate.
 
 
-When creating a load balancer, you can include an SSL Endpoint using Runtime Manager or using the `cloudhub load-balancer create` command from the CLI.
+== Add a Certificate to an Existing Load Balancer
 
-After creating a load balancer, you can upload an SSL Endpoint using Runtime Manager or using the `cloudhub load-balancer ssl-endpoint add` command from the CLI.
+You can add a certificate to an existing DLB using Runtime Manager or the command-line interface.
+
+To add a certificate using Runtime Manager:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*, and then click the load balancer name.
+. In the *Certificates* tab, click *Add certificate*.
++
+.The arrow shows the *Add certificate* option in the *Certificates* tab.
+image::lb-cert-upload-update.png[Add certificate option in the load balancer settings page]
+. Select *Choose File* to upload the public key and private key files, such as:
+
+** Public key file: `example-com-crt.pem`
+** Private key file: `example-com-private.pem`
+
+. Click *Save Certificate*.
+
+To add a certificate to an existing DLB using the CLI: 
+
+----
+cloudhub load-balancer ssl-endpoint add myLB_name example-com-crt.pem example-com-private.pem
+----
+
+
+== Replace a Certificate on an Existing Load Balancer
+
+You can replace a certificate on an existing DLB when the certificate is expiring or needs to be updated.
+
+To replace a certificate using Runtime Manager:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*, and then click the load balancer name.
+. In the *Certificates* tab, click the certificate name.
+. Select *Choose File* to upload the public key and private key files, such as:
+
+** Public key file: `new-example-com-crt.pem`
+** Private key file: `new-example-com-private.pem`
+
+. Click *Done Editing*.
+. Click *Apply Changes*.
+
 
 == See Also
 
-* xref:lb-create-arm.adoc[To Create a Load Balancer using Runtime Manager]
-* xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-create[cloudhub load balancer create]
-* xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]
+* xref:lp-ssl-endpoints[Configure SSL Endpoints]
+* xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
+* xref:lb-create-cli.adoc[Create a Load Balancer with the Anypoint Platform CLI]
+* xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]

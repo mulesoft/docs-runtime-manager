@@ -1,27 +1,31 @@
-= Delete a Cluster (Hybrid)
+= Delete Clusters
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
 When deleting a cluster, consider the following:
+
 * Alert definitions and history for the cluster are deleted.
 * Servers assigned to the cluster are not deleted.
 * Servers assigned to the cluster are restarted.
 * Applications deployed to the servers in the cluster are removed.
 
-To delete a cluster from Runtime Manager:
+To delete a cluster:
 
-. From the Runtime Manager *Servers* tab, click the name of a cluster to show details.
-
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Servers* in the left menu.
+. Click *Cluster* in the *Type* column to display the details pane.
+. Click the cluster status and select *Delete* from the menu:
 +
-image::server-details.png[]
+.The arrow shows the *Delete* option in the details pane.
+image::rtm-cluster-delete.png[Delete option]
 
-. Click the down arrow next to the cluster status and click *Delete Cluster*:
+. In the confirmation window, select the checkbox to verify that you want to delete the cluster, and then click the *Delete Cluster* button.
 
-+
-image::down-arrow-status.png[DeleteServerDownArrow]
-
-. A prompt appears to be sure you want to continue. Click the check box and click *Delete Cluster*:
-
-+
-image::deleteacluster.png[DeleteACluster]
+After deleting the cluster, the servers that were in that cluster are restarted.

@@ -1,26 +1,44 @@
-= Add a Server to a Cluster (Hybrid)
+= Add Servers to a Cluster
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-[NOTE]
-All servers that you add to a cluster must run on the same version of Mule and the same version of the Runtime Manager agent.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-== Prerequisite
 
-. Download and install the same version of the https://www.mulesoft.com/platform/mule[Mule] to register each server. 
-. Run the xref:managing-servers.adoc#add-a-server[amc_setup] script on each server.
+All servers that you add to a cluster must run on the same version of Mule and the same version of Runtime Manager agent.
 
-== Add the Servers to a Cluster
 
-. In Runtime Manager, in the menu on the left, click *Servers*. 
-. In the server list, under *Type*, click the name of the cluster to which to add the server. +
-The management panel opens on the right side of the page.
+//CLUSTER-SERVER SHARED 
+include::partial$cluster-server.adoc[tag=addServerToCluster]
+
+
+== Prerequisites
+
+* At least one server is configured.
+* The cluster is created.
+
+
+== Add Servers to a Cluster
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Servers* in the left menu.
+. Click *Cluster* in the *Type* column to display the details pane:
 +
-image::server-details.png[]
-
-. Click *Add Server*. +
-Servers that are already in a server group or part of a cluster do not appear in the list of available servers. 
+.The arrow shows the *Add Server* button in the details pane.
+image::rtm-cluster-add-server-to-cluster.png[Add Server button]
+. Click *Add Server*. 
++
+Servers that are already in a server group or cluster don't appear in the list of available servers. 
 . In the list, select the servers to add to the cluster, and click *Add Servers*.
-+
-image::addingservertocluster-selectserver.png[Add Another Server]
+
+The servers no longer appear in the *Servers* list. To see the list of servers in the cluster, click the cluster name.
+
+
+== See Also
+
+* xref:cluster-about.adoc#multicast-vs-unicast-clusters[Multicast vs Unicast Clusters]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]

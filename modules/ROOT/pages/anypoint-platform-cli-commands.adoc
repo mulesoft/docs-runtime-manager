@@ -2,19 +2,19 @@
 
 Anypoint Platform CLI provides commands for different use case scenarios:
 
-* <<Commands For Administrating your Anypoint Platform Account>>
+* <<Commands For Administering Your Anypoint Platform Account>>
 * <<Commands for API Manager>>
-* <<Commands for Administrating your Design Center Applications>>
+* <<Commands for Administering Your Design Center Applications>>
 * <<Commands for Managing Exchange Assets>>
-* <<Commands for Administrating your CloudHub Application>>
-* <<Commands for Managing your Locally Deployed Applications Managed by Runtime Manager>>
+* <<Commands for Administering Your CloudHub Application>>
+* <<Commands for Managing Your Locally Deployed Applications Managed by Runtime Manager>>
 * <<Commands for Managing Your Local Pivotal Cloud Foundry Deployed Applications>>
-* <<Commands for Managing your Local Servers>>
-* <<Commands for Administrating your Local Server Groups>>
-* <<Commands for Administrating your Local Cluster Servers>>
+* <<Commands for Managing Your Local Servers>>
+* <<Commands for Administering Your Local Server Groups>>
+* <<Commands for Administering Your Local Cluster Servers>>
 * <<Commands for Managing Alerts for your Locally Deployed Applications Managed by Runtime Manager>>
-* <<Commands for Managing your CloudHub Dedicated Load balancer>>
-* <<Commands for Managing your CloudHub Anypoint VPC>>
+* <<Commands for Managing Your CloudHub Dedicated Load Balancer>>
+* <<Commands for Managing Your CloudHub Anypoint VPC>>
 * <<Commands for Specifying Environments and Business Groups>>
 
 
@@ -29,7 +29,7 @@ Supported values are `table`, `text`, and `json`. Defaults to `text` for non-int
 You can pass the `--fields` option after a command to get a list of all possible fields to output.
 --
 
-== Commands For Administrating your Anypoint Platform Account
+== Commands For Administering Your Anypoint Platform Account
 
 [%header,cols="35a,65a"]
 |===
@@ -78,7 +78,7 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<api-mgr tier list>> | Lists the SLA tiers of an API instance
 |===
 
-== Commands for Administrating your Design Center Applications
+== Commands for Administering Your Design Center Applications
 
 [%header,cols="35a,65a"]
 |===
@@ -112,7 +112,7 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<exchange asset describe>> | Show a given asset's information
 |===
 
-== Commands for Administrating your CloudHub Application
+== Commands for Administering Your CloudHub Application
 
 [%header,cols="35a,65a"]
 |===
@@ -136,7 +136,8 @@ You can pass the `--fields` option after a command to get a list of all possible
 // |<<runtime-mgr cloudhub-application downgrade-runtime>>| Downgrades application runtime to the previous runtime version or if a version is specified, to that version.
 |===
 
-== Commands for Managing your Locally Deployed Applications Managed by Runtime Manager
+[[standalone-management]]
+== Commands for Managing Your Locally Deployed Applications Managed by Runtime Manager
 
 [CAUTION]
 In order for the Anypoint Platform CLI to recognize your target servers, each server needs to be manually registered with the platform.
@@ -175,7 +176,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |===
 
 
-== Commands for Managing your Local Servers
+== Commands for Managing Your Local Servers
 
 [%header,cols="35a,65a"]
 |===
@@ -188,7 +189,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 // |<<runtime-mgr server register>> | Registers a new server. Returns a signed certificate which is downloaded to the `directory` path
 |===
 
-== Commands for Administrating your Local Server Groups
+== Commands for Administering Your Local Server Groups
 
 [%header,cols="35a,65a"]
 |===
@@ -202,7 +203,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr serverGroup remove server>> | Removes server from a server group
 |===
 
-== Commands for Administrating your Local Cluster Servers
+== Commands for Administering Your Local Cluster Servers
 
 [%header,cols="35a,65a"]
 |===
@@ -228,7 +229,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr standalone-alert list>> | Lists all alerts for standalone runtimes in the environment
 |===
 
-== Commands for Managing your CloudHub Dedicated Load balancer
+== Commands for Managing Your CloudHub Dedicated Load Balancer
 
 [%header,cols="35a,65a"]
 |===
@@ -248,14 +249,14 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<cloudhub load-balancer whitelist remove>>| Remove an IP or range of IPs from the Load balancer whitelist
 |<<cloudhub load-balancer mappings describe>>| Lists the proxy mapping rules for a Load balancer. If no `certificateName` is given, the mappings for the default SSL endpoint are shown
 |<<cloudhub load-balancer mappings add>>| Add a proxy mapping rule at the specified index. If no `certificateName` is given, the mappings for the default SSL endpoint are shown
-|<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping ruleIf no `certificateName` is given, the mappings for the default SSL endpoint are shown
+|<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping rule. If no `certificateName` is given, the mappings for the default SSL endpoint are shown.
 |<<cloudhub load-balancer dynamic-ips enable>>| Enables dynamic IPs
 |<<cloudhub load-balancer dynamic-ips disable>>| Disables dynamic IPs
 |<<cloudhub region list>>| Lists all supported regions
 |<<cloudhub runtime list>>| Lists all available runtimes
 |===
 
-== Commands for Managing your CloudHub Anypoint VPC
+== Commands for Managing Your CloudHub Anypoint VPC
 
 [%header,cols="35a,65a"]
 |===
@@ -376,7 +377,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > account environment describe [options] <name>
 ----
 
-This command deletes the environment specified in `<name>` +
+This command returns information about the environment specified in `<name>` +
 If no `<name>` is provided, this command returns information about the current session's environment.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
@@ -486,7 +487,8 @@ This command does not take any options, except for the default ones: `--help`, `
 > api-mgr api delete [options] <apiInstanceId>
 ----
 
-This command deltes the API Instance passed in `<apiInstanceId>`. +
+This command deletes the API instance passed in `<apiInstanceId>`.
++
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === api-mgr api deploy
@@ -495,7 +497,10 @@ This command does not take any options, except for the default ones: `--help`, `
 > api-mgr api deploy [options] <apiInstanceId>
 ----
 
-This command deploys the API instanced passed in <apiInstanceId> to the deployment target specified using the options described below.
+This command deploys the API instance passed in <apiInstanceId> to the deployment target specified using the options described below.
+
+[NOTE]
+This command is only supported for endpoints with proxy.
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
@@ -504,7 +509,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |Value |Description | Example
 | `target <id>`
 | Hybrid or RTF deployment target ID. +
-| `api-mgr api deploy --target ES5 643404`
+| `api-mgr api deploy --target 1598794 643404`
 
 | `applicationName <name>`
 | Application name
@@ -1122,12 +1127,14 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 
 [%header,cols="30a,40a,30a"]
 |===
-|Command | Description |  Example
-| `--apiVersion` |  Asset API version .3+<.<| `exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
-| `--name`       |  Asset name
-| `--mainFile`   |  Main file of the API asset. | `exchange asset upload --mainFile 'api.yml'`
-| `--classifier` |  Asset classifier +
-Valid classifiers are `custom`, `oas`, and `wsdl`.
+| Command | Description |  Example
+| `--apiVersion` | Asset API version .4+<.<|
+`exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
+
+`exchange asset upload --mainFile 'api.yml'`
+| `--name` |Asset name 
+| `--mainFile` | Main file of the API asset 
+| `--classifier` | Valid asset classifiers are `custom`, `oas`, and `wsdl`.
 |===
 
 === exchange asset modify
@@ -1422,6 +1429,7 @@ This command does not prompt twice before deleting. If you send a delete instruc
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
+[[deploy-to-cloudhub]]
 === runtime-mgr cloudhub-application deploy
 
 ----
@@ -1440,6 +1448,7 @@ The options this command can take are:
 Use this option to specify the name and version of the runtime you want to deploy. +
 Some examples of this value are `2.1.1-API-Gateway`, `3.9.1-visualizer` or   `4.1.1`. +
 Tap your `tab` key after this option for the CLI to show you all your available options.
+(This value is the latest CloudHub Runtime version by default.)
 |--workers                                      | Number of workers. (This value is '1' by default)
 |--workerSize                               | Size of the workers in vCores. (This value is '1' by default)
 |--region                                        | Name of the region to deploy to. +
@@ -1452,9 +1461,9 @@ Character `:` is not supported for the property's name.
 |--propertiesFile                        | Overwrite all properties with values from this file. The file format is 1 or more lines in `name:value` format. Set the absolute path of the properties file in your local hard drive.
 |--persistentQueues                   | Enable or disable persistent queues. Can take `true` or `false` values. (This value is `false` by default)
 |--persistentQueuesEncrypted  | Enable or disable persistent queue encryption. Can take `true` or `false` values. (This value is `false` by default)
-|--staticIPsEnabled                                      | Enable or disable static IPs. Can take 'Enable' or 'Disabled' values. (This value is 'Disabled' by default)
+|--staticIPsEnabled                                      | Enable or disable static IPs. Can take 'Enable' or 'Disabled' values. (This value is 'Disabled' by default.)
 |--objectStoreV1                   | Enable or disable Object Store V1. Can take `true` or `false` values
-|--autoRestart                            | Automatically restart app when not responding. Can take `true` or `false` values. (This value is `false` by default)
+|--autoRestart                            | Automatically restart app when not responding. Can take `true` or `false` values. (This value is `true` by default.)
 |--help                                                  | output usage information
 |===
 Note that from Anypoint Platform CLI you won't be able to allocate static IPs. You can simply enable and disable them.
@@ -1483,7 +1492,7 @@ This command can take all the same options as the `deploy` option.
 You can also start typing your option and press `tab` for Anypoint Platform CLI to autocomplete it for you.
 
 //TODO Check revert-runtime deprecation
-=/ === runtime-mgr application revert-runtime
+// === runtime-mgr application revert-runtime
 //
 // [source,Example]
 // ----
@@ -1512,7 +1521,7 @@ This command tails application logs. +
 You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-=/ === runtime-mgr cloudhub-application upgrade-runtime
+// === runtime-mgr cloudhub-application upgrade-runtime
 //
 // [source,Example]
 // ----
@@ -1522,7 +1531,7 @@ This command does not take any options, except for the default ones: `--help`, `
 // This command upgrades the runtime version of the application passed in `name` to the latest patch version. If the `-v`/`--version` option is used to specify a specific runtime version, this command updates the application's runtime to that version. +
 // Besides the `--version` option, this command also takes the default `--help`, `-f`/`--fields` and `-o`/`--output` options.
 //
-=/ === runtime-mgr cloudhub-application downgrade-runtime
+// === runtime-mgr cloudhub-application downgrade-runtime
 //
 // [source,Example]
 // ----
@@ -1753,7 +1762,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 | `--property [property]` | Set a property (`name:value`). Can be specified multiple times
 | `--propertiesFile [propertiesFile]` | Overwrite all properties with values from this file. The file format is 1 or more lines in name=value format
 | `--binding [binding]` | Set a service binding (`serviceName.key:value`). Can be specified multiple times
-| `--bindingsFile [sindingsFile]` | Overwrite all properties with values from this file. The file format is 1 or more lines in `serviceName.key:value` format
+| `--bindingsFile [bindingsFile]` | Overwrite all properties with values from this file. The file format is 1 or more lines in `serviceName.key:value` format
 |===
 
 === runtime-mgr pcf-application describe-json
@@ -1846,7 +1855,7 @@ This server lists all servers in your environment. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 // TODO: Deprecated server register
-=/ === runtime-mgr server register
+// === runtime-mgr server register
 //
 // [source,Example]
 // ----
@@ -2312,14 +2321,14 @@ If no `certificateName` is passed, Anypoint Platform CLI adds the mappings to th
 
 For the values in the example above, for an input call to `my-superapp.api.example.com/status?limit=10`, the endpoint `my-superapp-example: /status?limit=10` will be called for the application.
 
-This command also takes the `--upstreamProtocol` option. +
+This command also takes the `--upstreamProtocol` option.
 The `--upstreamProtocol` option sets the protocol used by your application to communicate internally with your load balancer. If no upstream protocol is set, HTTP is used as default.
 
-[%header,cols="12a,68a,20a"]
+[%header,cols="25a,60a"]
 |===
 | Option | Description
-| `--upstreamProtocol <protocol>` | Look for upstream applications in HTTP port 8091 or HTTPS port 8092. +
-Supported Values: `http`, `https` |
+| `--upstreamProtocol <protocol>` | Look for upstream applications in HTTP port 8091 or HTTPS port 8092.
+Supported Values: `http`, `https`
 | `--certificateName <certificate name>` | Optional parameter
 |===
 

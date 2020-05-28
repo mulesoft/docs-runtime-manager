@@ -1,4 +1,4 @@
-= CloudHub Custom Log Appender
+= Integrating with Your Logging System Using Log4j
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -7,32 +7,51 @@ endif::[]
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
 image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
-With the option to disable CloudHub logs, customers can supply their own Log4j configurations to
-integrate with their own logging systems.
+You can disable CloudHub logs and integrate your CloudHub application with your logging system by using the Log4j configuration.
+After you configure logs to flow to both your log system and CloudHub, disable the default CloudHub application logs.
+
+
+== Requirements and Restrictions
+
+* This feature is available only on request.
++
+If you do not see the *Disable CloudHub logs* option in Runtime Manager, you can request it on https://help.mulesoft.com/[Help Center].
+* MuleSoft Support doesn't provide assistance for implementing custom logging configurations or resolving issues caused by custom logging configurations.
+* MuleSoft is not responsible for issues arising from misconfiguration of your Log4j appender, including these or other issues:
+** Lost logging data
+** Performance degradation
+** Running out of disk space
+* Do not use synchronous log appenders.
++
+You can use only asynchronous log appenders.
+* When you disable CloudHub logs:
+** Only the system logs are available in Runtime Manager. 
++
+System logs provide the status of your worker deployment and whether your application started correctly, but do not provide application logs.
+For application worker logs, check the logging system for your application. 
++
+** You cannot download application worker logs from the *Applications > Logs* page.
+** CloudHub warns you that logs are not available.
+
 
 == Create Your Log4j Configuration
-[IMPORTANT]
-====
-* This feature is only available on request. If you do not have access to this feature, you can request it via the support portal.
-* MuleSoft is not responsible for lost logging data due to misconfiguration of your own Log4j appender.
-* MuleSoft is also not responsible for misconfigurations that result in performance degradation,
-running out of disk space, or other side effects.
-* To configure logs to flow to both your log system and CloudHub, read the directions below. Note that the UI will continue to
-warn you that logs in CloudHub will not be available.
-* When you disable the default CloudHub application logs, then only the system logs are available. For application worker logs, please check your own application's logging system. Downloading logs is not an option in this scenario.
-* Only Asynchronous log appenders can be used, Synchronous appenders should not be used.
-====
 
-To enable your own Log4j appender, you need to first create a `log4j2.xml` configuration file with your log settings. In Anypoint Studio, this file must reside in the src/main/resources directory. For details
-on creating your own Log4j configuration, please see the
-https://logging.apache.org/log4j/2.x/manual/configuration.html[Log4j documentation].
+For logs to both flow to your logging system and be viewable in CloudHub, configure the CloudHub Log4j appender. 
 
-If you wish to have logs flow to both your own logging system, and be viewable in CloudHub, you
-must configure the CloudHub Log4j appender. MuleSoft recommends this as the base configuration for your
-log configuration. It sends log data to CloudHub and provides a local log file in case it's needed for
-remote debugging purposes by MuleSoft staff.
+You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
+https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax].
+
+To enable the Log4j appender, update the `log4j2.xml` configuration file with your logger settings.
+In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources` directory.
+
+The two example Log4j appenders in the `log4j2.xml` file are:
+
+Log4J2CloudhubLogAppender::
+Sends log data to CloudHub.
+RollingFile::
+Sends log data to the filesystem of the VM.
 
 [source,xml,linenums]
 ----
@@ -50,21 +69,21 @@ remote debugging purposes by MuleSoft staff.
             </Policies>
         </RollingFile>
         <Log4J2CloudhubLogAppender name="CLOUDHUB"
-                                   addressProvider="com.mulesoft.ch.logging.DefaultAggregatorAddressProvider"
-                                   applicationContext="com.mulesoft.ch.logging.DefaultApplicationContext"
-                                   appendRetryIntervalMs="${sys:logging.appendRetryInterval}"
-                                   appendMaxAttempts="${sys:logging.appendMaxAttempts}"
-                                   batchSendIntervalMs="${sys:logging.batchSendInterval}"
-                                   batchMaxRecords="${sys:logging.batchMaxRecords}"
-                                   memBufferMaxSize="${sys:logging.memBufferMaxSize}"
-                                   journalMaxWriteBatchSize="${sys:logging.journalMaxBatchSize}"
-                                   journalMaxFileSize="${sys:logging.journalMaxFileSize}"
-                                   clientMaxPacketSize="${sys:logging.clientMaxPacketSize}"
-                                   clientConnectTimeoutMs="${sys:logging.clientConnectTimeout}"
-                                   clientSocketTimeoutMs="${sys:logging.clientSocketTimeout}"
-                                   serverAddressPollIntervalMs="${sys:logging.serverAddressPollInterval}"
-                                   serverHeartbeatSendIntervalMs="${sys:logging.serverHeartbeatSendIntervalMs}"
-                                   statisticsPrintIntervalMs="${sys:logging.statisticsPrintIntervalMs}">
+                addressProvider="com.mulesoft.ch.logging.DefaultAggregatorAddressProvider"
+                applicationContext="com.mulesoft.ch.logging.DefaultApplicationContext"
+                appendRetryIntervalMs="${sys:logging.appendRetryInterval}"
+                appendMaxAttempts="${sys:logging.appendMaxAttempts}"
+                batchSendIntervalMs="${sys:logging.batchSendInterval}"
+                batchMaxRecords="${sys:logging.batchMaxRecords}"
+                memBufferMaxSize="${sys:logging.memBufferMaxSize}"
+                journalMaxWriteBatchSize="${sys:logging.journalMaxBatchSize}"
+                journalMaxFileSize="${sys:logging.journalMaxFileSize}"
+                clientMaxPacketSize="${sys:logging.clientMaxPacketSize}"
+                clientConnectTimeoutMs="${sys:logging.clientConnectTimeout}"
+                clientSocketTimeoutMs="${sys:logging.clientSocketTimeout}"
+                serverAddressPollIntervalMs="${sys:logging.serverAddressPollInterval}"
+                serverHeartbeatSendIntervalMs="${sys:logging.serverHeartbeatSendIntervalMs}"
+                statisticsPrintIntervalMs="${sys:logging.statisticsPrintIntervalMs}">
 
             <PatternLayout pattern="[%d{MM-dd HH:mm:ss}] %-5p %c{1} [%t]: %m%n"/>
         </Log4J2CloudhubLogAppender>
@@ -89,31 +108,31 @@ remote debugging purposes by MuleSoft staff.
 </Configuration>
 ----
 
+
 == Enable Custom Log4j Configurations in CloudHub
 
-Once you've configured your Log4j appenders, deploy the application to CloudHub
-and tell CloudHub you are supplying your own Log4j configuration:
+After you configure the Log4j appender, deploy the application to CloudHub and follow these steps to disable CloudHub logs:
 
-. Log into https://anypoint.mulesoft.com/#/signin[Anypoint Platform] and click *CloudHub*.
-. Click an application to expand the details view:
+. From Anypoint Platform, select *Runtime Manager*.
+. Click *Applications* in the left menu.
+. Click the *Type* column to display the details pane for the application.
+. Click *Manage Application*.
+. In the *Settings* page, click *Disable CloudHub logs*:
 +
-image::chapps.png[CHApps]
+.The arrow shows the *Disable CloudHub logs* option in the *Settings* page.
+image::cloudhub-disable-logs.png[Disable CloudHub logs option in the Applications Settings page]
+. In the *Disabling CloudHub logs* confirmation window, select the checkboxes to verify that you want to disable CloudHub logs:
 +
-. Click *Settings* > *Disable CloudHub Logs*.
-+
-image::disablechlogs.png[DisableCHLogs]
-+
-The verification prompt appears:
-+
-image::disablechlogsverification.png[DisableCHLogsVerification]
+.The screen shows the *Disabling CloudHub logs* confirmation window.
+image::cloudhub-disable-logs-verify.png[Disabling CloudHub logs confirmation window]
 +
 . Click *Apply Changes*.
 . Review your application settings to ensure they are correct.
 . Click *Apply Changes* to restart your application.
 
-Once your application starts, logs should start flowing to your custom Log4j appender and will be
-viewable in your target system.
+After your application starts, logs start flowing to your custom Log4j appender and are viewable on your target logging system.
 
-If you did not use the CloudHub Log4j appender specified above, only system logs will be available.
-System logs tell you the status of your worker deployment and if your application started correctly,
-but do not provide any application logs.
+== See Also 
+
+* xref::deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* https://help.mulesoft.com/s/global-search/%40uri#q=log4j&t=SalesforceArticle&f:@sfdcproduct=[CloudHub Log4j Knowledge Articles]

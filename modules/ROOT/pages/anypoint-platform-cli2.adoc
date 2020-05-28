@@ -9,7 +9,7 @@ The CLI supports both interactive shell and standard CLI modes, and works with:
 
 * xref:exchange::index.adoc[Anypoint Exchange]
 * xref:access-management::index.adoc[Access Management]
-* xref:index.adoc[Runtime Manager] for Mule applications deployed to MuleSoft-hosted (CloudHub) and customer-hosted Mule runtimes
+* xref:index.adoc[Runtime Manager] for Mule applications deployed to CloudHub (hosted by MuleSoft) and customer-hosted Mule runtimes
 * xref:virtual-private-cloud.adoc[VPCs]
 * xref:cloudhub-dedicated-load-balancer.adoc[Cloudhub load balancers]
 * xref:1.x@api-manager::index.adoc[API Manager 1.x (pre Crowd Release)]
@@ -17,24 +17,36 @@ The CLI supports both interactive shell and standard CLI modes, and works with:
 
 == Prerequisites
 
-* NodeJS, and NPM (Node's package manager) installed in your machine. +
-Go to the https://nodejs.org/en/download/[NodeJS download page] to get both resources.
-* Git version management system on your computer. +
-Go to the https://git-scm.com/downloads[Git download site] to get this resource.
+* Download and install NodeJS and npm (node package manager) on your system.
++
+See the https://nodejs.org/en/download/[NodeJS download page].
+* Download and install the Git version management system on your system.
++
+See the https://git-scm.com/downloads[Git download site].
+
 
 == Installation
 
-Depending on the configuration of your system, you might have to run these commands using administrator's credentials.
+Depending on the configuration of your system, you might need to run these commands using administrator credentials.
 
-[source]
+[source,text,linenums]
 ----
 $ npm install -g anypoint-cli@2.3.2
 ----
 
-[NOTE]
---
-If during the installation process, npm throws a `fatal: read error: Invalid argument` error, make sure that the git client installed on your computer, and that the git protocol is not blocked by your firewall or network.
---
+If the installation command fails with the following error, ensure that the Git client is installed on your computer and the git protocol is not blocked by your firewall or network:
+
+[source,text,linenums]
+----
+fatal: read error: Invalid argument
+----
+
+If the git protocol is blocked, you can configure Git to use `https://` instead of `git://`:
+
+[source,text,linenums]
+----
+git config --global url."https://".insteadOf git://
+----
 
 == Reference
 
@@ -152,4 +164,3 @@ If you don't pass a command line parameter, the default profile properties are u
 . If you don't set an environment, you will be automatically sent to `production`. +
 . Your Anypoint session expires based on the *Default session timeout* configured in your xref:access-management::organization.adoc#manage-the-master-organization-s-settings[Master Organization's settings]. +
 . Anypoint-CLI works with autocomplete. You can start typing the name of the command or parameter and hit `tab` for an autocomplete, or double tap `tab` for a list of all possible options.
-

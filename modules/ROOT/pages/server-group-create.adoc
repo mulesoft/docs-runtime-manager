@@ -1,21 +1,29 @@
-= Create a Server Group (Hybrid)
+= Create Server Groups
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 
-. Sign in to the Anypoint Platform and click *Runtime Manager*.
-. In the menu on the left, click *Servers*, then click *Create Group*.
-. In the *Create Server Group* page, enter the name for the server group, select the servers to include in your new server group, and click *Create Group*.
+To deploy applications to a server group, you can either add the servers to Runtime Manager first and then create the server group, or you can create the group and add servers to it later.
+
+To create a server group:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Servers* in the left menu.
+. Click the *Create Group* button.
+. In the *Create Server Group* page, enter the name for the server group.
 +
-[TIP]
-The group name must not start or end with a dash, must be between 3-40 characters long, must be unique, and contain only letters, numbers, or dashes.
+Group names can contain between 3-40 alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-). They cannot start or end with a hyphen and cannot contain spaces or other characters.
+. Select the servers to include in your new server group.
+. Click the *Create Group* button.
 
-The new server group appears in the *Servers* list. Click the server group name to see the list of servers that belong to the group. 
+The new server group appears in the *Servers* list. The servers no longer appear in the *Servers* list. To see the list of servers in the group, click the server group name. 
+
 
 == See Also
 
-* xref:mule-runtime::mule-standalone.adoc[Mule Installation]
-* xref:installing-and-configuring-runtime-manager-agent.adoc[Installing and Configuring Runtime Manager Agent]
-* xref:servers-create.adoc[Create a Server]
-* xref:server-group-about.adoc[About Server Groups]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
+* xref:server-group-add.adoc[Add Servers to a Server Group]

@@ -3,14 +3,25 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+
+
 CloudHub provides access to log data that includes deployment messages and events for each worker.
 
-[NOTE]
-====
 Logs and diagnostics are currently available only for applications deployed to CloudHub workers. In cases when applications are deployed to a local server, you can send data to external analytics software.
 
-Applications deployed to Pivotal Cloud Foundry (PCF) don't expose any log data through Runtime Manager, but you can see event logs on Pivotal's UI.
-====
+
+For more advanced searching and log management, you can:
+
+* Use Anypoint Monitoring.
++
+See xref:monitoring::index.adoc[Anypoint Monitoring Overview].
+* Integrate your CloudHub app with your logging system using the Log4j configuration.
++
+See xref:custom-log-appender.adoc[Integrating with Your Logging System Using Log4j].
 
 
 == View Logs
@@ -21,7 +32,7 @@ View logs for applications deployed to CloudHub.
 . Click *Logs*.
 +
 The application logs are displayed.
-. The *Deployments* section on the right of the logging screen lets you selectively view the output by day, deployment, system log, and workers. You can unapply a filter by unticking the checkbox next to a date.
+. The *Deployments* section on the right of the logging screen lets you selectively view the output by day, deployment, system log, and workers. You can remove a filter by unselecting the checkbox next to a date.
 +
 image::elmfilters.png[ELMfilters]
 
@@ -36,17 +47,18 @@ image::downloadlogs.png[DownloadLogs]
 
 The log file is a text file with the file extension `.log` in the format `<deployment-ID>-<instance-ID>.log`. You can view the log file with a text editor.
 
-[NOTE]
-To archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the xref:custom-log-appender.adoc[Custom Log Appender] to extract logs.
+To archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the custom log appender to extract logs.
+See xref:custom-log-appender.adoc[Integrating with Your Logging System Using Log4j].
 
 
 == Download Diagnostics
 
 Diagnostics display the Java thread dump of each CloudHub worker in each deployment. These indicate the current state of the server, which is useful for debugging and support.
 
-[NOTE]
-For apps that run on a Mule versions earlier than 3.8.0 (excluding version 3.7.4), diagnostics are not available.
+For apps running on Mule versions earlier than 3.8.0 (excluding version 3.7.4), diagnostics are not available.
 
+
+To download diagnostics:
 
 . In the *Deployment* filters section on the right, select the date and worker for which you want to download diagnostics.
 . Click the download icon next to it, and select *Diagnostics*.
@@ -64,18 +76,21 @@ You can also use the following URL to download a diagnostics file directly:
 ====
 
 
-== About Log Persistence
+== Log Persistence
 
-CloudHub stores logs of up to 100 MB per application per worker, or for up to 30 days, whichever limit is reached first.
+CloudHub stores up to 100 MB of log data per application per worker, or up to 30 days, whichever limit is reached first.
 
-== About Log Timezones
+== Log Timezones
 
 CloudHub stores log data in Universal Time (UTC); however, the console displays the log using your computer's local time zone.
 
 
 == Search Logs
 
-Search for logs that contain specified values, or use advanced search to search for logs by date and priority.
+Search for logs that contain specified values or search for logs by date and priority.
+
+
+To search logs:
 
 . Enter a value in the search box, or click *Advanced* to search for logs for a specified time, day, date range, and message priority.
 . Click *Apply*.
@@ -108,7 +123,7 @@ Possible values are:
 | N/A
 
 | `ERROR`
-| List only error messages, such when an exception occurs.
+| List only error messages, such as when an exception occurs.
 | priority:ERROR
 
 | `FATAL`
@@ -124,7 +139,7 @@ Possible values are:
 | priority:SYSTEM
 
 | `CONSOLE`
-| List message about console events such as setting the objectstore
+| List message about console events such as setting the object store
 | priority:CONSOLE
 
 | `WARN`
@@ -139,14 +154,17 @@ Possible values are:
 
 === Wildcard Searching
 
-You can filter log data by entering search terms into the search box at the top of the log page that match results in the log message. You can also search for an exact term in the log message with a few common quantifiers for wildcard searching:
+You can filter log data by entering search terms into the search box at the top of the log page that match results in the log message.
 
-* `?` - The question mark matches zero or one of the preceding elements.
-* `&#8727;` - The asterisk matches zero or more of the preceding elements.
+You can also search for an exact term in the log message with a few common quantifiers for wildcard searching:
+
+* `?` matches zero or one of the preceding elements.
+* `&#8727;` matches zero or more of the preceding elements.
 
 == See Also
 
-* xref:deployment-strategies.adoc[Deployment Strategies]
+* xref:deployment-strategies.adoc[Deployment Options]
 * xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
-* xref:monitoring.adoc[Monitoring Applications]
+* xref:custom-log-appender.adoc[Integrating with Your Logging System Using Log4j]
+* xref:monitoring.adoc[Monitoring Applications and Servers]
 * xref:mule-runtime::logging-in-mule.adoc[Configuring Logging]

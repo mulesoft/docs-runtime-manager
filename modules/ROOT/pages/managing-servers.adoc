@@ -3,24 +3,30 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use Runtime Manager to register and set up the properties of servers, server groups, and clusters that reside on-premises. After setting up a server, you can select it as the deployment target for your applications.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+
+Use Runtime Manager to register and set up the properties of servers, server groups, and clusters that reside on-premises. After setting up a server, you can add it to a server group or cluster. Then, select the server, group, or cluster as the deployment target for your applications.
 
 == Server Groups and Clusters
 
-Both server groups and clusters run applications in multiple distributed nodes.  When using a server group, instances of the applications are completely isolated from each other. In a cluster configuration, the nodes are aware of one another and share common information and synchronize statuses.
+Both server groups and clusters run applications in multiple distributed nodes. When using a server group, instances of the applications are completely isolated from each other. In a cluster configuration, the nodes are aware of one another and share common information and synchronize statuses.
+
+All servers in a server group or clusters must have the same Mule runtime engine version and Runtime Manager agent version.
 
 == Alerts
 
-You can set up email alerts so you are notified when certain events occur on your servers, such as a server being disconnected, or a server being removed from a cluster. Alerts can be linked to a specific server in a cluster or server group, or to all of the servers in the cluster or server group. 
+You can set up email alerts to notify you when events occur on your servers, such as a server being disconnected or a server being removed from a cluster. You can link alerts to a specific server or to all of the servers in the server group or cluster. 
 
 == See Also
 
-* xref:cluster-add-srv.adoc[Add a Server to a Cluster (Hybrid)]
-* xref:server-group-add.adoc[Add a Server to a Server Group (Hybrid)]
+* xref:servers-about.adoc[Servers]
+* xref:server-group-about.adoc[Server Groups]
+* xref:cluster-about.adoc[Clusters]
 * xref:alerts-on-runtime-manager.adoc[Alerts] 
-* xref:runtime-manager-switch-env.adoc[Switch Environments Using Runtime Manager]
 * xref:deploying-to-your-own-servers.adoc[Deploy Applications to Your Own Servers]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
 * xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
+* xref:runtime-dep-serv-limits.adoc[Deployment and Server Scaling]
 * xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability Clusters]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Anypoint Platform REST APIs]

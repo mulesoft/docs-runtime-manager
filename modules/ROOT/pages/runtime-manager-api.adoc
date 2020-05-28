@@ -1,15 +1,52 @@
-= About the Runtime Manager REST API
+= Runtime Manager REST API
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloudhub api, manage, api, rest
 
-The Runtime Manager REST API enables you to programmatically access much of the functionality provided by the Runtime Manager. To deploy Mule applications using the Runtime Manager REST API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST APIs].
+The Runtime Manager REST API enables you to programmatically access these functions of Runtime Manager:
 
-For a more complete reference of all the operations that are supported through the API, see https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/ae639f94-da46-42bc-9d51-180ec25cf994/apis/38784/versions/5567732/pages/182845[API Reference 1.26].
+* Manage servers:
++
+** Register a server.
+** Get a list of registered servers.
+** Get information about a server.
+** Change the server name.
+** Shut down, restart, or delete a server.
+** Renew server certificates.
+** Get a server registration token.
+* Manage server groups:
++
+** Create a server group from a list of servers.
+** Get a list of registered server groups.
+** Get information about a server group.
+** Change the server group name.
+** Add or remove a server from a server group.
+** Delete a server group. 
 
-Also note that there is a xref:cloudhub-api.adoc[CloudHub API] that allows you to deploy applications to CloudHub.
+* Manage clusters:
++
+** Create a cluster.
+** Get a list of registered clusters.
+** Get information about a cluster.
+** Change the cluster name.
+** Add or remove a server from a cluster.
+** Modify clustering information for a server.
+** Delete a cluster.
+
+* Manage app deployments on your servers:
++
+** Deploy, redeploy, and undeploy apps.
+** Get application deployment and status information.
+** Manage flows, schedulers, and alerts in a deployed app.
+
+For an interactive reference of all the operations that are supported through the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST Services].
+
+The Runtime Manager REST API manages only on-prem applications deployed to your servers. To manage apps deployed to CloudHub using the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API].
 
 == See Also
 
-xref:continuous-deployment.adoc[Continuous Deployment]
+* xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
+* xref:deploying-to-your-own-servers[Deploying to Your Servers]
+* xref:managing-applications-on-your-own-servers[Managing Applications on Your Servers]
+* xref:continuous-deployment.adoc[Continuous Deployment]

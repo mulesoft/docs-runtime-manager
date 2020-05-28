@@ -1,158 +1,104 @@
-= Export Data to External Analytics Tools (Hybrid)
+= Exporting Data to External Analytics Tools
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To send the event notifications of your Mule applications to 3rd party tool such as Splunk and ELK, configure Runtime Manager to export data to external analytics tools.
 
-This functionality is only available in hybrid deployment scenarios. It is not available for applications deployed to CloudHub.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-== Basic Architecture
 
-The Runtime Manager exists as:
+You can configure the Runtime Manager agent to export data to external analytics tools.
 
-* a component of the Anypoint Platform.
-* a component of the Anypoint Platform Private Cloud Edition that you can install on-premises.
+Using either the Runtime Manager cloud console or Anypoint Platform Private Cloud Edition, you can:
 
-Anypoint Platform Private Cloud Edition has a Runtime Manager that handles only applications that are deployed on-premises. The cloud-based version of Anypoint Platform has a Runtime Manager that allows you manage applications deployed to xref:index.adoc[CloudHub] as well as applications that are deployed on-premises and to your own cloud servers. When using whichever version of the Runtime Manager, there's always a way to monitor your applications.
+* Send Mule event notifications, including flow executions and exceptions, to Splunk or ELK.
++
+See <<Integrating with Splunk>> and <<Integrating with Your ELK Stack>>.
+* Send API Analytics to Splunk or ELK.
++
+See <<Integrating API Analytics with Splunk or ELK>>.
 
-Applications deployed to CloudHub can use xref:insight.adoc[Insight]: MuleSoft’s Analytics & Monitoring feature. Applications that you deploy on-premises or to your own cloud servers can be integrated into third-party analytics applications, which is what this document describes.
 
-////
-Applications deployed on Cloud can either use Insights (MuleSoft’s Analytics & Monitoring feature) or be integrated into third party analytics applications for a unified view of monitoring and analytics. Apps deployed on on-prem must be integrated into third party analytics applications.
-////
+If you plan to export your payload's contents to be logged, consider that not all formats can be exported.
+See xref:about-logging-of-payload-formats.adoc[Payload Formats and Logging].
 
-If you deploy apps from Runtime Manager to customer-managed Mule servers, you can send your Mule app event and analytics data to third party analytics software such as Elk and Splunk.
+Sending data to third-party tools is not supported for applications deployed on xref:cloudhub.adoc[CloudHub].
+You can use the CloudHub custom log appender to integrate with your logging system. 
+See xref:custom-log-appender.adoc[Integrating with Your Logging System Using Log4j].
 
-[NOTE]
-Sending data to third party software is not currently available for applications on xref:cloudhub.adoc[CloudHub]. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
-
-Integration between Runtime Manager and third-party analytics software looks like this:
-
-image::amc-onprem-diagram-detail.jpg[]
-
-The xref:runtime-manager-agent.adoc[Runtime Manager Agent] acts in between Runtime Manager and the third party software. The agent enables integration and sends event notifications to your third party analytics tool.
 
 == Prerequisites
 
-* Mule 3.6 or later, or API gateway standalone version 2.1.0 or later if you deal with apps that are built with the API gateway.
-* Runtime Manager agent 1.2.0 or later is required, the steps to install and configure it are provided below.
-
-== Installation and Setup of Runtime Manager with a Third-Party Analytics Tool
-
-In order to have Runtime Manager send data to an external analytics tool, you must follow these steps, which are explained in detail further down.
-
-image::steps-for-external-logs.png[steps]
-
-=== Update the Runtime Manager Agent
-
-First you must install the latest version of the Runtime Manager agent, which is in charge of sending messages out of mule. In order to send event information to third party software, you need to have version 1.2.0 or later of the Runtime Manager agent.
-See xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent].
-
-[NOTE]
-====
-Although Runtime Manager agent exists by default bundled with Mule as of version 3.7, all Mule versions older than 3.7.2 contain an old version of Runtime Manager agent that doesn't support this feature. You must download the latest version of the Runtime Manager agent separately if your Mule version is older than 3.7.2.
-
-http://mule-agent.s3.amazonaws.com/1.2.0/mule-agent-1.2.0.zip[Download Runtime Manager Agent]
-====
-
-=== Register the Runtime Manager Agent
-
-Place the agent file in your `{MULE_HOME}/bin` folder, and then you must register it to the Runtime Manager by running a command in the terminal. Depending on whether you wish to use Runtime Manager through the cloud platform or as part of the Anypoint Platform Private Cloud Edition, you must pass this command a different set of arguments to register it. To obtain the basic command that you must run (complete with your Runtime Manager instance ID) you must do the following:
-
-To obtain this code, you must do the following:
-
-. Sign in to your Anypoint Platform account.
+* Mule runtime engine version 3.6 or later
 +
-[TIP]
-To open Anypoint Platform Private Cloud Edition, make sure you've already initiated Runtime Manager. If you haven't then you must boot it by running docker. Once initiated, you can access it by navigating to +https://localhost+ in a browser.
-
-. Navigate to *Runtime Manager > Servers*.
-. Click *Add Server*. Without needing to actually add a new server, a sample command will be displayed in a popup window that includes the code for your particular organization. Copy this command, depending on where you wish to deploy, you may need to add extra arguments to it.
-
+To forward events from API analytics to both an external tool and Anypoint Platform, the following versions are required:
 +
-image::org-code.png[]
+** Mule version 4.2.0 or later 
+** Mule version 3.9.3 or later 
+
+* API gateway standalone version 2.1.0 or later
+* Runtime Manager agent 1.2.0 or later
++
+To send data to Splunk using the HTTP Event Collector or over TCP, Runtime Manager agent 1.3.1 or later is required.
++
+For information about updating the agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent].
+
+=== Splunk Prerequisites 
+
+To send data to Splunk using the HTTP Event Collector, you must first set up the data input and obtain a token from Splunk:
+
+. Sign in to your Splunk account.
+. Navigate to *Settings* > *Data Inputs*.
+. For the *HTTP Event Collector* type, click *Add new*.
++
+.The arrow shows the *Add new* option for the HTTP Event Collector in the Splunk Data Inputs page.
+image::hybrid-export-splunk-config-http-collector.png[Add new option for the HTTP Event Collector in the Splunk Data Inputs page]
+
+. Follow the steps to set up the data input and obtain the token.
+
+To send data to Splunk over TCP, you must first enable the input source in Splunk:
+
+. Sign in to your Splunk account.
+. Navigate to *Settings* > *Data Inputs*.
+. For the *TCP* type, click *Add new*.
++
+.The arrow shows the *Add new* option for TCP in the Splunk Data Inputs page.
+image::hybrid-export-splunk-config-tcp.png[Add new option for TCP in the Splunk Data Inputs page]
+. Follow the steps to set up the data input.
+
+For more information about setting up data inputs, see the https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/WhatSplunkcanmonitor[Splunk documentation].
+
+== Logging-Level Options 
+
+The following logging levels are available when configuring integration with Splunk or ELK:
+
+Business Events::
+Flow start or end, async messages, exceptions, and custom events
+Tracking::
+Business Events plus exception strategy, and endpoint messages
+Debug::
+Tracking plus message processor begin and end
+
+== Integrating with Splunk
+
+With http://www.splunk.com/[Splunk], you can capture and index Mule event notification data into a searchable repository from which you can then generate graphs, reports, alerts, dashboards, and visualizations.
 
 
-[.ex]
-=====
-[discrete.view]
-=== Anypoint Platform Cloud
+. <<Configure the Agent in Your Splunk Instance>>. 
+. <<Configure Splunk Integration in Runtime Manager>>. 
 
-When using Runtime Manager as part of the cloud-based Anypoint Platform, launch the agent with exactly the same command that you found on the Runtime Manager UI:
+=== Configure the Agent in Your Splunk Instance 
 
-`+amc_setup -H 1c3eded9-7917-4a5e-bbe0-f73f9d4f33c1---2 myServer+`
+To integrate with Splunk, you must create and configure a new source type on your Splunk instance that can parse the HTTP events sent by the Runtime Manager agent.
 
-or on Windows:
-
-`+amc_setup.bat -H 1c3eded9-7917-4a5e-bbe0-f73f9d4f33c1---2 myServer+`
-
-The argument `-H` is an id that references your organization in the Anypoint platform Private Cloud Edition installation.
-
-The final argument of this command is the name that you assign for your Runtime Manager agent instance, in the above example, `myServer`. This name will then be visible when interacting with the agent from your Runtime Manager console.
-
-[discrete.view]
-=== Anypoint Platform Private Cloud Edition
-
-When using Anypoint Platform as an application running on-premises, launch the agent with the following arguments:
-
-`+amc_setup -A http://localhost:8080/hybrid/api/v1 -W wss://localhost:8443/mule -C https://dev.anypoint.mulesoft.com/accounts -H 361755d7-c619-42ce-9187-19db7a6d94a0---2 myServer+`
-
-or on Windows:
-
-`+amc_setup.bat -A http://localhost:8080/hybrid/api/v1 -W wss://localhost:8443/mule -C https://dev.anypoint.mulesoft.com/accounts -H 361755d7-c619-42ce-9187-19db7a6d94a0---2 myServer+`
-
-The argument `-H` is an id that references your organization in Anypoint Platform installation.
-
-The final argument of this command is the name that you assign for your Runtime Manager agent instance, in the above example, `myServer`. This name will then be visible when interacting with the agent from your Runtime Manager console.
-
-Note that three extra arguments must be added to what you copied from the Runtime Manager UI: -A, -W and -C.
-* *A* sets the Runtime Manager host address
-* *C* sets the Access Management host address
-* *W* sets the Mule Communications Manager (MCM) host address
-
-=====
-
-=== Update the Runtime Manager Agent
-
-If you update the Runtime Manager agent version, it isn't necessary to undeploy the running apps.
-
-
-[TIP]
-For more information on how to install or Update the Runtime Manager agent, see xref:installing-and-configuring-runtime-manager-agent.adoc[installing and configuring Runtime Manager Agent]
-
-
-image::agent-server.jpg[]
-
-[NOTE]
-Creating multiple agents within a single server is not supported.
-
-==== Verifying Agent Registration
-
-After running the above command, open Runtime Manager to verify that the agent has been registered successfully:
-
-. Sign in to Anypoint Platform with your credentials
-. Go to `Runtime Manager - > Servers`. You should now see that one of those servers is your Runtime Manager agent instance, named with the name you provided when installing it:
-
-image::verify-agent.jpg[]
-
-=== Configure Mule Custom Events
-
-You can configure the Runtime Manager to send out Mule Events to external software, this includes flow executions, exceptions raised, etc. This works with apps deployed to any runtime, and for both the Runtime Manager in the cloud and the Runtime Manager that comes bundled with the xref:1.5@private-cloud::index.adoc[Anypoint Platform Private Cloud Edition].
-
-==== Integrating with Splunk
-
-With http://www.splunk.com/[Splunk] you can capture and index Mule event notification data into a searchable repository from which you can then generate graphs, reports, alerts, dashboards and visualizations.
-
-image::amc-onprem-diagram-detail-splunk.jpg[]
-
-===== Configuring your Splunk Account
-
-In order to achieve this you must configure a new source type on your Splunk instance with the correct configuration to parse the HTTP events sent from the API gateway.
-To do this, you have to append the following source type to the `$SPLUNK_HOME/opt/splunk/etc/system/local/props.conf`
-file.
-
-....
+. If necessary, create the `$SPLUNK_HOME/opt/splunk/etc/system/local/props.conf` file.
+. Append the following source type to the `props.conf` file:
++
+[source,yaml,linenums]
+----
 [mule]
 TRUNCATE = 0
 LINE_BREAKER = ([\r\n]+)
@@ -161,335 +107,259 @@ INDEXED_EXTRACTIONS = JSON
 KV_MODE = JSON
 category = Mule Splunk Integration
 description = Mule Agent event information
-....
+----
 
-[NOTE]
-If this file doesn't exist yet, you must create it.
+. Restart your Splunk instance for your changes to take effect.
 
-After making these changes, you must restart your Splunk instance for them to take effect.
 
-.Configurable Fields
+=== Configure Splunk Integration in Runtime Manager 
+
+To send Mule event notifications from the Runtime Manager agent to Splunk:
+
+. If you plan to send data to Splunk using the HTTP Event Collector or over TCP, check the <<Splunk Prerequisites>>.
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Click the *Type* column to display the details pane for the server you want to configure.
+. Click *Manage Server*.
+. Click the *Plugins* tab:
++
+.The screenshot shows (*1*) the *Event Tracking* options, (*2*) the *Level* menu, and (*3*) the gear icon on the server *Plugins* tab.
+image::hybrid-export-splunk-elk.png[Event Tracking options, Level menu, and gear icon on the server Plugins tab.]
+
+. Under *Event Tracking*, enable *Splunk*.
+. Select the type of information to send from the *Level* menu. 
++
+See <<Logging-Level Options>>.
+. Click the gear icon to specify your Splunk configuration:
++
+.The screenshot shows (*1*) the protocol option, (*2*) the data input types, and (*3*) the *Show more options* switch in the Splunk configuration window.
+image::hybrid-export-splunk-configure.png[Protocol option, data input types, and Show more options switch in the Splunk configuration window]
++
+See <<Splunk Configuration Options>>.
+. Specify the host (IP address or hostname) and management port of the server where Splunk is running. 
++
+* To send data to Splunk using the REST API, select *Rest API* and enter the username and password for your Splunk account.
+* To send data to Splunk over TCP, select *tcp* from the menu and enter the username and password for your Splunk account.
+* To send data to Splunk using the HTTP Event Collector, select *HTTP Event Collector* and paste the token from Splunk in the *Token* field:
++
+.The screenshot shows (*1*) the *HTTP Event Collector* option and (*2*) the *Token* field in the Splunk configuration window.
+image::hybrid-export-splunk-configure-http.png[HTTP Event Collector option and Token field in the Splunk configuration window]
+
+
+. If you want, click *Show more options* to specify formatting properties for the sent data:
++
+.The arrow shows the expanded options in the Splunk configuration window.
+image::hybrid-export-splunk-configure-advanced.png[Expanded options in the Splunk configuration window]
++
+See <<Splunk Configuration Options>>.
++
+The *SSL Protocol* option applies only to the REST API data input type.
++
+[IMPORTANT]
+If you set values for the Splunk index, Splunk source, and Splunk source type when you registered your data input in Splunk, any values you specify in this window overwrite those values.
+
+. Click *Apply* to save your changes.
+
+=== Splunk Configuration Options
+
+Splunk integration includes the following configuration options:
+
+[cols="20,30,20"]
 |===
-|Field|Data Type|Description|Type|Default Value
+|Field|Description|Default Value
 
-|`user`
-|String
-|Username to connect to Splunk.
-|Required
+|Username
+(Required)
+|Username to connect to Splunk
 |
 
-|`pass`
-|String
-|The password of the Splunk user.
-|Required
+|Password 
+(Required)
+|Password associated with the Splunk username 
 |
 
-|`host`
-|String
-|IP or hostname of the server where Splunk is running.
-|Required
+|host
+(Required)
+|IP address or hostname of the server where Splunk is running
 |
 
-|`port`
-|int
-|Splunk management port.
-|Optional
+|port
+|Splunk management port
 |8089
 
-|`scheme`
-|String
-|Scheme of connection to the Splunk management port. Possible values: http, https.
-|Optional
+|protocol 
+a|Protocol for the connection to the Splunk management port
+
+Possible values are http, https, and tcp.
 |https
 
-|`sslSecurityProtocol`
-|String
-|SSL Security Protocol to use in the https connection. Possible values: TLSv1_2, TLSv1_1, TLSv1, SSLv3.
-|Optional
+|SSL Protocol (REST API only)
+a|SSL Security Protocol to use for the HTTPS connection
+
+Possible values are TLSv1_2, TLSv1_1, TLSv1, and SSLv3.
 |TLSv1_2
 
-|`splunkIndexName`
-|String
-|Splunk index name where all the events must be sent. If the user has the rights,
-and the index doesn't exist, then the internal handler will create it.
-|Optional
+|Splunk Index
+a|Name of the Splunk index to send all events to
+
+If the index doesn't exist, the internal handler creates it if the permissions associated with the username are adequate.
 |main
 
-|`splunkSource`
-|String
-|The source used on the events sent to Splunk.
-|Optional
+|Splunk Source
+|The source used for events sent to Splunk
+|mule-events 
+
+|Splunk Type 
+|The source type used for events sent to Splunk
 |mule
 
-|`splunkSourceType`
-|String
-|The sourcetype used on the events sent to Splunk.
-|Optional
-|mule
-
-|`dateFormatPattern`
-|String
-|Date format used to format the timestamp.
-|Optional
+|Date Format
+|Date format to use to format the timestamp
 |yyyy-MM-dd'T'HH:mm:ssSZ
-
 |===
 
-.Splunk Internal Handler Minimum Configuration Example
-[source,yaml]
-....
----
-  mule.agent.gw.http.handler.splunk:
-    host: 192.168.61.131
-    user: admin
-    pass: test
-....
 
-=== Rest API
+// .Splunk Internal Handler Minimum Configuration Example
+// [source,yaml]
+// ----
+//   mule.agent.gw.http.handler.splunk:
+//     host: 192.168.61.131
+//     user: admin
+//     pass: test
+// ----
 
-This feature requires Runtime Manager agent 1.2.0 version or later.
 
-. Select the server whose information you want to send out.
-. In the menu on the right, click *Manage Server* to access the server's settings.
+== Integrating with Your ELK Stack
+
+The ELK (Elasticsearch, Logstash, Kibana) stack enables you to store, search, and analyze the log data.
+
+
+You can configure the Runtime Manager agent to send event notifications from Mule flows to a configurable log file.
+Logstash first captures and indexes the data.
+Then, you can use Elasticsearch and Kibana to generate graphs, reports, alerts, dashboards, and visualizations.
+
+=== Configure the Log File for Your ELK Stack
+
+To send event notifications to the folder from which your ELK stack reads:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Click the *Type* column to display the details pane for the server you want to configure.
+. Click *Manage Server*.
+. Click the *Plugins* tab:
 +
-image::sending-data-from-arm-to-external-monitoring-software-manage-server.png[]
+.The screenshot shows (*1*) the *Event Tracking* options, (*2*) the *Level* menu, and (*3*) the gear icon on the server *Plugins* tab.
+image::hybrid-export-splunk-elk.png[Event Tracking options, Level menu, and gear icon on the server Plugins tab.]
 
-. Select the *Plugins* tab:
+. Select the type of information to send from the *Level* menu.
 +
-image::sending-data-from-arm-to-external-monitoring-software-plugins.png[]
-
-. Select the kind of information that you want to send out in the *Level* dropdown menu.
+See <<Logging-Level Options>>.
+. Under *Event Tracking*, enable *ELK*.
+. Click the gear icon to configure the log file location for ELK:
 +
-image::sending-data-from-arm-to-external-monitoring-software-level.png[]
+.The screenshot shows (*1*) the log file location and (*2*) the *Show more options* switch in the ELK configuration window.
+image::hybrid-export-elk-configure.png[Log file location and Show more options switch in the ELK configuration window]
 
-. On the *Event Tracking* region, activate the *Splunk* switch. A pop-up menu opens where you provide your Splunk user and password data, as well as the host and port for the connection.
+. If you want, click *Show more options* to specify additional properties for the log file:
 +
-image::sending-data-from-arm-to-external-monitoring-software-splunk.png[]
+.The arrow shows the expanded options in the ELK configuration window.
+image::hybrid-export-elk-configure-advanced.png[Expanded options in the ELK configuration window]
 
-. Optionally, you can open the advanced menu and set up certain formatting properties of the data that will be sent out.
+
+. Click *Apply* to save your changes.
+
+
+== Integrating API Analytics with Splunk or ELK
+
+To integrate API Analytics with Splunk or ELK:
+
+. <<Configure the API Gateway>>.
+. <<Configure API Analytics to Connect with Splunk or ELK>>.
+
+[WARNING]
+If you configure the API gateway `wrapper.conf` (Step 1) but don't assign an external destination for your data (Step 2), the analytics data accumulates in a queue in the API gateway server, which could cause the system to crash.
+
+
+=== Configure the API Gateway
+
+To set up the connection to external analytics tools, configure the API gateway:
+
+. In your API gateway standalone directory, open the `conf/wrapper.conf` file.
 +
-image::agent-to-splunk-restapi-advanced.png[splunk]
-
-[discrete.view]
-=== HTTP Event Collector
-
-This feature require 1.3.1 agent version or later.
-
-[NOTE]
-This feature requires Runtime Manager agent version 1.3.1 or later.
-
-. First you must obtain a token from Splunk. To do so:
-.. Sign in to your Splunk account.
-.. Navigate to *Settings* -> *Data Inputs*.
-.. Among the different options, you can find the *HTTP Event Collector*, click the *Add New* link next to it.
-+
-image::splunk-datainput-setup.png[Splunk settings]
-.. Follow the steps of the wizard to set up a data input and obtain the token for it
-
-. Back in the Runtime Manager, select the server whose information you want to send out.
-. In the menu on the right, click *Manage Server* to access the server's settings.
-+
-image::sending-data-from-arm-to-external-monitoring-software-manage-server.png[]
-
-. Select the *Plugins* tab:
-+
-image::sending-data-from-arm-to-external-monitoring-software-plugins.png[]
-
-. Select the kind of information that you want to send out in the *Level* dropdown menu.
-+
-image::sending-data-from-arm-to-external-monitoring-software-level.png[]
-
-. On the *Event Tracking* region, activate the *Splunk* switch. This will open a pop up menu where you can provide your Splunk user and password data, as well as the host and port for the connection.
-+
-image::sending-data-from-arm-to-external-monitoring-software-splunk.png[]
-
-+
-image::agent-to-splunk-httpevent.png[splunk]
-
-. Select the *HTTP Event Collector* option and then paste the token that Splunk gave you.
-. Optionally, you can open the advanced menu and set up certain formatting properties of the data that will be sent out.
-+
-image::agent-to-splunk-httpevent-advanced.png[splunk]
-
-[NOTE]
-Although you can set values for the Splunk index, Splunk source and Splunk source type when registering your data input in your Splunk account, the values are overwritten by the values you configure for these fields in the *Advanced* section of the Runtime Manager agent *Plugins* menu.
-
-[discrete.view]
-=== TCP
-
-This feature require 1.3.1 agent version or later.
-
-. First you must enable the input source in Splunk. To do so:
-.. Sign in to your Splunk account.
-.. Navigate to *Settings* -> *Data Inputs*.
-.. Among the different options, you can find the *TCP* option, next to it is an *Add New* link. Click the one you want.
-+
-image::splunk-datainput-setup-tcp.png[splunk settings]
-.. Follow the steps of the wizard to set up a data input.
-
-. Back in the Runtime Manager, select the server whose information you want to send out.
-. In the menu on the right, click *Manage Server* to access the server settings.
-+
-image::sending-data-from-arm-to-external-monitoring-software-manage-server.png[]
-
-. Select the *Plugins* tab:
-+
-image::sending-data-from-arm-to-external-monitoring-software-plugins.png[]
-
-. Select the kind of information that you want to send out in the *Level* dropdown menu.
-+
-image::sending-data-from-arm-to-external-monitoring-software-level.png[]
-
-. On the *Event Tracking* region, activate the *Splunk* switch. A pop-up menu opens where you can provide your Splunk user and password data, as well as the host and port for the connection.
-+
-image::sending-data-from-arm-to-external-monitoring-software-splunk.png[]
-
-. Activate the *Splunk* switch to open a pop-up menu. In the Dropdown pick *TCP*, then provide the host and port for the connection.
-+
-image::agent-to-splunk-tcp.png[splunk]
-
-=====
-[discrete.view]
-==== Integrating with an ELK Stack
-
-ELK combines three open source tools (Elasticsearch, Logstash, Kibana) that work together to help you store, search and analyze log data. You can output the Mule event notifications as generic system logs, which can be handled by your ELK stack. Logstash captures and indexes the data into the log, from which you can then use Elasticsearch and Kibana to generate graphs, reports, alerts, dashboards and visualizations.
-The Runtime Manager agent helps you store all of the Event Notifications produced from the Mule runtime flows into a configurable log file with a rolling file policy.
-
-image::amc-onprem-diagram-detail-elk.jpg[]
-
-To direct information to the folder where your ELK stack reads from, you must do the following:
-
-. Select the server whose information you want to send out.
-. In the menu on the right, click *Manage Server* to access the server settings.
-+
-image::sending-data-from-arm-to-external-monitoring-software-manage-server.png[]
-
-. Select the *Plugins* tab:
-+
-image::sending-data-from-arm-to-external-monitoring-software-plugins.png[]
-
-. Select the kind of information that you want to send out in the *Level* dropdown menu
-+
-image::sending-data-from-arm-to-external-monitoring-software-level.png[]
-
-. On the *Event Tracking* region, activate the *ELK* switch. This will open a pop up menu where you can provide the address to the folder where you keep the log files that your ELK stack reads.
-+
-image::sending-data-from-arm-to-external-monitoring-software-elk.png[]
-
-. Optionally, you can open the advanced menu and set up certain formatting properties of the data you send out and how the information is archived.
-+
-image::elk-config-advanced.jpg[ELK advanced]
-
-[discrete.view]
-=== Configure API Analytics
-
-Before you can set up the connection to external software through the Runtime Manager UI, you must first make some changes to the API gateway to prepare it for this.
-
-. In your API gateway standalone directory, look for the `conf/wrapper.conf` file
-. In it find the following line and make sure that the property is set to "true"
+The `.<n>` value in the code snippets refers to an integer that is unique within `wrapper.conf`.
+. Ensure that the following property is set to `true` and that the line is uncommented:
 +
 [source,java,linenums]
 ----
 wrapper.java.additional.<n>=-Danypoint.platform.analytics_enabled=true
 ----
 
-. Look for this other line:
+. Remove the URL from the following line:
 +
 [source,java,linenums]
 ----
 wrapper.java.additional.<n>=-Danypoint.platform.analytics_base_uri=https://analytics-ingest.anypoint.mulesoft.com
 ----
-. Remove the URL in it, so that it looks like this:
++
+The line now looks like the following:
 +
 [source,java,linenums]
 ----
 wrapper.java.additional.<n>=-Danypoint.platform.analytics_base_uri=
 ----
-. When using Anypoint Platform Private Cloud Edition, there's one more parameter you need to change:
+. For Anypoint Platform Private Cloud Edition, change the `anypoint.platform.on_prem` parameter to `true`:
 +
 [source,java,linenums]
 ----
 wrapper.java.additional.<n>=-Danypoint.platform.on_prem=true
 ----
 +
-`anypoint.platform.on_prem` is set to `false` by default. To manage it through Anypoint Platform Private Cloud Edition, you must set it to `true`. To manage it through the Runtime Manager in the cloud, leave it as `false`.
+If you are using the Runtime Manager cloud console, leave this parameter set to the default value, `false`. 
 
-[TIP]
-Note that in the above code snippets, when lines that contain `.<n>`, that should be replaced with an integer number that is unique within the wrapper.
 
-Once you have set up your Stand Alone API gateway, the steps for connecting to Splunk and ELK are identical to those when dealing with Mule Custom Events, except that you should set them up via the corresponding switches.
+==== Configure Multiple Consumers 
 
-image::sending-data-from-arm-to-external-monitoring-software-api-analytics.png[]
+For Mule versions 4.2.0 and 3.9.3 and later, you can forward events to both an external tool and Anypoint Platform.
 
-[NOTE]
---
-Starting from Mule versions 4.2.0 and 3.9.3, you can configure the Mule runtime engine to forward events to both a third-party system, like ELK and Splunk, and to Anypoint Platform by adding an additional property to the `wrapper.conf` file:
+To configure multiple consumers, add the following line to the `wrapper.conf` file:
 
 [source,java,linenums]
 ----
 wrapper.java.additional.<n>=-Danypoint.platform.analytics_multiple_consumers_enabled=true
 ----
---
-
-[WARNING]
-If you modify your `wrapper.conf` file as described above but don't assign an external destination for your data (as you can do via the Runtime Manager UI), then this analytics data will be stored in a queue in the server where the API gateway is being run and could pile up to the point of crashing the system.
-
-[discrete.view]
-== Integrating API Analytics with Splunk and ELK
-
-Once you've configured your API gateway, you can now return to Runtime Manager and see that your servers have some additional options in their menu.
-
-image::sending-data-from-arm-to-external-monitoring-software-api-analytics.png[]
-
-You can now set up the sending of API analytics to both Splunk and ELK, you configure exactly in the same way as you do when sending business events to them. See <<Integrating with an ELK Stack, Integrating with an ELK Stack>> and <<Integrating with Splunk, Integrating with Splunk>>.
-
-[discrete.view]
-== Payload Formats
-
-If you intend to export your payload's contents to be logged, keep in mind that not all formats can be exported. See xref:about-logging-of-payload-formats.adoc[About Logging of Payload Formats] for a full reference.
-
-[discrete.view]
-== Encrypting Passwords
-
-Assign a master password to your Mule instance or your API gateway standalone instance when launching them. If you don't, when you set up your credentials for external applications using the Runtime Manager UI, the credentials are stored as plain text in the `conf/mule-agent.yml` file. This is not recommended for security reasons. Instead, launch Mule or API gateway runtime with an extra argument that is then used to encrypt these passwords when storing them in the YAML file.
-
-[discrete.view]
-=== Mule
-
-----
-{MULE_HOME}/bin/mule -M-Dmule.agent.configuration.password=myMasterPassword
-----
-
-or on Windows:
-
-----
-{MULE_HOME}\bin\mule.bat -M-Dmule.agent.configuration.password=myMasterPassword
-----
 
 
-[discrete.view]
-=== API Gateway - Deprecated
+=== Configure API Analytics to Connect with Splunk or ELK
 
-----
-{MULE_HOME}/bin/gateway -M-Dmule.agent.configuration.password=myMasterPassword
-----
 
-or on Windows:
+After you configure your API gateway, configure Splunk or ELK in Runtime Manager:
 
-----
-{MULE_HOME}\bin\gateway.bat -M-Dmule.agent.configuration.password=myMasterPassword
-----
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Click the *Type* column to display the details pane for the server you want to configure.
+. Click *Manage Server*.
+. Click the *Plugins* tab:
++
+.The arrow shows the *API Analytics* options on the server *Plugins* tab.
+image::hybrid-export-api-analytics.png[API Analytics options on the server Plugins tab.]
 
-=====
 
-To have access to these encrypted passwords when you restart Mule or API gateway, you must assign the same master password you used when generating them.
-If you decide to change the master password or you omit it when you launch the runtime, you must reassign your passwords through the Runtime Manager UI to keep the third-party integrations working.
+. Under *API Analytics*, enable *ELK* or *Splunk*.
+
+. Click the gear icon and continue with Step 8 in the following sections to complete the configuration:
++
+* <<Configure Splunk Integration in Runtime Manager>>
+* <<Configure the Log File for Your ELK Stack>> 
+
+
 
 == See Also
 
-* xref:managing-servers.adoc[Managing Servers]
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications] contains more information on how to manage your application once deployed
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers] contains more information specific to on-premise deployments
-* A https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST API] is also available for deployment to your servers.
+* xref:rtm-agent-proxy-config#encrypt_password[Include an Encrypted Password in the mule-agent.yml File]
+* xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
+* xref:monitoring.adoc[Monitoring Applications and Servers]
+* xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Servers]
+* xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST API]

@@ -1,230 +1,153 @@
-= Deploying to Your Own Servers
+= Deploying to Your Servers
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, deploy, manage, runtime manager, arm
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-Before you can deploy to a server, you must first:
-
-. xref:mule-runtime::mule-standalone.adoc[Install Mule]
-. xref:servers-create.adoc[Create a Server in Runtime Manager]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 You can deploy a Mule application to a local server using:
 
-* xref:deployment-strategies.adoc#cloud-console-on-premises-deployment[The Runtime Manager cloud console]
-* xref:deployment-strategies.adoc#on-premises-console-on-premises-deployment[The Anypoint Platform Private Cloud Edition]
-* The https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager API]
-* The xref:3.9@mule-runtime::mule-maven-plugin.adoc[Mule-Maven Plugin]
+* xref:deployment-strategies.adoc#cloudhub-deployments[Anypoint Platform Runtime Manager cloud console]
+* xref:deployment-strategies.adoc#anypoint-platform-pce-deployments[Anypoint Platform Private Cloud Edition Runtime Manager console]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager API]
+* xref:mule-runtime::deploy-on-premises.adoc[Mule Maven plugin]
 
-[TIP]
-====
-To request the Anypoint Platform Private Cloud Edition, contact your sales representative.
+When you use Runtime Manager to manage a server, you cannot use other deployment and management methods or tools to manage it.
 
-When you use Runtime Manager to manage a server, you cannot use other deployment and management methods or tools (MMC and manual deployment) to manage the server.
-====
+== Prerequisites
 
-== Deploying an Application
+Before you can deploy to a local server, you must first:
 
-=== From Anypoint Platform
-
-. Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] or click *Sign up* on the sign on page.
-
-. Click *Runtime Manager*:
-+
-image::deploying-to-your-own-servers-get-to-arm.png[]
-+
-. Click *Deploy application*:
-+
-image::deployappfromconsole.png[DeployAppFromConsole]
-+
-[TIP]
-For more information on the *Servers* tab, see xref:managing-servers.adoc[Managing Servers].
-+
-.  The Deploy Application page opens:
-+
-image::deployappfirstscreen.png[DeployAppFirstScreen]
+. xref:mule-runtime::runtime-installation-task.adoc[Download and install Mule].
+. xref:servers-create.adoc[Add a server to Runtime Manager].
 
 
-=== From Anypoint Exchange
+To copy an application from a non-production (Sandbox) environment to a production environment, ensure that you have permission on both environments.
 
-. From Anypoint Platform, select *Runtime Manager*.
-. Click *Applications*, then click *Deploy Application*.
+To avoid compatibility issues, also ensure that:
+
+* The Mule versions on the servers in both environments are the same or compatible.
+* The deployment target type (single server, server group, or cluster) in both environments is the same.
+
+
+== Deploy an Application from Runtime Manager
+
+
+To deploy an app to your local server from Runtime Manager:
+
+. Sign in to Anypoint Platform.
+. Select *Runtime Manager*.
+. In the *Applications* page, click *Deploy application*.
 . Provide a name for your application.
-. Select a deployment target from the drop-down list.
 +
-The target must be a registered server, server group or cluster.
-
-. Click *Choose File*, then select *Import File from Exchange* from the drop-down menu.
+The application name identifies your application in Runtime Manager and must be unique across environments.
+Runtime Manager alerts you if the name is already in use.
 +
+Application names can contain between 3 and 42 alphanumeric characters (a-z, A-Z, 0-9) and dashes (-).
+They cannot contain spaces or other characters.
 
-. Enter the name of your application in the search box.
+. Select the deployment target.
 +
-You can see a full list of applications in Anypoint Exchange. Your application should appear in the search results list.
+The target must be a running server, server group, or cluster.
++
+To deploy to CloudHub, see xref:deploying-to-cloudhub.adoc[Deploying to CloudHub].
 
-. Select the application you want to deploy, then select a version from the drop-down list.
+. Specify the application file:
+
+** Import a file from Exchange:
+
+.. Click *Choose file* and then select *Import file from Exchange*.
+.. Select *Application* for the type.
+.. Enter the name of your application in the search box.
+.. Select the application to deploy, select a version from the *Version* menu, and then click *Select*.
+
+** Upload an application ZIP file:
+
+.. Click *Choose file* and then select *Upload file*.
+.. Select the file to upload and then click *Open*.
+
+** Copy an application from a non-production environment:
+
+.. Click *Get from sandbox*.
++
+This button is available only if a non-production environment exists.
+
+.. Select the environment, such as Sandbox, from which to get the application.
+.. If necessary, search for the application to deploy.
+.. Select the application and then click *Apply*.
++
+Only applications that are deployed to a local server, server group, or cluster appear in the list.
+Applications deployed to CloudHub can only be promoted to run on other CloudHub workers.
+
+. Click tabs to configure application options:
++
+.The arrow shows the configuration tabs on the *Deploy Application* page.
+image::rtm-deploy-to-own-servers.png[Configuration tabs on the Deploy Application page]
++
+*Deployment Target* tab::
+The server, server group, or cluster that you selected determines the Mule version.
++
+Ensure that this Mule version is the same version used to develop your application.
+
+*Insight* tab::
+Specify metadata options for the Insight analytics feature.
+See xref:insight.adoc[Insight].
+*Properties* tab::
+Specify properties (key-value pairs) that the application uses during deployment and while running.
++
+--
+When you deploy an application from a non-production environment (*Get from sandbox*), the new application inherits any properties defined in the original application.
+You can update these properties as required on the *Properties* tab before deploying the application.
+
+See xref:hybrid-manage-props.adoc[Managing Properties for Applications On-Premises] and xref:secure-application-properties.adoc[Safely Hiding Application Properties].
+--
+*Logging* tab::
+Configure the logging level for the application: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, or `FATAL`.
++
+--
+Alternatively, you can configure logging by modifying the `level` value in the `log4j2.xml` file.
+See xref:mule-runtime::logging-in-mule.adoc#configuring-custom-logging-settings[Configuring Custom Logging Settings] and https://logging.apache.org/log4j/2.x/manual/configuration.html[Apache Logging Services].
+--
+
++
+--
+After you deploy the application, two additional tabs are available:
+
+*Flow Monitoring* tab::
+Specify to make flow monitoring metadata available in the applications *Flows* page.
+*Alerts History* tab::
+View alerts for the application.
+--
+
 . Click *Deploy Application*.
 
 The new application appears in the list of deployed applications in the Applications tab.
 
-=== From Sandbox
-
-If you created an application in a sandbox environment and tested it, you probably will eventually want to migrate it to production.
-
-
-. Once logged into your Anypoint Platform account, go to one of your non-sandbox environments
-. In the *Applications* tab, click the *Deploy Application* button
-+
-image::deploying-to-your-own-servers-d84f7.png[]
-
-. Name your deployment, then select the deployment target. The target must be a registered server, server group or cluster.
-
-+
-image::deploying-to-your-own-servers-cb103.png[]
-
-. Then when picking the application file, instead of uploading a new file, click *Get from sandbox*.
-+
-image::deploying-to-your-own-servers-561b4.png[]
-
-. This opens a window that displays all of your applications running in sandbox environments on servers on-premises, sorted by environment. Select an application and click *Apply*.
-
-+
-image::deploying-to-your-own-servers-862c0.png[]
-
-. Continue setting up your deployment as you would with any normal deployment.
-
-[NOTE]
-====
-Currently, only applications that are deployed to user-managed runtimes are displayed in this list. Applications deployed to CloudHub workers that are in sandbox environments can only be promoted to run on other CloudHub workers.
-
-Also, be mindful of the Mule versions being used by the servers in both environments. They should both use the same or at least compatible versions. See xref:release-notes::mule-runtime/updating-mule-versions.adoc[Updating Mule Versions].
-====
-
-==== Limitations
-
-* If you're deploying to a production target that is of a different type (cluster, single server) or that has a different Mule version installed in it, there could be compatibility issues.
-* Only a user with permissions on both the sandbox environment and the destination production environment can move applications between them.
-* To avoid domain name conflict, an application cannot exist in two environments at the same time. Alter the application's name slightly to deploy it to another environment.
-* Runtime Manager prevents you from having duplicate application names in a single environment. If a name is already taken, you are prompted to provide a new name.
-
-////
-=== From Anypoint Studio
-
-. With your application open in Anpoint Studio as a Mule Project, right-click on the project node in the package explorer. Then select *Deploy to Anypoint Platform* > *Runtime Manager* from the cascading menu.
-+
-image::deploy-to-cloudhub.png[deploy+to+cloudhub]
-+
-. If this is your first time deploying in this way, a popup menu asks you to provide your login credentials for the Anypoint Platform. Studio stores your credentials and uses them automatically the next time you deploy to CloudHub.
-
-+
-[TIP]
-You can manage these credentials through the Studio *Preferences* menu, in *Anypoint Studio* > *Authentication*.
-
-. After you sign in, the Deploy Application menu opens.
-+
-image::deployappfirstscreen.png[DeployAppFirstScreen]
-
-////
-
-== Creating an Application Name
-
-Every application requires a unique application name. The application domain identifies your application in the Runtime Manager. Valid names contain alphanumeric characters and dashes, and contain at most 40 characters. If the name is valid, the Runtime Manager alerts you whether it is available or already reserved by another user.
-
-image::deployappname.png[DeployAppName]
-
-== Deployment Target
-
-If you already have servers xref:managing-servers.adoc[registered to the Anypoint Platform], you will see a *Deployment Target* field that lets you specify where you want to deploy your application:
-
-* On the CloudHub worker cloud
-* On a server on-premises, in a different cloud repo, a server group, or a cluster
-
-This document focuses on deploying to on-premises servers, for more information on deploying to CloudHub, see xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
-
-
-== Application File
-
-Upload a new file for deployment. Click the *Choose file* button, select your application file, and then click *Open*. You can also click the *Get from sandbox* button to copy a file from a non-production environment into your current environment. If the *Get From Sandbox* button does not appear, you may first need to create a non-production environment to view this option.
-
-*Note*: The application file size limit is 100 MB.
-
-image::applicationfile.png[ApplicationFile]
-
-
-=== Runtime Version
-
-Since the server, server group or cluster you select implicitly has a single Mule version installed, this is determined automatically by the server you select.
-
-Keep in mind that servers in a cluster must have the same Mule version installed in all of them.
-
-[IMPORTANT]
-====
-Ensure that the Mule version in the server or servers is the same version used to develop your application. For example, if you deploy to a server that runs Mule 3.5.0 and your application uses the new HTTP connector introduced in Mule 3.6 and newer, your application won't deploy and the log contains errors.
-====
-
-== Insight Tab
-
-The Insight tab lets you specify metadata options for the Insight analytics feature. For more information, see xref:insight.adoc[Insight].
-
-image::deploying-to-your-own-servers-c5057.png[]
-
-== Properties Tab
-
-The Properties tab enables you to specify properties that the application uses during deployment and while running. Application properties are defined as key/value pairs.
-
-image::deploy-app-properties-tab.png[]
-
-For example, you can define properties for `db_user` and `db_password` that specify credentials for connecting to a database.
-
-Specifying properties in Runtime Manager enables you to define properties in one place rather than having multiple application property files for a single application in multiple environments. You can also define application-specific properties in a properties file, then later add environment-specific properties from Runtime Manager during deployment
-
-After deploying an application, you can modify application properties or create new ones from the Application Settings page. The values of properties defined on this tab override any application properties defined in the `mule-app.properties` or other properties of Mule.
-
-If you change properties after an application is deployed, you must restart the application and any server group or cluster where the application is deployed.
-
-When deploying an application using the Get From Sandbox feature, your new application will inherit any properties defined in the original application. You can update these properties as required before deploying the application.
-
-The following security considerations apply to these properties:
-
-* Values sent between Runtime Manager and Mule are encrypted over HTTPS.
-* Values stored in the Runtime Manager internal database are encrypted.
-* By default, Runtime Manager does not display the values of the properties in the UI.
-* Only users that have access to the Application Setting page can view these properties.
-
-== Logging Tab
-
-Each Mule stores log files in its respective local drive. The Logging tab of the deploy menu lets you configure how these logs are structured. Specifically, it lets you set how the different logging levels are applied (`INFO`, `DEBUG`, `WARN`, or `ERROR`), so that they don't follow the default usage.
-
-image::deploying-to-your-own-servers-198b4.png[]
-
-[TIP]
-Configuring this via the logging tab has the same effects as editing the `log4j2.xml` file on Mule. For details on how to do that, see
-see xref:3.8@mule-runtime::logging-in-mule.adoc#configuring-custom-logging-settings[logging in Mule]. You can also check a reference to  https://logging.apache.org/log4j/2.x/manual/configuration.html[`log4j2.xml` configuration] in Apache's documentation.
-
-
-
-== Configuring a Deployed Application
+== Changing a Deployed Application
 
 You can change the application file of a deployed application:
 
 . Select your application in the *Applications* page to open its corresponding panel.
 . Click *Choose File* to upload a new file.
 
-[TIP]
-Keep in mind that your application will experience a moment of downtime while the new version you just selected is launched in the server, server group, or cluster.
+Your application might experience a moment of downtime while the new version is launched in the server, server group, or cluster.
 
 
 == Deployment Errors
 
-If an error occurs and the application cannot be deployed, the application status indicator changes to `Failed`. You are alerted in the status area that an error occurred. Check the log details for any application deployment errors. You need to correct the error, upload the application, and deploy again.
+If an error occurs and the application cannot be deployed, the application status indicator changes to `Failed` and the status area indicates that an error occurred.
+Check the log details for any application deployment errors.
+Correct the error, upload the application, and redeploy the application.
 
 == See Also
 
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-servers.adoc[About Servers, Server Groups, and Clusters]
-* xref:monitoring.adoc[Monitor your Applications]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST APIs]
+* xref:rtm-agent-whitelists.adoc[Ports, IP Addresses, and Hostnames to Whitelist]
+* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
+* xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
+* xref:monitoring.adoc[Monitoring Applications and Servers]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST APIs]

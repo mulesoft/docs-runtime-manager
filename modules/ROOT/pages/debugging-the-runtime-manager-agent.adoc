@@ -4,42 +4,48 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, servers, monitor, notifications, external systems, third party, get status, metrics
 
-A `$MULE_HOME/bin/amc_debug` script is available to help you troubleshoot Runtime Manager agent installation issues.
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-If you experience issues with the Runtime Manager agent plugin or with managing applications on Anypoint Platform, run the script and save the output before filing a support ticket.
+You can use the `$MULE_HOME/bin/amc_debug` script to collect information used by Support to troubleshoot the Anypoint Runtime Manager agent installation issues. If you experience issues with the Runtime Manager agent plug-in or with managing applications on Anypoint Platform, run the script and save the output before filing a support ticket.
 
-When you run this script it collects the following information to help troubleshoot your issue:
+The `amc_debug` script performs the following actions:
 
-. Discovers Mule agent JVM process
-. Extracts thread dump (not forced if possible)
-. Extracts heap dump
+. Discovers the Mule agent JVM process
+. Extracts the thread dump (not forced if possible)
+. Optionally extracts the heap dump (if you specify the `-heap` option)
 +
-[CAUTION]
---
 This step can cause delays in running applications.
---
 +
-. Extracts machine generic data: Java version, CPU usage, Memory usage, Disk usage.
+. Extracts the Java version, CPU usage, memory usage, and disk usage
 . Copies all logs
-. Copies Runtime Manager Agent Configuration files
-. ZIPs all the information
+. Copies the Runtime Manager agent configuration files
+. Archives all the information collected in a .zip file
 
-After the script completes, you can find a ZIP file in the folder `$MULE_HOME/bin` (with a name similar to `snapshot_201701021410.zip`) that you can send to MuleSoft's support engineers to help troubleshoot your issues.
+== Run the amc_debug Script
 
-== Connectivity Problems
+To run the `amc_debug` script to collect information about the agent installation:
 
-If you have connectivity issues, check the JVM you are using. If you are using the IBM JVM, you must install the truststore manually since this truststore requires special parameters that are different from the Oracle JVM or OpenJDK.
+. Open a terminal window and change to the `$MULE_HOME/bin` folder.
+. Run the script:
++
+`./amc_debug`
++
+Include the `-heap` option to extract the heap in addition to the other data.
++
+After the script finishes, the folder `$MULE_HOME/bin` contains a .zip file with a name similar to `snapshot_201910081712.zip`.
+. Send the .zip file to Support.
 
-For instructions, see xref:servers-create#the-ibm-jvm[The IBM JVM].
+== Connectivity Issues
 
-== Runtime Manager Agent Documentation Pages
+If you experience connectivity issues, check the JVM you are using. If you are using the IBM JVM, you must install the truststore manually because this truststore requires different parameters than Oracle JVM or OpenJDK. See xref:servers-create.adoc#ibm-jvm[IBM JVM].
 
-* xref:installing-and-configuring-runtime-manager-agent.adoc[Installing Runtime Manager Agent]
-* xref:runtime-manager-agent-architecture.adoc[Runtime Manager Agent Architecture]
-* xref:administration-service.adoc[Administration Service]
-* xref:managing-applications-and-domains.adoc[Managing Applications and Domains]
+== See Also
+
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent]
 * xref:event-tracking.adoc[Event Tracking]
-* xref:jmx-service.adoc[JMX Service]
 * xref:runtime-manager-agent-notifications.adoc[Runtime Manager Agent Notifications]
 * xref:extending-the-runtime-manager-agent.adoc[Extending the Runtime Manager Agent]
 * xref:internal-handler-buffering.adoc[Internal Handler Buffering]

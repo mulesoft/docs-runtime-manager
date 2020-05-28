@@ -7,9 +7,7 @@ In CloudHub's default configuration, all applications are hosted in a multi-tena
 When you create an Anypoint Virtual Private Cloud (Anypoint VPC), you can add your own firewall rules to allow specific IP ranges and ports to reach your workers. See <<configurefirewall,Configure Firewall Rules>>.
 
 [NOTE]
-====
 Keep in mind that the firewall rules that you configure in your Anypoint VPC check inbound connections only to your workers, and not to the Anypoint VPC, your dedicated load balancer, or the publicly accessible load balancer.
-====
 
 By default, all traffic to your VPC is blocked unless it's explicitly allowed in a firewall rule.
 When you create an Anypoint VPC, four firewall rules are created by default:
@@ -68,6 +66,9 @@ Firewall rules are inbound and use the following parameters:
 * *Type*: Protocol type, for example, TCP
 * *Source*: Source IP address
 * *Port Range*: The only two ports exposed externally are 8081 (http.port) and 8082 (https.port). You can use this parameter to open additional ports inside the VPC.
+
+[NOTE]
+You cannot configure firewall rules for ports below 1024.
 
 === Add or Edit Firewall Rules
 

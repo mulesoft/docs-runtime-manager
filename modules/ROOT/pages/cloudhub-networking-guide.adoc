@@ -4,13 +4,25 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cluster, managing, monitoring, runtime manager, arm
 
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
 This guide is for cloud deployments using the cloud-based version of Runtime Manager. See xref:deployment-strategies.adoc[Deployment Strategies] for information about different deployment scenarios.
 
 == Overview
 
 CloudHub provides a variety of tools to architect your integrations and APIs so they are maintainable, secure, and scalable. This guide covers the basic network architecture, DNS, and firewall rules.
 
-image::cloudhub-networking-guide-1.jpg[CloudHub+Networking+Guide-1]
+.The image shows the CloudHub components: Load Balancer, Virtual Private Cloud, and the DNS records of the Mule workers.
+image::ch-networking-guide.png[CloudHub Network Overview]
+
+See the sections below for information about load balancing and DNS records.
+For information about VPC, see xref:virtual-private-cloud.adoc[Virtual Private Cloud].
+
 
 == Load Balancing
 
@@ -18,7 +30,7 @@ CloudHub provides a load balancing service for all integrations. You can use the
 
 The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub].
 
-Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`).
+Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.region.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`).
 
 The following ports are assigned on the Mule worker:
 
@@ -45,7 +57,7 @@ If other values for `http.port` and `https.port` are specified in the `mule-app.
 
 [NOTE]
 --
-For each request a client makes through CloudHub's load balancer (`myapp.cloudhub.io`), the load balancer maintains two connections. One connection ​is from​ the client and one is to your worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection. If no data is sent or received during this time period, the load balancer closes ​both connections.
+For each request a client makes through CloudHub's load balancer (`myapp.region.cloudhub.io`), the load balancer maintains two connections. One connection ​is from​ the client and one is to your worker.  For each connection, the load balancer manages an idle timeout of 300 seconds that is triggered when no data is sent over ​either​ connection. If no data is sent or received during this time period, the load balancer closes ​both connections.
 
 For connections that take longer than 300 seconds to process from either side, consider handling the processing asynchronously.
 --
@@ -57,9 +69,9 @@ The following DNS records for your applications are exposed when they are deploy
 
 [cols="2*a"]
 |===
-|*myapp.cloudhub.io* |Load balancer. Ports 80 and 443 forward to  `${http.port}` and `${https.port}` respectively.
-|*mule-worker-myapp.cloudhub.io* |The external IP address of the Mule workers. Public HTTP services are exposed on: `${http.port}` and `${https.port}`
-|*mule-worker-internal-myapp.cloudhub.io* |The internal IP address of the Mule workers. The IP addresses for this DNS record are accessible only within a customer's private xref:virtual-private-cloud.adoc[Anypoint VPC]. *These IP addresses are not accessible for workers running in the MuleSoft shared VPC.* Internal HTTP services are exposed on: `${http.private.port}` and `${https.private.port}`. The default assigned ports are 8091 and 8092 respectively, and cannot be changed.
+|*myapp.region.cloudhub.io* |Load balancer. Ports 80 and 443 forward to  `${http.port}` and `${https.port}` respectively.
+|*mule-worker-myapp.region.cloudhub.io* |The external IP address of the Mule workers. Public HTTP services are exposed on: `${http.port}` and `${https.port}`
+|*mule-worker-internal-myapp.region.cloudhub.io* |The internal IP address of the Mule workers. The IP addresses for this DNS record are accessible only within a customer's private xref:virtual-private-cloud.adoc[Anypoint VPC]. *These IP addresses are not accessible for workers running in the MuleSoft shared VPC.* Internal HTTP services are exposed on: `${http.private.port}` and `${https.private.port}`. The default assigned ports are 8091 and 8092 respectively, and cannot be changed.
 |===
 
 In certain situations, you may want to know an application’s internal IP addresses, for example:
@@ -67,22 +79,22 @@ In certain situations, you may want to know an application’s internal IP addre
 * When communicating with the worker directly within the customer's xref:virtual-private-cloud.adoc[Anypoint VPC] without sending data over the public internet
 * When setting up your own load balancer
 
-You can access these IP addresses through the `mule-worker-internal-myapp.cloudhub.io` record from within the Anypoint VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
+You can access these IP addresses through the `mule-worker-internal-myapp.region.cloudhub.io` record from within the Anypoint VPC. If you access the workers directly, any load distribution benefits from the CloudHub load balancing layer are lost.
 
 == IP Ranges and Static IPs
 
 CloudHub IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see http://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html[Amazon AWS IP Address Ranges API]. The download link in that page will retrieve a dynamically generated JSON representation of all ranges that include the region. These ranges can change without notice, so you should update this information regularly.
 
-CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://support.mulesoft.com[MuleSoft Support].
+CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://help.mulesoft.com[MuleSoft Help Center].
 
-After a static IP has been allocated for your application, it is visible in the *Static IPs* tab in the application settings. For more details, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
+After a static IP has been allocated for your application, the IP address is visible in the *Static IPs* tab in the application settings. For more information about static IPs, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
 
 [NOTE]
 Static IP addresses are not supported for private IP addresses inside an Anypoint VPC.
 
 Sometimes firewalls or infrastructure settings don't let Mule runtime engines reach the Runtime Manager's public services. This might be an issue when registering a Mule, or when starting it and registering it to work with Runtime Manager.
 
-If you need to whitelist the IP addresses for the communication between the xref:runtime-manager-agent.adoc[Runtime Manager Agent] and the Runtime Manager console, see xref:installing-and-configuring-runtime-manager-agent.adoc#ports-ips-and-hostnames-to-whitelist[IPs to Whitelist].
+If you need to whitelist the IP addresses for the communication between the xref:runtime-manager-agent.adoc[Runtime Manager Agent] and the Runtime Manager console, see xref:rtm-agent-whitelists.adoc[Ports, IP Addresses, and Hostnames to Whitelist].
 
 [NOTE]
 You can assign Static IP to applications with multiple workers. However, it is not possible to pre-allocate static IPs for multiple workers. In case of multiple workers, IP addresses are automatically allocated.
@@ -128,7 +140,7 @@ supports some of the same regions that the U.S. control plane supports, the DNS 
 are different. For more on the EU control plane, see
 xref:eu-control-plane::index.adoc[About the EU Control Plane].
 
-Deploying to a region also affects your internal and external worker DNS address. For example, if you deploy in Ireland, the DNS records for internal and external IP addresses are `mule-worker-myapp.ir-e1.cloudhub.io` and `mule-worker-internal-myapp.ir-e1.cloudhub.io`.
+Deploying to a region also affects your internal and external worker DNS address. For example, if you are using the US control plane and deploy to the Ireland region, the DNS records for internal and external IP addresses are `mule-worker-myapp.ir-e1.cloudhub.io` and `mule-worker-internal-myapp.ir-e1.cloudhub.io`.
 
 == Firewall Rules and Port Access
 
@@ -142,23 +154,23 @@ In some cases, you may want to set up a custom load balancing layer for your Mul
 
 Traffic can be routed from your load balancer to CloudHub workers through the internal or external DNS record for your workers. This record contains an IP address for every worker in the application. It is recommended that you set your DNS timeout to between 20-60 seconds so that any DNS changes are propagated quickly and minimize impact.
 
-You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform Command Line Interface (Anypoint Platform CLI)] by configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC].
+You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface (Anypoint Platform CLI)] by configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC].
 
 == Avoiding Public Discoverability for Applications on CloudHub
 
-If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-dedicated-load-balancer.adoc[CloudHhub dedicated load balancer], you can prevent your applications hosted in CloudHub from being publicly accessible:
+If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-dedicated-load-balancer.adoc[CloudHub dedicated load balancer], you can prevent your applications hosted in CloudHub from being publicly accessible:
 
 . Remove the xref:virtual-private-cloud.adoc#firewall-rules[Anypoint VPC firewall rule] for ports 8081 and 8082 using:
 .. The *Firewall Rules* tab in your Anypoint VPC management center. Remove both rules with *source* `Anywhere (0.0.0.0/0)` and ports 8081 and 8082.
 .. The Anypoint Platform CLI. Run the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-remove[`cloudhub vpc firewall-rules remove`] command with the index `1` and `3`.
 . Create a xref:cloudhub-dedicated-load-balancer.adoc#whitelists[whitelist in your dedicated load balancer] with the IP addresses you want to authorize. You can only do this using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[`cloudhub load-balancer whitelist add`] command from Anypoint Platform CLI.
 
-[Important]
+[IMPORTANT]
 If you don't have a xref:cloudhub-dedicated-load-balancer.adoc[CloudHub dedicated load balancer], performing the first step is sufficient to ensure that applications deployed in your Anypoint VPCs are not publicly accessible.
 
 == See Also
 
-* https://support.mulesoft.com/s/article/Sample-App-Configuring-HTTPS-endpoint-for-deployment-in-Cloudhub[Sample App: Configuring HTTPS endpoint for deployment in CloudHub]
+* https://help.mulesoft.com/s/article/Sample-App-Configuring-HTTPS-endpoint-for-deployment-in-Cloudhub[Sample App: Configuring HTTPS endpoint for deployment in CloudHub]
 * xref:developing-applications-for-cloudhub.adoc#providing-an-external-http-https-port[Providing an External HTTP/HTTPS Port when deploying to CloudHub]
 * xref:cloudhub-architecture.adoc[CloudHub architecture]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]

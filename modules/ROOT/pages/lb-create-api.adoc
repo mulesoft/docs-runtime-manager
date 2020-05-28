@@ -1,7 +1,12 @@
-= To Create a Load Balancer (CloudHub API)
+= Create a Load Balancer with the CloudHub API
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 You can create a dedicated load balancer using the CloudHub API.
 
@@ -9,22 +14,22 @@ You can create a dedicated load balancer using the CloudHub API.
 
 To create a load balancer using the CloudHub API, ensure that you perform the following:
 
-* Ensure that your profile is a a member of the administrator role of in the organization where you are creating the load balancer.
+* Ensure that you are an administrator in the organization where you are creating the load balancer.
 * Create an Anypoint Virtual Private Cloud (Anypoint VPC) in the organization where you want to create a load balancer.
 * Create at least one certificate and private key for your certificate.
 
-== Creating a Load Balancer
+== Create a Load Balancer
 
-To create a load balancer from the CLI, use the `cloudhub load-balancer create`. This command enables you to specify the Anypoint VPC where the load balancer is created. It also enables you to specify the certificate and private keys used by the load balancer.
 
 To create a load balancer using the CloudHub API, use the following endpoints:
 
-* `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers`
-* `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs`
+* +`anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/loadbalancers`
+* +`anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs`
 
 == See Also
 
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager API]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/1.0.13/console/method/%233964/[CloudHub API Create New Load Balancer]
 * xref:access-management::index.adoc[Access Management]
-* xref:lb-cert-upload.adoc[About Uploading Certificates]
-* xref:index.adoc[To Create a Load Balancer using Runtime Manager]
+* xref:lb-cert-upload.adoc[Adding Certificates]
+* xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
+* xref:lb-create-cli.adoc[Create a Load Balancer with the Anypoint Platform CLI]
