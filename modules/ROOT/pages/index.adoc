@@ -4,24 +4,54 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, saas, applications, servers, clusters, sdg, runtime manager, arm
 
-Anypoint Runtime Manager is the interface to Anypoint Platform that provides a unified view of your applications, servers and APIs, no matter where they are running. Runtime Manage enables you to monitor and analyze your Mule applications from one central location, whether your apps are deployed in the cloud, on-premises, or on Runtime Fabric.
 
-Runtime Manager is designed specifically for handling Mule applications, and deploying them to the available Mule runtime instances in a xref:cloudhub.adoc[CloudHub] virtual worker, or an on-premises Mule server (server group, cluster), or Runtime Fabric. 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-xref:cloudhub.adoc[CloudHub] is a complete integration platform as a service (iPaaS) that covers all of your server needs out of the box, including Object Store infrastructure, Monitoring, Troubleshooting, Scheduling, and so on. Use Runtime Manager to deploy to CloudHub.
+Anypoint Runtime Manager is the interface to https://anypoint.mulesoft.com[Anypoint Platform]
+that provides a unified view of your applications, servers, and APIs.
 
-== Architecture
+With Runtime Manager, you can deploy, manage, and monitor your Mule applications in a sandbox, staging,
+or production environment from one central location, whether your apps are deployed in the cloud or on-premises.
 
-The cloud-based version of the Anypoint Platform has a Runtime Manager with a console that allows you to manage applications deployed to xref:cloudhub.adoc[CloudHub] or elsewhere. 
+You can use Runtime Manager in these scenarios: 
 
-If you are using the on-premises Runtime Manager you can deploy anywhere _except_ CloudHub.
+CloudHub::
+MuleSoft hosts your app deployments in CloudHub and you use the Runtime Manager cloud console to manage them.
++
+CloudHub is a complete integration platform as a service (iPaaS) that covers all of your server needs out of the box, including object store infrastructure, monitoring, troubleshooting, and scheduling.
 
-For applications deployed to CloudHub (Cloud runtime in the diagram below), you can use xref:insight.adoc[Insight] for analytics and monitoring. For applications that you deploy on-premises or to your private cloud servers you can xref:sending-data-from-arm-to-external-analytics-software.adoc[send data to third-party Analytics applications].
+Hybrid::
+You host your app deployments on your on-premises Mule servers and use the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console to manage them.
+
+Anypoint Platform Private Cloud Edition::
+You host your app deployments on your local Mule servers and use the on-premises Runtime Manager instance 
+included with Anypoint Platform PCE to manage them.
++
+If you are using the on-premises Runtime Manager, you can deploy anywhere _except_ CloudHub.
+
+Anypoint Runtime Fabric::
+You host your app deployments on your locally installed Runtime Fabric instance and use the Runtime Manager cloud console to manage them. 
+
+When you run an app in Anypoint Studio, the app deploys to an embedded test server in Studio.
+Because this server is not meant for production deployment and uptime restrictions apply,
+deploy your Mule app using one of the deployment options supported by Anypoint Runtime Manager.
+
+
+For applications deployed to CloudHub (Cloud runtime in the diagram below), you can use xref:insight.adoc[Insight] for analytics and monitoring.
+
+For applications that you deploy on-premises or to your private cloud servers you can xref:sending-data-from-arm-to-external-analytics-software.adoc[send data to third-party Analytics applications].
 
 image::arm-big-picture.png[]
 
-Runtime Manager provides a dashboard that indicates the status of every deployed app and monitored server, with a rich set of features you can use to manage and track activity of your running applications.
 
 == See Also
 
-* xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
+
+* xref:cloudhub.adoc[CloudHub]
+* xref:private-cloud::index.adoc[Anypoint Platform PCE]
+* xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric]
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:deploying-to-your-own-servers.adoc[Deploy to Your Servers]
