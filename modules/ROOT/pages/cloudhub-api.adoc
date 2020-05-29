@@ -14,7 +14,7 @@ The CloudHub REST API enables you to programmatically access the functions of An
 
 * Manage applications:
 ** Create, deploy, start, stop, list, and delete an application on CloudHub.
-** Update application metadata, including the number of workers, Mule runtime engine version, and system properties. 
+** Update application metadata, including the number of workers, Mule runtime engine version, and system properties.
 ** Retrieve statistics for an application or worker.
 ** Retrieve application transactions and events for a transaction.
 ** Check for replay data, replay the flow for a transaction, and delete replay data for an application.
@@ -72,7 +72,7 @@ Authentication requires that you supply an access token in the `Authorization` h
 See https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/11270/versions/11646/pages/60046[Authentication] for information.
 
 Your username specifies the environment to access.
-For example, if your username is `jane` and the environment is `Development`, 
+For example, if your username is `jane` and the environment is `Development`,
 your username is `jane@Development`.
 If you don't specify an environment, the API defaults to `Production`.
 
@@ -85,23 +85,44 @@ Here is an example of data received in JSON format in response to a request to g
 [source,json,linenums]
 ----
 {
-  "domain":"hello",
-  "fullDomain":"hello.cloudhub.io",
-  "workers":1,
-  "hasFile":false,
-  "muleVersion": "3.1.2",
+  "versionId": "xxxxxxxx",
+  "domain": "hello",
+  "fullDomain": "hello.us-e1.cloudhub.io",
   "properties": {
     "foo":"bar"
   },
-  "status":"STARTED",
-  "workerStatuses":[
-     {
-       "id":"",
-       "host":"xxx.xxx.xxx.xxx",
-       "port":8081,
-       "status":"STARTED"
-     }
-   ]
+  "propertiesOptions": {},
+  "status": "STARTED",
+  "workers": {
+    "type": {
+      "name": "Micro",
+      "weight": 0.1,
+      "cpu": "0.1 vCores",
+      "memory": "500 MB memory"
+    },
+    "amount": 1,
+    "remainingOrgWorkers": 223.7,
+    "totalOrgWorkers": 1000.0
+  },
+  "workerStatuses": [
+    {
+      "id": "i-xxxxxxxx",
+      "host": "xxx.xxx.xxx.xxx",
+      "port": 0,
+      "status": "STARTED",
+      "deployedRegion": "us-east-1",
+      "staticIPEnabled": false
+    }
+  ],
+  "lastUpdateTime": 1589868960908,
+  "fileName": "hello.zip",
+  "muleVersion": {
+    "version": "4.3.0",
+    "updateId": "xxxxxxxx",
+    "latestUpdateId": "xxxxxxxx",
+    "endOfSupportDate": 1633737600000
+  },
+  ...
 }
 ----
 
