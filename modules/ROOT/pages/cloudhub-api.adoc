@@ -140,10 +140,19 @@ When you call the REST APIs, the following status codes are returned:
 The Location header contains the location of the resource.
 |404 |The resource was not found.
 |409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
+|429 a|The operation was unsuccessful due to rate limit.
+
+* The following endpoints have a limit of one call per second for each application:
+** `v2/applications/{domain}/logs`
+** `v2/applications/{domain}/deployments/{deploymentId}/logs`
+** `v2/applications/{domain}/instances/{instanceId}/logs`
+* The following endpoint has a limit of one call per minute for each application:
+** `v2/applications/{domain}/instances/{instanceId}/log-file`
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
 |===
+
 
 When errors occur, such as a 500 status code, the HTTP response contains a JSON response with an error message:
 
@@ -158,6 +167,8 @@ Date: Mon, 10 Aug 2015 00:12:55 GMT
   message : "Some error message."
 }
 ----
+
+
 
 
 == See Also
