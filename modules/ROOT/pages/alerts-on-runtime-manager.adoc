@@ -11,13 +11,13 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-Set up alerts to send email notifications when application or server events occur. 
+You can set up alerts to send email notifications when application or server events occur. 
 
 Runtime Manager includes several standard alert types that trigger notifications for common events such as:
 
-* An application exceeds a specific number of events processed within a given timeframe.
+* An application exceeds a specific number of events processed within a specified period of time.
 * A deployment is complete, either successfully or not. 
-* The worker monitoring system notifies CloudHub about a problem with the worker on an application.
+* The worker monitoring system notifies CloudHub about a problem with a worker on an application.
 * A server is disconnected or deleted.
 
 You can also create custom alerts for applications deployed to CloudHub.
@@ -42,7 +42,7 @@ Custom notifications that trigger emails are also subject to the rate limit on e
 * Alert emails
 +
 For both standard and custom alerts, the rate limit is one alert notification email sent every 2.5 seconds.
-This limit is enforced by a combination of organization, environment, alert (name/ID), and resource
+This limit is enforced by a combination of organization, environment, alert (name or ID), and resource
 (application, server, server group, or cluster).
 
 == Create an Alert
@@ -69,9 +69,9 @@ image::alerts-create-alert.png[Create an Alert page]
 * *Name*
 +
 Unique and meaningful name for the alert
-* *Severity Level*
+* *Severity level*
 +
-Severity of the alert: `critical`, `warning`, or `info`
+Severity of the alert: *Critical*, *Warning*, or *Info*
 
 * *Source*
 +
@@ -143,11 +143,11 @@ For applications deployed to CloudHub, the following alert conditions apply:
 CPU usage - Cloudhub::
 +
 --
-The CPU usage of the CloudHub workers that run the application reaches a capacity threshold in a specified period.
+The CPU usage of the CloudHub workers that run the application is above or below the percentage for the specified period of time.
 
 image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
 
-To enable this condition, specify the capacity threshold and duration that triggers the alert.
+To enable this condition, specify the percentage and duration that triggers the alert.
 --
 
 Custom application alert::
@@ -159,14 +159,14 @@ image::alerts-conditions-custom.png[Custom application alerts]
 
 To enable this condition, specify the notification text from the CloudHub Connector
 in your Mule application.
-When the text in one of the notifications contains the string, an alert is sent.
+When the text in one of the notifications matches the specified string, an alert is sent.
 See xref:custom-application-alerts.adoc[Custom Application Alerts] for more information.
 --
 
 Exceeds event traffic threshold::
 +
 --
-The number of events of any type exceeds a threshold in a specified period.
+The number of events of any type exceeds the threshold for the specified period of time.
 
 image::alerts-conditions-exceeds-traffic.png[Exceeds event traffic threshold]
 
@@ -178,11 +178,12 @@ For information, see xref:mule-runtime::business-events.adoc[Business Events].
 Memory usage - Cloudhub::
 +
 --
-The percentage of the total memory allocated to the CloudHub workers that run the application, including the memory consumed by the JVM itself, reaches a capacity threshold for a specified period.
+The percentage of the total memory allocated to the CloudHub workers that run the application,
+including the memory consumed by the JVM itself, is above or below the limit for the specified period of time.
 
 image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
 
-To enable this condition, specify the capacity threshold and duration that triggers the alert.
+To enable this condition, specify the percentage and duration that triggers the alert.
 --
 
 
@@ -207,7 +208,7 @@ For applications deployed to local servers, the following alert conditions apply
 Number of errors::
 +
 --
-The number of errors in one minute reaches a threshold.
+The number of errors in one minute reaches the specified limit.
 
 image::alerts-conditions-number-errors.png[Number of errors]
 
@@ -257,21 +258,21 @@ The following alerts are available for all target types (servers and nodes in se
 Server CPU usage::
 +
 --
-The CPU usage of the servers that run the application reaches a capacity threshold in a specified period.
+The CPU usage of the servers that run the application is above or below the percentage for the specified period of time.
 
 image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
 
-To enable this condition, specify the CPU usage threshold and duration that triggers the alert.
+To enable this condition, specify the CPU percentage and duration that triggers the alert.
 --
 
 Server Load average::
 +
 --
-The average processing load of the server is above or below a threshold in a specified period.
+The average processing load of the server is above or below the amount for the specified period of time.
 
 image::alerts-conditions-servers-load-avg.png[Server load average alert condition]
 
-To enable this condition, specify the load threshold and duration that triggers the alert.
+To enable this condition, specify the average load and duration that triggers the alert.
 
 [NOTE]
 Windows environments don't provide this information, so this metric isn't available in Windows environments.
@@ -280,21 +281,21 @@ Windows environments don't provide this information, so this metric isn't availa
 Server Memory usage::
 +
 --
-The total memory usage (in MB) on the server is above or below a threshold in a specified period.
+The total memory usage (in MB) on the server is above or below the amount for the specified period of time.
 
 image::alerts-conditions-servers-memory.png[Server memory usage alert condition]
 
-To enable this condition, specify the memory usage threshold and duration that triggers the alert.
+To enable this condition, specify the memory usage and duration that triggers the alert.
 --
 
 Server Thread count::
 +
 --
-The thread count on the JVM is above or below a threshold for a specified period.
+The thread count on the JVM is above or below the level for the specified period of time.
 
 image::alerts-conditions-servers-thread-count.png[Server thread count alert condition]
 
-To enable this condition, specify the thread count threshold and duration that triggers the alert.
+To enable this condition, specify the thread count and duration that triggers the alert.
 --
 
 The following alerts vary according to the target type (server, server groups, or clusters)
