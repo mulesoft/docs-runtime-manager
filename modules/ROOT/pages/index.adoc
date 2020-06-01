@@ -19,7 +19,7 @@ or production environment from one central location, whether your apps are deplo
 You can use Runtime Manager in these scenarios: 
 
 CloudHub::
-MuleSoft hosts your app deployments in CloudHub and you use the Runtime Manager cloud console to manage them.
+MuleSoft hosts your app deployments in CloudHub and you use the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console to manage them.
 +
 CloudHub is a complete integration platform as a service (iPaaS) that covers all of your server needs out of the box, including object store infrastructure, monitoring, troubleshooting, and scheduling.
 
@@ -33,27 +33,28 @@ included with Anypoint Platform PCE to manage them.
 If you are using the on-premises Runtime Manager, you can deploy anywhere _except_ CloudHub.
 
 Anypoint Runtime Fabric::
-You host your app deployments on your locally installed Runtime Fabric instance and use the Runtime Manager cloud console to manage them. 
+You host your app deployments on your locally installed Runtime Fabric instance and use the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console to manage them. 
 
-When you run an app in Anypoint Studio, the app deploys to an embedded test server in Studio.
-Because this server is not meant for production deployment and uptime restrictions apply,
-deploy your Mule app using one of the deployment options supported by Anypoint Runtime Manager.
-
-
-For applications deployed to CloudHub (Cloud runtime in the diagram below), you can use xref:insight.adoc[Insight] for analytics and monitoring.
-
-For applications that you deploy on-premises or to your private cloud servers you can xref:sending-data-from-arm-to-external-analytics-software.adoc[send data to third-party Analytics applications].
-
-image::arm-big-picture.png[]
+// image::arm-big-picture.png[]
 image::rtm-overview.png[]
 
+For applications deployed to CloudHub, you can use Insight for analytics and monitoring.
 
+For applications that you deploy on-premises or to your private cloud servers, you can send data to third-party analytics applications.
+
+
+[NOTE]
+When you run an app in Anypoint Studio, the app deploys to an embedded test server in Studio.
+Because this server is not meant for production deployment and uptime restrictions apply,
+deploy your Mule app using one of the deployment options supported by Runtime Manager.
 
 == See Also
 
-
 * xref:cloudhub.adoc[CloudHub]
-* xref:private-cloud::index.adoc[Anypoint Platform PCE]
+* xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
 * xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * xref:deploying-to-your-own-servers.adoc[Deploy to Your Servers]
+* xref:deployment-strategies.adoc[Deployment Options]
+* xref:insight.adoc[Insight]
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
