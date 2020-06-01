@@ -121,12 +121,12 @@ The Location header contains the location of the resource.
 |409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
 |429 a|The operation was unsuccessful due to rate limit.
 
-* The following end points have a limit of one call per second for each application:
-** v2/applications/{domain}/logs
-** v2/applications/{domain}/deployments/{deploymentId}/logs
-** v2/applications/{domain}/instances/{instanceId}/logs
-* The following end point has a limit of one call per minute for each application:
-** v2/applications/{domain}/instances/{instanceId}/log-file
+* The following endpoints have a limit of one call per second for each application:
+** `v2/applications/{domain}/logs`
+** `v2/applications/{domain}/deployments/{deploymentId}/logs`
+** `v2/applications/{domain}/instances/{instanceId}/logs`
+* The following endpoint has a limit of one call per minute for each application:
+** `v2/applications/{domain}/instances/{instanceId}/log-file`
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
