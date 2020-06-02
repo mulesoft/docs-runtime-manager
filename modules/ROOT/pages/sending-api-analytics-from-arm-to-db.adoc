@@ -131,7 +131,8 @@ CREATE TABLE MULE_API_ANALYTICS (
 
 If you are migrating from a Runtime Manager agent version earlier than 2.3.0,
 you must update the schema. 
-You can use the following migration script to update `policy_violation_policy_id` data type in MySQL:
+You can use the following migration script to update the `policy_violation_policy_id`
+data type in MySQL:
 
 [source,sql,linenums]
 ----
@@ -144,7 +145,7 @@ ALTER TABLE MULE_API_ANALYTICS MODIFY policy_violation_policy_id VARCHAR(50) NUL
 +
 `http://dev.mysql.com/downloads/connector/j/`
 . Extract the ZIP file.
-. Copy the `mysql-connector-java-_VERSION_-bin.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Copy the `mysql-connector-java-{VERSION}.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]
@@ -195,10 +196,9 @@ CREATE TABLE MULE_API_ANALYTICS (
 ----
 
 
-
 If you are migrating from a Runtime Manager agent version earlier than 2.3.0,
 you must update the schema. 
-You can use the following migration script to update `policy_violation_policy_id` data type in Oracle 11g XE:
+For example, you can use the following migration script to update the `policy_violation_policy_id` data type in Oracle 11g XE:
 
 [source,sql,linenums]
 ----
@@ -206,7 +206,6 @@ ALTER TABLE MULE_API_ANALYTICS ADD temp VARCHAR(50);
 update MULE_API_ANALYTICS set temp=cast(policy_violation_policy_id as VARCHAR(50));
 ALTER TABLE MULE_API_ANALYTICS DROP COLUMN policy_violation_policy_id;
 ALTER TABLE MULE_API_ANALYTICS RENAME COLUMN temp TO policy_violation_policy_id;
-
 ----
 
 
@@ -214,8 +213,8 @@ ALTER TABLE MULE_API_ANALYTICS RENAME COLUMN temp TO policy_violation_policy_id;
 
 . Download the Oracle JDBC driver from:
 +
-`http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html`
-. Extract the ZIP file.
+`https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html`
+. Extract the GZ file.
 . Copy the JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
@@ -269,7 +268,7 @@ CREATE TABLE MULE_API_ANALYTICS (
 
 If you are migrating from a Runtime Manager agent version earlier than 2.3.0,
 you must update the schema. 
-You can use the following migration script to update `policy_violation_policy_id` data type in Microsoft SQL Server 2014:
+You can use the following migration script to update the `policy_violation_policy_id` data type in Microsoft SQL Server 2014:
 
 [source,sql,linenums]
 ----
@@ -278,11 +277,11 @@ ALTER TABLE MULE_API_ANALYTICS ALTER COLUMN policy_violation_policy_id VARCHAR(5
 
 === Internal Handler Configuration
 
-. Download the Microsoft JDBC driver from:
+. Download the Microsoft JDBC driver for SQL Server from:
 +
 `https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774`
-. Extract the `sqljdbc_4_%version%.tar.gz` file.
-. Copy the `sqljdbc4%version%_.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Extract the `sqljdbc%version%.tar.gz` file.
+. Copy the appropriate `sqljdbc%version%.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]

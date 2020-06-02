@@ -155,7 +155,7 @@ CREATE TABLE MULE_EVENTS_BUSINESS (
 +
 `http://dev.mysql.com/downloads/connector/j/`
 . Extract the ZIP file.
-. Copy the `mysql-connector-java-_VERSION_-bin.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Copy the `mysql-connector-java-{VERSION}.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]
@@ -219,8 +219,8 @@ CREATE INDEX FK_MEB_IDX ON MULE_EVENTS_BUSINESS (event_id);
 
 . Download the Oracle JDBC driver from:
 +
-`http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html`
-. Extract the ZIP file.
+`https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html`
+. Extract the GZ file.
 . Copy the JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
@@ -287,11 +287,11 @@ CREATE INDEX FK_MULE_EVENTS_BUSINESS_IDX ON MULE_EVENTS_BUSINESS (event_id);
 
 === Internal Handler Configuration
 
-. Download the Microsoft JDBC driver from:
+. Download the Microsoft JDBC driver for SQL Server from:
 +
 `https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774`
-. Extract the `sqljdbc_4_%version%.tar.gz` file.
-. Copy the `sqljdbc4%version%_.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Extract the `sqljdbc%version%.tar.gz` file.
+. Copy the appropriate `sqljdbc%version%.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 --
