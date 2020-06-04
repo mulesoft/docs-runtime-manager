@@ -1,4 +1,4 @@
-= Deploying to CloudHub
+= Deploy to CloudHub
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -249,7 +249,7 @@ Runtime version::
 The runtime version must be the same Mule version used to develop your application.
 +
 After you deploy the app, CloudHub automatically alerts you when updates for the selected runtime version are available. 
-See xref::cloudhub-app-runtime-version-updates.adoc[Updating the Runtime Version for CloudHub Apps].
+See xref::cloudhub-app-runtime-version-updates.adoc[CloudHub Runtime Continuous Updates].
 
 Worker size::
 See <<Worker Size and vCores>>.
@@ -273,7 +273,7 @@ Persistent queues::
 You can use persistent queues on your application to store data in an input queue to disk.
 Persistent queues protect against message loss and enable you to distribute workloads across a set of workers.
 +
-See xref:managing-queues.adoc[Managing Queues].
+See xref:managing-queues.adoc[Manage Queues].
 +
 Before you can take advantage of persistent queueing, you must set up your application to use queues.
 +
@@ -311,8 +311,8 @@ When you deploy an application from a nonproduction environment (*Get from sandb
 You can update these properties as required on the *Properties* tab before deploying the application.
 
 For more information about specifying properties, including hiding them in Runtime Manager, 
-see xref:cloudhub-manage-props.adoc[Managing Properties for Applications on CloudHub]
-and xref:secure-application-properties.adoc[Safely Hiding Application Properties].
+see xref:cloudhub-manage-props.adoc[Manage Properties for Applications on CloudHub]
+and xref:secure-application-properties.adoc[Safely Hide Application Properties].
 
 
 === Insight Tab Settings
@@ -324,7 +324,7 @@ For information about using this tool, see xref:insight.adoc[Insight].
 === Logging Tab Settings
 
 CloudHub stores activity logs, which you can view or download from Runtime Manager.
-See xref:viewing-log-data.adoc[Viewing Log Data].
+See xref:viewing-log-data.adoc[View Log Data].
 
 You can configure the logging level (`DEBUG`, `WARN`, `ERROR`, or `INFO`) for the application on the *Logging* tab.
 
@@ -429,10 +429,10 @@ The *Logs* tab includes details on the application deployment errors.
 
 == See Also
 
-* xref:managing-cloudhub-specific-settings.adoc[Managing CloudHub-Specific Settings] 
-* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:managing-cloudhub-specific-settings.adoc[Manage CloudHub-Specific Settings] 
+* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
 * xref:managing-deployed-applications.adoc#application_status_states[Application Status States]
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
+* xref:monitoring.adoc[Monitor Applications]
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
 * xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
 * xref:cloudhub-api.adoc[CloudHub REST API]

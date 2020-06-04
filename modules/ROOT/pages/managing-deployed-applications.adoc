@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After you deploy apps, use the Runtime Manager console to monitor and manage running applications. The different management functionalities available depend on the xref:deployment-strategies.adoc[deployment strategy] you use.
+After you deploy apps, use the Runtime Manager console to monitor and manage running applications. The different management functionalities available depend on the xref:deployment-strategies.adoc[deployment option] you use.
 
 The basic management tools in the Runtime Manager console enable you to perform the following tasks:
 
@@ -306,7 +306,7 @@ If you select any of the applications on the *Applications* tab, a panel opens o
 
 image::dashboard-ch.png[dashboard]
 
-What the management panel displays depends on whether your application is deployed on xref:managing-applications-on-cloudhub.adoc[CloudHub] or on xref:managing-applications-on-your-own-servers.adoc[your own servers]:
+What the management panel displays depends on whether your application is deployed on xref:managing-applications-on-cloudhub.adoc[CloudHub] or on xref:managing-applications-on-your-own-servers.adoc[your servers]:
 
 * Applications on CloudHub display information about the CloudHub worker on which they run.
 * Applications deployed on clusters and server groups display the list of servers and the status of each.
@@ -325,11 +325,11 @@ The *Insight* button enables you to see data at a transaction level. See xref:in
 
 image::managing-deployed-applications-76124.png[]
 
-The dashboard and insights features are not currently available for Anypoint Platform Private Cloud Edition. See xref:deployment-strategies.adoc[Deployment Strategies].
+The dashboard and insights features are not currently available for Anypoint Platform Private Cloud Edition. See xref:deployment-strategies.adoc[Deployment Options].
 
 == Monitor Applications
 
-The tools you use to monitor application events and server or virtual server performance depend on the xref:deployment-strategies.adoc[deployment strategy]. See xref:monitoring.adoc[Monitoring Applications].
+The tools you use to monitor application events and server or virtual server performance depend on the xref:deployment-strategies.adoc[deployment option]. See xref:monitoring.adoc[Monitor Applications].
 
 
 [[update_application]]
@@ -357,16 +357,16 @@ Switching an alert off from this view switches it off for the current (signed in
 
 == See Also
 
-* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
 * xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
 * xref:sending-data-from-arm-to-external-analytics-software.adoc[Send Data from Runtime Manager to External Analytics Software]
-* xref:deployment-strategies.adoc[Deployment Strategies]
-* xref:monitoring.adoc[Monitoring Applications and Servers]
+* xref:deployment-strategies.adoc[Deployment Options]
+* xref:monitoring.adoc[Monitor Applications and Servers]
 * xref:cloudhub-fabric.adoc[Clustering]
-* xref:managing-queues.adoc[Managing Queues]
-* xref:managing-schedules.adoc[Managing Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Managing Application Data Storage with Object Stores]
-* xref:secure-application-properties.adoc[Safely Hiding Application Properties]
+* xref:managing-queues.adoc[Manage Queues]
+* xref:managing-schedules.adoc[Manage Schedules]
+* xref:managing-application-data-with-object-stores.adoc[Manage Application Data Storage with Object Stores]
+* xref:secure-application-properties.adoc[Safely Hide Application Properties]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:penetration-testing-policies.adoc[Penetration Testing Policies]
 * xref:runtime-fabric::app-versioning.adoc[Application Versioning on Runtime Fabric]

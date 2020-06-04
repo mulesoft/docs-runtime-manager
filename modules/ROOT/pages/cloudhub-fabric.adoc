@@ -52,9 +52,9 @@ Persistent queues ensure zero message loss and let you distribute workloads acro
 
 Note that persistent queues do not guarantee one-time-only message delivery. Duplicate messages may be sent. If one-time-only message delivery is critical for your use case, do not enable persistent queues.
 
-To learn more about how to work with persistent queues in your application, see xref:managing-queues.adoc[Managing Queues].
+To learn more about how to work with persistent queues in your application, see xref:managing-queues.adoc[Manage Queues].
 
-== Enabling Clustering Features
+== Enable Clustering Features
 
 You can enable and disable either or both features of clustering in one of two ways:
 
@@ -69,7 +69,7 @@ Click an application to see the overview and click *Manage Application*. Click *
 
 If your application is already deployed, you must redeploy it for your new settings to take effect.
 
-== How Clustering Is Implemented
+== How Clustering is Implemented
 
 HTTP load balancing is implemented by an internal reverse proxy server. Requests to the application (domain) URL `+http://appname.cloudhub.io+` are automatically load balanced between all the application's worker URLs.
 
@@ -232,7 +232,7 @@ This issue occurs only when a flow produces messages that need to be added to a 
 == See Also
 
 * xref:deploying-to-cloudhub.adoc#worker-size-and-vcores[Worker Size and vCores]
-* xref:managing-queues.adoc[Managing Queues]
+* xref:managing-queues.adoc[Manage Queues]
 * xref:cloudhub-architecture.adoc[CloudHub architecture]
 * xref:3.8@mule-runtime::transaction-management.adoc[Transaction Management]
 * xref:3.8@mule-runtime::vm-transport-reference.adoc[VM transport]

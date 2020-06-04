@@ -1,4 +1,4 @@
-= Safely Hiding Application Properties
+= Safely Hide Application Properties
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -122,7 +122,7 @@ After an application is deployed with safely hidden application properties, Clou
 Even if you edit your application file to remove the `secureProperties` definitions from your `mule-artifact.json` file and then upload that edited application file to CloudHub, CloudHub maintains the invisibility of the properties previously flagged as safely hidden.
 
 
-== Copying Safely Hidden Application Properties between Sandboxes
+== Copy Safely Hidden Application Properties between Sandboxes
 
 When moving applications between sandboxes, safely hidden application property values are not copied to the new environment. For all safely hidden application properties, the name of the property is copied, but the value is left blank.
 
@@ -149,7 +149,7 @@ When specifying `secure properties` in the `mule-artifact.json` file for propert
 ====
 
 
-== Starting a CloudHub Application That Uses Encrypted Properties
+== Start a CloudHub Application That Uses Encrypted Properties
 
 Mule applications can also be developed to store encrypted properties in secure properties placeholder files.
 
@@ -227,7 +227,7 @@ If you don't want to encrypt properties for Mule applications that are deployed 
 == See Also
 
 * xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties]
-* xref:cloudhub-manage-props.adoc[Managing Properties for Applications on CloudHub]
-* xref:hybrid-manage-props.adoc[Managing Properties for Applications On-Premises]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
+* xref:cloudhub-manage-props.adoc[Manage Properties for Applications on CloudHub]
+* xref:hybrid-manage-props.adoc[Manage Properties for Applications On-Premises]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]

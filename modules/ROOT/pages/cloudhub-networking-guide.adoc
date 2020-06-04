@@ -11,7 +11,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-This guide is for cloud deployments using the cloud-based version of Runtime Manager. See xref:deployment-strategies.adoc[Deployment Strategies] for information about different deployment scenarios.
+This guide is for cloud deployments using the cloud-based version of Runtime Manager. See xref:deployment-strategies.adoc[Deployment Options] for information about different deployment scenarios.
 
 == Overview
 
@@ -28,7 +28,7 @@ For information about VPC, see xref:virtual-private-cloud.adoc[Virtual Private C
 
 CloudHub provides a load balancing service for all integrations. You can use the default load balancing service or obtain a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer].
 
-The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub].
+The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub].
 
 Each application deployed on CloudHub has a `CNAME` record that refers to the load balancer, for example `myapp.region.cloudhub.io`. Mule apps deployed in CloudHub must listen on host `0.0.0.0` and to either the HTTP port (`8081`) or to the HTTPS port (`8082`).
 
@@ -87,7 +87,7 @@ CloudHub IP addresses are chosen from the Amazon EC2 IP pool. For a list of thes
 
 CloudHub supports allocating a static IP for applications so that they can be whitelisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://help.mulesoft.com[MuleSoft Help Center].
 
-After a static IP has been allocated for your application, the IP address is visible in the *Static IPs* tab in the application settings. For more information about static IPs, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploying to CloudHub].
+After a static IP has been allocated for your application, the IP address is visible in the *Static IPs* tab in the application settings. For more information about static IPs, see xref:deploying-to-cloudhub.adoc#static-ips-tab[Deploy to CloudHub].
 
 [NOTE]
 Static IP addresses are not supported for private IP addresses inside an Anypoint VPC.
@@ -156,7 +156,7 @@ Traffic can be routed from your load balancer to CloudHub workers through the in
 
 You can set your own xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer] through the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface (Anypoint Platform CLI)] by configuring your own xref:virtual-private-cloud.adoc[Anypoint VPC].
 
-== Avoiding Public Discoverability for Applications on CloudHub
+== Avoid Public Discoverability for Applications on CloudHub
 
 If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-dedicated-load-balancer.adoc[CloudHub dedicated load balancer], you can prevent your applications hosted in CloudHub from being publicly accessible:
 

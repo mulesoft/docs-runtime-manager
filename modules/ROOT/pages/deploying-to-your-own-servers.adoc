@@ -1,4 +1,4 @@
-= Deploying to Your Servers
+= Deploy to Your Servers
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -55,7 +55,7 @@ They cannot contain spaces or other characters.
 +
 The target must be a running server, server group, or cluster.
 +
-To deploy to CloudHub, see xref:deploying-to-cloudhub.adoc[Deploying to CloudHub].
+To deploy to CloudHub, see xref:deploying-to-cloudhub.adoc[Deploy to CloudHub].
 
 . Specify the application file:
 
@@ -104,7 +104,7 @@ Specify properties (key-value pairs) that the application uses during deployment
 When you deploy an application from a non-production environment (*Get from sandbox*), the new application inherits any properties defined in the original application.
 You can update these properties as required on the *Properties* tab before deploying the application.
 
-See xref:hybrid-manage-props.adoc[Managing Properties for Applications On-Premises] and xref:secure-application-properties.adoc[Safely Hiding Application Properties].
+See xref:hybrid-manage-props.adoc[Manage Properties for Applications On-Premises] and xref:secure-application-properties.adoc[Safely Hide Application Properties].
 --
 *Logging* tab::
 Configure the logging level for the application: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, or `FATAL`.
@@ -128,7 +128,7 @@ View alerts for the application.
 
 The new application appears in the list of deployed applications in the Applications tab.
 
-== Changing a Deployed Application
+== Change a Deployed Application
 
 You can change the application file of a deployed application:
 
@@ -147,7 +147,7 @@ Correct the error, upload the application, and redeploy the application.
 == See Also
 
 * xref:rtm-agent-whitelists.adoc[Ports, IP Addresses, and Hostnames to Whitelist]
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
+* xref:managing-applications-on-your-own-servers.adoc[Manage Applications on Your Servers]
 * xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
-* xref:monitoring.adoc[Monitoring Applications and Servers]
+* xref:monitoring.adoc[Monitor Applications and Servers]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST APIs]

@@ -1,4 +1,4 @@
-= Managing Applications on CloudHub
+= Manage Applications on CloudHub
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -14,7 +14,7 @@ After you deploy an application to xref:deploying-to-cloudhub.adoc[CloudHub], yo
 Depending on if your application is deployed to xref:deploying-to-cloudhub.adoc[CloudHub] or to xref:deploying-to-your-own-servers.adoc[your own servers], there is a different set of possible actions you can perform.
 
 [NOTE]
-This document refers to applications that are deployed through the Runtime Manager console to xref:cloudhub.adoc[CloudHub]. To view the basic management tools that are common to all types of deployments, see xref:managing-deployed-applications.adoc[Managing Deployed Applications]. See xref:deployment-strategies.adoc[Deployment Strategies] to understand the different deployment scenarios that the platform offers.
+This document refers to applications that are deployed through the Runtime Manager console to xref:cloudhub.adoc[CloudHub]. To view the basic management tools that are common to all types of deployments, see xref:managing-deployed-applications.adoc[Manage Deployed Applications]. See xref:deployment-strategies.adoc[Deployment Options] to understand the different deployment scenarios that the platform offers.
 
 
 
@@ -39,7 +39,7 @@ Applications deployed to CloudHub display the status, the time of the last modif
 They also display additional info about the CloudHub worker they run on, namely the Mule version, worker size, worker amount and region. You will also see buttons that allow you to view logs and insights, and enter the *Manage Application* menu.
 
 
-== Accessing App Settings
+== Access App Settings
 
 . Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager. 
 . Select one of your CloudHub running applications to open a panel on the right side. 
@@ -50,12 +50,12 @@ image::cloudhub-manage-application.png[manage app]
 In this menu you will be able to change most of the settings you can configure when deploying. For applications on CloudHub, you will also be able to access Log data, Insights, Alerts, queues, set up and manage schedules and application data. You can also see the *Alerts History* tab, which displays a record of the triggered alerts on the app. See xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager] for more on this.
 
 
-== Monitoring Applications
+== Monitor Applications
 
 If your application is deployed to CloudHub, a rich set of tools exists for monitoring events that may occur on your application and the performance of the virtual servers it's running on. See xref:monitoring.adoc[Monitoring Applications] for more details.
 
 
-== Redeploying to a Different Region
+== Redeploy to a Different Region
 
 If you have global deployment enabled on your account, you can select a different region for your CloudHub deployments. 
 . On the settings page, pick the *Runtime* section, and then select the desired region from the drop-down menu. 
@@ -68,7 +68,7 @@ Administrators can xref:managing-cloudhub-specific-settings.adoc[set the default
 [NOTE]
 Domains for applications deployed to Europe automatically update to `+http://myapplicationdomain.eu.cloudhub.io+`.
 
-== Scaling Your Application
+== Scale Your Application
 
 You can dynamically scale your applications by selecting options from the *Worker size* drop-down menu, and clicking the *Apply Changes* button. Your application uses the worker size and amount that you specify. For more information about deploying to multiple workers, see xref:deploying-to-cloudhub.adoc#worker-size-and-vcores[Worker Size and vCores].
 
@@ -130,7 +130,7 @@ CloudHub supports allocating a static IP for applications so that they can be wh
 If your application is deleted, the static IP will be lost and you must request a new one.
 
 
-== Creating HTTP Services for Your Application
+== Create HTTP Services for Your Application
 
 To make HTTP-based services available under your domain, use the `${http.port}` variable in your configuration. For example:
 
@@ -143,15 +143,15 @@ CloudHub specifies this port for you and automatically load-balances your domain
 
 == See Also
 
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * xref:cloudhub.adoc[CloudHub]
-* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
 * xref:deployment-strategies.adoc[Deployment Options]
-* xref:monitoring.adoc[Monitoring Applications]
+* xref:monitoring.adoc[Monitor Applications]
 * xref:cloudhub-fabric.adoc[Clustering]
-* xref:managing-queues.adoc[Managing Queues]
-* xref:managing-schedules.adoc[Managing Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
+* xref:managing-queues.adoc[Manage Queues]
+* xref:managing-schedules.adoc[Manage Schedules]
+* xref:managing-application-data-with-object-stores.adoc[Manage Application Data with Object Stores]
 * xref:anypoint-platform-cli.adoc[Anypoint Platform CLI]
-* xref:secure-application-properties.adoc[Safely Hiding Application Properties]
+* xref:secure-application-properties.adoc[Safely Hide Application Properties]

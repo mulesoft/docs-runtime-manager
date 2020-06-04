@@ -103,7 +103,7 @@ services:
     frequencyTimeUnit: MINUTES
 ----
 
-== Sending Data to External Analytics Tools
+== Send Data to External Analytics Tools
 
 If you want to use the Runtime Manager agent to send data from Runtime Manager to Splunk, an ELK stack, or other external software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 
@@ -120,13 +120,13 @@ This module is included in Mule runtime engine.
 
 For information, see xref:jmx-service.adoc[JMX].
 
-== Configuring the Log Location
+== Configure the Log Location
 
 You can configure the agent to log its state in a different location than the default `mule_agent.log` file. For information, see xref:3.8@mule-runtime::logging-in-mule.adoc#configuring-logs-for-runtime-manager-agent[Logging in Mule].
 
 This option is supported only in the Runtime Manager agent 1.5.2 or later.
 
-== Configuring a Callback URL
+== Configure a Callback URL
 
 If you want to forward Runtime Manager agent notifications to an external or internal URL, configure a `callback` URL for the REST agent transport in the `mule-agent.yml` file. 
 

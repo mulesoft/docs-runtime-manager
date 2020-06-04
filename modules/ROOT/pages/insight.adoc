@@ -23,7 +23,7 @@ For this reason, do not enable Insight for long periods for production environme
 
 Use Insight only for troubleshooting specific transactions by searching for a transaction ID or a unique text string.
 
-For information about tools to use for monitoring a production environment, see xref:monitoring.adoc[Monitoring Applications and Servers].
+For information about tools to use for monitoring a production environment, see xref:monitoring.adoc[Monitor Applications and Servers].
 --
 
 The Insight dashboard enables you to view events that occur within the flows that handle your business transactions.
@@ -140,7 +140,7 @@ For more information, see <<Diagnosing Problems and Replaying Transactions>>.
 . Click *Apply Changes* to save the application settings.
 
 
-== Searching and Filtering Transactions and Events
+== Search and Filter Transactions and Events
 
 The Insight dashboard displays information at three tracking levels: 
 
@@ -242,7 +242,7 @@ The default events filter setting displays only custom events.
 The default events filter setting displays custom events, endpoint events, and message processor events, but does not display flow events.
 
 
-== Diagnosing Problems and Replaying Transactions
+== Diagnose Problems and Replay Transactions
 
 
 When Insight reports a failed transaction, you can diagnose the problem and fix the root issue. 
@@ -306,7 +306,7 @@ The following table describes the status states that Insight reports:
 |===
 
 
-== Setting Up Business Events
+== Set Up Business Events
 
 You can configure business events in your Mule applications by embedding custom business events in flows or by enabling granular event tracking within message processors in your flows.
 
@@ -317,7 +317,7 @@ Include custom business event elements at relevant points within the flows of yo
 +
 Track more granular events by enabling default event tracking for your entire flow or for specific message processors or endpoints within your flow. When you configure the flows in your application, you can explicitly configure the scope for default event tracking. See xref:mule-runtime::business-events-in-components.adoc[Configure Default Events Tracking].
 
-== Customizing the Transaction ID
+== Customize the Transaction ID
 
 For transaction-level events, Insight might display long numeric values in the ID column. You can customize the transaction IDs to display more intuitive values that are relevant to your business requirements. 
 
@@ -325,10 +325,10 @@ To do this, use a Mule expression to configure your Mule application to return m
 
 == See Also
 
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
-* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
+* xref:monitoring.adoc[Monitor Applications]
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
 * https://blogs.mulesoft.com/dev/anypoint-platform-dev/announcing-cloudhub-insight-real-time-visibility-message-replay-and-root-cause-analysis/[CloudHub Insight on the MuleSoft Blog]
 * xref:mule-runtime::business-events.adoc[Business Events]

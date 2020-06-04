@@ -78,7 +78,7 @@ You can also configure the `eventsTable`, `annotationsTable`, and `businessTable
 
 |`pass`
 |String
-|The password to use to connect to the database server
+|The password to connect to the database server
 |Required
 |
 
@@ -287,7 +287,7 @@ CREATE INDEX FK_MULE_EVENTS_BUSINESS_IDX ON MULE_EVENTS_BUSINESS (event_id);
 
 === Internal Handler Configuration
 
-. Download the Microsoft JDBC driver for SQL Server:
+. Download the Microsoft JDBC driver for SQL Server from:
 +
 `https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774`
 . Extract the `sqljdbc%version%.tar.gz` file.
@@ -310,6 +310,6 @@ CREATE INDEX FK_MULE_EVENTS_BUSINESS_IDX ON MULE_EVENTS_BUSINESS (event_id);
 
 * xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
 * xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
-* xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers]
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Servers]
+* xref:deploying-to-your-own-servers.adoc[Deploy to Your Servers]
+* xref:managing-applications-on-your-own-servers.adoc[Manage Applications on Your Servers]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST API]

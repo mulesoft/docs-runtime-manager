@@ -1,4 +1,4 @@
-= Managing Applications on Your Servers
+= Manage Applications on Your Servers
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -12,7 +12,7 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 After you xref:servers-create.adoc[add a server] and xref:deploying-to-your-own-servers.adoc[deploy an application] to it, you can use the Runtime Manager to monitor and manage your application.
 
-Depending on if your application is deployed to xref:deploying-to-cloudhub.adoc[CloudHub] or to xref:deploying-to-your-own-servers.adoc[your own servers], there is a different set of possible actions you can perform on it, once deployed. This page focuses on the actions that are specific to applications deployed to your own servers. To view the basic management tools that are common to both types of deployment targets, see xref:managing-deployed-applications.adoc[Managing Deployed Applications].
+Depending on if your application is deployed to xref:deploying-to-cloudhub.adoc[CloudHub] or to xref:deploying-to-your-own-servers.adoc[your own servers], there is a different set of possible actions you can perform on it, once deployed. This page focuses on the actions that are specific to applications deployed to your own servers. To view the basic management tools that are common to both types of deployment targets, see xref:managing-deployed-applications.adoc[Manage Deployed Applications].
 
 With applications deployed to your own servers, you can:
 
@@ -20,7 +20,7 @@ With applications deployed to your own servers, you can:
 * xref:managing-servers.adoc[Manage servers]
 
 [NOTE]
-This doc covers deployments on-premises that are deployed both through the https://anypoint.mulesoft.com[cloud based] or the Private Cloud Edition of the Anypoint Platform. Some of the features described in this page are not yet available on the Anypoint Platform Private Cloud Edition. See xref:deployment-strategies.adoc[Deployment Strategies] for a clear distinction. If you’re interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
+This doc covers deployments on-premises that are deployed both through the https://anypoint.mulesoft.com[cloud based] or the Private Cloud Edition of the Anypoint Platform. Some of the features described in this page are not yet available on the Anypoint Platform Private Cloud Edition. See xref:deployment-strategies.adoc[Deployment Options] for a clear distinction. If you’re interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
 
 [NOTE]
 Only the applications deployed through Runtime Manager will be visible and manageable for that tool. If you have applications manually deployed in your on-premise servers, these are not visible in Runtime Manager as the applications are not auto discovered.
@@ -52,7 +52,7 @@ image::managing-applications-on-your-own-servers-ba927.png[]
 [NOTE]
 The *Insight* feature isn't currently available on the Anypoint Platform Private Cloud Edition.
 
-== Accessing App Settings
+== Access App Settings
 
 Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager. Select one of your CloudHub running applications to open a panel on the right side. On that panel, click the *Manage Application* button to open up the application's settings.
 
@@ -65,12 +65,12 @@ In this menu you will be able to view all of the same data that's available on t
 
 You can individually start and stop the specific flows within your deployed applications via this tab in the UI. See xref:flow-management.adoc[Flow Management].
 
-== Monitoring Applications
+== Monitor Applications
 
 If your application is deployed to one of your own servers a set of tools exists for monitoring events that may occur on your application and the performance of the servers, server groups or clusters it's running on. See xref:monitoring.adoc[Monitoring Applications] for more details.
 
 
-== Deleting Applications
+== Delete Applications
 
 To delete a deployed application from a server, simply click on the arrow next to its status, and select *Delete*.
 
@@ -89,10 +89,8 @@ For information, see https://help.mulesoft.com/s/article/How-to-Download-an-Arch
 
 == See Also
 
-Additional tools for managing your applications:
-
-* xref:managing-servers.adoc[Managing Servers] contains information about how to register servers, server groups, and clusters to be able to deploy to them and how to manage them.
-* Learn how to first xref:deploying-to-your-own-servers.adoc[Deploy Applications to your Own Servers]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications] contains more information on how to manage your application once deployed
-* See how you can xref:monitoring.adoc[Monitor your Applications]
-* A https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST APIs] is also available for deployment to your servers.
+* xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
+* xref:deploying-to-your-own-servers.adoc[Deploy Applications to Your Servers]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:monitoring.adoc[Monitor Applications]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST API]
