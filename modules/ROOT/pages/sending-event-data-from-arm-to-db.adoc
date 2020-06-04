@@ -1,4 +1,4 @@
-= Sending Event Data from Runtime Manager to an External Database
+= Send Event Data from Runtime Manager to an External Database
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -14,7 +14,7 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 You can configure the Runtime Manager agent to store the event notifications from Mule apps in a database.
 
 Sending data to third-party software is available only for applications deployed to local servers.
-It is not supported for applications that you deploy to CloudHub using Runtime Manager.
+It is not supported for applications deployed to CloudHub.
 
 
 == Prerequisites
@@ -50,66 +50,63 @@ To install the ZIP file:
 
 == Agent Configurable Fields
 
-Once you have the latest Runtime Manager agent and the event-tracking database internal handlers installed on your API gateway, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
+After you have the latest Runtime Manager agent and the event-tracking database internal handlers installed on your API gateway, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
 
-Below we provide example configurations for MySQL Server, ORACLE and Microsoft SQL Server.
-
-Although the required fields are `driver`, `jdbcUrl`, `user` and `pass`. You can also configure the `eventsTable`, `annotationsTable` and `businessTable` in which the events data is stored.
+In the following example configurations for MySQL Server, Oracle, and Microsoft SQL Server, the required fields are `driver`, `jdbcUrl`, `user`, and `pass`.
+You can also configure the `eventsTable`, `annotationsTable`, and `businessTable` fields to specify where the event data is stored.
 
 |===
 |Field|Data Type|Description|Type|Default Value
 
 |`driver`
 |String
-|Represents the JDBC driver to use to communicate with the database server.
+|The JDBC driver to use to communicate with the database server
 |Required
 |
 
 |`jdbcUrl`
 |String
-|Represents the JDBC url to the database server.
+|The JDBC URL for the database server
 |Required
 |
 
 |`user`
 |String
-|The username to connect to the database server.
+|The username to use to connect to the database server
 |Required
 |
 
 |`pass`
 |String
-|The password to connect to the database server.
+|The password to connect to the database server
 |Required
 |
 
 |`eventsTable`
 |String
-|Represents the name of the table in which the agent will store the events.
+|The name of the table in which the agent stores the events
 |Optional
-|MULE_EVENTS
+|`MULE_EVENTS`
 
 |`annotationsTable`
 |String
-|Represents the name of the table in which the agent will store the annotations associated to the main event.
+|The name of the table in which the agent stores the annotations associated with the main event
 |Optional
-|MULE_EVENTS_ANNOTATIONS
+|`MULE_EVENTS_ANNOTATIONS`
 
 |`businessTable`
 |String
-|Represents the name of the table in which the agent will store the custom business events associated to the main event.
+|The name of the table in which the agent stores the custom business events associated with the main event
 |Optional
-|MULE_EVENTS_BUSINESS
+|`MULE_EVENTS_BUSINESS`
 
 |===
 
-== Proposed Configurations
+== MySQL Example Configuration
 
-Below are a few examples for setting up the agent for working with some of the most common databases.
+The following example shows how to set up the Runtime Manager agent to work with MySQL databases.
 
-=== MySQL
-
-==== Schema
+=== Schema
 
 [source,sql,linenums]
 ----
@@ -150,31 +147,32 @@ CREATE TABLE MULE_EVENTS_BUSINESS (
   FOREIGN KEY (event_id) REFERENCES MULE_EVENTS (id)
     ON DELETE CASCADE
 );
-
 ----
 
-==== Internal Handler Configuration
+=== Internal Handler Configuration
 
-. Download the MySQL JDBC driver from http://dev.mysql.com/downloads/connector/j/.
-. Extract the ZIP file to obtain the `mysql-connector-java-_VERSION_-bin.jar` file.
-. Copy this JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Download the MySQL JDBC driver from:
++
+`http://dev.mysql.com/downloads/connector/j/`
+. Extract the ZIP file.
+. Copy the `mysql-connector-java-{VERSION}.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]
-....
----
+----
   mule.agent.tracking.handler.database:
     enabled: true
     driver: com.mysql.jdbc.Driver
     jdbcUrl: jdbc:mysql://192.168.61.128/mule
     user: root
     pass: test
-....
+----
 
+== Oracle Example Configuration
 
-=== ORACLE
+The following example shows how to set up the Runtime Manager agent to work with Oracle databases.
 
-==== Schema
+=== Schema
 
 [source,sql,linenums]
 ----
@@ -215,31 +213,34 @@ CREATE TABLE MULE_EVENTS_BUSINESS (
 );
 
 CREATE INDEX FK_MEB_IDX ON MULE_EVENTS_BUSINESS (event_id);
-
 ----
 
-==== Internal Handler Configuration
+=== Internal Handler Configuration
 
-. Download the Oracle JDBC driver from http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html.
-. Extract the .ZIP file to obtain the JAR file.
+. Download the Oracle JDBC driver from:
++
+`https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html`
+. Extract the GZ file.
 . Copy the JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]
-....
----
+----
   mule.agent.tracking.handler.database:
     enabled: true
     driver: oracle.jdbc.OracleDriver
     jdbcUrl: jdbc:oracle:thin:@192.168.61.128/XE
     user: root
     pass: test
-....
+----
 
 
-=== Microsoft SQL Server
+== Microsoft SQL Server Example Configuration
 
-==== Schema
+The following example shows how to set up the Runtime Manager agent to work with Microsoft SQL Server databases.
+
+
+=== Schema
 
 [source,sql,linenums]
 ----
@@ -284,31 +285,31 @@ CREATE TABLE MULE_EVENTS_BUSINESS (
 CREATE INDEX FK_MULE_EVENTS_BUSINESS_IDX ON MULE_EVENTS_BUSINESS (event_id);
 ----
 
-==== Internal Handler Configuration
+=== Internal Handler Configuration
 
-. Download the Microsoft JDBC driver from https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774.
-. Extract the `sqljdbc_4_%version%.tar.gz` file to obtain the `sqljdbc4%version%_.jar` file.
-. Copy the JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
-. Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
-
+. Download the Microsoft JDBC driver for SQL Server from:
 +
+`https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774`
+. Extract the `sqljdbc%version%.tar.gz` file.
+. Copy the appropriate `sqljdbc%version%.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
++
+--
 [source,yaml,linenums]
-....
----
+----
   mule.agent.tracking.handler.database:
     enabled: true
     driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
     jdbcUrl: jdbc:sqlserver://192.168.61.128:1433;databaseName=Mule;
     user: root
     pass: test
-....
+----
+--
 
 == See Also
 
-* xref:monitoring.adoc[Monitoring Applications and Servers]
 * xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
 * xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
-* xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
-* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST API]
+* xref:deploying-to-your-own-servers.adoc[Deploy to Your Servers]
+* xref:managing-applications-on-your-own-servers.adoc[Manage Applications on Your Servers]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST API]

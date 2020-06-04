@@ -1,21 +1,22 @@
-= Sending API Analytics from Runtime Manager to External Databases
+= Send API Analytics from Runtime Manager to an External Database
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 :keywords: analytics, monitoring, logs, mule events, logging, apy analytics, metrics, traceability, arm, anypoint runtime manager, db, sql, mysql, oracle, jdbc
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 
 You can configure the Runtime Manager agent to store in a database HTTP API analytics data from Mule apps running on the API gateway runtime.
 
 Sending data to third-party software is available only for applications deployed to local servers.
-It is not available for applications that you deploy to CloudHub using Runtime Manager.
+It is not available for applications deployed to CloudHub.
 
-For information about sending this data to Splunk, ELK, or another third-party software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
+For information about sending this data to Splunk, ELK, or other third-party software, see xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 
 == Prerequisites
 
@@ -49,52 +50,52 @@ To install the ZIP file:
 
 == Agent-Configurable Fields
 
-Once you have the latest Runtime Manager agent and the API analytics tracking database internal handlers installed on your API gateway standalone server, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
+After you have the latest Runtime Manager agent and the API analytics tracking database internal handlers installed on your API gateway standalone server, enable the internal handler by modifying your `{MULE_HOME}/conf/mule-agent.yml` configuration file.
 
-In the following example configurations for MySQL Server, ORACLE and Microsoft SQL Server, the required fields are `driver`, `jdbcUrl`, `user` and `pass`. You can also configure the `apiAnalyticsTable` where the analytics are stored.
+In the following example configurations for MySQL Server, Oracle, and Microsoft SQL Server, the required fields are `driver`, `jdbcUrl`, `user`, and `pass`.
+You can also configure the `apiAnalyticsTable` field to specify where the analytics are stored.
 
 |===
 |Field|Data Type|Description|Type|Default Value
 
 |`driver`
 |String
-|Represents the JDBC driver to use to communicate with the database server.
+|The JDBC driver to use to communicate with the database server
 |Required
 |
 
 |`jdbcUrl`
 |String
-|Represents the JDBC url to the database server.
+|The JDBC URL for the database server
 |Required
 |
 
 |`user`
 |String
-|The username to connect to the database server.
+|The username to use to connect to the database server
 |Required
 |
 
 |`pass`
 |String
-|The password to connect to the database server.
+|The password to use to connect to the database server
 |Required
 |
 
 |`apiAnalyticsTable`
 |String
-|Represents the name of the table in which the agent will store the events.
+|The name of the table in which the agent stores the events
 |Optional
-|MULE_API_ANALYTICS
+|`MULE_API_ANALYTICS`
 
 |===
 
-== Proposed Configurations
 
-Examples for setting up the agent for working with some of the most common databases
+== MySQL Example Configuration
 
-=== MySQL
+The following example shows how to set up the Runtime Manager agent to work with MySQL databases.
 
-==== Schema
+=== Schema
 
 [source,sql,linenums]
 ----
@@ -128,39 +129,40 @@ CREATE TABLE MULE_API_ANALYTICS (
 
 ----
 
-[NOTE]
-You must update the schema only if you are migrating from a Runtime Manager agent version earlier than 2.3.0.
-
-Proposed migration in script to update `policy_violation_policy_id` data type in MySQL.
+If you are migrating from a Runtime Manager agent version earlier than 2.3.0,
+you must update the schema. 
+You can use the following migration script to update the `policy_violation_policy_id`
+data type in MySQL:
 
 [source,sql,linenums]
 ----
 ALTER TABLE MULE_API_ANALYTICS MODIFY policy_violation_policy_id VARCHAR(50) NULL;
-
 ----
 
-==== Internal Handler Configuration
+=== Internal Handler Configuration
 
-. Download the MySQL JDBC driver from http://dev.mysql.com/downloads/connector/j/.
-. Extract the ZIP file to obtain the `mysql-connector-java-_VERSION_-bin.jar` file.
-. Copy the JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Download the MySQL JDBC driver from:
++
+`http://dev.mysql.com/downloads/connector/j/`
+. Extract the ZIP file.
+. Copy the `mysql-connector-java-{VERSION}.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]
-....
----
+----
   mule.agent.gw.http.handler.database:
     enabled: true
     driver: com.mysql.jdbc.Driver
     jdbcUrl: jdbc:mysql://192.168.61.128/mule
     user: root
     pass: test
-....
+----
 
+== Oracle Example Configuration
 
-=== ORACLE
+The following example shows how to set up the Runtime Manager agent to work with Oracle databases.
 
-==== Schema
+=== Schema
 
 [source,sql,linenums]
 ----
@@ -193,10 +195,10 @@ CREATE TABLE MULE_API_ANALYTICS (
 );
 ----
 
-[NOTE]
-You must update the schema only if you are migrating from a Runtime Manager agent version earlier than 2.3.0.
 
-Proposed migration script to update `policy_violation_policy_id` data type in Oracle 11g XE.
+If you are migrating from a Runtime Manager agent version earlier than 2.3.0,
+you must update the schema. 
+For example, you can use the following migration script to update the `policy_violation_policy_id` data type in Oracle 11g XE:
 
 [source,sql,linenums]
 ----
@@ -204,31 +206,34 @@ ALTER TABLE MULE_API_ANALYTICS ADD temp VARCHAR(50);
 update MULE_API_ANALYTICS set temp=cast(policy_violation_policy_id as VARCHAR(50));
 ALTER TABLE MULE_API_ANALYTICS DROP COLUMN policy_violation_policy_id;
 ALTER TABLE MULE_API_ANALYTICS RENAME COLUMN temp TO policy_violation_policy_id;
-
 ----
 
-==== Internal Handler Configuration
 
-. Download the Oracle JDBC driver from http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html.
-. Extract the ZIP file to obtain the JAR file.
-. Copy this JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+=== Internal Handler Configuration
+
+. Download the Oracle JDBC driver from:
++
+`https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html`
+. Extract the GZ file.
+. Copy the JAR file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
 +
 [source,yaml,linenums]
-....
----
+----
   mule.agent.gw.http.handler.database:
     enabled: true
     driver: oracle.jdbc.OracleDriver
     jdbcUrl: jdbc:oracle:thin:@192.168.61.128/XE
     user: root
     pass: test
-....
+----
 
 
-=== Microsoft SQL Server
+== Microsoft SQL Server Example Configuration
 
-==== Schema
+The following example shows how to set up the Runtime Manager agent to work with Microsoft SQL Server databases.
+
+=== Schema
 
 [source,sql,linenums]
 ----
@@ -261,42 +266,38 @@ CREATE TABLE MULE_API_ANALYTICS (
 );
 ----
 
-[NOTE]
-You must update the schema only if you are migrating from a Runtime Manager agent version earlier than 2.3.0.
-
-Proposed migration script to `update policy_violation_policy_id` data type in Microsoft SQL Server 2014.
+If you are migrating from a Runtime Manager agent version earlier than 2.3.0,
+you must update the schema. 
+You can use the following migration script to update the `policy_violation_policy_id` data type in Microsoft SQL Server 2014:
 
 [source,sql,linenums]
 ----
 ALTER TABLE MULE_API_ANALYTICS ALTER COLUMN policy_violation_policy_id VARCHAR(50) NULL;
-
 ----
 
-==== Internal Handler Configuration
+=== Internal Handler Configuration
 
-. Download the Microsoft JDBC driver from https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774.
-. Extract the `sqljdbc_4_%version%.tar.gz` file to obtain the `sqljdbc4%version%_.jar` file.
-. Copy this `.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
+. Download the Microsoft JDBC driver for SQL Server from:
++
+`https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774`
+. Extract the `sqljdbc%version%.tar.gz` file.
+. Copy the appropriate `sqljdbc%version%.jar` file to `{MULE_HOME}/plugins/mule-agent-plugin/lib/modules`.
 . Modify the file `{MULE_HOME}/conf/mule-agent.yml` to include the following:
-
 +
 [source,yaml,linenums]
-....
----
+----
   mule.agent.gw.http.handler.database:
     enabled: true
     driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
     jdbcUrl: jdbc:sqlserver://192.168.61.128:1433;databaseName=Mule;
     user: root
     pass: test
-....
+----
 
 == See Also
 
-* xref:monitoring.adoc[Monitoring Applications and Servers]
 * xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
 * xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
-* xref:deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
-* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Own Servers]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[REST API]
+* xref:deploying-to-your-own-servers.adoc[Deploy to Your Servers]
+* xref:managing-applications-on-your-own-servers.adoc[Manage Applications on Your Servers]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST API]

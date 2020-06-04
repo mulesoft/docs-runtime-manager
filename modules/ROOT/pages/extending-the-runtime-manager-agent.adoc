@@ -1,4 +1,4 @@
-= Extending the Runtime Manager Agent for Hybrid
+= Extend the Runtime Manager Agent for Hybrid
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -192,7 +192,7 @@ public class ReverseService implements MuleAgentService
 ----
 
 [[extmh]]
-== Adding a New External Message Handler
+== Add a New External Message Handler
 
 To add a new external message handler, you have to implement the Runtime Manager agent <<Reverse String External Message Handler>> interface.
 
@@ -202,7 +202,7 @@ Considerations for custom external message handlers:
 * The external message handler must be thread-safe
 * An external message handler is executed by a transport and cannot interact with Mule. *Only Services can interact with Mule*
 
-=== Writing Your External Message Handler
+=== Write Your External Message Handler
 
 ==== REST
 

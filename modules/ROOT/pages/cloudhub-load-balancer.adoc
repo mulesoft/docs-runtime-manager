@@ -28,7 +28,7 @@ This service is designed to have one load balancer per Anypoint VPC and although
 
 == Using the Load Balancer
 
-This feature is currently available only as a service that you can use with the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface], or by using the xref:cloudhub-api.adoc[Cloudhub API] through the endpoints `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs/{vpcId}/loadbalancers` and `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs`.
+This feature is currently available only as a service that you can use with the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface], or by using the xref:cloudhub-api.adoc[CloudHub API] through the endpoints `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs/{vpcId}/loadbalancers` and `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs`.
 
 [NOTE]
 ====
@@ -53,7 +53,7 @@ These variables can contain only letters (a-z) and cannot contain any other char
 
 ==== Examples
 
-===== Defining a Simple Rule
+===== Define a Simple Rule
 
 [source,text,linenums]
 ----
@@ -62,7 +62,7 @@ These variables can contain only letters (a-z) and cannot contain any other char
 
 The example above literally binds these two addresses for redirect.
 
-===== Defining a Rule that Includes a Pattern
+===== Define a Rule that Includes a Pattern
 
 [source,text,linenums]
 ----
@@ -144,7 +144,7 @@ Rule order is essential.
 Pay attention to the rules’ order when creating them as it's not possible to edit them.
 --
 
-==== Setting a Rule Priority Order
+==== Set a Rule Priority Order
 
 You can set an order when creating the rule using the xref:anypoint-platform-cli.adoc#cloudhub-add-lb-rule[`cloudhub-add-lb-rule`] command in the Anypoint Platform CLI by specifying an index value.
 
@@ -156,11 +156,11 @@ The load balancer ID is provided to you when you create it.
 You can also perform a `GET` request to your endpoint `/organizations/{orgid}}/vpcs/{vpcId}/loadbalancers` to get the ID.
 --
 
-=== Managing Certificates
+=== Manage Certificates
 
 ==== Certificate Validation
 
-The Cloudhub Load Balancer provides a 2-way SSL client authentication.
+The CloudHub Load Balancer provides a 2-way SSL client authentication.
 It allows you to provide a `.pem` file certificate to your load balancer to validate client requests.
 
 The load balancer passes the certificate data to the API using the http headers below:
@@ -183,7 +183,7 @@ Contains the full Distinguished Name of the issuing certificate.
 
 Contains the serial number used by the CA to identify the client.
 
-==== Adding Revocation Lists
+==== Add Revocation Lists
 
 If you manage your revocation list using OCSP, your revocation are defined in the certificate that you upload, so you don't need to take any extra steps.
 

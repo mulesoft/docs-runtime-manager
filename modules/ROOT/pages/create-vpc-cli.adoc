@@ -1,4 +1,4 @@
-= Tutorial: Creating an Anypoint Virtual Private Cloud with Anypoint Platform CLI
+= Tutorial: Create an Anypoint Virtual Private Cloud with Anypoint Platform CLI
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -127,7 +127,7 @@ VPC firewall modified successfully
 
 == Update an Existing Anypoint VPC
 
-Although it is not possible to update certain values from your Anypoint VPC through the Anypoint Platform CLI, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[Cloudhub API] to programmatically manage and update your Anypoint VPC:
+Although it is not possible to update certain values from your Anypoint VPC through the Anypoint Platform CLI, you can use the https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals/organizations/68ef9520-24e9-4cf2-b2f5-620025690913/apis/8617/versions/85955/pages/107964[CloudHub API] to programmatically manage and update your Anypoint VPC:
 
 . Log into the CloudHub services passing your credentials through the `+https://anypoint.mulesoft.com/accounts/login+` endpoint.
 . Use the `organizations/{orgid}/vpcs/{vpcId}` endpoint to update your Anypoint VPC.
@@ -161,5 +161,5 @@ You can get the Ids for your environments running a xref:anypoint-platform-cli.a
 
 == See Also
 
-* Learn how to associate a load balancer to this Anypoint VPC following the xref:dedicated-load-balancer-tutorial.adoc[load balancer tutorial].
-* Learn more about the xref:anypoint-platform-cli.adoc[Anypoint Platform CLI].
+* xref:dedicated-load-balancer-tutorial.adoc[CloudHub Load Balancers]
+* Learn more about the xref:anypoint-platform-cli.adoc[Anypoint Platform CLI]

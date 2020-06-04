@@ -1,4 +1,4 @@
-= Managing Queues
+= Manage Queues
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -11,7 +11,7 @@ image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title
 
 You can view and control any Virtual Machine (VM) or Staged Event-Driven Architecture (http://en.wikipedia.org/wiki/Staged_event-driven_architecture[SEDA]) queues within the flows of your deployed applications from the *Queues* tab in Runtime Manager.
 
-Queues are available only for applications deployed to CloudHub workers. They are not available for applications that you deploy with the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Strategies] for more details.
+Queues are available only for applications deployed to CloudHub workers. They are not available for applications that you deploy with the Runtime Manager to local servers. See xref:deployment-strategies.adoc[Deployment Options] for more details.
 
 image::queuestab.png[QueuesTab]
 
@@ -33,7 +33,7 @@ The *Queues* tab is useful for the following use cases:
 * You are testing your application to observe whether messages are traveling through your queues as expected.
 * Your application is stuck processing a message and you want to flush the messages from only that queue to resolve the issue.
 
-== Enabling Queues
+== Enable Queues
 
 To enable queues:
 
@@ -44,7 +44,7 @@ To enable queues:
 +
 image::persistentqueuessetondeploy.png[PersistentQueuesSetOnDeploy]
 
-== Viewing Queues
+== View Queues
 
 After you enable persistent queues, click *Queues* in the left navigation menu. CloudHub lists the queues in your application in the order they appear in your application:
 
@@ -60,7 +60,7 @@ The in-flight messages are still on the queue until processing is complete, then
 
 The *Queued* and *In-Flight* columns update every five seconds, and the *Processed Messages* graph updates every five minutes.
 
-== Clearing Queues
+== Clear Queues
 
 To clear one or more queues, click the checkboxes for the queues to clear, then click *Clear*.
 
@@ -76,7 +76,7 @@ image::chqclearinprogress.png[CHQClearInProgress]
 
 Clearing a queue flushes all messages waiting in the queue and all in-flight messages. After the queue is cleared, the queue immediately begins accepting messages again.
 
-== Encrypting Data at Rest in Persistent Queues
+== Encrypt Data at Rest in Persistent Queues
 
 You can enable data-at-rest encryption for all your persistent queues. By enabling this feature, you ensure that any shared application data written to a persistent queue is encrypted, allowing you to meet your security and compliance needs.
 
@@ -110,19 +110,19 @@ When enabling persistent queues in your application, be aware of the following:
 
 == See Also
 
-* Learn more about the advantages of xref:cloudhub-fabric#persistent-queues[persistent queueing].
-* Learn how to xref:mule-runtime::reliability-patterns#implementing-a-reliability-pattern[set up your applications in reliability patterns] to reap the benefits of persistent queueing.
-* xref:deploying-to-cloudhub.adoc[Deploying to CloudHub]
-* Learn the xref:6@studio::index.adoc[Anypoint Studio Essentials].
+* xref:cloudhub-fabric#persistent-queues[Persistent Queues]
+* xref:mule-runtime::reliability-patterns[Reliability Patterns]
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:6@studio::index.adoc[Anypoint Studio Essentials]
 * xref:deployment-strategies.adoc[Deployment Options]
-* xref:managing-deployed-applications.adoc[Managing Deployed Applications]
-* xref:managing-applications-on-cloudhub.adoc[Managing Applications on CloudHub]
-* Read more about what xref:cloudhub.adoc[CloudHub] is and what features it has
-* xref:developing-applications-for-cloudhub.adoc[Developing Applications for CloudHub]
-* xref:cloudhub-architecture.adoc[CloudHub architecture]
-* xref:monitoring.adoc[Monitoring Applications]
-* xref:managing-schedules.adoc[Managing Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Managing Application Data with Object Stores]
+* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
+* xref:cloudhub.adoc[CloudHub]
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
+* xref:cloudhub-architecture.adoc[CloudHub Architecture]
+* xref:monitoring.adoc[Monitor Applications]
+* xref:managing-schedules.adoc[Manage Schedules]
+* xref:managing-application-data-with-object-stores.adoc[Manage Application Data with Object Stores]
 * xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
 * xref:secure-application-properties.adoc[Secure Application Properties]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]

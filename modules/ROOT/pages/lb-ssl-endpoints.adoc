@@ -108,7 +108,7 @@ openssl req -newkey rsa:2048 -nodes -keyout example-com-private.pem -x509 -days 
 openssl rsa -in example-com-private.pem -out example-com-private-decrypted.pem
 ----
 
-== Configuring Certificates for Production
+== Configure Certificates for Production
 
 Typically, in a production environment, your certificate is signed by a valid Certificate Authority (CA).
 Each SSL endpoint can have multiple CA certificates and CRLs (Certificate Revocation Lists). You must provide each of these certificates in a single unencrypted, PEM-encoded file. Ordering is not important for independent CA certificates, but certificates in a chain of trust must be concatenated.
@@ -116,7 +116,7 @@ Each SSL endpoint can have multiple CA certificates and CRLs (Certificate Revoca
 
 == See Also
 
-* xref:lb-cert-upload.adoc[Adding Certificates]
+* xref:lb-cert-upload.adoc[Add Certificates]
 * xref:lb-cert-validation.adoc[Certificate Validation]
 * xref:lb-whitelists.adoc[Whitelists]
 * xref:lb-mapping-rules.adoc[Mapping Rules]

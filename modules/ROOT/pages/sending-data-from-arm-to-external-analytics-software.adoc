@@ -1,4 +1,4 @@
-= Export Data to External Analytics Tools
+= Export Data from Runtime Manager to External Analytics Tools
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -31,6 +31,8 @@ See xref:custom-log-appender.adoc[Integrating with Your Logging System Using Log
 
 
 == Prerequisites
+
+Ensure that the following software is installed:
 
 * Mule runtime engine version 3.6 or later
 +
@@ -82,7 +84,7 @@ Business Events plus exception strategy, and endpoint messages
 Debug::
 Tracking plus message processor begin and end
 
-== Integrating with Splunk
+== Integrate with Splunk
 
 With http://www.splunk.com/[Splunk], you can capture and index Mule event notification data into a searchable repository from which you can then generate graphs, reports, alerts, dashboards, and visualizations.
 
@@ -229,7 +231,7 @@ If the index doesn't exist, the internal handler creates it if the permissions a
 // ----
 
 
-== Integrating with Your ELK Stack
+== Integrate with Your ELK Stack
 
 The ELK (Elasticsearch, Logstash, Kibana) stack enables you to store, search, and analyze the log data.
 
@@ -357,9 +359,9 @@ image::hybrid-export-api-analytics.png[API Analytics options on the server Plugi
 
 * xref:rtm-agent-proxy-config#encrypt_password[Include an Encrypted Password in the mule-agent.yml File]
 * xref:managing-servers.adoc[Servers, Server Groups, and Clusters]
-* xref:monitoring.adoc[Monitoring Applications and Servers]
-* xref:deploying-to-your-own-servers.adoc[Deploying to Your Servers]
+* xref:monitoring.adoc[Monitor Applications and Servers]
+* xref:deploying-to-your-own-servers.adoc[Deploy to Your Servers]
 * xref:managing-deployed-applications.adoc[Manage Deployed Applications]
-* xref:managing-applications-on-your-own-servers.adoc[Managing Applications on Your Servers]
+* xref:managing-applications-on-your-own-servers.adoc[Manage Applications on Your Servers]
 * xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST API]
