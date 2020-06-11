@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 After you deploy apps, use the Runtime Manager console to monitor and manage running applications. The different management functionalities available depend on the xref:deployment-strategies.adoc[deployment option] you use.
 
 The basic management tools in the Runtime Manager console enable you to perform the following tasks:
@@ -101,19 +106,6 @@ Deletes the application.
 
 [IMPORTANT]
 On CloudHub, after you delete an application, your log data is no longer accessible from the console. CloudHub archives old log data for a limited period of time before it is purged. This allows you to recover the data if needed. Open a support case at: https://help.mulesoft.com[MuleSoft Help Center] for more information.
-
-
-For applications deployed through Pivotal Cloud Foundry:
-
-* *Restart*
-+
-Redeploys your application on the virtual machine.
-* *Stop*
-+
-Destroys the virtual machine running the application but retains the entry on Runtime Manager to maintain log continuity.
-* *Undeploy*
-+
-Destroys the virtual machine running the application and deletes the entry for it on Runtime Manager.
 
 
 [[status_states]]

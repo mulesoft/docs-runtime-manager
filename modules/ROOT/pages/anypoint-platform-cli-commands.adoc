@@ -8,11 +8,11 @@ Anypoint Platform CLI provides commands for different use case scenarios:
 * <<Commands for Managing Exchange Assets>>
 * <<Commands for Administering Your CloudHub Application>>
 * <<Commands for Managing Your Locally Deployed Applications Managed by Runtime Manager>>
-* <<Commands for Managing Your Local Pivotal Cloud Foundry Deployed Applications>>
+* <<Command for Listing Your Runtime Fabric Instances>>
 * <<Commands for Managing Your Local Servers>>
 * <<Commands for Administering Your Local Server Groups>>
 * <<Commands for Administering Your Local Cluster Servers>>
-* <<Commands for Managing Alerts for your Locally Deployed Applications Managed by Runtime Manager>>
+* <<Commands for Managing Alerts for Your Locally Deployed Applications Managed by Runtime Manager>>
 * <<Commands for Managing Your CloudHub Dedicated Load Balancer>>
 * <<Commands for Managing Your CloudHub Anypoint VPC>>
 * <<Commands for Specifying Environments and Business Groups>>
@@ -158,21 +158,12 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<runtime-mgr standalone-application copy>> | Copies a standalone application
 |===
 
-== Commands for Managing Your Local Pivotal Cloud Foundry Deployed Applications
+== Command for Listing Your Runtime Fabric Instances
 
 [%header,cols="35a,65a"]
 |===
 |Command |Description
-|<<runtime-mgr pcf-application delete>> | Deletes Pivotal Cloud Foundry application
-|<<runtime-mgr pcf-application describe>> | Shows detailed info of Pivotal Cloud Foundry application
-|<<runtime-mgr pcf-application list>> | Lists all Pivotal Cloud Foundry applications in the environment
-|<<runtime-mgr pcf-application restart>> | Restarts Pivotal Cloud Foundry application
-|<<runtime-mgr pcf-application stop>> | Stops Pivotal Cloud Foundry application
 |<<runtime-mgr rtf list>>  | Lists available Runtime Fabric instances
-|<<runtime-mgr pcf-application deploy>> | Deploys a new application to Pivotal Cloud Foundry space
-|<<runtime-mgr pcf-application describe-json>> | Shows raw Pivotal Cloud Foundry application JSON response
-|<<runtime-mgr pcf-application modify>> | Edits an application deployed to Pivotal Cloud Foundry space
-|<<runtime-mgr pcf-application start>> | Starts Pivotal Cloud Foundry application
 |===
 
 
@@ -218,7 +209,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |===
 
 
-== Commands for Managing Alerts for your Locally Deployed Applications Managed by Runtime Manager
+== Commands for Managing Alerts for Your Locally Deployed Applications Managed by Runtime Manager
 
 [%header,cols="35a,65a"]
 |===
@@ -1566,6 +1557,18 @@ Running this command requires your user to have read/write access to the `/tmp` 
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
+=== runtime-mgr rtf list
+
+----
+> runtime-mgr rtf list [options]
+----
+
+This command lists available Runtime Fabric instances.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
+
 === runtime-mgr standalone-application artifact
 
 ----
@@ -1686,123 +1689,7 @@ Running this command requires for your user to have read/write access to the `/t
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-=== runtime-mgr pcf-application delete
 
-----
-> runtime-mgr pcf-application delete [options] <appId>
-----
-
-This commands deletes the Pivotal Cloud Foundry (PCF) application passed in `appId`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-[WARNING]
-This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.
-
-=== runtime-mgr pcf-application describe
-
-----
-> runtime-mgr pcf-application describe [options] <appId>
-----
-
-This command describes the Pivotal Cloud Foundry deployed application passed in `appId`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-=== runtime-mgr pcf-application list
-
-----
-> runtime-mgr pcf-application list [options]
-----
-
-This command lists all your Pivotal Cloud Foundry deployed applications. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-=== runtime-mgr pcf-application restart
-
-----
-> runtime-mgr pcf-application restart [options] <appId>
-----
-
-This command restarts your Pivotal Cloud Foundry deployed application passed in `appId`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-=== runtime-mgr pcf-application stop
-
-----
-> runtime-mgr pcf-application stop [options] <appId>
-----
-
-This command stops the Pivotal Cloud Foundry deployed application passed in `appId`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-
-=== runtime-mgr rtf list
-
-----
-> runtime-mgr rtf list [options]
-----
-
-This command lists available Runtime Fabric instances.
-
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-=== runtime-mgr pcf-application deploy
-
-----
-> runtime-mgr pcf-application deploy [options] <name> <zipfile>
-----
-
-This command deploys to your Pivotal Cloud Foundry instance the application passed in `zipfile` with the name Id passed in `name`. +
-Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also accepts:
-
-[%header,cols="30,70"]
-|===
-|Value |Description
-| `--runtime [version]` | Runtime version
-| `--replication [factor]` | Replication factor
-| `--property [property]` | Set a property (`name:value`). Can be specified multiple times
-| `--propertiesFile [propertiesFile]` | Overwrite all properties with values from this file. The file format is 1 or more lines in name=value format
-| `--binding [binding]` | Set a service binding (`serviceName.key:value`). Can be specified multiple times
-| `--bindingsFile [bindingsFile]` | Overwrite all properties with values from this file. The file format is 1 or more lines in `serviceName.key:value` format
-|===
-
-=== runtime-mgr pcf-application describe-json
-
-----
-> runtime-mgr pcf-application describe-json [options] <appId>
-----
-
-This command shows a raw JSON description of the Pivotal Cloud Foundry deployed application passed in `appId`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
-
-=== runtime-mgr pcf-application modify
-
-----
-> runtime-mgr pcf-application modify [options] <appId> [zipfile]
-----
-
-This command modifies the Pivotal Cloud Foundry deployed application passed in `appId` with the ZIP file application passed in `zipfile`.
-
-Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
-
-[%header,cols="30,70"]
-|===
-|Value |Description
-| `--runtime [version]` | Runtime version
-| `--replication [factor]` | Replication factor
-| `--property [property]` | Set a property (`name:value`). Can be specified multiple times
-| `--propertiesFile` [propertiesFile]  | Overwrite all properties with values from this file. The file format is 1 or more lines in name=value format
-| `--binding [binding]` | Set a service binding (`serviceName.key:value`). Can be specified multiple times
-| `--bindingsFile [bindingsFile]` | Overwrite all properties with values from this file. The file format is 1 or more lines in `serviceName.key:value` format
-|===
-
-=== runtime-mgr pcf-application start
-
-----
-> runtime-mgr pcf-application start [options] <appId>
-----
-
-This command starts the Pivotal Cloud Foundry deployed application passed in `appId`. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr server describe
 
