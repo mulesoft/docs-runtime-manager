@@ -70,6 +70,9 @@ You must fragment packets that are too large to transmit. Your VPN device must b
 * Use one Security Association (SA) pair per tunnel 
 +
 Anypoint VPN supports one unique SA pair per tunnel (a pair refers to one inbound and one outbound connection). Some policy-based devices create an SA for each ACL (access-control list) entry. In this situation, you must consolidate your rules and then filter unwanted traffic.
+* Use IPsec Dead Peer Detection (DPD)
++
+DPD allows devices to rapidly identify when network conditions change. You can enable DPD on the MuleSoft endpoint using `DPD Interval: 10` and `DPD Retries: 3`.
 * Allow asymmetric routing 
 +
 Asymmetric routing occurs when routing policies send traffic from your network to the VPC through one tunnel and traffic returns from the VPC through the other tunnel. The MuleSoft VPN endpoint selects the tunnel using an internal algorithm, making the return path dynamic. If your device uses an active/active tunnel configuration, you must allow asymmetric routing for each Anypoint VPN connection.
@@ -80,9 +83,7 @@ To create a dynamic VPN connection, in addition to the static VPN connection req
 
 * Establish BGP peering
 * Support route-based VPNs (bind tunnels to logical interfaces)
-* Use IPsec Dead Peer Detection (DPD)
-+
-DPD allows devices to rapidly identify when network conditions change. You can enable DPD on the MuleSoft endpoint using `DPD Interval: 10` and `DPD Retries: 3`.
+
 
 == Recommendations
 
