@@ -80,15 +80,17 @@ The memory capacity and processing power of a worker depends on how you configur
 
 You can scale workers vertically by selecting one of the available worker sizes:
 
-*Worker Sizes:*
-
-* 0.1 vCores + 500 MB Heap Memory
-* 0.2 vCores + 1 GB Heap Memory
-* 1 vCores + 1.5 GB Heap Memory
-* 2 vCores + 3.5 GB Heap Memory
-* 4 vCores + 7.5 GB Heap Memory
-* 8 vCores + 15 GB Heap Memory
-* 16 vCores + 32 GB Heap Memory
+[%header,cols="3*a"]
+|===
+|Worker Size |Heap Memory | Storage 
+|0.1 vCores |500 MB | 8 GB
+|0.2 vCores |1 GB | 8 GB
+|1 vCore |1.5 GB | 12 GB
+|2 vCores |3.5 GB | 40 GB
+|4 vCores |7.5 GB | 88 GB
+|8 vCores |15 GB | 168 GB
+|16 vCores |32 GB | 328 GB 
+|===
 
 For workers that use a fraction of a vCore, CloudHub allocates limited CPU and I/O, as well as less memory. 
 Use these worker sizes for apps with smaller workloads.
