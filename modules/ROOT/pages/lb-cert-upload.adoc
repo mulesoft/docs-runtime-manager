@@ -13,6 +13,8 @@ When you create a dedicated load balancer (DLB), you must add at least one certi
 You can add additional certificates to a DLB using Runtime Manager or the command-line interface.
 
 The certificate must be contained in one unencrypted, PEM-encoded file.
+Convert all end of line characters to Linux convention (no '\r' characters).
+If migrating a certificate from Windows tools, then remove all "Bag Attributes" and "Key Attributes".
 
 This file must contain the entire certificate chain ordered sequentially: 
 
