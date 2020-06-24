@@ -1,8 +1,14 @@
-= Manage Schedules (CloudHub)
+= Manage Schedules
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: schedules, cloudhub, polling
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"
+
 
 The *Schedules* tab in the left navigation menu of the CloudHub console enables you to view and control any polling elements within the flows of your deployed applications. On this tab, you can manage polling elements, change the polling frequency, or run polls immediately, all during runtime, without making any changes in the underlying application.
 
@@ -36,7 +42,7 @@ Use the CloudHub API or *Schedules* tab in Runtime Manager to manage CloudHub sc
 
 == View Application Schedules in the Console
 
-To use the scheduling feature in Runtime Manager, deploy an application that includes one or more polling elements. This example includes two simple flows, each with a polling scope:
+To use the scheduling feature in Runtime Manager, deploy an application that includes one or more Scheduler elements. This example includes a simple flow with a fixed-frequency Scheduler:
 
 [.ex]
 =====
@@ -50,23 +56,57 @@ image::scheduling-cloudhub.png[scheduling+cloudhub]
 
 [source,xml,linenums]
 ----
-<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
-http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
 
-    <flow name="synchronize-accounts" doc:name="synchronize-accounts">
-        <poll frequency="300000" doc:name="Poll">
-            <logger level="INFO" doc:name="Start" message="Start Account Synchronization ${salesforce.username}"/>
-        </poll>
-        <logger level="INFO" doc:name="End" message="End Account Synchronization"/>
-    </flow>
-    <flow name="synchronize-contacts" doc:name="synchronize-contacts">
-        <poll frequency="600000" doc:name="Poll">
-            <logger level="INFO" doc:name="Start" message="Start Contact Synchronization ${salesforce.username}"/>
-        </poll>
-        <logger level="INFO" doc:name="End" message="End Contact Synchronization"/>
-    </flow>
+<mule xmlns:tls="http://www.mulesoft.org/schema/mule/tls"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:email="http://www.mulesoft.org/schema/mule/email"
+	xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<file:config name="File_Config" doc:name="File Config" doc:id="4fb53d50-40ef-4cf0-b632-df1279e7a20d" />
+	<tls:context name="TLS_Context" doc:name="TLS Context" doc:id="322debdf-e869-4294-8d83-e47f7376cbe8" >
+		<tls:trust-store insecure="true" />
+	</tls:context>
+	<email:smtp-config name="Email_SMTP" doc:name="Email SMTP" doc:id="7b0a7d4a-d12d-436a-b8ea-f4c9b77f381c" >
+		<email:smtps-connection host="${smtp.host}" port="${smtp.port}" user="${smtp.user}" password="${smtp.password}" tlsContext="TLS_Context" />
+	</email:smtp-config>
+	<configuration-properties file="mule-artifact.properties" doc:name="Configuration properties" doc:id="855485da-749a-419a-8a1c-2667f6f9d9c3" />
+	<flow name="sending-a-CSV-file-through-Email-using-SMTP" doc:id="5d5735e9-ee64-4700-bcba-cfd0ddbcd031" >
+		<scheduler doc:name="Scheduler" doc:id="f9e24ed0-3c2c-43d3-acaa-98086cdc5127" >
+			<scheduling-strategy >
+				<fixed-frequency frequency="10000"/>
+			</scheduling-strategy>
+		</scheduler>
+		<file:read config-ref="File_Config" path="/Users/johanna.nelson/AnypointStudio/studio-workspace7.5/sending-a-csv-file-through-email-using-smtp/src/main/resources/input/input.csv" doc:name="Read input.csv" doc:id="4f516e0b-4d07-4ea0-a90d-223648fa208e" outputMimeType="application/csv"/>
+		<ee:transform doc:name="Map to json" doc:id="3a757861-dd31-4b9c-a6a6-84d937301872" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+payload map {
+	name: $.name,
+	orderId: $.orderId,
+	pricePerUnit: $.pricePerUnit,
+	units: $.units,
+	totalPrice: ($.units * $.pricePerUnit )
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<email:send config-ref="Email_SMTP" doc:name="Send email" doc:id="5896eaa9-dd10-47a2-a6fc-6319b11dbd06" fromAddress="${mail.from}" subject="${mail.subject}" >
+			<email:to-addresses >
+				<email:to-address value="${mail.to}" />
+			</email:to-addresses>
+			<email:body contentType="text/plain" encoding="UTF-8" />
+		
+</email:send>
+	</flow>
 </mule>
+
 ----
 =====
 
