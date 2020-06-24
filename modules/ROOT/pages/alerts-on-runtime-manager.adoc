@@ -4,7 +4,6 @@ include::_attributes.adoc[]
 endif::[]
 
 
-
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
@@ -25,12 +24,15 @@ Custom alerts are triggered when your application sends notifications to the Run
 using Anypoint Connector for CloudHub (CloudHub Connector).
 See xref:custom-application-alerts.adoc[Custom Application Alerts] for information.
 
+Runtime Manager retains 30 days of alert history. 
+
+
 == Rate Limits on Alerts
 
 Anypoint Platform enforces rate limits that determine how often an alert is triggered and prevent excessive emails from being sent.
 The following factors determine the rate limit:
 
-* CloudHub
+* CloudHub custom application alerts
 +
 When using CloudHub Connector to trigger notifications and alerts,
 the rate limit is five custom application alerts per IP address, per second.
@@ -39,9 +41,9 @@ If an application uses multiple workers, this limit is multiplied by the number 
 assigned to the application.
 +
 Custom notifications that trigger emails are also subject to the rate limit on email notifications.
-* Alert emails
+* Alert emails (CloudHub and on-premises)
 +
-For both standard and custom alerts, the rate limit is one alert notification email sent every 2.5 seconds.
+For both standard and custom alerts, the rate limit is one alert notification email sent every 2.5 seconds per organization.
 This limit is enforced by a combination of organization, environment, alert (name or ID), and resource
 (application, server, server group, or cluster).
 
@@ -69,10 +71,12 @@ image::alerts-create-alert.png[Create an Alert page]
 * *Name*
 +
 Unique and meaningful name for the alert
++
+The *Name* is limited to 256 characters.
 * *Severity level*
 +
 Severity of the alert: *Critical*, *Warning*, or *Info*
-
++
 * *Source*
 +
 The source of the alert: applications or servers
@@ -116,8 +120,7 @@ See <<Alert Properties>>.
 +
 The recipients of the alert email
 +
-You can select platform users or enter any email address.
-
+You can select up to 20 platform user IDs and enter up to 20 email addresses.
 . Click *Create Alert*.
 
 When an event that meets an alert condition occurs, Runtime Manager sends an email similar to the following:

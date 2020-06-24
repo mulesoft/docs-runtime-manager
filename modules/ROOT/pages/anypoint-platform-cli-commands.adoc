@@ -1924,6 +1924,8 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 
 This command creates a new alert for a standalone runtime with the ID passed in `name`.
+The alert `name` is limited to 256 characters.
+
 
 Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
@@ -1939,8 +1941,8 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 | `--operator [type]` | Condition operator explaining values relation to threshold.
 | `--subject <string>` | Alert notification email subject
 | `--content <string>` | Alert notification email body
-| `--recipient [username]` | Username to send alert notification to. Can be used multiple times to specify multiple usernames.
-| `--email [emailAddress]` | Email to send alert notification to. Can be used multiple times to specify multiple emails.
+| `--recipient [username]` | Username to send alert notification to. Can be used multiple times to specify up to 20 platform user IDs.
+| `--email [emailAddress]` | Email address to send alert notification to. Can be used multiple times to specify up to 20 email addresses.
 |===
 
 === runtime-mgr standalone-alert modify
@@ -1966,8 +1968,8 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 | `--operator [type]` | Condition operator explaining values relation to threshold.
 | `--subject <string>` | Alert notification email subject
 | `--content <string>` | Alert notification email body
-| `--recipient [username]` | Username to send alert notification to. Can be used multiple times to specify multiple usernames.
-| `--email [emailAddress]` | Email to send alert notification to. Can be used multiple times to specify multiple emails.
+| `--recipient [username]` | Username to send alert notification to. Can be used multiple times to specify up to 20 platform user IDs.
+| `--email [emailAddress]` | Email address to send alert notification to. Can be used multiple times to specify up to 20 email addresses.
 |===
 
 === runtime-mgr standalone-alert list
