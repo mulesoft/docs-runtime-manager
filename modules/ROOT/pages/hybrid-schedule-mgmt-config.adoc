@@ -3,6 +3,12 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"
+
+
 If a scheduled job is missed (not triggered) one or more times because the application is down, Runtime Manager triggers the job when the application restarts.
 
 The scheduler reads a schedule job configuration every time it is run. This means that if you update the schedule time, the change is not immediate. The job executes using the original configuration. The scheduler will pick up the next setting for the next run. To have your changes applied immediately, run your jobs after every schedule update.
@@ -27,4 +33,4 @@ Before performing the following procedure, ensure that you have deployed an appl
 
 == See Also
 
-* xref:hybrid-schedule-mgmt.adoc[Schedule Management (Hybrid)]
+* xref:hybrid-schedule-mgmt.adoc[Schedule Management]
