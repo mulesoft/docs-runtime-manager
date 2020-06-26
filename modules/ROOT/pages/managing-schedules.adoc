@@ -32,7 +32,7 @@ When using the *Schedules* tab, consider the following:
 * All schedules are based in the UTC timezone, regardless of the geographic region where your 
 application is deployed.
 * The minimum recommended frequency is 10 seconds between calls.
-* If a scheduled job is not triggered because the application is down,
+* If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as the application restarts.
 * The CloudHub scheduler reads the job configuration every time it runs.
 +
@@ -55,8 +55,7 @@ After deploying an app to CloudHub, view and manage the Scheduler elements in Ru
 
 . Click *Applications* in the left pane, click the app, and then click *Schedules*:
 +
-.The screenshot shows (*1*) the *Logs* option, (*2*) the *Last Run* column, and (*3*) the frequency
-link on the *Schedules* page.
+.The screenshot shows (*1*) the *Logs* option, (*2*) the *Last Run* column, and (*3*) the frequency link on the *Schedules* page.
 image::cloudhub-scheduler-rtm.png[Logs option and the Last Run column on the Schedules page]
 +
 The *Last Run* column shows the date and time each Scheduler element last ran.
@@ -78,13 +77,13 @@ image::cloudhub-scheduler-frequency.png[Switch to advanced mode link in the sche
 In the schedule editor, change the frequency of the schedule or deselect *Enabled* to disable the schedule.
 + 
 You can also switch to advanced mode to use cron expressions to create more specific schedules,
-such as "every Thursday at 3:00 pm".
+such as every Thursday at 3:00 pm.
 . Click *Update* to save changed settings or click *Cancel* to exit without saving.
 
 == Use Cron Expressions
 
 With cron expressions, you can create more complex schedule frequencies,
-such as "every 5 minutes between 9:00 am and 10:00 on Fridays".
+such as every 5 minutes between 9:00 am and 10:00 on Fridays.
 
 To use cron expressions to specify the schedule frequency:
 
