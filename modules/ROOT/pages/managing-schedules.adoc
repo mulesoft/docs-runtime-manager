@@ -34,7 +34,7 @@ application is deployed.
 * The minimum recommended frequency is 10 seconds between calls.
 * If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as the application restarts.
-* When a Mule 4.x schedule is used to trigger a flow with subflow, it waits until both main flow and subflow complete before scheduling the next run.
+* When a schedule is used to trigger a flow with subflow in a Mule 4.x application, it waits until both main flow and subflow complete before scheduling the next run.
 * The CloudHub scheduler reads the job configuration every time it runs.
 +
 To apply your changes immediately, run your jobs manually after updating the schedule.
