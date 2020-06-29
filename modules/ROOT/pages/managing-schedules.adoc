@@ -29,11 +29,12 @@ You can trigger the job while it's running without updating the schedule in your
 When using the *Schedules* tab, consider the following:
 
 * CloudHub manages the Schedulers and triggers them in only one worker, even if more are available.
-* All schedules are based in the UTC timezone, regardless of the geographic region where your 
+* All schedules are based in the UTC timezone, regardless of the geographic region where your
 application is deployed.
 * The minimum recommended frequency is 10 seconds between calls.
 * If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as the application restarts.
+* When a schedule is used to trigger a flow with subflow, it waits until both main flow and subflow complete before scheduling the next run.
 * The CloudHub scheduler reads the job configuration every time it runs.
 +
 To apply your changes immediately, run your jobs manually after updating the schedule.
@@ -42,9 +43,9 @@ To apply your changes immediately, run your jobs manually after updating the sch
 +
 Use the CloudHub API or *Schedules* tab in Runtime Manager to manage CloudHub schedules.
 
-== View and Manage Application Schedules in Runtime Manager 
+== View and Manage Application Schedules in Runtime Manager
 
-To use the scheduling feature in Runtime Manager, deploy an application that includes one or more Scheduler elements: 
+To use the scheduling feature in Runtime Manager, deploy an application that includes one or more Scheduler elements:
 
 .The arrow shows the *Scheduler* component in the Anypoint Studio canvas.
 image::cloudhub-scheduler-studio.png[Scheduler component in the Anypoint Studio canvas]
@@ -75,7 +76,7 @@ CloudHub does not run the scheduled job until you reenable it.
 image::cloudhub-scheduler-frequency.png[Switch to advanced mode link in the schedule editor]
 +
 In the schedule editor, change the frequency of the schedule or deselect *Enabled* to disable the schedule.
-+ 
++
 You can also switch to advanced mode to use cron expressions to create more specific schedules,
 such as every Thursday at 3:00 pm.
 . Click *Update* to save changed settings or click *Cancel* to exit without saving.
