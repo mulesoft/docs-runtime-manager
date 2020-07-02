@@ -28,12 +28,12 @@ This service is designed to have one load balancer per Anypoint VPC and although
 
 == Using the Load Balancer
 
-This feature is currently available only as a service that you can use with the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface], or by using the xref:cloudhub-api.adoc[CloudHub API] through the endpoints `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs/{vpcId}/loadbalancers` and `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs`.
+This feature is currently available only as a service that you can use with the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface], or by using the xref:cloudhub-api.adoc[CloudHub REST API] through the endpoints `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs/{vpcId}/loadbalancers` and `anypoint.mulesoft.com/cloudhub/api/organizations/{orgid}/vpcs`.
 
 [NOTE]
 ====
 For a full list of Anypoint Platform CLI commands and their respective usage, check our xref:anypoint-platform-cli.adoc#List-of-commands[reference page]. +
-A full description of `loadbalancers` and `vpcs` endpoints is available accessing your https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal].
+A full description of `loadbalancers` and `vpcs` endpoints is available accessing the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API].
 
 In the API Portal, search among other Mule APIs for the CloudHub API and enter its latest version.
 ====
@@ -193,5 +193,5 @@ If you manage your revocations using CRL, you can add a `crlCert` field under th
 == See Also
 
 * xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
-* xref:cloudhub-api.adoc[CloudHub API].
-* https://anypoint.mulesoft.com/apiplatform/anypoint-platform/#/portals[API Portal]
+* xref:cloudhub-api.adoc[CloudHub REST API]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
