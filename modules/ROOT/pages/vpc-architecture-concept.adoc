@@ -27,7 +27,7 @@ A CloudHub dedicated load balancer is assigned to a particular Anypoint VPC. The
 
 Each dedicated load balancer has a DNS A record `_lb-name_.lb.anypointdns.net` or `_lb-name_.lb-prod-eu-rt.anypointdns.net` (for EU control plane) that resolves to two public IP addresses of its two instances. +
 Through your DNS provider, you can add a `CNAME` record pointing to the dedicated `A` record and use your own domain names to access it. This DNS A record can also be reached from outside the VPC. +
-Additionally, a CloudHub dedicated load balancer has an internal domain name to be used by applications and clients within the Anypoint VPC. The structure is `internal-<lb-name>.lb.anypointdns.net`.
+Additionally, a CloudHub dedicated load balancer has an internal domain name to be used by applications and clients within the Anypoint VPC. The structure is `internal-_lb-name_.lb.anypointdns.net`.
 
 
 == See Also
