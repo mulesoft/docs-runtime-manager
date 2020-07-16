@@ -130,12 +130,13 @@ Here is an example of data received in JSON format in response to a request to g
 
 The following rate limits apply to apps deployed to CloudHub:
 
-U.S. control plane::
-75 requests per second per IP address
-EU control plane::
-25 requests per second per IP address
-Government Cloud control plane::
-25 requests per second per IP address
+[%header,cols="30a,50a"]
+|===
+|Control Plane | Rate Limit
+|U.S.|75 requests per second per IP address
+|EU|25 requests per second per IP address
+|Government Cloud|25 requests per second per IP address
+|===
 
 When an app reaches the limit, CloudHub returns error code `503`.
 
