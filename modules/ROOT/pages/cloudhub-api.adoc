@@ -126,6 +126,33 @@ Here is an example of data received in JSON format in response to a request to g
 }
 ----
 
+== Rate Limits 
+
+The following rate limits apply to apps deployed to CloudHub:
+
+U.S. control plane::
+75 requests per second per IP address
+EU control plane::
+25 requests per second per IP address
+Government Cloud control plane::
+25 requests per second per IP address
+
+When an app reaches the limit, CloudHub returns error code `503`.
+
+The following endpoints have a limit of one call per second for each application:
+
+* `v2/applications/{domain}/logs`
+* `v2/applications/{domain}/deployments/{deploymentId}/logs`
+* `v2/applications/{domain}/instances/{instanceId}/logs`
+
+When an endpoint reaches the limit, CloudHub returns error code `500`.
+
+The following endpoint has a limit of one call per minute for each application:
+
+`v2/applications/{domain}/instances/{instanceId}/log-file`
+
+When an endpoint reaches the limit, CloudHub returns error code `500`.
+
 
 == Status Codes and Error Handling
 
@@ -137,22 +164,15 @@ When you call the REST APIs, the following status codes are returned:
 |200 |The operation was successful.
 |201 |The resource (such as an application) was created.
 
-The Location header contains the location of the resource.
+The `Location` header contains the location of the resource.
 |404 |The resource was not found.
 |409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
-|429 a|The operation was unsuccessful due to rate limit.
-
-* The following endpoints have a limit of one call per second for each application:
-** `v2/applications/{domain}/logs`
-** `v2/applications/{domain}/deployments/{deploymentId}/logs`
-** `v2/applications/{domain}/instances/{instanceId}/logs`
-* The following endpoint has a limit of one call per minute for each application:
-** `v2/applications/{domain}/instances/{instanceId}/log-file`
+|429 a|The operation was unsuccessful due to reaching the rate limit.
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
+|503 |The operation was unsuccessful due to reaching the rate limit.
 |===
-
 
 When errors occur, such as a 500 status code, the HTTP response contains a JSON response with an error message:
 
