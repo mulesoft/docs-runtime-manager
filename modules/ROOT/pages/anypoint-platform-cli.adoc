@@ -48,48 +48,81 @@ If the git protocol is blocked, you can configure Git to use `https://` instead 
 git config --global url."https://".insteadOf git://
 ----
 
+== Authentication
+
+There are three ways to configure Anypoint-CLI with credentials: Username and Password, Client ID and Client Secret, or a bearer token.
+At least one way must be provided.
+
+=== Username and Password
+
+If your user does not log in using xref:access-management::external-identity.adoc[SSO], you can use your username and password
+with the CLI directly.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+| Parameter | Description
+| `username` | Your Anypoint Platform username.
+
+You can also pass this value using a the environment variable `export ANYPOINT_USERNAME=<name>`
+| `password` | Your Anypoint Platform password.
+
+You can also pass this value using the environment variable `export ANYPOINT_PASSWORD=<pwd>`
+|===
+
+=== Client ID and Client Secret
+
+You can configure a xref:access-management::connected-apps-overview.adoc[Connected App] with the `client_credentials` grant
+type to use with the CLI.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+| Parameter | Description
+| `client_id` | The ID of the Connected App
+
+You can also pass this value using a the environment variable `export ANYPOINT_CLIENT_ID=<client_id>`
+| `client_secret` | The Client Secret of the Connected Application
+
+You can also pass this value using the environment variable `export ANYPOINT_CLIENT_SECRET=<client_secret>`
+|===
+
+=== Bearer Token
+
+If you have already https://help.mulesoft.com/s/article/How-to-generate-your-Authorization-Bearer-token-for-Anypoint-Platform[generated a bearer token]
+you may pass it in to the CLI directly. When a bearer token is provided, the CLI will ignore any provided user or client credentials.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+| Parameter | Description
+| `bearer` | A bearer token for the Anypoint platform.
+
+Your CLI session expires when the bearer token expires.
+|===
 
 == Reference
 
-Every instance of Anypoint-CLI takes any of the following options:
+Every instance of Anypoint-CLI takes any of the following optional arguments:
 
-[%header%autowidth.spread,cols="a,a,a"]
+[%header%autowidth.spread,cols="a,a"]
 |===
-|Parameter |Description | Required
-| `username` | Your Anypoint Platform username.
-
-You can also pass this value using a the environment variable `export ANYPOINT_USERNAME=<name>` | Yes
-
-| `password` | Your Anypoint Platform password.
-
-You can also pass this value using the environment variable `export ANYPOINT_PASSWORD=<pwd>` | Yes
-
+|Parameter |Description
 | `organization` | Your organization within Anypoint Platform.
 
-You can also pass this value using the environment variable `export ANYPOINT_ORG=<name>` | No
+You can also pass this value using the environment variable `export ANYPOINT_ORG=<name>`
 
 | `environment` | Your Anypoint environment.
 
-You can also pass this value using the environment variable `export ANYPOINT_ENV=<name>` | No
+You can also pass this value using the environment variable `export ANYPOINT_ENV=<name>`
 
 | `host` | The host of your Anypoint Platform Installation. +
 By default, this value points to +https://anypoint.mulesoft.com+. +
 If you are using Anypoint Platform Private Cloud Edition make sure to pass the address where you are hosting the platform.
 If you are using Anypoint Platform EU Cloud, make sure you pass your EU control plane URL.
 
-You can also pass this value using a dedicated environment variable `ANYPOINT_HOST=<name>` | No
+You can also pass this value using a dedicated environment variable `ANYPOINT_HOST=<name>`
 
-| `bearer` | Instead of passing your username and password, you can choose to pass the token for your account. +
-You can get the token for your account by hitting the +https://anypoint.mulesoft.com/accounts/login+ endpoint with your username and password to get your bearer value.
-
-Your session expires when the token bearer expires. +
-If you send both username and password, and the token bearer, the CLI prioritizes the bearer login.
-| No
 |===
 
 == Usage
-
-=== Logging In
 
 === Credentials File
 
@@ -111,6 +144,13 @@ The recommended way of passing these options to your Anypoint Platform CLI insta
  "otherProfile": {
   "username": "",
   "password": "",
+  "organization": "",
+  "environment": "",
+  "host": ""
+ },
+ "connAppProfile": {
+  "client_id": "",
+  "client_secret": "",
   "organization": "",
   "environment": "",
   "host": ""
@@ -145,7 +185,7 @@ If you choose to pass the credentials when running `anypoint-cli`, pass both par
 
 === CLI Options
 
-As instructed above, the username and password parameters are required. However, if you choose to pass your username, Anypoint Platform CLI prompts for your password.
+If you choose to pass only your username, Anypoint-CLI prompts for your password.
 
 [source,text,linenums]
 ----
