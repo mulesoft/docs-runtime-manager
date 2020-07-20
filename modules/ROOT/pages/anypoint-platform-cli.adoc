@@ -4,12 +4,20 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: administration, api, organization, users, gateway, theme, cli
 
-Anypoint Platform provides a scripting and command line tool for both Anypoint Platform and Anypoint Platform Private Cloud Edition.
-The CLI supports both interactive shell and standard CLI modes, and works with:
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
+Anypoint Platform provides a scripting and command-line tool for both Anypoint Platform and Anypoint Platform Private Cloud Edition (Anypoint Platform PCE).
+The command-line interface (CLI) supports both the interactive shell and standard CLI modes and works with:
 
 * xref:exchange::index.adoc[Anypoint Exchange]
 * xref:access-management::index.adoc[Access Management]
-* xref:index.adoc[Runtime Manager] for Mule applications deployed to CloudHub (hosted by MuleSoft) and customer-hosted Mule runtimes
+* xref:index.adoc[Runtime Manager]
++
+Mule applications deployed to CloudHub (hosted by MuleSoft) and customer-hosted Mule runtimes
 * xref:virtual-private-cloud.adoc[VPCs]
 * xref:cloudhub-dedicated-load-balancer.adoc[CloudHub Load Balancers]
 * xref:2.x@api-manager::index.adoc[API Manager 2.x (Crowd Release)]
@@ -50,75 +58,81 @@ git config --global url."https://".insteadOf git://
 
 == Authentication
 
-There are three ways to configure Anypoint-CLI with credentials: Username and Password, Client ID and Client Secret, or a bearer token.
-At least one way must be provided.
+The three ways to configure Anypoint CLI with credentials are username and password, client ID and client secret, or a bearer token.
+At least one method is required.
 
 === Username and Password
 
-If your user does not log in using xref:access-management::external-identity.adoc[SSO], you can use your username and password
-with the CLI directly.
+If you don't log in using single sign-on (SSO), you can use your username and password to log into the CLI directly.
 
 [%header%autowidth.spread,cols="a,a"]
 |===
 | Parameter | Description
-| `username` | Your Anypoint Platform username.
+| `username` | Your Anypoint Platform username
 
-You can also pass this value using a the environment variable `export ANYPOINT_USERNAME=<name>`
-| `password` | Your Anypoint Platform password.
+You can also pass this value using the environment variable `export ANYPOINT_USERNAME=<name>`.
+| `password` | Your Anypoint Platform password
 
-You can also pass this value using the environment variable `export ANYPOINT_PASSWORD=<pwd>`
+You can also pass this value using the environment variable `export ANYPOINT_PASSWORD=<pwd>`.
 |===
+
+For information about logging in using SSO, see xref:access-management::external-identity.adoc[About Identity Management].
 
 === Client ID and Client Secret
 
-You can configure a xref:access-management::connected-apps-overview.adoc[Connected App] with the `client_credentials` grant
-type to use with the CLI.
+You can configure a Connected App with the `client_credentials` grant type to use with the CLI.
 
 [%header%autowidth.spread,cols="a,a"]
 |===
 | Parameter | Description
 | `client_id` | The ID of the Connected App
 
-You can also pass this value using a the environment variable `export ANYPOINT_CLIENT_ID=<client_id>`
-| `client_secret` | The Client Secret of the Connected Application
+You can also pass this value using the environment variable `export ANYPOINT_CLIENT_ID=<client_id>`.
+| `client_secret` | The client secret of the Connected App
 
-You can also pass this value using the environment variable `export ANYPOINT_CLIENT_SECRET=<client_secret>`
+You can also pass this value using the environment variable `export ANYPOINT_CLIENT_SECRET=<client_secret>`.
 |===
+
+For more information about Connected Apps, see xref:access-management::connected-apps-overview.adoc[Connected Apps].
 
 === Bearer Token
 
-If you have already https://help.mulesoft.com/s/article/How-to-generate-your-Authorization-Bearer-token-for-Anypoint-Platform[generated a bearer token]
-you may pass it in to the CLI directly. When a bearer token is provided, the CLI will ignore any provided user or client credentials.
+If you have already generated a bearer token, you can pass it to the CLI directly.
+When you provide a bearer token, the CLI ignores any provided user or client credentials.
 
 [%header%autowidth.spread,cols="a,a"]
 |===
 | Parameter | Description
-| `bearer` | A bearer token for the Anypoint platform.
+| `bearer` | A bearer token for the Anypoint Platform
 
 Your CLI session expires when the bearer token expires.
 |===
 
+For information about generating a bearer token, see https://help.mulesoft.com/s/article/How-to-generate-your-Authorization-Bearer-token-for-Anypoint-Platform[How to generate your Authorization Bearer token for Anypoint Platform].
+
+
 == Reference
 
-Every instance of Anypoint-CLI takes any of the following optional arguments:
+The Anypoint CLI takes the following optional arguments:
 
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Parameter |Description
-| `organization` | Your organization within Anypoint Platform.
+| `organization` | Your organization within Anypoint Platform
 
-You can also pass this value using the environment variable `export ANYPOINT_ORG=<name>`
+You can also pass this value using the environment variable `export ANYPOINT_ORG=<name>`.
 
-| `environment` | Your Anypoint environment.
+| `environment` | Your Anypoint environment
 
-You can also pass this value using the environment variable `export ANYPOINT_ENV=<name>`
+You can also pass this value using the environment variable `export ANYPOINT_ENV=<name>`.
 
-| `host` | The host of your Anypoint Platform Installation. +
+| `host` | The host of your Anypoint Platform Installation +
 By default, this value points to +https://anypoint.mulesoft.com+. +
-If you are using Anypoint Platform Private Cloud Edition make sure to pass the address where you are hosting the platform.
-If you are using Anypoint Platform EU Cloud, make sure you pass your EU control plane URL.
 
-You can also pass this value using a dedicated environment variable `ANYPOINT_HOST=<name>`
+* If you are using Anypoint Platform PCE, pass the address where you are hosting the platform.
+* If you are using Anypoint Platform EU Cloud, pass your EU control plane URL.
+
+You can also pass this value using a dedicated environment variable `ANYPOINT_HOST=<name>`.
 
 |===
 
@@ -185,7 +199,7 @@ If you choose to pass the credentials when running `anypoint-cli`, pass both par
 
 === CLI Options
 
-If you choose to pass only your username, Anypoint-CLI prompts for your password.
+If you pass only your username, the Anypoint CLI prompts for your password.
 
 [source,text,linenums]
 ----
@@ -200,13 +214,15 @@ See xref:anypoint-platform-cli-commands.adoc[Anypoint Platform CLI 3.x List of C
 
 == Considerations
 
-A few considerations to keep in mind while using Anypoint-CLI:
+A few considerations to keep in mind while using the Anypoint CLI:
 
 . Environment variables override credentials file parameters and Command line parameters override environment variables. +
 If you don't pass a command line parameter, the default profile properties are used.
-. If you don't set an environment, you will be automatically sent to `production`. +
-. Your Anypoint session expires based on the *Default session timeout* configured in your xref:access-management::organization.adoc#manage-the-master-organization-s-settings[Master Organization's settings]. +
-. Anypoint-CLI works with autocomplete. You can start typing the name of the command or parameter and hit `tab` for an autocomplete, or double tap `tab` for a list of all possible options.
+. If not specified, the default environment is production. +
+. Your Anypoint session expires based on the *Default session timeout* configured in your Master Organization settings.
++
+For information about Master Organization settings, see xref:access-management::organization.adoc#manage-the-master-organization-s-settings[Manage Master Organization Settings].
+. The Anypoint CLI works with autocomplete. You can start typing the name of the command or parameter and press Tab for autocomplete or press Tab+Tab for a list of options.
 
 == See Also
 
