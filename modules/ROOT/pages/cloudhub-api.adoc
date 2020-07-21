@@ -128,32 +128,34 @@ Here is an example of data received in JSON format in response to a request to g
 
 == Rate Limits 
 
-The following rate limits apply to apps deployed to CloudHub:
+The following rate limits apply:
 
-[%header,cols="30a,50a"]
+* *All apps deployed to CloudHub*
++
+--
+[%header,cols="20a,25a,15a"]
 |===
-|Control Plane | Rate Limit
-|U.S.|75 requests per second per IP address
-|EU|25 requests per second per IP address
-|Government Cloud|25 requests per second per IP address
+|Control Plane | Rate Limit | Status Code 
+|U.S. .2+|75 requests per second per IP address .3+| `503`
+|EU 
+|Government Cloud|25 requests per second per IP address |
 |===
+--
 
-When an app reaches the limit, CloudHub returns error code `503`.
-
-The following endpoints have a limit of one call per second for each application:
-
-* `v2/applications/{domain}/logs`
-* `v2/applications/{domain}/deployments/{deploymentId}/logs`
-* `v2/applications/{domain}/instances/{instanceId}/logs`
-
-When an endpoint reaches the limit, CloudHub returns error code `500`.
-
-The following endpoint has a limit of one call per minute for each application:
-
-`v2/applications/{domain}/instances/{instanceId}/log-file`
-
-When an endpoint reaches the limit, CloudHub returns error code `500`.
-
+* *Exceptions*
++
+--
+In all control planes, the following rate limits apply to endpoints under `v2/applications/{domain}`:
+ 
+[%header,cols="20a,18a,10a"]
+|===
+|Endpoint | Rate Limit | Status Code 
+|`/logs` .3+|1 request per second per IP address .3+| `429`
+|`/deployments/{deploymentId}/logs`
+|`/instances/{instanceId}/logs`
+|`/instances/{instanceId}/log-file`|1 request per minute per IP address | `500`
+|===
+--
 
 == Status Codes and Error Handling
 
@@ -172,7 +174,9 @@ The `Location` header contains the location of the resource.
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
-|503 |The operation was unsuccessful due to reaching the rate limit.
+|503 |The operation was unsuccessful due to a temporary condition, such as server overload or rate limit.
+
+Retry the operation.
 |===
 
 When errors occur, such as a 500 status code, the HTTP response contains a JSON response with an error message:
