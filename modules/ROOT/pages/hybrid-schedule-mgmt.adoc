@@ -43,9 +43,6 @@ When using the *Schedules* tab, consider the following:
 
 * If a scheduled job is not triggered because the application is not running,
 Runtime Manager triggers the job as soon as the application restarts.
-* When a schedule is used to trigger a flow with subflow in a Mule 4.x application, it waits until both main flow and subflow complete before scheduling the next run.
-+
-*Is this true? I found it in the CloudHub Schedule info.*
 * The scheduler reads the job configuration every time it runs.
 +
 To apply your changes immediately, run your jobs manually after updating the schedule.
@@ -68,7 +65,7 @@ image::hybrid-scheduler-rtm.png[Schedules option and checkbox on the Schedules p
 +
 The *Name* column shows the name of the flow that contains the Scheduler element.
 +
-*IS THIS TRUE?* Runtime Manager lists the Scheduler elements in the order that they appear in your application.
+Runtime Manager lists the Scheduler elements in the order that they appear in your application.
 
 
 . Select the checkbox to manage a single Scheduler:
