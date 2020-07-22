@@ -157,6 +157,21 @@ In all control planes, the following rate limits apply to endpoints under `v2/ap
 |===
 --
 
+[%header,cols="20,10,20,10"]
+|===
+|Endpoints|Control Plane | Rate Limit | Status Code 
+.3+|All except specified endpoints|U.S. .2+|75 requests per second per IP address .3+| `503`
+|EU
+|Government Cloud|25 requests per second per IP address
+3+|*Endpoints under* `*v2/applications/{domain}*`|
+|`/logs` .4+|All control planes .3+|1 request per second per IP address .3+| `429`
+|`/deployments/{deploymentId}/logs`
+|`/instances/{instanceId}/logs`
+|`/instances/{instanceId}/log-file`|1 request per minute per IP address | `500`
+|===
+
+
+
 == Status Codes and Error Handling
 
 When you call the REST APIs, the following status codes are returned:
