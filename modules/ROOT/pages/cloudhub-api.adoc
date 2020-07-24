@@ -128,43 +128,9 @@ Here is an example of data received in JSON format in response to a request to g
 
 == Rate Limits 
 
-Cloudhub API enforces the following usage limits.
-These are Cloudhub management API limits and doesn't apply to runtime workers.
+The following rate limits apply:
 
-* *General Rate limits for all Cloudhub API*
-
-+
---
-The following table presents the general rate limits for all CloudHub APIs. When this rate limit is hit a 503 error response is returned
-
-[%header,cols="20,10,20,10"]
-|===
-|Endpoints|Control Plane | Rate Limit | Status Code 
-.3+|General Rate limits|U.S. .2+|75 req/sec/IP .3+| `503`
-|EU
-|Gov. Cloud|25 req/sec/IP
-|===
---
-* *Exceptions*
-
-+
---
-The following endpoints have rate limits which different than general rate limits above.
-
-[%header,cols="20,10,20,10"]
-|===
-|Exceptions|Control Plane | Rate Limit | Status Code 
-|`*v2/applications/{domain}/logs` .4+|All .3+|1 req/sec/IP .3+| `429`
-|`*v2/applications/{domain}/deployments/{deploymentId}/logs`
-|`*v2/applications/{domain}/instances/{instanceId}/logs`
-|`*v2/applications/{domain}/instances/{instanceId}/log-file`|1 req/min/IP | `500`
-.3+|`/api/notifications`|U.S. .2+|75 req/min/IP .3+| `503`
-|EU
-|Gov. Cloud|25 req/min/IP
-|===
-
---
---narendra
+* *All apps deployed to CloudHub*
 +
 --
 [%header,cols="20a,25a,15a"]
