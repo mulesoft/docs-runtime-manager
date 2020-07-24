@@ -128,46 +128,41 @@ Here is an example of data received in JSON format in response to a request to g
 
 == Rate Limits 
 
-The following rate limits apply:
+The CloudHub management API enforces usage limits.
+These limits don't apply to CloudHub workers.
 
-* *All apps deployed to CloudHub*
-+
---
-[%header,cols="20a,25a,15a"]
+
+=== Global Rate Limits for CloudHub APIs 
+
+The following table lists the rate limits for all CloudHub APIs except the items listed in <<Rate Limit Exceptions>>. 
+
+When the app reaches the limit, CloudHub returns a 503 status code.
+
+[%header,cols="20,20,20,10"]
 |===
-|Control Plane | Rate Limit | Status Code 
-|U.S. .2+|75 requests per second per IP address .3+| `503`
+|Endpoints |Control Plane | Rate Limit Per IP Address | Status Code
+.3+|All except specified endpoints|U.S. .2+|75 requests per second  .3+| `503`
 |EU 
-|Government Cloud|25 requests per second per IP address |
+|Government Cloud|25 requests per second |
 |===
---
 
-* *Exceptions*
-+
---
-In all control planes, the following rate limits apply to endpoints under `v2/applications/{domain}`:
- 
-[%header,cols="20a,18a,10a"]
-|===
-|Endpoint | Rate Limit | Status Code 
-|`/logs` .3+|1 request per second per IP address .3+| `429`
-|`/deployments/{deploymentId}/logs`
-|`/instances/{instanceId}/logs`
-|`/instances/{instanceId}/log-file`|1 request per minute per IP address | `500`
-|===
---
 
-[%header,cols="20,10,20,10"]
+=== Rate Limit Exceptions
+
+The following table lists the exceptions to the <<Global Rate Limits for CloudHub APIs>>. 
+
+[%header,cols="20,20,20,10"]
 |===
-|Endpoints|Control Plane | Rate Limit | Status Code 
-.3+|All except specified endpoints|U.S. .2+|75 requests per second per IP address .3+| `503`
+|Endpoints|Control Plane | Rate Limit Per IP Address| Status Code 
+4+|*Endpoints under* `/api`
+.3+|`/notifications`|U.S. .2+|75 requests per minute  .3+| `503`
 |EU
-|Government Cloud|25 requests per second per IP address
-3+|*Endpoints under* `*v2/applications/{domain}*`|
-|`/logs` .4+|All control planes .3+|1 request per second per IP address .3+| `429`
+|Government Cloud|25 requests per second
+4+|*Endpoints under* `*v2/applications/{domain}*`
+|`/logs` .4+|All .3+|1 request per second  .3+| `429`
 |`/deployments/{deploymentId}/logs`
 |`/instances/{instanceId}/logs`
-|`/instances/{instanceId}/log-file`|1 request per minute per IP address | `500`
+|`/instances/{instanceId}/log-file`|1 request per minute  | `500`
 |===
 
 
