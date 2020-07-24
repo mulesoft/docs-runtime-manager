@@ -141,9 +141,9 @@ When the app reaches the rate limit, CloudHub returns a 503 status code.
 [%header,cols="20,20,20,10"]
 |===
 |Endpoints |Control Plane | Rate Limit Per IP Address | Status Code
-.3+|All except specified endpoints|U.S. .2+|75 requests per second  .3+| `503`
-|EU 
-|Government Cloud|25 requests per second |
+.3+|All except specified endpoints|U.S.|75 requests per second  .3+| `503`
+|EU .2+| 25 requests per second
+|Government Cloud
 |===
 
 
@@ -157,9 +157,9 @@ When the app reaches the rate limit, CloudHub returns the status code.
 |===
 |Endpoints|Control Plane | Rate Limit Per IP Address| Status Code 
 4+|*Endpoints under* `/api`
-.3+|`/notifications`|U.S. .2+|75 requests per minute  .3+| `503`
-|EU
-|Government Cloud|25 requests per minute
+.3+|`/notifications`|U.S.|75 requests per minute  .3+| `503`
+|EU .2+|25 requests per minute
+|Government Cloud|
 4+|*Endpoints under* `*v2/applications/{domain}*`
 |`/logs` .4+|All .3+|1 request per second  .3+| `429`
 |`/deployments/{deploymentId}/logs`
