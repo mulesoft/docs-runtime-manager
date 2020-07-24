@@ -136,7 +136,7 @@ These limits don't apply to CloudHub workers.
 
 The following table lists the rate limits for all CloudHub APIs except the items listed in <<Rate Limit Exceptions>>. 
 
-When the app reaches the limit, CloudHub returns a 503 status code.
+When the app reaches the rate limit, CloudHub returns a 503 status code.
 
 [%header,cols="20,20,20,10"]
 |===
@@ -150,6 +150,8 @@ When the app reaches the limit, CloudHub returns a 503 status code.
 === Rate Limit Exceptions
 
 The following table lists the exceptions to the <<Global Rate Limits for CloudHub APIs>>. 
+
+When the app reaches the rate limit, CloudHub returns the status code.
 
 [%header,cols="20,20,20,10"]
 |===
