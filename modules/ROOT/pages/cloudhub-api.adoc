@@ -129,10 +129,9 @@ Here is an example of data received in JSON format in response to a request to g
 == Rate Limits 
 
 The CloudHub management API enforces global usage limits, with some exceptions.
-These limits don't apply to CloudHub workers.
 
 
-=== Global Rate Limits for CloudHub APIs 
+=== Global Rate Limits for CloudHub Platform Management APIs 
 
 The following table lists the rate limits for all CloudHub APIs except the items listed in <<Exceptions to the Global Rate Limits>>. 
 
@@ -140,7 +139,7 @@ When the app reaches the rate limit, CloudHub returns a 503 status code.
 
 [%header,cols="20,20,20,10"]
 |===
-|Endpoints |Control Plane | Rate Limit Per IP Address | Status Code
+|Endpoints |Control Plane | Rate Limit Per Client IP Address | Status Code
 .3+|All except specified endpoints|U.S.|75 requests per second  .3+| `503`
 |EU .2+| 25 requests per second
 |Government Cloud
@@ -149,13 +148,13 @@ When the app reaches the rate limit, CloudHub returns a 503 status code.
 
 === Exceptions to the Global Rate Limits
 
-The following table lists the exceptions to the <<Global Rate Limits for CloudHub APIs>>. 
+The following table lists the exceptions to the <<Global Rate Limits for CloudHub Platform Management APIs>>. 
 
 When the app reaches the rate limit, CloudHub returns the status codes shown here.
 
 [%header,cols="20,20,20,10"]
 |===
-|Endpoints|Control Plane | Rate Limit Per IP Address| Status Code 
+|Endpoints|Control Plane | Rate Limit Per Client IP Address| Status Code 
 4+|*Endpoints under* `/api`
 .3+|`/notifications`|U.S.|75 requests per minute .3+| `503`
 |EU .2+|25 requests per minute
