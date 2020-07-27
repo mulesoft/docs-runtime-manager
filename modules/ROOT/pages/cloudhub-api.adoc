@@ -126,6 +126,48 @@ Here is an example of data received in JSON format in response to a request to g
 }
 ----
 
+== Rate Limits 
+
+The CloudHub management API enforces global usage limits, with some exceptions.
+These limits don't apply to CloudHub workers.
+
+
+=== Global Rate Limits for CloudHub APIs 
+
+The following table lists the rate limits for all CloudHub APIs except the items listed in <<Exceptions to the Global Rate Limits>>. 
+
+When the app reaches the rate limit, CloudHub returns a 503 status code.
+
+[%header,cols="20,20,20,10"]
+|===
+|Endpoints |Control Plane | Rate Limit Per IP Address | Status Code
+.3+|All except specified endpoints|U.S.|75 requests per second  .3+| `503`
+|EU .2+| 25 requests per second
+|Government Cloud
+|===
+
+
+=== Exceptions to the Global Rate Limits
+
+The following table lists the exceptions to the <<Global Rate Limits for CloudHub APIs>>. 
+
+When the app reaches the rate limit, CloudHub returns the status codes shown here.
+
+[%header,cols="20,20,20,10"]
+|===
+|Endpoints|Control Plane | Rate Limit Per IP Address| Status Code 
+4+|*Endpoints under* `/api`
+.3+|`/notifications`|U.S.|75 requests per minute .3+| `503`
+|EU .2+|25 requests per minute
+|Government Cloud
+4+|*Endpoints under* `*v2/applications/{domain}*`
+|`/logs` .4+|All .3+|1 request per second  .3+| `429`
+|`/deployments/{deploymentId}/logs`
+|`/instances/{instanceId}/logs`
+|`/instances/{instanceId}/log-file`|1 request per minute  | `500`
+|===
+
+
 
 == Status Codes and Error Handling
 
@@ -137,22 +179,17 @@ When you call the REST APIs, the following status codes are returned:
 |200 |The operation was successful.
 |201 |The resource (such as an application) was created.
 
-The Location header contains the location of the resource.
+The `Location` header contains the location of the resource.
 |404 |The resource was not found.
 |409 |When creating a resource (such as a server, server group, or deployment), a resource with that name already exists.
-|429 a|The operation was unsuccessful due to rate limit.
-
-* The following endpoints have a limit of one call per second for each application:
-** `v2/applications/{domain}/logs`
-** `v2/applications/{domain}/deployments/{deploymentId}/logs`
-** `v2/applications/{domain}/instances/{instanceId}/logs`
-* The following endpoint has a limit of one call per minute for each application:
-** `v2/applications/{domain}/instances/{instanceId}/log-file`
+|429 a|The operation was unsuccessful due to reaching the rate limit.
 |500 |The operation was unsuccessful.
 
 See the HTTP body for details.
-|===
+|503 |The operation was unsuccessful due to a temporary condition, such as server overload or reaching a rate limit.
 
+Retry the operation.
+|===
 
 When errors occur, such as a 500 status code, the HTTP response contains a JSON response with an error message:
 
