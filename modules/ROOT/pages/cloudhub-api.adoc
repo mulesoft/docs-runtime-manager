@@ -1,4 +1,4 @@
-= CloudHub REST API
+= CloudHub API
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -10,7 +10,7 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybr
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-The CloudHub REST API enables you to programmatically access the functions of Anypoint Runtime Manager, such as:
+The CloudHub management API (CloudHub API) enables you to programmatically access the functions of Anypoint Runtime Manager, such as:
 
 * Manage applications:
 ** Create, deploy, start, stop, list, and delete an application on CloudHub.
@@ -59,7 +59,7 @@ The CloudHub API manages only applications deployed to CloudHub, the cloud-based
 To manage on-premises applications using the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST Services].
 
 
-== Get Started and Authenticate with the API
+== Get Started and Authenticate with the CloudHub API
 
 Before getting started, familiarize yourself with operations for applications.
 
@@ -129,18 +129,17 @@ Here is an example of data received in JSON format in response to a request to g
 == Rate Limits 
 
 The CloudHub management API enforces global usage limits, with some exceptions.
-These limits don't apply to CloudHub workers.
 
 
-=== Global Rate Limits for CloudHub APIs 
+=== Global Rate Limits for the CloudHub Management API 
 
-The following table lists the rate limits for all CloudHub APIs except the items listed in <<Exceptions to the Global Rate Limits>>. 
+The following table lists the rate limits for the CloudHub management API endpoints except those listed in <<Exceptions to the Global Rate Limits>>. 
 
 When the app reaches the rate limit, CloudHub returns a 503 status code.
 
 [%header,cols="20,20,20,10"]
 |===
-|Endpoints |Control Plane | Rate Limit Per IP Address | Status Code
+|Endpoints |Control Plane | Rate Limit Per Client IP Address | Status Code
 .3+|All except specified endpoints|U.S.|75 requests per second  .3+| `503`
 |EU .2+| 25 requests per second
 |Government Cloud
@@ -149,13 +148,13 @@ When the app reaches the rate limit, CloudHub returns a 503 status code.
 
 === Exceptions to the Global Rate Limits
 
-The following table lists the exceptions to the <<Global Rate Limits for CloudHub APIs>>. 
+The following table lists the exceptions to the <<Global Rate Limits for the CloudHub Management API>>. 
 
 When the app reaches the rate limit, CloudHub returns the status codes shown here.
 
 [%header,cols="20,20,20,10"]
 |===
-|Endpoints|Control Plane | Rate Limit Per IP Address| Status Code 
+|Endpoints|Control Plane | Rate Limit Per Client IP Address| Status Code 
 4+|*Endpoints under* `/api`
 .3+|`/notifications`|U.S.|75 requests per minute .3+| `503`
 |EU .2+|25 requests per minute
@@ -171,7 +170,7 @@ When the app reaches the rate limit, CloudHub returns the status codes shown her
 
 == Status Codes and Error Handling
 
-When you call the REST APIs, the following status codes are returned:
+When you call the CloudHub API, the following status codes are returned:
 
 [%header,cols="10a,50a"]
 |===
