@@ -35,8 +35,7 @@ To add a Mule server to Runtime Manager:
 Server names can contain up to 60 alphanumeric characters (a-z, A-Z, 0-9), periods (.), hyphens (-), and underscores (_), but not spaces or other special characters.
 Runtime Manager supports Unicode characters in server names.
 +
-The server name is unique across environments.
-If the same organization exists in different environments, the server name can be the same in those organizations.
+Although the server name must be unique across environments, it can be the same if one organization exists in different environments.
 +
 Runtime Manager generates the `amc_setup` command, including the `_registration token_` and the server name you specified, for you to use to register Mule in your environment:
 +
