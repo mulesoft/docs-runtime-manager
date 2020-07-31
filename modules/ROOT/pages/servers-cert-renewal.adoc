@@ -9,12 +9,36 @@ image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoi
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-Registering a Mule server in Runtime Manager requires a valid certificate provisioned and signed by Runtime Manager. The certificate ensures secure communications between Runtime Manager and the Runtime Manager agent. 
+Registering a Mule server in Anypoint Runtime Manager requires a valid certificate provisioned
+and signed by Runtime Manager.
+The certificate ensures secure communication between Runtime Manager and the Runtime Manager agent. 
 
-However, certificates expire, and you cannot renew them after they expire. Before a certificate expires, renew it directly from Runtime Manager. You can see the expiration date on the server dashboard.
+Mule agent connects with Anypoint Runtime Manager using mutual SSL authentication.
+The key-pair for Mule agent is stored in mule-agent.jks file located in MULE_HOME/conf directory. The key pair in mule-agent.jks is valid only for two years, if a server is paired with the Anypoint Runtime Manager before two years then the certificate will expire and connection with Runtime Manager will be terminated.
 
-A server must be running for you to update its certificate. You can update a certificate for a specific server or multiple servers within a cluster or group.
 
+
+When a server certificate expires, Runtime Manager displays `Disconnected` in the *Status* column 
+for the server on the *Servers* page.
+The `mule-agent.log` file displays a message like the following:
+
+--
+com.mulesoft.agent.transport.WSConnection: Failed attempt to connect nro. 1 to the web socket client at mule-manager.anypoint.mulesoft.com: Connection refused.
+--
+
+For applications deployed to the server, Runtime Manager displays `Unknown` in the *Status* on the *Applications* page.
+
+== Renew a Certificate Before it Expires 
+
+Before a certificate expires, you can renew it directly from Runtime Manager.
+The expiration date appears on the server dashboard:
+
+.The arrow shows the *Certificate expiration date* on the *Settings* page.
+image::rtm-server-certificate.png[*Certificate expiration date*]
+
+You can renew a certificate for a specific server or multiple servers within a cluster or group.
+
+The status for the server must be `Running` to update its certificate. 
 
 To renew a certificate for a server:
 
@@ -25,14 +49,52 @@ To renew a certificate for a server:
 . Click *Settings*.
 . From the *Actions* menu, select *Renew Certificate*.
 . Click the checkbox to confirm your choice, and then click *Renew*.
-. Check *Certificate expiration date* to confirm that the certificate was successfully renewed:
-+
-.The arrow shows the *Certificate expiration date* on the *Settings* page.
-image::rtm-server-certificate.png[*Certificate expiration date*]
+. Check *Certificate expiration date* to confirm that the certificate was successfully renewed.
 
+
+If renewing the unexpired certificate fails, follow the steps in <<Renew a Certificate After it Expires>>.
+
+== Renew a Certificate After it Expires 
+
+To renew the mule agent key-pair:
+
+. Download the `agent-certificate-renewer.jar` for your Mule version from https://help.mulesoft.com/s/article/Applications-and-Servers-showing-as-unknown-and-disconnected-state-in-Anypoint-Runtime-Manager-due-to-expired-key-pair[Applications and Servers showing as unknown and disconnected state in Anypoint Runtime Manager due to expired key pair].
+. Move the JAR file to `$MULE_HOME/bin` and ensure that it has execute access. (`chmod +xx agent-certificate-renewer.jar`).
+. Stop Mule.
+. Create a backup copy of the `$MULE_HOME/conf` directory.
+. From `$MULE_HOME/bin`, run one of the following commands, depending on how you authenticate with Anypoint Platform:
++
+--
+** Non-federated:
++
+Use your Anypoint Platform credentials on the command line:
++
+`java -jar ./agent-certificate-renewer.jar -u _username_ -p _password_`
+** External identity:
++
+Copy the registration token for the server from *Runtime Manager > Servers > Add Server* page and include it on the command line:
++ 
+`java -jar ./agent-certificate-renewer.jar -H _ServerToken_`
+** Proxy connection:
++
+Use your Anypoint Platform and proxy server credentials on the command line:
++
+`java -jar agent-certificate-renewer.jar -u _username_ -p _password_ -P _host_ _port_ _username_ _password_`
+--
++
+The command displays the following messages:
++
+
+----
+INFO: Connecting to Core Services to extract authentication token. 
+INFO: Connecting to Runtime Manager to request a new certificate. 
+INFO: Backing up current agent keystore. 
+INFO: Generating and saving new keystore.
+----
 
 == See Also
 
 * xref:servers-about.adoc[Servers]
+* xref:servers-create.adoc[Add Servers to Runtime Manager]
 * xref:servers-actions.adoc[Shut Down, Restart, or Delete Servers]
 * xref:monitoring-dashboards.adoc[Monitoring Dashboards on Runtime Manager]
