@@ -68,10 +68,12 @@ The internal HTTP mode lets you configure how HTTP requests are managed. They ar
 
 == DLB URL Encoding
 
-You can configure the DLB to pass request URIs unchanged or decoded:
+When DLB receives a request, it first decodes the URI based on standard internet guideline "RFC-3986" to evaluate the URL mapping rules. During this process, it decodes some set of characters, such as alphabetical (%41–%5A and %61–%7A), digital (%30–%39), hyphen (%2D), period (%2E), underscore (%5F), tilde (%7E), slash (%2F), space (%20), octothorpe (%23) etc.
 
-* If you select *Keep URL encoding*, the DLB passes only the %20 and %23 characters as is.
-* If you deselect *Keep URL encoding*, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
+* If you select *Keep URL encoding*, DLB re-encodes these decoded URI and pass the request to the Cloudhub worker.
+
+* If you deselect *Keep URL encoding*, the DLB passes the decoded URI as is to the Cloudhub worker.
+
 
 == See Also
 
