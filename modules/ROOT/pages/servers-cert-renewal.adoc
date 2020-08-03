@@ -13,20 +13,15 @@ Registering a Mule server in Anypoint Runtime Manager requires a valid certifica
 and signed by Runtime Manager.
 The certificate ensures secure communication between Runtime Manager and the Runtime Manager agent. 
 
-Mule agent connects with Anypoint Runtime Manager using mutual SSL authentication.
-The key-pair for Mule agent is stored in mule-agent.jks file located in MULE_HOME/conf directory. The key pair in mule-agent.jks is valid only for two years, if a server is paired with the Anypoint Runtime Manager before two years then the certificate will expire and connection with Runtime Manager will be terminated.
-
-
-
 When a server certificate expires, Runtime Manager displays `Disconnected` in the *Status* column 
 for the server on the *Servers* page.
 The `mule-agent.log` file displays a message like the following:
 
---
+----
 com.mulesoft.agent.transport.WSConnection: Failed attempt to connect nro. 1 to the web socket client at mule-manager.anypoint.mulesoft.com: Connection refused.
---
+----
 
-For applications deployed to the server, Runtime Manager displays `Unknown` in the *Status* on the *Applications* page.
+For applications deployed to the server, Runtime Manager displays `Unknown` in the *Status* column on the *Applications* page.
 
 == Renew a Certificate Before it Expires 
 
@@ -44,22 +39,28 @@ To renew a certificate for a server:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
-. Verify that the server status is Running.
+. Verify that the server status is `Running`.
 . Click the server name.
 . Click *Settings*.
 . From the *Actions* menu, select *Renew Certificate*.
-. Click the checkbox to confirm your choice, and then click *Renew*.
-. Check *Certificate expiration date* to confirm that the certificate was successfully renewed.
+. Select the checkbox to confirm your choice, and then click *Renew*.
+. Check *Certificate expiration date* to verify that the certificate renewed successfully.
 
 
 If renewing the unexpired certificate fails, follow the steps in <<Renew a Certificate After it Expires>>.
 
 == Renew a Certificate After it Expires 
 
-To renew the mule agent key-pair:
+The agent connects with Runtime Manager using mutual SSL authentication and stores the key pair 
+in the `$MULE_HOME/conf/mule-agent.jks` file.
+The key pair is valid for two years, after which the certificate expires, and the connection with Runtime Manager terminates.
+
+To renew the agent key pair:
 
 . Download the `agent-certificate-renewer.jar` for your Mule version from https://help.mulesoft.com/s/article/Applications-and-Servers-showing-as-unknown-and-disconnected-state-in-Anypoint-Runtime-Manager-due-to-expired-key-pair[Applications and Servers showing as unknown and disconnected state in Anypoint Runtime Manager due to expired key pair].
-. Move the JAR file to `$MULE_HOME/bin` and ensure that it has execute access. (`chmod +xx agent-certificate-renewer.jar`).
+. Move the JAR file to `$MULE_HOME/bin` and ensure that you have execute permission.
++
+For example, on Linux, enter `chmod +xx agent-certificate-renewer.jar`.
 . Stop Mule.
 . Create a backup copy of the `$MULE_HOME/conf` directory.
 . From `$MULE_HOME/bin`, run one of the following commands, depending on how you authenticate with Anypoint Platform:
@@ -84,7 +85,6 @@ Use your Anypoint Platform and proxy server credentials on the command line:
 +
 The command displays the following messages:
 +
-
 ----
 INFO: Connecting to Core Services to extract authentication token. 
 INFO: Connecting to Runtime Manager to request a new certificate. 
