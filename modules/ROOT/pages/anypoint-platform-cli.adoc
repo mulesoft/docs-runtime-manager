@@ -212,6 +212,44 @@ Password: ****
 After setting up a proper way to access Anypoint Platform from the CLI, you can start passing commands. +
 See xref:anypoint-platform-cli-commands.adoc[Anypoint Platform CLI 3.x List of Commands] for instructions on how to use them.
 
+=== Use Anypoint CLI Through a Network Proxy 
+
+To use Anypoint CLI through a proxy server, configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables with the IP addresses for your proxy servers, for example:
+
+* Linux, macOS, or Unix:
++
+[source,text,linenums]
+----
+$ export HTTP_PROXY=http://192.0.2.0:80
+$ export HTTPS_PROXY=https://198.51.100.0:443
+----
+
+* Windows:
++
+[source,text,linenums]
+----
+> set HTTP_PROXY=http://192.0.2.0:80
+> set HTTPS_PROXY=https//198.51.100.0:443
+----
+
+If the proxy server requires authentication, use these commands: 
+
+* Linux, macOS, or Unix:
++
+[source,text,linenums]
+----
+$ export HTTP_PROXY=http://username:password@192.0.2.0:80
+$ export HTTPS_PROXY=https://username:password_@198.51.100.0:443
+----
+
+* Windows:
++
+[source,text,linenums]
+----
+> set HTTP_PROXY=http://username:password@192.0.2.0:80
+> set HTTPS_PROXY=https://username:password@198.51.100.0:443
+----
+
 == Considerations
 
 A few considerations to keep in mind while using the Anypoint CLI:
@@ -223,24 +261,6 @@ If you don't pass a command line parameter, the default profile properties are u
 +
 For information about Master Organization settings, see xref:access-management::organization.adoc#manage-the-master-organization-s-settings[Manage Master Organization Settings].
 . The Anypoint CLI works with autocomplete. You can start typing the name of the command or parameter and press Tab for autocomplete or press Tab+Tab for a list of options.
-
-== Use Anypoint CLI From a Server Behind a Network Proxy 
-
-To use Anypoint CLI through a proxy server:
-
-. Configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables with the IP addresses for your proxy:
-+
-** Linux, macOS, or Unix:
-+
-$ export HTTP_PROXY=http://a.b.c.d:n
-$ export HTTPS_PROXY=https://w.x.y.z:m
-
-** Windows:
-
-> set HTTP_PROXY=http://a.b.c.d:n
-> set HTTPS_PROXY=https//w.x.y.z:m
-
-
 
 
 == See Also

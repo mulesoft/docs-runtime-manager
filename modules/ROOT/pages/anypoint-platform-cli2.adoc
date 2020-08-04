@@ -150,10 +150,49 @@ As instructed above, the username and password parameters are required. However,
 Password: ****
 ----
 
-== Passing Commands
+=== Passing Commands
 
 After setting up a proper way to access Anypoint Platform from the CLI, you can start passing commands. +
 See xref:anypoint-platform-cli2-commands.adoc[Anypoint Platform CLI 2.x List of Commands] for instructions on how to use them.
+
+=== Use Anypoint CLI Through a Network Proxy 
+
+To use Anypoint CLI through a proxy server, configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables with the IP addresses for your proxy servers, for example:
+
+* Linux, macOS, or Unix:
++
+[source,text,linenums]
+----
+$ export HTTP_PROXY=http://192.0.2.0:80
+$ export HTTPS_PROXY=https://198.51.100.0:443
+----
+
+* Windows:
++
+[source,text,linenums]
+----
+> set HTTP_PROXY=http://192.0.2.0:80
+> set HTTPS_PROXY=https//198.51.100.0:443
+----
+
+If the proxy server requires authentication, use these commands: 
+
+* Linux, macOS, or Unix:
++
+[source,text,linenums]
+----
+$ export HTTP_PROXY=http://username:password@192.0.2.0:80
+$ export HTTPS_PROXY=https://username:password_@198.51.100.0:443
+----
+
+* Windows:
++
+[source,text,linenums]
+----
+> set HTTP_PROXY=http://username:password@192.0.2.0:80
+> set HTTPS_PROXY=https://username:password@198.51.100.0:443
+----
+
 
 == Considerations
 
