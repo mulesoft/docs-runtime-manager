@@ -224,6 +224,25 @@ If you don't pass a command line parameter, the default profile properties are u
 For information about Master Organization settings, see xref:access-management::organization.adoc#manage-the-master-organization-s-settings[Manage Master Organization Settings].
 . The Anypoint CLI works with autocomplete. You can start typing the name of the command or parameter and press Tab for autocomplete or press Tab+Tab for a list of options.
 
+== Use Anypoint CLI From a Server Behind a Network Proxy 
+
+To use Anypoint CLI through a proxy server:
+
+. Configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables with the IP addresses for your proxy:
++
+** Linux, macOS, or Unix:
++
+$ export HTTP_PROXY=http://a.b.c.d:n
+$ export HTTPS_PROXY=https://w.x.y.z:m
+
+** Windows:
+
+> set HTTP_PROXY=http://a.b.c.d:n
+> set HTTPS_PROXY=https//w.x.y.z:m
+
+
+
+
 == See Also
 
 * xref:anypoint-platform-cli-commands.adoc[Anypoint Platform CLI List of Commands]
