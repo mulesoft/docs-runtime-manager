@@ -23,13 +23,25 @@ com.mulesoft.agent.transport.WSConnection: Failed attempt to connect nro. 1 to t
 
 For applications deployed to the server, Runtime Manager displays `Unknown` in the *Status* column on the *Applications* page.
 
+== View a Certificate Expiration Date
+
+To see the expiration date for a server:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Click the server name.
++
+For servers in a server group or cluster, click the server group or cluster name and then click the server name.
++
+The certificate expiration date appears on the server dashboard:
++
+.The arrow shows the *Certificate expiration date* on the *Dashboard* page.
+image::rtm-server-certificate.png[Certificate expiration date on the Dashboard page]
+
+
 == Renew a Certificate Before it Expires 
 
 Before a certificate expires, you can renew it directly from Runtime Manager.
-The expiration date appears on the server dashboard:
-
-.The arrow shows the *Certificate expiration date* on the *Dashboard* page.
-image::rtm-server-certificate.png[Certificate expiration date on the Dashboard page]
 
 You can renew a certificate for a specific server or multiple servers within a cluster or group.
 
