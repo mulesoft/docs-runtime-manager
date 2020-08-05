@@ -138,6 +138,20 @@ You can also pass this value using a dedicated environment variable `ANYPOINT_HO
 
 == Usage
 
+Keep the following in mind while using the Anypoint CLI:
+
+. Environment variables override credentials file parameters and command-line parameters override environment variables. +
+If you don't pass a command-line parameter, the default profile properties are used.
+. If not specified, the default environment is production.
++
+. Your Anypoint session expires based on the *Default session timeout* configured in your Master Organization settings.
++
+For information about Master Organization settings, see xref:access-management::organization.adoc#manage-the-master-organization-s-settings[Manage Master Organization Settings].
+. The Anypoint CLI works with autocomplete.
++
+You can start typing the name of the command or parameter and press Tab for autocomplete or press Tab+Tab for a list of options.
+
+
 === Credentials File
 
 The recommended way of passing these options to your Anypoint Platform CLI installation is using the `credentials` file located inside the `~/.anypoint` directory, which is not automatically created during installation. Follow these steps to create your credentials file:
@@ -207,7 +221,7 @@ If you pass only your username, the Anypoint CLI prompts for your password.
 Password: ****
 ----
 
-=== Passing Commands
+=== Pass Commands
 
 After setting up a proper way to access Anypoint Platform from the CLI, you can start passing commands. +
 See xref:anypoint-platform-cli-commands.adoc[Anypoint Platform CLI 3.x List of Commands] for instructions on how to use them.
@@ -215,6 +229,7 @@ See xref:anypoint-platform-cli-commands.adoc[Anypoint Platform CLI 3.x List of C
 === Use Anypoint CLI Through a Network Proxy 
 
 To use the Anypoint CLI through a proxy server, configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables with the hostname or IP addresses of your proxy servers.
+
 Depending on your operating system, use the following commands:
 
 * Linux, macOS, or Unix
@@ -252,17 +267,6 @@ If the proxy server requires authentication, use these commands:
 --
 
 
-== Considerations
-
-A few considerations to keep in mind while using the Anypoint CLI:
-
-. Environment variables override credentials file parameters and Command line parameters override environment variables. +
-If you don't pass a command line parameter, the default profile properties are used.
-. If not specified, the default environment is production. +
-. Your Anypoint session expires based on the *Default session timeout* configured in your Master Organization settings.
-+
-For information about Master Organization settings, see xref:access-management::organization.adoc#manage-the-master-organization-s-settings[Manage Master Organization Settings].
-. The Anypoint CLI works with autocomplete. You can start typing the name of the command or parameter and press Tab for autocomplete or press Tab+Tab for a list of options.
 
 
 == See Also
