@@ -102,18 +102,17 @@ Applications can reference reserved properties, for example, to retrieve the app
 Use the `${csorganization.id}` and `${environment.id}` properties to retrieve those values if your app makes Anypoint Platform API calls.
 Use `${worker.id}` to identify each worker in a multiworker application.
 
---
-[NOTE]
-The `${java.version}` property value doesn't include the point release for the JDK version.
-Additionally, CloudHub runtime release updates might upgrade the JDK.
---
+[IMPORTANT]
+Do not use the `${spring.profiles.active}` and `${logging.*}` properties.
 
 [%header,cols="3*a"]
 |===
 |Property|Description|Example
 |`${java.vendor}`|Vendor providing the JVM|Oracle Corporation
 |`${java.runtime.name}`|JVM name|Java&#8482; SE Runtime Environment
-|`${java.version}`|JVM version|1.8.0_141
+|`${java.version}`|JVM version, excluding the dot (point) release.
+
+If a CloudHub runtime release upgrades the JDK, this value changes.|1.8.0_141
 |`${csorganization.id}`|Master or business group ID|09396371-2cd4-412e-8d08-4356dd3e7bfc
 |`${environment.id}`|Environment ID|52a69d49e4b0e3c7324ae5b6
 |`${environment.type}`|Environment type|production
@@ -126,19 +125,20 @@ Additionally, CloudHub runtime release updates might upgrade the JDK.
 |`${http.private.port}`|HTTP private port|8091
 |`${https.private.port}`|HTTPS private port|8092
 |`${mule.home}`|Absolute path to Mule installation|`/opt/mule/mule-4.1.1`
-|`${spring.profiles.active}`|Used internally, *do not use*|`*****`
-|`${logging.*}`|Used internally, *do not use*|`*****`
+|`${spring.profiles.active}`|Used internally, *do not use*|`\***`
+|`${logging.*}`|Used internally, *do not use*| `\***`
 |`${host}`|Used internally for the local IP address of a worker|`10.40.122.33`
 |`${anypoint.url}`|Used internally as the base Anypoint Platform URL|US: `\https://anypoint.mulesoft.com`
 
-GovCloud: `\https://gov.anypoint.mulesoft.com`
+MuleSoft Government Cloud: `\https://gov.anypoint.mulesoft.com`
 |===
 
 --
 [NOTE]
-For propriety reasons, MuleSoft doesn't make public all internal, reserved properties.
-Additionally, CloudHub runtime release updates might change the reserved properties.
+For proprietary reasons, MuleSoft doesn't make public all internal, reserved properties.
+CloudHub runtime release updates might change the reserved properties.
 --
+
 
 === Example: Retrieve the Values of Reserved Properties 
 
@@ -150,15 +150,18 @@ Additionally, CloudHub runtime release updates might change the reserved propert
 <logger message="#[payload]" level="INFO" doc:name="Logger"/>
 ----
 
+Example output:
 
 [source,console,linenums]
 ----
-Example output:
 16:33:08.572     07/02/2020     Worker-0     [cloudhub-reserved-properties].HTTP_Listener_Configuration.worker.01     INFO
    java.vendor=Oracle Corporation, java.runtime.name=Java(TM) SE Runtime Environment, java.version=1.8.0_141, application.aws.region=ap-southeast-2, 
    http.port=8081, http.ports=8081, mule.home=/opt/mule/mule-4.3.0, csorganization.id=09396371-2cd4-412e-8d08-4356dd3e7bfc, environment.id=52a69d49e4b0e3c7324ae5b6,
    environment.type=production, worker.id=0, domain=cloudhub-reserved-properties, fullDomain=cloudhub-reserved-properties.au-s1.cloudhub.io
 ----
+
+
+
 
 == See Also
 
