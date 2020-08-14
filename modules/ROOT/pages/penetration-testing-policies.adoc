@@ -1,4 +1,4 @@
-= Penetration Testing Policies
+= Schedule Vulnerability Assessment and Penetration Tests
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,40 +9,66 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybr
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-If you are deploying applications to xref:index.adoc[Runtime Manager] or APIs on xref:api-manager::index.adoc[API Manager] and your company's security policies require that you run penetration testing on them, there is a way for you to run these. Given that such tests can interfere with other tenants, penetration testing is only allowed on your own workers. It is not allowed for any other services in the Anypoint Platform.
+If your company security policies require that you perform vulnerability and penetration testing 
+before deploying to Anypoint Platform, you must request a Security Assessment before proceeding 
+with your testing on Anypoint Platform.
 
-External vulnerability scans, via an Approved Scanning Vendor (ASV), as described in section 11.2.2 of the PCI standard may be performed at will and do not require prior approval. Penetration testing as described by section 11.3.1 of the PCI standard does require prior approval from MuleSoft.
+Because these tests can interfere with other tenants, MuleSoft allows penetration testing on only your workers
+but not for other Anypoint Platform services.
 
-CloudHub Workers, by default, do not use static IPs and cannot be properly tested as their IPs may change. Please enable static IPs, as described in xref:deploying-to-cloudhub.adoc#static-ips[Static IPs].
+== Prerequisites
 
-To perform such testing, you must provide a written request 5 business days in advance to security@mulesoft.com along with:
+Before penetration testing, enable static IPs for the app.
 
-* Start and end time of testing.
-* Hosts to include in the test.
-* Source IP address or range.
-* Contact information, including a phone number and email, for the individual or team conducting the test.
-* You agree to only audit CloudHub workers, and not audit any other platform services which are common to all tenants.
-* You agree not to audit shared workers.
-* Send an email to security@mulesoft.com upon start and completion of tests.
-* Notify security@mulesoft.com of any vulnerabilities found immediately.
-* You may only audit once a quarter.
+By default, CloudHub workers do not use static IP addresses, so you can't test them because their IP addresses might change.
 
-After you submit your request, you receive a written authorization from the MuleSoft team, at which point you can proceed with testing according to your proposed plan.
+For information on how to enable static IPs, see xref:deploying-to-cloudhub.adoc#static-ips-tab-settings[Static IPs Tab Settings].
+
+== Request a Security Assessment 
+
+To request a Security Assessment, follow the steps in https://help.salesforce.com/articleView?id=000336416&type=1&mode=1[Salesforce Security vulnerability assessment and penetration test]:
+
+. https://help.salesforce.com/articleView?id=000322336&type=1&mode=1[Complete the Security Assessment submission form]. 
+. Assign a security resource at your company to review and validate your findings.
++
+[IMPORTANT]
+You must complete this step before following up with Salesforce. 
++
+Use the following documents to identify common false positives or security issues related to settings:
++
+--
+** https://help.salesforce.com/articleView?id=Salesforce-Platform-Security-FAQs&type=1&language=en_US[Platform Security FAQ]
+** https://help.salesforce.com[Salesforce Help]
+--
+
+. Send your completed Security Assessment form to mailto:securityassessment@salesforce.com[securityassessment@salesforce.com].
+
+. Send any outstanding security vulnerability findings to mailto:security@salesforce.com[security@salesforce.com] and include the following information in your email:
++
+--
+** Confirmation number for your Security Assessment approved by Salesforce
+** Summary of all findings and associated severity level of each finding
+** Detailed assessment report noting each finding
+** Steps to reproduce the vulnerability
+** All applicable HTTP requests and responses
+** Explanation of why the example is considered a finding 
+
+For information on how to submit a security vulnerability finding, see the 
+https://help.salesforce.com/articleView?id=000320207&type=1&mode=1[Security Vulnerability Finding Submittal Guide].
+
+[NOTE]
+Salesforce does not address any vulnerabilities found with custom development.
+You must validate and fix any findings with your custom development.
+
+--
+. xref:https://security.secure.force.com/securityassessments[Schedule the Security Assessment].
+
+
+
 
 == See Also
 
-* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:managing-deployed-applications.adoc[Manage Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
 * xref:cloudhub.adoc[CloudHub]
 * xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
 * xref:deployment-strategies.adoc[Deployment Options]
-* xref:cloudhub-architecture.adoc[CloudHub Architecture]
-* xref:monitoring.adoc[Monitor Applications]
-* xref:cloudhub-fabric.adoc[Clustering]
-* xref:managing-queues.adoc[Manage Queues]
-* xref:managing-schedules.adoc[Manage Schedules]
-* xref:managing-application-data-with-object-stores.adoc[Manage Application Data with Object Stores]
-* xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
-* xref:secure-application-properties.adoc[Secure Application Properties]
-* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
