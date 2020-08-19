@@ -49,13 +49,27 @@ To add a certificate using Runtime Manager:
 image::lb-cert-upload-update.png[Add certificate option in the load balancer settings page]
 . Select *Choose File* to upload the public key and private key files, such as:
 
-** Public key file: `example-com-crt.pem`
-** Private key file: `example-com-private.pem`
+** Public key file
++
+A PEM file that includes both the server certificate and the intermediate CA certificate,
+for example, `example-com-crt.pem`
+** Private key file
++
+--
+A PEM file that contains a passphrase-less private key, for example, `example-com-private-noencrypt.pem`
 
+To create the passphrase-less file, run a command like the following:
+
+[source,console,linenums]
+----
+openssl rsa -in example-com-private.pem -out example-com-private_noencrypt.pem
+----
+--
 . Click *Save Certificate*.
 
 To add a certificate to an existing DLB using the CLI: 
 
+[source,console,linenums]
 ----
 cloudhub load-balancer ssl-endpoint add myLB_name example-com-crt.pem example-com-private.pem
 ----
@@ -72,9 +86,23 @@ To replace a certificate using Runtime Manager:
 . In the *Certificates* tab, click the certificate name.
 . Select *Choose File* to upload the public key and private key files, such as:
 
-** Public key file: `new-example-com-crt.pem`
-** Private key file: `new-example-com-private.pem`
+** Public key file
++
+A PEM file that includes both the server certificate and the intermediate CA certificate,
+for example, `new-example-com-crt.pem`
 
+** Private key file:
++
+--
+A PEM file that contains a passphrase-less private key, for example, `new-example-com-private-noencrypt.pem`
+
+To create the passphrase-less file, run a command like the following:
+
+[source,console,linenums]
+----
+openssl rsa -in new-example-com-private.pem -out new-example-com-private_noencrypt.pem
+----
+--
 . Click *Done Editing*.
 . Click *Apply Changes*.
 
