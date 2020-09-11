@@ -9,15 +9,33 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-For the majority of use cases, all you'll need to do is install and configure the Runtime Manager agent using xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager agent]
 
-To use the Runtime Manager agent for more than managing the communication between xref:index.adoc[Runtime Manager] and Runtime Manager on-premises, you might find the documents in this section helpful:
+The Runtime Manager agent API enables you to manage your on-premises Mule runtime engine directly using a REST API.
 
+For the majority of use cases, you need only to install and configure the Runtime Manager agent.
+To use the Runtime Manager agent for more than managing the communication between Runtime Manager and on-premises Mule instances, use the Runtime Manager Agent API. 
+
+The Runtime Manager agent REST API enables you to programmatically access these functions of the agent:
+
+* Deploy Mule applications.
+* Deploy Mule domains.
+* Create a cluster of Mule servers.
+* Monitor JMX beans.
+* Configure system properties.
+* Configure log levels.
+* Configure Mule agent plugins, such as:
++
+** Event tracking
+** Splunk integration
+** ELK integration
+
+For an interactive reference of all the operations that are supported through the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/mule-agent-plugin-api/minor/1.1/pages/home/[Runtime Manager Agent API] on Exchange.
+
+
+== See Also
+
+* xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent]
 * xref:administration-service.adoc[Administration Service]
 * xref:managing-applications-and-domains.adoc[Manage Applications and Domains]
 * xref:jmx-service.adoc[JMX Service]
 * xref:runtime-manager-agent-notifications.adoc[Runtime Manager Agent Notifications]
-
-
-[NOTE]
-None of these topics relate to the xref:3.8@mule-management-console::index.adoc[Mule Management Console]. These topics are about the Runtime Manager agent that communicates with Runtime Manager with local runtimes.
