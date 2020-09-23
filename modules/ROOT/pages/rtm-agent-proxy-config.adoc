@@ -57,6 +57,28 @@ This example configures the agent to work with a proxy server that requires auth
 amc_setup -H myToken myMuleServer -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
 ----
 
+== Verify that the Proxy Server Does Not Modify the Agent Certificate 
+
+To ensure that your firewall or proxy does not intercept or modify the 
+Runtime Manager agent, run the following command:
+
+[source,console,linenums]
+----
+echo -e "GET / HTTP/1.0\r\n" | openssl s_client -connect mule-manager.anypoint.mulesoft.com:443 -ign_eof
+----
+
+The output of this command should include the following information:
+
+[source,console,linenums]
+----
+-----END CERTIFICATE-----
+subject=/C=US/O=Hybrid/OU=MuleSoft/CN=mule-manager.anypoint.mulesoft.com
+issuer=/emailAddress=devops@mulesoft.com/C=US/ST=CA/L=San Francisco/O=MuleSoft/OU=MuleSoft/CN=MuleSoft
+----
+
+If this information does not appear,
+contact your networking team with the `openssl` command's output.
+
 
 [[encrypt_password]]
 == Include an Encrypted Password in the mule-agent.yml File
@@ -114,3 +136,7 @@ To specify proxy server configuration in `wrapper.conf`, add your proxy server i
 |Issue |Description
 | SE-8011 | Agent setup returns `407 Proxy Authentication Required` when passing proxy information during setup.
 |===
+
+== See Also 
+
+* https://help.mulesoft.com/s/article/How-to-troubleshoot-communication-issues-between-the-Mule-Runtime-Agent-and-the-OnPrem-server[How to troubleshoot communication issues between the Mule Runtime Agent and the OnPrem server]
