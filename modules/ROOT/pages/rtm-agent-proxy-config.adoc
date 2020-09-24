@@ -57,11 +57,34 @@ This example configures the agent to work with a proxy server that requires auth
 amc_setup -H myToken myMuleServer -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
 ----
 
-== Verify That the Proxy Server Does Not Modify the Agent Certificate 
+== Verify That the Proxy Server Does Not Modify the Runtime Manager Certificate 
 
 To ensure that your firewall or proxy does not intercept or modify the 
-Runtime Manager agent, run the following command:
+Runtime Manager certificate, run one of the following commands, depending on the version of your Runtime Manager agent.
 
+The commands run a probe to determine whether the firewall or proxy is tampering with the certificate.
+
+* Agent versions 1.12.0 and later, and 2.2.0 and later:
++
+--
+[source,console,linenums]
+----
+echo -e "GET / HTTP/1.0\r\n" | openssl s_client -connect runtime-manager.anypoint.mulesoft.com:443 -ign_eof
+----
+
+The output of this command should include the following information:
+
+[source,console,linenums]
+----
+-----END CERTIFICATE-----
+subject=/C=US/O=Hybrid/OU=MuleSoft/CN=runtime-manager.anypoint.mulesoft.com
+issuer=/emailAddress=devops@mulesoft.com/C=US/ST=CA/L=San Francisco/O=MuleSoft/OU=MuleSoft/CN=MuleSoft
+----
+--
+
+* Agent versions earlier than 1.12.0 and 2.2.0:
++
+--
 [source,console,linenums]
 ----
 echo -e "GET / HTTP/1.0\r\n" | openssl s_client -connect mule-manager.anypoint.mulesoft.com:443 -ign_eof
@@ -75,8 +98,9 @@ The output of this command should include the following information:
 subject=/C=US/O=Hybrid/OU=MuleSoft/CN=mule-manager.anypoint.mulesoft.com
 issuer=/emailAddress=devops@mulesoft.com/C=US/ST=CA/L=San Francisco/O=MuleSoft/OU=MuleSoft/CN=MuleSoft
 ----
+--
 
-If this information does not appear,
+If the expected information does not appear in the output,
 contact your networking team with the `openssl` command's output.
 
 
