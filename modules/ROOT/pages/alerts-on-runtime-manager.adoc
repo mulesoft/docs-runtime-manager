@@ -343,7 +343,7 @@ Clusters::
 
 == Alert Variables 
 
-You can use the following variables in the alert email *Subject* and *Message* fields:
+You can use the following variables in the alert email *Subject* and *Message* fields.
 
 [%header%autowidth.spread]
 |===
@@ -352,9 +352,9 @@ You can use the following variables in the alert email *Subject* and *Message* f
 |`${app}` |Name of the application triggering the alert |All app alerts
 |`${clusterName}`|Name of the cluster | All cluster alerts
 |`${currentValue}` |Current value of metric that triggers the alert |Conditional alerts 
-|`${comparision}`|description |
+|`${comparision}`| Above or Below | Server conditional alerts 
 |`${groupName}`|Name of the server group | All server group alerts 
-|`${location}`|description |
+|`${location}`| Where to find more information about the alert | Some server alerts  
 |`${memberName}`|Name of the node in a server group or cluster | All server group node and cluster node alerts 
 |`${message}` |Message from the notification triggering the alert |Custom application notification
 |`${name}` |Name of the target (server, server group, or cluster) triggering the alert |All server alerts
@@ -379,13 +379,15 @@ The following table lists the variables that you can use with each alert.
 [%header,cols="2,30,60"]
 |===
 ||Alert |Variables
+| *All Applications*
+
 3+|*CloudHub Applications*
 .9+||*CPU usage - CloudHub* |`${severity}` `${state}` `${resource}` `${operator}` `${value}`
 | *Custom application notification* a|`${severity}` `${resource}` `${user}` `${priority}` `${transactionId}` `${message}`
 | *Deployment failed* a| `${severity}` `${resource}` `${user}` `${message}`
 | *Deployment success* a|`${severity}` `${resource}` `${user}`
 | *Exceeds event traffic threshold* a| `${severity}` `${resource}`
-| *Memory usage - CloudHub* a| `${severity}` `${state}` `${resource}` `${user}` `${operator}` `${value}`
+| *Memory usage - CloudHub* a| `${severity}` `${state}` `${resource}` `${operator}` `${value}`
 | *Secure data gateway connected* a| `${severity}` `${resource}`
 | *Secure data gateway disconnected* a| `${severity}` `${resource}`
 | *Worker not responding* a| `${severity}` `${resource}` `${user}`
