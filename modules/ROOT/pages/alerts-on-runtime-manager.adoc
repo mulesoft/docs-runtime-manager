@@ -379,68 +379,69 @@ The following table lists the variables that you can use with each alert.
 [%header,cols="2,30,60"]
 |===
 ||Alert |Variables
-| *All Applications*
-
-3+|*CloudHub Applications*
-.9+||*CPU usage - CloudHub* |`${severity}` `${state}` `${resource}` `${operator}` `${value}`
-| *Custom application notification* a|`${severity}` `${resource}` `${user}` `${priority}` `${transactionId}` `${message}`
-| *Deployment failed* a| `${severity}` `${resource}` `${user}` `${message}`
-| *Deployment success* a|`${severity}` `${resource}` `${user}`
-| *Exceeds event traffic threshold* a| `${severity}` `${resource}`
-| *Memory usage - CloudHub* a| `${severity}` `${state}` `${resource}` `${operator}` `${value}`
-| *Secure data gateway connected* a| `${severity}` `${resource}`
-| *Secure data gateway disconnected* a| `${severity}` `${resource}`
-| *Worker not responding* a| `${severity}` `${resource}` `${user}`
+2+| *All Alerts* |`${resource}` `${severity}` `${state}`
+2+| *All App Alerts* | `${app}`
+3+| *CloudHub Applications*
+.9+||*CPU usage - CloudHub* | `${operator}` `${value}`
+| *Custom application notification* a| `${user}` `${priority}` `${transactionId}` `${message}`
+| *Deployment failed* a|  `${user}` `${message}`
+| *Deployment success* a| `${user}`
+| *Exceeds event traffic threshold* a| 
+| *Memory usage - CloudHub* a|  `${operator}` `${value}`
+| *Secure data gateway connected* a| 
+| *Secure data gateway disconnected* a| 
+| *Worker not responding* a| `${user}`
 
 3+| *Hybrid Applications*
-.6+|| *Application undeployed* a| `${severity}` `${name}` `${resource}`
-| *Deployment failure* a| `${severity}` `${name}` `${resource}`
-| *Deployment success* a| `${severity}` `${name}` `${resource}`
-| *Number of Mule messages* a| `${severity}` `${name}` `${resource}` `${currentValue}` `${threshold}` `${location}`
-| *Number of errors* a| `${severity}` `${name}` `${resource}` `${currentValue}` `${threshold}` `${location}`
-| *Response time* a| `${severity}` `${name}` `${resource}` `${currentValue}` `${threshold}` `${location}`
+.6+|| *Application undeployed* a| `${name}` 
+| *Deployment failure* a| `${name}` 
+| *Deployment success* a| `${name}` 
+| *Number of Mule messages* a|  `${name}` `${currentValue}` `${threshold}` `${location}`
+| *Number of errors* a| `${name}` `${currentValue}` `${threshold}` `${location}`
+| *Response time* a|  `${name}` `${currentValue}` `${threshold}` `${location}`
 
+2+| *All Server Alerts* | `${name}`
 
 3+|*Servers*
-.9+||*Agent version changed* a| `${severity}` `${name}` `${resource}` `${oldVersion}` `${newVersion}`
-| *Runtime version changed* a|`${severity}` `${name}` `${resource}` `${oldVersion}` `${newVersion}`
-| *Server CPU usage* a| `${severity}` `${name}` `${resource}` `${currentValue}` `${comparison}` `${threshold}` `${location}`
-| *Server Load average* a| `${severity}` `${name}` `${resource}` `${currentValue}` `${comparison}` `${threshold}` `${location}`
-| *Server Memory average* a| `${severity}` `${name}` `${resource}` `${currentValue}` `${comparison}` `${threshold}` `${location}`
-| *Server Thread count* a| `${severity}` `${name}` `${resource}` `${currentValue}` `${comparison}` `${threshold}` `${location}`
-| *Server connected* a| `${severity}` `${name}` `${resource}`
-| *Server deleted* a| `${severity}` `${name}` `${resource}`
-| *Server disconnected* a| `${severity}` `${name}` `${resource}`
+.9+||*Agent version changed* a|  `${oldVersion}` `${newVersion}`
+| *Runtime version changed* a|  `${oldVersion}` `${newVersion}`
+| *Server CPU usage* a|  `${currentValue}` `${comparison}` `${threshold}` `${location}`
+| *Server Load average* a|  `${currentValue}` `${comparison}` `${threshold}` `${location}`
+| *Server Memory average* a| `${currentValue}` `${comparison}` `${threshold}` `${location}`
+| *Server Thread count* a|  `${currentValue}` `${comparison}` `${threshold}` `${location}`
+| *Server connected* a|  
+| *Server deleted* a|   
+| *Server disconnected* a| 
 
 
 
 3+|*Server Groups*
-.11+|| *Server Group connected* a| `${severity}` `${name}` `${resource}`
-| *Server Group deleted* a| `${severity}` `${name}` `${resource}`
-| *Server Group disconnected* a| `${severity}` `${name}` `${resource}`
-| *Server Group's node CPU usage* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node Load average* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node Memory usage* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node Thread count* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node connected* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}`
-| *Server Group's node disconnected* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}`
-| *Server added to Server Group* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}`
-| *Server removed from Server Group* a| `${severity}` `${name}` `${resource}` `${memberName}` `${groupName}`
+.11+|| *Server Group connected* a|  `${name}` 
+| *Server Group deleted* a|`${name}` 
+| *Server Group disconnected* a|  `${name}` 
+| *Server Group's node CPU usage* a|  `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node Load average* a|  `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node Memory usage* a| `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node Thread count* a| `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node connected* a|  `${name}`  `${memberName}` `${groupName}`
+| *Server Group's node disconnected* a|  `${name}`  `${memberName}` `${groupName}`
+| *Server added to Server Group* a|  `${name}`  `${memberName}` `${groupName}`
+| *Server removed from Server Group* a| `${name}`  `${memberName}` `${groupName}`
 
 
 3+|*Clusters* 
-.12+||*Cluster connected* a| `${severity}` `${name}` `${resource}`
-| *Cluster deleted* a| `${severity}` `${name}` `${resource}`
-| *Cluster disconnected* a| `${severity}` `${name}` `${resource}`
-| *Cluster presents visibility issues* a| `${severity}` `${name}` `${resource}`
-| *Cluster's node CPU usage* a| `${severity}` `${name}` `${resource}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node Load average* a| `${severity}` `${name}` `${resource}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node Memory usage* a| `${severity}` `${name}` `${resource}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node Thread count* a| `${severity}` `${name}` `${resource}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node connected* a| `${severity}` `${name}` `${resource}` `${memberName}` `${clusterName}`
-| *Cluster's node disconnected* a| `${severity}` `${resource}` `${memberName}` `${clusterName}`
-| *Server added to Cluster* a| `${severity}` `${resource}` `${memberName}` `${clusterName}`
-| *Server removed from Cluster* a| `${severity}` `${resource}` `${memberName}` `${clusterName}`
+.12+||*Cluster connected* a|  `${name}` 
+| *Cluster deleted* a|  `${name}` 
+| *Cluster disconnected* a|  `${name}` 
+| *Cluster presents visibility issues* a|  `${name}` 
+| *Cluster's node CPU usage* a|  `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node Load average* a| `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node Memory usage* a| `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node Thread count* a| `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node connected* a| `${name}` `${memberName}` `${clusterName}`
+| *Cluster's node disconnected* a| `${resource}` `${memberName}` `${clusterName}`
+| *Server added to Cluster* a|  `${memberName}` `${clusterName}`
+| *Server removed from Cluster* a|  `${memberName}` `${clusterName}`
 
 |===
 
