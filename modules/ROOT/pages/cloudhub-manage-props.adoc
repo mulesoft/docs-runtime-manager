@@ -96,7 +96,7 @@ For more information about nondefault property placeholder options, see the http
 
 CloudHub reserves a set of properties and prevents apps from overwriting the values of those properties.
 If an application attempts to assign a value to a reserved property, CloudHub doesn't use the assigned value.
-Instead, it returns the value as set internally without throwing an error or exception.
+Instead, it returns the value as set internally, without throwing an error or exception, and adds a warning message to the log.
 
 Applications can reference reserved properties, for example, to retrieve the application name or deployment region.
 Use the `${csorganization.id}` and `${environment.id}` properties to retrieve those values if your app makes Anypoint Platform API calls.
