@@ -349,25 +349,30 @@ You can use the following variables in the alert email *Subject* and *Message* f
 |===
 |Variable |Description |Applicable Alerts 
 
-|`${app}` |Name of the application triggering the alert |All app alerts
+|`${app}` |Name of the application that triggers the alert |All app alerts
 |`${clusterName}`|Name of the cluster | All cluster alerts
 |`${currentValue}` |Current value of metric that triggers the alert |Conditional alerts 
-|`${comparision}`| Above or Below | Server conditional alerts 
+|`${comparison}`| Above or Below | Server conditional alerts 
 |`${groupName}`|Name of the server group | All server group alerts 
 |`${location}`| Where to find more information about the alert | Some server alerts  
 |`${memberName}`|Name of the node in a server group or cluster | All server group node and cluster node alerts 
-|`${message}` |Message from the notification triggering the alert |Custom application notification
-|`${name}` |Name of the target (server, server group, or cluster) triggering the alert |All server alerts
-|`${newVersion}`|New version number for the agent or runtime |Servers: Agent version changed, Runtime version changed
-|`${oldVersion}`|Previous version number for the agent or runtime |Servers: Agent version changed, Runtime version changed
+|`${message}` |Message from the notification that trigger the alert |Custom application notification
+|`${name}` |Name of the target (server, server group, or cluster) that triggers the alert |All server alerts
+|`${newVersion}`|New version number for the agent or runtime |Servers: version changed alerts
+|`${oldVersion}`|Previous version number for the agent or runtime |Servers: version changed alerts
 |`${operator}` | An operator, such as `< > =` |Conditional alerts 
+|`${parentLocation}` ||Some server group and cluster alerts 
+|`${parentResource}` | |Some server group and cluster alerts 
 |`${period}` |Period of time over which to measure |Conditional alerts 
 |`${periodTimeUnit}` |Period of time unit |Conditional alerts 
-|`${priority}` |Priority of the notification triggering the alert |Custom application notification
-|`${resource}` | Name of the resource triggering the alert, such as `server` or `app` | All alerts 
+|`${priority}` |Priority of the notification that triggers the alert |Custom application notification
+|`${resource}` | Name of the resource that triggers the alert, such as server or app | All alerts 
 |`${severity}` | Severity of the alert |All alerts 
-|`${state}` | State of the resource triggering the alert, such as `Running` or `Disconnected`| All alerts 
+|`${state}` | State of the resource that triggers the alert, such as Running or Disconnected| All alerts 
 |`${threshold}` |Count over the period of time that triggers the alert |Conditional alerts 
+|`${transactionId}` | |Custom application notification 
+|`${user}` | | Some CloudHub app alerts  
+
 |`${value}` | A value associated with an element | Conditional alerts 
 
 |===
@@ -381,7 +386,7 @@ The following table lists the variables that you can use with each alert.
 ||Alert |Variables
 2+| *All Alerts* |`${resource}` `${severity}` `${state}`
 2+| *All App Alerts* | `${app}`
-3+| *CloudHub Applications*
+3+| *CloudHub App Alerts*
 .9+||*CPU usage - CloudHub* | `${operator}` `${value}`
 | *Custom application notification* a| `${user}` `${priority}` `${transactionId}` `${message}`
 | *Deployment failed* a|  `${user}` `${message}`
@@ -392,18 +397,19 @@ The following table lists the variables that you can use with each alert.
 | *Secure data gateway disconnected* a| 
 | *Worker not responding* a| `${user}`
 
-3+| *Hybrid Applications*
-.6+|| *Application undeployed* a| `${name}` 
-| *Deployment failure* a| `${name}` 
-| *Deployment success* a| `${name}` 
-| *Number of Mule messages* a|  `${name}` `${currentValue}` `${threshold}` `${location}`
-| *Number of errors* a| `${name}` `${currentValue}` `${threshold}` `${location}`
-| *Response time* a|  `${name}` `${currentValue}` `${threshold}` `${location}`
+3+| *Hybrid App Alerts*
+.7+|| *All Hybrid App Alerts* | `${name}`
+| *Application undeployed* a|
+| *Deployment failure* a|  
+| *Deployment success* a|  
+| *Number of Mule messages* a| `${currentValue}` `${threshold}` `${location}`
+| *Number of errors* a| `${currentValue}` `${threshold}` `${location}`
+| *Response time* a| `${currentValue}` `${threshold}` `${location}`
 
-2+| *All Server Alerts* | `${name}`
 
-3+|*Servers*
-.9+||*Agent version changed* a|  `${oldVersion}` `${newVersion}`
+3+|*Server Alerts*
+.10+|| *All Server Alerts* | `${name}`
+|*Agent version changed* a|  `${oldVersion}` `${newVersion}`
 | *Runtime version changed* a|  `${oldVersion}` `${newVersion}`
 | *Server CPU usage* a|  `${currentValue}` `${comparison}` `${threshold}` `${location}`
 | *Server Load average* a|  `${currentValue}` `${comparison}` `${threshold}` `${location}`
@@ -415,30 +421,32 @@ The following table lists the variables that you can use with each alert.
 
 
 
-3+|*Server Groups*
-.11+|| *Server Group connected* a|  `${name}` 
-| *Server Group deleted* a|`${name}` 
-| *Server Group disconnected* a|  `${name}` 
-| *Server Group's node CPU usage* a|  `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node Load average* a|  `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node Memory usage* a| `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node Thread count* a| `${name}` `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node connected* a|  `${name}`  `${memberName}` `${groupName}`
-| *Server Group's node disconnected* a|  `${name}`  `${memberName}` `${groupName}`
-| *Server added to Server Group* a|  `${name}`  `${memberName}` `${groupName}`
-| *Server removed from Server Group* a| `${name}`  `${memberName}` `${groupName}`
+3+|*Server Group Alerts*
+.12+|| *All Server Group Alerts* | `${name}`
+| *Server Group connected* a|  
+| *Server Group deleted* a| 
+| *Server Group disconnected* a|  
+| *Server Group's node CPU usage* a|  `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node Load average* a|  `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node Memory usage* a| `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node Thread count* a| `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Server Group's node connected* a| `${memberName}` `${groupName}`
+| *Server Group's node disconnected* a|  `${memberName}` `${groupName}`
+| *Server added to Server Group* a| `${memberName}` `${groupName}`
+| *Server removed from Server Group* a| `${memberName}` `${groupName}`
 
 
-3+|*Clusters* 
-.12+||*Cluster connected* a|  `${name}` 
-| *Cluster deleted* a|  `${name}` 
-| *Cluster disconnected* a|  `${name}` 
-| *Cluster presents visibility issues* a|  `${name}` 
-| *Cluster's node CPU usage* a|  `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node Load average* a| `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node Memory usage* a| `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node Thread count* a| `${name}` `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Cluster's node connected* a| `${name}` `${memberName}` `${clusterName}`
+3+|*Cluster Alerts* 
+.13+|| *All Cluster Alerts* | `${name}`
+|*Cluster connected* a| 
+| *Cluster deleted* a| 
+| *Cluster disconnected* a|  
+| *Cluster presents visibility issues* a|  
+| *Cluster's node CPU usage* a|   `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node Load average* a| `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node Memory usage* a| `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node Thread count* a| `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
+| *Cluster's node connected* a| `${memberName}` `${clusterName}`
 | *Cluster's node disconnected* a| `${resource}` `${memberName}` `${clusterName}`
 | *Server added to Cluster* a|  `${memberName}` `${clusterName}`
 | *Server removed from Cluster* a|  `${memberName}` `${clusterName}`
