@@ -141,7 +141,7 @@ When using persistent queues, keep in mind the following limitations:
 
 == Building Mule Applications to Support Persistent Queues
 
-For your application to benefit from persistent queuing, implement reliability patterns in your application code, separating individual XA transactions from VM transports. See xref:3.9@mule-runtime::reliability-patterns.adoc[Reliability Patterns] for more information.
+For your application to benefit from persistent queuing, implement reliability patterns in your application code, separating individual XA transactions from VM transports. See xref:mule-runtime::reliability-patterns.adoc[Reliability Patterns] for more information.
 
 image::ch-fabric.png[Clustering]
 
@@ -234,6 +234,6 @@ This issue occurs only when a flow produces messages that need to be added to a 
 * xref:deploying-to-cloudhub.adoc#worker-size-and-vcores[Worker Size and vCores]
 * xref:managing-queues.adoc[Manage Queues]
 * xref:cloudhub-architecture.adoc[CloudHub architecture]
-* xref:3.8@mule-runtime::transaction-management.adoc[Transaction Management]
-* xref:3.8@mule-runtime::vm-transport-reference.adoc[VM transport]
-* xref:3.8@mule-runtime::reliability-patterns.adoc[Reliability Patterns]
+* xref:mule-runtime::transaction-management.adoc[Transaction Management]
+* xref:connectors::vm/vm-connector.adoc[VM Connector]
+* xref:mule-runtime::reliability-patterns.adoc[Reliability Patterns]
