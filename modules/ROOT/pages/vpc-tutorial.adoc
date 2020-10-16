@@ -51,7 +51,7 @@ If you don't select a business group, the Anypoint VPC is associated with the ma
 image::create-vpc.png[]
 +
 . Click *Firewall Rules* to expand the fields and xref:vpc-firewall-rules-concept.adoc[configure firewall rules]. +
-By default, all inbound traffic is blocked, and you need to configure firewall rules to allow traffic to your worker. You can configure these rules at a later time. +
+By default, all inbound traffic is open, and you need to configure firewall rules to block external traffic to your worker. You can configure these rules at a later time. +
 The UI is pre-filled with suggestions of the most commonly used firewall rules. +
 The example below shows a firewall rule with type `http.private.port` from `Anywhere`. The port range is set to `8091` automatically.
 +
