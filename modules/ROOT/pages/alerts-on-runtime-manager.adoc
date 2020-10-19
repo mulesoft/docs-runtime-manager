@@ -211,10 +211,10 @@ For applications deployed to local servers, the following alert conditions apply
 Number of errors::
 +
 --
-The number of errors (messages that failed to be processed) in one minute reaches the specified limit.
-
-Failure depends on how the app handles errors.
-The definition of failure is specific to the app and the logic used by the mule runtime team
+The number of messaging errors reported by Mule runtime server in one minute reaches the specified limit.
+The number of errors reported depends on error handling configuration in the app.
+For information about Mule errors, see 
+xref:mule-runtime::mule-error-concept.adoc[Mule Errors].
 
 image::alerts-conditions-number-errors.png[Number of errors]
 
