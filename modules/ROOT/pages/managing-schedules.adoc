@@ -38,7 +38,7 @@ CloudHub triggers the job as soon as the application restarts.
 * The CloudHub scheduler reads the job configuration every time it runs.
 +
 To apply your changes immediately, run your jobs manually after updating the schedule.
-* If the execution time for a job is longer than 12 hours, the scheduler fails and is re-executed.
+* If the execution time for a job is longer than 12 hours, network issues occur, or the infrastructure restarts due to hardware issues or scheduled maintenance, the scheduler fails and is re-executed.
 * You cannot manage CloudHub schedules using scripts.
 +
 Use the CloudHub API or *Schedules* tab in Runtime Manager to manage CloudHub schedules.
