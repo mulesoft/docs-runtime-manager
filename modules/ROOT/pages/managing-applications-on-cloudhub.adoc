@@ -125,6 +125,8 @@ CloudHub supports updating your application so users of your HTTP APIs experienc
 |image:image2014-10-24-16-3a44-3a47.png[image2014-10-24+16:44:47] |The updated version of the application didn't start correctly. Mule shuts down the new version and leaves the old application running.
 |===
 
+[IMPORTANT]
+If the applicaiton is using Static IPs, an update may not be completely zero down time. During the very short time period where the Static IP transfers from the old to the new version of the application, the application will not be responsive. Please ensure the client has retry relevant retry mechanisms to account for this.
 
 == Static IPs
 
