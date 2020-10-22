@@ -37,7 +37,7 @@ CloudHub triggers the job as soon as the application restarts.
 * When a schedule is used to trigger a flow with subflow in a Mule 4.x application, it waits until both main flow and subflow complete before scheduling the next run.
 * The CloudHub scheduler reads the job configuration every time it runs.
 +
-To apply your changes immediately, run your jobs manually after updating the schedule.
+When you update the scheduler configuration, the change takes effect the next time the scheduler runs.
 * If the execution time for a job is longer than 12 hours, network issues occur, or the infrastructure restarts due to hardware issues or scheduled maintenance, the scheduler fails and is re-executed.
 * You cannot manage CloudHub schedules using scripts.
 +
