@@ -41,8 +41,13 @@ This setting is configurable only during this initial creation of an Anypoint VP
 Make sure you thoroughly understand how to properly size the Anypoint VPC for your needs before configuring this parameter. If you are not sure of how to configure this setting, follow the  xref:vpc-provisioning-concept.adoc#faq-how-to-size-my-vpc[Anypoint VPC sizing] guide.
 --
 +
-* *Environments*: Optionally, select an environment to which the Anypoint VPC is bound. +
-If you do not select an environment, every application deployed to the region you selected for the Anypoint VPC gets associated with this Anypoint VPC regardless of the environment to which it is deployed.
+* *Environments*: Optionally, select an environment to which to bind Anypoint VPC. +
+If you don't select an environment, all applications deployed to the selected region are associated with this Anypoint VPC.
++
+[NOTE]
+Don't associate Anypoint VPC with a design environment.
+You can deploy apps to the design environment only from Design Center, 
+not from Runtime Manager.
 * *Set as default VPC*: Select this option to set the Anypoint VPC as the default for the region you set. +
 This means that all environments in this region not associated with an Anypoint VPC will be, by default, associated with this Anypoint VPC.
 * *Business Groups*: Optionally, bind the Anypoint VPC with a business group. +
