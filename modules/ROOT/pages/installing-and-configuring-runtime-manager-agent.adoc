@@ -95,7 +95,7 @@ See <<amc_setup Parameters>>.
 . Restart Mule or the API gateway runtime.
 
 
-== Update the Runtime Manager Agent
+== Update the Agent
 
 If you previously installed the agent with an earlier version of `amc_setup`, you can update the agent and retain your existing agent configuration in `$MULE_HOME/conf/mule-agent.yml`.
 
@@ -135,6 +135,26 @@ When you update the agent, the `amc_setup` script:
 +
 This folder contains all custom modules added to the agent (not included in the agent distribution).
 
+== Roll Back the Agent
+
+If you need to roll back the agent, for example, if problems occur when you update the agent,
+use the `mule-agent-backup.zip` file to restore the previous version.
+The `mule-agent-backup.zip` file includes libraries, configuration files, and compiled classes for the agent.
+
+To roll back the agent:
+
+. Stop Mule or the API gateway runtime.
+. Run the following commands to restore the previous version of the agent from the `mule-agent-backup.zip` file:
++
+[source,console,linenums]
+----
+$ cd $MULE_HOME/server-plugins/mule-agent-plugin
+$ cp $MULE_HOME/tools/mule-agent-backup.zip .
+$ unzip mule-agent-backup.zip
+----
+. Restart Mule or the API gateway runtime.
+
+
 == Uninstall the Agent
 
 To uninstall the agent:
@@ -142,9 +162,11 @@ To uninstall the agent:
 . Stop Mule or the API gateway runtime.
 . Remove these files:
 +
-`$MULE_HOME/conf/mule-agent.jks`
-+
-`$MULE_HOME/conf/mule-agent.yml`
+[source,console,linenums]
+----
+$MULE_HOME/conf/mule-agent.jks
+$MULE_HOME/conf/mule-agent.yml
+----
 . Restart Mule or the API gateway runtime.
 
 
@@ -430,6 +452,8 @@ You can test whether the service is available at `_API_PLATFORM_HOST_/apiplatfor
 |Specifies the service location URL of your Auth Proxy, for example, `+https://10.0.0.3:8080+`.
 
 |===
+
+
 
 
 == See Also
