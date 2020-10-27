@@ -127,31 +127,38 @@ See xref:monitoring::am-installing.adoc#update-the-anypoint-monitoring-agent[Upd
 When you update the agent, the `amc_setup` script:
 
 * Backs up the current version of the agent:
-** Archives the `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER` to `$MULE_HOME/tools/mule-agent-backup.zip`
-** Archives any custom modules (usually located in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules`) to `$MULE_HOME/tools/mule-agent-modules-backup.zip`
-* Updates agent libraries in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib`
+** Archives the `$MULE_HOME/server-plugins/mule-agent-plugin` to `$MULE_HOME/tools/mule-agent-backup.zip`
+** Archives any custom modules (usually located in `$MULE_HOME/server-plugins/mule-agent-plugin/lib/modules`) to `$MULE_HOME/tools/mule-agent-modules-backup.zip`
+* Updates agent libraries in `$MULE_HOME/server-plugins/mule-agent-plugin/lib`
 * Retains the current `$MULE_HOME/conf/mule-agent.yml` configuration file
-* Leaves modules in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules` unchanged
+* Leaves modules in `$MULE_HOME/server-plugins/mule-agent-plugin/lib/modules` unchanged
 +
 This folder contains all custom modules added to the agent (not included in the agent distribution).
 
 == Roll Back the Agent
 
 If you need to roll back the agent, for example, if problems occur when you update the agent,
-use the `mule-agent-backup.zip` file to restore the previous version.
-The `mule-agent-backup.zip` file includes libraries, configuration files, and compiled classes for the agent.
+restore the previous version from the `mule-agent-backup.zip` file.
+This ZIP file includes libraries, configuration files, and compiled classes for the agent.
 
 To roll back the agent:
 
 . Stop Mule or the API gateway runtime.
-. Run the following commands to restore the previous version of the agent from the `mule-agent-backup.zip` file:
+. Change to the `mule-agent-plugin` folder:
 +
-[source,console,linenums]
-----
-$ cd $MULE_HOME/server-plugins/mule-agent-plugin
-$ cp $MULE_HOME/tools/mule-agent-backup.zip .
-$ unzip mule-agent-backup.zip
-----
+`cd $MULE_HOME/server-plugins/mule-agent-plugin`
+. Remove the existing agent files:
++
+`rm -r *`
+. Copy the backup ZIP file to the `mule-agent-plugin` folder:
++
+`cp $MULE_HOME/tools/mule-agent-backup.zip .`
+. Restore the previous version of the agent from the backup ZIP file:
++
+`unzip mule-agent-backup.zip`
+. Remove the backup ZIP file:
++
+`rm mule-agent-backup.zip`
 . Restart Mule or the API gateway runtime.
 
 
