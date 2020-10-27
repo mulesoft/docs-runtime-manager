@@ -1,4 +1,4 @@
-= Install or Update the Runtime Manager Agent
+directory= Install or Update the Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -133,7 +133,7 @@ When you update the agent, the `amc_setup` script:
 * Retains the current `$MULE_HOME/conf/mule-agent.yml` configuration file
 * Leaves modules in `$MULE_HOME/server-plugins/mule-agent-plugin/lib/modules` unchanged
 +
-This folder contains all custom modules added to the agent (not included in the agent distribution).
+This directory contains all custom modules added to the agent (not included in the agent distribution).
 
 == Roll Back the Agent
 
@@ -144,13 +144,16 @@ This ZIP file includes libraries, configuration files, and compiled classes for 
 To roll back the agent:
 
 . Stop Mule or the API gateway runtime.
-. Change to the `mule-agent-plugin` folder:
+. Change to the `mule-agent-plugin` directory:
 +
 `cd $MULE_HOME/server-plugins/mule-agent-plugin`
+. Ensure that you are in the `mule-agent-plugin` directory:
++
+`pwd`
 . Remove the existing agent files:
 +
 `rm -r *`
-. Copy the backup ZIP file to the `mule-agent-plugin` folder:
+. Copy the backup ZIP file to the `mule-agent-plugin` directory:
 +
 `cp $MULE_HOME/tools/mule-agent-backup.zip .`
 . Restore the previous version of the agent from the backup ZIP file:
