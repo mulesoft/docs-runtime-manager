@@ -9,7 +9,7 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybr
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-CloudHub includes application data storage for each application it manages, this data is accessible through Mule's xref:3.8@mule-runtime::mule-object-stores.adoc[Object Store v1] and xref:object-store::index.adoc[Object Store v2] functionality. Object Stores can be used to store anything, but two of its main uses are:
+CloudHub includes application data storage for each application it manages, this data is accessible through Mule's xref:mule-runtime::mule-object-stores.adoc[Object Store v1] and xref:object-store::index.adoc[Object Store v2] functionality. Object Stores can be used to store anything, but two of its main uses are:
 
 * Storing synchronization state:  Your application may need to keep track of the last synchronized record, so that the next time the application synchronizes, it can resume where it left off.
 * OAuth tokens: OAuth enabled connectors can store tokens inside an Object Store with a few lines of configuration code.
@@ -27,13 +27,6 @@ Your application can also store custom integration data as well, within the limi
 
 To work with application data inside a Mule flow, use the Object Store connector. The connector provides operations to store, retrieve, list, and remove data from a Runtime Manager Object Store. The Object Store connector works with both Object Store v1 and Object Store v2.
 
-[NOTE]
-You must specify a unique partition name in the connector. To view information in *Runtime Manager* > *Application Data*, your connector project must contain an Object Store reference to the `_defaultUserObjectStore` Spring bean instance.
-
-See:
-
-* https://anypoint.mulesoft.com/exchange/org.mule.modules/mule-module-objectstore/[Object Store connector in Anypoint Exchange].
-* xref:3.8@mule-runtime::object-store-connector.adoc#springbeans[Object Store Spring Bean Instances].
 
 === Store OAuth Data
 
@@ -77,4 +70,6 @@ Internally, Mule has several different types of object stores. Runtime Manager p
 
 === See also
 
-xref:object-store::osv2-tutorial.adoc[Tutorial: Object Store v2]
+* https://www.mulesoft.com/exchange/org.mule.connectors/mule-objectstore-connector/[Object Store Connector for Mule 4 in Anypoint Exchange]
+* https://www.mulesoft.com/exchange/org.mule.modules/mule-module-objectstore/[Object Store Connector for Mule 3 in Anypoint Exchange]
+* xref:object-store::osv2-tutorial.adoc[Tutorial: Object Store v2]
