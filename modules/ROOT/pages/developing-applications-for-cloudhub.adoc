@@ -32,22 +32,34 @@ http://0.0.0.0:${http.port}/service/path/two
 
 == Deployment Option Flexibility
 
-If you want to deploy a same Mule application via various different xref:deployment-strategies.adoc[deployment options] – such as to an on-prem server and on CloudHub – you should abstract some parameters of the application to xref:3.8@mule-runtime::mule-application-deployment-descriptor.adoc[application properties] that you can set with different values in each case.
+If you want to deploy the same Mule application to different deployment targets, 
+such as an on-premises server and CloudHub, 
+see xref:mule-runtime::deploying.adoc[Deploy Mule Applications].
 
-Create an application properties file named `mule-app.properties` in the `src/main/app` folder of your project. You need to do this whether you work in Anypoint Studio (Studio) or another IDE and want to deploy to Studio's built-in server. Creating a properties file allows you to define a local value for the variable `http.port` or `https.port`.
+You can define properties and variables for each deployment outside of the application
+and then reference them from your application.
+For example, you can define a local value for the variable `http.port` or `https.port`.
+For information, see xref:mule-runtime::configuring-properties.adoc[Configuring Properties].
 
-If you have other runtime settings that you want to configure differently when running locally, you may also place them in the application properties file and refer to them using the syntax `${propertyname}` in your Mule application configuration. Each application can declare a set of environment variables when it is deploys to provide a different value when deploying on CloudHub. You can define these environment variables using the xref:deploying-to-cloudhub.adoc[Runtime Manager Console] or the xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface].
+You can also set these properties variables using Runtime Manager or the
+Anypoint Platform command-line interface.
 
 == Logging
 
-All log messages from your application are captured by the CloudHub logging service and available through the log search tool in the Runtime Manager console. If you wish to expose additional information in your logs for diagnostic or audit purposes, Mule provides a xref:mule-runtime::logger-component.adoc[Logger component] for fine grained logging of message content.
+All log messages from your application are captured by the CloudHub logging service and available through the log search tool in the Runtime Manager console.
+To expose additional information in your logs for diagnostic or audit purposes, use the
+xref:mule-runtime::logger-component.adoc[Logger component] for fine-grained logging of message content.
 
 [IMPORTANT]
 On CloudHub, after you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before being purged. This allows you to recover the data if needed. Open a support case at: https://help.mulesoft.com[MuleSoft Help Center] for more information.
 
 == Package Third-Party Libraries
 
-CloudHub provides services in the platform that support connecting over many different protocols and transforming many data formats. All the standard Mule libraries are included and available to your application. If you have the need to include a different third party library, you can package that library in the `<mule application zip>/lib` folder of your xref:3.8@mule-runtime::application-format.adoc[application package]. Any libraries that are packaged in your Mule application `lib` folder are available on the classpath to your application at run time.
+CloudHub provides services in the platform that support connecting over different protocols and transforming many data formats.
+All the standard Mule libraries are included and available to your application.
+If you need to include another third-party library, you can package that library
+in the application JAR file.
+For information, see xref:mule-runtime::intro-packaging.adoc[Introduction to Mule 4: Packaging Applications].
 
 == Access Resources Behind the Firewall
 
@@ -68,8 +80,6 @@ Applications deployed to CloudHub can have a web UI using HTML and JavaScript. T
 
 
 
-
-
 == See Also
 
 * xref:deployment-strategies.adoc[Deployment Options]
@@ -87,4 +97,4 @@ Applications deployed to CloudHub can have a web UI using HTML and JavaScript. T
 * xref:secure-application-properties.adoc[Secure Application Properties]
 * xref:viewing-log-data.adoc[View Log Data]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:penetration-testing-policies.adoc[Penetration-Testing Policies]
+* xref:penetration-testing-policies.adoc[Run Vulnerability Assessment and Penetration Tests]
