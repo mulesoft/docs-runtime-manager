@@ -16,7 +16,9 @@ The xref:cloudhub.adoc[CloudHub] guide includes basic concepts and deployment ex
 
 == Specify an HTTP/HTTPS Host
 
-If you employ any xref:connectors::http-connector/index.adoc[HTTP Connectors], define the Host address in a CloudHub configuration as 0.0.0.0. CloudHub routes requests from your application domain URL to the endpoint. If you deploy multiple xref:cloudhub-faq.adoc[workers], CloudHub load-balances incoming traffic automatically across these workers for you. As your application scales, work loads automatically distribute between your workers.
+xref:connectors::vm/vm-connector.adoc[VM Connector]
+
+If you employ any xref:connectors::http/http-connector.adoc[HTTP Connectors], define the Host address in a CloudHub configuration as 0.0.0.0. CloudHub routes requests from your application domain URL to the endpoint. If you deploy multiple xref:cloudhub-faq.adoc[workers], CloudHub load-balances incoming traffic automatically across these workers for you. As your application scales, work loads automatically distribute between your workers.
 
 == Provide an External HTTP/HTTPS Port
 
