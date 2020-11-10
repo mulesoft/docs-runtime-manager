@@ -42,7 +42,7 @@ IPsec is established by sending "interesting traffic" (traffic that should be en
 
 Some VPN configurations require additional steps to keep the tunnel active, which means you need to ensure you periodically send interesting traffic. For example, sending ICMP requests every 5 seconds to a CloudHub worker's internal IP address or FQDN will keep the tunnel active.
 
-== Tunnel status in the Runtime Manager UI shows the wrong value
+== Tunnel Status in the Runtime Manager UI Shows the Wrong Value
 
 Because of the inherent delay in the infrastructure-provider API that is queried to retrieve the tunnel status, delays up to five minutes in reporting the correct status are expected. We strongly recommend against using this information to trigger a failover between the tunnels (tunnels should be monitored at the customer-side VPN gateway).
 
