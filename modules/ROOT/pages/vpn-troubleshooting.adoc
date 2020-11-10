@@ -44,7 +44,7 @@ Some VPN configurations require additional steps to keep the tunnel active, whic
 
 == Tunnel Status in the Runtime Manager UI Shows the Wrong Value
 
-Because of the inherent delay in the infrastructure-provider API that is queried to retrieve the tunnel status, delays up to five minutes in reporting the correct status are expected. We strongly recommend against using this information to trigger a failover between the tunnels (tunnels should be monitored at the customer-side VPN gateway).
+Because the time to retrieve the tunnel status includes the inherent delay in the infrastructure-provider API, you can expect delays of up to five minutes when reporting the correct status. Do not use this information to trigger a failover between the tunnels. Instead, monitor tunnels at the customer-side VPN gateway.
 
 
 == See Also
