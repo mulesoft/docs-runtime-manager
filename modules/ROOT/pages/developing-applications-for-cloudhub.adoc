@@ -10,15 +10,16 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-Mule applications that are meant for deploying to CloudHub may sometimes require that you do things a little differently than for applications that are meant to be deployed to an on-premise server. For the most part, the same xref:mule-runtime::about-flows.adoc[Flows and Subflows] and xref:mule-runtime::global-elements.adoc[Global Elements] apply in the same way, but there are some specificities that you must consider. xref:deployment-strategies.adoc[Deployment Options] covers the key differences between both deployment environments, this document lists a few best practices to employ when deploying to CloudHub.
-
-The xref:cloudhub.adoc[CloudHub] guide includes basic concepts and deployment examples.
+When developing applications for deployment to CloudHub, review the following considerations.
 
 == Specify an HTTP/HTTPS Host
 
-xref:connectors::vm/vm-connector.adoc[VM Connector]
-
-If you employ any xref:connectors::http/http-connector.adoc[HTTP Connectors], define the Host address in a CloudHub configuration as 0.0.0.0. CloudHub routes requests from your application domain URL to the endpoint. If you deploy multiple xref:cloudhub-faq.adoc[workers], CloudHub load-balances incoming traffic automatically across these workers for you. As your application scales, work loads automatically distribute between your workers.
+If you use Anypoint Connector for HTTP (HTTP Connector), define the host address
+in the CloudHub configuration as `0.0.0.0`.
+CloudHub routes requests from your application domain URL to the endpoint.
+If you deploy multiple workers, CloudHub load-balances incoming traffic automatically 
+across the workers for you.
+As your application scales, work loads automatically distribute between your workers.
 
 == Provide an External HTTP/HTTPS Port
 
@@ -34,30 +35,36 @@ http://0.0.0.0:${http.port}/service/path/two
 
 == Deployment Option Flexibility
 
-If you want to deploy the same Mule application to different deployment targets, 
+To deploy the same Mule application to different deployment targets, 
 such as an on-premises server and CloudHub, 
 see xref:mule-runtime::deploying.adoc[Deploy Mule Applications].
+
+For the key differences between deployment environments, see xref:deployment-strategies.adoc[Deployment Options]. 
 
 You can define properties and variables for each deployment outside of the application
 and then reference them from your application.
 For example, you can define a local value for the variable `http.port` or `https.port`.
 For information, see xref:mule-runtime::configuring-properties.adoc[Configuring Properties].
 
-You can also set these properties variables using Runtime Manager or the
+You can also set these property variables using Runtime Manager or the
 Anypoint Platform command-line interface.
 
-== Logging
+== Configure Logging
 
-All log messages from your application are captured by the CloudHub logging service and available through the log search tool in the Runtime Manager console.
-To expose additional information in your logs for diagnostic or audit purposes, use the
-xref:mule-runtime::logger-component-reference.adoc[Logger component] for fine-grained logging of message content.
+The CloudHub logging service captures all log messages from your application.
+You can view logs in the *Logging* tab in the Runtime Manager console.
+To expose additional information in your logs for diagnostic or audit purposes,
+use the xref:mule-runtime::logger-component-reference.adoc[Logger component].
 
 [IMPORTANT]
-On CloudHub, after you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before being purged. This allows you to recover the data if needed. Open a support case at: https://help.mulesoft.com[MuleSoft Help Center] for more information.
+On CloudHub, after you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before being purged 
+so you can recover the data if needed.
+For more information, open a support case at https://help.mulesoft.com[MuleSoft Help Center].
 
 == Package Third-Party Libraries
 
-CloudHub provides services in the platform that support connecting over different protocols and transforming many data formats.
+CloudHub provides services in the platform that support connecting over different protocols
+and transforming many data formats.
 All the standard Mule libraries are included and available to your application.
 If you need to include another third-party library, you can package that library
 in the application JAR file.
@@ -65,38 +72,36 @@ For information, see xref:mule-runtime::intro-packaging.adoc[Introduction to Mul
 
 == Access Resources Behind the Firewall
 
-When developing an application that needs to access resources from inside your firewall, you can configure a xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud (Anypoint VPC)] to host your xref:cloudhub-architecture.adoc#cloudhub-workers[CloudHub workers] and configure an IPSec tunnel to access your applications.
+When developing an application that needs to access resources from inside your firewall,
+you can configure Anypoint Virtual Private Cloud (Anypoint VPC) to host your CloudHub workers and 
+configure an IPSec tunnel to access your applications.
 
 
 == Access Third-Party APIs and Services
 
-CloudHub includes connectors for many third party applications, such as Salesforce, NetSuite, Twitter, and others. Anypoint Studio includes a few of the most common ones out of the box for developing with CloudHub, and the xref:connector-devkit::index.adoc[Anypoint Connector DevKit] documentation provides more detail on how to find and deploy these connectors with your application.
+MuleSoft provides connectors for many third-party applications,
+such as Salesforce, NetSuite, and Twitter.
+For information about how to find and use connectors with your application, see the
+xref:connectors::introduction/introduction-to-anypoint-connectors.adoc[Introduction to Anypoint Connectors].
+In addition, you can create your own connectors using Anypoint Connector DevKit. 
 
-== Secure Properties
+== Use Secure Properties
 
-Note that you can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console. See xref:secure-application-properties.adoc[Secure Application Properties] for more information.
-
-== Add a UI for Your Application
-
-Applications deployed to CloudHub can have a web UI using HTML and JavaScript. The AJAX Module provides support for interacting with your application from the browser and provides support for serving up static content.
+You can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console.
+For information, see xref:secure-application-properties.adoc[Secure Application Properties].
 
 
 
 == See Also
 
+
+* xref:connectors::http/http-connector.adoc[HTTP Connectors]
 * xref:deployment-strategies.adoc[Deployment Options]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
 * xref:studio::index.adoc[Anypoint Studio]
 * xref:managing-deployed-applications.adoc[Manage Deployed Applications]
-* xref:cloudhub.adoc[CloudHub]
-* xref:cloudhub-architecture.adoc[CloudHub Architecture]
-* xref:monitoring.adoc[Monitor Applications]
-* xref:cloudhub-fabric.adoc[Clustering]
-* xref:managing-queues.adoc[Manage Queues]
-* xref:managing-application-data-with-object-stores.adoc[Manage Application Data with Object Stores]
 * xref:anypoint-platform-cli.adoc[Anypoint Platform Command-Line Interface]
-* xref:secure-application-properties.adoc[Secure Application Properties]
 * xref:viewing-log-data.adoc[View Log Data]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
-* xref:penetration-testing-policies.adoc[Run Vulnerability Assessment and Penetration Tests]
+* xref:connector-devkit::index.adoc[Anypoint Connector DevKit]
+* xref:secure-application-properties.adoc[Secure Application Properties]
