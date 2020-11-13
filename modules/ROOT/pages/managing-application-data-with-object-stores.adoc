@@ -12,10 +12,10 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 CloudHub includes application data storage for each application it manages.
 This data is accessible through the Mule object store and Object Store v2 functionality.
 
-Object Stores can be used to store anything, but two of its main uses are:
+Object stores can be used to store anything, but two of the main uses are:
 
-* Storing synchronization state:  Your application may need to keep track of the last synchronized record, so that the next time the application synchronizes, it can resume where it left off.
-* OAuth tokens: OAuth enabled connectors can store tokens inside an Object Store with a few lines of configuration code.
+* Storing synchronization state: Your application might need to keep track of the last synchronized record, so that the next time the application synchronizes, it can resume where it left off.
+* OAuth tokens: OAuth-enabled connectors can store tokens inside an object store with a few lines of configuration code.
 
 Your application can also store custom integration data as well, within the limits outlined below.
 
