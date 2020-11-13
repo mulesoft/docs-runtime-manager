@@ -117,30 +117,6 @@ The value in curly brackets (`{   }`) is treated as a variable:
 [IMPORTANT]
 DLBs don't support patterns in the *Output Path* (`appURI`).
 
-If you set up a DNS CNAME record to map `example.com` to `_lb-name_.lb.anypointdns.net`,
-you can then use a mapping rule to map `app.example.com` to a different deployed CloudHub Mule application name.
-
-You can route external requests to `+https://app.example.com+` to `+http://app.cloudhub.io/example+`:
-
-[%header,cols="10a,20a,20a,20a,10a"]
-|===
-| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
-|1 | app.example.com | app | /example | http
-|===
-
-Alternatively, you can define a pattern to hold the input value:
-
-[%header,cols="10a,20a,20a,20a,10a"]
-|===
-| Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
-|1 | example.com/{myPattern} | app-{myPattern} | /data | http
-|===
-
-In this case, both `example.com/bookings` and `example.com/sales` match `app-bookings/data` and `app-sales/data` respectively, because the variable `_myPattern_` holds these values.
-
-* If the input is `bookings.example.com`, the pattern resolves if the value of `_myPattern_` is `bookings`. 
-* If the input is `sales.example.com`, the pattern resolves if the value of `_myPattern_` is `sales`.
-
 
 === URL Mapping
 
