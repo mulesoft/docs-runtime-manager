@@ -34,11 +34,9 @@ You can create a mapping rule to rename the Mule application, so it can be acces
 
 For example, suppose you deploy a Mule application named myApp-myCompany-prod.cloudhub.io. CloudHub domain names must be globally unique among every other MuleSoft customer and Mule application. A dedicated load balancer helps you hide this naming complexity within your corporate DNS domain name.
 
-You can set a mapping rule in your dedicated load balancer so external clients can access the Mule application on `+http://myApp.lb-name.lb.anypointdns.net+`, or `+https://myApp.lb-name.lb.anypointdns.net:443+`.
+You can set a CNAME record in your corporate DNS nameserver to mask the `lb-name.lb.anypointdns.net` domain to your company's "vanity" domain.
 
-In addition, you can set a CNAME record in your corporate DNS nameserver to mask the `lb-name.lb.anypointdns.net` domain to your company's "vanity" domain.
-
-For example, suppose your company owns the DNS domain `example.com`. You can create a CNAME record to route requests to `myapp.example.com` to `myApp.lb-name.lb.anypointdns.net`. This hides the complexity of the CloudHub domain name in the `cloudhub.io` domain.
+For example, suppose your company owns the DNS domain `example.com`. You can create a CNAME record to route requests to `myapp.example.com` to a Cloudhub appllication named `myapp` using the `{subdomain}` pattern. This hides the complexity of the CloudHub domain name in the `cloudhub.io` domain.
 
 == Routing Internal Requests to the Dedicated Load Balancer
 
