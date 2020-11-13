@@ -110,12 +110,12 @@ See <<Alert Conditions>>.
 The subject of the alert email to send when the alert is triggered
 +
 The subject can include variables.
-See <<Alert Properties>>.
+See <<Alert Variables>>.
 * *Message*
 +
 The body text for the email to send when the alert is triggered.
 The message body can include variables.
-See <<Alert Properties>>.
+See <<Alert Variables>>.
 * *Recipients*
 +
 The recipients of the alert email
@@ -353,13 +353,14 @@ For the description of each variable, see <<var-defs>>.
 |===
 | Alert Type | Alert | Applicable Variables
 2+| All Alerts | `${resource}` `${severity}` `${state}` 
-2+| All App Alerts | `${app}`
-.6+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}`
+.7+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}`
 | *Memory usage - CloudHub* 
 | *Custom application notification* | `${user}` `${priority}` `${transactionId}` `${message}`
 | *Deployment failed* |  `${user}` `${message}`
 | *Deployment success* .2+| `${user}`
 | *Worker not responding*
+| *Exceeds event traffic threshold* | `${period}` `${periodTimeUnit}`
+
 
 .4+|Hybrid App Alerts | All Hybrid App Alerts| `${name}`
 | *Number of Mule messages* .3+| `${currentValue}` `${threshold}` `${location}`
@@ -401,7 +402,6 @@ For the description of each variable, see <<var-defs>>.
 .Variable Definitions
 |===
 |Variable |Definition 
-|`${app}` |Name of the application that triggers the alert
 |`${clusterName}`|Name of the cluster
 |`${currentValue}` |Current value of metric that triggers the alert
 |`${comparison}`| Above or Below 
@@ -409,7 +409,10 @@ For the description of each variable, see <<var-defs>>.
 |`${location}`| Where to find more information about the alert 
 |`${memberName}`|Name of the node in a server group or cluster 
 |`${message}` |Message from the notification that trigger the alert
-|`${name}` |Name of the target (server, server group, or cluster) that triggers the alert
+|`${name}` a|Name of the item that triggers the alert:
+
+* Hybrid Apps: Name of the app that triggers the alert
+* Servers: Name of the target (server, server group, or cluster) that triggers the alert 
 |`${newVersion}`|New version number for the agent or runtime 
 |`${oldVersion}`|Previous version number for the agent or runtime
 |`${operator}` | An operator, such as `< > =`
@@ -418,7 +421,10 @@ For the description of each variable, see <<var-defs>>.
 |`${period}` |Period of time over which to measure
 |`${periodTimeUnit}` |Period of time unit 
 |`${priority}` |Priority of the notification that triggers the alert 
-|`${resource}` | Name of the resource, such as server or app, that triggers the alert 
+|`${resource}` a| Name of the item that triggers the alert:
+
+* CloudHub Apps: Name of the app that triggers the alert
+* Hybrid Apps: Name of the resource in the app that triggers the alert
 |`${severity}` | Severity of the alert
 |`${state}` | State of the resource that triggers the alert, such as Running or Disconnected
 |`${threshold}` |Count over the period of time that triggers the alert
