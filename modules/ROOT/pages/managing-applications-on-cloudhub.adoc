@@ -126,7 +126,7 @@ CloudHub supports updating your application so users of your HTTP APIs experienc
 |===
 
 [IMPORTANT]
-If the applicaiton is using Static IPs, an update may not be completely zero down time. During the very short time period where the Static IP transfers from the old to the new version of the application, the application will not be responsive. Please ensure the client has retry relevant retry mechanisms to account for this.
+If an application uses static IPs, updates might cause up to one minute of downtime while CloudHub reassigns the static IP address from the previous version of the application to the new version. Ensure that the client includes the necessary retry mechanisms to account for the downtime.
 
 == Static IPs
 
