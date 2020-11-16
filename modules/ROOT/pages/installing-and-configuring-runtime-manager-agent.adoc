@@ -57,7 +57,7 @@ The agent is bundled with the Mule runtime engine installation.
 
 To install the agent:
 
-. xref:4.2@mule-runtime::runtime-installation-task.adoc[Download and install Mule].
+. xref:mule-runtime::runtime-installation-task.adoc[Download and install Mule].
 . Run `$MULE_HOME/bin/amc_setup` and specify parameters for your installation.
 +
 See <<amc_setup Parameters>>.
@@ -95,7 +95,7 @@ See <<amc_setup Parameters>>.
 . Restart Mule or the API gateway runtime.
 
 
-== Update the Runtime Manager Agent
+== Update the Agent
 
 If you previously installed the agent with an earlier version of `amc_setup`, you can update the agent and retain your existing agent configuration in `$MULE_HOME/conf/mule-agent.yml`.
 
@@ -103,10 +103,10 @@ If you keep your `mule-agent.yml` file, ensure that these changes are applied:
 
 * When upgrading to versions 1.12.0 and later:
 +
-See xref:release-notes::runtime-manager-agent/runtime-manager-agent-1.12.0-release-notes.adoc#upgrade-requirements[Upgrade Requirements].
+See xref:release-notes::runtime-manager-agent/runtime-manager-agent-1.12.x-release-notes.adoc#1-12-0[Upgrade Requirements].
 * When upgrading to versions 2.2.0 and later:
 +
-See xref:release-notes::runtime-manager-agent/runtime-manager-agent-2.2.0-release-notes.adoc#upgrade-requirements[Upgrade Requirements].
+See xref:release-notes::runtime-manager-agent/runtime-manager-agent-2.2.x-release-notes.adoc#2-2-0[Upgrade Requirements].
 
 To update an existing Runtime Manager agent:
 
@@ -127,13 +127,43 @@ See xref:monitoring::am-installing.adoc#update-the-anypoint-monitoring-agent[Upd
 When you update the agent, the `amc_setup` script:
 
 * Backs up the current version of the agent:
-** Archives the `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER` to `$MULE_HOME/tools/mule-agent-backup.zip`
-** Archives any custom modules (usually located in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules`) to `$MULE_HOME/tools/mule-agent-modules-backup.zip`
-* Updates agent libraries in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib`
+** Archives the `$MULE_HOME/server-plugins/mule-agent-plugin` to `$MULE_HOME/tools/mule-agent-backup.zip`
+** Archives any custom modules (usually located in `$MULE_HOME/server-plugins/mule-agent-plugin/lib/modules`) to `$MULE_HOME/tools/mule-agent-modules-backup.zip`
+* Updates agent libraries in `$MULE_HOME/server-plugins/mule-agent-plugin/lib`
 * Retains the current `$MULE_HOME/conf/mule-agent.yml` configuration file
-* Leaves modules in `$MULE_HOME/plugins/MULE_AGENT_PLUGIN_FOLDER/lib/modules` unchanged
+* Leaves modules in `$MULE_HOME/server-plugins/mule-agent-plugin/lib/modules` unchanged
 +
-This folder contains all custom modules added to the agent (not included in the agent distribution).
+This directory contains all custom modules added to the agent (not included in the agent distribution).
+
+== Roll Back the Agent
+
+If you need to roll back the agent, for example, if problems occur when you update the agent,
+restore the previous version from the `mule-agent-backup.zip` file.
+This ZIP file includes libraries, configuration files, and compiled classes for the agent.
+
+To roll back the agent:
+
+. Stop Mule or the API gateway runtime.
+. Change to the `mule-agent-plugin` directory:
++
+`cd $MULE_HOME/server-plugins/mule-agent-plugin`
+. Ensure that you are in the `mule-agent-plugin` directory:
++
+`pwd`
+. Remove the existing agent files:
++
+`rm -r *`
+. Copy the backup ZIP file to the `mule-agent-plugin` directory:
++
+`cp $MULE_HOME/tools/mule-agent-backup.zip .`
+. Restore the previous version of the agent from the backup ZIP file:
++
+`unzip mule-agent-backup.zip`
+. Remove the backup ZIP file:
++
+`rm mule-agent-backup.zip`
+. Restart Mule or the API gateway runtime.
+
 
 == Uninstall the Agent
 
@@ -142,9 +172,11 @@ To uninstall the agent:
 . Stop Mule or the API gateway runtime.
 . Remove these files:
 +
-`$MULE_HOME/conf/mule-agent.jks`
-+
-`$MULE_HOME/conf/mule-agent.yml`
+[source,console,linenums]
+----
+$MULE_HOME/conf/mule-agent.jks
+$MULE_HOME/conf/mule-agent.yml
+----
 . Restart Mule or the API gateway runtime.
 
 
@@ -430,6 +462,8 @@ You can test whether the service is available at `_API_PLATFORM_HOST_/apiplatfor
 |Specifies the service location URL of your Auth Proxy, for example, `+https://10.0.0.3:8080+`.
 
 |===
+
+
 
 
 == See Also
