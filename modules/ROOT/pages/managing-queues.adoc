@@ -38,10 +38,13 @@ The *Queues* tab is useful for the following use cases:
 
 To enable queues:
 
-.  Deploy an application to CloudHub that includes one or more xref:3.8@mule-runtime::vm-transport-reference.adoc[VM endpoints] or that includes a flow set to the queued-asynchronous xref:3.8@mule-runtime::flow-processing-strategies.adoc[processing strategy].
-.  In the Runtime Manager, click the application and click *Manage Application*.
+. Deploy an application to CloudHub that includes one or more queues. 
++
+See xref:connectors::vm/vm-connector.adoc[VM Connector].
+.  In Runtime Manager, click the application and click *Manage Application*.
 .  Click the checkbox for *Persistent queues*.
-.  If you are enabling this setting when deploying an application, click *Deploy Application*. If you are updating an existing application, click *Apply Changes*.
+.  If you are enabling this setting when deploying an application, click *Deploy Application*. +
+If you are updating an existing application, click *Apply Changes*.
 +
 image::persistentqueuessetondeploy.png[PersistentQueuesSetOnDeploy]
 
@@ -114,7 +117,7 @@ When enabling persistent queues in your application, be aware of the following:
 * xref:cloudhub-fabric#persistent-queues[Persistent Queues]
 * xref:mule-runtime::reliability-patterns[Reliability Patterns]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:6@studio::index.adoc[Anypoint Studio Essentials]
+* xref:studio::index.adoc[Anypoint Studio]
 * xref:deployment-strategies.adoc[Deployment Options]
 * xref:managing-deployed-applications.adoc[Manage Deployed Applications]
 * xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]

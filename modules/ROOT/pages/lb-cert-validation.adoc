@@ -37,10 +37,10 @@ Contains the serial number used by the CA to identify the client
 The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single, unencrypted PEM-encoded file for upload. The order of items in the CRL is not important.
 
 
-To add a revocation list when you create the load balancer, use the `--crl` option with the xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command. 
+To add a revocation list when you create the load balancer, use the `--crl` option with the xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command.
 
 
-If your load balancer already exists, you can use the 
+If your load balancer already exists, you can use the
 https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
 to add or update your CRLs. To do so, send a `PATCH` request to the `/organizations/{myOrgID}/vpcs/{myVpcID}/loadbalancers/{myDlbID}` endpoint and include a `revocationList` element:
 
@@ -78,7 +78,7 @@ See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-describe-jso
 See https://stedolan.github.io/jq/[jq].
 
 
-=== Generate Authorization Bearer Token 
+=== Generate Authorization Bearer Token
 
 To generate your authorization bearer token for Anypoint Platform:
 
@@ -111,7 +111,7 @@ Using the CloudHub API, you can:
 
 
 
-=== List Available Cipher Suites 
+=== List Available Cipher Suites
 
 To list available cipher suites for an organization using the CloudHub API, run this GET call:
 
@@ -133,9 +133,9 @@ The output includes `ciphers`:
   "data": [
       {
           "id": "5b4a36e1e65c892316abd4d1",
-          "name": "NewDefault",
-          "ciphers": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384",
-          "description": "Default ciphers (new version)",
+          "name": "NewDefault-v1",
+          "ciphers": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384",
+          "description": "Default ciphers (new version)-v1",
           "defaultSuite": true
       },
       {
@@ -164,7 +164,7 @@ The output includes `ciphers`:
 }
 ----
 
-=== Display the Default Cipher Suite for a DLB 
+=== Display the Default Cipher Suite for a DLB
 
 To display the default cipher suite for a DLB using the CloudHub API, run this GET call:
 
@@ -173,7 +173,7 @@ To display the default cipher suite for a DLB using the CloudHub API, run this G
 curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID -H 'Authorization: Bearer myAccessToken' | jq
 ----
 
-In the command: 
+In the command:
 
 * _myOrgID_ is the organization ID.
 * _myVpcID_ is the ID for the VPC.
@@ -184,7 +184,7 @@ The output includes `defaultSuite`:
 
 [source,linenums]
 ----
-"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384"
 ----
 
 === Rotate the Cipher by Replacing the Default Cipher Suite
@@ -193,10 +193,10 @@ To rotate the cipher by replacing the default cipher suite for a DLB using the C
 
 [source,json,linenums]
 ----
-curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID  -H 'Authorization: Bearer myAccessToken' -H 'Content-Type: application/json' -d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"NewDefault"}]' | jq
+curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID  -H 'Authorization: Bearer myAccessToken' -H 'Content-Type: application/json' -d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"NewDefault-v1"}]' | jq
 ----
 
-In the command: 
+In the command:
 
 * _myOrgID_ is the organization ID.
 * _myVpcID_ is the ID for the VPC.
@@ -208,33 +208,19 @@ The output now includes `defaultCipherSuite`:
 
 [source,linenums]
 ----
-"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384"
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384"
 ----
 
 
-=== Recommended Cipher Suites 
+=== Recommended Cipher Suites
 
 The following recommended cipher suites provide a good balance between compatibility and security for your SSL endpoint:
 
 ----
+ECDHE-RSA-AES256-GCM-SHA512
+DHE-RSA-AES256-GCM-SHA512
 ECDHE-RSA-AES256-GCM-SHA384
-ECDHE-RSA-AES128-GCM-SHA256
 DHE-RSA-AES256-GCM-SHA384
-DHE-RSA-AES128-GCM-SHA256
-ECDHE-RSA-AES256-SHA384
-ECDHE-RSA-AES128-SHA256
-ECDHE-RSA-AES256-SHA
-ECDHE-RSA-AES128-SHA
-DHE-RSA-AES256-SHA256
-DHE-RSA-AES128-SHA256
-DHE-RSA-AES256-SHA
-DHE-RSA-AES128-SHA
-AES256-GCM-SHA384
-AES128-GCM-SHA256
-AES256-SHA256
-AES128-SHA256
-AES256-SHA
-AES128-SHA
 ----
 
 Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8) does not.

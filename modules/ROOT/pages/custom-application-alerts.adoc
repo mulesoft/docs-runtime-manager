@@ -36,7 +36,10 @@ This example illustrates:
 * How to send email alerts when notifications arrive
 
 [NOTE]
-CloudHub supports up to 1000 notifications per application and up to 10,000 characters per notification message.
+CloudHub stores up to a maximum of 1000 notifications per application.
+If the number of notifications exceeds the maximum,
+CloudHub deletes the oldest notification.
+Each notification can contain up to 10,000 characters.
 
 == Deploy Your Application
 
