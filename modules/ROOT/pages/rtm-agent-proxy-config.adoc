@@ -17,7 +17,13 @@ The Runtime Manager agent supports only the basic access authentication method.
 
 == Configure the Agent to Connect Through a Proxy Server 
 
-Running the `amc_setup` command creates the `$MULE_HOME/conf/mule-agent.yml` file. 
+To configure the agent to connect through a proxy server, you must:
+
+* Run the `amc_setup` command to create the `$MULE_HOME/conf/mule-agent.yml` file.
+* Set up your proxy server configuration in the `$MULE_HOME/conf/wrapper.conf` file. 
+
+
+=== Run amc_setup to Create mule-agent.yml
 
 If you have previously installed the Runtime Manager agent and want to change the configuration to use a proxy, you can add the proxy configuration to the `mule-agent.yml` file.
 
@@ -41,21 +47,30 @@ _proxy-password_::
 Optionally specifies the password for the authentication _proxy-user_, if required.
 
 
-=== Example amc_setup Command Lines
-
 This example configures the agent to work with a proxy server (`acme.proxy.com`) and specifies a Runtime Manager token:
 
-[source, console,linenums]
+[source, console, linenums]
 ----
 amc_setup -H myToken myMuleServer -P acme.proxy.com 443
 ----
 
 This example configures the agent to work with a proxy server that requires authentication:
 
-[source,console,linenums]
+[source, console, linenums]
 ----
 amc_setup -H myToken myMuleServer -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
 ----
+
+=== Set Up Proxy Server Configuration in the wrapper.conf File
+
+To specify proxy server configuration in the `$MULE_HOME/conf/wrapper.conf` file,
+add your proxy server information to the following properties:
+
+* `anypoint.platform.proxy_host=_hostname_`
+* `anypoint.platform.proxy_port=_port_`
+* `anypoint.platform.proxy_username=_username_`
+* `anypoint.platform.proxy_password=_password_`
+
 
 == Verify That the Proxy Server Does Not Modify the Runtime Manager Certificate 
 
@@ -129,7 +144,7 @@ Replace the value of `password` in the `proxyConfiguration` element with the enc
 globalConfiguration:
   ...
   authenticationProxy:
-    endpoint: +https://arm-auth-proxy.prod.cloudhub.io+
+    endpoint: https://arm-auth-proxy.prod.cloudhub.io
   proxyConfiguration:
     password: "![PBEWITHSHA1ANDDESEDE,CmDci1pRMI+1gH89akTNFb/EjZ26pfIX]"
 ----
@@ -137,19 +152,14 @@ globalConfiguration:
 The encrypted phrase starts with *!* and is enclosed in square brackets *[ ]*.
 . Start Mule and pass the master password that you used in Step 2:
 +
-`$MULE_HOME/bin/mule service start -M-Dmule.agent.configuration.password=_master-password_`
+--
+[source,console,linenums]
+----
+$MULE_HOME/bin/mule service start -M-Dmule.agent.configuration.password=master-password
+----
+--
 
 
-== Proxy Server Configuration in the wrapper.conf File
-
-You can configure your proxy server in either the `$MULE_HOME/conf/mule-agent.yml` file or in the `$MULE_HOME/conf/wrapper.conf` file. If you configure it in both, the agent uses the configuration in `mule-agent.yml`.
-
-To specify proxy server configuration in `wrapper.conf`, add your proxy server information to the following properties:
-
-* `anypoint.platform.proxy_host=_hostname_`
-* `anypoint.platform.proxy_port=_port_`
-* `anypoint.platform.proxy_username=_username_`
-* `anypoint.platform.proxy_password=_password_`
 
 
 == Known Issues
