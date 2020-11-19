@@ -1432,7 +1432,8 @@ You can start typing your application's name and press `tab` for Anypoint Platfo
 You will have to provide the absolute or relative path to the deployable ZIP file in your local hard drive and the name you give to your application has to be unique.
 
 [NOTE]
-This command's output includes `Status`, which is the application's previous deployment status state.
+If successful, this command's output includes the deployment status of `UNDEPLOYED`,
+which indicates that CloudHub uploaded the application successfully.
 
 The options this command can take are:
 [%header,cols="30a,70a"]
@@ -1482,6 +1483,9 @@ If you deploy without using any options, your application will deploy using all 
 This command updates the settings of an existing application. Optionally you can update it by uploading a new ZIP file. +
 You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 This command can take all the same options as the `deploy` option.
+
+[NOTE]
+This command's output includes `Status`, which is the application's previous deployment status state.
 
 You can also start typing your option and press `tab` for Anypoint Platform CLI to autocomplete it for you.
 
