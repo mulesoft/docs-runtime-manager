@@ -77,28 +77,6 @@ In addition, the following endpoints use WebSockets:
 |Region |Name |IP Address
 |*US*|runtime-manager.anypoint.mulesoft.com |18.214.68.14
 |*US*|runtime-manager.anypoint.mulesoft.com |35.174.151.175
-|*US-GOV*|runtime-manager.gov.anypoint.mulesoft.com |52.61.85.119
-|*US-GOV*|runtime-manager.gov.anypoint.mulesoft.com |3.32.47.1
-|*US-GOV*|runtime-manager.gov.anypoint.mulesoft.com |160.1.154.225
-|===
-
-* Whitelist these static IPs in the `US` region to access the `data-authenticator` hosts:
-+
-[%header,cols="10a,60a,30a"]
-|===
-|Region |Name |IP Address
-|*US-GOV*|data-authenticator.gov.anypoint.mulesoft.com |15.200.57.78
-|*US-GOV*|data-authenticator.gov.anypoint.mulesoft.com |15.200.174.74
-|*US-GOV*|data-authenticator.gov.anypoint.mulesoft.com |160.1.51.12
-|===
-
-* Whitelist these static IPs in the `US` region to access the MuleSoft Government Cloud hosts:
-+
-[%header,cols="10a,60a,30a"]
-|===
-|Region |Name |IP Address
-|*US*|gov.anypoint.mulesoft.com |52.61.24.192
-|*US*|gov.anypoint.mulesoft.com |52.61.103.227
 |===
 
 * Whitelist these static IPs in the `EU` region to access the `mule-manager` hosts:
@@ -125,7 +103,7 @@ Some of the IP addresses used by Anypoint Platform services are assigned automat
 
 Many firewall devices allow you to define Layer 7 firewall rules so that you can filter by destination name or application type.
 
-Include the following hostnames in your Layer 7 firewall rules:
+Include the following fully qualified hostnames in your Layer 7 firewall rules:
 
 [%header,cols="10a,60a"]
 |===
