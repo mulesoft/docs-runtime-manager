@@ -1612,7 +1612,11 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application modify [options] <identifier> <zipfile>
 ----
 
-This command modifies the standalone application passed in `identifier` with the ZIP file application passed in `zipfile` as a path. +
+This command modifies the standalone application passed in `identifier` with the ZIP file application passed in `zipfile` as a path.
+
+The `identifier` parameter specifies the application identifier. For information about using the Runtime Manager REST API to retrieve the identifier for applications deployed on-premises, see 
+https://help.mulesoft.com/s/article/How-to-get-a-list-of-applications-via-Anypoint-Platform-APIs[How to get a list of applications via Anypoint Platform APIs].
+
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr standalone-application start
