@@ -9,6 +9,9 @@ When you create an Anypoint Virtual Private Cloud (Anypoint VPC), you can add yo
 [NOTE]
 Keep in mind that the firewall rules that you configure in your Anypoint VPC check inbound connections only to your workers, and not to the Anypoint VPC, your dedicated load balancer, or the publicly accessible load balancer.
 
+
+== Default Firewall Rules
+
 By default, all traffic to your VPC is blocked unless it's explicitly allowed in a firewall rule.
 When you create an Anypoint VPC, four firewall rules are created by default:
 
@@ -54,6 +57,14 @@ These rules allow traffic from any host to reach your workers through ports 8081
 These ports are used by CloudHub's shared load balancer to proxy external requests to your workers.
 You can remove these rules if you don't want your internal workers to be reached by the publicly accessible load balancer.
 ====
+
+== Firewall Rule Limits
+
+You can configure approximately 35 firewall rules per VPC, depending on the number of rules CloudHub requires, which might change.
+
+If you create more than the number of available firewall rules,
+the VPC returns an error, indicating that you have reached the maximum number of rules.
+
 
 [[configurefirewall]]
 == Configure Firewall Rules
