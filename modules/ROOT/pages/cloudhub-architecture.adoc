@@ -60,8 +60,7 @@ CloudHub platform services are responsible for coordinating all aspects of the p
 
 == CloudHub Workers
 
-Applications on CloudHub are run by one or more instances of Mule runtime engine, called *workers*.
-Each worker is a dedicated instance of Mule that runs your integration application.
+_Workers_ are dedicated instances of Mule runtime engine that run your integration applications on CloudHub.
 
 Workers have the following characteristics:
 
@@ -108,10 +107,10 @@ Workers with 1 or more vCores:
 Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
 If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access additional storage in `/tmp`.
 
-Only running applications count toward workers usage.
+Only running applications count toward worker usage.
 
-If your applications require more vCores than you are allocated, CloudHub allows you to create the application, but you cannot start it until the additional vCores become available.
-To increase vCore allocation, stop another application or contact your account manager to increase the vCore allocation in your subscription.
+If your applications require more vCores than are available, CloudHub allows you to create the application, but you cannot start it until the additional vCores become available.
+To increase vCore allocation, stop another application or contact your account manager to increase your subscription's vCore allocation.
 
 The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
 The initial metaspace size is 128 MB; metaspace garbage collection begins after the metaspace reaches that threshold.
@@ -119,7 +118,7 @@ The initial metaspace size is 128 MB; metaspace garbage collection begins after 
 You can scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
 See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
 
-CloudHub monitors workers to verify that they are operating properly.
+CloudHub monitors workers to verify that they are operating correctly.
 If you enable automatic restarts, CloudHub also automatically restarts applications, if necessary.
 
 
