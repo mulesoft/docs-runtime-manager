@@ -23,7 +23,7 @@ CloudHub provides a default shared load balancer that is available in all enviro
 
 Additionally, shared load balancers have lower rate limits that help ensure platform stability. MuleSoft regularly monitors and scales these limits as necessary. Rate limits on shared load balancers are applied according to region. If you are deploying an application to workers in multiple regions, the rate limit for each region might be different.
 
-If an application exceeds the rate limit for a shared load balancer, the load balancer returns a 503 Service Unavailable response.
+If an application exceeds the rate limit for a shared load balancer, the load balancer returns a 429 Service Unavailable response.
 
 To perform custom load balancer configuration or have higher rate limit thresholds, you must use a dedicated load balancer.
 
