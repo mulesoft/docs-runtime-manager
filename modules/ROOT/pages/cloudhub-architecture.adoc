@@ -26,8 +26,8 @@ image::architecture-diagram.png[]
 
 [cols="10a,45a,45a"]
 |===
-|  |<<Integration Applications>> |The applications that you create and deploy to CloudHub to perform integration logic for your business
-|image:blue-1.png[] |<<Runtime Management Console>> |The user interface that enables you to deploy and monitor integrations, and configure your account
+|  |<<Integration Applications>> |Applications that you create and deploy to CloudHub to perform integration logic for your business
+|image:blue-1.png[] |<<Runtime Management Console>> |User interface that enables you to deploy and monitor integrations, and configure your account
 
 |image:blue-2.png[] |<<Platform Services>> |Shared CloudHub platform services and APIs, which includes CloudHub Insight, alerting, logging, account management, virtual private cloud/secure data gateway, and load balancing
 
@@ -115,7 +115,7 @@ To increase vCore allocation, stop another application or contact your account m
 The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
 The initial metaspace size is 128 MB; metaspace garbage collection begins after the metaspace reaches that threshold.
 
-You can scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
+You can scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workloads across workers.
 See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
 
 CloudHub monitors workers to verify that they are operating correctly.
