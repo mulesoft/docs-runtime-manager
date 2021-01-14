@@ -1276,12 +1276,12 @@ This command copies the Exchange asset from `<source>` to `<target>`. +
 Arguments `<source>` and `<target>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
-Besides the default --help, -f/--fields and -o/--output options, this command also accepts:
+This command accepts the default options `--help`, `-f/--fields`, and `-o/--output`, and also:
 
 [%header,cols="30a,40a,30a"]
 |===
 | Command | Description |  Example
-|`--targetOrganizationId` | Organization id to copy asset into | `exchange asset copy --targetOrganizationId organization_id source_group_id/source_asset_id/source_version target_group_id/target_asset_id/target_version`
+|`--targetOrganizationId` | Organization ID to copy asset into | `exchange asset copy --targetOrganizationId organization_id source_group_id/source_asset_id/source_version target_group_id/target_asset_id/target_version`
 |===
 
 === exchange asset delete
