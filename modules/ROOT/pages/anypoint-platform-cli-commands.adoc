@@ -1110,7 +1110,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > exchange asset upload [options] <assetIdentifier> [filePath]
 ----
 
-This command uploads an OAS, WSDL, HTTP, or custom asset using the IDs passed in `<assetIdentifier>`. +
+This command uploads an OAS, RAML, WSDL, HTTP, or custom asset using the IDs passed in `<assetIdentifier>`. +
 If `<filePath>` points to a ZIP archive file, that archive must include an `exchange.json` file describing the asset. +
 Argument `assetIdentifier` should be formatted as follows: `<group_id>/<asset_id>/<version>`.
 
@@ -1125,7 +1125,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 `exchange asset upload --mainFile 'api.yml'`
 | `--name` |Asset name 
 | `--mainFile` | Main file of the API asset 
-| `--classifier` | Valid asset classifiers are `custom`, `oas`, and `wsdl`.
+| `--classifier` | Valid asset classifiers are `oas`, `raml`, `wsdl`, `http`, and `custom`.
 |===
 
 === exchange asset modify
