@@ -1622,13 +1622,18 @@ xref:anypoint-platform-cli-commands.adoc#runtime-mgr-standalone-application-list
 
 In addition to the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
-[%header,cols="30,50,30a"]
+[%header,cols="30,50a,30a"]
 |===
 |Value |Description | Example
-| `--insight` | Store message metadata of every Mule transaction. |
-| `--log [level:scope]` | Set logging level (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF) and scope pair.
+| `--insight` | Stores message metadata of every Mule transaction. |
+| `--log [level:scope]` | Setx the logging level and scope pair:
 
-To set multiple logging levels, provide multiple `--log` options.| `--log INFO:module1 --log WARN:critModule`
+* `level`: TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF
+* `scope`: package name of the class, connector, or module to log, such as `org.mule.extension.ftp` for Anypoint Connector for FTP
+
+To set multiple logging levels, provide multiple `--log` options.| `--log INFO:org.apache
+
+--log WARN:org.mule`
 |===
 
 
