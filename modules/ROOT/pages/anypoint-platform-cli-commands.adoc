@@ -1597,7 +1597,7 @@ The `targetIdentifier` parameter can be either a target ID or name. +
 A target can be either a server, server group, or cluster. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-You can also use <<runtime-mgr standalone-application modify>> to redeploy an app.
+To redeploy an app and set a logging level or turn on Insight event tracking , see <<runtime-mgr standalone-application modify>>.
 
 === runtime-mgr standalone-application describe-json
 
@@ -1620,8 +1620,16 @@ The `identifier` parameter specifies the application identifier.
 To retrieve the identifier, see
 xref:anypoint-platform-cli-commands.adoc#runtime-mgr-standalone-application-list[runtime-mgr standalone-application list].
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+In addition to the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
 
+[%header,cols="30,50,30a"]
+|===
+|Value |Description | Example
+| `--insight` | Store message metadata of every Mule transaction. |
+| `--log [level:scope]` | Set logging level (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF) and scope pair.
+
+To set multiple logging levels, provide multiple `--log` options.| `--log INFO:module1 --log WARN:critModule`
+|===
 
 
 === runtime-mgr standalone-application start
