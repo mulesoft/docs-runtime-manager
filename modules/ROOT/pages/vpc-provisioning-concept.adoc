@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: vpc-management-permission-topic.adoc
 
 Provisioning an Anypoint VPC for your organization consists of two major steps:
 
@@ -58,7 +59,7 @@ Due to this structure, the smallest network subnet block you can assign for your
 
 The safe rule of thumb for deciding the size of your Anypoint VPC subnet is to calculate 10 times the maximum number of expected apps to deploy in the VPC.
 
-== FAQ: Where To Place an Anypoint VPC Inside my Organization
+== FAQ: Where to Place an Anypoint VPC inside My Organization
 
 As an organization administrator, you can create an Anypoint VPC and share it with any business group within your main organization. +
 However, once the Anypoint VPC is inherited by a business group, only the administrator of said business group can operate the Anypoint VPC. For example, an Anypoint organization administrator or a business group owner can create or update an existing Anypoint VPC (owned or inherited) to make it the default for either the region, the environment, or both. +
