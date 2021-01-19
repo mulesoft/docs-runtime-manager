@@ -16,6 +16,21 @@ The whitelist works for inbound connections at the load-balancer level only, not
 
 You can either add the whitelisted IP addresses when you create the DLB or add them to an existing DLB using either Runtime Manager or the command-line interface.
 
+== DLB Whitelist Entry Limits
+
+The maximum number of IP address entries that you can add to the DLB whitelist depends on the inbound HTTP mode setting in the DLB configuration, which specifies the behavior of the DLB when receiving an HTTP request.
+
+[%header,cols="20,20a"]
+|===
+|Inbound HTTP Mode | Maximum Whitelisted Entries
+|*Off* | 240
+|*On* | 120 
+|*Redirect* | 120
+|===
+
+[NOTE]
+If the number of entries in the DLB whitelist exceeds 120, you can't set HTTP mode to *On*.
+
 == Add an IP Address to the Whitelist of an Existing DLB
 
 To add an IP address to the whitelist of a DLB using Runtime Manager:

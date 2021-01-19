@@ -20,33 +20,31 @@ Manage CloudHub with the Anypoint Runtime Manager console in Anypoint Platform. 
 See xref:deployment-strategies.adoc[Deployment Options] for a better understanding of the different possible deployment scenarios, including on-premises and Anypoint Platform Private Cloud Edition (Anypoint PCE).
 ====
 
-== CloudHub Architecture
-
 To understand CloudHub’s approach to security and availability, it’s important to understand the architecture behind CloudHub.  It includes two major components--Anypoint platform services, and the worker cloud. These two components and the Runtime Manager console through which you access them work together to run your integration applications.
 
 image::architecture-diagram.png[]
 
 [cols="10a,45a,45a"]
 |===
-|  |<<Integration Applications>> |These are applications that you create and deploy to CloudHub to perform integration logic for your business.
-|image:blue-1.png[] |<<Runtime Management Console>> |The Runtime Manager console is the face of CloudHub, allowing you to deploy and monitor integrations, and configure your account, among other things.
+|  |<<Integration Applications>> |Applications that you create and deploy to CloudHub to perform integration logic for your business
+|image:blue-1.png[] |<<Runtime Management Console>> |User interface that enables you to deploy and monitor integrations, and configure your account
 
-|image:blue-2.png[] |<<Platform Services>> |This set of shared CloudHub platform services and APIs includes CloudHub Insight, alerting, logging, account management, virtual private cloud/secure data gateway, load balancing, and others.
+|image:blue-2.png[] |<<Platform Services>> |Shared CloudHub platform services and APIs, which includes CloudHub Insight, alerting, logging, account management, virtual private cloud/secure data gateway, and load balancing
 
-|image:blue-3.png[] |<<Global Worker Clouds>> |This is an elastic cloud of Mule instances that run integration applications.
+|image:blue-3.png[] |<<Global Worker Clouds>> |An elastic cloud of _workers_, Mule instances that run integration applications
 
 |===
 
 [NOTE]
 You can view the live status and detailed service history for the Runtime Manager console, platform services, and the CloudHub worker cloud on https://status.mulesoft.com/[`status.mulesoft.com`] for the default (US hosted) Control Plane and https://eu1-status.mulesoft.com/[`eu1-status.mulesoft.com`] for the EU Control Plane.
 
-=== Integration Applications
+== Integration Applications
 
 An integration application is any integration that you've built using Anypoint Studio. These applications can do everything from synchronizing data from Salesforce to a database, to publishing a SOAP or REST API, to creating complex orchestrations of business processes.
 
 For more about creating and deploying integration applications, see xref:cloudhub.adoc[CloudHub] and xref:deploying-to-cloudhub.adoc[Deploy to CloudHub].
 
-=== Runtime Management Console
+== Runtime Management Console
 
 The Runtime Manager console is integrated into the https://anypoint.mulesoft.com[Anypoint Platform]. Sign in with your Anypoint Platform credentials to upload and manage your integration applications at runtime. The console surfaces useful monitoring information from the platform services and also works as a comprehensive dashboard for both application-level and account-level management.
 
@@ -56,14 +54,13 @@ Administrator account holders can use the Anypoint Platform to xref:access-manag
 
 For more general information about CloudHub, see xref:managing-deployed-applications.adoc[CloudHub].
 
-=== Platform Services
+== Platform Services
 
-CloudHub's platform services are responsible for coordinating all aspects of the platform. They coordinate deployment of applications, monitor integrations, provide analytics data, store application data, run scheduled jobs, and more. Many of these services are also exposed through the xref:cloudhub-api.adoc[CloudHub REST API].
+CloudHub platform services are responsible for coordinating all aspects of the platform. They coordinate deployment of applications, monitor integrations, provide analytics data, store application data, run scheduled jobs, and more. Many of these services are also exposed through the xref:cloudhub-api.adoc[CloudHub REST API].
 
-=== CloudHub Workers
+== CloudHub Workers
 
-Applications on CloudHub are run by one or more instances of Mule, called *workers*.
-Each worker is a dedicated instance of Mule that runs your integration application.
+_Workers_ are dedicated instances of Mule runtime engine that run your integration applications on CloudHub.
 
 Workers have the following characteristics:
 
@@ -78,6 +75,7 @@ Each worker runs in a specific worker cloud, such as the US, EU, or Asia-Pacific
 
 The memory capacity and processing power of a worker depends on how you configure it at the application level. 
 
+Worker sizes have different compute, memory, and storage capacities.
 You can scale workers vertically by selecting one of the available worker sizes:
 
 [%header,cols="3*a"]
@@ -92,19 +90,39 @@ You can scale workers vertically by selecting one of the available worker sizes:
 |16 vCores |32 GB | 328 GB 
 |===
 
-For workers that use a fraction of a vCore, CloudHub allocates limited CPU and I/O, as well as less memory. 
-Use these worker sizes for apps with smaller workloads.
+
+Workers with 0.1 vCores and 0.2 vCores:
+
+* Provide limited CPU and I/O for apps with smaller workloads
+* Can burst to higher CPU speeds for a short time
++
+This ability helps to improve application startup times and to process infrequent, large workloads.
+If you need consistent performance, use workers with more vCores.
+
+Workers with 1 or more vCores:
+
+* Provide performance consistency
+* Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later
+
+Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
+If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access additional storage in `/tmp`.
+
+Only running applications count toward worker usage.
+
+If your applications require more vCores than are available, CloudHub allows you to create the application, but you cannot start it until the additional vCores become available.
+To increase vCore allocation, stop another application or contact your account manager to increase your subscription's vCore allocation.
 
 The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
 The initial metaspace size is 128 MB; metaspace garbage collection begins after the metaspace reaches that threshold.
 
-You can also scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workload across workers.
+You can scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workloads across workers.
 See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scaleout] and xref:cloudhub-fabric.adoc#persistent-queues[Persistent Queues].
 
-CloudHub monitors workers to verify that they are operating properly.
+CloudHub monitors workers to verify that they are operating correctly.
 If you enable automatic restarts, CloudHub also automatically restarts applications, if necessary.
 
-=== Global Worker Clouds
+
+== Global Worker Clouds
 
 CloudHub offers worker clouds in 12 different regions of the world: North America, South America, the European Union, and Asia-Pacific. This global distribution allows you to host your integration in a location that is closest to your services, thus reducing latency. It may also allow you to adhere with local laws, such as the EU Data Protection Directive. The management console and platform services are hosted in the United States.
 
@@ -129,22 +147,22 @@ The complete list of supported regions is:
 
 The domain provided for your application is based on the region to which your application is deployed. For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
 
-For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]. For more information about CloudHub's security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance whitepaper].
+For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]. For more information about CloudHub security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance] whitepaper.
 
-=== Workers and Multitenancy
+== Workers and Multitenancy
 
 Because different levels of security and isolation are needed depending on the service, the platform provides two different levels of multitenancy.
 
 * First, the worker cloud is a multitenant cloud of virtual machines. These VMs provide the security and isolation needed for your integrations to run custom code without affecting others.
 * Second, the management console and the platform services have a "shared everything" architecture – all tenants share the same web UI, monitoring services, load balancers, etc. These services do not process or transmit your data.
 
-== CloudHub Availability and Scalability
+== Availability and Scalability
 
 CloudHub is designed to be highly available and scalable through redundancy, intelligent healing, and zero-downtime updates. It also enables customers to scale and benefit from added reliability through xref:cloudhub-fabric.adoc[clustering].
 
 === Redundant Platform
 
-All of CloudHub's platform services, from load balancing to the API layer, have at least one, built-in layer of redundancy and are available in at least two data centers at all times. All data centers are at least 60 miles apart. This redundancy ensures that even if there is a data center outage, the platform remains available.
+All of CloudHub platform services, from load balancing to the API layer, have at least one, built-in layer of redundancy and are available in at least two data centers at all times. All data centers are at least 60 miles apart. This redundancy ensures that even if there is a data center outage, the platform remains available.
 
 === Intelligent Healing
 
@@ -158,7 +176,7 @@ CloudHub supports updating your applications at runtime so end users of your HTT
 
 === Clustering
 
-Clustering provides scalability, workload distribution, and added reliability to applications on CloudHub. These capabilities are powered by CloudHub's scalable load-balancing service,
+Clustering provides scalability, workload distribution, and added reliability to applications on CloudHub. These capabilities are powered by the scalable load-balancing service,
 xref:cloudhub-fabric.adoc#worker-scaleout[worker scaleout], and xref:cloudhub-fabric.adoc#persistent-queues[persistent queueing] features.
 
 ==== Worker Scale Out and Data Center Redundancy

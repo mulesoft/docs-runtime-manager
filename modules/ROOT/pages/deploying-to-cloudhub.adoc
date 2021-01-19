@@ -359,42 +359,12 @@ If you need to increase your allocation of static IP addresses, contact MuleSoft
 
 On each application, workers are responsible for executing the application logic.
 
-Worker sizes have different compute, memory, and storage capacities:
+Worker sizes have different compute, memory, and storage capacities.
 
-[%header,cols="3*a"]
-|===
-|Worker Size |Heap Memory | Storage 
-|0.1 vCores |500 MB | 8 GB
-|0.2 vCores |1 GB | 8 GB
-|1 vCore |1.5 GB | 12 GB
-|2 vCores |3.5 GB | 40 GB
-|4 vCores |7.5 GB | 88 GB
-|8 vCores |15 GB | 168 GB
-|16 vCores |32 GB | 328 GB 
-|===
+For information about worker size and vCores, see 
+xref:cloudhub-architecture.adoc#cloudhub-workers[CloudHub Workers].
 
 
-Workers with 0.1 vCores and 0.2 vCores:
-
-* Provide limited CPU and I/O for smaller workloads
-* Can burst to higher CPU speeds for a short time
-+
-This ability helps to improve application startup times and to process infrequent, large workloads.
-If you need consistent performance, use workers with more vCores.
-
-Workers with 1 or more vCores:
-
-* Provide performance consistency
-* Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later
-
-Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
-If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access additional storage in `/tmp`.
-
-Only running applications count toward workers usage.
-
-If your applications require more vCores than you are allocated, CloudHub allows you to create the application, but you cannot start it until the additional vCores become available.
-To increase vCore allocation, stop another application or contact your account manager to increase the vCore allocation in your subscription.
- 
 
 == Change Settings of a Deployed Application
 
