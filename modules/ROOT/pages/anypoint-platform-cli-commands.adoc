@@ -1110,7 +1110,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > exchange asset upload [options] <assetIdentifier> [filePath]
 ----
 
-This command uploads an OAS, WSDL, HTTP, or custom asset using the IDs passed in `<assetIdentifier>`. +
+This command uploads an OAS, RAML, WSDL, HTTP, or custom asset using the IDs passed in `<assetIdentifier>`. +
 If `<filePath>` points to a ZIP archive file, that archive must include an `exchange.json` file describing the asset. +
 Argument `assetIdentifier` should be formatted as follows: `<group_id>/<asset_id>/<version>`.
 
@@ -1125,7 +1125,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 `exchange asset upload --mainFile 'api.yml'`
 | `--name` |Asset name 
 | `--mainFile` | Main file of the API asset 
-| `--classifier` | Valid asset classifiers are `custom`, `oas`, and `wsdl`.
+| `--classifier` | Valid asset classifiers are `oas`, `raml`, `wsdl`, `http`, and `custom`.
 |===
 
 === exchange asset modify
@@ -1276,7 +1276,13 @@ This command copies the Exchange asset from `<source>` to `<target>`. +
 Arguments `<source>` and `<target>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+This command accepts the default options `--help`, `-f/--fields`, and `-o/--output`, and also:
+
+[%header,cols="30a,40a,30a"]
+|===
+| Command | Description |  Example
+|`--targetOrganizationId` | Organization ID to copy asset into | `exchange asset copy --targetOrganizationId organization_id source_group_id/source_asset_id/source_version target_group_id/target_asset_id/target_version`
+|===
 
 === exchange asset delete
 
