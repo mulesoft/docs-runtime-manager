@@ -146,7 +146,7 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |===
 |Command |Description
 |<<runtime-mgr standalone-application artifact>> | Downloads application artifact binary
-|<<runtime-mgr standalone-application deploy>> | Deploys a new application to an on-premises server, server group or cluster
+|<<runtime-mgr standalone-application deploy>> | Deploys or redeploys an application to an on-premises server, server group, or cluster
 |<<runtime-mgr standalone-application describe-json>> | Shows a raw standalone application JSON response
 |<<runtime-mgr standalone-application modify>> | Changes a standalone application artifact
 |<<runtime-mgr standalone-application start>> | Starts an standalone application
@@ -1110,7 +1110,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > exchange asset upload [options] <assetIdentifier> [filePath]
 ----
 
-This command uploads an OAS, WSDL, HTTP, or custom asset using the IDs passed in `<assetIdentifier>`. +
+This command uploads an OAS, RAML, WSDL, HTTP, or custom asset using the IDs passed in `<assetIdentifier>`. +
 If `<filePath>` points to a ZIP archive file, that archive must include an `exchange.json` file describing the asset. +
 Argument `assetIdentifier` should be formatted as follows: `<group_id>/<asset_id>/<version>`.
 
@@ -1125,7 +1125,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 `exchange asset upload --mainFile 'api.yml'`
 | `--name` |Asset name 
 | `--mainFile` | Main file of the API asset 
-| `--classifier` | Valid asset classifiers are `custom`, `oas`, and `wsdl`.
+| `--classifier` | Valid asset classifiers are `oas`, `raml`, `wsdl`, `http`, and `custom`.
 |===
 
 === exchange asset modify
@@ -1276,7 +1276,13 @@ This command copies the Exchange asset from `<source>` to `<target>`. +
 Arguments `<source>` and `<target>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+This command accepts the default options `--help`, `-f/--fields`, and `-o/--output`, and also:
+
+[%header,cols="30a,40a,30a"]
+|===
+| Command | Description |  Example
+|`--targetOrganizationId` | Organization ID to copy asset into | `exchange asset copy --targetOrganizationId organization_id source_group_id/source_asset_id/source_version target_group_id/target_asset_id/target_version`
+|===
 
 === exchange asset delete
 
@@ -1592,10 +1598,12 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application deploy [options] <targetIdentifier> <name> <zipfile>
 ----
 
-This command deploys the application passed as a ZIP file in the path `zipfile` to the on-premises target passed in `targetIdentifier`. +
+This command deploys or redeploys the application passed as a ZIP file in the path `zipfile` to the on-premises target passed in `targetIdentifier`. +
 The `targetIdentifier` parameter can be either a target ID or name. +
 A target can be either a server, server group, or cluster. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+To redeploy an app and set a logging level or turn on Insight event tracking, see <<runtime-mgr standalone-application modify>>.
 
 === runtime-mgr standalone-application describe-json
 
@@ -1618,7 +1626,20 @@ The `identifier` parameter specifies the application identifier.
 To retrieve the identifier, see
 xref:anypoint-platform-cli-commands.adoc#runtime-mgr-standalone-application-list[runtime-mgr standalone-application list].
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+In addition to the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30,50a"]
+|===
+|Value |Description 
+| `--insight` | Stores message metadata of every Mule transaction. 
+| `--log [level:scope]` | Sets the logging level and scope pair:
+
+* `level`: TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF
+* `scope`: package name of the class, connector, or module to log, such as `org.mule.extension.ftp` for Anypoint Connector for FTP
+
+To set multiple logging levels, provide multiple `--log` options, for example, `--log INFO:org.apache --log WARN:org.mule`.
+|===
+
 
 === runtime-mgr standalone-application start
 
