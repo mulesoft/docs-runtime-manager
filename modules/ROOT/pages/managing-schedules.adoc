@@ -41,15 +41,15 @@ When designing the schedule, consider the following:
 During service updates or security patching, CloudHub waits two minutes for existing schedules to complete.
 After two minutes, CloudHub retriggers any incomplete schedules.
 +
-To avoid retriggers with long running schedules, make sure that the app executes the flow idempotently.
+To avoid retriggers with long-running schedules, make sure that the app executes the flow idempotently.
 * CloudHub manages the Schedulers and triggers them in only one worker, even if more are available.
 * The minimum recommended frequency between calls is 10.
 * If a scheduled job is not triggered because the application is not running,
-CloudHub triggers the job as soon as the application restarts.
-* When a schedule is used to trigger a flow with subflow in a Mule 4.x application, the scheduler waits until both main flow and subflow complete before scheduling the next run.
+CloudHub triggers the job as soon as it restarts.
+* When a Mule 4.x app uses a schedule to trigger a flow with subflow, the scheduler waits until both main flow and subflow complete before scheduling the next run.
 +
 Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.) characters.
-* All schedules are based in the UTC timezone, regardless of the geographic region where your application is deployed.
+* All schedules are based in the UTC timezone, regardless of the geographic region where you deploy the app.
 
 
 == View and Manage Application Schedules in Runtime Manager
