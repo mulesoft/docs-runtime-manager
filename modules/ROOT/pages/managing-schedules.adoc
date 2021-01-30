@@ -43,7 +43,7 @@ After two minutes, CloudHub retriggers any incomplete schedules.
 +
 To avoid retriggers with long-running schedules, make sure that the app executes the flow idempotently.
 * CloudHub manages the Schedulers and triggers them in only one worker, even if more are available.
-* The minimum recommended frequency between calls is 10.
+* The minimum recommended frequency between calls is 10 seconds.
 * If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as it restarts.
 * When a Mule 4.x app uses a schedule to trigger a flow with subflow, the scheduler waits until both main flow and subflow complete before scheduling the next run.
