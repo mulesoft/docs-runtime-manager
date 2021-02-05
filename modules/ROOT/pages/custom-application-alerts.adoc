@@ -12,11 +12,14 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 == Prerequisites
 
-* Your application must be deployed to CloudHub. +
-xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* You Mule project must be mavenized. +
-** If you are using Studio 6.x and earlier, make sure you xref:6@studio::enabling-maven-support-for-a-studio-project.adoc[Mavenize your project in Studio].
-** All projects in Studio 7.x and later are mavenized by default.
+* Deploy your application to CloudHub.
++
+See xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* For Anypoint Studio 6.x and earlier, enable Maven support for your Mule project.
++
+See xref:6@studio::enabling-maven-support-for-a-studio-project.adoc[Enabling Maven Support for a Studio Project].
++
+All projects in Studio 7.x and later are mavenized by default.
 
 
 == How to Use Notifications
@@ -58,50 +61,76 @@ If the notification is sent after an exception, it attaches the
 
 == Custom Alerts
 
-Alerts allow you to send emails based on your application's notifications. You can create standard alerts in CloudHub with the software provided. To create custom alerts, you need to get the https://www.mulesoft.com/exchange/#!/cloudhub-integration-connector[CloudHub Connector] and install it in Anypoint Studio.
+Alerts enable you to send email based on your application's notifications. You can create standard alerts in CloudHub from Runtime Manager.
+
+To create custom alerts, you must add Anypoint Connector for CloudHub (CloudHub Connector) to flows in your Mule application using Anypoint Studio.
+CloudHub Connector is available for both Mule 3 and Mule 4 applications.
 
 [NOTE]
 Custom alerts and notifications are available only for applications deployed to CloudHub workers. They are not available for applications that you deploy to on-premises servers. See xref:deployment-strategies.adoc[Deployment Options] for more details.
 
-=== Prerequisites
-
-* Install and configure the CloudHub Connector. The CloudHub Connector is available for both Mule 3 and Mule 4 applications.
-* xref:studio::to-download-and-install-studio.adoc[Install Anypoint Studio].
-
 === Create a Custom Alert
 
-. Create a global configuration for the CloudHub Connector to define how to sign into Anypoint Platform. It can use basic authentication or inherited token authentication. 
-. In Anypoint Studio, drag the CloudHub Connector from the Mule palette into the application flow for which you want to trigger an alert. 
-. Create the custom notification inside the application, and complete the connector configuration.
-. Go to Runtime Manager to bind the custom notification to an alert. 
-. Click *Alerts* in the menu on the left. 
-. Click the blue plus sign to create a new alert.
-. In the *Create an Alert* window, configure the information for your custom alert. +
-* *Name* - Enter a meaningful name for the custom alert. 
-* *Severity level* - Select the severity level to apply to the alert:
- ** *Critical*
- ** *Warning*
- ** *Info*
-* *Source* - Select the alert source: +
- ** *Applications*
- ** *Servers*
-* *Application type* - Select *CloudHub Applications*.
-* *Applications* - Select specific applications to which to apply the custom alert, or choose *All applications* to apply the alert to all the applications in the environment. +
-[NOTE]
-For custom alerts, the applications you select must be applications that contain the flow you configured to trigger a custom alert.  
-* *Condition* - Select *Custom application notification*.
- ** Select the *Priority* from the drop-down list, or leave the priority as *Any* to send notifications regardless of priority.
- ** Enter the value for the word that will trigger a notification in *Contains*. +
-[NOTE]
-This string must match a string in the message you added in the CloudHub Connector.
-* *Subject* - Enter the subject line to include in the notification email. 
-* *Message* - Enter the custom message to include in the notification. 
-* *Recipients* - Enter the email addresses for notification recipients. 
-. Click *Create Alert*.
+To create a custom alert in Anypoint Studio:
+
+. In Studio, add and configure CloudHub Connector in your Mule project:
 +
-image::custom-alert2.png[]
+--
+.. In the Mule Palette view, click *CloudHub* and then drag the *Create Notification* operation to the application flow for which you want to trigger an alert in the canvas.
+.. In the canvas, click *Create Notification*.
+.. In the *Create Notificaton* properties window, click the green plus icon (*+*) to the right of the *Connector configuration* field.
+.. In the *Global Element Properties* window, configure authentication to Anypoint Platform and click *OK*:
 +
-Trigger your notification again by going to your application's URL, for example: `+http://YOURAPP.cloudhub.io/+`. The addresses you specified receive an email with your notification.
+.The arrow shows the *Username* field in the *Global Element Properties* window.
+image::alerts-custom-ch-connector.png[Username field in the Global Element Properties window]
++
+The connector can use basic authentication or inherited token authentication.
+.. In the *Create Notificaton* properties window, under *General*, create the notification. 
+For information, see 
+xref:connectors::cloudhub-connector/1.0/#creating-notifications[Creating a Notification].
+--
+. Deploy the app to CloudHub.
+. In Runtime Manager, bind the custom notification to an alert:
++
+--
+.. Click *Alerts* in the menu on the left. 
+.. Click the blue plus icon (*+*) to create a new alert.
+.. In the *Create an Alert* page, configure your custom alert and click *Submit*:
++
+--
+.The arrow shows the *Applications* field in the *Create an Alert* window.
+image::alerts-custom-rtm-create.png[Applications field in the Create an Alert window]
+
+Name::
+Enter a meaningful name for the custom alert. 
+Severity level::
+Select the severity level to apply to the alert:
+* *Critical*
+* *Warning*
+* *Info*
+Source::
+Select *Applications* for the alert source.
+Application type::
+Select *CloudHub Applications*.
+Applications::
+Select the application that contains the flow that you configured to trigger a custom alert.
+Condition::
+Select *Custom application notification*.
+** Select the *Priority* from the drop-down list, or leave the priority as *Any* to send notifications regardless of priority.
+** In *Contains*, enter the string to use to trigger a notification.
++
+This string must match a string in the *Message* field that you configured in CloudHub Connector.
+Subject::
+Enter the subject line to include in the notification email. 
+Message::
+Enter the custom message to include in the notification. 
+Recipients::
+Enter the email addresses for notification recipients. 
+--
+--
+
+To trigger your notification, open your application URL, for example: `+http://YOURAPP.cloudhub.io/+`.
+The addresses you specified receive an email with your notification.
 
 This is an example of custom properties defining where to send a notification.
 
@@ -113,13 +142,16 @@ This is an example of custom properties defining where to send a notification.
   </cloudhub:custom-properties>
 </cloudhub:create-notification>
 ----
-Then, they can be accessed as normal properties in the message, for example `${originalPayload}`
+
+Then, they can be accessed as normal properties in the message, for example `${originalPayload}`.
 
 == Send an Error Notification
 
 You can use the CloudHub Connector inside a catch exception strategy to send notifications when errors happen. 
 
-. To do this, add the following XML to your `mule-config.xml`:
+To do this:
+
+. Add the following XML to your `mule-config.xml`:
 +
 [source,xml,linenums]
 ----
@@ -144,10 +176,13 @@ This flow throws an exception and creates a notification from that exception wit
 image::notifications-exception.png[notifications_exception]
 +
 . To view the whole stack trace and details, click *More...* and the whole message appears in a pop-up window:
-
++
 image::notifications-stack-trace.png[notifications_stack_trace]
 
 == See Also
 
+* xref:connectors::introduction:intro-config-use-studio.adoc#install[Add the Connector to Your Mule Project]
+* https://www.mulesoft.com/exchange/#!/cloudhub-integration-connector[CloudHub Connector] on Exchange
+* xref:cloudhub-connector/1.0/#create-the-cloudhub-configuration[Create the CloudHub Configuration]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * xref:alerts-on-runtime-manager.adoc[Alerts]
