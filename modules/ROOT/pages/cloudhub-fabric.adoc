@@ -133,6 +133,8 @@ Number of Workers: 1
 
 When you deploy an application containing batch jobs to CloudHub with persistent queues enabled, the batch jobs use CloudHub's persistent queuing feature for the batch queuing functionality.
 
+*It is recommended to turn off the persistent queue in batch jobs* as it has the below-mentioned limitations with no added benefits. Disabling persistent queue in batch renders better performance. You can disable persistent queue for batch individually by adding a property to the application, "batch.persistent.queue.disable=true".  By default, this property is set to false. When this property is set to true, the application will not use the persistent queue for batch, but the persistent queue will work for other mule components.
+
 When using persistent queues, keep in mind the following limitations:
 
 * Batch jobs using CloudHub persistent queues experience additional latency.
