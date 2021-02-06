@@ -129,17 +129,20 @@ Enter the email addresses for notification recipients.
 --
 --
 
-To trigger your notification, open your application URL, for example: `+http://YOURAPP.cloudhub.io/+`.
-The addresses you specified receive an email with your notification.
+When you trigger the alert, the recipients you specified receive an email with the custom message you added to the app.
 
 This is an example of custom properties defining where to send a notification.
 
 [source,xml,linenums]
 ----
-<cloudhub:create-notification message="Error processing transaction." priority="ERROR">
-  <cloudhub:custom-properties >
-    <cloudhub:custom-property key="originalPayload">#[flowVars.originalPayload]</cloudhub:custom-property>
-  </cloudhub:custom-properties>
+<cloudhub:create-notification domain="osv2-demo2" doc:name="Create Notification" doc:id="doc-id" config-ref="CloudHub_Config" priority="INFO" transactionId="uuid()">
+			<cloudhub:message ><![CDATA[#["Problem occurred trying to process customer data"]]]></cloudhub:message>
+			<cloudhub:custom-properties ><![CDATA[#[output application/java
+---
+{
+	"date" : now(),
+	"customer-id" : "ASD-123"
+}]]]></cloudhub:custom-properties>
 </cloudhub:create-notification>
 ----
 
