@@ -32,18 +32,20 @@ View logs for applications deployed to CloudHub.
 . Click *Logs*.
 +
 The application logs are displayed.
-. The *Deployments* section on the right of the logging screen lets you selectively view the output by day, deployment, system log, and workers. You can remove a filter by unselecting the checkbox next to a date.
+. The *Deployments* section on the right of the logging screen lets you selectively view the output by day, deployment, system log, and workers. You can remove a filter by unselecting the checkbox next to a date:
 +
-image::elmfilters.png[ELMfilters]
+.The arrow shows the checkbox to filter log output by deployment on the *Logs* page.
+image::cloudhub-logs-deploy.png[Filter log output by deployment on the Logs page]
 
 == Download Logs
 
 Each worker in each CloudHub deployment has separate logs you can download.
 
 . In the *Deployment* filters section on the right, find the date and worker you want to view.
-. Click the download icon next to the worker, and select *Logs*.
-
-image::downloadlogs.png[DownloadLogs]
+. Click the download icon next to the worker, and select *Logs*:
++
+.The arrow shows the icon to download log output by deployment on the *Logs* page.
+image::cloudhub-logs-download.png[Download log output by worker on the Logs page]
 
 The log file is a text file with the file extension `.log` in the format `<deployment-ID>-<instance-ID>.log`. You can view the log file with a text editor.
 
@@ -61,7 +63,10 @@ For apps running on Mule versions earlier than 3.8.0 (excluding version 3.7.4), 
 To download diagnostics:
 
 . In the *Deployment* filters section on the right, select the date and worker for which you want to download diagnostics.
-. Click the download icon next to it, and select *Diagnostics*.
+. Click the download icon next to the worker, and select *Diagnostics*:
++
+.The arrow shows the icon to download diagnostics by worker on the *Logs* page.
+image::cloudhub-logs-download-diag.png[Download diagnostics by worker on the Logs page]
 
 The downloaded log file is a text file with the `.txt` file extension and named in the format of `<app-name>-instance-<instance-ID>-<worker-number>-diag.txt`. You can view this file with a text editor.
 
@@ -98,7 +103,8 @@ To search logs:
 . Enter a value in the search box, or click *Advanced* to search for logs for a specified time, day, date range, and message priority.
 . Click *Apply*.
 +
-image::elmadvancedsearch.png[ELMAdvancedSearch]
+.The screenshot shows (*1*) *Advanced* search and (*2*) *Priority* on the *Logs* page.
+image::cloudhub-logs-search-adv.png[Display Advanced search and Priority on the Logs page]
 
 === Search by Date and Time
 

@@ -24,25 +24,33 @@ You can trigger the job while it's running without updating the schedule in your
 * You want to disable a scheduled job while one of the applications you are connecting to is undergoing maintenance.
 * You want runtime visibility into the schedules in your application.
 
+The CloudHub scheduler reads the job configuration every time it runs.
+When you update the scheduler configuration, the change takes effect the next time the scheduler runs.
+
+[NOTE]
+You cannot manage CloudHub schedules using scripts.
+Use the *Schedules* tab or the CloudHub API to manage CloudHub schedules.
+
+
 == Considerations and Limitations
 
-When using the *Schedules* tab, consider the following:
+When designing the schedule, consider the following:
 
+* Plan for high availability during network failures, infrastructure restarts due to hardware issues or scheduled maintenance, and security updates.
++
+During service updates or security patching, CloudHub waits two minutes for existing schedules to complete.
+After two minutes, CloudHub retriggers any incomplete schedules.
++
+To avoid retriggers with long-running schedules, make sure that the app executes the flow idempotently.
 * CloudHub manages the Schedulers and triggers them in only one worker, even if more are available.
-* All schedules are based in the UTC timezone, regardless of the geographic region where your
-application is deployed.
-* The minimum recommended frequency is 10 seconds between calls.
+* The minimum recommended frequency between calls is 10 seconds.
 * If a scheduled job is not triggered because the application is not running,
-CloudHub triggers the job as soon as the application restarts.
-* When a schedule is used to trigger a flow with subflow in a Mule 4.x application, it waits until both main flow and subflow complete before scheduling the next run.
-* The CloudHub scheduler reads the job configuration every time it runs.
-* Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.).
+CloudHub triggers the job as soon as it restarts.
+* When a Mule 4.x app uses a schedule to trigger a flow with subflow, the scheduler waits until both main flow and subflow complete before scheduling the next run.
 +
-When you update the scheduler configuration, the change takes effect the next time the scheduler runs.
-* If the execution time for a job is longer than 12 hours, network issues occur, or the infrastructure restarts due to hardware issues or scheduled maintenance, the scheduler fails and is re-executed.
-* You cannot manage CloudHub schedules using scripts.
-+
-Use the CloudHub API or *Schedules* tab in Runtime Manager to manage CloudHub schedules.
+Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.) characters.
+* All schedules are based in the UTC timezone, regardless of the geographic region where you deploy the app.
+
 
 == View and Manage Application Schedules in Runtime Manager
 
