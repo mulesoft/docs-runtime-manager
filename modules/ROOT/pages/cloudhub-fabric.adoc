@@ -129,15 +129,31 @@ Number of Workers: 1
 |===
 
 
-== Persistent Queuing Behavior for Applications Containing Batch Jobs
+== Persistent Queues for Applications Containing Batch Jobs
 
-When you deploy an application containing batch jobs to CloudHub with persistent queues enabled, the batch jobs use CloudHub's persistent queuing feature for the batch queuing functionality.
+When you deploy an application containing batch jobs to CloudHub with persistent queues enabled, the batch jobs use CloudHub persistent queuing for the batch queuing functionality.
 
-When using persistent queues, keep in mind the following limitations:
+If you enable persistent queues, note the following limitations:
 
 * Batch jobs using CloudHub persistent queues experience additional latency.
-* CloudHub persistent queues occasionally process a message more than once. If your use case requires that each message be guaranteed to be processed only once, consider deploying the application without enabling persistent queues.
-* Message loss can still occur in case of an application restart.
++
+For better performance, disable persistent queues.
+* CloudHub persistent queues occasionally process a message more than once.
++
+To ensure that messages are processed only once, disable persistent queues.
+* When an application restarts, message loss can occur.
+
+Because of these limitations, Mulesoft recommends that you disable persistent queues for batch jobs.
+
+To disable a persistent queue for a batch job, add the following property to the application:
+
+[source,xml,linenums]
+----
+batch.persistent.queue.disable=true
+----
+
+By default, the value of this property is `false`.
+When set to true, the application doesn't use the persistent queue for the batch job, but the persistent queue remains enabled for other Mule components.
 
 == Building Mule Applications to Support Persistent Queues
 
