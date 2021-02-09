@@ -76,6 +76,7 @@ DPD allows devices to rapidly identify when network conditions change. You can e
 * Allow asymmetric routing 
 +
 Asymmetric routing occurs when routing policies send traffic from your network to the VPC through one tunnel and traffic returns from the VPC through the other tunnel. The MuleSoft VPN endpoint selects the tunnel using an internal algorithm, making the return path dynamic. If your device uses an active/active tunnel configuration, you must allow asymmetric routing for each Anypoint VPN connection.
+* For IPsec, enable perfect forward secrecy (PFS) with the above Diffie-Hellman Phase2 groups
 
 == Requirements for Dynamic VPN Connections
 
