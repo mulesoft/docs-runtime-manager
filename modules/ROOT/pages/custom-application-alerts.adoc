@@ -85,9 +85,12 @@ To create a custom alert in Anypoint Studio:
 image::alerts-custom-ch-connector.png[Username field in the Global Element Properties window]
 +
 The connector can use basic authentication or inherited token authentication.
-.. In the *Create Notificaton* properties window, under *General*, create the notification.
+.. In the *Create Notificaton* properties window, enter the app name in the *Domain* field and the notification in the *Message* field:
 +
-For information, see 
+.The arrow shows the *Message* field in the *Create Notification* properties window.
+image::alerts-custom-ch-connector-notification.png[Message field in the Create Notification properties window]
++
+For more information, see 
 xref:connectors::cloudhub-connector/1.0/#creating-notifications[Creating a Notification].
 --
 . Deploy the app to CloudHub.
@@ -123,33 +126,24 @@ This string must match a string in the *Message* field that you configured in Cl
 Subject::
 Enter the subject line to include in the notification email. 
 Message::
-Enter the custom message to include in the notification. 
+Enter the custom message to include in the notification.
 Recipients::
 Enter the email addresses for notification recipients. 
+
++
+You can use variables in the alert *Subject* and *Message* fields.
+For information, see xref:alerts-on-runtime-manager.adoc#alert-variables[Alert Variables].
 --
 
 When you trigger the alert, the recipients you specified receive an email with the custom message you added to the app.
 
-This is an example of custom properties defining where to send a notification.
-
-[source,xml,linenums]
-----
-<cloudhub:create-notification domain="osv2-demo2" doc:name="Create Notification" doc:id="doc-id" config-ref="CloudHub_Config" priority="INFO" transactionId="uuid()">
-			<cloudhub:message ><![CDATA[#["Problem occurred trying to process customer data"]]]></cloudhub:message>
-			<cloudhub:custom-properties ><![CDATA[#[output application/java
----
-{
-	"date" : now(),
-	"customer-id" : "ASD-123"
-}]]]></cloudhub:custom-properties>
-</cloudhub:create-notification>
-----
-
-Then, they can be accessed as normal properties in the message, for example `${originalPayload}`.
+You can also use the CloudHub Connector inside an `<error-handler` component to send notifications when errors happen.
+For information on the On-Error components, see 
+xref:mule-runtime::error-handling.adoc#on_error_continue[Using On-Error Components to Handle Messaging Errors].
 
 == Send an Error Notification
 
-You can use the CloudHub Connector inside a catch exception strategy to send notifications when errors happen. 
+You can use the CloudHub Connector inside an error handler to send notifications when errors happen. 
 
 To do this:
 
@@ -168,6 +162,17 @@ To do this:
         <cloudhub:create-notification message="Error processing transaction." priority="ERROR"/>
     </default-exception-strategy>
 </flow>
+
+<flow name="create notification from exception">
+<error-handler>
+  <on-error-continue>
+     <cloudhub:create-notification domain="osv2-demo2" doc:name="Create Notification" config-ref="CloudHub_Config" priority="INFO" transactionId="uuid()">
+	   <cloudhub:message ><![CDATA[#["Error processing transaction"]]]></cloudhub:message>
+	 </cloudhub:create-notification>
+  </on-error-continue>
+<error-handler>
+</flow>
+
 ----
 +
 This flow throws an exception and creates a notification from that exception with the message `Error processing transaction`. The exception stack trace for the flow is attached to the message. This can optionally be turned off using the `attachStacktrace` attribute.
