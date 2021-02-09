@@ -47,6 +47,13 @@ Each DLB unit that you purchase is the equivalent of two workers handling load b
 You can assign up to four load balancer units to a DLB.
 A DLB with four load balancer units assigned has eight workers.
 
+== Static IP Addresses
+If a DLB has static IPs enabled, it will have double the number of static IPs allocated for this DLB. For example, if your DLB has 4 workers, the DLB will have 8 static IPs associated with it. Only half of these (equal to number of instances) will be in-use at any given time. If you restart or update your DLB, the unused group of static IPs will become in-use and the in-use will transition to an unused state.
+
+This switch between the two groups of static IP addresses enables us to do a true zero-downtime restart or update of your DLBs, ensuring no transactions are dropped or lost (owing to the fact that the client respects the DLB's DNS TTL)
+
+Note: Exisiting DLBs won't automatically start using the new static IPs until you opt-in using the UI at this point.
+
 
 == See Also
 
