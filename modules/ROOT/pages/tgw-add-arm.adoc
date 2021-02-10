@@ -67,7 +67,7 @@ You can change this name later.
 == Create a Resource Share
 
 . Sign into your AWS corporate account.
-. Open the https://console.aws.amazon.com/ram/[AWS RAM console].
+. Open the https://console.aws.amazon.com/ram/home#CreateResourceShare[AWS RAM console].
 . Click *Create resource share* from either the home page or the *Resource shares* page.
 . In *Name*, enter a name for the resource share.
 . Under *Resources - _optional_*, select *Transit Gateways* from the resource type, and select the transit gateway resource to share.
@@ -91,6 +91,8 @@ To attach a VPC to the transit gateway:
 +
 If no VPCs are available to attach, the *Attach VPC* button is disabled.
 . From the *Select VPC* window, select the VPC to attach, and click *Next*.
++
+The window displays all VPCs that are not currently attached to a transit gateway in the Business Groups for which you have Cloudhub Network Administrator permissions.
 . Accept the VPC attachment:
 +
 .. Sign in to your AWS corporate account.

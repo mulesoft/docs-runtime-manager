@@ -5,13 +5,54 @@ endif::[]
 
 These are some of the possible errors you might encounter when attempting to connect CloudHub Transit Gateway.
 
-== Unable to Connect to Transit Gateway
+== Unable to Connect to a Transit Gateway
+
+If you see the `Resource Share Not Found` error when attempting to connect to the 
+transit gateway, verify that the *ID* and *Owner* that you specified are correct. 
+Click the pencil icon to edit these values.
+
+Alternatively, remove the transit gateway and re-add it.
 
 == Unable to Delete a Transit Gateway
 
 If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the transit gateway, the transit gateway might be attached to a VPC that belongs to another business group that you don't have access to.
 
+== Unable to View a Transit Gateway
+
+Transit gateways are always added at the root business group level.
+To view a transit gateway, you need CloudHub Network Viewer permission.
+
+== Unable to Modify a Transit Gateway
+
+To modify a transit gateway, you need CloudHub Network Admin permission.
+
+== VPC Attachment Rejected
+
+If you see the `The attachment was rejected in AWS.` error when attempting to attach the VPC to the transit gateway, remove the VPC and re-attach it.
+
+== Subnet Already Added to the Route Table
+
+If you see the `This subnet has already been added to this route table.` error, add a different
+subnet to the table.
+
+== Invalid CIDR Subnet
+
+If you see the `Please enter a single subnet in CIDR notation.` error, check that the subnet is in correct CIDR format.
+
+== Failed to Add VPC Route
+
+If you see the `Failed to add VPC route` error from AWS, contact Amazon for details.
+
+== Attach VPC Button is Disabled
+
+If the *Attach VPC* button is disabled, all the VPCs that you have access to have already been added to the transit gateway.
+
+
 == See Also
 
-* blah
-* blah
+* xref:tgw-add-arm.adoc#remove-a-transit-gateway-from-anypoint-platform[Remove a Transit Gateway from Anypoint Platform]
+* xref:tgw-add-arm.adoc#detach-an-anypoint-vpc-from-the-transit-gateway[Detach an Anypoint VPC from the Transit Gateway]
+* xref:tgw-add-arm.adoc#attach-a-vpc-to-the-transit-gateway[Attach a VPC to the Transit Gateway]
+* xref:tgw-add-arm.adoc#remove-a-route-from-the-transit-gateway-route-table[Remove a Route from the Transit Gateway Route Table]
+* xref:tgw-add-arm.adoc#add-routes-to-the-transit-gateway-route-table[Add Routes to the Transit Gateway Route Table]
+* xref:tgw-about.adoc#transit-gateway-routing[Transit Gateway Routing]
