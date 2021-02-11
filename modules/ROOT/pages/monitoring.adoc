@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 After you deploy your application, use the monitoring dashboards in Runtime Manager to monitor the application's performance. If you deployed the application to an on-premises server, you can also monitor the server. 
 
 Depending on the xref:deployment-strategies.adoc[deployment option] you use, different monitoring resources are available, including alerts, dashboards, notifications, and flow metrics. 
@@ -11,13 +16,21 @@ Depending on the xref:deployment-strategies.adoc[deployment option] you use, dif
 
 On applications that are deployed on-premises, use the following tools to get information about the servers.
 
-* xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[Alerts] – image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
+* xref:alerts-on-runtime-manager.adoc#conditions-on-mule-servers[Alerts] 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
++
 Send e-mail alerts whenever key events occur. A history of when these alerts were triggered can also be accessed.
 
-
-* xref:monitoring-dashboards.adoc#the-dashboard-for-a-server[Monitoring Dashboards] – image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"] See the evolution of key performance metrics related to service usage and available processing power
+* xref:monitoring-dashboards.adoc#the-dashboard-for-a-server[Monitoring Dashboards] 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
++
+See the evolution of key performance metrics related to service usage and available processing power
 +
 IMPORTANT: To use Runtime Manager monitoring dashboards when running Mule on Windows, the Mule service must be started by a user that belongs to the *Performance Log Users* group.
 
