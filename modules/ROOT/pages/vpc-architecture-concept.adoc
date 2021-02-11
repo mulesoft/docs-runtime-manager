@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
 An Anypoint VPC is a logically private and isolated network hosted inside CloudHub. You can connect your private intranet to your Anypoint VPC as if they were all part of a single, private network. 
 
 The Anypoint VPC configuration exposes the DNS record `mule-worker-internal-<app-name>.cloudhub.io`. This is a DNS A record, which includes the IP addresses of all your workers. This DNS record cannot be accessed from outside your Anypoint VPC.
