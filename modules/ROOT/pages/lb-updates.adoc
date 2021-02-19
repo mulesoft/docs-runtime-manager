@@ -30,9 +30,20 @@ The *Update* button indicates a load balancer requires an update. You can schedu
 
 To update a load balancer:
 
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*.
 . Click the *Update* button.
-. At the *Update Load Balancer* prompt, click *Update*.
-. Click the *release notes* link for details on the update. 
+. At the *Update load balancer* prompt, click *Update*.
++
+Click the *View release notes* link for details on the update. 
+
+When updating a DLB with static IP addresses, the update might add more static IPs. 
+The update prompts you to whitelist these new IP addresses before continuing with the update:
+
+.The arrow shows the static IPs to whitelist in the *Update Load Balancer* window.
+image::cloudhub-dlb-update-static-ips-whitelist.png[Static IPs to whitelist in the Update Load Balancer window.]
+
+In this case, add the IP addresses to your whitelist before clicking *Update*.
 
 The update results in a rolling restart with no downtime. However, some inflight requests might be impacted. 
 

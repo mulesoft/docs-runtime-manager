@@ -56,12 +56,16 @@ For example, if your DLB has four workers, the DLB has eight associated static I
 Half the static IPs (equal to the number of worker instances) are in use at any given time.
 When you restart or update the DLB, the DLB switches to use the group of unused static IP addresses and transitions the first group of static IP addresses to the unused state.
 
-Switching between the two groups of static IP addresses enables zero-downtime restarts and updates and ensures no transactions are dropped or lost because the client respects the DLB's DNS TTL.
+Switching between the two groups of static IP addresses enables zero-downtime restarts and updates and ensures no transactions are dropped or lost because the client respects the DLB's DNS TTL. (*what does this mean?*)
 
-To configure existing DLBs to use the new static IP model, click *Update* to update the DLB configuration.
-For more information on updating DLBs, see
+All newly created DLBs with static IP use this static IP model. 
+For existing DLBs that use static IP addresses, the Runtime Manager *Load Balancers* page displays *Update Required* until you update the DLB:
+
+.The arrow shows *Update Required* in the *Load Balancers* page.
+image::cloudhub-dlb-update-static-ips.png[Update Required in the Load Balancers page]
+
+For information on updating DLBs, see
 xref:lb-updates.adoc[Dedicated Load Balancer Updates].
-
 
 == See Also
 
