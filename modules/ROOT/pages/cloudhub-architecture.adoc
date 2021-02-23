@@ -124,14 +124,18 @@ If you enable automatic restarts, CloudHub also automatically restarts applicati
 
 == Global Worker Clouds
 
-CloudHub offers worker clouds in 12 different regions of the world: North America, South America, the European Union, and Asia-Pacific. This global distribution allows you to host your integration in a location that is closest to your services, thus reducing latency. It may also allow you to adhere with local laws, such as the EU Data Protection Directive. The management console and platform services are hosted in the United States.
-
+CloudHub offers worker clouds in different regions of the world: North America, South America, the European Union, and Asia-Pacific.
 For the complete list of supported regions, see
 xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 
+This global distribution enables you to host your integration in a location that is closest to your services, thus reducing latency.
+It can also enable adherence to local laws, such as the EU Data Protection Directive.
+MuleSoft hosts the management console and platform services in the United States.
+
 The domain provided for your application is based on the region to which your application is deployed. For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
 
-For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]. For more information about CloudHub security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance] whitepaper.
+For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploy to CloudHub].
+For more information about CloudHub security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance] whitepaper.
 
 == Workers and Multitenancy
 
