@@ -130,7 +130,8 @@ xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 
 This global distribution enables you to host your integration in the location closest to your services, thus reducing latency.
 It can also provide for adherence to local laws, such as the EU Data Protection Directive.
-For all control planes except the EU plane, MuleSoft hosts the management console and platform services in the United States.
+For the US and US-Gov control planes, MuleSoft hosts the management console and platform services in the United States.
+For the EU control plane, MuleSoft hosts these services in Europe.
 
 The region that you deploy your application to determines the domain provided for your application.
 For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
