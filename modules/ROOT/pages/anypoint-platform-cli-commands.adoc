@@ -1579,7 +1579,23 @@ If the Anypoint Platform CLI is using the QA environment in the Services organiz
 [NOTE]
 Running this command requires your user to have read/write access to the `/tmp` directory of the OS where CLI is installed.
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+In addition to the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,70a"]
+|===
+|Option |Description
+|--property  | Set a property (`name:value`). Can be specified multiple times.
+
+Enclose the property in quotes and escape the `:` and `=` characters,
+for example:
+
+`--property "salesforce.password:qa\=34534"`
+|===
+
+[NOTE]
+When copying an application containing safely hidden application properties, pass the properties in the `copy` command using the `--property` option.
+//HIDDEN PROPS XREF 
+include::partial$hidden-props.adoc[tag=hidePropsXref]
 
 === runtime-mgr rtf list
 
