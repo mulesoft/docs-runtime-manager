@@ -156,13 +156,13 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 [%header,cols="35a,65a"]
 |===
 |Command |Description
-|<<runtime-mgr standalone-application artifact>> | Downloads application artifact binary
+|<<runtime-mgr standalone-application artifact>> | Downloads a standalone application artifact binary
 |<<runtime-mgr standalone-application deploy>> | Deploys or redeploys an application to an on-premises server, server group, or cluster
 |<<runtime-mgr standalone-application describe-json>> | Shows a raw standalone application JSON response
 |<<runtime-mgr standalone-application modify>> | Changes a standalone application artifact
-|<<runtime-mgr standalone-application start>> | Starts an standalone application
-|<<runtime-mgr standalone-application delete>> | Deletes an standalone application
-|<<runtime-mgr standalone-application describe>> | Shows detailed info of a standalone application
+|<<runtime-mgr standalone-application start>> | Starts a standalone application
+|<<runtime-mgr standalone-application delete>> | Deletes a standalone application
+|<<runtime-mgr standalone-application describe>> | Shows detailed information for a standalone application
 |<<runtime-mgr standalone-application list>> | Lists all standalone applications in the environment
 |<<runtime-mgr standalone-application restart>> | Restarts a standalone application
 |<<runtime-mgr standalone-application stop>> | Stops a standalone application
@@ -1579,7 +1579,23 @@ If the Anypoint Platform CLI is using the QA environment in the Services organiz
 [NOTE]
 Running this command requires your user to have read/write access to the `/tmp` directory of the OS where CLI is installed.
 
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+In addition to the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header,cols="30a,70a"]
+|===
+|Option |Description
+|--property  | Set a property (`name:value`). Can be specified multiple times.
+
+Enclose the property in quotes and escape the `:` and `=` characters,
+for example:
+
+`--property "salesforce.password:qa\=34534"`
+|===
+
+[NOTE]
+When copying an application containing safely hidden application properties, pass the properties in the `copy` command using the `--property` option.
+//HIDDEN PROPS XREF 
+include::partial$hidden-props.adoc[tag=hidePropsXref]
 
 === runtime-mgr rtf list
 
@@ -1591,7 +1607,8 @@ This command lists available Runtime Fabric instances.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
-
+For information about managing your Runtime Fabric instances using the command line, see
+xref:runtime-fabric::install-rtfctl.adoc#supported-commands[Supported rtfctl Commands].
 
 === runtime-mgr standalone-application artifact
 
@@ -1622,7 +1639,7 @@ To redeploy an app and set a logging level or turn on Insight event tracking, se
 > runtime-mgr standalone-application describe-json [options] <identifier>
 ----
 
-This command describes the application passed in `identifier` as a raw JSON response. +
+This command describes the standalone (on-premises) application passed in `identifier` as a raw JSON response. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr standalone-application modify
@@ -1631,7 +1648,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application modify [options] <identifier> <zipfile>
 ----
 
-This command modifies the standalone application passed in `identifier` with the ZIP file application passed in `zipfile` as a path.
+This command modifies the standalone (on-premises) application passed in `identifier` with the ZIP file application passed in `zipfile` as a path.
 
 The `identifier` parameter specifies the application identifier.
 To retrieve the identifier, see
@@ -1658,7 +1675,7 @@ To set multiple logging levels, provide multiple `--log` options, for example, `
 > runtime-mgr standalone-application start [options] <identifier>
 ----
 
-This command starts the application passed in `identifier`. +
+This command starts the standalone (on-premises) application passed in `identifier`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr standalone-application delete
@@ -1667,7 +1684,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application delete [options] <identifier>
 ----
 
-This command deletes the application passed in `identifier`. +
+This command deletes the standalone (on-premises) application passed in `identifier`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 [WARNING]
@@ -1679,7 +1696,7 @@ This command does not prompt twice before deleting. If you send a delete instruc
 > runtime-mgr standalone-application describe [options] <identifier>
 ----
 
-This command describes the standalone application passed in `identifier`. +
+This command shows detailed information, such as status, creation date, and last update, for the standalone (on-premises) application passed in `identifier`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr standalone-application list
@@ -1688,7 +1705,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application list [options]
 ----
 
-This command lists all standalone applications. +
+This command lists all standalone (on-premises) applications. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr standalone-application restart
@@ -1697,7 +1714,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application restart [options] <identifier>
 ----
 
-This command restarts the application passed in `identifier`. +
+This command restarts the standalone (on-premises) application passed in `identifier`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr standalone-application stop
@@ -1706,7 +1723,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application stop [options] <identifier>
 ----
 
-This command stops the standalone application passed in `identifier`. +
+This command stops the standalone (on-premises) application passed in `identifier`. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
 === runtime-mgr standalone-application copy
@@ -1715,7 +1732,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application copy [options] <source> <target> <targetIdentifier>
 ----
 
-This command copies the standalone application passed in `source` to the target passed in `target` and the server, server group or cluster ID or Name passed in `targetIdentifier`. +
+This command copies the standalone (on-premises) application passed in `source` to the target passed in `target` and the server, server group or cluster ID or Name passed in `targetIdentifier`. +
 Both arguments `source` and `destination` are represented using the format: `<organizationName>:<environmentName>/<appName>`, for example:
 
 ----
