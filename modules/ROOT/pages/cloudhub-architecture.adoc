@@ -124,30 +124,20 @@ If you enable automatic restarts, CloudHub also automatically restarts applicati
 
 == Global Worker Clouds
 
-CloudHub offers worker clouds in 12 different regions of the world: North America, South America, the European Union, and Asia-Pacific. This global distribution allows you to host your integration in a location that is closest to your services, thus reducing latency. It may also allow you to adhere with local laws, such as the EU Data Protection Directive. The management console and platform services are hosted in the United States.
+CloudHub offers worker clouds in different regions of the world: North America, South America, the European Union, and Asia-Pacific.
+For the complete list of supported regions, see
+xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 
-The complete list of supported regions is:
+This global distribution enables you to host your integration in the location closest to your services, thus reducing latency.
+It can also provide for adherence to local laws, such as the EU Data Protection Directive.
+For the US and US-Gov control planes, MuleSoft hosts the management console and platform services in the United States.
+For the EU control plane, MuleSoft hosts these services in Europe.
 
-[%header]
-|===
-|Region|Sub-Domain
-|US East (North Virginia)| `us-e1.cloudhub.io`
-|US East (Ohio)| `us-e2.cloudhub.io`
-|US West (Oregon)| `us-w2.cloudhub.io`
-|US West (North California)| `us-w1.cloudhub.io`
-|Canada (Central)| `ca-c1.cloudhub.io`
-|Brazil (Sao Paulo)| `br-s1.cloudhub.io`
-|Europe (Ireland)| `ir-e1.cloudhub.io`
-|Europe (Frankfurt)| `de-c1.cloudhub.io`
-|UK (London)| `uk-e1.cloudhub.io`
-|Asia Pacific (Tokyo)| `jp-e1.cloudhub.io`
-|Asia Pacific (Sydney)| `au-s1.cloudhub.io`
-|Asia Pacific (Singapore)| `sg-s1.cloudhub.io`
-|===
+The region that you deploy your application to determines the domain provided for your application.
+For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
 
-The domain provided for your application is based on the region to which your application is deployed. For example, if you deploy an application named `myapp` to Canada (Central), the domain used to access the application is `myapp.ca-c1.cloudhub.io`. The load balancer used to route requests resides in the same region as your application.
-
-For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]. For more information about CloudHub security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance] whitepaper.
+For more information about deploying applications to different regions, refer to xref:deploying-to-cloudhub.adoc[Deploy to CloudHub].
+For more information about CloudHub security and compliance, download the https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance] whitepaper.
 
 == Workers and Multitenancy
 
