@@ -36,15 +36,19 @@ To update a load balancer:
 . At the *Update load balancer* prompt, click *Update*.
 +
 Click the *View release notes* link for details on the update. 
-
++
+[IMPORTANT]
+====
 When updating a DLB with static IP addresses, the update might add more static IPs. 
-The update prompts you to whitelist these new IP addresses before continuing with the update:
+The update prompts you to add these these new IP addresses to your allowlist before continuing with the update.
 
-.The arrow shows the static IPs to whitelist in the *Update Load Balancer* window.
-image::cloudhub-dlb-update-static-ips-whitelist.png[Static IPs to whitelist in the Update Load Balancer window.]
-
-In this case, add the IP addresses to your whitelist before clicking *Update*.
+In this case, add the IP addresses to your allowlist before clicking *Update*.
+====
 
 The update results in a rolling restart with no downtime. However, some inflight requests might be impacted. 
 
 If you experience a sustained outage after updating, contact MuleSoft Support.
+
+== See Also
+
+* xref:cloudhub-dedicated-load-balancer.adoc#static-ip-addresses[Static IP Addresses]
