@@ -1,4 +1,4 @@
-= Troubleshooting the Runtime Manager Agent
+= Troubleshoot the Runtime Manager Agent
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -8,6 +8,25 @@ image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloud
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+== Troubleshoot Communication Issues Between the Agent and On-Premises Mule Runtime Engine
+
+If discrepancies occur between your on-premises Mule runtime engine and what appears in Runtime Manager, such as metrics not appearing in the server monitoring dashboard,
+you might be experiencing communication issues.
+
+Follow these steps:
+
+. Ensure you are using the latest agent version.
++
+To check the agent version, in the Runtime Manager navigation menu, select *Servers* and then click the server name.
+The agent version appears in the details pane:
++
+.The arrow shows the Runtime Manager agent version in the server details pane.
+image::rtm-agent-version.png[Runtime Manager agent version in the server details pane]
+
+
+
+== Troubleshoot Agent Installation Issues 
 
 You can use the `$MULE_HOME/bin/amc_debug` script to collect information used by Support to troubleshoot the Anypoint Runtime Manager agent installation issues. If you experience issues with the Runtime Manager agent plug-in or with managing applications on Anypoint Platform, run the script and save the output before filing a support ticket.
 
@@ -24,7 +43,7 @@ This step can cause delays in running applications.
 . Copies the Runtime Manager agent configuration files
 . Archives all the information collected in a .zip file
 
-== Run the amc_debug Script
+=== Run the amc_debug Script
 
 To run the `amc_debug` script to collect information about the agent installation:
 
@@ -38,7 +57,7 @@ Include the `-heap` option to extract the heap in addition to the other data.
 After the script finishes, the folder `$MULE_HOME/bin` contains a .zip file with a name similar to `snapshot_201910081712.zip`.
 . Send the .zip file to Support.
 
-== Connectivity Issues
+== Troubleshoot Connectivity Issues
 
 If you experience connectivity issues, check the JVM you are using. If you are using the IBM JVM, you must install the truststore manually because this truststore requires different parameters than Oracle JVM or OpenJDK. See xref:servers-create.adoc#ibm-jvm[IBM JVM].
 
