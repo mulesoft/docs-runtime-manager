@@ -246,8 +246,8 @@ In order for the Anypoint Platform CLI to recognize your target servers, each se
 |<<cloudhub load-balancer ssl-endpoint remove>>| Remove a certificate from a load balancer
 |<<cloudhub load-balancer ssl-endpoint set-default>>| Set the default certificate that the load balancer will serve
 |<<cloudhub load-balancer ssl-endpoint describe>>| Show the load balancer configuration for a particular certificate
-|<<cloudhub load-balancer whitelist add>>| Add an IP or range of IPs to the load balancer whitelist
-|<<cloudhub load-balancer whitelist remove>>| Remove an IP or range of IPs from the load balancer whitelist
+|<<cloudhub load-balancer whitelist add>>| Add an IP or range of IPs to the load balancer allowlist
+|<<cloudhub load-balancer whitelist remove>>| Remove an IP or range of IPs from the load balancer allowlist
 |<<cloudhub load-balancer mappings describe>>| Lists the proxy mapping rules for a load balancer. If no certificateName is given, the mappings for the default SSL endpoint are shown
 |<<cloudhub load-balancer mappings add>>| Add a proxy mapping rule at the specified indexIf no certificateName is given, the mappings for the default SSL endpoint are shown
 |<<cloudhub load-balancer mappings remove>>| Remove a proxy mapping ruleIf no certificateName is given, the mappings for the default SSL endpoint are shown
@@ -2148,10 +2148,10 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub load-balancer whitelist add [options] <name> <cidrBlock>
 ----
-This command adds a range of IP addresses specified in `<cidrBlock>` to the whitelist of the load balancer specified in `<name>`.
+This command adds a range of IP addresses specified in `<cidrBlock>` to the allowlist of the load balancer specified in `<name>`.
 
 [NOTE]
-The whitelist works at the load balancer level, not at the CN certificate level. Make sure you only pass IP addresses formatted in https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[CIDR notation].
+The allowlist works at the load balancer level, not at the CN certificate level. Make sure you only pass IP addresses formatted in https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[CIDR notation].
 
 You can start typing your load balancer's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`
@@ -2161,7 +2161,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub load-balancer whitelist remove <name> <cidrBlock>
 ----
-This command removes an IP or range of IPs addresses specified in `<cidrBlock>` to the whitelist of the load balancer specified in `<name>`.
+This command removes an IP or range of IPs addresses specified in `<cidrBlock>` to the allowlist of the load balancer specified in `<name>`.
 
 [WARNING]
 This command does not prompt twice before deleting. If you send a delete instruction, it does not ask for confirmation.

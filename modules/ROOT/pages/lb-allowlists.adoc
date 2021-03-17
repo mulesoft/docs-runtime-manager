@@ -1,4 +1,4 @@
-= Dedicated Load Balancer Whitelists
+= Dedicated Load Balancer Allowlists
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,45 +9,45 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-If you want to allow IP addresses access to your dedicated load balancer (DLB), you must add those IP addresses, in CIDR notation, to the whitelist of the DLB.
+If you want to allow IP addresses access to your dedicated load balancer (DLB), you must add those IP addresses, in CIDR notation, to the allowlist of the DLB.
 
 [NOTE]
-The whitelist works for inbound connections at the load-balancer level only, not at the CN certificate level.
+The allowlist works for inbound connections at the load-balancer level only, not at the CN certificate level.
 
-You can either add the whitelisted IP addresses when you create the DLB or add them to an existing DLB using either Runtime Manager or the command-line interface.
+You can either add the allowed IP addresses when you create the DLB or add them to an existing DLB using either Runtime Manager or the command-line interface.
 
-== DLB Whitelist Entry Limits
+== DLB Allowlist Entry Limits
 
-The maximum number of IP address entries that you can add to the DLB whitelist depends on the inbound HTTP mode setting in the DLB configuration, which specifies the behavior of the DLB when receiving an HTTP request.
+The maximum number of IP address entries that you can add to the DLB allowlist depends on the inbound HTTP mode setting in the DLB configuration, which specifies the behavior of the DLB when receiving an HTTP request.
 
 [%header,cols="20,20a"]
 |===
-|Inbound HTTP Mode | Maximum Whitelisted Entries
+|Inbound HTTP Mode | Maximum Allowlist Entries
 |*Off* | 240
 |*On* | 120 
 |*Redirect* | 120
 |===
 
 [NOTE]
-If the number of entries in the DLB whitelist exceeds 120, you can't set HTTP mode to *On*.
+If the number of entries in the DLB allowlist exceeds 120, you can't set HTTP mode to *On*.
 
-== Add an IP Address to the Whitelist of an Existing DLB
+== Add an IP Address to the Allowlist of an Existing DLB
 
-To add an IP address to the whitelist of a DLB using Runtime Manager:
+To add an IP address to the allowlist of a DLB using Runtime Manager:
 
 . From Anypoint Platform, click *Runtime Manager*.
 . Click *Load Balancers* and then click the load balancer name.
 . In the *Whitelisted CIDRs* tab, click *Add New CIDR*:
 +
 .The arrow shows the *Add New CIDR* option in the *Whitelisted CIDRs* tab.
-image::lb-whitelist-update.png[*Add New CIDR* option in the load balancer settings page]
+image::lb-allowlist-update.png[*Add New CIDR* option in the load balancer settings page]
 . Enter the IP address in valid CIDR format (for example, `10.2.0.0/16`).
 . Click *Add To List*.
 . If you want to delete a CIDR, hover over the *...* icon to display the trash can icon.
 . Click *Apply Changes*.
 
 
-To add a range of IP addresses to the whitelist for a DLB using the CLI:
+To add a range of IP addresses to the allowlist for a DLB using the CLI:
 
 ----
 cloudhub load-balancer whitelist add myLB_name myCIDRblock
@@ -55,7 +55,7 @@ cloudhub load-balancer whitelist add myLB_name myCIDRblock
 
 The IP addresses must be in valid CIDR format (for example, `10.2.0.0/16`).
 
-If you want to remove IP addresses from the whitelist:
+If you want to remove IP addresses from the allowlist:
 
 ----
 cloudhub load-balancer whitelist remove myLB_name myCIDRblock

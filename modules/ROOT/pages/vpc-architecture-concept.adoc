@@ -14,9 +14,9 @@ The Anypoint VPC configuration exposes the DNS record `mule-worker-internal-<app
 
 Each Anypoint VPC allows you to configure firewall rules to check inbound connections directly to your workers. 
 
-Four firewall rules are created by default--two rules that allow your private address space to connect through ports 8091 and 8092, and two rules that whitelist external requests proxied by CloudHub's shared load balancer through ports 8081 and 8082. 
+Four firewall rules are created by default--two rules that allow your private address space to connect through ports 8091 and 8092, and two rules that allow external requests proxied by CloudHub's shared load balancer through ports 8081 and 8082. 
 
-All traffic that is not whitelisted in a firewall rule is blocked by default.
+All traffic that is not allowed in a firewall rule is blocked by default.
 
 // image::vpc-architecture-concept-31808.png[]
 .The graphic shows the default Anypoint VPC architecture.
