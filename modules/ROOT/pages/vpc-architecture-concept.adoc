@@ -18,15 +18,18 @@ Four firewall rules are created by default--two rules that allow your private ad
 
 All traffic that is not whitelisted in a firewall rule is blocked by default.
 
-The graphic below shows a default Anypoint VPC architecture:
+// image::vpc-architecture-concept-31808.png[]
+.The graphic shows the default Anypoint VPC architecture.
+image::vpc-default-arch.png[Default Anypoint VPC architecture]
 
-image::vpc-architecture-concept-31808.png[]
 
 You can configure a dedicated load balancer inside your VPC, which allows you to provide custom certificates and optionally enforce two-way SSL client authentication. If you configure proxy rules that map your applications to custom domains, you can, for example, host everything under a single vanity domain.
 
-An Anypoint VPC architecture with a dedicated load balancer would look like this:
 
-image::vpc-architecture-concept-6aac3.png[]
+// image::vpc-architecture-concept-6aac3.png[]
+.The graphic shows the Anypoint VPC architecture with a dedicated load balancer.
+image::vpc-dlb-arch.png[Anypoint VPC architecture with a dedicated load balancer]
+
 
 A CloudHub dedicated load balancer is assigned to a particular Anypoint VPC. The dedicated load balancer then routes traffic to that particular Anypoint VPC within the particular service region of the VPC.
 
