@@ -1,8 +1,9 @@
-=  Ports, IP Addresses, and Hostnames to Whitelist
+=  Ports, IP Addresses, and Hostnames to Allowlist
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
+:page-aliases: rtm-agent-whitelists.adoc
 
 
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
@@ -11,9 +12,9 @@ image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoi
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-In your network, you must whitelist the hostnames and ports of various parts of Anypoint Platform to allow the Runtime Manager agent in a customer-hosted Mule runtime engine to communicate with the online Anypoint Platform APIs and services managed by MuleSoft.
+In your network, you must add the hostnames and ports of various parts of Anypoint Platform to your allowlist to enable the Runtime Manager agent in a customer-hosted Mule runtime engine to communicate with the online Anypoint Platform APIs and services managed by MuleSoft.
 
-These tables show you the ports or IP addresses and hostnames to add to your whitelists to allow communication between the agent and the Runtime Manager console.
+These tables show you the ports or IP addresses and hostnames to add to your allowlists to allow communication between the agent and the Runtime Manager console.
 
 Because the following endpoints use mutual TLS authentication, to establish the connection, you must configure SSL passthrough to allow the certificates: 
 
@@ -64,7 +65,7 @@ In addition, the following endpoints use WebSockets:
 
 == Static IP Addresses
 
-* Whitelist these static IPs in the `US` region to access the `mule-manager` hosts:
+* Allowlist these static IPs in the `US` region to access the `mule-manager` hosts:
 +
 [%header,cols="10a,60a,30a"]
 |===
@@ -73,7 +74,7 @@ In addition, the following endpoints use WebSockets:
 |*US*|mule-manager.anypoint.mulesoft.com |52.201.67.218
 |===
 
-* Whitelist these static IPs in the `US` region to access the `runtime-manager` hosts:
+* Allowlist these static IPs in the `US` region to access the `runtime-manager` hosts:
 +
 [%header,cols="10a,60a,30a"]
 |===
@@ -82,7 +83,7 @@ In addition, the following endpoints use WebSockets:
 |*US*|runtime-manager.anypoint.mulesoft.com |35.174.151.175
 |===
 
-* Whitelist these static IPs in the `EU` region to access the `mule-manager` hosts:
+* Allowlist these static IPs in the `EU` region to access the `mule-manager` hosts:
 +
 [%header,cols="10a,60a,30a"]
 |===
@@ -91,7 +92,7 @@ In addition, the following endpoints use WebSockets:
 |*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.194.245.32
 |===
 
-* Whitelist these static IPs in the `EU` region to access the `runtime-manager` hosts:
+* Allowlist these static IPs in the `EU` region to access the `runtime-manager` hosts:
 +
 [%header,cols="10a,60a,30a"]
 |===
@@ -102,7 +103,7 @@ In addition, the following endpoints use WebSockets:
 
 == Dynamic IP Addresses
 
-Some of the IP addresses used by Anypoint Platform services are assigned automatically by the underlying cloud infrastructure. Because these are dynamic, do not implement a whitelist based on the specific IP addresses assigned to Anypoint services.
+Some of the IP addresses used by Anypoint Platform services are assigned automatically by the underlying cloud infrastructure. Because these are dynamic, do not implement an allowlist based on the specific IP addresses assigned to Anypoint services.
 
 Many firewall devices allow you to define Layer 7 firewall rules so that you can filter by destination name or application type.
 
