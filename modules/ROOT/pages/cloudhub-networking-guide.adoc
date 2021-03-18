@@ -170,7 +170,7 @@ If you have xref:virtual-private-cloud.adoc[Anypoint VPC] and a xref:cloudhub-de
 . Remove the xref:virtual-private-cloud.adoc#firewall-rules[Anypoint VPC firewall rule] for ports 8081 and 8082 using:
 .. The *Firewall Rules* tab in your Anypoint VPC management center. Remove both rules with *source* `Anywhere (0.0.0.0/0)` and ports 8081 and 8082.
 .. The Anypoint Platform CLI. Run the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-remove[`cloudhub vpc firewall-rules remove`] command with the index `1` and `3`.
-. Create an xref:lb-allowlists[allowlist in your dedicated load balancer] with the IP addresses you want to authorize. You can only do this using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[`cloudhub load-balancer whitelist add`] command from Anypoint Platform CLI.
+. Create an xref:lb-allowlists.adoc[allowlist] in your dedicated load balancer with the IP addresses you want to authorize. You can only do this using the xref:anypoint-platform-cli.adoc#cloudhub-load-balancer-whitelist-add[`cloudhub load-balancer whitelist add`] command from Anypoint Platform CLI.
 
 [IMPORTANT]
 If you don't have a xref:cloudhub-dedicated-load-balancer.adoc[CloudHub dedicated load balancer], performing the first step is sufficient to ensure that applications deployed in your Anypoint VPCs are not publicly accessible.
