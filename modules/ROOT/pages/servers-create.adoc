@@ -32,17 +32,15 @@ To add a Mule server to Runtime Manager:
 . Click the *Add Server* button.
 . Enter a name for your server.
 +
-Server names can contain up to 60 alphanumeric characters (a-z, A-Z, 0-9), periods (.), hyphens (-), and underscores (_), but not spaces or other special characters.
-Runtime Manager supports Unicode characters in server names.
+include::partial$cluster-server.adoc[tag=ServerNameReqs]
 +
-Although the server name must be unique across environments, it can be the same if one organization exists in different environments.
+include::partial$cluster-server.adoc[tag=ServerNameUnique]
 +
-Runtime Manager generates the `amc_setup` command, including the `_registration token_` and the server name you specified, for you to use to register Mule in your environment:
+include::partial$cluster-server.adoc[tag=AMCsetupInfo]
 +
 .The arrow shows the `amc_setup` command in the *Add Server* window.
 image::rtm-add-server.png[amc_setup command in the Add Server window]
 +
-The registration token includes your organization's ID and the current environment.
 . Click *Copy command* to copy the `amc_setup` command.
 +
 This button appears only if the server name you specify is valid.

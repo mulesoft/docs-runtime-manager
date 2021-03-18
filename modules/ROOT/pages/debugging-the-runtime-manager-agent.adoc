@@ -11,13 +11,17 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 Connection issues between your on-premises Mule runtime engine and the Runtime Manager agent might cause discrepancies, such as metrics not appearing in the server monitoring dashboard in Runtime Manager.
 
+[NOTE]
+include::partial$mule-home.adoc[tag=MuleHomeLocation]
+
+
 == Troubleshoot Connection Issues Between the Agent and Mule
 
 To troubleshoot connection issues:
 
 . Check the JVM you are using.
 +
-If you are using the IBM JVM, you must install the truststore manually because this truststore requires different parameters than Oracle JVM or OpenJDK.
+If you are using the IBM JVM, you must use a different truststore file than the default truststore installed by the Runtime Manager agent.
 +
 See xref:servers-create.adoc#ibm-jvm[IBM JVM].
 . Ensure you are using the latest agent version.
@@ -47,7 +51,7 @@ include::partial$cluster-server.adoc[tag=viewServerinClusterOrGroup]
 * If the license has expired, see xref:mule-runtime::installing-an-enterprise-license.adoc[Install an Enterprise License].
 * If the certificate has expired, see xref:servers-cert-renewal.adoc[Renew Server Certificates].
 . Verify connectivity with all required hosts.
-.. Ensure that your allowlist includes the required hostnames.
+.. Ensure that you allow access to required hosts and ports for Anypoint Platform services.
 +
 See xref:rtm-agent-whitelists.adoc[Ports, IP Addresses, and Hostnames to Whitelist].
 .. Verify that your firewall or proxy server is not intercepting the Runtime Manager certificate.
@@ -55,7 +59,8 @@ See xref:rtm-agent-whitelists.adoc[Ports, IP Addresses, and Hostnames to Whiteli
 See xref:rtm-agent-proxy-config,adoc#verify-that-the-proxy-server-does-not-modify-the-runtime-manager-certificate[Verify That the Proxy Server Does Not Modify the Runtime Manager Certificate].
 . Verify that the `mule-agent.yml` file is not corrupted or empty.
 +
-If the `<MULE_HOME>/conf/mule-agent.yml` file is empty or contains unknown characters:
+The `mule-agent.yml` file contains configuration information for the agent.
+If the `$MULE_HOME/conf/mule-agent.yml` file contains non-ASCII characters or is empty:
 +
 
 * If you have a backup, use it to restore the corrupted `mule-agent.yml` file.
@@ -78,7 +83,7 @@ See xref:servers-create.adoc[Add Servers to Runtime Manager].
 == Collect Agent Installation Information for Support 
 
 You can use the `$MULE_HOME/bin/amc_debug` script to collect information used by Support to troubleshoot the Anypoint Runtime Manager agent installation issues.
-If you can't solve problems with the Runtime Manager agent, run the script and save the output before filing a support ticket.
+If following the troubleshooting steps doesn't solve your problem with the Runtime Manager agent, run the script and save the output before filing a support ticket.
 
 The `amc_debug` script performs the following actions:
 
