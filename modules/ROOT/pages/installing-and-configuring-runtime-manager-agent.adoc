@@ -17,12 +17,17 @@ Use the `amc_setup` command to install and configure the agent, using different 
 * <<Register Mule with Anypoint Platform PCE Runtime Manager,Anypoint Platform Private Cloud Edition Runtime Manager console>>
 
 
-When you run `amc_setup`, the agent creates the `$MULE_HOME/conf/mule-agent.yml` with the configuration options you specified. After initial installation, you can:
+When you run `amc_setup`, the agent creates the `$MULE_HOME/conf/mule-agent.yml` with the configuration options you specified. 
+
+After initial installation, you can:
 
 * Rerun `amc_setup` to change the agent configuration or to update the agent version.
 * Modify `mule-agent.yml` to change the agent configuration.
 +
 Some configuration options, such as extending JMX monitoring to other external services, are not possible using `amc_setup`. You must manually add them to `mule-agent.yml`. See xref:rtm-agent-config-yaml.adoc[Update Agent Configuration in mule-agent.yml].
+
+[NOTE]
+include::partial$mule-home.adoc[tag=MuleHomeLocation]
 
 
 == Requirements and Restrictions
@@ -49,7 +54,6 @@ Mule 3.7.x and earlier and the API gateway 2.x and earlier include an earlier ve
 * If you must download the agent, you must have an Enterprise support account.
 
 
-These instructions use paths for Mac or Linux. If you are using Windows, replace the `$MULE_HOME` path with `%MULE_HOME%`.
 
 == Install the Agent from a Mule Installation
 
@@ -319,16 +323,21 @@ To register Mule:
 
 . In Runtime Manager, click *Servers* in the left menu.
 . Click the *Add Server* button.
+. Enter a unique name for your server.
 +
-Runtime Manager generates the `amc_setup` command, including `_token_` and `_server-name_`, to use to register Mule in your environment. 
+include::partial$cluster-server.adoc[tag=ServerNameReqs]
 +
-The registration token includes your organization's ID and the current environment.
-. Click *Copy* to copy the command.
+include::partial$cluster-server.adoc[tag=ServerNameUnique]
++
+include::partial$cluster-server.adoc[tag=AMCsetupInfo]
++
+.The arrow shows the `amc_setup` command in the *Add Server* window.
+image::rtm-add-server.png[amc_setup command in the Add Server window]
++
+. Click *Copy command* to copy the command.
 . In a terminal window, change to the `$MULE_HOME/bin` directory for the Mule instance that you're registering.
 . Paste the command on the command line.
-. Change the instance name `server-name` to the unique name to use to label Mule in the Runtime Manager console.
-+
-The `server-name` value is unique across environments. The `server-name` can be the same for the same organization in different environments.
+
 +
 . Include any other parameters on the `amc_setup` command line.
 + 

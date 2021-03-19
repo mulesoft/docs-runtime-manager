@@ -3,3 +3,27 @@
 [IMPORTANT]
 When you add a server to a unicast cluster, all existing servers in the cluster are restarted.
 // end::addServerToCluster[]
+
+//DASHBOARD SHARED
+//tag::viewServerinClusterOrGroup[]
+To view the dashboard for a server in a server group or cluster, click the server name in the details pane. 
+//end::viewServerinClusterOrGroup[]
+
+
+//SERVER NAMES REQS
+//tag::ServerNameReqs[]
+Server names can contain up to 60 alphanumeric characters (a-z, A-Z, 0-9), periods (.), hyphens (-), and underscores (_), but not spaces or other special characters.
+Runtime Manager supports Unicode characters in server names.
+//end::ServerNameReqs[]
+
+//SERVER NAMES UNIQUE
+//tag::ServerNameUnique[]
+The server name must be unique in the environment, but it can be the same for the same organization in different environments.
+//end::ServerNameUnique[]
+
+// AMC SETUP SHARED
+//tag::AMCsetupInfo[]
+Runtime Manager generates the `amc_setup` command.
+This command includes the server name you specified (`_server-name_`) and the registration token (`_token_`) required to register Mule in your environment.
+The registration token includes your organization ID and the current environment.
+//end::AMCsetupInfo[]
