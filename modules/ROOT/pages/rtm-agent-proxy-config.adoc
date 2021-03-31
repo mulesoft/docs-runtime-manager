@@ -27,8 +27,13 @@ To configure the agent to connect through a proxy server, you must:
 
 If you have previously installed the Runtime Manager agent and want to change the configuration to use a proxy, you can add the proxy configuration to the `mule-agent.yml` file.
 
-To configure the proxy server connection, run this command:
+To configure the proxy server connection: 
 
+. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the master password: 
++
+`export AGENT_VAR_master_password=myPassword`
+. Run this command:
++
 [source,console,linenums]
 ----
 $MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password
