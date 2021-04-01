@@ -11,6 +11,9 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 The Runtime Manager agent JMX service allows you to track specific JMX metrics and publish them to external services. The service can be configured to track specific beans and to change the frequency with which it publishes their value.
 
+[NOTE]
+The Runtime Manager agent supports monitoring JMX beans with `mule.agent.jmx.publisher.service` only in Mule 3.x.
+Mule 4.x doesn't expose beans to JMX.
 
 
 == JMX Publishers
@@ -174,3 +177,7 @@ Number value;
 ----
 
 To add your new JMX publisher, just drop the JAR containing your classes under the `lib` folder within the Runtime Manager agent plugin.
+
+== See Also
+
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/mule-agent-plugin-api/minor/1.1/pages/home/[Runtime Manager Agent API]
