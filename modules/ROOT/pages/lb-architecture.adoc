@@ -49,7 +49,9 @@ internal-_lb-name_.lb.anypointdns.net
 ----
 
 
-Each Dedicated Load Balancer has a DNS A record `_lb-name_.lb.anypointdns.net` that resolves to the two public IP addresses of the two instances. Through your DNS provider, you can add a CNAME record pointing to this A record and use your domain names to access it.
+Each Dedicated Load Balancer has DNS A records `_lb-name_.lb.anypointdns.net` that resolve to the public IP addresses of the instances.
+The number of public IP addresses correlates to the number of workers. 
+Through your DNS provider, you can add a CNAME record pointing to this A record and use your domain names to access it.
 
 If you want your load balancer to manage all connections to your application but do not want your default domain name for your application publicly exposed, then each application must listen on HTTP port 8091 or 8092. Alternatively, you can create a custom mapping policy to redirect outside requests from your load balancer to your specific application.
 
