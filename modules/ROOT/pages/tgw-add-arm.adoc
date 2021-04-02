@@ -19,10 +19,10 @@ Before you can add a transit gateway:
 * Purchase an Anypoint VPC offering with Transit Gateway entitlements.
 +
 The *Transit Gateways* page is visible to Anypoint organizations that have Transit Gateway entitlements. 
-* Log in an Anypoint Platform account with either the CloudHub Network Administrator or the CloudHub Network Viewer user permission.
+* Sign in to an Anypoint Platform account with either the CloudHub Network Administrator or the CloudHub Network Viewer user permission.
 +
 See xref:access-management::users.adoc#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users].
-* Set your default environment (in your profile) to an environment with  Read Application permissions.
+* Set your default environment (in your profile) to an environment with Read Application permissions.
 +
 See xref:access-management::managing-your-account.adoc#update-user-information[Update User Information].
 * Create an Anypoint VPC in Anypoint Platform.
@@ -57,29 +57,52 @@ To add a transit gateway:
 . Select the environment where you want to add a transit gateway.
 +
 See xref:runtime-manager-switch-env.adoc[Use Different Environments in Runtime Manager].
-. From the menu on the left, click *Transit Gateways*, and then click *Add Transit Gateway*.
+. From the Runtime Manager navigation menu, click *Transit Gateways*, and then click *Add Transit Gateway*.
++
+The *Here's what's coming* page lists the steps to add the transit gateway. 
+. Click *I'm ready*. 
 . Specify a name for your transit gateway.
 +
 Use the transit gateway name from AWS. 
 You can change this name later.
+. Select the region that corresponds to the location your AWS transit gateway.
++
+See xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 . Click *Next*.
++
+The *Add transit gateway* page lists the steps to create a resource share in AWS.
 
 == Create a Resource Share
 
-. Sign into your AWS corporate account.
-. Open the https://console.aws.amazon.com/ram/home#CreateResourceShare[AWS RAM console].
-. Click *Create resource share* from either the home page or the *Resource shares* page.
-. In *Name*, enter a name for the resource share.
-. Under *Resources - _optional_*, select *Transit Gateways* from the resource type, and select the transit gateway resource to share.
-. Under *Principals - _optional_*, select *Allow external accounts*, add the MuleSoft AWS account number (`081025254626`), and click *Add*.
-. Click *Create resource share*.
-. Copy the following values for the resource share: *ID* and *Owner*
-. Paste these values in the *ID* and *Owner* fields in the *Add transit gateway* window in Anypoint Platform, and click *Add*.
+. Sign in to your AWS corporate account.
+. In Anypoint Platform, click the *Create Resource Share page* link. 
++
+The link opens the AWS RAM console to the page for creating a resource share in the region you specified.
+. In the *Create Resource Share* page: 
++
+--
+.. In *Name*, enter a name for the resource share.
+.. Under *Resources - _optional_*, select *Transit Gateways* from the resource type and select the transit gateway resource to share.
+.. Under *Principals - _optional_*, enter the MuleSoft AWS account ID (`073815667418`), and click *Add*.
+.. Click *Create resource share*.
+.. Copy the following values for the resource share: *ID* and *Owner*.
+--
+. In Anypoint Platform, in the *Add transit gateway* window: 
++
+--
+.. Click *Next*.
+.. Paste the values you copied from AWS in the *ID* and *Owner* fields. 
+.. Click *Add*.
+--
++
+The *Transit Gateways* page shows the progress for connecting to AWS and adding the transit gateway to Anypoint Platform.
++
+screenshot
 
-The *Transit Gateways* page shows the progress for adding the transit gateway from AWS to Anypoint Platform.
+When the transit gateway addition succeeds, the *Transit Gateways* page displays the *Transit gateway added* message.
+The Transit Gateway ID and Transit Gateway Owner appear with the State of *Available*.
 
-When the transit gateway addition succeeds, the *Transit gateway added* message appears.
-
+If the transit gateway addition fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Connections].
 
 == Attach a VPC to the Transit Gateway
 
@@ -87,27 +110,32 @@ After the *Transit gateway added* message appears, you can attach your VPC.
 
 To attach a VPC to the transit gateway:
 
-. On the *Transit Gateways* page, click *Attach VPC*.
+. In Anypoint Platform, on the *Transit Gateways* page, click *Attach VPC*.
 +
-If no VPCs are available to attach, the *Attach VPC* button is disabled.
-. From the *Select VPC* window, select the VPC to attach, and click *Next*.
+The *Attach VPC* button is disabled if no VPCs are available to attach or if the transit gateway addition failed. 
+. From the *Select VPC* window, select the VPC to attach.
 +
 The window displays all VPCs that are not currently attached to a transit gateway in the Business Groups for which you have Cloudhub Network Administrator permissions.
-. Accept the VPC attachment:
+. Click *Next*.
+. Sign in to your AWS corporate account.
+. In the *Accept VPC attachment* window: 
 +
-.. Sign in to your AWS corporate account.
-.. Open the https://console.aws.amazon.com/vpc/[Amazon VPC console].
-.. Click *Transit Gateway Attachments* in the left navigation pane.
-.. Select the attachment that shows *pending* in the *State* column.
+.. Click the *Transit Gateway Attachments* link. 
++
+The link opens the AWS RAM console to the page for accepting the transit gateway attachments in the region you specified.
+.. On the *Transit Gateway Attachments* page, select the attachment that shows *pending* in the *State* column.
 +
 The attachment might take a few minutes to appear.
 +
-To verify that the attachment is correct, click the link in the *Transit Gateway ID* and ensure that the *Resource Owner Account ID* is the MuleSoft AWS account number (`081025254626`)
+To verify that the attachment is correct, click the link in the *Transit Gateway ID* and ensure that the *Resource Owner Account ID* is the MuleSoft AWS account number (`073815667418`)
 .. From the *Actions* menu, select *Accept*.
+. In Anypoint Platform, in the *Accept VPC attachment* window, click *Done*.
++
+The *Transit Gateways* page shows the progress for accepting the VPC attachment from Anypoint Platform to AWS.
 
-The *Transit Gateways* page shows the progress for the VPC attachment from Anypoint Platform to AWS.
+When the VPC attachment succeeds, the *Transit Gateways* page displays the *VPC attached* message, and the VPC shows the `Attached successfully` message.
 
-When the VPC attachment succeeds, the *VPC attached* message appears.
+If the VPC attachment fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Connections].
 
 == Add Routes to the Transit Gateway Route Table
 
@@ -115,7 +143,7 @@ After the *VPC attached* message appears, you can add routes so apps deployed to
 
 To add routes to the transit gateway route table:
 
-. On the *Transit Gateways* page, click *Add route*. 
+. On the *Transit Gateways* page, in the *VPCs* section, click *Add route*. 
 . In the *Add VPC route* window, enter a single subnet in CIDR notation.
 +
 For information, see xref:tgw-about.adoc#routing[Transit Gateway Routing].
@@ -123,14 +151,14 @@ For information, see xref:tgw-about.adoc#routing[Transit Gateway Routing].
 +
 Anypoint Platform submits the new route to AWS.
 
-When the route addition succeeds, you see the *Route added* message
+When the route addition succeeds, the *Transit Gateways* page shows the *Route added* message
 and the *Transit Gateways* page shows the route CIDR in the route table.
 
 In the route table, added routes show *TGW* as the value in the *Next hop* column. 
 
 == Access AWS from Anypoint Platform
 
-To access the relevant console on AWS, at the top of the *Transit Gateways* page, click the *View on AWS* button.
+To access the relevant console on AWS, click the *View on AWS* button at the top of the *Transit Gateways* page.
 
 
 
@@ -154,15 +182,16 @@ To rename a transit gateway:
 
 To remove a route:
 
-. On the *Transit Gateways* page, *VPCs* section, click the *X* icon in the row for a TGW route in the route table.
+. On the *Transit Gateways* page, in the *VPCs* section, click the *X* icon in the row for a TGW route in the route table.
 . At the confirmation prompt, click *Remove*.
 
 === Detach an Anypoint VPC from the Transit Gateway
 
 To detach a VPC from the transit gateway:
 
-. On the *Transit Gateways* page, *VPCs* section, click *...* to the right of the *Add route* button and select *Detach*.
+. On the *Transit Gateways* page, in the *VPCs* section, click *...* next to the *Add route* button and select *Detach*.
 . At the confirmation prompt, click *Detach*.
+
 
 === Remove a Transit Gateway from Anypoint Platform
 
@@ -183,6 +212,7 @@ If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the t
 
 == See Also
 
+* xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Connections]
 * xref:tgw-about.adoc[CloudHub Transit Gateway]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager]
