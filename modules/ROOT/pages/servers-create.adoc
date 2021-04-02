@@ -32,17 +32,15 @@ To add a Mule server to Runtime Manager:
 . Click the *Add Server* button.
 . Enter a name for your server.
 +
-Server names can contain up to 60 alphanumeric characters (a-z, A-Z, 0-9), periods (.), hyphens (-), and underscores (_), but not spaces or other special characters.
-Runtime Manager supports Unicode characters in server names.
+include::partial$cluster-server.adoc[tag=ServerNameReqs]
 +
-Although the server name must be unique across environments, it can be the same if one organization exists in different environments.
+include::partial$cluster-server.adoc[tag=ServerNameUnique]
 +
-Runtime Manager generates the `amc_setup` command, including the `_registration token_` and the server name you specified, for you to use to register Mule in your environment:
+include::partial$cluster-server.adoc[tag=AMCsetupInfo]
 +
 .The arrow shows the `amc_setup` command in the *Add Server* window.
 image::rtm-add-server.png[amc_setup command in the Add Server window]
 +
-The registration token includes your organization's ID and the current environment.
 . Click *Copy command* to copy the `amc_setup` command.
 +
 This button appears only if the server name you specify is valid.
@@ -78,10 +76,10 @@ https://help.mulesoft.com/s/article/Connectivity-issues-between-Mule-Runtime-and
 . Depending on your Mule version, rename the `truststore` file in `$MULE_HOME/conf` to one of these file names:
 * `anypoint-truststore.jks`
 +
-Mule 4.1.3 (Mule Agent 2.1.4) and later
+Mule 4.1.3 (Agent 2.1.4) and later
 * `truststore.jks`
 +
-Mule 4.1.2 (Mule Agent 2.1.3)
+Mule 4.1.2 (Agent 2.1.3)
 . Copy the custom truststore into the `$MULE_HOME/conf` folder.
 . Restart Mule.
 
@@ -102,4 +100,4 @@ See xref:servers-actions.adoc[Shut Down, Restart, or Delete Servers].
 * xref:mule-runtime::mule-standalone.adoc[Run Mule Runtime Engine On-Premises]
 * xref:installing-and-configuring-runtime-manager-agent.adoc[Install or Update the Runtime Manager Agent]
 * xref:servers-actions.adoc[Shut Down, Restart, or Delete Servers]
-* xref:rtm-agent-whitelists.adoc[Ports, IP Addresses, and Hostnames to Whitelist]
+* xref:rtm-agent-allowlists.adoc[Ports, IP Addresses, and Hostnames to Allowlist]

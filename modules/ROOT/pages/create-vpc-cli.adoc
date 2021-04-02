@@ -120,7 +120,7 @@ tcp // <4>
 . Set `vpc-tutorial` as the target Anypoint VPC for this new firewall rule.
 . Set the IP range to allow only hosts from inside your Anypoint VPC by setting `10.111.0.0/24`. +
 In CIDR notation, this allows the range `10.111.0.0` to `10.111.0.255`.
-. Set the whitelisted protocol to `tcp`
+. Set the allowlisted protocol to `tcp`
 . Allow the port number `8090`
 
 When you create a new firewall rule, the Anypoint Platform CLI shows you a success message:

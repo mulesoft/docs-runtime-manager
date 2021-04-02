@@ -79,6 +79,17 @@ The protocol on which the application listens:
 By default, the load balancer listens to external requests on HTTPS and communicates internally with your worker over HTTP. If you configured your Mule application within the VPC to listen on HTTPS, set *Protocol* to `https` when you create the mapping rule list.
 --
 
+The DLB uses the values in the fields and the client request to generate the path that is sent to the target app.
+
+For example, if the client request is `<domain.com>/hello/world/` and the mapping rules fields are set to the following:
+
+* *Input Path*: `/hello/`
+* *Target App*: `myApp1`
+* *Output Path*: `/test/`
+
+The DLB uses the value of the output path (`/test/`), removes the section that matches the input path from the client request (`/hello/`), and appends the rest (`/world/`) to the client request. 
+The DLB then sends the resulting path (`/test/world/`) to the target app (`myApp1`).
+
 You can use either patterns or literal strings to define the input path. 
 For the output path, you can use only literal strings.
 
@@ -278,4 +289,4 @@ To determine the load balancer ID, perform a GET request to your endpoint:
 * xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/version/V1/pages/home/[CloudHub API]
 * xref:lb-cert-upload.adoc[Add Certificates]
-* xref:lb-whitelists.adoc[Whitelists]
+* xref:lb-allowlists.adoc[Allowlists]
