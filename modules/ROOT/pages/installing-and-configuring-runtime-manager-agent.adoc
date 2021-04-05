@@ -493,14 +493,11 @@ You can test whether the service is available at `_API_PLATFORM_HOST_/apiplatfor
 
 
 If you didn't set the `AGENT_VAR_master_password` environment variable when registering the agent 
-with Runtime Manager, you can encrypt these passwords later in the `mule-agent.yml` file:
+with Runtime Manager, you can encrypt passwords later in the `mule-agent.yml` file:
 
-`keystorePassword`::
-Keystore password used to access the `mule-agent.jks` file
-`keystoreAliasPassword`:: 
-Keystore alias password used to access the `mule-agent.jks` file
-`password`::
-Password used for authenticating with a proxy server
+* `keystorePassword`: Keystore password used to access the `mule-agent.jks` file
+* `keystoreAliasPassword`: Keystore alias password used to access the `mule-agent.jks` file
+* `password`: Password used for authenticating with a proxy server
 
 === Prerequisites 
 
@@ -534,7 +531,7 @@ globalConfiguration:
     password: '![PBEWITHSHA1ANDDESEDE,VIs82yFDp66lnsL/Rss8q8js/zPDQ8+HJpdNepdZtA9obeDj5u+z4HIocsbLvXow]'
 ----
 
-The encrypted passwords start with *!* and are enclosed in square brackets *[ ]*.
+The encrypted passwords start with `!` and are enclosed in square brackets `[ ]`.
 
 === Update and Reencrypt Passwords
 
