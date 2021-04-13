@@ -9,10 +9,9 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 
-CloudHub provides access to log data that includes deployment messages and events for each worker.
+CloudHub provides access to log data that includes deployment messages and events for each worker and logs for Mule runtime engine.
 
 Logs and diagnostics are currently available only for applications deployed to CloudHub workers. In cases when applications are deployed to a local server, you can send data to external analytics software.
-
 
 For more advanced searching and log management, you can:
 
@@ -22,7 +21,6 @@ See xref:monitoring::index.adoc[Anypoint Monitoring Overview].
 * Integrate your CloudHub app with your logging system using the Log4j configuration.
 +
 See xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j].
-
 
 == View Logs
 
@@ -79,6 +77,23 @@ You can also use the following URL to download a diagnostics file directly:
 
 `api/v2/applications/appName/instances/instanceId/diagnostics`
 ====
+
+== Download Mule Logs
+
+Mule logs display the logs of the Mule runtime engine for CloudHub.
+The runtime log contains information about app and lifecycle events.
+For example, the log records an entry when a Mule service or app starts, deploys, stops, or undeploys.
+
+. In the *Deployment* filters section on the right, find the date you want to view.
+. Click the download icon next to the worker, and select *Mule Logs*:
++
+.The arrow shows the icon to download Mule log output by deployment on the *Logs* page.
+image::cloudhub-logs-download.png[Download Mule log output on the Logs page]
+
+The log file is a text file with the file extension `.log` in the format `<deployment-ID>-<instance-ID>.log`. You can view the log file with a text editor.
+
+For more information about Mule logs, see xref:mule-runtime::logging-in-mule.adoc#runtime-log[Runtime Log].
+
 
 == Deployment History Persistence
 
