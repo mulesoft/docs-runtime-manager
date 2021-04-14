@@ -33,43 +33,6 @@ The Runtime Manager agent REST API enables you to programmatically access these 
 
 For an interactive reference of all the operations that are supported through the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/mule-agent-plugin-api/minor/1.1/pages/home/[Runtime Manager Agent API] on Exchange.
 
-== Use the Runtime Manager Agent API
-
-To access operations in the Runtime Manager Agent API
-
-=== Authenticate with the API
-
-To use the API, you must first generate an authorization bearer token (AUTH_BEARER_TOKEN).
-To get the access token, you need the Anypoint Platform username and password of a user assigned the Organization Administrators role.
-See 
-https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/Authentication/[Authentication] in the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
-
-
-=== Get the Organization ID
-
-You need the organization ID (ORG_ID) for operations in the Runtime Manager agent API.
-
-See the `/api/me` endpoint in the 
-https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
-
-=== Get the Environment ID
-
-You need the environment ID (ENV_ID) for operations in the Runtime Manager agent API.
-
-See the `/api/organizations/ORG_ID/environments` endpoint in the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
-
-
-=== Get a List of Applications
-
-To get a list of apps deployed on-premises using Runtime Manager, run the following `curl` command: 
-
-----
-curl -X GET \
-  --url https://anypoint.mulesoft.com/hybrid/api/v1/applications \
-  -H 'authorization: Bearer AUTH_BEARER_TOKEN' \
-  -H 'x-anypnt-env-id: ENV_ID' \
-  -H 'x-anypnt-org-id: ORG_ID'
-----
 
 
 == See Also
