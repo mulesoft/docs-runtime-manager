@@ -9,7 +9,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 
-CloudHub provides access to log data that includes deployment messages and events for each worker and logs for Mule runtime engine.
+CloudHub provides access to log data that includes deployment messages and events for each worker and Mule runtime engine logs.
 
 Logs and diagnostics are currently available only for applications deployed to CloudHub workers. 
 For applications deployed to a local server, you can send data to external analytics software.
@@ -31,8 +31,6 @@ To view logs for applications deployed to CloudHub:
 . In Anypoint Platform, select *Runtime Manager*.
 . In the Runtime Manager navigation menu, click *Applications*, and then click the application name.
 . In the navigation menu, click *Logs*.
-+
-The console displays the application logs.
 . In the *Deployments* section, filter the output by day, deployment, system log, and workers.
 +
 To remove a filter, deselect the checkbox for the date:
@@ -71,9 +69,8 @@ To download diagnostics:
 .The arrow shows the icon to download diagnostics by worker in the *Deployments* section.
 image::cloudhub-logs-diag-download.png[Download diagnostics by worker in the Deployments section]
 
-CloudHub downloads the diagnostic output to a text file with the extension `.txt` in the format `__appName__-instance-__instanceID__-__workerNumber__-diag.txt`. 
-You can view this file with a text editor.
-
+CloudHub downloads the diagnostic output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-diag.txt`. 
+Use a text editor to view the log file.
 
 [TIP]
 ====
@@ -94,8 +91,8 @@ For example, the log records an entry when a Mule service or app starts, deploys
 .The arrow shows the icon to download Mule log output by deployment in the *Deployments* section.
 image::cloudhub-logs-mule-download.png[Download Mule log output in the Deployments section]
 
-CloudHub downloads the Mule log output to a text file with the extension `.log` in the format `__appName__-instance-__instanceID__-__workerNumber__-mule_ee.log`.
-You can view the log file with a text editor.
+CloudHub downloads the Mule log output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-mule_ee.log`.
+Use a text editor to view the log file.
 
 For more information about Mule logs, see xref:mule-runtime::logging-in-mule.adoc#runtime-log[Runtime Log].
 
