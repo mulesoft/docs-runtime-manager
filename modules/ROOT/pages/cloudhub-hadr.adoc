@@ -17,6 +17,8 @@ image::hadr-aws-global-infrastructure.png[]
 For example, if the US East region is unavailable, the CloudHub management UI, as well as the various REST services that enable deployments, are unavailable until the region's availability is restored.
 New applications can't be deployed while US East is down.
 
+While the control plane is unavailable, the runtime plane continues to send log data and other telemetry data, which the worker buffers (up to 1 GB) until availability is restored.
+
 CloudHub provides an internal messaging mechanism, in the form of persistent queues, that is used for message reliability.
 While persistent queues are highly available within a region, they might not be accessible if the region or part of the region is unavailable (usually a few seconds or minutes), which could result in some data loss.
 After the region is available again, CloudHub resumes communication with the queues.
