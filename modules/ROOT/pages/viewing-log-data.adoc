@@ -50,7 +50,7 @@ For each worker in a CloudHub deployment, you can download separate logs:
 .The arrow shows the icon to download log output by deployment in the *Deployments* section.
 image::cloudhub-logs-download.png[Download log output by worker in the Deployments section]
 
-CloudHub downloads the log output to a text file with the extension `.log` in the format `__deploymentID__.__instanceID__-__workerNumber__.log`.
+CloudHub downloads the log output to a text file in the format `__deploymentID__.__instanceID__-__workerNumber__.log`.
 You can view the log file with a text editor.
 
 To archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the custom log appender to extract logs.
