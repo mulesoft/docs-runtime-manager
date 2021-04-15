@@ -50,26 +50,12 @@ For an interactive reference of all the operations that are supported through th
 
 The Runtime Manager REST API manages only on-prem applications deployed to your servers. To manage apps deployed to CloudHub using the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API].
 
-== Use the Runtime Manager Agent API
 
-To access operations in the Runtime Manager Agent API, you must:
+== Use the Runtime Manager API
 
-. Authenticate with the API.
-+
-To use the API, you must first generate an authorization bearer token (AUTH_BEARER_TOKEN).
-To get the access token, you need the Anypoint Platform username and password of a user assigned the Organization Administrators role.
-See 
-https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/Authentication/[Authentication] in the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
+To access operations in the Runtime Manager API, you must:
 
-. Get the organization ID (ORG_ID).
-+
-See the `/api/me` endpoint in the 
-https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
-
-. Get the environment ID (ENV_ID).
-+
-See the `/api/organizations/ORG_ID/environments` endpoint in the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
-
+include::partial$api-authenticate.adoc[]
 
 === Get a List of Applications
 

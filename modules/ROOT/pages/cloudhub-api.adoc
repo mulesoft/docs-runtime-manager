@@ -59,22 +59,29 @@ The CloudHub API manages only applications deployed to CloudHub, the cloud-based
 To manage on-premises applications using the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST Services].
 
 
-== Get Started and Authenticate with the CloudHub API
+== Use the CloudHub API
 
 Before getting started, familiarize yourself with operations for applications.
 
 You can use any HTTP client with the CloudHub API.
 With Java, use the https://jersey.github.io/[Jersey client] or http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/codehaus/jackson[Jackson] for JSON support.
 
-To access the CloudHub API, first authenticate with Anypoint Platform.
-To authenticate, use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Access Management API].
-Authentication requires that you supply an access token in the `Authorization` header.
 
+To access operations in the CloudHub API, you must:
 
-Your username specifies the environment to access.
-For example, if your username is `jane` and the environment is `Development`,
-your username is `jane@Development`.
-If you don't specify an environment, the API defaults to `Production`.
+include::partial$api-authenticate.adoc[]
+
+=== Get a List of Applications
+
+To get a list of apps deployed to CloudHub, run the following `curl` command: 
+
+----
+curl -X GET \
+  --url https://anypoint.mulesoft.com/cloudhub/api/applications \
+  -H 'authorization: Bearer AUTH_BEARER_TOKEN' \
+  -H 'X-ANYPNT-ENV-ID: ENV_ID' \
+  -H 'X-ANYPNT-ORG-ID: ORG_ID'
+----
 
 
 == Data Format
@@ -125,6 +132,8 @@ Here is an example of data received in JSON format in response to a request to g
   ...
 }
 ----
+
+
 
 == Rate Limits 
 
