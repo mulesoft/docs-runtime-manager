@@ -9,11 +9,10 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
 
 
-CloudHub provides access to log data that includes deployment messages and events for each worker and Mule runtime engine logs.
+CloudHub provides access to log data that includes deployment messages and events for each worker.
 
-Logs and diagnostics are currently available only for applications deployed to CloudHub workers. 
-For applications deployed to a local server, you can send data to external analytics software.
-See xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
+Logs and diagnostics are currently available only for applications deployed to CloudHub workers. In cases when applications are deployed to a local server, you can send data to external analytics software.
+
 
 For more advanced searching and log management, you can:
 
@@ -24,32 +23,31 @@ See xref:monitoring::index.adoc[Anypoint Monitoring Overview].
 +
 See xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j].
 
+
 == View Logs
 
-To view logs for applications deployed to CloudHub:
+View logs for applications deployed to CloudHub.
 
-. In Anypoint Platform, select *Runtime Manager*.
-. In the Runtime Manager navigation menu, click *Applications*, and then click the application name.
-. In the navigation menu, click *Logs*.
-. In the *Deployments* section, filter the output by day, deployment, system log, and workers.
+. In Runtime Manager, click *Applications* in the left menu, and then click the application that is deployed to CloudHub to open the management panel on the right.
+. Click *Logs*.
 +
-To remove a filter, deselect the checkbox for the date:
+The application logs are displayed.
+. The *Deployments* section on the right of the logging screen lets you selectively view the output by day, deployment, system log, and workers. You can remove a filter by unselecting the checkbox next to a date:
 +
-.The arrow shows the checkbox to filter log output by deployment in the *Deployments* section.
-image::cloudhub-logs-deploy.png[Filter log output by deployment in the Deployments section]
+.The arrow shows the checkbox to filter log output by deployment on the *Logs* page.
+image::cloudhub-logs-deploy.png[Filter log output by deployment on the Logs page]
 
 == Download Logs
 
-For each worker in a CloudHub deployment, you can download logs specific to that worker's activity:
+Each worker in each CloudHub deployment has separate logs you can download.
 
-. In the *Deployments* section, select the date and worker for which you want to download logs.
-. Click the download icon for the worker and select *Logs*:
+. In the *Deployment* filters section on the right, find the date and worker you want to view.
+. Click the download icon next to the worker, and select *Logs*:
 +
-.The arrow shows the icon to download log output by deployment in the *Deployments* section.
-image::cloudhub-logs-download.png[Download log output by worker in the Deployments section]
+.The arrow shows the icon to download log output by deployment on the *Logs* page.
+image::cloudhub-logs-download.png[Download log output by worker on the Logs page]
 
-CloudHub downloads the log output to a text file in the format `__deploymentID__.__instanceID__-__workerNumber__.log`.
-Use a text editor to view the log file.
+The log file is a text file with the file extension `.log` in the format `<deployment-ID>-<instance-ID>.log`. You can view the log file with a text editor.
 
 To archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the custom log appender to extract logs.
 See xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j].
@@ -57,45 +55,30 @@ See xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j
 
 == Download Diagnostics
 
-Diagnostics display the Java thread dump of each CloudHub worker in each deployment. These indicate the current state of the server, which is helpful for debugging and support.
+Diagnostics display the Java thread dump of each CloudHub worker in each deployment. These indicate the current state of the server, which is useful for debugging and support.
 
-Diagnostics are not available for apps running on Mule versions earlier than 3.8.0 (excluding version 3.7.4).
+For apps running on Mule versions earlier than 3.8.0 (excluding version 3.7.4), diagnostics are not available.
+
 
 To download diagnostics:
 
- . In the *Deployments* section, select the date and worker for which you want to download diagnostics.
-. Click the download icon for the worker and select *Diagnostics*:
+. In the *Deployment* filters section on the right, select the date and worker for which you want to download diagnostics.
+. Click the download icon next to the worker, and select *Diagnostics*:
 +
-.The arrow shows the icon to download diagnostics by worker in the *Deployments* section.
-image::cloudhub-logs-diag-download.png[Download diagnostics by worker in the Deployments section]
+.The arrow shows the icon to download diagnostics by worker on the *Logs* page.
+image::cloudhub-logs-download-diag.png[Download diagnostics by worker on the Logs page]
 
-CloudHub downloads the diagnostic output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-diag.txt`. 
-Use a text editor to view the diagnostics file.
+The downloaded log file is a text file with the `.txt` file extension and named in the format of `<app-name>-instance-<instance-ID>-<worker-number>-diag.txt`. You can view this file with a text editor.
+
 
 [TIP]
 ====
+In diagnostics, the instance ID of a worker is the deployment ID plus the worker number (0 to 4).
+
 You can also use the following URL to download a diagnostics file directly:
 
-`api/v2/applications/__appName__/instances/__instanceId__/diagnostics`
+`api/v2/applications/appName/instances/instanceId/diagnostics`
 ====
-
-== Download Mule Logs
-
-Mule logs display the logs of the Mule runtime engine for CloudHub.
-The Mule log contains information about app and lifecycle events.
-For example, the log records an entry when a Mule service or app starts, deploys, stops, or undeploys.
-
- . In the *Deployments* section, select the date and worker for which you want to download Mule logs.
- . Click the download icon for the worker and select *Mule Logs*:
-+
-.The arrow shows the icon to download Mule log output by deployment in the *Deployments* section.
-image::cloudhub-logs-mule-download.png[Download Mule log output in the Deployments section]
-
-CloudHub downloads the Mule log output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-mule_ee.log`.
-Use a text editor to view the log file.
-
-For more information about Mule logs, see xref:mule-runtime::logging-in-mule.adoc#runtime-log[Runtime Log].
-
 
 == Deployment History Persistence
 
