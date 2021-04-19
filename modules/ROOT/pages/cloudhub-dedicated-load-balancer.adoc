@@ -59,7 +59,7 @@ When you restart or update the DLB, the DLB switches to use the group of unused 
 Switching between the two groups of static IP addresses enables zero-downtime restarts and updates and ensures no transactions are dropped or lost as long as the transactions are shorter than 600s or Mule Application Response Timeout (whichever is smaller)
 
 All newly created DLBs with static IP use this static IP model. 
-For existing DLBs that use static IP addresses, the original static IP addresses will continue to be used on restart of the DLB unless opted-in using the *Update...* button. The Runtime Manager *Load Balancers* page displays *Update Required* until you update the DLB:
+For existing DLBs that use static IP addresses, the original static IP addresses will continue to be used on restart of the DLB unless opted-in using the *Update* button. This change cannot be reverted and will be enforced in the future. The Runtime Manager *Load Balancers* page displays *Update Required* until you update the DLB:
 
 .The arrow shows *Update Required* in the *Load Balancers* page.
 image::cloudhub-dlb-update-static-ips.png[Update Required in the Load Balancers page]
