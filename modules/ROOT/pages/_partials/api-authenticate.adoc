@@ -1,0 +1,23 @@
+// SHARED API AUTHENTICATION
+
+
+. Generate an authorization bearer token (AUTH_BEARER_TOKEN) to authenticate with the API.
++
+To get the access token, you need the Anypoint Platform username and password of a user assigned the Organization Administrators role.
+See 
+https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/Authentication/[Authentication] in the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
++
+Your username specifies the environment to access.
+For example, if your username is `consuela` and the environment is `Development`,
+your username is `consuela@Development`.
+If you don't specify an environment, the API defaults to `Production`.
+
+. Get the organization ID (ORG_ID).
++
+See the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/console/method/%234250/[`/api/me`] endpoint in the 
+https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
+
+. Get the environment ID (ENV_ID).
++
+See the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/console/method/%234762/[`/api/organizations/__ORG_ID__/environments`] endpoint in the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/minor/1.0/pages/home/[Access Management API].
+
