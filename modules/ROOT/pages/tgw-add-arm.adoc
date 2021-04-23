@@ -187,6 +187,9 @@ To remove a route:
 
 === Detach an Anypoint VPC from the Transit Gateway
 
+Because detaching a VPC from a transit gateway also deletes the attachment in AWS,
+undeploy any apps deployed to the VPC before detaching the VPC.
+
 To detach a VPC from the transit gateway:
 
 . On the *Transit Gateways* page, in the *VPCs* section, click *...* next to the *Add route* button and select *Detach*.
