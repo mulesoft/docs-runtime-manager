@@ -65,6 +65,8 @@ Redirects the request to the same URL using the HTTPS protocol.
 If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
 +
 * *Support TLS 1.0* specifies to support TLS 1.0 between the client and the DLB.
++
+To use TLS 1.0, see <<Enable TLS 1.0 on a DLB>>.
 * *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
 . Add a certificate.
 
@@ -80,7 +82,7 @@ The client certificate is a trusted CA certificate used to verify client certifi
 .. If you want to add URL mapping rules, click the *>* icon to display the options:
 +
 .The arrow shows the expand icon in the *Create Load Balancer | Add certificate* page.
-image::lb-create-mapping-rules.png[Expand icon in the *Create Load Balancer | Add certificate* page.]
+image::lb-create-mapping-rules.png[Expand icon in the *Create Load Balancer Add certificate* page]
 +
 If you add more than one URL mapping rule, order the rules in the list according to the priority in which they should be applied.
 +
@@ -88,7 +90,10 @@ Click *Add New Rule*, and then specify the input path, target app, output path, 
 .. Click *Save Certificate*.
 . Click *Create Load Balancer*.
 
+== Enable TLS 1.0 on a DLB
 
+MuleSoft doesn't recommend using TLS 1.0. 
+You can enable TLS 1.0 only on the default SSL endpoint.
 
 == See Also
 
