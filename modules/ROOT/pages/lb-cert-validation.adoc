@@ -82,7 +82,7 @@ See https://stedolan.github.io/jq/[jq].
 
 To generate your authorization bearer token for Anypoint Platform:
 
-. Send your Anypoint Platform user name and password to the CloudHub API:
+. Send your Anypoint Platform user name and password to the API:
 +
 [source,json,linenums]
 ----
@@ -180,7 +180,7 @@ In the command:
 * _myDlbID_ is the ID for the DLB.
 * _myAccessToken_ is the access token you generated.
 
-The output includes `defaultSuite`:
+The output includes `defaultCipherSuite`:
 
 [source,linenums]
 ----
@@ -229,7 +229,40 @@ For this reason, MuleSoft and Microsoft do not recommend using it.
 The CloudHub dedicated load balancer supports TLSv1.1 and TLSv1.2.
 Although you can configure TLSv1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
 
+== TLS 1.0 Support
 
+Although TLS 1.0  not recommended due to security vulnerabilities,
+you can enable support if required for communication with legacy clients.
+
+You can enable TLS 1.0 support only on the default SSL endpoint of the DLB. 
+Enabling TLS 1.0 support applies to the entire DLB, not a single SSL endpoint. 
+
+=== Enable TLS 1.0 on the Default SSL Endpoint for a DLB
+
+To enable TLS support: 
+
+. <<Prepare to Manage Certificate Cipher Suites,Prepare to manage certificate cipher suites>>.
+. Select the *Support TLS 1.0* option in Runtime Manager, on the *Create Load Balancer* page.
+. Using the API, change the default cipher suite to `OldDefault`: 
++
+--
+.. Check the current default cipher suite.
++
+See xref:lb-cert-validation.adoc#display-the-default-cipher-suite-for-a-dlb[Display the Default Cipher Suite for a DLB].
+.. Change the default cipher suite.
++
+See 
+xref:lb-cert-validation#rotate-the-cipher-by-replacing-the-default-cipher-suite[Rotate the Cipher by Replacing the Default Cipher Suite].
+.. Check the default cipher suite and verify that the output includes the following line:
++
+[source,json,linenums]
+----
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
+----
++
+--
+
+=== Test
 
 == See Also
 
@@ -237,3 +270,4 @@ Although you can configure TLSv1.0, PCI compliance doesn't accept this protocol 
 * xref:lb-cert-upload.adoc[Add Certificates]
 * xref:lb-allowlists.adoc[Allowlists]
 * xref:lb-mapping-rules.adoc[Mapping Rules]
+* xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]

@@ -33,9 +33,31 @@ This command specifies the Anypoint VPC instance in which to create the DLB and 
 //NO RENAME SHARED
 include::partial$no-rename.adoc[tag=noRenameDLB]
 
+== Enable TLS 1.0 on a DLB
+
+Although TLS 1.0  not recommended due to security vulnerabilities,
+you can enable support if required for communication with legacy clients.
+
+You can enable TLS 1.0 support only on the default SSL endpoint of the DLB.
+Enabling TLS 1.0 support applies to the entire DLB, not a single SSL endpoint. 
+
+To enable TLS 1.0 support: 
+
+. Run the following command to recreate the SSL endpoint:  
+----
+cloudhub load-balancer ssl-endpoint add --tlsv1 myLB_name example-com-crt.pem example-com-private.pem 
+----
+. Run the following command to set the _certificateName_  as the default certificate for the _myLB_name_ load balancer: 
+----
+cloudhub load-balancer ssl-endpoint set-default myLB_name certificateName
+----
+
+
 == See Also
 
 * xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-create[cloudhub load-balancer create]
+* xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]
+* xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-ssl-endpoint-set-default[cloudhub load-balancer ssl-endpoint set-default]
 * xref:lb-cert-upload.adoc[Add Certificates]
 * xref:access-management::index.adoc[Access Management]
 * xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
