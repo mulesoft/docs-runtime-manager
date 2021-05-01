@@ -91,7 +91,7 @@ curl -X POST 'https://anypoint.mulesoft.com/accounts/login' -H 'Content-Type: ap
 +
 This command returns the access token:
 +
-[source,linenums]
+[source,json,linenums]
 ----
 {
   "access_token": "myAccessToken",
@@ -113,8 +113,12 @@ Using the CloudHub API, you can:
 
 === List Available Cipher Suites
 
-To list available cipher suites for an organization using the CloudHub API, run this GET call:
+To list available cipher suites for an organization using the CloudHub API,
 
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. Run this GET call:
++
+--
 [source,linenums]
 ----
 curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/loadbalancers/ciphersuites -H 'Authorization: Bearer myAccessToken' | jq
@@ -122,7 +126,7 @@ curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/loadbalanc
 
 * _myOrgID_ is the organization ID.
 * _myAccessToken_ is the access token you generated.
-
+--
 
 The output includes `ciphers`:
 
@@ -166,8 +170,12 @@ The output includes `ciphers`:
 
 === Display the Default Cipher Suite for a DLB
 
-To display the default cipher suite for a DLB using the CloudHub API, run this GET call:
+To display the default cipher suite for a DLB using the CloudHub API:
 
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. Run this GET call:
++
+-- 
 [source,linenums]
 ----
 curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID -H 'Authorization: Bearer myAccessToken' | jq
@@ -180,20 +188,30 @@ In the command:
 * _myDlbID_ is the ID for the DLB.
 * _myAccessToken_ is the access token you generated.
 
+--
+
 The output includes `defaultCipherSuite`:
 
-[source,linenums]
+[source,json,linenums]
 ----
 "defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384"
 ----
 
 === Rotate the Cipher by Replacing the Default Cipher Suite
 
-To rotate the cipher by replacing the default cipher suite for a DLB using the CloudHub API, run this GET call:
+To rotate the cipher by replacing the default cipher suite for a DLB using the CloudHub API:
 
-[source,json,linenums]
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. Run this GET call:
++
+--
+[source,linenums]
 ----
-curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID  -H 'Authorization: Bearer myAccessToken' -H 'Content-Type: application/json' -d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"NewDefault-v1"}]' | jq
+curl -X PATCH 
+https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/ 
+myDlbID  -H 'Authorization: Bearer myAccessToken' 
+-H 'Content-Type: application/json' 
+-d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"NewDefault-v1"}]' | jq
 ----
 
 In the command:
@@ -203,14 +221,71 @@ In the command:
 * _myDlbID_ is the ID for the DLB.
 * _myAccessToken_ is the access token you generated.
 * `NewDefault` is the value of `name` for a cipher suite from the list of available cipher suites that you generated in <<List Available Cipher Suites>>.
+--
 
 The output now includes `defaultCipherSuite`:
 
-[source,linenums]
+[source,json,linenums]
 ----
 "defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384"
 ----
 
+=== Change the Default Cipher Suite to Support TLS 1.0
+
+To support TLS 1.0, change the default cipher suite to `OldDefault`: 
+
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. xref:lb-cert-validation.adoc#display-the-default-cipher-suite-for-a-dlb[Display the current default cipher suite].
+. Change the default cipher suite: 
++
+--
+
+[source,linenums]
+----
+curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID  -H 'Authorization: Bearer myAccessToken' -H 'Content-Type: application/json' -d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"OldDefault"}]' | jq
+----
+
+In the command:
+
+* _myOrgID_ is the organization ID.
+* _myVpcID_ is the ID for the VPC.
+* _myDlbID_ is the ID for the DLB.
+* _myAccessToken_ is the access token you generated.
+* `OldDefault` is the name of the cipher suite that supports TLS 1.0.
+--
+. Check the default cipher suite and verify that the output includes the following line:
++
+[source,json,linenums]
+----
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
+----
+
+=== Verify the TLS 1.0 Connection
+
+After enabling TLS 1.0, test the connection: 
+
+* `openssl`
++
+--
+Run this command against the DLB SSL endpoint: 
+
+`openssl s_client -connect _DNS of the SSL endpoint_:443 -tls1`
+
+* If the output includes the certificate information and the message `Secure Renegotiation IS supported`, TLS 1.0 is supported. 
+
+* If the command returns `write:errno=54`, TLS 1.0 is not supported. 
+--
+* `curl`
++
+--
+Run this command against the DLB SSL endpoint: 
+
+`curl -vI --insecure --tlsv1.0 https://_DNS of the SSL endpoint_`
+
+* If you see the returned results from the backend server or the HTTP error code, TLS 1.0 is supported. 
+
+* If the command returns `curl: (35) Server aborted the SSL handshake`, TLS 1.0 is not supported.
+--
 
 === Recommended Cipher Suites
 
@@ -226,43 +301,10 @@ DHE-RSA-AES256-GCM-SHA384
 Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8) does not.
 For this reason, MuleSoft and Microsoft do not recommend using it.
 
-The CloudHub dedicated load balancer supports TLSv1.1 and TLSv1.2.
-Although you can configure TLSv1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
+The CloudHub dedicated load balancer supports TLS 1.2.
+TLS 1.1 is disabled and is not supported by default.
 
-== TLS 1.0 Support
-
-Although TLS 1.0  not recommended due to security vulnerabilities,
-you can enable support if required for communication with legacy clients.
-
-You can enable TLS 1.0 support only on the default SSL endpoint of the DLB. 
-Enabling TLS 1.0 support applies to the entire DLB, not a single SSL endpoint. 
-
-=== Enable TLS 1.0 on the Default SSL Endpoint for a DLB
-
-To enable TLS support: 
-
-. <<Prepare to Manage Certificate Cipher Suites,Prepare to manage certificate cipher suites>>.
-. Select the *Support TLS 1.0* option in Runtime Manager, on the *Create Load Balancer* page.
-. Using the API, change the default cipher suite to `OldDefault`: 
-+
---
-.. Check the current default cipher suite.
-+
-See xref:lb-cert-validation.adoc#display-the-default-cipher-suite-for-a-dlb[Display the Default Cipher Suite for a DLB].
-.. Change the default cipher suite.
-+
-See 
-xref:lb-cert-validation#rotate-the-cipher-by-replacing-the-default-cipher-suite[Rotate the Cipher by Replacing the Default Cipher Suite].
-.. Check the default cipher suite and verify that the output includes the following line:
-+
-[source,json,linenums]
-----
-"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
-----
-+
---
-
-=== Test
+Although you can configure TLS 1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
 
 == See Also
 

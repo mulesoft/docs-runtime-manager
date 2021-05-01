@@ -1,0 +1,13 @@
+// TLS 1.0 Support
+//tag::tlsSupport[]
+Although TLS 1.0  not recommended due to security vulnerabilities,
+you can enable support if required for communication with legacy clients.
+
+You can enable TLS 1.0 support only on the default SSL endpoint of the DLB. 
+Enabling TLS 1.0 support applies to the entire DLB, not a single SSL endpoint.
+
+[IMPORTANT]
+For security reasons, do not leave TLS 1.0 enabled.
+After you no longer need TLS 1.0, replace the default cipher suite, for example, with `NewDefault`.
+
+// end::tlsSupport[]

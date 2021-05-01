@@ -20,10 +20,11 @@ Before you create a load balancer:
 * Create an Anypoint Virtual Private Cloud (Anypoint VPC) instance in the organization where you want to create a DLB.
 * Create at least one certificate and private key for your certificate.
 
-== Create a Load Balancer
+== Create a Load Balancer Using the CLI
 
 Use this command to create a DLB from the CLI:
 
+[source,linenums]
 ----
 cloudhub load-balancer create myVPC myLB_name example-com-crt.pem example-com-private.pem
 ----
@@ -33,21 +34,22 @@ This command specifies the Anypoint VPC instance in which to create the DLB and 
 //NO RENAME SHARED
 include::partial$no-rename.adoc[tag=noRenameDLB]
 
-== Enable TLS 1.0 on a DLB
+== Enable TLS 1.0 on a DLB Using the CLI
 
-Although TLS 1.0  not recommended due to security vulnerabilities,
-you can enable support if required for communication with legacy clients.
+// TLS 1.0 Support
+include::partial$tls-support.adoc[tag=tlsSupport]
 
-You can enable TLS 1.0 support only on the default SSL endpoint of the DLB.
-Enabling TLS 1.0 support applies to the entire DLB, not a single SSL endpoint. 
+To enable TLS 1.0 support using the CLI: 
 
-To enable TLS 1.0 support: 
-
-. Run the following command to recreate the SSL endpoint:  
+. Run the following command to recreate the SSL endpoint for the _myLB_name_ load balancer: 
++
+[source,linenums]
 ----
-cloudhub load-balancer ssl-endpoint add --tlsv1 myLB_name example-com-crt.pem example-com-private.pem 
+cloudhub load-balancer ssl-endpoint add --tlsv1 myLB_name example-com-crt.pem example-com-private.pem
 ----
 . Run the following command to set the _certificateName_  as the default certificate for the _myLB_name_ load balancer: 
++
+[source,linenums]
 ----
 cloudhub load-balancer ssl-endpoint set-default myLB_name certificateName
 ----
