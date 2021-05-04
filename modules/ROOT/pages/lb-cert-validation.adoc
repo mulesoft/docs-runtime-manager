@@ -168,6 +168,25 @@ The output includes `ciphers`:
 }
 ----
 
+=== Recommended Cipher Suites
+
+The following recommended cipher suites provide a good balance between compatibility and security for your SSL endpoint:
+
+----
+ECDHE-RSA-AES256-GCM-SHA512
+DHE-RSA-AES256-GCM-SHA512
+ECDHE-RSA-AES256-GCM-SHA384
+DHE-RSA-AES256-GCM-SHA384
+----
+
+Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8) does not.
+For this reason, MuleSoft and Microsoft do not recommend using it.
+
+The CloudHub dedicated load balancer supports TLS 1.2.
+TLS 1.1 is disabled and is not supported by default.
+
+Although you can configure TLS 1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
+
 === Display the Default Cipher Suite for a DLB
 
 To display the default cipher suite for a DLB using the CloudHub API:
@@ -286,25 +305,6 @@ Run this command against the DLB SSL endpoint:
 
 * If the command returns `curl: (35) Server aborted the SSL handshake`, TLS 1.0 is not supported.
 --
-
-=== Recommended Cipher Suites
-
-The following recommended cipher suites provide a good balance between compatibility and security for your SSL endpoint:
-
-----
-ECDHE-RSA-AES256-GCM-SHA512
-DHE-RSA-AES256-GCM-SHA512
-ECDHE-RSA-AES256-GCM-SHA384
-DHE-RSA-AES256-GCM-SHA384
-----
-
-Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8) does not.
-For this reason, MuleSoft and Microsoft do not recommend using it.
-
-The CloudHub dedicated load balancer supports TLS 1.2.
-TLS 1.1 is disabled and is not supported by default.
-
-Although you can configure TLS 1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
 
 == See Also
 
