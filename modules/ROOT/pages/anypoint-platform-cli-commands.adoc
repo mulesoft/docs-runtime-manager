@@ -1704,8 +1704,17 @@ This command does not take any options, except for the default ones: `--help`, `
 > runtime-mgr standalone-application list [options]
 ----
 
-This command lists all standalone (on-premises) applications. +
-This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+This command lists all standalone (on-premises) applications.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| `--limit <num>` | Specifies the number of results to retrieve
+| `--offset <num>`      | Offsets the number of applications passed
+|===
+
 
 === runtime-mgr standalone-application restart
 
