@@ -16,6 +16,7 @@ Anypoint Platform CLI provides commands for different use case scenarios:
 * <<Commands For Administering Your Anypoint Platform Account>>
 * <<Commands for API Manager>>
 * <<Commands for Administering Your Design Center Applications>>
+* <<Commands for Managing Anypoint DataGraph Load Balancer>>
 * <<Commands for Managing Exchange Assets>>
 * <<Commands for Administering Your CloudHub Application>>
 * <<Commands for Managing Your Locally Deployed Applications Managed by Runtime Manager>>
@@ -100,6 +101,15 @@ You can pass the `--fields` option after a command to get a list of all possible
 | <<designcenter project publish>> | Publishes a Design Center project to Exchange
 | <<designcenter project upload>> | Uploads the content of a project to Design Center
 | <<designcenter project list>> | List all Design Center projects
+|===
+
+== Commands for Managing Anypoint DataGraph Load Balancer
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+| <<datagraph load-balancer-config add>> | Adds a new Anypoint DataGraph load balancer
+| <<datagraph load-balancer-config remove>> | Removes a Anypoint DataGraph load balancer
 |===
 
 == Commands for Managing Exchange Assets
@@ -1001,6 +1011,37 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |`--offset` | Offsets the amount of APIs passed | `api-mgr tier list --offset 3`
 |`--sort` | Sorts the results in the field name passed | `api-mgr tier list --sort "Latest Version"`
 |===
+
+=== datagraph load-balancer-config add
+
+----
+> datagraph load-balancer-config add <dlbUrl>
+----
+This command adds the dedicated load balancer configuration specified by `<dlbUrl>` to Anypoint DataGraph.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+=== datagraph load-balancer-config describe
+
+----
+> datagraph load-balancer-config describe
+----
+
+This command displays the dedicated load balancer URL for Anypoint DataGraph.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+=== datagraph load-balancer-config remove
+
+----
+> datagraph load-balancer-config remove [options]
+----
+
+This command removes a dedicated load balancer configuration from Anypoint DataGraph.
+
+This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
+
+
 
 === designcenter project create
 
