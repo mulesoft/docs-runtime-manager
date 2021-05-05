@@ -274,7 +274,7 @@ In the command:
 --
 . Check the default cipher suite and verify that the output includes the following line:
 +
-[source,json,linenums]
+[source,linenums]
 ----
 "defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
 ----
@@ -313,3 +313,7 @@ Run this command against the DLB SSL endpoint:
 * xref:lb-allowlists.adoc[Allowlists]
 * xref:lb-mapping-rules.adoc[Mapping Rules]
 * xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
+* xref:lb-create-arm.adoc#enable-tls-1-0-on-a-dlb-using-runtime-manager[Enable TLS 1.0 on a DLB Using Runtime Manager]
+* xref:lb-create-cli.adoc#enable-tls-1-0-on-a-dlb-using-the-cli[Enable TLS 1.0 on a DLB Using the CLI]
+* xref:lb-create-api.adoc#enable-tls-1-0-on-a-dlb-using-the-cloudhub-api[Enable TLS 1.0 on a DLB Using the CloudHub API]
+
