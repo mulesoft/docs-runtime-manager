@@ -16,7 +16,7 @@ Anypoint Platform CLI provides commands for different use case scenarios:
 * <<Commands For Administering Your Anypoint Platform Account>>
 * <<Commands for API Manager>>
 * <<Commands for Administering Your Design Center Applications>>
-* <<Commands for Managing Anypoint DataGraph Load Balancer>>
+* <<Commands for Managing Your Dedicated Load Balancer for Anypoint DataGraph>>
 * <<Commands for Managing Exchange Assets>>
 * <<Commands for Administering Your CloudHub Application>>
 * <<Commands for Managing Your Locally Deployed Applications Managed by Runtime Manager>>
@@ -90,6 +90,16 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<api-mgr tier list>> | Lists the SLA tiers of an API instance
 |===
 
+== Commands for Managing Your Dedicated Load Balancer for Anypoint DataGraph
+
+[%header,cols="35a,65a"]
+|===
+|Command |Description
+| <<datagraph load-balancer-config add>> | Adds a dedicated load balancer configuration to Anypoint DataGraph.
+| <<datagraph load-balancer-config describe>> | Displays a dedicated load balancer configuration to Anypoint DataGraph.
+| <<datagraph load-balancer-config remove>> | Removes a dedicated load balancer configuration to Anypoint DataGraph
+|===
+
 == Commands for Administering Your Design Center Applications
 
 [%header,cols="35a,65a"]
@@ -101,15 +111,6 @@ You can pass the `--fields` option after a command to get a list of all possible
 | <<designcenter project publish>> | Publishes a Design Center project to Exchange
 | <<designcenter project upload>> | Uploads the content of a project to Design Center
 | <<designcenter project list>> | List all Design Center projects
-|===
-
-== Commands for Managing Anypoint DataGraph Load Balancer
-
-[%header,cols="35a,65a"]
-|===
-|Command |Description
-| <<datagraph load-balancer-config add>> | Adds a new Anypoint DataGraph load balancer
-| <<datagraph load-balancer-config remove>> | Removes a Anypoint DataGraph load balancer
 |===
 
 == Commands for Managing Exchange Assets
@@ -1017,7 +1018,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 ----
 > datagraph load-balancer-config add <dlbUrl>
 ----
-This command adds the dedicated load balancer configuration specified by `<dlbUrl>` to Anypoint DataGraph.
+This command adds a dedicated load balancer configuration specified by `<dlbUrl>` to Anypoint DataGraph.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
@@ -1027,7 +1028,7 @@ This command does not take any options, except for the default ones: `--help`, `
 > datagraph load-balancer-config describe
 ----
 
-This command displays the dedicated load balancer URL for Anypoint DataGraph.
+This command displays a dedicated load balancer URL for Anypoint DataGraph.
 
 This command does not take any options, except for the default ones: `--help`, `-f`/`--fields` and `-o`/`--output`.
 
