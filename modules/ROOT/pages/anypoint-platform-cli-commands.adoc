@@ -1157,7 +1157,7 @@ Use the following format for the _assetIdentifier_ argument: `([_group_id_]/)_as
 `exchange asset uploadv2 --name "Raml Asset" --description "RAML" --properties.apiVersion v1 --properties.mainFile api.raml --files.raml.zip /..../file-path/raml.zip raml-asset/1.0.0`
 
 `exchange asset uploadv2 --files.mule-application.jar /..../file-path/mule-app.jar --files.pom /..../file-path/mule-app.pom fa7b266c-3817-4cbb-ae49-7f3cc6c8cd9e/my-mule-app/1.0.0`
-    | `--name` | Asset name (required)
+    | `--name` (required)| Asset name 
     | `--description` | Asset description (optional)
     | `--type` | Asset Type. (required if no file is uploaded. If it is uploaded, type will be inferred from the classifier of the file. Supported Values: 'rest-api', 'soap-api', 'http-api', 'raml-fragment', 'custom', 'connector', 'template', 'example', 'policy', 'app', 'extension', 'external-library'
     | `--keywords` | Keywords (optional)
