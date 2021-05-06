@@ -1164,7 +1164,7 @@ Use the following format for the _assetIdentifier_ argument: `([_group_id_]/)_as
     Required if no file is uploaded. If it is uploaded, type is inferred from the classifier of the file.
     
     Supported Values: `rest-api`, `soap-api`, `http-api`, `raml-fragment`, `custom`, `connector`, `template`, `example`, `policy`, `app`, `extension`, `external-library`
-    | `--keywords` | Keywords (optional)
+    | `--keywords` | Keywords
     | `--dependencies` | Asset dependencies, separated by ",". Ex: dependencies groupId:assetId:version,groupId2...
     | `--properties` | Asset properties. Should be used as "properties.mainFile main.yaml", "properties.apiVersion v1" or "properties.assetLink http://api.com"
     | `--files` | Asset file. (it should be identified as "classifier.packaging" or just "packaging". Ex: "files.raml.zip .../file-path/raml.zip") (to send multiple files, use the same option multiple times. Example: --files.custom.zip custom.zip --files.pom.xml pom.xml)
