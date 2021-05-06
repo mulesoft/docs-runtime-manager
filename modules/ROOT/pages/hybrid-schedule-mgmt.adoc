@@ -1,4 +1,4 @@
-= Manage Schedules
+= Manage Schedulers
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -11,14 +11,14 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 
 You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.
-Use the *Schedules* tab in the left navigation menu to enable or disable Scheduler elements,
+Use the *Schedulers* tab in the left navigation menu to enable or disable Scheduler elements,
 change the frequency, or run the scheduled job immediately,
 all without changing the running application.
 
 [NOTE]
 Schedule management is supported on servers in a hybrid deployment environment using only Mule version 3.9 or later.
 
-From the *Schedules* tab, you can:
+From the *Schedulers* tab, you can:
 
 * Enable or disable the Scheduler
 * Change the frequency
@@ -32,14 +32,14 @@ Runtime Manager lists the name of each Scheduler component as `polling://{flow_n
 
 Schedule management is useful in the following contexts:
 
-* You want to change the schedules in your application at runtime without redeploying.
+* You want to change the schedulers in your application at runtime without redeploying.
 * You want to disable a scheduled job while one of the applications you are connecting to is undergoing maintenance.
-* You want runtime visibility into the schedules in your application.
+* You want runtime visibility into the schedulers in your application.
 
 
 == Considerations and Limitations
 
-When using the *Schedules* tab, consider the following:
+When using the *Schedulers* tab, consider the following:
 
 * If a scheduled job is not triggered because the application is not running,
 Runtime Manager triggers the job as soon as the application restarts.
@@ -49,7 +49,7 @@ To apply your changes immediately, run your jobs manually after updating the sch
 
 
 
-== View and Manage Application Schedules in Runtime Manager
+== View and Manage Application Schedulers in Runtime Manager
 
 To use the scheduling feature in Runtime Manager, deploy an application that includes one or more Scheduler elements:
 
@@ -58,10 +58,10 @@ image::hybrid-scheduler-studio.png[Scheduler component in the Anypoint Studio ca
 
 After deploying the app, view and manage the Scheduler elements in Runtime Manager:
 
-. Click *Applications* in the left pane, click the app name, and then click *Schedules*:
+. Click *Applications* in the left pane, click the app name, and then click *Schedulers*:
 +
-.The screenshot shows (*1*) the *Schedules* option and (*2*) the checkbox on the *Schedules* page.
-image::hybrid-scheduler-rtm.png[Schedules option and checkbox on the Schedules page]
+.The screenshot shows (*1*) the *Schedulers* option and (*2*) the checkbox on the *Schedulers* page.
+image::hybrid-scheduler-rtm.png[Schedulers option and checkbox on the Schedulers page]
 +
 The *Name* column shows the name of the flow that contains the Scheduler element.
 +
@@ -70,7 +70,7 @@ Runtime Manager lists the Scheduler elements in the order that they appear in yo
 .The screenshot shows (*1*) the checkbox, (*2*) the *Disable* button, and (*3*) the schedule in the details pane.
 image::hybrid-scheduler-rtm-detail.png[Checkbox, Disable button, and schedule in the details pane]
 
-. Enable one or more schedules by selecting checkboxes and clicking *Enable*.
+. Enable one or more schedulers by selecting checkboxes and clicking *Enable*.
 . Update a cron Scheduler by selecting a single checkbox and updating the schedule configuration in the details pane:
 +
 .The arrow shows the cron schedule configuration in the details pane.
@@ -79,7 +79,7 @@ image::hybrid-scheduler-cron.png[Schedule configuration in the details pane]
 +
 .The arrow shows the fixed-frequency schedule configuration in the details pane.
 image::hybrid-scheduler-fixed-frequency.png[Schedule configuration in the details pane]
-. Disable one or more schedules by selecting checkboxes and clicking *Disable*.
+. Disable one or more schedulers by selecting checkboxes and clicking *Disable*.
 . Click *Update* to save changed settings.
 
 
