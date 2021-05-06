@@ -1171,7 +1171,10 @@ Use the following format for the _assetIdentifier_ argument: `([_group_id_]/)_as
     `properties.apiVersion v1`
     
     `properties.assetLink \http://api.com`
-    | `--files` | Asset file. (it should be identified as "classifier.packaging" or just "packaging". Ex: "files.raml.zip .../file-path/raml.zip") (to send multiple files, use the same option multiple times. Example: --files.custom.zip custom.zip --files.pom.xml pom.xml)
+    | `--files` | Asset file, identified as `classifier.packaging` or `packaging`, for example, `files.raml.zip .../file-path/raml.zip`
+
+To send multiple files, use the same option multiple times.  |
+ `--files.custom.zip custom.zip --files.pom.xml pom.xml`
 |===
 
 === exchange asset modify
