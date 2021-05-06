@@ -1192,7 +1192,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 [%header,cols="30a,40a,30a"]
 |===
 |Command | Description |  Example
-|`--name` | Asset name (required) .2+<.<|
+|`--name` (required) | Asset name .2+<.<|
 `exchange asset uploadv2 --name "Raml Fragment Asset" --description "RAML Fragment Example" --properties.apiVersion v1 --properties.mainFile example.raml --type raml-fragment --files.raml-fragment.raml /Users/username/Downloads/example.raml raml-fragment-asset/1.0.0`
 |`--description` | Asset description (optional)
 |`--type` | Asset Type. (required if no file is uploaded. If it is uploaded, type will be inferred from classifier). Supported Values: rest-api, soap-api, http-api, raml-fragment, custom, connector, template, example, policy, app, extension, external-library
