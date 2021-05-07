@@ -141,6 +141,7 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybr
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
+
 For applications deployed to CloudHub, the following alert conditions apply:
 
 CPU usage - Cloudhub::
@@ -151,6 +152,9 @@ The CPU usage of the CloudHub workers that run the application is above or below
 image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
 
 To enable this condition, specify the percentage and duration that triggers the alert.
+
+// ALERTS SHARED
+include::partial$alert-conditions.adoc[tag=CHalertTriggerNote]
 --
 
 Custom application alert::
@@ -187,6 +191,9 @@ including the memory consumed by the JVM itself, is above or below the limit for
 image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
 
 To enable this condition, specify the percentage and duration that triggers the alert.
+
+// ALERTS SHARED
+include::partial$alert-conditions.adoc[tag=CHalertTriggerNote]
 --
 
 
