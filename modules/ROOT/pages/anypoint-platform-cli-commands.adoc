@@ -1223,7 +1223,7 @@ If _group_id_ is not specified, it defaults to the currently selected organizati
 [%header,cols="40a,30a,30a"]
 |===
 | Command | Description |  Example
-| `--name` (required) | Asset name .3+|
+| `--name` | Asset name (required if no pom file is uploaded) .3+|
 `exchange asset uploadv2 --name "Raml Asset" --description "RAML" --properties.apiVersion v1 --properties.mainFile api.raml --files.raml.zip /..../file-path/raml.zip raml-asset/1.0.0`
 | `--description` | Asset description 
 | `--properties` | Asset properties 
