@@ -1,4 +1,4 @@
-= CloudHub Transit Gateway
+= Transit Gateway Attachments
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,7 +9,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-Use CloudHub Transit Gateway to create a secure connection between your MuleSoft Virtual Private Cloud (VPC) and your private corporate networks. You can add multiple transit gateway connections if required. 
+Use transit gateway attachments to create a secure connection between your MuleSoft Virtual Private Cloud (VPC) and your private corporate networks. You can add multiple transit gateway attachments if required. 
 
 [NOTE]
 The number of transit gateways you can add depends on the transit gateway entitlements available to your account.
@@ -18,17 +18,17 @@ Contact your MuleSoft account representative if you don't know how many  entitle
 
 == Transit Gateway Routing
 
-CloudHub Transit Gateway supports static routing for transit gateway connections.
+VPC supports static routing for transit gateway attachments.
 
-You must specify the routes (subnets) in your network that you want to be accessible through CloudHub Transit Gateway.
+You must specify the routes (subnets) in your network that you want to be accessible through the transit gateway attachments.
 
 [NOTE]
-A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway connections.
+A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway attachments.
 Consolidate networks to the fewest number possible to avoid exceeding the limit.  
 
 === Limitations
 
-CloudHub Transit Gateway doesn't support these features and configurations:
+Transit gateway attachments don't support these features and configurations:
 
 * blah
 * blah

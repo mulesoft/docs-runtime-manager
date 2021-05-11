@@ -1,4 +1,4 @@
-= Add a Transit Gateway
+= Add a Transit Gateway Attachment
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,7 +9,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-You can create a CloudHub Transit Gateway connection using Runtime Manager. 
+You can create a transit gateway attachment using Runtime Manager. 
 
 
 == Prerequisites
@@ -102,7 +102,7 @@ screenshot
 When the transit gateway addition succeeds, the *Transit Gateways* page displays the *Transit gateway added* message.
 The Transit Gateway ID and Transit Gateway Owner appear with the State of *Available*.
 
-If the transit gateway addition fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Connections].
+If the transit gateway addition fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments].
 
 == Attach a VPC to the Transit Gateway
 
@@ -135,7 +135,7 @@ The *Transit Gateways* page shows the progress for accepting the VPC attachment 
 
 When the VPC attachment succeeds, the *Transit Gateways* page displays the *VPC attached* message, and the VPC shows the `Attached successfully` message.
 
-If the VPC attachment fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Connections].
+If the VPC attachment fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments].
 
 == Add Routes to the Transit Gateway Route Table
 
@@ -162,7 +162,7 @@ To access the relevant console on AWS, click the *View on AWS* button at the top
 
 
 
-== Manage Transit Gateway Connections
+== Manage Transit Gateway Attachments
 
 * <<Rename a Transit Gateway>>
 * <<Remove a Route from the Transit Gateway Route Table>>
@@ -174,7 +174,7 @@ To access the relevant console on AWS, click the *View on AWS* button at the top
 
 To rename a transit gateway:
 
-. At the top of the *Transit Gateways* page, click the *...* and select *Rename*.
+. On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Rename*.
 . In the popup window, enter a new name and click *Save*.
 
 
@@ -192,7 +192,7 @@ undeploy any apps deployed to the VPC before detaching the VPC.
 
 To detach a VPC from the transit gateway:
 
-. On the *Transit Gateways* page, in the *VPCs* section, click *...* next to the *Add route* button and select *Detach*.
+. On the *Transit Gateways* page, click the VPC menu (*...*) and select *Detach*.
 . At the confirmation prompt, click *Detach*.
 
 
@@ -205,7 +205,7 @@ Removing a transit gateway deletes the resource share in AWS that Anypoint Platf
 
 To remove a transit gateway from Anypoint Platform:
 
-. At the top of the *Transit Gateways* page, click the *...* and select *Remove*.
+. On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Remove*.
 +
 Anypoint Platform prevents you from removing a transit gateway if it has VPCs attached.
 +
@@ -215,8 +215,8 @@ If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the t
 
 == See Also
 
-* xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Connections]
-* xref:tgw-about.adoc[CloudHub Transit Gateway]
+* xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
+* xref:tgw-about.adoc[Transit Gateway Attachments]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager]
 * xref:access-management::users#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users]
