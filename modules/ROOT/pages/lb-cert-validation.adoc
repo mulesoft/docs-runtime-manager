@@ -124,8 +124,8 @@ To list available cipher suites for an organization using the CloudHub API:
 curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/loadbalancers/ciphersuites -H 'Authorization: Bearer myAccessToken' | jq
 ----
 
-* _myOrgID_ is the organization ID.
-* _myAccessToken_ is the access token you generated.
+* `_myOrgID_` is the organization ID.
+* `_myAccessToken_` is the access token you generated.
 --
 
 The output includes `ciphers`:
@@ -202,10 +202,10 @@ curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpc
 
 In the command:
 
-* _myOrgID_ is the organization ID.
-* _myVpcID_ is the ID for the VPC.
-* _myDlbID_ is the ID for the DLB.
-* _myAccessToken_ is the access token you generated.
+* `_myOrgID_` is the organization ID.
+* `_myVpcID_` is the ID for the VPC.
+* `_myDlbID_` is the ID for the DLB.
+* `_myAccessToken_` is the access token you generated.
 
 --
 
@@ -235,10 +235,10 @@ myDlbID  -H 'Authorization: Bearer myAccessToken'
 
 In the command:
 
-* _myOrgID_ is the organization ID.
-* _myVpcID_ is the ID for the VPC.
-* _myDlbID_ is the ID for the DLB.
-* _myAccessToken_ is the access token you generated.
+* `_myOrgID_` is the organization ID.
+* `_myVpcID_` is the ID for the VPC.
+* `_myDlbID_` is the ID for the DLB.
+* `_myAccessToken_` is the access token you generated.
 * `NewDefault` is the value of `name` for a cipher suite from the list of available cipher suites that you generated in <<List Available Cipher Suites>>.
 --
 
@@ -266,10 +266,10 @@ curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/v
 
 In the command:
 
-* _myOrgID_ is the organization ID.
-* _myVpcID_ is the ID for the VPC.
-* _myDlbID_ is the ID for the DLB.
-* _myAccessToken_ is the access token you generated.
+* `_myOrgID_` is the organization ID.
+* `_myVpcID_` is the ID for the VPC.
+* `_myDlbID_` is the ID for the DLB.
+* `_myAccessToken_` is the access token you generated.
 * `OldDefault` is the name of the cipher suite that supports TLS 1.0.
 --
 . Check the default cipher suite and verify that the output includes the following line:
