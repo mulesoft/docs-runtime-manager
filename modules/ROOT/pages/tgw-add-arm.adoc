@@ -1,4 +1,4 @@
-= Add a Transit Gateway Attachment
+= Add Transit Gateway Attachments
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,7 +9,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
-You can create a transit gateway attachment using Runtime Manager. 
+Use Runtime Manager to add a transit gateway and connect your MuleSoft Virtual Private Cloud (VPC) to your private corporate network.
 
 
 == Prerequisites
@@ -18,7 +18,7 @@ Before you can add a transit gateway:
 
 * Purchase an Anypoint VPC offering with Transit Gateway entitlements.
 +
-The *Transit Gateways* page is visible to Anypoint organizations that have Transit Gateway entitlements. 
+The *Transit Gateways* page in Runtime Manager is visible to Anypoint organizations that have Transit Gateway entitlements. 
 * Sign in to an Anypoint Platform account with either the CloudHub Network Administrator or the CloudHub Network Viewer user permission.
 +
 See xref:access-management::users.adoc#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users].
@@ -34,7 +34,7 @@ You must have access to this AWS account to add a transit gateway.
 +
 See https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html[Getting started with transit gateways] in the AWS documentation for information about creating a transit gateway on AWS.
 +
-One Anypoint VPC can accommodate up to xxx Transit Gateways.
+One Anypoint VPC can accommodate up to *???* Transit Gateways.
 * Identify the subnets in your network (in CIDR notation) that you want to make accessible through the transit gateway.
 
 
@@ -42,7 +42,7 @@ One Anypoint VPC can accommodate up to xxx Transit Gateways.
 
 The steps for adding a Transit Gateway to your VPC are:
 
-. Create the transit gateway in Anypoint Platform.
+. Add the transit gateway in Anypoint Platform.
 . Create a Resource Share in AWS to share your transit gateway with Anypoint Platform.
 . Attach your VPCs to the transit gateway.
 . Accept the VPC attachments in AWS.
@@ -54,28 +54,35 @@ The steps for adding a Transit Gateway to your VPC are:
 To add a transit gateway:
 
 . Sign in to Anypoint Platform and select *Runtime Manager*.
-. Select the environment where you want to add a transit gateway.
+. Switch to the environment where you want to add a transit gateway.
 +
 See xref:runtime-manager-switch-env.adoc[Use Different Environments in Runtime Manager].
 . From the Runtime Manager navigation menu, click *Transit Gateways*, and then click *Add Transit Gateway*.
 +
-The *Here's what's coming* page lists the steps to add the transit gateway. 
+The *Here's what's coming* page lists the steps to add the transit gateway:
++
+image::tgw-overview.png[Overview of the steps to add the transit gateway]
 . Click *I'm ready*. 
 . Specify a name for your transit gateway.
 +
-Use the transit gateway name from AWS. 
+Use the same name for your transit gateway in AWS.
 You can change this name later.
+The name can contain up to 255 alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-).
+// They cannot start or end with a hyphen and cannot contain spaces or other characters.
 . Select the region that corresponds to the location your AWS transit gateway.
 +
 See xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 . Click *Next*.
 +
-The *Add transit gateway* page lists the steps to create a resource share in AWS.
+The *Add transit gateway* page lists the steps to create a resource share in AWS:
++
+image::tgw-resource-share-overview.png[Overview of the steps to create a resource share in AWS]
+
 
 == Create a Resource Share
 
 . Sign in to your AWS corporate account.
-. In Anypoint Platform, click the *Create Resource Share page* link. 
+. In Anypoint Platform, click the *Create Resource Share page* link on the *Add transit gateway* page. 
 +
 The link opens the AWS RAM console to the page for creating a resource share in the region you specified.
 . In the *Create Resource Share* page: 
@@ -83,7 +90,7 @@ The link opens the AWS RAM console to the page for creating a resource share in 
 --
 .. In *Name*, enter a name for the resource share.
 .. Under *Resources - _optional_*, select *Transit Gateways* from the resource type and select the transit gateway resource to share.
-.. Under *Principals - _optional_*, enter the MuleSoft AWS account ID (`073815667418`), and click *Add*.
+.. Under *Principals - _optional_*, enter the MuleSoft AWS account ID (`008119339527`), and click *Add*.
 .. Click *Create resource share*.
 .. Copy the following values for the resource share: *ID* and *Owner*.
 --
@@ -91,13 +98,18 @@ The link opens the AWS RAM console to the page for creating a resource share in 
 +
 --
 .. Click *Next*.
-.. Paste the values you copied from AWS in the *ID* and *Owner* fields. 
+.. Paste the values you copied from AWS in the *ID* and *Owner* fields.
+
+*** The resource share *ID* field contains alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-).
+*** The resource share *Owner* field contains only numbers.
+
 .. Click *Add*.
 --
 +
 The *Transit Gateways* page shows the progress for connecting to AWS and adding the transit gateway to Anypoint Platform.
 +
-screenshot
+_*screenshot*_
+
 
 When the transit gateway addition succeeds, the *Transit Gateways* page displays the *Transit gateway added* message.
 The Transit Gateway ID and Transit Gateway Owner appear with the State of *Available*.
@@ -127,7 +139,7 @@ The link opens the AWS RAM console to the page for accepting the transit gateway
 +
 The attachment might take a few minutes to appear.
 +
-To verify that the attachment is correct, click the link in the *Transit Gateway ID* and ensure that the *Resource Owner Account ID* is the MuleSoft AWS account number (`073815667418`)
+To verify that the attachment is correct, click the link in the *Transit Gateway ID* and ensure that the *Resource Owner Account ID* is the MuleSoft AWS account ID (`008119339527`)
 .. From the *Actions* menu, select *Accept*.
 . In Anypoint Platform, in the *Accept VPC attachment* window, click *Done*.
 +
@@ -161,61 +173,10 @@ In the route table, added routes show *TGW* as the value in the *Next hop* colum
 To access the relevant console on AWS, click the *View on AWS* button at the top of the *Transit Gateways* page.
 
 
-
-== Manage Transit Gateway Attachments
-
-* <<Rename a Transit Gateway>>
-* <<Remove a Route from the Transit Gateway Route Table>>
-* <<Detach an Anypoint VPC from the Transit Gateway>>
-* <<Remove a Transit Gateway from Anypoint Platform>>
-
-
-=== Rename a Transit Gateway 
-
-To rename a transit gateway:
-
-. On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Rename*.
-. In the popup window, enter a new name and click *Save*.
-
-
-=== Remove a Route from the Transit Gateway Route Table
-
-To remove a route:
-
-. On the *Transit Gateways* page, in the *VPCs* section, click the *X* icon in the row for a TGW route in the route table.
-. At the confirmation prompt, click *Remove*.
-
-=== Detach an Anypoint VPC from the Transit Gateway
-
-Because detaching a VPC from a transit gateway also deletes the attachment in AWS,
-undeploy any apps deployed to the VPC before detaching the VPC.
-
-To detach a VPC from the transit gateway:
-
-. On the *Transit Gateways* page, click the VPC menu (*...*) and select *Detach*.
-. At the confirmation prompt, click *Detach*.
-
-
-=== Remove a Transit Gateway from Anypoint Platform
-
-If a transit gateway has no VPCs attached, you can remove it from Anypoint Platform. 
-
-[NOTE]
-Removing a transit gateway deletes the resource share in AWS that Anypoint Platform uses to access the transit gateway.
-
-To remove a transit gateway from Anypoint Platform:
-
-. On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Remove*.
-+
-Anypoint Platform prevents you from removing a transit gateway if it has VPCs attached.
-+
-If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the transit gateway, the transit gateway might be attached to a VPC that belongs to another business group that you don't have access to.
-. At the confirmation prompt, click *Remove*.
-
-
 == See Also
 
 * xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
+* xref:tgw-manage-arm.adoc[Manage Transit Gateway Attachments]
 * xref:tgw-about.adoc[Transit Gateway Attachments]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager]

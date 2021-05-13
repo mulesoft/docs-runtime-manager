@@ -1,0 +1,64 @@
+= Manage Transit Gateway Attachments
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+
+
+Use Runtime Manager to manage transit gateway attachments.
+
+=== Rename a Transit Gateway Attachment
+
+To rename a transit gateway attachment:
+
+. On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Rename*.
+. In the popup window, enter a new name and click *Save*.
+
+
+=== Remove a Route from the Transit Gateway Route Table
+
+To remove a route:
+
+. On the *Transit Gateways* page, in the *VPCs* section, click the *X* icon in the row for a TGW route in the route table.
+. At the confirmation prompt, click *Remove*.
+
+=== Detach an Anypoint VPC from the Transit Gateway
+
+Because detaching a VPC from a transit gateway also deletes the attachment in AWS,
+undeploy any apps deployed to the VPC before detaching the VPC.
+
+To detach a VPC from the transit gateway:
+
+. On the *Transit Gateways* page, click the VPC menu (*...*) and select *Detach*.
+. At the confirmation prompt, click *Detach*.
+
+
+=== Remove a Transit Gateway from Anypoint Platform
+
+If a transit gateway has no VPCs attached, you can remove it from Anypoint Platform. 
+
+[NOTE]
+Removing a transit gateway deletes the resource share in AWS that Anypoint Platform uses to access the transit gateway.
+
+To remove a transit gateway from Anypoint Platform:
+
+. On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Remove*.
++
+Anypoint Platform prevents you from removing a transit gateway if it has VPCs attached.
++
+If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the transit gateway, the transit gateway might be attached to a VPC that belongs to another business group that you don't have access to.
+. At the confirmation prompt, click *Remove*.
+
+
+== See Also
+
+* xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
+* xref:tgw-add-arm.adoc[Add Transit Gateway Attachments]
+* xref:tgw-about.adoc[Transit Gateway Attachments]
+* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager]
+* xref:access-management::users#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users]
