@@ -87,14 +87,18 @@ image::tgw-resource-share-overview.png[Overview of the steps to create a resourc
 . In Anypoint Platform, click the *Create Resource Share page* link on the *Add transit gateway* page. 
 +
 The link opens the AWS RAM console to the page for creating a resource share in the region you specified.
-. In the *Create Resource Share* page: 
+. In the *Create resource share* page on AWS: 
 +
 --
-.. In *Name*, enter a name for the resource share.
-.. Under *Resources - _optional_*, select *Transit Gateways* from the resource type and select the transit gateway resource to share.
-.. Under *Principals - _optional_*, enter the MuleSoft AWS account ID (`073815667418`), and click *Add*.
+.. Under *Description*, enter a descriptive name for the resource share in the *Name* field.
+.. Under *Resources - _optional_*, select *Transit Gateways* from the *Select resource type* menu and select the transit gateway resource to share.
++
+The transit gateway ID appears in the *Selected resources* field.
+.. Under *Principals - _optional_*, ensure that *Allow external accounts* is selected, enter the MuleSoft AWS account ID (`073815667418`), and click *Add*.
++
+The AWS account number appears in the *Selected principals* field.
 .. Click *Create resource share*.
-.. Copy the following values for the resource share: *ID* and *Owner*.
+.. Copy the following values for the resource share you just created: *ID* and *Owner*.
 --
 . In Anypoint Platform, in the *Add transit gateway* window: 
 +
