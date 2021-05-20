@@ -42,7 +42,10 @@ During service updates or security patching, CloudHub waits two minutes for exis
 After two minutes, CloudHub retriggers any incomplete schedules.
 +
 To avoid retriggers with long-running schedules, make sure that the app executes the flow idempotently.
-* CloudHub manages the Schedulers and triggers them in only one worker, even if more are available.
+* For multi-worker apps, CloudHub guarantees that the schedule trigger executes on a single worker.
++
+However, subsequent triggers might execute on a different worker.
+CloudHub distributes multiple concurrent schedules across workers. 
 * The minimum recommended frequency between calls is 10 seconds.
 * If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as it restarts.
