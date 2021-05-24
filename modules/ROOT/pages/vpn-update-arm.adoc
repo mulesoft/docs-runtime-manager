@@ -9,9 +9,31 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anyp
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
 
+== Apply Required VPN Update Manually  
+
+The *Update* button indicates a VPN requires an update.
+The VPN update includes performance and security enhancements.
+
+You can update the VPN manually at your convenience or 
+wait for CloudHub to apply the update manually.
+
+Depending on your configuration, the update might cause downtime for up to 15 minutes.
+
+To update a VPN manually:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *VPNs* and select the VPN to update.
+. Click the *Update* button.
+. At the *Update VPN* prompt, click *Update Now*.
++
+Click the *Learn more* link for details about the update. 
+
+
+== Update Anypoint VPN Connection Settings
+
 You can update some Anypoint VPN connection settings using Runtime Manager. 
 
-== IP Addresses
+=== IP Addresses
 
 After you create the Anypoint VPN connection, you cannot modify the *Remote IP Address* or *Tunnel Configuration* settings. To change these settings, you must recreate the Anypoint VPN and update your VPN endpoint with the new values.
 
@@ -24,11 +46,11 @@ You can use *Automatic Tunnel Configuration* to generate values for these settin
 See xref:vpn-create-arm#create-an-anypoint-vpn[Create an Anypoint VPN] for more information.
 
 
-== Routing
+=== Routing
 
 After you create the Anypoint VPN connection, you cannot modify the routing type or Autonomous System Numbers (ASNs). To change these settings, you must recreate the Anypoint VPN and update your VPN endpoint with the new values.
 
-== Networks 
+=== Networks 
 
 The local network is inherited from Anypoint VPC. MuleSoft does not allow you to subnet the Anypoint VPC CIDR block.
 
@@ -37,7 +59,7 @@ You can modify the remote networks for an Anypoint VPN after creation. The steps
 [NOTE]
 A maximum of 95 route table entries is allowed per Anypoint VPC, regardless of the number of VPN connections. To avoid exceeding this limit, consolidate networks to the fewest number possible.
 
-=== Static Routes
+==== Static Routes
 
 To modify the remote networks for an Anypoint VPN that uses static routing:
 
@@ -58,7 +80,7 @@ See the documentation for your device.
 +
 When the tunnel is active, the route table updates automatically. 
 
-=== Dynamic Routes 
+==== Dynamic Routes 
 
 To modify the remote networks for an Anypoint VPN that uses dynamic routing:
 
@@ -74,7 +96,7 @@ See the documentation for your device.
 When BGP propagates the changes, the route table updates automatically.
 
 
-== IPsec
+=== IPsec
 
 The Anypoint VPN endpoint acts only as a responder. All IPsec settings are defined on your endpoint.
 
@@ -84,7 +106,7 @@ See xref:vpn-about#ipsec-settings[IPsec Settings].
 You don't need to change any VPN settings in Runtime Manager.
 
 
-=== See Also
+== See Also
 
 * xref:vpn-about.adoc[Anypoint VPN]
 * xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud]
