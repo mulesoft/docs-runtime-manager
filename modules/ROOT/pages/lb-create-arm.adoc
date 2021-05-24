@@ -67,10 +67,12 @@ For more information about static IP addresses, see xref:cloudhub-dedicated-load
 If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
 +
 * *Support TLS 1.0* specifies to support TLS 1.0 between the client and the DLB.
++
+To use TLS 1.0, see <<Enable TLS 1.0 on a DLB>>.
 * *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
 . Add a certificate.
 
-.. Click *Add certificate*.
+.. Click *Add certificate*:
 +
 .The arrow shows the *Add certificate* option in the *Create Load Balancer* page.
 image::lb-cert-upload-create.png[Add certificate option in the Create Load Balancer page]
@@ -82,7 +84,7 @@ The client certificate is a trusted CA certificate used to verify client certifi
 .. If you want to add URL mapping rules, click the *>* icon to display the options:
 +
 .The arrow shows the expand icon in the *Create Load Balancer | Add certificate* page.
-image::lb-create-mapping-rules.png[Expand icon in the *Create Load Balancer | Add certificate* page.]
+image::lb-create-mapping-rules.png[Expand icon in the *Create Load Balancer Add certificate* page]
 +
 If you add more than one URL mapping rule, order the rules in the list according to the priority in which they should be applied.
 +
@@ -90,14 +92,24 @@ Click *Add New Rule*, and then specify the input path, target app, output path, 
 .. Click *Save Certificate*.
 . Click *Create Load Balancer*.
 
+== Enable TLS 1.0 on a DLB Using Runtime Manager
+
+// TLS 1.0 Support
+include::partial$tls-support.adoc[tag=tlsSupport]
+
+To enable TLS support: 
+
+. Select the *Support TLS 1.0* option.
+. Using the API, change the default cipher suite to `OldDefault`.
++
+See xref:lb-cert-validation.adoc#change-the-default-cipher-suite-to-support-tls-1-0[Change the Default Cipher Suite to Support TLS 1.0].
 
 
 == See Also
 
 * xref:access-management::index.adoc[Access Management]
 * xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]
-* xref:lb-cert-upload.adoc[Add Certificates]
+* xref:lb-cert-upload.adoc[Add Certificates to a Dedicated Load Balancer]
+* xref:lb-cert-validation.adoc[Certificate Validation in Dedicated Load Balancers]
 * xref:lb-allowlists.adoc[Allowlists]
 * xref:lb-mapping-rules.adoc[Mapping Rules]
-* xref:lb-create-cli.adoc[Create a Load Balancer with the Anypoint Platform CLI]
-* xref:lb-create-api.adoc[Create a Load Balancer with the CloudHub API]
