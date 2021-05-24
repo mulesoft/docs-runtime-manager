@@ -8,7 +8,19 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybr
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using an IPsec tunnel, VPC peering, and CloudHub Direct Connect.
+You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using the following methods:
+
+* IPsec tunnel
+* Transit gateway attachment
+* VPC peering
++
+To connect your Anypoint VPC using VPC Peering,
+contact your MuleSoft Support representative.
+* CloudHub Direct Connect
++
+To connect your Anypoint VPC using CloudHub Direct Connect,
+contact your MuleSoft Support representative.
+
 
 [NOTE]
 A maximum of 95 route table entries is allowed per VPC, regardless of the number of connections. To avoid exceeding the limit, consolidate networks to the fewest number possible.
@@ -21,7 +33,23 @@ image::chvpc02.png[CHVPC02]
 
 To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[Anypoint VPN].
 
-==  VPC Peering
+
+== Transit Gateway Attachments
+
+You can attach Anypoint VPN to your private network using your existing transit gateway.
+
+A transit gateway attachment enables you to connect multiple VPCs to your private network and route traffic between them.
+
+To use transit gateway attachments, your Anypoint VPCs must be located in the same region.
+
+*NEED A NEW IMAGE FOR TGW HERE* 
+
+image::chvpc02.png[CHVPC02]
+
+To attach a transit gateway to your network, see xref:tgw-about.adoc[Transit Gateway Attachments].
+
+
+== VPC Peering
 
 VPC peering provides a connection between two VPCs. In this case, it pairs your private Amazon VPC directly to your Anypoint VPC. This enables you to route traffic between the two VPCs so they can communicate as though they are in the same network.
 
@@ -46,9 +74,6 @@ Direct Connect requires the use of the Border Gateway Protocol (BGP) for dynamic
 For high availability, use multiple Direct Connect connections from different AWS Direct Connect Locations.
 --
 
-== Transit Gateway Attachments
-
-Blah Blah Blah
 
 == See Also
 

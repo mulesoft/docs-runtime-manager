@@ -59,9 +59,7 @@ To add a transit gateway:
 See xref:runtime-manager-switch-env.adoc[Use Different Environments in Runtime Manager].
 . From the Runtime Manager navigation menu, click *Transit Gateways*, and then click *Add Transit Gateway*.
 +
-The *Here's what's coming* page lists the steps to add the transit gateway:
-+
-image::tgw-overview.png[Overview of the steps to add the transit gateway]
+The *Here's what's coming* page lists the steps to add the transit gateway.
 . Click *I'm ready*. 
 . Specify a name for your transit gateway.
 +
@@ -76,10 +74,7 @@ See xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 Your VPC and AWS transit gateway must be in the same region.
 . Click *Next*.
 +
-The *Add transit gateway* page lists the steps to create a resource share in AWS:
-+
-image::tgw-resource-share-overview.png[Overview of the steps to create a resource share in AWS]
-
+The *Add transit gateway* page lists the steps to create a resource share in AWS.
 
 == Create a Resource Share
 
@@ -94,7 +89,7 @@ The link opens the AWS RAM console to the page for creating a resource share in 
 .. Under *Resources - _optional_*, select *Transit Gateways* from the *Select resource type* menu and select the transit gateway resource to share.
 +
 The transit gateway ID appears in the *Selected resources* field.
-.. Under *Principals - _optional_*, ensure that *Allow external accounts* is selected, enter the MuleSoft AWS account ID (`073815667418`), and click *Add*.
+.. Under *Principals - _optional_*, ensure that *Allow external accounts* is selected, enter the MuleSoft AWS account ID (`494141260463`), and click *Add*.
 +
 The AWS account number appears in the *Selected principals* field.
 .. Click *Create resource share*.
@@ -151,7 +146,7 @@ The link opens the AWS RAM console to the page for accepting the transit gateway
 +
 The attachment might take a few minutes to appear.
 +
-To verify that the attachment is correct, select the Transit Gateway attachment ID and, in the *Details* tab, ensure that the *Resource owner account ID* is the MuleSoft AWS account ID (`073815667418`)
+To verify that the attachment is correct, select the Transit Gateway attachment ID and, in the *Details* tab, ensure that the *Resource owner account ID* is the MuleSoft AWS account ID (`494141260463`)
 .. From the *Actions* menu, select *Accept*.
 . In Anypoint Platform, in the *Accept VPC Attachment* window, click *Done*.
 +
@@ -193,6 +188,7 @@ image::tgw-view-on-aws.png[View on AWS button on the Transit Gateways page]
 * xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
 * xref:tgw-manage-arm.adoc[Manage Transit Gateway Attachments]
 * xref:tgw-about.adoc[Transit Gateway Attachments]
+* https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html[Transit gateway attachments to a VPC] in the AWS documentation
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager]
 * xref:access-management::users#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users]
