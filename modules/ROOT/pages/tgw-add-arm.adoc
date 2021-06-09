@@ -62,7 +62,9 @@ See xref:runtime-manager-switch-env.adoc[Use Different Environments in Runtime M
 +
 The *Here's what's coming* page lists the steps to add the transit gateway.
 . Click *I'm ready*. 
-. Specify a name for your transit gateway.
+. Specify a name for your transit gateway:
++
+image::tgw-add.png[Add transit gateway page]
 +
 Use the same name for your transit gateway in AWS.
 You can change this name later.
@@ -75,7 +77,12 @@ See xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 Your VPC and AWS transit gateway must be in the same region.
 . Click *Next*.
 +
-The *Add transit gateway* page lists the steps to create a resource share in AWS.
+The *Add transit gateway* page lists the steps to create a resource share in AWS:
++
+image::tgw-add-overview.png[Add transit gateway page: Steps to create a resource share]
++
+[NOTE]
+The MuleSoft AWS account ID that appears depends on your platform (US, EU, or Government Cloud).
 
 [[create_resource_share]]
 == Create a Resource Share
@@ -102,7 +109,9 @@ The AWS account number appears in the *Selected principals* field.
 +
 --
 .. Click *Next*.
-.. Paste the values you copied from AWS in the *ID* and *Owner* fields.
+.. Paste the values you copied from AWS in the *ID* and *Owner* fields:
++
+image::tgw-add-resource-share.png[Add transit gateway page: Resource share ID and owner ID]
 
 *** The resource share *ID* field contains alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-).
 *** The resource share *Owner* field contains only numbers.
@@ -173,7 +182,9 @@ After the *VPC attached* message appears, you can add routes so apps deployed to
 To add routes to the transit gateway route table:
 
 . On the *Transit Gateways* page, in the *VPCs* section, click *Add Route*. 
-. In the *Add VPC route* window, enter a single subnet in CIDR notation.
+. In the *Add VPC route* window, enter a single subnet in CIDR notation:
++
+image::tgw-add-vpc-route.png[Add VPC route]
 +
 For information, see xref:tgw-about.adoc#routing[Transit Gateway Routing].
 . Click *Add route*.
