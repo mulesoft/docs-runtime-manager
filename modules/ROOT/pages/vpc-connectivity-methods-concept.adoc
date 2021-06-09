@@ -29,7 +29,7 @@ A maximum of 95 route table entries is allowed per VPC, regardless of the number
 
 You can use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your Anypoint VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances. 
 
-image::chvpc02.png[CHVPC02]
+image::chvpc02.png[IPsect Tunnel Overview]
 
 To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[Anypoint VPN].
 
@@ -40,11 +40,9 @@ You can attach Anypoint VPN to your private network using your existing transit 
 
 A transit gateway attachment enables you to connect multiple VPCs to your private network and route traffic between them.
 
-To use transit gateway attachments, your Anypoint VPCs must be located in the same region.
+To use transit gateway attachments, your VPC and AWS transit gateway must be in the same region.
 
-*NEED A NEW IMAGE FOR TGW HERE* 
-
-image::chvpc02.png[CHVPC02]
+image::tgw-vpc-overview.png[Transit Gateway Overview]
 
 To attach a transit gateway to your network, see xref:tgw-about.adoc[Transit Gateway Attachments].
 
@@ -53,7 +51,7 @@ To attach a transit gateway to your network, see xref:tgw-about.adoc[Transit Gat
 
 VPC peering provides a connection between two VPCs. In this case, it pairs your private Amazon VPC directly to your Anypoint VPC. This enables you to route traffic between the two VPCs so they can communicate as though they are in the same network.
 
-image::chvpc05.png[CHVPC05]
+image::chvpc05.png[VPC Peering Overview]
 
 [NOTE]
 --
@@ -64,7 +62,7 @@ To use VPC Peering, your AWS and Anypoint VPCs must be located in the same regio
 
 This method establishes a dedicated network connection from your Amazon account to your Anypoint VPC. This enables you to create a hosted virtual interface to attach to your Anypoint VPC.
 
-image::vpc-connectivity-methods-concept-7dd0e.png[7dd0e]
+image::vpc-connectivity-methods-concept-7dd0e.png[CloudHub Direct Connect Overview]
 
 [NOTE]
 --
