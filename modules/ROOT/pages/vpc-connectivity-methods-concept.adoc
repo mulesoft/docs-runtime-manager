@@ -36,15 +36,13 @@ To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[An
 
 == Transit Gateway Attachments
 
-You can attach Anypoint VPN to your private network using your existing transit gateway.
-
-A transit gateway attachment enables you to connect multiple VPCs to your private network and route traffic between them.
+AWS Transit Gateway is a network transit hub that allows you to have a centralized way to interconnect all your AWS VPCs and on-premise networks. On CloudHub, you can attach your CloudHub VPC to your AWS Transit Gateway in your AWS account. This attachment will enable your CloudHub VPC to access any AWS VPCs and on-premise networks that you allow it to access through your Transit Gateway. 
 
 To use transit gateway attachments, your VPC and AWS transit gateway must be in the same region.
 
 image::tgw-vpc-overview.png[Transit Gateway Overview]
 
-To attach a transit gateway to your network, see xref:tgw-about.adoc[Transit Gateway Attachments].
+To attach your CloudHub VPC to your Transit Gateway, see xref:tgw-about.adoc[Transit Gateway Attachments].
 
 
 == VPC Peering
