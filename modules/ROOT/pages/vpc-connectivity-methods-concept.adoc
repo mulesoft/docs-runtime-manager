@@ -29,7 +29,7 @@ A maximum of 95 route table entries is allowed per VPC, regardless of the number
 
 You can use an IPsec tunnel with network-to-network configuration to connect your on-premises data centers to your Anypoint VPC. An IPsec VPN tunnel is generally the recommended solution for VPC to on-premises connectivity, as it provides a standardized, secure way to connect. This method also integrates well with existing IT infrastructure such as routers and appliances. 
 
-image::chvpc02.png[IPsect Tunnel Overview]
+image::vpc-overview-ipsec.png[IPsec Tunnel Overview]
 
 To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[Anypoint VPN].
 
@@ -43,7 +43,7 @@ you allow via your Transit Gateway.
 
 To use transit gateway attachments, your Anypoint VPC and AWS transit gateway must be in the same region.
 
-image::tgw-vpc-overview.png[Transit Gateway Overview]
+image::vpc-overview-tgw.png[Transit Gateway Overview]
 
 To attach your Anypoint VPC to your Transit Gateway, see xref:tgw-about.adoc[Transit Gateway Attachments].
 
@@ -52,7 +52,7 @@ To attach your Anypoint VPC to your Transit Gateway, see xref:tgw-about.adoc[Tra
 
 VPC peering provides a connection between two VPCs. In this case, it pairs your private Amazon VPC directly to your Anypoint VPC. This enables you to route traffic between the two VPCs so they can communicate as though they are in the same network.
 
-image::chvpc05.png[VPC Peering Overview]
+image::vpc-overview-peering.png[VPC Peering Overview]
 
 [NOTE]
 --
@@ -63,7 +63,7 @@ To use VPC Peering, your AWS and Anypoint VPCs must be located in the same regio
 
 This method establishes a dedicated network connection from your Amazon account to your Anypoint VPC. This enables you to create a hosted virtual interface to attach to your Anypoint VPC.
 
-image::dx-vpc-overview.png[CloudHub Direct Connect Overview]
+image::vpc-overview-dx.png[CloudHub Direct Connect Overview]
 
 [NOTE]
 --
