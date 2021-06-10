@@ -177,11 +177,12 @@ If the VPC attachment fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit
 [[add_tgw_routes]]
 == Add Routes to the Transit Gateway Route Table
 
-After the *VPC attached* message appears, you can add routes so apps deployed to the VPC can access the transit gateway and the transit gateway routes traffic correctly.
+After the *VPC attached* message appears, add routes so apps deployed to the VPC 
+can access the transit gateway and the transit gateway routes traffic correctly.
 
 To add routes to the transit gateway route table:
 
-. On the *Transit Gateways* page, in the *VPCs* section, click *Add Route*. 
+. In Anypoint Platform, on the *Transit Gateways* page, in the *VPCs* section, click *Add Route*. 
 . In the *Add VPC route* window, enter a single subnet in CIDR notation:
 +
 image::tgw-add-vpc-route.png[Add VPC route]
@@ -194,7 +195,15 @@ Anypoint Platform submits the new route to AWS.
 When the route addition succeeds, the *Transit Gateways* page shows the *Route added* message
 and the *Transit Gateways* page shows the route CIDR in the route table.
 
-In the route table, added routes show *Transit Gateway* as the value in the *Next hop* column. 
+In the route table, added routes show *Transit Gateway* as the value in the *Next hop* column.
+
+[[add_tgw_aws_routes]]
+== Add Routes to the Transit Gateway on AWS
+
+After successfully adding routes to the transit gateway route table in Anypoint Platform, 
+update the transit gateway 
+
+For example, if you added xxx.xxx.xxx.xxx to the route table, 
 
 == Access AWS from Anypoint Platform
 
