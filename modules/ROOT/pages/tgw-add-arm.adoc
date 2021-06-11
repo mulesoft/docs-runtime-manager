@@ -46,8 +46,8 @@ The steps for adding a Transit Gateway to your VPC are:
 . <<create_resource_share,Create a Resource Share in AWS>> to share your transit gateway with Anypoint Platform.
 . <<attach_vpc_tgw,Attach your VPCs>> to the transit gateway.
 . <<accept_attachment,Accept the VPC attachments>> in AWS.
-. <<add_tgw_routes,Add routes to the AWS VPC>> in the transit gateway route table. 
-. <<add_tgw_aws_routes,Add routes from the AWS VPC>> on AWS.
+. <<add_tgw_routes,Add routes from the Anypoint VPC to the AWS VPC>>. 
+. <<add_tgw_aws_routes,Add routes from the AWS VPC to the Anypoint VPC>>.
 
 
 [[add_tgw]]
@@ -61,7 +61,9 @@ To add a transit gateway:
 See xref:runtime-manager-switch-env.adoc[Use Different Environments in Runtime Manager].
 . From the Runtime Manager navigation menu, click *Transit Gateways*, and then click *Add Transit Gateway*.
 +
-The *Here's what's coming* page lists the steps to add the transit gateway.
+The *Here's what's coming* page lists the steps to add the transit gateway:
++
+image::tgw-process-overview.png[Here's what's coming page]
 . Click *I'm ready*. 
 . Specify a name for your transit gateway:
 +
@@ -89,10 +91,10 @@ The MuleSoft AWS account ID that appears depends on your platform (US, EU, or Go
 == Create a Resource Share
 
 . Sign in to your AWS corporate account.
-. In Anypoint Platform, click the *Create Resource Share* link on the *Add transit gateway* page. 
+. In Anypoint Platform, click the *Create resource share* link on the *Add transit gateway* page. 
 +
 The link opens the AWS RAM console to the page for creating a resource share in the region you specified.
-. In the *Create resource share* page on AWS: 
+. On AWS, in the *Create resource share* page:
 +
 --
 .. Under *Description*, enter a descriptive name for the resource share in the *Name* field.
@@ -124,7 +126,7 @@ image::tgw-add-resource-share.png[Add transit gateway page: Resource share ID an
 The *Transit Gateways* page shows the progress for connecting to AWS and adding the transit gateway to Anypoint Platform.
 
 When the transit gateway addition succeeds, the *Transit Gateways* page displays the *Transit gateway added* message.
-The *Transit Gateways* page updates the owner and ID from AWS and the State as *Available*:
+The *Transit Gateways* page updates the owner and ID from AWS and the state as *Available*:
 
 image::tgw-resource-share-available.png[Transit gateway added]
 
@@ -133,7 +135,7 @@ If the transit gateway addition fails, see xref:tgw-troubleshoot.adoc[Troublesho
 [[attach_vpc_tgw]]
 == Attach a VPC to the Transit Gateway
 
-After the transit gateway attachment succeeds, you can attach your VPC.
+After the transit gateway attachment succeeds, you can attach your Anypoint VPC to enable apps to access the transit gateway.
 
 To attach a VPC to the transit gateway:
 
@@ -156,7 +158,7 @@ The window doesn't display VPCs:
 == Accept the VPC Attachment
 
 . Sign in to your AWS corporate account.
-. In Anypoint Platform, in the *Accept VPC Attachment* page, click the *Transit Gateway Attachments* link.
+. In Anypoint Platform, in the *Accept VPC Attachment* page, click the *Transit gateway attachments* link.
 +
 The link opens the AWS RAM console to the *Create Transit Gateway Attachment* page.
 . In the AWS console:
@@ -187,8 +189,7 @@ If the VPC attachment fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit
 [[add_tgw_routes]]
 == Add Routes to the Transit Gateway Route Table
 
-After the *VPC attached* message appears, add routes for the AWS VPC to the transit gateway route table on Anypoint Platform so that apps deployed to the VPC 
-can access the transit gateway and the transit gateway routes traffic correctly.
+After the *VPC attached* message appears, add routes for the AWS VPC to the transit gateway route table for the VPC so that apps can access the transit gateway and the transit gateway routes traffic correctly.
 
 To add routes to the transit gateway route table:
 
@@ -206,9 +207,9 @@ Anypoint Platform submits the new route to AWS.
 When the route addition succeeds, the *Transit Gateways* page shows the *Route added* message
 and the *Transit Gateways* page shows the route CIDR in the route table.
 
-In the route table, added routes show *Transit Gateway* as the value in the *Next hop* column:
+In the route table, added routes show *Transit Gateway* as the value in the *Next Hop* column:
 
-image::tgw-route-added.png[Transit Gateway in the Next hop column of the route table]
+image::tgw-route-added.png[Transit Gateway in the Next Hop column of the route table]
 
 [[add_tgw_aws_routes]]
 == Add Routes to the Transit Gateway on AWS
