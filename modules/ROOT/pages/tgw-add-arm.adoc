@@ -45,8 +45,9 @@ The steps for adding a Transit Gateway to your VPC are:
 . <<add_tgw,Add the transit gateway>> in Anypoint Platform.
 . <<create_resource_share,Create a Resource Share in AWS>> to share your transit gateway with Anypoint Platform.
 . <<attach_vpc_tgw,Attach your VPCs>> to the transit gateway.
-. Accept the VPC attachments in AWS.
-. <<add_tgw_routes,Add VPC routes.>>
+. <<accept_attachment,Accept the VPC attachments>> in AWS.
+. <<add_tgw_routes,Add routes to the AWS VPC>> in the transit gateway route table. 
+. <<add_tgw_aws_routes,Add routes from the AWS VPC>> on AWS.
 
 
 [[add_tgw]]
@@ -102,6 +103,7 @@ The transit gateway ID appears in the *Selected resources* field.
 enter the MuleSoft AWS account ID that appears in the *Add transit gateway* page, and click *Add*.
 +
 The AWS account number appears in the *Selected principals* field.
+.. Under *Tags*, add a tag if you want.
 .. Click *Create resource share*.
 .. Copy the following values for the resource share you just created: *ID* and *Owner*.
 --
@@ -149,20 +151,23 @@ The window doesn't display VPCs:
 * In Business Groups for which you don't have Cloudhub Network Administrator permissions
 --
 . Click *Next*.
+
 [[accept_attachment]]
+== Accept the VPC Attachment
+
 . Sign in to your AWS corporate account.
-. In the *Accept VPC Attachment* window: 
+. In Anypoint Platform, in the *Accept VPC Attachment* page, click the *Transit Gateway Attachments* link.
 +
-.. Click the *Transit Gateway Attachments* link. 
+The link opens the AWS RAM console to the *Create Transit Gateway Attachment* page.
+. In the AWS console:
 +
-The link opens the AWS RAM console to the page for accepting the transit gateway attachments in the region you specified.
-.. On the *Transit Gateway Attachments* page, select the attachment that shows *pending acceptance* in the *State* column.
+.. Select the attachment that shows *pending acceptance* in the *State* column.
 +
 The attachment might take a few minutes to appear.
 +
-To verify that the attachment is correct, select the Transit Gateway attachment ID and, in the *Details* tab, ensure that the *Resource owner account ID* is the MuleSoft AWS account ID from the *Add transit gateway* page.
-.. Click the pencil icon and enter a name for the attachment. 
-.. From the *Actions* menu, select *Accept*.
+.. Select the Transit Gateway attachment ID and, in the *Details* tab, ensure that the *Resource owner account ID* is the MuleSoft AWS account ID.
+.. Click the pencil icon for the attachment and enter a name. 
+.. Select *Actions* > *Accept* and click *Accept* to confirm.
 +
 When the attachment acceptance succeeds, the *State* column shows *available*.
 . In Anypoint Platform, in the *Accept VPC Attachment* window, click *Done*.
@@ -170,20 +175,26 @@ When the attachment acceptance succeeds, the *State* column shows *available*.
 The *Transit Gateways* page shows the progress for accepting the VPC attachment from Anypoint Platform to AWS.
 . Click *Refresh* to update the attachment status.
 
-When the VPC attachment succeeds, the *Transit Gateways* page displays the *VPC attached* message, and the VPC shows the `Attached successfully` message.
+When the VPC attachment succeeds, the *Transit Gateways* page displays the *VPC attached* message, and the VPC shows the `Attached successfully` message:
+
+image::tgw-attached.png[VPC attached successfully]
+
 
 If the VPC attachment fails, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments].
+
+
 
 [[add_tgw_routes]]
 == Add Routes to the Transit Gateway Route Table
 
-After the *VPC attached* message appears, add routes so apps deployed to the VPC 
+After the *VPC attached* message appears, add routes for the AWS VPC to the transit gateway route table on Anypoint Platform so that apps deployed to the VPC 
 can access the transit gateway and the transit gateway routes traffic correctly.
 
 To add routes to the transit gateway route table:
 
 . In Anypoint Platform, on the *Transit Gateways* page, in the *VPCs* section, click *Add Route*. 
-. In the *Add VPC route* window, enter a single subnet in CIDR notation:
+. In the *Add VPC route* window, enter a single subnet in CIDR notation for your
+AWS VPC:
 +
 image::tgw-add-vpc-route.png[Add VPC route]
 +
@@ -195,22 +206,29 @@ Anypoint Platform submits the new route to AWS.
 When the route addition succeeds, the *Transit Gateways* page shows the *Route added* message
 and the *Transit Gateways* page shows the route CIDR in the route table.
 
-In the route table, added routes show *Transit Gateway* as the value in the *Next hop* column.
+In the route table, added routes show *Transit Gateway* as the value in the *Next hop* column:
+
+image::tgw-route-added.png[Transit Gateway in the Next hop column of the route table]
 
 [[add_tgw_aws_routes]]
 == Add Routes to the Transit Gateway on AWS
 
 After successfully adding routes to the transit gateway route table in Anypoint Platform, 
-update the transit gateway 
+add the Anypoint VPC to the route table for the AWS VPC.
 
-For example, if you added xxx.xxx.xxx.xxx to the route table, 
+. In AWS, select *Services* > *VPC*. 
+. In the *VPC Dashboard*, click *Route Tables*.
+. Click the route table ID that corresponds to the VPC.
+. In the *Routes* section, click *Edit routes*.
+. Under *Destination*, click *Add route* and enter the route (the CIDR block of your Anypoint VPC).
+. Under *Target*, select *Transit Gateway*, and then click *Save changes*.
+
 
 == Access AWS from Anypoint Platform
 
 To access the relevant console on AWS, click the *View on AWS* button on the *Transit Gateways* page:
 
 image::tgw-view-on-aws.png[View on AWS button on the Transit Gateways page]
-
 
 
 == See Also

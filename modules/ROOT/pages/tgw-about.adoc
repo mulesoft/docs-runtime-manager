@@ -24,7 +24,11 @@ Contact your MuleSoft account representative if you don't know how many entitlem
 
 VPC supports static routing for transit gateway attachments.
 
-You must specify the routes (subnets) in your network that you want to be accessible through the transit gateway attachments.
+You must configure the routes (subnets) in your network that you want to be accessible through the transit gateway attachments:
+
+* Add the AWS VPC routes to the transit gateway route table on Anypoint Platform.
+* Add the Anypoint VPC routes to the AWS VPC route table on AWS.
+
 
 [NOTE]
 A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway attachments.
