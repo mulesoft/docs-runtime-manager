@@ -8,9 +8,23 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
 
+
+We should improve our documentation to let customers know that the new workers are provided on a schedule (fixed rate). This way customer would be aware that they should have it in consideration when defining multiple workers. 
+
+the impair instance launch is running at a fixed interval and this is depending on underlying infrastructure, as long as the application has a proper High Availability design (running multiple workers), this shouldn't impact the application.
+
+
+
+
+
 CloudHub continuously verifies the health of the workers running Mule applications.
 
 When a worker is impaired by hardware or software failures, including network unavailability, memory issues, server hardware failures, or file corruption, CloudHub automatically attempts to restart the app on a new worker.
+
+Because CloudHub replaces impaired workers on a fixed schedule, which depends on the underlying 
+infrastructure, you might experience a delay between the time the new worker starts and when it starts sharing the load.
+As long as the app is running on multiple workers, this delay shouldn't impact the application.
+
 After the app is completely up and running, CloudHub switches the traffic to the new app instance and deletes the old app instance, ensuring zero downtime.
 
 If the application fails to start after five attempts, its status is *Failed* or *Unrecoverable Runtime Error* and you must manually restart the application.
