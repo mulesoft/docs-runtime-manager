@@ -9,14 +9,6 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
 
 
-We should improve our documentation to let customers know that the new workers are provided on a schedule (fixed rate). This way customer would be aware that they should have it in consideration when defining multiple workers. 
-
-the impair instance launch is running at a fixed interval and this is depending on underlying infrastructure, as long as the application has a proper High Availability design (running multiple workers), this shouldn't impact the application.
-
-
-
-
-
 CloudHub continuously verifies the health of the workers running Mule applications.
 
 When a worker is impaired by hardware or software failures, including network unavailability, memory issues, server hardware failures, or file corruption, CloudHub automatically attempts to restart the app on a new worker.
