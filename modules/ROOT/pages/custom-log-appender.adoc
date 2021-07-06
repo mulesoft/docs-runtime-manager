@@ -43,7 +43,7 @@ For logs to both flow to your logging system and be viewable in CloudHub, config
 You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
 https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax].
 
-To enable the Log4j appender, update the `log4j2.xml` configuration file with your logger settings.
+To enable the Log4j appender, update the `log4j2.xml` configuration file with your logger settings and include the Log4j appenders `Log4J2CloudhubLogAppender` and `RollingFile`.
 In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources` directory.
 
 The two example Log4j appenders in the `log4j2.xml` file are:
@@ -52,6 +52,9 @@ Log4J2CloudhubLogAppender::
 Sends log data to CloudHub.
 RollingFile::
 Sends log data to the filesystem of the VM.
+
+[WARNING]
+You must include the appenders in your custom configurations in the `log4j2.xml` file to enable MuleSoft Support team visibility into the logs.
 
 [source,xml,linenums]
 ----
