@@ -3,18 +3,18 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
-An Anypoint VPC is a logically private and isolated network hosted inside CloudHub. You can connect your private intranet to your Anypoint VPC as if they were all part of a single, private network. 
+An Anypoint VPC is a logically private and isolated network hosted inside CloudHub. You can connect your private intranet to your Anypoint VPC as if they were all part of a single, private network.
 
 The Anypoint VPC configuration exposes the DNS record `mule-worker-internal-<app-name>.cloudhub.io`. This is a DNS A record, which includes the IP addresses of all your workers. This DNS record cannot be accessed from outside your Anypoint VPC.
 
-Each Anypoint VPC allows you to configure firewall rules to check inbound connections directly to your workers. 
+Each Anypoint VPC allows you to configure firewall rules to check inbound connections directly to your workers.
 
-Four firewall rules are created by default--two rules that allow your private address space to connect through ports 8091 and 8092, and two rules that allow external requests proxied by CloudHub's shared load balancer through ports 8081 and 8082. 
+Four firewall rules are created by default--two rules that allow your private address space to connect through ports 8091 and 8092, and two rules that allow external requests proxied by CloudHub's shared load balancer through ports 8081 and 8082.
 
 All traffic that is not allowed in a firewall rule is blocked by default.
 

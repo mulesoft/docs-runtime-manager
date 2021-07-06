@@ -5,10 +5,10 @@ endif::[]
 :keywords: administration, api, organization, users, gateway, theme, cli
 :page-aliases: cloudhub-cli.adoc
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 Anypoint Platform provides a scripting and command-line tool for both Anypoint Platform and Anypoint Platform Private Cloud Edition (Anypoint Platform PCE).
@@ -227,7 +227,7 @@ Password: ****
 After setting up a proper way to access Anypoint Platform from the CLI, you can start passing commands. +
 See xref:anypoint-platform-cli-commands.adoc[Anypoint Platform CLI 3.x List of Commands] for instructions on how to use them.
 
-=== Use Anypoint CLI Through a Network Proxy 
+=== Use Anypoint CLI Through a Network Proxy
 
 To use the Anypoint CLI through a proxy server, configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables with the hostname or IP addresses of your proxy servers.
 
@@ -249,7 +249,7 @@ Depending on your operating system, use the following commands:
 `> set HTTPS_PROXY=https//__proxy-server__:443`
 --
 
-If the proxy server requires authentication, use these commands: 
+If the proxy server requires authentication, use these commands:
 
 * Linux, macOS, or Unix
 +

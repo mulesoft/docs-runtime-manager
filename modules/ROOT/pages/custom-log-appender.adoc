@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, logging, enhanced log management
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 You can disable CloudHub logs and integrate your CloudHub application with your logging system by using the Log4j configuration.
 After you configure logs to flow to both your log system and CloudHub, disable the default CloudHub application logs.
@@ -27,10 +27,10 @@ If you do not see the *Disable CloudHub logs* option in Runtime Manager, you can
 +
 You can use only asynchronous log appenders.
 * When you disable CloudHub logs:
-** Only the system logs are available in Runtime Manager. 
+** Only the system logs are available in Runtime Manager.
 +
 System logs provide the status of your worker deployment and whether your application started correctly, but do not provide application logs.
-For application worker logs, check the logging system for your application. 
+For application worker logs, check the logging system for your application.
 +
 ** You cannot download application worker logs from the *Applications > Logs* page.
 ** CloudHub warns you that logs are not available.
@@ -38,7 +38,7 @@ For application worker logs, check the logging system for your application.
 
 == Create Your Log4j Configuration
 
-For logs to both flow to your logging system and be viewable in CloudHub, configure the CloudHub Log4j appender. 
+For logs to both flow to your logging system and be viewable in CloudHub, configure the CloudHub Log4j appender.
 
 You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
 https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax].
@@ -132,7 +132,7 @@ image::cloudhub-disable-logs-verify.png[Disabling CloudHub logs confirmation win
 
 After your application starts, logs start flowing to your custom Log4j appender and are viewable on your target logging system.
 
-== See Also 
+== See Also
 
 * xref::deploying-to-cloudhub.adoc[Deploy to CloudHub]
 * https://help.mulesoft.com/s/global-search/%40uri#q=log4j&t=SalesforceArticle&f:@sfdcproduct=[CloudHub Log4j Knowledge Articles]

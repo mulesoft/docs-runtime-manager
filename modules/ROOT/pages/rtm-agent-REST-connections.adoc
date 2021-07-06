@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 The REST connection `amc_setup` parameters work in both versions of Anypoint Platform (cloud and on-premises) to allow direct REST connections between Mule runtime engine and any external client. This enables external clients to access and manage a Mule runtime engine directly via the xref:runtime-manager-agent-api.adoc[Runtime Manager agent REST API].
@@ -392,9 +392,9 @@ openssl pkcs12 -in clientkeystore.p12 -passin pass:mulesoft \
 +
 You can view the `clientkeystore.pem` file to verify both the public and private keys were exported to this file.
 
-. Submit a REST request from the client host to the Runtime Manager agent host. 
+. Submit a REST request from the client host to the Runtime Manager agent host.
 +
-Verify you do not see any SSL errors and you get a response back from the Runtime Manager agent. 
+Verify you do not see any SSL errors and you get a response back from the Runtime Manager agent.
 +
 Use the `--insecure` option to skip verifying the server (Runtime Manager agent) certificate.
 

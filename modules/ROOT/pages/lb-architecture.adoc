@@ -3,10 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 A CloudHub dedicated load balancer (DLB) enables you to route external HTTP and HTTPS traffic to multiple Mule applications deployed into CloudHub workers inside a Virtual Private Cloud (VPC). Each CloudHub DLB is assigned to an Anypoint VPC, and that Anypoint VPC runs within a particular service region. The DLB routes both external and VPC-internal traffic to CloudHub workers deployed into that Anypoint VPC.
 
@@ -50,7 +50,7 @@ internal-_lb-name_.lb.anypointdns.net
 
 
 Each DLB has DNS A records `_lb-name_.lb.anypointdns.net` that resolve to the public IP addresses of the instances.
-The number of public IP addresses correlates to the number of workers. 
+The number of public IP addresses correlates to the number of workers.
 Through your DNS provider, you can add a CNAME record pointing to this A record and use your domain names to access it.
 
 If you want your load balancer to manage all connections to your application but do not want your default domain name for your application publicly exposed, then each application must listen on HTTP port 8091 or 8092. Alternatively, you can create a custom mapping policy to redirect outside requests from your load balancer to your specific application.

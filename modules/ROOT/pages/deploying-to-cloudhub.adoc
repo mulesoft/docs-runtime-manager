@@ -5,10 +5,10 @@ endif::[]
 :keywords: cloudhub, cloud, deploy, manage, runtime manager, arm
 
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 You can deploy Mule applications to CloudHub using:
 
@@ -107,11 +107,11 @@ See <<configure-application-settings,Configure Application Settings>>.
 
 
 
-== Deploy an Application from the Command Line 
+== Deploy an Application from the Command Line
 
 To deploy a Mule app from the CloudHub command-line interface (CLI):
 
-. If you do not already have access to the Anypoint command-line tool, install it. 
+. If you do not already have access to the Anypoint command-line tool, install it.
 +
 See xref:anypoint-platform-cli.adoc[Anypoint Platform CLI].
 . Log into your Anypoint Platform account from the command line:
@@ -168,7 +168,7 @@ For a complete list of the commands, see xref:anypoint-platform-cli.adoc[Anypoin
 
 == Copy an Application from Sandbox to Production
 
-If you create and test an application in a sandbox environment, you must move it to the 
+If you create and test an application in a sandbox environment, you must move it to the
 production environment before deploying it.
 You must have the CloudHub Admin role to move applications between environments.
 
@@ -197,12 +197,12 @@ This button is unavailable if no nonproduction environment exists.
 . Select your sandbox environment and then the application that you want to move to production.
 +
 Only applications that are deployed to CloudHub appear in the list because you can move only apps
-that are currently deployed to CloudHub to other CloudHub workers. 
+that are currently deployed to CloudHub to other CloudHub workers.
 For example, you can't move an app that is currently deployed on a local server to CloudHub.
 . If you want to copy the environment variables and Mule version from the source application, select *Merge environment variables and mule version*.
 +
 If your source application contains safely hidden application properties, you must redefine them in the *Properties* tab.
-//HIDDEN PROPS XREF 
+//HIDDEN PROPS XREF
 include::partial$hidden-props.adoc[tag=hidePropsXref]
 . Click *Apply*.
 . Click tabs to configure application options.
@@ -210,7 +210,7 @@ include::partial$hidden-props.adoc[tag=hidePropsXref]
 See <<configure-application-settings,Configure Application Settings>>.
 . Click *Deploy Application*.
 
-== Application Names 
+== Application Names
 
 The application name can contain between 3 and 42 alphanumeric characters (a-z, A-Z, 0-9) and dashes (-).
 They cannot contain spaces or other characters.
@@ -233,7 +233,7 @@ For example, you might route requests to `myapplication.mycompany.com` to `mycom
 Using the CloudHub dedicated load balancer, you can also implement mapping rules to set your application's public URL to any other path, as long as you own the domain.
 See xref:lb-mapping-rules.adoc[Mapping Rules].
 
-== Configure Application Settings 
+== Configure Application Settings
 
 You can configure the application deployment by clicking the tabs on the *Deploy Application* page:
 
@@ -250,14 +250,14 @@ image::cloudhub-deploy-app-config-tabs.png[Configuration tabs on the Deploy Appl
 
 
 
-=== Runtime Tab Settings 
+=== Runtime Tab Settings
 
 The *Runtime* tab includes the following settings:
 
 Runtime version::
 The runtime version must be the same Mule version used to develop your application.
 +
-After you deploy the app, CloudHub automatically alerts you when updates for the selected runtime version are available. 
+After you deploy the app, CloudHub automatically alerts you when updates for the selected runtime version are available.
 See xref::cloudhub-app-runtime-version-updates.adoc[CloudHub Runtime Continuous Updates].
 
 Worker size::
@@ -269,9 +269,9 @@ See xref:cloudhub-fabric.adoc[Clustering].
 Region::
 If you have global deployment enabled on your account, you can change the deployment region.
 +
-When you change the region, the domain is automatically updated. 
+When you change the region, the domain is automatically updated.
 +
-See xref:cloudhub-networking-guide.adoc#regional-services[Regional Services]. 
+See xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 
 Automatically restart application when not responding::
 CloudHub automatically restarts your application when the monitoring system discovers an issue.
@@ -319,7 +319,7 @@ On the *Properties* tab, you can specify properties (key-value pairs) that the a
 When you deploy an application from a nonproduction environment (*Get from sandbox*), the new application inherits any properties defined in the original application.
 You can update these properties as required on the *Properties* tab before deploying the application.
 
-For more information about specifying properties, including hiding them in Runtime Manager, 
+For more information about specifying properties, including hiding them in Runtime Manager,
 see xref:cloudhub-manage-props.adoc[Manage Properties for Applications on CloudHub]
 and xref:secure-application-properties.adoc[Safely Hide Application Properties].
 
@@ -345,13 +345,13 @@ See xref:mule-runtime::logging-in-mule.adoc#configuring-custom-logging-settings[
 Use the *Static IPs* tab to allocate a static IP address to your application deployed in a specific region.
 
 You can also preconfigure static IP addresses for multiple regions for disaster recovery (DR) scenarios.
-If an application has static IP addresses allocated in multiple regions, 
+If an application has static IP addresses allocated in multiple regions,
 the static IP address is assigned when the application is deployed to a new region.
 
 If your application is already running, applying the static IP address change restarts it using the newly applied static IP address.
 
 
-By default, the number of static IP addresses allocated to your organization is equal 
+By default, the number of static IP addresses allocated to your organization is equal
 to twice the number of production vCores in your subscription and appears under the *Use Static IP* checkbox.
 
 If you need to free some of your static IP allocations, you can release unused IP addresses from an application.
@@ -359,13 +359,13 @@ If you need to increase your allocation of static IP addresses, contact MuleSoft
 
 
 
-== Worker Size and vCores 
+== Worker Size and vCores
 
 On each application, workers are responsible for executing the application logic.
 
 Worker sizes have different compute, memory, and storage capacities.
 
-For information about worker size and vCores, see 
+For information about worker size and vCores, see
 xref:cloudhub-architecture.adoc#cloudhub-workers[CloudHub Workers].
 
 
@@ -384,14 +384,14 @@ CloudHub redeploys the application with zero downtime.
 
 
 
-== Deployment Progress   
+== Deployment Progress
 
 When CloudHub uploads your application and begins deploying it, CloudHub switches its user interface
 to the *Logs* view so that you can monitor deployment progress.
 
 The application status changes to `Deploying` to indicate the deployment is in progress.
 When the deployment is complete, the application status changes to `Started` and a message
-appears in the status area and in the logs to indicate that the application is successfully deployed. 
+appears in the status area and in the logs to indicate that the application is successfully deployed.
 
 [NOTE]
 While you deploy an application on Mule runtime engine version 4.1.x and later, the xref:api-manager::gatekeeper.adoc#how-gatekeeper-works[Gatekeeper] mechanism works with xref:api-manager::api-auto-discovery-new-concept.adoc[API Autodiscovery] to help determine the readiness of a deployment.
@@ -408,7 +408,7 @@ The *Logs* tab includes details on the application deployment errors.
 
 == See Also
 
-* xref:managing-cloudhub-specific-settings.adoc[Manage CloudHub-Specific Settings] 
+* xref:managing-cloudhub-specific-settings.adoc[Manage CloudHub-Specific Settings]
 * xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
 * xref:managing-deployed-applications.adoc#application_status_states[Application Status States]
 * xref:monitoring.adoc[Monitor Applications]

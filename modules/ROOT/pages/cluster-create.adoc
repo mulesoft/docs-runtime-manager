@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 To deploy applications to a cluster, you can either add the servers to Runtime Manager first and then create the cluster, or you can create the cluster and add servers to it later.
 
-//CLUSTER-SERVER SHARED 
+//CLUSTER-SERVER SHARED
 include::partial$cluster-server.adoc[tag=addServerToCluster]
 
 
@@ -24,8 +24,8 @@ Before you add servers to a cluster, note the following restrictions:
 
 * Servers cannot contain any previously deployed applications.
 * Servers cannot belong to another cluster or group.
-* Multicast servers can be in the *Running* or *Disconnected* state. 
-* Unicast servers must be in the Running state. 
+* Multicast servers can be in the *Running* or *Disconnected* state.
+* Unicast servers must be in the Running state.
 * All servers in a cluster must be running the same Mule runtime engine version
 (including monthly update) and Runtime Manager agent version.
 +
@@ -48,7 +48,7 @@ image::rtm-cluster-create.png[Create Cluster button]
 +
 Cluster names can contain between 3-40 alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-). They cannot start or end with a hyphen and cannot contain spaces or other characters.
 . Select *Unicast* or *Multicast*.
-. Select the servers to include in your new cluster. 
+. Select the servers to include in your new cluster.
 . Click the *Create Cluster* button.
 
 The new cluster appears in the *Servers* list. The servers no longer appear in the *Servers* list. To see the list of servers in the cluster, click the cluster name.

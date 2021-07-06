@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: schedules, cloudhub
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.
@@ -45,7 +45,7 @@ To avoid retriggers with long-running schedules, make sure that the app executes
 * For multi-worker apps, CloudHub guarantees that the schedule trigger executes on a single worker.
 +
 However, subsequent triggers might execute on a different worker.
-CloudHub distributes multiple concurrent schedules across workers. 
+CloudHub distributes multiple concurrent schedules across workers.
 * The minimum recommended frequency between calls is 10 seconds.
 * If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as it restarts.

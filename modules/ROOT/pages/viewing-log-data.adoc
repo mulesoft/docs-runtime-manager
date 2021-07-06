@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid Deployment"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 CloudHub provides access to log data that includes deployment messages and events for each worker and Mule runtime engine logs.
 
-Logs and diagnostics are currently available only for applications deployed to CloudHub workers. 
+Logs and diagnostics are currently available only for applications deployed to CloudHub workers.
 For applications deployed to a local server, you can send data to external analytics software.
 See xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 
@@ -69,7 +69,7 @@ To download diagnostics:
 .The arrow shows the icon to download diagnostics by worker in the *Deployments* section.
 image::cloudhub-logs-diag-download.png[Download diagnostics by worker in the Deployments section]
 
-CloudHub downloads the diagnostic output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-diag.txt`. 
+CloudHub downloads the diagnostic output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-diag.txt`.
 Use a text editor to view the diagnostics file.
 
 [TIP]

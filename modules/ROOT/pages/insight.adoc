@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, analytics, monitoring, insight, filter
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 Insight is a troubleshooting tool that provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers. Insight tracks everything your data does in an app so you can find and recover from errors that occur during message processing.
@@ -18,7 +18,7 @@ Replay is not supported for Mule 4 apps or for free or trial user accounts.
 
 [IMPORTANT]
 --
-Enabling Insight can significantly impact data processing performance and memory consumption. 
+Enabling Insight can significantly impact data processing performance and memory consumption.
 For this reason, do not enable Insight for long periods for production environments.
 
 Use Insight only for troubleshooting specific transactions by searching for a transaction ID or a unique text string.
@@ -47,13 +47,13 @@ After you enable Insight, the following items are tracked by default:
 
 The following limits and limitations apply when using Insight:
 
-* Insight drops events over the following limits: 
+* Insight drops events over the following limits:
 +
 ** A single application is limited to 50,000 events per minute.
-** All applications in a single business group are limited to 100,000 events per minute. 
+** All applications in a single business group are limited to 100,000 events per minute.
 +
-* Insight stores no more than 20 custom event definitions per application definition.  
-* Insight does not support long-running processes that contain more than 10,000 events in a single transaction. 
+* Insight stores no more than 20 custom event definitions per application definition.
+* Insight does not support long-running processes that contain more than 10,000 events in a single transaction.
 +
 For this reason, Insight might not provide visibility into batch processing.
 See xref:mule-runtime::batch-processing-concept.adoc[Batch Processing].
@@ -109,7 +109,7 @@ text/xml
 For all other types, Mule agent attempts to transform payloads to another format, based on the Stream type that Mule runtime engine exposes to the Mule agent.
 For example, Mule agent converts `CURSOR_STREAM_PROVIDER` payloads to a byte array.
 
-Any streams that are not mapped to String by default appear in the logs. 
+Any streams that are not mapped to String by default appear in the logs.
 
 
 == Enable or Disable Insight
@@ -118,7 +118,7 @@ To enable Insight to track the events your Mule servers generate:
 
 . Sign in to your Anypoint Platform account.
 . Click *Runtime Manager*.
-. Click *Applications* in the menu on the left, and click the application in the *File* column to open the management panel on the right side of the page. 
+. Click *Applications* in the menu on the left, and click the application in the *File* column to open the management panel on the right side of the page.
 . In the management panel, click *Insight*.
 . Click *Settings* in the menu on the left, and then click the *Insight* tab:
 +
@@ -142,7 +142,7 @@ For more information, see <<Diagnosing Problems and Replaying Transactions>>.
 
 == Search and Filter Transactions and Events
 
-The Insight dashboard displays information at three tracking levels: 
+The Insight dashboard displays information at three tracking levels:
 
 * *Transactions*
 +
@@ -222,7 +222,7 @@ Click *Done* to save your changes.
 
 === Filter Events
 
-You can refine the types of events that Insight displays for each transaction. 
+You can refine the types of events that Insight displays for each transaction.
 
 
 When debugging, you might find it useful to see all events so that you can drill down into the detailed steps of your flow. If you want to analyze higher-level business information, you can apply a filter to view only your custom business events.
@@ -245,14 +245,14 @@ The default events filter setting displays custom events, endpoint events, and m
 == Diagnose Problems and Replay Transactions
 
 
-When Insight reports a failed transaction, you can diagnose the problem and fix the root issue. 
+When Insight reports a failed transaction, you can diagnose the problem and fix the root issue.
 
 For Mule 3 apps with flows that have inbound endpoints, you can also use the Insight message replay feature to replay the transaction that failed.
 
- 
+
 === Transaction Failed Status
 
-For example, when a transaction fails because an application exceeds the limited number of API calls for a Salesforce account, Insight displays the status of the transaction as `Failed`. 
+For example, when a transaction fails because an application exceeds the limited number of API calls for a Salesforce account, Insight displays the status of the transaction as `Failed`.
 
 Click to expand the transaction, and then examine the individual events within that transaction. The exception and the error message are listed next to the failed event, as well as an existing stack trace:
 
@@ -261,10 +261,10 @@ image::chexcmsg.png[CHExcMsg]
 
 === Replay Transaction
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 After investigating the logs and resolving the issue (for example, by purchasing more API capacity) that caused the transaction failure, you can replay the transaction.
 
@@ -281,17 +281,17 @@ Insight displays an information popup indicating that the transaction was replay
 
 === Purge Replay Data
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 To delete all existing replay data for that application, click the *Purge Replay Data* button.
 
 [WARNING]
 You can't restore replay data that has been purged.
 
-== Table of Insight Status States 
+== Table of Insight Status States
 
 The following table describes the status states that Insight reports:
 
@@ -319,7 +319,7 @@ Track more granular events by enabling default event tracking for your entire fl
 
 == Customize the Transaction ID
 
-For transaction-level events, Insight might display long numeric values in the ID column. You can customize the transaction IDs to display more intuitive values that are relevant to your business requirements. 
+For transaction-level events, Insight might display long numeric values in the ID column. You can customize the transaction IDs to display more intuitive values that are relevant to your business requirements.
 
 To do this, use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number. See xref:mule-runtime::business-events-in-components.adoc#customize-the-transaction-id[Customize the Transaction ID].
 
