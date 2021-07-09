@@ -17,6 +17,8 @@ To rename a transit gateway attachment:
 
 . On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Edit name*:
 +
+_update screenshot - content and styles changed_
++
 image::tgw-rename.png[Edit name option in the Transit Gateways menu]
 . In the popup window, enter a new name and click *Save*.
 
@@ -26,6 +28,8 @@ image::tgw-rename.png[Edit name option in the Transit Gateways menu]
 To remove a route:
 
 . On the *Transit Gateways* page, in the *VPCs* section, click the *X* icon in the row for a TGW route in the route table:
++
+_update screenshot - content and styles changed_
 +
 image::tgw-delete-route.png[Remove route icon in the VPCs section]
 
@@ -40,6 +44,8 @@ To detach a VPC from the transit gateway:
 
 . On the *Transit Gateways* page, click the VPC menu (*...*) and select *Detach*.
 +
+_update screenshot - content and styles changed_
++
 image::tgw-detach-vpc.png[Detach VPC option in the VPC menu]
 . At the confirmation prompt, click *Detach*.
 +
@@ -47,6 +53,22 @@ Detaching a VPC might take several minutes.
 +
 After the VPC is detached, the *Attach VPC* button becomes available. 
 
+== Remove an Anypoint VPC from the Transit Gateway
+
+If AWS rejects the attachment, remove it before trying to attach it again.
+
+To remove a VPC from the transit gateway:
+
+. On the *Transit Gateways* page, click the VPC menu (*...*) and select *Remove*.
++
+_new screenshot_
++
+// image::tgw-remove-vpc.png[Remove VPC option in the VPC menu]
+. At the confirmation prompt, click *Remove*.
++
+Removing a VPC might take several minutes.
++
+After the VPC is removed, the *Attach VPC* button becomes available. 
 
 == Remove a Transit Gateway from Anypoint Platform
 
@@ -58,6 +80,8 @@ Removing a transit gateway deletes the resource share in AWS that Anypoint Platf
 To remove a transit gateway from Anypoint Platform:
 
 . On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Remove*:
++
+_update screenshot - content and styles changed_
 +
 image::tgw-remove.png[Remove option in the Transit Gateway menu]
 +
