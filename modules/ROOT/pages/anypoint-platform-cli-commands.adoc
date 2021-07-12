@@ -1539,6 +1539,9 @@ This command lists published resources for `<assetIdentifier>` in the asset port
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
+[NOTE]
+This command only supports published resources.
+
 You can use `--draft` option to list draft resources in the asset portal.
 
 // CLI DEFAULTS
@@ -1557,6 +1560,9 @@ If `<group_id>` is not specified, it defaults to the currently selected Organiza
 
 Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (exchange asset resource list)
 
+[NOTE]
+This command only supports published resources.
+
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 
@@ -1572,6 +1578,9 @@ Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asse
 If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
 
 Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (exchange asset resource list)
+
+[NOTE]
+This command will publish any active draft as part of the operation.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
