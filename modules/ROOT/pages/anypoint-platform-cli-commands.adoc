@@ -1543,6 +1543,22 @@ You can use `--draft` option to list draft resources in the asset portal.
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 
+=== exchange asset resource download
+
+----
+> exchange asset resource download [options] <assetIdentifier> <resourcePath> <filePath>
+----
+
+This command downloads the specified published resource `<resourcePath>` from the asset portal `<assetIdentifier>` to `<filePath>`
+
+Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
+
+Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (exchange asset resource list)
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
 === runtime-mgr cloudhub-alert list
 
 ----
