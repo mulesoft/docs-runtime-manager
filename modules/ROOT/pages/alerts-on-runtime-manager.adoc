@@ -4,18 +4,18 @@ include::_attributes.adoc[]
 endif::[]
 
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
-You can set up alerts to send email notifications when application or server events occur. 
+You can set up alerts to send email notifications when application or server events occur.
 
 Runtime Manager includes several standard alert types that trigger notifications for common events such as:
 
 * An application exceeds a specific number of events processed within a specified period of time.
-* A deployment is complete, either successfully or not. 
+* A deployment is complete, either successfully or not.
 * The worker monitoring system notifies CloudHub about a problem with a worker on an application.
 * A server is disconnected or deleted.
 
@@ -24,7 +24,7 @@ Custom alerts are triggered when your application sends notifications to the Run
 using Anypoint Connector for CloudHub (CloudHub Connector).
 See xref:custom-application-alerts.adoc[Custom Application Alerts] for information.
 
-Runtime Manager retains 30 days of alert history. 
+Runtime Manager retains 30 days of alert history.
 
 
 == Rate Limits on Alerts
@@ -36,7 +36,7 @@ The following factors determine the rate limit:
 +
 When using CloudHub Connector to trigger notifications and alerts,
 the rate limit is five custom application alerts per IP address, per second.
-This limit is enforced by IP address. 
+This limit is enforced by IP address.
 If an application uses multiple workers, this limit is multiplied by the number of workers
 assigned to the application.
 +
@@ -82,7 +82,7 @@ Severity of the alert: *Critical*, *Warning*, or *Info*
 The source of the alert: applications or servers
 +
 This field appears only if your Anypoint Platform account supports local servers.
-* *Application type* 
+* *Application type*
 +
 When the source is *Applications*, applications deployed to either CloudHub or local servers
 +
@@ -134,12 +134,12 @@ You can select different conditions depending on the alert source.
 Some conditions are simple success or failure notifications, such as `Deployment success`.
 Some more complex conditions require that you define parameters that appear as new fields in the form.
 
-=== Conditions for Applications Deployed to CloudHub 
+=== Conditions for Applications Deployed to CloudHub
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 For applications deployed to CloudHub, the following alert conditions apply:
@@ -206,12 +206,12 @@ The following alerts for applications deployed to CloudHub require no additional
 * Worker not responding
 
 
-=== Conditions for Applications Deployed to Local Servers 
+=== Conditions for Applications Deployed to Local Servers
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 For applications deployed to local servers, the following alert conditions apply:
 
@@ -220,7 +220,7 @@ Number of errors::
 --
 The number of messaging errors reported by Mule runtime server in one minute reaches the specified limit.
 The number of errors reported depends on error handling configuration in the app.
-For information about Mule errors, see 
+For information about Mule errors, see
 xref:mule-runtime::mule-error-concept.adoc[Mule Errors].
 
 image::alerts-conditions-number-errors.png[Number of errors]
@@ -259,10 +259,10 @@ The following alerts for applications deployed to local servers require no addit
 
 === Conditions for Local Servers
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 The available alert events depend on the server type.
 The following alerts are available for all target types (servers and nodes in server groups and clusters):
@@ -359,9 +359,9 @@ For the description of each variable, see <<var-defs>>.
 .Variables for Alerts
 |===
 | Alert Type | Alert | Applicable Variables
-2+| All Alerts | `${resource}` `${severity}` `${state}` 
+2+| All Alerts | `${resource}` `${severity}` `${state}`
 .7+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}`
-| *Memory usage - CloudHub* 
+| *Memory usage - CloudHub*
 | *Custom application notification* | `${user}` `${priority}` `${transactionId}` `${message}`
 | *Deployment failed* |  `${user}` `${message}`
 | *Deployment success* .2+| `${user}`
@@ -371,35 +371,35 @@ For the description of each variable, see <<var-defs>>.
 
 .4+|Hybrid App Alerts | All Hybrid App Alerts| `${name}`
 | *Number of Mule messages* .3+| `${currentValue}` `${threshold}` `${location}`
-| *Number of errors* 
-| *Response time* 
+| *Number of errors*
+| *Response time*
 
 .7+|Server Alerts | All Server Alerts | `${name}`
 | *Agent version changed* .2+|  `${oldVersion}` `${newVersion}`
 | *Runtime version changed*
 | *Server CPU usage* .4+|  `${currentValue}` `${comparison}` `${threshold}` `${location}`
-| *Server Load average* 
+| *Server Load average*
 | *Server Memory average*
-| *Server Thread count* 
+| *Server Thread count*
 
 .9+| Server Group Alerts| All Server Group Alerts | `${name}`
 | *Server Group's node CPU usage* .4+|  `${memberName}` `${groupName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
-| *Server Group's node Load average* 
-| *Server Group's node Memory usage* 
-| *Server Group's node Thread count* 
+| *Server Group's node Load average*
+| *Server Group's node Memory usage*
+| *Server Group's node Thread count*
 | *Server Group's node connected* .4+| `${memberName}` `${groupName}`
-| *Server Group's node disconnected* 
-| *Server added to Server Group* 
+| *Server Group's node disconnected*
+| *Server added to Server Group*
 | *Server removed from Server Group*
 
 .9+| Cluster Alerts |All Cluster Alerts| `${name}`
 | *Cluster's node CPU usage* .4+| `${memberName}` `${clusterName}` `${currentValue}` `${comparison}` `${threshold}` `${location}` `${parentResource}` `${parentLocation}`
 | *Cluster's node Load average*
 | *Cluster's node Memory usage*
-| *Cluster's node Thread count* 
+| *Cluster's node Thread count*
 | *Cluster's node disconnected* | `${resource}` `${memberName}` `${clusterName}`
 | *Cluster's node connected* .3+| `${memberName}` `${clusterName}`
-| *Server added to Cluster* 
+| *Server added to Cluster*
 | *Server removed from Cluster*
 |===
 
@@ -408,26 +408,26 @@ For the description of each variable, see <<var-defs>>.
 [[var-defs]]
 .Variable Definitions
 |===
-|Variable |Definition 
+|Variable |Definition
 |`${clusterName}`|Name of the cluster
 |`${currentValue}` |Current value of metric that triggers the alert
-|`${comparison}`| Above or Below 
-|`${groupName}`|Name of the server group 
-|`${location}`| Where to find more information about the alert 
-|`${memberName}`|Name of the node in a server group or cluster 
+|`${comparison}`| Above or Below
+|`${groupName}`|Name of the server group
+|`${location}`| Where to find more information about the alert
+|`${memberName}`|Name of the node in a server group or cluster
 |`${message}` |Message from the notification that trigger the alert
 |`${name}` a|Name of the item that triggers the alert:
 
 * Hybrid Apps: Name of the app that triggers the alert
-* Servers: Name of the target (server, server group, or cluster) that triggers the alert 
-|`${newVersion}`|New version number for the agent or runtime 
+* Servers: Name of the target (server, server group, or cluster) that triggers the alert
+|`${newVersion}`|New version number for the agent or runtime
 |`${oldVersion}`|Previous version number for the agent or runtime
 |`${operator}` | An operator, such as `< > =`
 |`${parentLocation}` |Where to find more information about the alert on the node's parent cluster
 |`${parentResource}` |Name of the resource, such as server or app, on the node's parent cluster that triggers the alert
 |`${period}` |Period of time over which to measure
-|`${periodTimeUnit}` |Period of time unit 
-|`${priority}` |Priority of the notification that triggers the alert 
+|`${periodTimeUnit}` |Period of time unit
+|`${priority}` |Priority of the notification that triggers the alert
 |`${resource}` a| Name of the item that triggers the alert:
 
 * CloudHub Apps: Name of the app that triggers the alert
@@ -436,7 +436,7 @@ For the description of each variable, see <<var-defs>>.
 |`${state}` | State of the resource that triggers the alert, such as Running or Disconnected
 |`${threshold}` |Count over the period of time that triggers the alert
 |`${transactionId}` | Transaction ID defined in the app or assigned by Mule
-|`${user}` | Anypoint Platform username 
+|`${user}` | Anypoint Platform username
 |`${value}` | A value associated with an element
 |===
 
@@ -481,9 +481,9 @@ image::alerts-settings-alerts-history-tab.png[Alerts History tab on the Settings
 
 
 
-== Manage Alerts in Runtime Manager 
+== Manage Alerts in Runtime Manager
 
-To manage alerts from the *Alerts* page, select one or more alerts in the list 
+To manage alerts from the *Alerts* page, select one or more alerts in the list
 and select an action in the details pane:
 
 .The screenshot shows (*1*) the select toggle, (*2*) the alert state switch, (*3*) the *Duplicate* icon, and (*4*) the *Delete* icon.
@@ -496,7 +496,7 @@ Switch an alert on or off::
 All users of Anypoint Platform, even those without permission to create alerts,
 can control whether email alerts are sent by switching an alert on or off.
 
-When you change the state of an alert, the change is applied for all users who 
+When you change the state of an alert, the change is applied for all users who
 receive email notifications for that alert.
 
 * To turn alerts off, click the toggle switch:

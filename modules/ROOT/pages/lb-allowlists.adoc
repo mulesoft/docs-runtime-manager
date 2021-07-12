@@ -5,10 +5,10 @@ endif::[]
 :page-aliases: lb-whitelists.adoc
 
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 If you want to allow IP addresses access to your dedicated load balancer (DLB), you must add those IP addresses, in CIDR notation, to the allowlist of the DLB.
@@ -26,7 +26,7 @@ The maximum number of IP address entries that you can add to the DLB allowlist d
 |===
 |Inbound HTTP Mode | Maximum Allowlist Entries
 |*Off* | 240
-|*On* | 120 
+|*On* | 120
 |*Redirect* | 120
 |===
 
