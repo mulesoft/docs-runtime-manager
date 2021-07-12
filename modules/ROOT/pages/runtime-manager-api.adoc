@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloudhub api, manage, api, rest
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 The Runtime Manager REST API enables you to programmatically access these functions of Runtime Manager:
@@ -28,7 +28,7 @@ The Runtime Manager REST API enables you to programmatically access these functi
 ** Get information about a server group.
 ** Change the server group name.
 ** Add or remove a server from a server group.
-** Delete a server group. 
+** Delete a server group.
 
 * Manage clusters:
 +
@@ -59,7 +59,7 @@ include::partial$api-authenticate.adoc[]
 
 === Get a List of Applications
 
-To get a list of apps deployed on-premises using Runtime Manager, run the following `curl` command: 
+To get a list of apps deployed on-premises using Runtime Manager, run the following `curl` command:
 
 ----
 curl -X GET \
