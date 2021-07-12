@@ -133,10 +133,10 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<exchange asset deprecate>> | Deprecates an asset
 |<<exchange asset undeprecate>> | Undeprecate an asset
 |<<exchange asset describe>> | Show a given asset's information
-|<<exchange asset resource upload>> | Upload a resource to an asset portal
+|<<exchange asset resource upload>> | Uploads a resource to an asset portal
 |<<exchange asset resource list>> | Lists published resources in the asset portal
 |<<exchange asset resource download>> | Downloads resource from the asset portal
-|<<exchange asset resource delete>> | Delete resource from the asset portal as draft and then publish that draft
+|<<exchange asset resource delete>> | Deletes resource from the asset portal
 |===
 
 == Commands for Administering Your CloudHub Application
@@ -1503,7 +1503,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 This command describes the asset passed in `<assetIdentifier>`.
 
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
-If `group_id` is not specified, it defaults to the currently selected Organization ID.
+If `group_id` is not specified, it defaults to the currently selected Organization ID. 
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1514,7 +1514,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > exchange asset resource upload [options] <assetIdentifier> <filepath>
 ----
 
-This command uploads a resource `<filepath>` to an asset page describes in `<assetIdentifier>`.
+This command uploads a resource `<filepath>` to an asset page described in `<assetIdentifier>`.
 
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
@@ -1565,7 +1565,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > exchange asset resource delete [options] <assetIdentifier> <resourcePath>
 ----
 
-This command delete `<resourcePath>` from the asset `<assetIdentifier>` in asset portal as draft and then publish that draft
+This command deletes the resource `<resourcePath>` from the asset `<assetIdentifier>` by publishing a new draft  in which the resource has been deleted. 
 
 Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
