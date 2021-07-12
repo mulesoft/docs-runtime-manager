@@ -1520,7 +1520,7 @@ This command uploads a resource from `<filepath>` to an asset portal described i
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
-Supported file extensions: jpeg, jpg, jpe, gif, bmp, png, webp, ico, svg, tiff, tif.
+Supported file extensions: `jpeg`, `jpg`, `jpe`, `gif`, `bmp`, `png`, `webp`, `ico`, `svg`, `tiff`, `tif`.
 
 The successful output command will be a markdown codesnippet.
 You can use it on any page of your `<assetIdentifier>` asset.
@@ -1558,7 +1558,7 @@ This command downloads the specified published resource `<resourcePath>` from th
 Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
 
-Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (exchange asset resource list)
+Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (`exchange asset resource list`)
 
 [NOTE]
 This command only supports published resources.
@@ -1572,12 +1572,12 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > exchange asset resource delete [options] <assetIdentifier> <resourcePath>
 ----
 
-This command deletes the resource `<resourcePath>` from the asset `<assetIdentifier>` by publishing a new draft  in which the resource has been deleted. 
+This command deletes the resource `<resourcePath>` from the asset `<assetIdentifier>` by publishing a new draft portal where the resource has been deleted.
 
 Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
 
-Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (exchange asset resource list)
+Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (`exchange asset resource list`)
 
 [NOTE]
 This command will publish any active draft as part of the operation.
