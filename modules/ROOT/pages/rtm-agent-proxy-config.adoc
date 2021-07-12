@@ -1,13 +1,13 @@
-= Connect the Agent Through a Proxy Server 
+= Connect the Agent Through a Proxy Server
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure the Runtime Manager agent to route traffic through the proxy server to Runtime Manager.
@@ -15,21 +15,21 @@ If your Mule runtime engine runs inside a firewall that restricts external commu
 The Runtime Manager agent supports only the basic access authentication method.
 
 
-== Configure the Agent to Connect Through a Proxy Server 
+== Configure the Agent to Connect Through a Proxy Server
 
 To configure the agent to connect through a proxy server, you must:
 
 * Run the `amc_setup` command to create the `$MULE_HOME/conf/mule-agent.yml` file.
-* Set up your proxy server configuration in the `$MULE_HOME/conf/wrapper.conf` file. 
+* Set up your proxy server configuration in the `$MULE_HOME/conf/wrapper.conf` file.
 
 
 === Run amc_setup to Create mule-agent.yml
 
 If you have previously installed the Runtime Manager agent and want to change the configuration to use a proxy, you can add the proxy configuration to the `mule-agent.yml` file.
 
-To configure the proxy server connection: 
+To configure the proxy server connection:
 
-. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the master password: 
+. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the master password:
 +
 `export AGENT_VAR_master_password=myPassword`
 . Run this command:
@@ -77,9 +77,9 @@ add your proxy server information to the following properties:
 * `anypoint.platform.proxy_password=_password_`
 
 
-== Verify That the Proxy Server Does Not Modify the Runtime Manager Certificate 
+== Verify That the Proxy Server Does Not Modify the Runtime Manager Certificate
 
-To ensure that your firewall or proxy does not intercept or modify the 
+To ensure that your firewall or proxy does not intercept or modify the
 Runtime Manager certificate, run one of the following commands, depending on the version of your Runtime Manager agent.
 
 The commands run a probe to determine whether the firewall or proxy is tampering with the certificate.
@@ -130,7 +130,7 @@ contact your networking team with the `openssl` command's output.
 |SE-8011 | Agent setup returns `407 Proxy Authentication Required` when passing proxy information during setup.
 |===
 
-== See Also 
+== See Also
 
 * xref:installing-and-configuring-runtime-manager-agent.adoc#encrypt_password[Encrypt Passwords in an Existing mule-agent.yml File]
 * https://help.mulesoft.com/s/article/How-to-troubleshoot-communication-issues-between-the-Mule-Runtime-Agent-and-the-OnPrem-server[How to troubleshoot communication issues between the Mule Runtime Agent and the OnPrem server]

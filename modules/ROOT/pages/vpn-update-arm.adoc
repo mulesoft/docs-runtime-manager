@@ -3,13 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
-You can update some Anypoint VPN connection settings using Runtime Manager. 
+You can update some Anypoint VPN connection settings using Runtime Manager.
 
 == IP Addresses
 
@@ -19,7 +19,7 @@ Local external IP addresses are dynamically assigned during VPN creation.
 You cannot reserve or reuse external IP addresses. When you recreate the VPN, new local external IP addresses are assigned.
 
 Point-to-point IP addresses and Pre-Shared Keys (PSK) are defined during VPN creation.
-You can use *Automatic Tunnel Configuration* to generate values for these settings or use the *Custom Tunnel Configuration* to define your values for these settings. 
+You can use *Automatic Tunnel Configuration* to generate values for these settings or use the *Custom Tunnel Configuration* to define your values for these settings.
 
 See xref:vpn-create-arm#create-an-anypoint-vpn[Create an Anypoint VPN] for more information.
 
@@ -28,7 +28,7 @@ See xref:vpn-create-arm#create-an-anypoint-vpn[Create an Anypoint VPN] for more 
 
 After you create the Anypoint VPN connection, you cannot modify the routing type or Autonomous System Numbers (ASNs). To change these settings, you must recreate the Anypoint VPN and update your VPN endpoint with the new values.
 
-== Networks 
+== Networks
 
 The local network is inherited from Anypoint VPC. MuleSoft does not allow you to subnet the Anypoint VPC CIDR block.
 
@@ -56,9 +56,9 @@ By default, all traffic to your Anypoint VPC is blocked unless a firewall rule e
 +
 See the documentation for your device.
 +
-When the tunnel is active, the route table updates automatically. 
+When the tunnel is active, the route table updates automatically.
 
-=== Dynamic Routes 
+=== Dynamic Routes
 
 To modify the remote networks for an Anypoint VPN that uses dynamic routing:
 
@@ -66,7 +66,7 @@ To modify the remote networks for an Anypoint VPN that uses dynamic routing:
 +
 See xref:vpc-firewall-rules-concept#add-or-edit-firewall-rules[Add or Edit Firewall Rules].
 +
-By default, all traffic to your Anypoint VPC is blocked unless a firewall rule explicitly allows it. 
+By default, all traffic to your Anypoint VPC is blocked unless a firewall rule explicitly allows it.
 . Update the Border Gateway Protocol (BGP) configuration on your VPN endpoint.
 +
 See the documentation for your device.
@@ -79,7 +79,7 @@ When BGP propagates the changes, the route table updates automatically.
 The Anypoint VPN endpoint acts only as a responder. All IPsec settings are defined on your endpoint.
 
 You can modify the VPN configuration of your endpoint to take advantage of any supported IPsec settings.
-See xref:vpn-about#ipsec-settings[IPsec Settings]. 
+See xref:vpn-about#ipsec-settings[IPsec Settings].
 
 You don't need to change any VPN settings in Runtime Manager.
 

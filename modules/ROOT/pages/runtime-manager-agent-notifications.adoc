@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 The Anypoint Runtime Manager agent publishes notifications, in JSON format, about events that occur in the Mule instance.
 This enables you to implement a system for receiving and handling notifications.
@@ -167,6 +167,6 @@ Deployment statuses represent the different steps for successful deployment or u
 For the list of valid deployment statuses, see xref:managing-deployed-applications.adoc#application_deploy_states[Application Deployment States].
 
 
-== See Also 
+== See Also
 
 * xref:rtm-agent-config-yaml.adoc[Update Agent Configuration in mule-agent.yml]
