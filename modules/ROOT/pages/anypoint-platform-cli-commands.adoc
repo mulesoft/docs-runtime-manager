@@ -1392,7 +1392,7 @@ Naming the page "home" makes the uploaded page the main description page for the
 [NOTE]
 This command will publish any active draft as part of the operation.
 
-Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID. +
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1515,15 +1515,16 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > exchange asset resource upload [options] <assetIdentifier> <filepath>
 ----
 
-This command uploads a resource from `<filepath>` to an asset portal described in `<assetIdentifier>`.
+This command uploads the resource specified in `<filepath>` to a page in the asset portal described in `<assetIdentifier>`.
 
-Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+You can use this command for any page of your `<assetIdentifier>` asset.
+
+Supported file extensions for `<filepath>` are: `jpeg`, `jpg`, `jpe`, `gif`, `bmp`, `png`, `webp`, `ico`, `svg`, `tiff`, `tif`.
+
+The argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
-Supported file extensions: `jpeg`, `jpg`, `jpe`, `gif`, `bmp`, `png`, `webp`, `ico`, `svg`, `tiff`, `tif`.
-
 The successful output command will be a markdown codesnippet.
-You can use it on any page of your `<assetIdentifier>` asset.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1534,17 +1535,16 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > exchange asset resource list [options] <assetIdentifier>
 ----
 
-This command lists published resources for `<assetIdentifier>` in the asset portal
+This command lists the resources in the asset portal of the asset specified in `<assetIdentifier>`.
 
-Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
 [NOTE]
 This command lists published resources by default. +
 You can use the `--draft` option to list draft resources from the asset portal.
 
-// CLI DEFAULTS
-include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `--draft` option to list non-published resources in the asset portal.
 
 === exchange asset resource download
 
@@ -1552,12 +1552,13 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > exchange asset resource download [options] <assetIdentifier> <resourcePath> <filePath>
 ----
 
-This command downloads the specified published resource `<resourcePath>` from the asset portal `<assetIdentifier>` to `<filePath>`
+This command downloads the published resource specified in `<resourcePath>` from the asset portal of the asset specified in `<assetIdentifier>` to the file specified in `<filePath>`.
 
-Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
-If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
-Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (`exchange asset resource list`)
+Argument `<resourcePath>` must be a published resource. +
+You can list all published resources using the <<exchange asset resource list,asset resource list>> command.
 
 [NOTE]
 This command only supports published resources.
@@ -1571,15 +1572,16 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > exchange asset resource delete [options] <assetIdentifier> <resourcePath>
 ----
 
-This command deletes the resource `<resourcePath>` from the asset `<assetIdentifier>` by publishing a new draft portal where the resource has been deleted.
+This command deletes the resource specified in `<resourcePath>` from the asset portal of the asset specified in `<assetIdentifier>` by publishing a new portal in which `resourcePath` has been deleted.
 
-Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
-If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
+Argument `<assetIdentifier>` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
-Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (`exchange asset resource list`)
+Argument `<resourcePath>` must be a published resource. +
+You can list all published resources using the <<exchange asset resource list,asset resource list>> command.
 
-[NOTE]
-This command will publish any active draft as part of the operation.
+[CAUTION]
+This command publishes all active drafts as part of the operation.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
