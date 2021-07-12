@@ -133,6 +133,10 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<exchange asset deprecate>> | Deprecates an asset
 |<<exchange asset undeprecate>> | Undeprecate an asset
 |<<exchange asset describe>> | Show a given asset's information
+|<<exchange asset resource upload>> | Upload a resource to an asset page
+|<<exchange asset resource list>> | Lists published resources in the asset portal
+|<<exchange asset resource download>> | Downloads resource from the asset portal
+|<<exchange asset resource delete>> | Delete resource from the asset portal as draft and then publish that draft
 |===
 
 == Commands for Administering Your CloudHub Application
@@ -1499,7 +1503,26 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 This command describes the asset passed in `<assetIdentifier>`.
 
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
-If `group_id` is not specified, it defaults to the currently selected Organization ID. 
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset resource upload
+
+----
+> exchange asset resource upload [options] <assetIdentifier> <filepath>
+----
+
+This command uploads a resource `<filepath>` to an asset page describes in `<assetIdentifier>`.
+
+Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+Supported file extensions: jpeg, jpg, jpe, gif, bmp, png, webp, ico, svg, tiff, tif.
+
+The successful output command will be a markdown codesnippet.
+You can use it on any page of your `<assetIdentifier>` asset.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
