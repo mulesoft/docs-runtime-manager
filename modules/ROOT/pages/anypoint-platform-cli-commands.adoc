@@ -1527,6 +1527,22 @@ You can use it on any page of your `<assetIdentifier>` asset.
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 
+=== exchange asset resource list
+
+----
+> exchange asset resource list [options] <assetIdentifier>
+----
+
+This command lists published resources for `<assetIdentifier>` in the asset portal
+
+Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+You can use `--draft` option to list draft resources in the asset portal.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
 === runtime-mgr cloudhub-alert list
 
 ----
