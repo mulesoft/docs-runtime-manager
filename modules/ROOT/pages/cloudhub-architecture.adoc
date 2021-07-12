@@ -5,10 +5,10 @@ endif::[]
 :keywords: cloudhub, cloud, manage, mmc, api, worker, runtime manager, arm
 
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 xref:cloudhub.adoc[CloudHub] is designed to provide enterprises with a multitenant, secure, elastic, and highly available integration platform as a service (iPaaS). To maximize your use of CloudHub, you should understand how the underlying mechanisms of the CloudHub platform work to achieve these goals.
@@ -73,21 +73,21 @@ Each worker is deployed and monitored independently.
 *Locality*::
 Each worker runs in a specific worker cloud, such as the US, EU, or Asia-Pacific.
 
-The memory capacity and processing power of a worker depends on how you configure it at the application level. 
+The memory capacity and processing power of a worker depends on how you configure it at the application level.
 
 Worker sizes have different compute, memory, and storage capacities.
 You can scale workers vertically by selecting one of the available worker sizes:
 
 [%header,cols="3*a"]
 |===
-|Worker Size |Heap Memory | Storage 
+|Worker Size |Heap Memory | Storage
 |0.1 vCores |500 MB | 8 GB
 |0.2 vCores |1 GB | 8 GB
 |1 vCore |1.5 GB | 12 GB
 |2 vCores |3.5 GB | 40 GB
 |4 vCores |7.5 GB | 88 GB
 |8 vCores |15 GB | 168 GB
-|16 vCores |32 GB | 328 GB 
+|16 vCores |32 GB | 328 GB
 |===
 
 

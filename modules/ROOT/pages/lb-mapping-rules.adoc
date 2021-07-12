@@ -3,10 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 The CloudHub dedicated load balancer (DLB) routes requests from clients to Mule apps deployed within the VPC.
@@ -18,7 +18,7 @@ When you create a simple matching rule, one input address matches the defined ou
 Instead of using literal matchings, you can use a pattern to match a variable, such as input text to an endpoint.
 
 The order of the rules determines their priority.
-The first rule in the list that matches is applied. 
+The first rule in the list that matches is applied.
 
 [NOTE]
 If you don't define any mapping rules, the DLB creates and uses a default mapping rule.
@@ -33,14 +33,14 @@ The certificate is associated when you create mapping rules:
 
 * Runtime Manager
 +
-You define mapping rules within a certificate definition. 
+You define mapping rules within a certificate definition.
 * CLI or CloudHub API
 +
 You must specify a certificate CN.
 +
 If you omit the certificate name, the mappings are added to the default endpoint.
 
-=== Create Mapping Rules in Runtime Manager 
+=== Create Mapping Rules in Runtime Manager
 
 To create mapping rules in an SSL endpoint for a DLB in Runtime Manager:
 
@@ -54,7 +54,7 @@ image::cloudhub-dlb-mapping-rules.png[the *Add New Rule* icon and the fields req
 . Complete the fields:
 +
 * *Input Path* (`inputUri`)
-+ 
++
 The URI that the client requests: for example, `/{app}/`
 +
 The input URI is appended to the host header of the load balancer.
@@ -87,13 +87,13 @@ For example, if the client request is `<domain.com>/hello/world/` and the mappin
 * *Target App*: `myApp1`
 * *Output Path*: `/test/`
 
-The DLB uses the value of the output path (`/test/`), removes the section that matches the input path from the client request (`/hello/`), and appends the rest (`/world/`) to the client request. 
+The DLB uses the value of the output path (`/test/`), removes the section that matches the input path from the client request (`/hello/`), and appends the rest (`/world/`) to the client request.
 The DLB then sends the resulting path (`/test/world/`) to the target app (`myApp1`).
 
-You can use either patterns or literal strings to define the input path. 
+You can use either patterns or literal strings to define the input path.
 For the output path, you can use only literal strings.
 
-=== Create a Mapping Rule Using the CLI 
+=== Create a Mapping Rule Using the CLI
 
 To create a mapping rule in a DLB using the CLI:
 
@@ -104,7 +104,7 @@ cloudhub load-balancer mappings add [options] <name> <index> <inputUri> <appName
 
 See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
 
-=== Create a Mapping Rule Using the CloudHub API 
+=== Create a Mapping Rule Using the CloudHub API
 
 To create a mapping rule in a DLB using the CloudHub API:
 
@@ -195,7 +195,7 @@ This rule maps the default load balancer `lb-demo.lb.anypointdns.net` directly t
 [%header,cols="10a,20a,20a,20a,10a"]
 |===
 | Rule # | *Input Path* | *Target App* | *Output Path* | *Protocol*
-| 1 | / | myApp | / | http 
+| 1 | / | myApp | / | http
 |===
 
 This rule matches the `dev-misc-myhellotest-v1-myapp` app if the input URI is `/misc/myhellotest/v1/ping` but not `/misc/myhellootest/v1/ping`:
@@ -243,7 +243,7 @@ For the rule to match only `second-app`, the rule priority must be:
 |2 | /api/v1/ | default-app | /api/v1/ | http
 |===
 
-=== Change the Priority of Mapping Rules in Runtime Manager 
+=== Change the Priority of Mapping Rules in Runtime Manager
 
 To change the priority of mapping rules in Runtime Manager:
 
@@ -257,17 +257,17 @@ image::cloudhub-dlb-mapping-rules-reorder.png[Handle to use to reorder a mapping
 . Click and drag the handle to move the rule up or down in the list.
 . Click *Done Editing*.
 
-=== Change the Priority of Mapping Rules Using the CLI 
+=== Change the Priority of Mapping Rules Using the CLI
 
 To specify the mapping rule priority when creating a mapping rule with the CLI, use the `index` value.
 The rule at index `0` has the highest priority. The higher the index assigned, the lower the priority.
 
 See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
 
-=== Change the Priority of Mapping Rules Using the CloudHub API 
+=== Change the Priority of Mapping Rules Using the CloudHub API
 
 When using the API to create a mapping rule, you cannot specify a priority order.
-The new rule is appended to the list. 
+The new rule is appended to the list.
 You can update the order of the rules later by sending a `PATCH` request to the load balancer endpoint:
 
 [source,text,linenums]

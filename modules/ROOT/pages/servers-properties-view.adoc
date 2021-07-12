@@ -3,10 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 Runtime Manager enables you to view and configure properties in your Mule environments. Runtime Manager displays both custom and discovered properties.
@@ -23,7 +23,7 @@ Discovered properties are properties defined by the remote environment of the Mu
 * Environment properties
 * System properties
 
-Runtime Manager retrieves the values of these properties from Runtime Manager agent which queries the `System` Java class on the remote server. 
+Runtime Manager retrieves the values of these properties from Runtime Manager agent which queries the `System` Java class on the remote server.
 
 By default, auto-discovery of remote server properties is disabled. To use this feature, click *Enable Auto-Discovery*. After enabling this feature, Runtime Manager stores an encrypted version of these properties in its internal database.
 
@@ -40,7 +40,7 @@ To view custom and discovered properties:
 . On the *Settings* page, click the *Properties* tab.
 . Click either *Custom Properties* or *Discovered Properties*.
 +
-To view discovered properties, select *Discovered Properties* and then click *Enable Auto-Discovery*: 
+To view discovered properties, select *Discovered Properties* and then click *Enable Auto-Discovery*:
 +
 .The screen shows the *Discovered Properties* and *Enable Auto-Discovery* buttons on the *Properties* tab.
 image::rtm-server-enable-autodiscovery.png[*Discovered Properties* and *Enable Auto-Discovery* buttons]
@@ -51,7 +51,7 @@ From the *Properties* tab, you can:
 +
 * Search for properties.
 * Create new properties.
-* Edit existing properties. 
+* Edit existing properties.
 
 == See Also
 
