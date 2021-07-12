@@ -1559,6 +1559,22 @@ Argument `<resourcePath>` should be a resource path of a publicated resource. Yo
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 
+=== exchange asset resource delete
+
+----
+> exchange asset resource delete [options] <assetIdentifier> <resourcePath>
+----
+
+This command delete `<resourcePath>` from the asset `<assetIdentifier>` in asset portal as draft and then publish that draft
+
+Argument `<assetIdentifier>` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+If `<group_id>` is not specified, it defaults to the currently selected Organization ID.
+
+Argument `<resourcePath>` should be a resource path of a publicated resource. You can list publicated resources with `list` command (exchange asset resource list)
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
 === runtime-mgr cloudhub-alert list
 
 ----
