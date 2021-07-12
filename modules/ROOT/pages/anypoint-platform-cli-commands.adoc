@@ -1389,8 +1389,8 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 This command uploads an asset description page from the path passed in `<mdPath>` using the name specified in `<pageName>` to the Exchange asset identified with `<assetIdentifier>`. +
 Naming the page "home" makes the uploaded page the main description page for the Exchange asset.
 
-[NOTE]
-This command will publish any active draft as part of the operation.
+[CAUTION]
+This command publishes all active drafts as part of the operation.
 
 Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID. +
