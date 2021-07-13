@@ -133,6 +133,10 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<exchange asset deprecate>> | Deprecates an asset
 |<<exchange asset undeprecate>> | Undeprecate an asset
 |<<exchange asset describe>> | Show a given asset's information
+|<<exchange asset resource upload>> | Uploads a resource to an asset portal
+|<<exchange asset resource list>> | Lists published resources in the asset portal
+|<<exchange asset resource download>> | Downloads resource from the asset portal
+|<<exchange asset resource delete>> | Deletes resource from the asset portal
 |===
 
 == Commands for Administering Your CloudHub Application
@@ -1318,6 +1322,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |`--limit` | Number of results to retrieve | `exchange asset list --limit 2`
 |`--offset` | Offsets the number of APIs passed | `exchange asset list --offset 3`
 |`--sort` | Sorts the results in the field name passed | `exchange asset list --sort "Latest Version"`
+|`--organizationId` | Filters by organization id | `exchange asset list --organizationId a12b3c45-de6f-789g-hi01-j2klm3nop4q5`
 |===
 
 
@@ -1364,10 +1369,10 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 This command uploads an asset description page from the path passed in `<mdPath>` using the name specified in `<pageName>` to the Exchange asset identified with `<assetIdentifier>`. +
 Naming the page "home" makes the uploaded page the main description page for the Exchange asset.
 
-[NOTE]
-This command only supports published pages.
+[CAUTION]
+This command publishes all active drafts as part of the operation.
 
-Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID. +
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1480,6 +1485,83 @@ This command describes the asset passed in `<assetIdentifier>`.
 
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset resource upload
+
+----
+> exchange asset resource upload [options] <assetIdentifier> <filepath>
+----
+
+This command uploads the resource specified in `<filepath>` to a page in the asset portal described in `<assetIdentifier>`.
+
+You can use this command for any page of your `<assetIdentifier>` asset.
+
+Supported file extensions for `<filepath>` are: `jpeg`, `jpg`, `jpe`, `gif`, `bmp`, `png`, `webp`, `ico`, `svg`, `tiff`, `tif`.
+
+The argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+The successful output command will be a markdown codesnippet.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset resource list
+
+----
+> exchange asset resource list [options] <assetIdentifier>
+----
+
+This command lists the resources in the asset portal of the asset specified in `<assetIdentifier>`.
+
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+[NOTE]
+This command lists published resources by default. +
+You can use the `--draft` option to list draft resources from the asset portal.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `--draft` option to list non-published resources in the asset portal.
+
+=== exchange asset resource download
+
+----
+> exchange asset resource download [options] <assetIdentifier> <resourcePath> <filePath>
+----
+
+This command downloads the published resource specified in `<resourcePath>` from the asset portal of the asset specified in `<assetIdentifier>` to the file specified in `<filePath>`.
+
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+Argument `<resourcePath>` must be a published resource. +
+You can list all published resources using the <<exchange asset resource list,asset resource list>> command.
+
+[NOTE]
+This command only supports published resources.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset resource delete
+
+----
+> exchange asset resource delete [options] <assetIdentifier> <resourcePath>
+----
+
+This command deletes the resource specified in `<resourcePath>` from the asset portal of the asset specified in `<assetIdentifier>` by publishing a new portal in which `resourcePath` has been deleted.
+
+Argument `<assetIdentifier>` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+Argument `<resourcePath>` must be a published resource. +
+You can list all published resources using the <<exchange asset resource list,asset resource list>> command.
+
+[CAUTION]
+This command publishes all active drafts as part of the operation.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
