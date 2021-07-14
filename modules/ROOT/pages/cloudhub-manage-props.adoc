@@ -4,22 +4,22 @@ include::_attributes.adoc[]
 endif::[]
 
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 In a CloudHub deployment, you can add properties to an application by using either Anypoint Runtime Manager or a properties file.
 
 If you set properties both in the properties file in your application and in Runtime Manager, the values set in Runtime Manager always override the values in the properties file when your application deploys.
 
 
-== Add Application Properties in Runtime Manager 
+== Add Application Properties in Runtime Manager
 
 The easiest way to load properties to applications deployed to CloudHub is to use the *Properties* tab in Anypoint Runtime Manager.
 
 
-To add properties: 
+To add properties:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Applications* tab.
@@ -35,7 +35,7 @@ Alternatively, you can enter the key-value pair in the *Text* field in this form
 . Enter the property name in the key field.
 . Enter the property value in the value field.
 +
-If the save password feature of Chrome is enabled and includes a username for `anypoint.mulesoft.com` that matches the contents of the key field, Chrome overwrites the value field with the stored password associated with that username. 
+If the save password feature of Chrome is enabled and includes a username for `anypoint.mulesoft.com` that matches the contents of the key field, Chrome overwrites the value field with the stored password associated with that username.
 To work around this limitation, use Chrome in incognito mode or use another browser.
 . If you want to change a key or value, edit the text in the field.
 . If you want to delete a property, click *X*.
@@ -44,7 +44,7 @@ To work around this limitation, use Chrome in incognito mode or use another brow
 
 
 
-=== Example: Using Properties to Set Environment Variables 
+=== Example: Using Properties to Set Environment Variables
 
 You can specify Java system environment variables, which function the same as adding environment variables when you deploy to an on-premises server.
 
@@ -85,14 +85,14 @@ See xref:mule-runtime::configuring-properties.adoc[Configuring Properties].
 +
 See xref:3.9@mule-runtime::configuring-properties.adoc[Configuring Properties].
 
-CloudHub then loads these properties into the application when the application starts. 
+CloudHub then loads these properties into the application when the application starts.
 
 Although this method is not the best practice on CloudHub (because CloudHub *Properties* tab values override any with the same name in the file), you can work around this by changing options in the Mule app.
 
 To prevent CloudHub properties from overriding properties bundled with the deployable archive, change options in the `property-placeholder` element in the Mule application.
 For more information about nondefault property placeholder options, see the https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options].
 
-== CloudHub Reserved Properties 
+== CloudHub Reserved Properties
 
 CloudHub reserves a set of properties and prevents apps from overwriting the values of those properties.
 If an application attempts to assign a value to a reserved property, CloudHub doesn't use the assigned value.
@@ -141,12 +141,12 @@ CloudHub runtime release updates might change the reserved properties.
 --
 
 
-=== Example: Retrieve the Values of Reserved Properties 
+=== Example: Retrieve the Values of Reserved Properties
 
 [source,xml,linenums]
 ----
-<set-payload value="java.vendor=${java.vendor}, java.runtime.name=${java.runtime.name}, java.version=${java.version}, application.aws.region=${application.aws.region}, 
-      http.port=${http.port}, http.ports=${http.port}, mule.home=${mule.home}, csorganization.id=${csorganization.id}, environment.id=${environment.id}, 
+<set-payload value="java.vendor=${java.vendor}, java.runtime.name=${java.runtime.name}, java.version=${java.version}, application.aws.region=${application.aws.region},
+      http.port=${http.port}, http.ports=${http.port}, mule.home=${mule.home}, csorganization.id=${csorganization.id}, environment.id=${environment.id},
       environment.type=${environment.type}, worker.id=${worker.id}, domain=${domain}, fullDomain=${fullDomain}" doc:name="Set Payload"/>
 <logger message="#[payload]" level="INFO" doc:name="Logger"/>
 ----
@@ -156,7 +156,7 @@ Example output:
 [source,console,linenums]
 ----
 16:33:08.572     07/02/2020     Worker-0     [cloudhub-reserved-properties].HTTP_Listener_Configuration.worker.01     INFO
-   java.vendor=Oracle Corporation, java.runtime.name=Java(TM) SE Runtime Environment, java.version=1.8.0_141, application.aws.region=ap-southeast-2, 
+   java.vendor=Oracle Corporation, java.runtime.name=Java(TM) SE Runtime Environment, java.version=1.8.0_141, application.aws.region=ap-southeast-2,
    http.port=8081, http.ports=8081, mule.home=/opt/mule/mule-4.3.0, csorganization.id=09396371-2cd4-412e-8d08-4356dd3e7bfc, environment.id=52a69d49e4b0e3c7324ae5b6,
    environment.type=production, worker.id=0, domain=cloudhub-reserved-properties, fullDomain=cloudhub-reserved-properties.au-s1.cloudhub.io
 ----
@@ -169,5 +169,5 @@ Example output:
 * xref:mule-runtime::configuring-properties.adoc[Configuring Properties] (Mule 4)
 * xref:3.9@mule-runtime::configuring-properties.adoc[Configuring Properties] (Mule 3)
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub] 
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
 * xref:secure-application-properties.adoc[Safely Hide Application Properties]

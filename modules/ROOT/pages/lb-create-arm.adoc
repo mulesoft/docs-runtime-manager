@@ -3,10 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 You can use Runtime Manager to create a dedicated load balancer (DLB) in your CloudHub environment.
@@ -30,7 +30,7 @@ Similarly, the administrator role of the same organization also provides the aut
 The CloudHub DLB name must be unique across all DLBs defined in Anypoint Platform (by all MuleSoft customers).
 For this reason, you might want to append your organization name to your DLB name.
 +
-//NO RENAME SHARED 
+//NO RENAME SHARED
 include::partial$no-rename.adoc[tag=noRenameDLB]
 +
 Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdns.net` name where `_lb-name_` is the name you provide.
@@ -66,7 +66,7 @@ If you deselect this option, the DLB decodes the encoded part of the request URI
 +
 * *Support TLS 1.0* specifies to support TLS 1.0 between the client and the DLB.
 +
-To use TLS 1.0, see <<Enable TLS 1.0 on a DLB>>.
+To use TLS 1.0, see <<Enable TLS 1.0 on a DLB Using Runtime Manager>>.
 * *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
 . Add a certificate.
 
@@ -95,7 +95,7 @@ Click *Add New Rule*, and then specify the input path, target app, output path, 
 // TLS 1.0 Support
 include::partial$tls-support.adoc[tag=tlsSupport]
 
-To enable TLS support: 
+To enable TLS support:
 
 . Select the *Support TLS 1.0* option.
 . Using the API, change the default cipher suite to `OldDefault`.

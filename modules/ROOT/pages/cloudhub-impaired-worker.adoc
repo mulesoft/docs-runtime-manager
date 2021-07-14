@@ -1,18 +1,18 @@
-= Impaired Worker Monitoring 
+= Impaired Worker Monitoring
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-fabric/deploy-to-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 CloudHub continuously verifies the health of the workers running Mule applications.
 
 When a worker is impaired by hardware or software failures, including network unavailability, memory issues, server hardware failures, or file corruption, CloudHub automatically attempts to restart the app on a new worker.
 
-Because CloudHub replaces impaired workers on a fixed schedule, which depends on the underlying 
+Because CloudHub replaces impaired workers on a fixed schedule, which depends on the underlying
 infrastructure, you might experience a delay between the time the new worker starts and when it starts sharing the load.
 As long as the app is running on multiple workers, this delay shouldn't impact the application.
 
@@ -29,8 +29,8 @@ Your application was running on an impaired worker instance. To avoid any downti
 
 
 [NOTE]
-The automatic worker-restart functionality is different from the automatic application-restart functionality, which is configurable using the *Automatically restart application when not responding* option on the *Settings* page for the app. 
-CloudHub automatically attempts to restart impaired workers, regardless of the application-restart setting. 
+The automatic worker-restart functionality is different from the automatic application-restart functionality, which is configurable using the *Automatically restart application when not responding* option on the *Settings* page for the app.
+CloudHub automatically attempts to restart impaired workers, regardless of the application-restart setting.
 
 == Scheduled Maintenance Activities
 

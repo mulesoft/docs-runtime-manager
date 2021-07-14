@@ -3,10 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 These are some of the possible errors you may encounter when attempting to connect Anypoint VPN.
 
@@ -19,15 +19,15 @@ If you are unable to connect to the Anypoint VPN, ensure any firewalls that are 
 This is likely due to a problem with your Phase 1 configuration.
 Anypoint VPN connections support only IKEv1, meaning IKEv2 doesn't work.
 
-Phase 1 Diffie-Hellman (DH) groups that are supported include 2, 14-18, 22, 23, and 24. 
+Phase 1 Diffie-Hellman (DH) groups that are supported include 2, 14-18, 22, 23, and 24.
 
 == Cannot Establish a Phase 2 Connection
 
-It is possible that your Phase 2 DH group is not supported. Phase 2 DH groups that are supported include 2, 5, 14-18, 22, 23, and 24. 
+It is possible that your Phase 2 DH group is not supported. Phase 2 DH groups that are supported include 2, 5, 14-18, 22, 23, and 24.
 
 == Routes are Not Present in the VPC Route Table
 
-The VPC route table is not updated until the tunnels are active. 
+The VPC route table is not updated until the tunnels are active.
 When using static routing, the remote networks are added to the route table when the tunnel is active, and removed when the tunnel is inactive. This is the expected behavior.
 When using BGP routing, the routes are propagated from your VPN endpoint when the tunnel is active. If the route table does not show the required entries, ensure that the BGP session is active and validate the BGP configuration on your device.
 

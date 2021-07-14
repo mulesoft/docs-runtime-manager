@@ -3,10 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 The *Servers* tab in Runtime Manager enables you to view a list of the servers, server groups, clusters, and API gateways in an environment. From this tab, you can also perform actions on these components.
 
@@ -18,22 +18,22 @@ Runtime Manager displays a list of servers, which includes the following informa
 *Name*:: Displays the name of the server, API gateway, server group, or cluster.
 *Status*:: Displays the current status.
 *Type*:: Indicates whether the component is a Mule server, API gateway, server group, or cluster.
-*Version*:: Displays the version of API gateway or Mule. 
+*Version*:: Displays the version of API gateway or Mule.
 . Click the *Type* column to view additional properties and actions in the details pane.
 . Click the name of the component to view its dashboard.
 
 == Details Pane
 
-The details pane includes: 
+The details pane includes:
 
 * Status of the component
 * Mule or API gateway version
-* Runtime Manager agent version 
+* Runtime Manager agent version
 * *Manage Server*, *Manage Group*, or *Manage Cluster* button, which takes you to the *Settings* page
 * *View Dashboard* button, which takes you to the server's dashboard page
 +
-//DASHBOARD SHARED 
-include::partial$cluster-server.adoc[tag=viewServerinClusterOrGroup] 
+//DASHBOARD SHARED
+include::partial$cluster-server.adoc[tag=viewServerinClusterOrGroup]
 
 * For clusters, the type (unicast or multicast)
 
@@ -46,15 +46,15 @@ The tabs in the bottom provide more detail:
 .The screen shows the *Applications* tab, servers list, and *Plugins* tab.
 image::rtm-cluster-details-pane.png[ *Applications* tab, servers list, and *Plugins* tab]
 
-== Server Dashboard 
+== Server Dashboard
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
-The server dashboard provides detailed performance metrics, including heap memory and CPU performance: 
+The server dashboard provides detailed performance metrics, including heap memory and CPU performance:
 
 .The screen shows the *Heap Memory* graph, applications list, and *CPU* graph.
 image::rtm-server-dashboards-page.png[*Heap Memory* graph, applications list, and *CPU* graph]
