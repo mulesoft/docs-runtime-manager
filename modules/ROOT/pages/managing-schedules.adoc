@@ -89,7 +89,7 @@ image::cloudhub-scheduler-frequency.png[Switch to advanced mode link in the sche
 +
 In the schedule editor, change the frequency of the schedule or deselect *Enabled* to disable the schedule.
 +
-The value for the frequency can be between 1 and 100 seconds.
+The value for the frequency can be between 10 and 100 seconds.
 +
 You can also switch to advanced mode to use cron expressions to create more specific schedules,
 such as every Thursday at 3:00 pm.
@@ -108,7 +108,8 @@ To use cron expressions to specify the schedule frequency:
 .The screenshot shows (*1*) the *Quick reference* toggle, (*2*) the *more* link, and the *Switch to basic mode* link on the advanced mode page.
 image::cloudhub-scheduler-cron.png[Quick reference toggle, the more link, and the Switch to basic mode link on the advanced mode page]
 +
-The cron expression in this example sets the schedule to every 10 seconds.
+The cron expression in this example sets the schedule to every 10 seconds,
+which is the minimum supported frequency.
 +
 On this page:
 
