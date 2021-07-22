@@ -6,10 +6,10 @@ endif::[]
 :keywords: administration, api, organization, users, gateway, theme, cli
 :page-aliases: cloudhub-cli.adoc
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-active.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 Anypoint Platform CLI provides commands for different use case scenarios:
 
@@ -133,6 +133,10 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<exchange asset deprecate>> | Deprecates an asset
 |<<exchange asset undeprecate>> | Undeprecate an asset
 |<<exchange asset describe>> | Show a given asset's information
+|<<exchange asset resource upload>> | Uploads a resource to an asset portal
+|<<exchange asset resource list>> | Lists published resources in the asset portal
+|<<exchange asset resource download>> | Downloads resource from the asset portal
+|<<exchange asset resource delete>> | Deletes resource from the asset portal
 |===
 
 == Commands for Administering Your CloudHub Application
@@ -1201,8 +1205,8 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 `exchange asset upload --apiVersion 1.0 --name testProject --classifier custom`
 
 `exchange asset upload --mainFile 'api.yml'`
-| `--name` |Asset name 
-| `--mainFile` | Main file of the API asset 
+| `--name` |Asset name
+| `--mainFile` | Main file of the API asset
 | `--classifier` | Valid asset classifiers are `oas`, `raml`, `wsdl`, `http`, and `custom`.
 |===
 
@@ -1225,13 +1229,13 @@ If _group_id_ is not specified, it defaults to the currently selected organizati
 | Command | Description |  Example
 | `--name` | Asset name (required if no pom file is specified) .3+|
 `exchange asset uploadv2 --name "Raml Asset" --description "RAML" --properties.apiVersion v1 --properties.mainFile api.raml --files.raml.zip /..../file-path/raml.zip raml-asset/1.0.0`
-| `--description` | Asset description 
-| `--properties` | Asset properties 
+| `--description` | Asset description
+| `--properties` | Asset properties
 
 For example:
 
 * `properties.mainFile main.yaml`
-* `properties.apiVersion v1`  
+* `properties.apiVersion v1`
 * `properties.assetLink \http://api.com`
 
 | `--files` | Asset file, identified as `classifier.packaging` or `packaging`, for example, `files.raml.zip .../file-path/raml.zip`
@@ -1239,13 +1243,13 @@ For example:
 To send multiple files, use the same option multiple times:
 
 `--files.custom.zip custom.zip --files.pom.xml pom.xml` | `exchange asset uploadv2 --files.mule-application.jar /..../file-path/mule-app.jar --files.pom /..../file-path/mule-app.pom fa7b266c-3817-4cbb-ae49-7f3cc6c8cd9e/my-mule-app/1.0.0`
-| `--type` | Asset type  
+| `--type` | Asset type
 
 Required if no file is specified.
 
 If it is uploaded, the type is inferred from the classifier of the file.
 
-Supported Values: 
+Supported Values:
 
 * `rest-api`
 * `soap-api`
@@ -1283,7 +1287,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |===
 |Command | Description |  Example
 |`--name` | New asset name .2+<.<| `exchange asset modify --name newName --tags test,sample`
-|`--tags` | Comma-separated tags for the asset 
+|`--tags` | Comma-separated tags for the asset
 |===
 
 === exchange asset download
@@ -1318,6 +1322,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 |`--limit` | Number of results to retrieve | `exchange asset list --limit 2`
 |`--offset` | Offsets the number of APIs passed | `exchange asset list --offset 3`
 |`--sort` | Sorts the results in the field name passed | `exchange asset list --sort "Latest Version"`
+|`--organizationId` | Filters by organization id | `exchange asset list --organizationId a12b3c45-de6f-789g-hi01-j2klm3nop4q5`
 |===
 
 
@@ -1364,10 +1369,10 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 This command uploads an asset description page from the path passed in `<mdPath>` using the name specified in `<pageName>` to the Exchange asset identified with `<assetIdentifier>`. +
 Naming the page "home" makes the uploaded page the main description page for the Exchange asset.
 
-[NOTE]
-This command only supports published pages.
+[CAUTION]
+This command publishes all active drafts as part of the operation.
 
-Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
 If `group_id` is not specified, it defaults to the currently selected Organization ID. +
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1451,7 +1456,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 This command deprecates the asset passed in `<assetIdentifier>`.
 
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
-If `group_id` is not specified, it defaults to the currently selected Organization ID. 
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1465,7 +1470,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 This command undeprecates the asset passed in `<assetIdentifier>`.
 
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
-If `group_id` is not specified, it defaults to the currently selected Organization ID. 
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1479,7 +1484,84 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 This command describes the asset passed in `<assetIdentifier>`.
 
 Argument `assetIdentifier` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. +
-If `group_id` is not specified, it defaults to the currently selected Organization ID. 
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset resource upload
+
+----
+> exchange asset resource upload [options] <assetIdentifier> <filepath>
+----
+
+This command uploads the resource specified in `<filepath>` to a page in the asset portal described in `<assetIdentifier>`.
+
+You can use this command for any page of your `<assetIdentifier>` asset.
+
+Supported file extensions for `<filepath>` are: `jpeg`, `jpg`, `jpe`, `gif`, `bmp`, `png`, `webp`, `ico`, `svg`, `tiff`, `tif`.
+
+The argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+The successful output command will be a markdown codesnippet.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset resource list
+
+----
+> exchange asset resource list [options] <assetIdentifier>
+----
+
+This command lists the resources in the asset portal of the asset specified in `<assetIdentifier>`.
+
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+[NOTE]
+This command lists published resources by default. +
+You can use the `--draft` option to list draft resources from the asset portal.
+
+Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this command also takes the `--draft` option to list non-published resources in the asset portal.
+
+=== exchange asset resource download
+
+----
+> exchange asset resource download [options] <assetIdentifier> <resourcePath> <filePath>
+----
+
+This command downloads the published resource specified in `<resourcePath>` from the asset portal of the asset specified in `<assetIdentifier>` to the file specified in `<filePath>`.
+
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+Argument `<resourcePath>` must be a published resource. +
+You can list all published resources using the <<exchange asset resource list,asset resource list>> command.
+
+[NOTE]
+This command only supports published resources.
+
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset resource delete
+
+----
+> exchange asset resource delete [options] <assetIdentifier> <resourcePath>
+----
+
+This command deletes the resource specified in `<resourcePath>` from the asset portal of the asset specified in `<assetIdentifier>` by publishing a new portal in which `resourcePath` has been deleted.
+
+Argument `<assetIdentifier>` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
+
+Argument `<resourcePath>` must be a published resource. +
+You can list all published resources using the <<exchange asset resource list,asset resource list>> command.
+
+[CAUTION]
+This command publishes all active drafts as part of the operation.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1510,7 +1592,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr cloudhub-application list [options]
 ----
 
-This command lists all applications available in your Anypoint Platform CLI. It returns your application name, its status, the number of vCores assigned and the last time it was updated. 
+This command lists all applications available in your Anypoint Platform CLI. It returns your application name, its status, the number of vCores assigned and the last time it was updated.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1523,7 +1605,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 
 This command displays information on the application you pass in `<name>`. +
 You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. +
-The command returns data such as the application's domain, its status, the last time it was updated, the Mule version, the ZIP file name, the region, monitoring, and workers; as well as `TRUE` or `FALSE` information for persistent queues and static IPs enablement. 
+The command returns data such as the application's domain, its status, the last time it was updated, the Mule version, the ZIP file name, the region, monitoring, and workers; as well as `TRUE` or `FALSE` information for persistent queues and static IPs enablement.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1534,9 +1616,9 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr cloudhub-application describe-json  [options] <name>
 ----
 
-This command returns the raw JSON response of the application you specify in `<name>`. 
+This command returns the raw JSON response of the application you specify in `<name>`.
 
-You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1548,7 +1630,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 
 This command stops the running application you specify in `<name>` +
-You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1560,7 +1642,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 
 This command starts the running application you specify in `<name>` +
-You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1572,7 +1654,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 
 This command restarts the running application you specify in `<name>` +
-You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1668,7 +1750,7 @@ You can also start typing your option and press `tab` for Anypoint Platform CLI 
 // > runtime-mgr application revert-runtime [options] <name>
 // ----
 // This command reverts the application defined in `<name>` to its previous runtime environment. +
-// You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+// You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 // include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1678,9 +1760,9 @@ You can also start typing your option and press `tab` for Anypoint Platform CLI 
 ----
 > runtime-mgr cloudhub-application download-logs [options] <name> <directory>
 ----
-This command downloads logs the for application specified in `<name>` to the specified directory. 
+This command downloads logs the for application specified in `<name>` to the specified directory.
 
-You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 Keep in mind that contrarily to what you see in the UI, the logs you download from the CLI won't separate system logs from worker logs.
 
@@ -1691,7 +1773,7 @@ Keep in mind that contrarily to what you see in the UI, the logs you download fr
 ----
 
 This command tails application logs. +
-You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your application's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1721,11 +1803,11 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr cloudhub-application copy [options] <source> <target>
 ----
 
-This command copies the CloudHub application passed in `source` to the target passed in `target`. 
+This command copies the CloudHub application passed in `source` to the target passed in `target`.
 
-Arguments `source` and `target` should be formatted as follows: `([group_id]/)<asset_id>/<version>`. 
+Arguments `source` and `target` should be formatted as follows: `([group_id]/)<asset_id>/<version>`.
 
-If `group_id` is not specified, it defaults to the currently selected Organization ID. 
+If `group_id` is not specified, it defaults to the currently selected Organization ID.
 
 For example:
 
@@ -1757,7 +1839,7 @@ for example:
 
 [NOTE]
 When copying an application containing safely hidden application properties, pass the properties in the `copy` command using the `--property` option.
-//HIDDEN PROPS XREF 
+//HIDDEN PROPS XREF
 include::partial$hidden-props.adoc[tag=hidePropsXref]
 
 === runtime-mgr rtf list
@@ -1780,8 +1862,8 @@ xref:runtime-fabric::install-rtfctl.adoc#supported-commands[Supported rtfctl Com
 > runtime-mgr standalone-application artifact [options] <identifier> <directory>
 ----
 
-This command downloads the application artifact of the `identifier` application, to the directory passed in `directory`. 
-The `identifier` parameter can be either an application ID or name. 
+This command downloads the application artifact of the `identifier` application, to the directory passed in `directory`.
+The `identifier` parameter can be either an application ID or name.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1792,11 +1874,11 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr standalone-application deploy [options] <targetIdentifier> <name> <zipfile>
 ----
 
-This command deploys or redeploys the application passed as a ZIP file in the path `zipfile` to the on-premises target passed in `targetIdentifier`. 
+This command deploys or redeploys the application passed as a ZIP file in the path `zipfile` to the on-premises target passed in `targetIdentifier`.
 
-The `targetIdentifier` parameter can be either a target ID or name. 
+The `targetIdentifier` parameter can be either a target ID or name.
 
-A target can be either a server, server group, or cluster. 
+A target can be either a server, server group, or cluster.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1830,8 +1912,8 @@ In addition to the default `--help`, `-f`/`--fields` and `-o`/`--output` options
 
 [%header,cols="30,50a"]
 |===
-|Value |Description 
-| `--insight` | Stores message metadata of every Mule transaction. 
+|Value |Description
+| `--insight` | Stores message metadata of every Mule transaction.
 | `--log [level:scope]` | Sets the logging level and scope pair:
 
 * `level`: TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF
@@ -1847,7 +1929,7 @@ To set multiple logging levels, provide multiple `--log` options, for example, `
 > runtime-mgr standalone-application start [options] <identifier>
 ----
 
-This command starts the standalone (on-premises) application passed in `identifier`. 
+This command starts the standalone (on-premises) application passed in `identifier`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1901,7 +1983,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > runtime-mgr standalone-application restart [options] <identifier>
 ----
 
-This command restarts the standalone (on-premises) application passed in `identifier`. 
+This command restarts the standalone (on-premises) application passed in `identifier`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1923,14 +2005,14 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr standalone-application copy [options] <source> <target> <targetIdentifier>
 ----
 
-This command copies the standalone (on-premises) application passed in `source` to the target passed in `target` and the server, server group or cluster ID or Name passed in `targetIdentifier`. 
+This command copies the standalone (on-premises) application passed in `source` to the target passed in `target` and the server, server group or cluster ID or Name passed in `targetIdentifier`.
 
 Both arguments `source` and `destination` are represented using the format: `<organizationName>:<environmentName>/<appName>`, for example:
 
 ----
 > runtime-mgr standalone-application copy Services:QA/application-1 Development:QA/application-2 123456
 ----
-Copies the application named `application-1` from the QA environment of the _Services_ organization to the QA environment of the `_Development_` organization in the server ID 123456. 
+Copies the application named `application-1` from the QA environment of the _Services_ organization to the QA environment of the `_Development_` organization in the server ID 123456.
 
 If the Anypoint Platform CLI is using the QA environment in the Services organization, the command can simply take the application name as a `source`:
 
@@ -1952,7 +2034,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr server describe [options] <serverId>
 ----
 
-This command describes the server passed in `serverId`. 
+This command describes the server passed in `serverId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -1963,7 +2045,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr server modify [options] <serverId>
 ----
 
-This command modifies the server passed in `serverId`. 
+This command modifies the server passed in `serverId`.
 
 In order to update the id for the cluster, you need to pass the  `--name` option.
 
@@ -1975,7 +2057,7 @@ Besides the `--name` option, this command also takes the default `--help`, `-f`/
 > runtime-mgr server token [options]
 ----
 
-This command gets server registration token. This token needs to be used to register a new server. 
+This command gets server registration token. This token needs to be used to register a new server.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2000,7 +2082,7 @@ This command does not prompt twice before deleting. If you send a delete instruc
 > runtime-mgr server list [options]
 ----
 
-This server lists all servers in your environment. 
+This server lists all servers in your environment.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2042,7 +2124,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr serverGroup describe [options] <serverGroupId>
 ----
 
-This command describes the server group passed in `serverGroupId`. 
+This command describes the server group passed in `serverGroupId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2053,7 +2135,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr serverGroup modify [options] <serverGroupId>
 ----
 
-This command modifies the server group passed in `serverGroupId`. 
+This command modifies the server group passed in `serverGroupId`.
 
 In order to update the id for the cluster, you need to pass the  `--name` option.
 
@@ -2066,7 +2148,7 @@ Besides the `--name` option, this command also takes the default `--help`, `-f`/
 > runtime-mgr serverGroup add server [options] <serverGroupId> <serverId>
 ----
 
-This command adds the server passed in `serverId` to the server group passed in `serverGroupId`. 
+This command adds the server passed in `serverId` to the server group passed in `serverGroupId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2091,7 +2173,7 @@ This command does not prompt twice before deleting. If you send a delete instruc
 > runtime-mgr serverGroup list [options]
 ----
 
-This command lists all server groups in the environment. 
+This command lists all server groups in the environment.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2102,7 +2184,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr serverGroup remove server [options] <serverGroupId> <serverId>
 ----
 
-This command removes the server passed in `serverId` from the server group passed in `serverGroupId`. 
+This command removes the server passed in `serverId` from the server group passed in `serverGroupId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2113,7 +2195,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr cluster add server [options] <clusterId> <serverId>
 ----
 
-This command adds the cluster in `clusterId` to the server passed in `serverId`. 
+This command adds the cluster in `clusterId` to the server passed in `serverId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2124,7 +2206,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr cluster delete [options] <clusterId>
 ----
 
-This command deletes the cluster passed in `clusterId`. 
+This command deletes the cluster passed in `clusterId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2138,7 +2220,7 @@ This command does not prompt twice before deleting. If you send a delete instruc
 > runtime-mgr cluster list [options]
 ----
 
-This command lists all clusters in the environment. 
+This command lists all clusters in the environment.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2149,7 +2231,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 > runtime-mgr cluster remove server [options] <clusterId> <serverId>
 ----
 
-This command removes the server passed in `serverId` from the cluster passed in `clusterId`. 
+This command removes the server passed in `serverId` from the cluster passed in `clusterId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2201,7 +2283,7 @@ Besides the `--name` option, this command also takes the default `--help`, `-f`/
 > runtime-mgr standalone-alert describe [options] <alertId>
 ----
 
-This command describes the alert passed in `alertId`. 
+This command describes the alert passed in `alertId`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2267,7 +2349,7 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 > runtime-mgr standalone-alert list [options]
 ----
 
-This command lists all alerts for standalone Mules in the current environment. 
+This command lists all alerts for standalone Mules in the current environment.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2279,7 +2361,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 > cloudhub load-balancer list [options]
 ----
-This command lists all load balancers in your Anypoint Platform. It displays load balancer's name, domain, its state, and the Anypoint VPC ID to which the load balancer is bound. 
+This command lists all load balancers in your Anypoint Platform. It displays load balancer's name, domain, its state, and the Anypoint VPC ID to which the load balancer is bound.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2289,7 +2371,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 > cloudhub load-balancer describe [options] <name>
 ----
-This command displays information about the load balancer that is specified in `<name>`. 
+This command displays information about the load balancer that is specified in `<name>`.
 
 You can start typing your load balancer's name and press`tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
@@ -2303,9 +2385,9 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 > cloudhub load-balancer describe [options] <name>
 ----
-This command displays a raw JSON response from the load balancer that is specified in `<name>`. 
+This command displays a raw JSON response from the load balancer that is specified in `<name>`.
 
-You can start typing your load balancer's name and press`tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your load balancer's name and press`tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2553,7 +2635,7 @@ This command does not take any options, except for the default ones: `--help`, `
 ----
 > cloudhub region list [options]
 ----
-This command lists all supported regions. 
+This command lists all supported regions.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2579,9 +2661,9 @@ This command lists all available Anypoint VPCs. It returns ID, region, and envir
 ----
 > cloudhub vpc describe [options] <name>
 ----
-This command displays information about the Anypoint VPC that is specified in `<name>`. 
+This command displays information about the Anypoint VPC that is specified in `<name>`.
 
-You can start typing your Anypoint VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your Anypoint VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2591,9 +2673,9 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 > cloudhub vpc describe [options] <name>
 ----
-This command displays a raw JSON response of the Anypoint VPC that is specified in `<name>`. 
+This command displays a raw JSON response of the Anypoint VPC that is specified in `<name>`.
 
-You can start typing your Anypoint VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your Anypoint VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2705,7 +2787,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 > cloudhub vpc firewall-rules describe <vpc>
 ----
-This command describes all the firewall rules for the Anypoint VPC defined in `<vpc>`. 
+This command describes all the firewall rules for the Anypoint VPC defined in `<vpc>`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2735,7 +2817,7 @@ When creating an Anypoint VPC, make sure to allow your outbound address. +
 By default, all IP addresses are blocked, and you need to authorize IP addresses or range of addresses to your Anypoint VPC firewall rule.
 --
 
-You can start typing your Anypoint VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass. 
+You can start typing your Anypoint VPC's name and press `tab` for Anypoint Platform CLI to autocomplete it, or you can double tap `tab` for a full list of all the values you can pass.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2746,7 +2828,7 @@ include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
 ----
 > cloudhub vpc firewall-rules remove <vpc> <index>
 ----
-This command removes the firewall rule from the workers inside the Anypoint VPC specified in `<vpc>` at the index passed in the `<index>`. 
+This command removes the firewall rule from the workers inside the Anypoint VPC specified in `<vpc>` at the index passed in the `<index>`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2758,7 +2840,7 @@ This command is only available for interactive mode.
 ----
 > use environment [options] <name>
 ----
-This command makes active the environment specified in `<name>`. 
+This command makes active the environment specified in `<name>`.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
@@ -2786,7 +2868,7 @@ If your business group or organization name contains spaces, you need to enclose
 ----
 > exit [options]
 ----
-This command exits Anypoint Platform CLI. 
+This command exits Anypoint Platform CLI.
 
 // CLI DEFAULTS
 include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]

@@ -5,10 +5,10 @@ endif::[]
 :keywords: cloudhub, managing, monitoring, deploy, runtime manager, arm
 :page-aliases: managing-cloudhub-applications.adoc
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 After you deploy an application to xref:deploying-to-cloudhub.adoc[CloudHub], you can use the Runtime Manager to manage your application at runtime.
 
@@ -41,8 +41,8 @@ They also display additional info about the CloudHub worker they run on, namely 
 
 == Access App Settings
 
-. Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager. 
-. Select one of your CloudHub running applications to open a panel on the right side. 
+. Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager.
+. Select one of your CloudHub running applications to open a panel on the right side.
 . In the panel on the right, click the *Manage Application* button to open up the application's settings.
 
 image::cloudhub-manage-application.png[manage app]
@@ -50,7 +50,7 @@ image::cloudhub-manage-application.png[manage app]
 In this menu you will be able to change most of the settings you can configure when deploying. For applications on CloudHub, you will also be able to access Log data, Insights, Alerts, queues, set up and manage schedules and application data. You can also see the *Alerts History* tab, which displays a record of the triggered alerts on the app. See xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager] for more on this.
 
 
-//NO RENAME SHARED 
+//NO RENAME SHARED
 include::partial$no-rename.adoc[tag=noRenameApp]
 
 
@@ -61,8 +61,8 @@ If your application is deployed to CloudHub, a rich set of tools exists for moni
 
 == Redeploy to a Different Region
 
-If you have global deployment enabled on your account, you can select a different region for your CloudHub deployments. 
-. On the settings page, pick the *Runtime* section, and then select the desired region from the drop-down menu. 
+If you have global deployment enabled on your account, you can select a different region for your CloudHub deployments.
+. On the settings page, pick the *Runtime* section, and then select the desired region from the drop-down menu.
 . After you select the region, click the *Apply changes* button, which restarts your application in the new region.
 
 image::setregion.png[SetRegion]
@@ -97,10 +97,10 @@ If you can see the application name, but the name is not a live link, your admin
 
 If you made changes to your applications and want to upload a new version:
 
-. Click *Choose file* on the Deployment screen for that application. The new filename appears in italicized text. 
+. Click *Choose file* on the Deployment screen for that application. The new filename appears in italicized text.
 . Click *Apply changes* to use the new file for deployment.
 +
-Within a few seconds, your application successfully redeploys. While redeploying, the application status indicator changes to blue, and then turns green after the deployment completes. 
+Within a few seconds, your application successfully redeploys. While redeploying, the application status indicator changes to blue, and then turns green after the deployment completes.
 . You can click *Logs* to see a live redeployment of your application.
 
 After successfully starting a new worker with the application's latest version, CloudHub overwrites the previous version and you can no longer download the previous archive or revert back to the previous version of application.

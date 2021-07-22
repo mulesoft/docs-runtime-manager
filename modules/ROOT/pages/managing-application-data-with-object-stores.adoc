@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, object stores, arm, runtime manager
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 CloudHub includes application data storage for each application it manages.
 This data is accessible through the Mule object store and Object Store v2 functionality.
@@ -31,9 +31,9 @@ Your application can also store custom integration data as well, within the limi
 To work with application data inside a Mule flow, use the Object Store connector. The connector provides operations to store, retrieve, list, and remove data from a Runtime Manager Object Store. The Object Store connector works with both Object Store v1 and Object Store v2.
 
 
-=== Store OAuth Data
+=== Retrieve OAuth Data
 
-For information on how to use the Object Store module to store and retrieve OAuth tokens, see the "Saving and Restoring State" section in the http://mulesoft.github.com/linkedin-connector/mule/linkedin-config.html#config[LinkedIn connector configuration] documentation for an example.
+For information on how to retrieve OAuth tokens, see xref:oauth-module::index.adoc[OAuth Module].
 
 == View Application Data
 
