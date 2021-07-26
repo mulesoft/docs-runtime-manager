@@ -4,17 +4,17 @@ include::_attributes.adoc[]
 endif::[]
 
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
-To add a Mule server to the Runtime Manager console so that you can manage it, you must first register it with the Runtime Manager agent. Use the `amc_setup` script to configure the Runtime Manager agent to communicate with Runtime Manager. 
+To add a Mule server to the Runtime Manager console so that you can manage it, you must first register it with the Runtime Manager agent. Use the `amc_setup` script to configure the Runtime Manager agent to communicate with Runtime Manager.
 
 
 == Prerequisites
 
-* Your enterprise license is current. 
+* Your enterprise license is current.
 * You are running Mule 3.6.0 or later, and API gateway 2.1 or later.
 +
 For Mule 3.6.x, install the Runtime Manager agent.
@@ -83,7 +83,7 @@ Mule 4.1.2 (Agent 2.1.3)
 . Copy the custom truststore into the `$MULE_HOME/conf` folder.
 . Restart Mule.
 
-== Remove a Server from Another Runtime Manager Instance 
+== Remove a Server from Another Runtime Manager Instance
 
 If the server you want to add is already registered with a different instance of Runtime Manager, you must remove it before you can register.
 

@@ -4,16 +4,16 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, testing, audit, workers
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
-If your company security policies require that you perform vulnerability and penetration testing 
+If your company security policies require that you perform vulnerability and penetration testing
 against Anypoint Platform, request a Security Assessment before proceeding.
 
 
-== Request a Security Assessment 
+== Request a Security Assessment
 
 To request a Security Assessment:
 
@@ -27,9 +27,9 @@ The automated system contacts you when your Security Assessment request is appro
 +
 Check your Spam folder for the automated reply before contacting Salesforce.
 
-== Run Penetration and Vulnerability Tests  
+== Run Penetration and Vulnerability Tests
 
-Because penetration testing could interfere with other tenants, MuleSoft allows penetration testing 
+Because penetration testing could interfere with other tenants, MuleSoft allows penetration testing
 on your workers but not on other Anypoint Platform services.
 
 [IMPORTANT]
@@ -46,7 +46,7 @@ By default, CloudHub workers do not use static IP addresses, so you can't test t
 For information about how to enable static IPs, see xref:deploying-to-cloudhub.adoc#static-ips-tab-settings[Static IPs Tab Settings].
 * Assign a security resource at your company to review and validate findings from the tests.
 
-=== Steps 
+=== Steps
 
 After your Security Assessment request is approved, follow these steps:
 
@@ -61,7 +61,7 @@ The Security Assessment Agreement includes restrictions and requirements for tes
 --
 +
 [IMPORTANT]
-You must complete this step before following up with Salesforce. 
+You must complete this step before following up with Salesforce.
 
 . Send any outstanding security vulnerability findings to mailto:security@salesforce.com[security@salesforce.com].
 +
@@ -73,9 +73,9 @@ Include the following information in your email:
 ** Detailed assessment report noting each finding
 ** Steps to reproduce the vulnerability
 ** All applicable HTTP requests and responses
-** Explanation of why the example is considered a finding 
+** Explanation of why the example is considered a finding
 
-For more information about how to submit a security vulnerability finding, see the 
+For more information about how to submit a security vulnerability finding, see the
 https://help.salesforce.com/articleView?id=000320207&type=1&mode=1[Security Vulnerability Finding Submittal Guide].
 --
 

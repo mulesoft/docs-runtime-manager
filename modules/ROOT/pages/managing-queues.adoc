@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, managing, monitoring, seda, vm
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 You can view and control any Virtual Machine (VM) or Staged Event-Driven Architecture (http://en.wikipedia.org/wiki/Staged_event-driven_architecture[SEDA]) queues within the flows of your deployed applications from the *Queues* tab in Runtime Manager.
@@ -38,7 +38,7 @@ The *Queues* tab is useful for the following use cases:
 
 To enable queues:
 
-. Deploy an application to CloudHub that includes one or more queues. 
+. Deploy an application to CloudHub that includes one or more queues.
 +
 See xref:connectors::vm/vm-connector.adoc[VM Connector].
 .  In Runtime Manager, click the application and click *Manage Application*.
@@ -90,7 +90,7 @@ image::enable-encripting.png[enable+encripting]
 If you enable encryption and then disable it, any messages that were previously encrypted become unreadable.
 
 
-== Batch Component and Persistent Queues 
+== Batch Component and Persistent Queues
 
 If your Mule application is using a Batch component and persistent queues,
 you might see batch records being processed multiple times.

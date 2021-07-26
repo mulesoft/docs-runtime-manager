@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: schedules, cloudhub
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.
@@ -45,7 +45,7 @@ To avoid retriggers with long-running schedules, make sure that the app executes
 * For multi-worker apps, CloudHub guarantees that the schedule trigger executes on a single worker.
 +
 However, subsequent triggers might execute on a different worker.
-CloudHub distributes multiple concurrent schedules across workers. 
+CloudHub distributes multiple concurrent schedules across workers.
 * The minimum recommended frequency between calls is 10 seconds.
 * If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as it restarts.
@@ -89,7 +89,7 @@ image::cloudhub-scheduler-frequency.png[Switch to advanced mode link in the sche
 +
 In the schedule editor, change the frequency of the schedule or deselect *Enabled* to disable the schedule.
 +
-The value for the frequency can be between 1 and 100 seconds.
+The value for the frequency can be between 10 and 100 seconds.
 +
 You can also switch to advanced mode to use cron expressions to create more specific schedules,
 such as every Thursday at 3:00 pm.
@@ -108,7 +108,8 @@ To use cron expressions to specify the schedule frequency:
 .The screenshot shows (*1*) the *Quick reference* toggle, (*2*) the *more* link, and the *Switch to basic mode* link on the advanced mode page.
 image::cloudhub-scheduler-cron.png[Quick reference toggle, the more link, and the Switch to basic mode link on the advanced mode page]
 +
-The cron expression in this example sets the schedule to every 10 seconds.
+The cron expression in this example sets the schedule to every 10 seconds,
+which is the minimum supported frequency.
 +
 On this page:
 

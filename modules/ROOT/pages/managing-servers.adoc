@@ -3,10 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 Use Runtime Manager to register and set up the properties of servers, server groups, and clusters that reside on-premises. After setting up a server, you can add it to a server group or cluster. Then, select the server, group, or cluster as the deployment target for your applications.
 
@@ -18,14 +18,14 @@ All servers in a server group or clusters must have the same Mule runtime engine
 
 == Alerts
 
-You can set up email alerts to notify you when events occur on your servers, such as a server being disconnected or a server being removed from a cluster. You can link alerts to a specific server or to all of the servers in the server group or cluster. 
+You can set up email alerts to notify you when events occur on your servers, such as a server being disconnected or a server being removed from a cluster. You can link alerts to a specific server or to all of the servers in the server group or cluster.
 
 == See Also
 
 * xref:servers-about.adoc[Servers]
 * xref:server-group-about.adoc[Server Groups]
 * xref:cluster-about.adoc[Clusters]
-* xref:alerts-on-runtime-manager.adoc[Alerts] 
+* xref:alerts-on-runtime-manager.adoc[Alerts]
 * xref:deploying-to-your-own-servers.adoc[Deploy Applications to Your Servers]
 * xref:managing-applications-on-your-own-servers.adoc[Manage Applications on Your Servers]
 * xref:runtime-dep-serv-limits.adoc[Deployment and Server Scaling]

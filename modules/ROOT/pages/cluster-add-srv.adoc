@@ -3,16 +3,16 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 All servers that you add to a cluster must run on the same version of Mule and the same version of Runtime Manager agent.
 
 
-//CLUSTER-SERVER SHARED 
+//CLUSTER-SERVER SHARED
 include::partial$cluster-server.adoc[tag=addServerToCluster]
 
 
@@ -30,9 +30,9 @@ include::partial$cluster-server.adoc[tag=addServerToCluster]
 +
 .The arrow shows the *Add Server* button in the details pane.
 image::rtm-cluster-add-server-to-cluster.png[Add Server button]
-. Click *Add Server*. 
+. Click *Add Server*.
 +
-Servers that are already in a server group or cluster don't appear in the list of available servers. 
+Servers that are already in a server group or cluster don't appear in the list of available servers.
 . In the list, select the servers to add to the cluster, and click *Add Servers*.
 
 The servers no longer appear in the *Servers* list. To see the list of servers in the cluster, click the cluster name.
