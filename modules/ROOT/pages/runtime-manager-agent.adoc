@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, mule, servers, monitor, notifications, external systems, third party, get status, metrics
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 The Anypoint Runtime Manager agent is a Mule runtime engine plug-in that enables communication with Mule runtime engine.
 Runtime Manager (both the cloud console managed by MuleSoft and Anypoint Platform Private Cloud Edition) uses this agent to communicate with its registered Mule instances.
@@ -43,10 +43,10 @@ The Runtime Manager agent is installed into your `$MULE_HOME/plugins` directory 
 
 == Communication Protocols
 
-The Runtime Manager agent supports two communication protocols: 
+The Runtime Manager agent supports two communication protocols:
 
 * *WebSockets*
-+ 
++
 Establishes a connection from the agent to Runtime Manager (cloud-based or PCE console).
 +
 When you register the agent with Runtime Manager, the agent first makes an outbound HTTPS connection to Runtime Manager. This connection establishes a new secure, full-duplex WebSocket connection between Runtime Manager and the agent. When Mule starts, the agent securely connects to Runtime Manager, enabling you to monitor and manage Mule remotely using the Runtime Manager console.

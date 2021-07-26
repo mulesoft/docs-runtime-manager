@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, cloud, Mule, api, runtime manager, arm
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adocs#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 When developing applications for deployment to CloudHub, review the following considerations.
@@ -17,7 +17,7 @@ When developing applications for deployment to CloudHub, review the following co
 If you use Anypoint Connector for HTTP (HTTP Connector), define the host address
 in the CloudHub configuration as `0.0.0.0`.
 CloudHub routes requests from your application domain URL to the endpoint.
-If you deploy multiple workers, CloudHub load-balances incoming traffic automatically 
+If you deploy multiple workers, CloudHub load-balances incoming traffic automatically
 across the workers for you.
 As your application scales, work loads automatically distribute between your workers.
 
@@ -35,11 +35,11 @@ http://0.0.0.0:${http.port}/service/path/two
 
 == Deployment Option Flexibility
 
-To deploy the same Mule application to different deployment targets, 
-such as an on-premises server and CloudHub, 
+To deploy the same Mule application to different deployment targets,
+such as an on-premises server and CloudHub,
 see xref:mule-runtime::deploying.adoc[Deploy Mule Applications].
 
-For the key differences between deployment environments, see xref:deployment-strategies.adoc[Deployment Options]. 
+For the key differences between deployment environments, see xref:deployment-strategies.adoc[Deployment Options].
 
 You can define properties and variables for each deployment outside of the application
 and then reference them from your application.
@@ -57,7 +57,7 @@ To expose additional information in your logs for diagnostic or audit purposes,
 use the xref:mule-runtime::logger-component-reference.adoc[Logger component].
 
 [IMPORTANT]
-On CloudHub, after you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before it is purged, 
+On CloudHub, after you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before it is purged,
 so you can recover the data if needed.
 For more information, open a support case at https://help.mulesoft.com[MuleSoft Help Center].
 
@@ -73,7 +73,7 @@ For information, see xref:mule-runtime::intro-packaging.adoc[Introduction to Mul
 == Access Resources Behind the Firewall
 
 When developing an application that needs to access resources from inside your firewall,
-you can configure Anypoint Virtual Private Cloud (Anypoint VPC) to host your CloudHub workers and 
+you can configure Anypoint Virtual Private Cloud (Anypoint VPC) to host your CloudHub workers and
 configure an IPSec tunnel to access your applications.
 
 
@@ -83,7 +83,7 @@ MuleSoft provides connectors for many third-party applications,
 such as Salesforce, NetSuite, and Twitter.
 For information about how to find and use connectors with your application, see the
 xref:connectors::introduction/introduction-to-anypoint-connectors.adoc[Introduction to Anypoint Connectors].
-In addition, you can create your own connectors using Anypoint Connector DevKit. 
+In addition, you can create your own connectors using Anypoint Connector DevKit.
 
 == Use Secure Properties
 

@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-active.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 
@@ -42,7 +42,7 @@ See xref:3.9@mule-runtime::configuring-properties.adoc[Configuring Properties].
 
 Mule runtime engine then loads these properties into the application when the application starts.
 
-== Add Application Properties in Runtime Manager 
+== Add Application Properties in Runtime Manager
 
 You can override the property values in the properties file bundled inside the application in Runtime Manager:
 
@@ -77,7 +77,7 @@ mule -M-Dsecret.key=toSecretPassword -M-Denv=prod -M-Ddb.password=secretPassword
 +
 In this case, all the values typed into the command are stored only in memory and must be provided every time. The values are never stored in any file.
 
-== See Also 
+== See Also
 
 * xref:mule-runtime::configuring-properties.adoc[Configuring Properties] (Mule 4)
 * xref:3.9@mule-runtime::configuring-properties.adoc[Configuring Properties] (Mule 3)
