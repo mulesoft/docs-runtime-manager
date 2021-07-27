@@ -37,8 +37,10 @@ image::tgw-delete-route.png[Remove route icon in the VPCs section]
 
 == Detach an Anypoint VPC from the Transit Gateway
 
-Because detaching a VPC from a transit gateway also deletes the attachment in AWS,
-undeploy any apps deployed to the VPC before detaching the VPC.
+You might need to detach a VPC so that you can reattach it.
+
+Detaching a VPC from a transit gateway also deletes the attachment in AWS.
+Any apps deployed to the VPC continue to run, but they are no longer connected to your Amazon VPCs and VPNs.
 
 To detach a VPC from the transit gateway:
 

@@ -1,4 +1,4 @@
-= Transit Gateway Attachments
+= Transit Gateways
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -10,13 +10,14 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 A _transit gateway_ is a network hub that connects your Anypoint VPCs to your Amazon VPCs and VPNs.
 The transit gateway simplifies your network connectivity by functioning
-as a cloud router, managing your VPC connections and requiring only one connection from CloudHub.
+as a cloud router, managing your VPC connections with a single connection from CloudHub.
 
 Use transit gateway attachments to create a secure connection between your Anypoint Virtual Private Cloud (VPC) and the Amazon VPCs and VPNs configured in your AWS account.
 You can add multiple transit gateway attachments to your Anypoint Platform organization if required. 
 Each Anypoint VPC can be attached to at most one transit gateway in the same AWS region. 
 
 The number of transit gateways you can add depends on the transit gateway entitlements available to your account.
+CloudHub doesn't limit the number of VPCs you can attach to each TGW.
 Contact your MuleSoft account representative if you don't know how many entitlements are associated with your account. 
 
 
@@ -26,9 +27,8 @@ VPC supports static routing for transit gateway attachments.
 
 You must configure the network routes (subnets) that you want to be accessible through the transit gateway attachments:
 
-* On Anypoint Platform, add the AWS VPC routes to the transit gateway route table.
-* On AWS, add the Anypoint VPC routes to the AWS VPC route table.
-
+* On Anypoint Platform, enable outbound traffic from the VPC to an external destination.
+* On AWS, enable inbound traffic through your transit gateway. 
 
 [NOTE]
 A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway attachments.

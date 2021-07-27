@@ -11,36 +11,31 @@ image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoin
 
 Use Anypoint Runtime Manager to add a transit gateway and connect your MuleSoft Virtual Private Cloud (VPC) to your private corporate network.
 
-
 == Prerequisites
 
-Before you can add a transit gateway:
+Before you can add a transit gateway to CloudHub:
 
+* Create a transit gateway on your corporate AWS account.
++
+See https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html[Getting started with transit gateways^] in the AWS documentation for information about creating a transit gateway on AWS.
++
+One transit gateway can support up to 10 VPC attachments.
 * Purchase an Anypoint VPC offering with Transit Gateway entitlements.
 +
 The *Transit Gateways* page in Runtime Manager is visible to Anypoint organizations that have Transit Gateway entitlements. 
 * Sign in to an Anypoint Platform account with either the CloudHub Network Administrator or the CloudHub Network Viewer user permission.
 +
 See xref:access-management::users.adoc#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users].
-* Set your default environment (in your profile) to an environment with Read Application permissions.
-+
-See xref:access-management::managing-your-account.adoc#update-user-information[Update User Information].
 * Create an Anypoint VPC in Anypoint Platform.
 +
 See xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager].
-* Create a transit gateway on your corporate AWS account.
-+
-You must have access to this AWS account to add a transit gateway.
-+
-See https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html[Getting started with transit gateways^] in the AWS documentation for information about creating a transit gateway on AWS.
-+
-One transit gateway can support up to 10 VPC connections.
+
 * Identify the subnets in your network (in CIDR notation) that you want to make accessible through the transit gateway.
 
 
-== Overview 
+== Transit Gateway Workflow 
 
-The steps for adding a Transit Gateway to your VPC are:
+The steps for adding a transit gateway to your VPC are:
 
 . <<add_tgw,Add the transit gateway>> in Anypoint Platform.
 . <<create_resource_share,Create a resource share in AWS>> to share your transit gateway with Anypoint Platform.
@@ -149,12 +144,16 @@ If the transit gateway addition fails, see xref:tgw-troubleshoot.adoc[Troublesho
 
 After the transit gateway attachment succeeds, attach your Anypoint VPC to enable apps to access the transit gateway.
 
+For information about limitations when attaching a VPC to a transit gateway, 
+see 
+https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html[Transit gateway attachments to a VPC^] in the AWS documentation.
+
 To attach a VPC to the transit gateway:
 
 . In Anypoint Platform, on the *Transit Gateways* page, click *Attach VPC*.
 +
 The *Attach VPC* button is disabled if no VPCs are available to attach or if the transit gateway addition failed. 
-. From the *Select VPC* window, select the VPC to attach.
+. From the *Select VPC* window, select the VPC to attach:
 +
 _Add screenshot?_
 +
@@ -163,7 +162,7 @@ The window displays only the VPCs that are:
 --
 * In the same region as the transit gateway
 * Not already attached to a transit gateway
-* In Business Groups for which you have Cloudhub Network Administrator permissions
+* In business groups for which you have CloudHub Network Administrator permissions
 --
 . Click *Next*.
 
@@ -171,7 +170,7 @@ The window displays only the VPCs that are:
 == Accept the VPC Attachment
 
 . Sign in to your AWS corporate account.
-. In Anypoint Platform, on the *Accept VPC Attachment* page, click the *Transit Gateway Attachments* link.
+. In Anypoint Platform, on the *Accept VPC Attachment* page, click the *Transit Gateway Attachments* link:
 +
 _Add screenshot?_
 +
@@ -189,7 +188,7 @@ The attachment might take a few minutes to appear.
 When the attachment acceptance succeeds, the *State* column shows *available*.
 . In Anypoint Platform, in the *Accept VPC Attachment* window, click *Done*.
 +
-The *Transit Gateways* page shows the progress for accepting the VPC attachment from Anypoint Platform to AWS.
+The *Transit Gateways* page shows the progress for accepting the VPC attachment from Anypoint Platform to AWS:
 +
 _Add screenshot?_
 . Click *Refresh* to update the attachment status.
@@ -200,7 +199,6 @@ _Update screenshot - details and styling changed_
 
 image::tgw-attached.png[VPC attached successfully]
 
-
 If the VPC attachment state is `Rejected`, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments].
 
 
@@ -209,6 +207,9 @@ If the VPC attachment state is `Rejected`, see xref:tgw-troubleshoot.adoc[Troubl
 == Enable Outbound Traffic from the VPC
 
 After attaching the VPC, enable outbound traffic from the VPC to an external destination so that apps can access the transit gateway and the transit gateway routes traffic correctly.
+
+A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway attachments.
+Consolidate networks to the fewest number possible to avoid exceeding the limit.  
 
 To do this, add routes to the transit gateway route table:
 
@@ -220,7 +221,7 @@ _Update screenshot - title, text, and style changed_
 +
 image::tgw-add-vpc-route.png[Add VPC route]
 +
-For information, see xref:tgw-about.adoc#routing[Transit Gateway Routing].
+For information about routing, see xref:tgw-about.adoc#routing[Transit Gateway Routing].
 . Click *Add Route*.
 +
 Anypoint Platform submits the new route to AWS.
@@ -240,9 +241,6 @@ image::tgw-route-added.png[Transit Gateway in the Next Hop column of the route t
 After successfully adding routes to the transit gateway route table in Anypoint Platform, enable inbound traffic through your transit gateway on AWS. 
 
 You might need to coordinate with your network administrator to enable inbound traffic.
-
-
-
 
 == See Also
 
