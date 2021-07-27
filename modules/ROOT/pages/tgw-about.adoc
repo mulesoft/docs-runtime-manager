@@ -8,14 +8,14 @@ image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybr
 image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
 
-A _transit gateway_ is a network hub that connects your on-premises networks to your VPCs.
+A _transit gateway_ is a network hub that connects your Anypoint VPCs to your Amazon VPCs and VPNs.
 The transit gateway simplifies your network connectivity by functioning
 as a cloud router, managing your VPC connections and requiring only one connection from CloudHub.
 
-Use transit gateway attachments to create a secure connection between your Virtual Private Cloud (VPC) and your private corporate networks.
-You can add multiple transit gateway attachments if required. 
+Use transit gateway attachments to create a secure connection between your Anypoint Virtual Private Cloud (VPC) and the Amazon VPCs and VPNs configured in your AWS account.
+You can add multiple transit gateway attachments to your Anypoint Platform organization if required. 
+Each Anypoint VPC can be attached to at most one transit gateway in the same AWS region. 
 
-You can add multiple transit gateway attachments, depending on your account entitlements....
 The number of transit gateways you can add depends on the transit gateway entitlements available to your account.
 Contact your MuleSoft account representative if you don't know how many entitlements are associated with your account. 
 
