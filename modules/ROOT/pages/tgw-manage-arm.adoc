@@ -3,15 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 Use Anypoint Runtime Manager to manage transit gateway attachments.
 
 == Rename a Transit Gateway Attachment
+
+You might want to rename a transit gateway attachment to match the attachment name in AWS. 
 
 To rename a transit gateway attachment:
 
@@ -52,12 +54,12 @@ image::tgw-detach-vpc.png[Detach VPC option in the VPC menu]
 . At the confirmation prompt, click *Detach*.
 +
 Detaching a VPC might take several minutes.
-+
-After the VPC is detached, the *Attach VPC* button becomes available. 
 
 == Remove an Anypoint VPC from the Transit Gateway
 
-If AWS rejects the attachment, remove it before trying to attach it again.
+If you reject an attachment in AWS, the VPC attachment appears as `rejected` in Anypoint Platform. 
+
+In this case, you must remove the attachment before trying to attach it again.
 
 To remove a VPC from the transit gateway:
 
@@ -73,6 +75,8 @@ Removing a VPC might take several minutes.
 After the VPC is removed, the *Attach VPC* button becomes available. 
 
 == Remove a Transit Gateway from Anypoint Platform
+
+You might need to remove a transit gateway if you've reached your entitlement limit or you want to switch to a new transit gateway.
 
 If a transit gateway has no VPCs attached, you can remove it from Anypoint Platform. 
 
@@ -96,8 +100,8 @@ If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the t
 == See Also
 
 * xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
-* xref:tgw-add-arm.adoc[Add Transit Gateway Attachments]
-* xref:tgw-about.adoc[Transit Gateway Attachments]
+* xref:tgw-add-arm.adoc[Add Transit Gateways]
+* xref:tgw-about.adoc[Transit Gateways]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager]
 * xref:access-management::users#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users]

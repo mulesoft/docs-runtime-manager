@@ -16,11 +16,10 @@ You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private
 +
 To connect your Anypoint VPC using VPC peering,
 contact your MuleSoft Support representative.
-* CloudHub Direct Connect
+* AWS Direct Connect
 +
-To connect your Anypoint VPC using CloudHub Direct Connect,
+To connect your Anypoint VPC using AWS Direct Connect,
 contact your MuleSoft Support representative.
-
 
 [NOTE]
 A maximum of 95 route table entries is allowed per VPC, regardless of the number of connections. To avoid exceeding the limit, consolidate networks to the fewest number possible.
@@ -34,18 +33,19 @@ image::vpc-overview-ipsec.png[IPsec Tunnel Overview]
 To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[Anypoint VPN].
 
 
-== Transit Gateway Attachments
+== Transit Gateways
 
-AWS Transit Gateway is a network transit hub that provides a centralized way to connect your AWS VPCs and on-premise networks.
-On Anypoint Platform, you can attach your Anypoint VPC to your AWS Transit Gateway in your AWS account.
-This attachment enables your Anypoint VPC to access any AWS VPCs and on-premise networks that 
-you allow via your Transit Gateway. 
+A _transit gateway_ is a network hub that connects your Anypoint VPCs to your Amazon VPCs and VPNs.
+The transit gateway simplifies your network connectivity by functioning
+as a cloud router, managing your VPC connections with a single connection from CloudHub.
+
+Use transit gateway attachments to create a secure connection between your Anypoint Virtual Private Cloud (VPC) and the Amazon VPCs and VPNs configured in your AWS account.
 
 To use transit gateway attachments, your Anypoint VPC and AWS transit gateway must be in the same region:
 
 image::vpc-overview-tgw.png[Transit Gateway Overview]
 
-To attach your Anypoint VPC to your Transit Gateway, see xref:tgw-about.adoc[Transit Gateway Attachments].
+To attach your Anypoint VPC to your transit gateway, see xref:tgw-about.adoc[Transit Gateway Attachments].
 
 
 == VPC Peering
@@ -59,11 +59,11 @@ image::vpc-overview-peering.png[VPC Peering Overview]
 To use VPC Peering, your AWS and Anypoint VPCs must be located in the same region.
 --
 
-== CloudHub Direct Connect
+== AWS Direct Connect
 
 This method establishes a dedicated network connection from your Amazon account to your Anypoint VPC. This enables you to create a hosted virtual interface to attach to your Anypoint VPC.
 
-image::vpc-overview-dx.png[CloudHub Direct Connect Overview]
+image::vpc-overview-dx.png[AWS Direct Connect Overview]
 
 [NOTE]
 --
@@ -78,4 +78,4 @@ For high availability, use multiple Direct Connect connections from different AW
 
 * xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity to Your Network]
 * xref:vpn-about.adoc[Anypoint VPN]
-* xref:tgw-about.adoc[Transit Gateway Attachments]
+* xref:tgw-about.adoc[Transit Gateways]

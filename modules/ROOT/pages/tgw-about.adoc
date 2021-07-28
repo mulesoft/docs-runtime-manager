@@ -3,17 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 A _transit gateway_ is a network hub that connects your Anypoint VPCs to your Amazon VPCs and VPNs.
 The transit gateway simplifies your network connectivity by functioning
 as a cloud router, managing your VPC connections with a single connection from CloudHub.
 
 Use transit gateway attachments to create a secure connection between your Anypoint Virtual Private Cloud (VPC) and the Amazon VPCs and VPNs configured in your AWS account.
-You can add multiple transit gateway attachments to your Anypoint Platform organization if required. 
+You can add multiple transit gateways to your Anypoint Platform organization if required. 
 Each Anypoint VPC can be attached to at most one transit gateway in the same AWS region. 
 
 The number of transit gateways you can add depends on the transit gateway entitlements available to your account.
@@ -23,9 +23,9 @@ Contact your MuleSoft account representative if you don't know how many entitlem
 
 == Transit Gateway Routing
 
-VPC supports static routing for transit gateway attachments.
+VPC supports static routing for transit gateways.
 
-You must configure the network routes (subnets) that you want to be accessible through the transit gateway attachments:
+You must configure the network routes (subnets) that you want to be accessible through the transit gateway:
 
 * On Anypoint Platform, enable outbound traffic from the VPC to an external destination.
 * On AWS, enable inbound traffic through your transit gateway. 
@@ -43,6 +43,6 @@ https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html[Transit gate
 
 == See Also
 
-* xref:tgw-add-arm.adoc[Add Transit Gateway Attachments]
+* xref:tgw-add-arm.adoc[Add Transit Gateways]
 * https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html[What is a transit gateway?^] in the AWS documentation
 * https://docs.aws.amazon.com/vpc/latest/tgw/tgw-route-tables.html[Transit gateway route tables^] in the AWS documentation

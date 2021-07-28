@@ -1,12 +1,12 @@
-= Add Transit Gateway Attachments
+= Add Transit Gateways
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-private-cloud-edition", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric", title="Runtime Fabric"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 Use Anypoint Runtime Manager to add a transit gateway and connect your MuleSoft Virtual Private Cloud (VPC) to your private corporate network.
@@ -37,8 +37,7 @@ See xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager].
 
 The steps for adding a transit gateway to your VPC are:
 
-. <<add_tgw,Add the transit gateway>> in Anypoint Platform.
-. <<create_resource_share,Create a resource share in AWS>> to share your transit gateway with Anypoint Platform.
+. <<add_tgw,Add the transit gateway>> to Anypoint Platform by <<create_resource_share,creating a resource share in AWS>> to share your transit gateway with Anypoint Platform.
 . <<attach_vpc_tgw,Attach your VPCs>> to the transit gateway.
 . <<accept_attachment,Accept the VPC attachments>> in AWS.
 . <<enable_outbound_traffic_from_vpc,Enable outbound traffic from the Anypoint VPC>>. 
@@ -51,9 +50,6 @@ The steps for adding a transit gateway to your VPC are:
 To add a transit gateway:
 
 . Sign in to Anypoint Platform and select *Runtime Manager*.
-. Switch to the environment where you want to add a transit gateway.
-+
-See xref:runtime-manager-switch-env.adoc[Use Different Environments in Runtime Manager].
 . From the Runtime Manager navigation menu, click *Transit Gateways*, and then click *Add Transit Gateway*.
 +
 The *Here's what's coming* page lists the steps to add the transit gateway:
@@ -161,7 +157,8 @@ The window displays only the VPCs that are:
 +
 --
 * In the same region as the transit gateway
-* Not already attached to a transit gateway
+* Not already attached to the transit gateway
+// Can VPCs be added to multiple transit gateways?
 * In business groups for which you have CloudHub Network Administrator permissions
 --
 . Click *Next*.
@@ -182,7 +179,7 @@ The link opens the AWS RAM console to the *Create Transit Gateway Attachment* pa
 The attachment might take a few minutes to appear.
 +
 .. Select the Transit Gateway attachment ID and, on the *Details* tab, ensure that *Resource owner account ID* is the MuleSoft AWS account ID.
-.. Click the pencil icon for the attachment and enter a name. 
+.. Click the image::pencil-aws.png[Edit icon] icon for the attachment and enter a name. 
 .. Select *Actions* > *Accept* and click *Accept* to confirm.
 +
 When the attachment acceptance succeeds, the *State* column shows *available*.
@@ -246,7 +243,7 @@ You might need to coordinate with your network administrator to enable inbound t
 
 * xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
 * xref:tgw-manage-arm.adoc[Manage Transit Gateway Attachments]
-* xref:tgw-about.adoc[Transit Gateway Attachments]
+* xref:tgw-about.adoc[Transit Gateways]
 * https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html[Transit gateway attachments to a VPC^] in the AWS documentation
 * https://docs.aws.amazon.com/vpc/latest/tgw/tgw-route-tables.html[Transit gateway route tables^] in the AWS documentation
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
