@@ -27,6 +27,8 @@ image::tgw-rename.png[Edit name option in the Transit Gateways menu]
 
 == Remove a Route from the Transit Gateway Route Table
 
+You might need to remove a route if you no longer want a subnet to be accessible through the transit gateway.
+
 To remove a route:
 
 . On the *Transit Gateways* page, in the *VPCs* section, click the *X* icon in the appropriate TGW route row of the route table:
@@ -58,7 +60,6 @@ Detaching a VPC might take several minutes.
 == Remove an Anypoint VPC from the Transit Gateway
 
 If you reject an attachment in AWS, the VPC attachment appears as `rejected` in Anypoint Platform. 
-
 In this case, you must remove the attachment before trying to attach it again.
 
 To remove a VPC from the transit gateway:
