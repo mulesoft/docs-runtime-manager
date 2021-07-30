@@ -1263,10 +1263,30 @@ Supported Values:
 * `app`
 * `extension`
 * `external-library` |
-| `--keywords` | Keywords |
-| `--dependencies` | Asset dependencies, separated by "," 
 
-For example:
+| `--categories` | Categories |
+
+`categories.someKey value`
+
+`categories.anotherKey anotherValue`
+
+| `--fields` | Fields |
+
+`fields.someKey value`
+
+`fields.anotherKey anotherValue`
+
+| `--keywords` | Keywords (comma-separated) |
+
+
+`raml,rest-api,someKeyword`
+
+| `--tags` | Tags (comma-separated)|
+
+
+`api,tag1,tag2`
+
+| `--dependencies` | Asset dependencies (comma-separated) |
 
 `groupID:assetID:version,groupID2:assetID:version` |
 |===
