@@ -19,10 +19,9 @@ Before you can add a transit gateway to CloudHub:
 +
 See https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html[Getting started with transit gateways^] in the AWS documentation for information about creating a transit gateway on AWS.
 +
-One transit gateway can support up to 10 VPC attachments.
-* Purchase an Anypoint VPC offering with Transit Gateway entitlements.
+* You will be able to avail this feature if you have Anypoint VPN licenses. Attaching 1 VPC to a Transit Gateway uses 1 Anypoint VPN license.
 +
-The *Transit Gateways* page in Runtime Manager is visible to Anypoint organizations that have Transit Gateway entitlements. 
+The *Transit Gateways* page is visible in Runtime Manager to Anypoint organizations that have Anypoint VPC/VPN license . 
 * Sign in to an Anypoint Platform account with either the CloudHub Network Administrator or the CloudHub Network Viewer user permission.
 +
 See xref:access-management::users.adoc#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users].
@@ -63,8 +62,8 @@ _update screenshot - styles changed_
 +
 image::tgw-add.png[Add transit gateway page]
 +
-Use the same name for your transit gateway in AWS.
-You can change this name later.
+The Transit Gateway name reference in Anypoint Platform needs to be unique, however, we recommend referencing your AWS Transit Gateway name within this name to simplify associating the two.You can change this name later.
+
 The name can contain up to 255 alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-).
 // They cannot start or end with a hyphen and cannot contain spaces or other characters.
 . Select the region that corresponds to the location of your AWS transit gateway.
