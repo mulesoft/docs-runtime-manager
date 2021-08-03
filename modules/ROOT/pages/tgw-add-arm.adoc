@@ -1,4 +1,4 @@
-= Add Transit Gateways
+= Attach to Transit Gateways
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -37,7 +37,8 @@ See xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager].
 
 The steps for adding a transit gateway to your VPC are:
 
-. <<add_tgw,Add the transit gateway>> to Anypoint Platform by <<create_resource_share,creating a resource share in AWS>> to share your transit gateway with Anypoint Platform.
+. Attach to a transit gateway:
+.. <<add_tgw,Add the transit gateway>> to Anypoint Platform by <<create_resource_share,creating a resource share in AWS>> to share your transit gateway with Anypoint Platform.
 . <<attach_vpc_tgw,Attach your VPCs>> to the transit gateway and <<accept_attachment,accept the VPC attachments>> in AWS.
 . <<enable_outbound_traffic_from_vpc,Enable outbound traffic from the Anypoint VPC>>. 
 . <<enable_inbound_traffic_on_aws,Enable inbound traffic through the transit gateway on AWS>>.
