@@ -16,15 +16,16 @@ If you see the `Resource Share Not Found` error when attempting to attach to the
 transit gateway:
 
 . Verify that the *ID* and *Owner* values that you specified are correct. 
+. Verify that the Region matches the Transit Gateway region.
 . Click the pencil icon to edit these values.
 
-Alternatively, remove the transit gateway and re-add it.
-See xref:tgw-manage-arm.adoc#remove-a-transit-gateway-from-anypoint-platform[Remove a Transit Gateway from Anypoint Platform] and xref:tgw-add-arm.adoc#attach-a-vpc-to-the-transit-gateway[Attach a VPC to the Transit Gateway].
+== Unable to Delete a Transit Gateway Attachement
 
+If the Transit Gateways page doesn’t list any VPCs, but you can’t delete the transit gateway, the transit gateway might be attached to a VPC that belongs to another business group that you don’t have access to.
 
-== Unable to Delete a Transit Gateway
+You will see an error modal "Can't remove this transit gateway" like below:
 
-If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the transit gateway, the transit gateway might be attached to a VPC that belongs to another business group that you don't have access to.
+<<Add screenshot>>
 
 == Unable to View a Transit Gateway
 
@@ -64,14 +65,13 @@ subnet to the table.
 
 If you see the `Please enter a single subnet in CIDR notation` error, check that the subnet is in the correct CIDR format.
 
-== Failed to Add VPC Route
-
-If you see the `Failed to add VPC route` error from AWS, contact Amazon for details.
-
 == Attach VPC Button Is Disabled
 
 If the *Attach VPC* button is disabled, all the VPCs you have access to are already attached to the transit gateway.
 
+== Connections Limit has been reached
+
+If you see the an error like `Connections limit has been reached (max=4, used=4) for the organization`, this means you have consumed all your Network connections entitlements, i.e VPC/VPN licenses. Please contact your account team to purchase additional licenses.
 
 == See Also
 
