@@ -22,7 +22,10 @@ See https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html[Getting 
 One transit gateway can support up to 10 VPC attachments.
 * Purchase an Anypoint VPC offering with Transit Gateway entitlements.
 +
-The *Transit Gateways* page in Runtime Manager is visible to Anypoint organizations that have Transit Gateway entitlements. 
+The *Transit Gateways* page is visible in Runtime Manager to Anypoint organizations that have an Anypoint VPC/VPN license.
++
+Attaching one Anypoint VPC to an AWS Transit Gateway uses one Anypoint VPN license.
+
 * Sign in to an Anypoint Platform account with either the CloudHub Network Administrator or the CloudHub Network Viewer user permission.
 +
 See xref:access-management::users.adoc#granting-permissions-and-roles-to-users[Granting Permissions and Roles to Users].
@@ -33,13 +36,11 @@ See xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager].
 * Identify the subnets in your network (in CIDR notation) that you want to make accessible through the transit gateway.
 
 
-== Transit Gateway Workflow 
+== Transit Gateway Attachment Workflow 
 
-The steps for adding a transit gateway to your VPC are:
+The steps for attaching to a transit gateway are:
 
-. Attach to the transit gateway:
-.. <<add_tgw,Add the transit gateway>> to Anypoint Platform.
-.. <<create_resource_share,Create a resource share in AWS>> to share your transit gateway with Anypoint Platform.
+. <<add_tgw,Add the transit gateway>> to Anypoint Platform by <<create_resource_share,creating a resource share in AWS>> to share your transit gateway with Anypoint Platform.
 . <<attach_vpc_tgw,Attach your VPCs>> to the transit gateway and <<accept_attachment,accept the VPC attachments>> in AWS.
 . <<configure_tgw_routing,Configure transit gateway routing>>:
 .. <<enable_outbound_traffic_from_vpc,Enable outbound traffic from the Anypoint VPC>>. 
@@ -202,20 +203,19 @@ If the VPC attachment state is `Rejected`, see xref:tgw-troubleshoot.adoc[Troubl
 
 
 [[configure_tgw_routing]]
-
 == Configure Transit Gateway Routing
 
 VPC supports static routing for transit gateways.
 
 You must configure the network routes (subnets) that you want to be accessible through the transit gateway:
 
-* On Anypoint Platform, enable outbound traffic from the VPC to an external destination.
-* On AWS, enable inbound traffic through your transit gateway. 
+* On Anypoint Platform, <<enable_outbound_traffic_from_vpc,enable outbound traffic from the Anypoint VPC>> to an external destination.
+* On AWS, <<enable_inbound_traffic_on_aws,enable inbound traffic>> through your transit gateway. 
 
-[NOTE]
+=== Prerequisites 
+
 A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway attachments.
-Consolidate networks to the fewest number possible to avoid exceeding the limit.  
-
+Consolidate networks to the fewest number possible to avoid exceeding the limit.
 
 [[enable_outbound_traffic_from_vpc]]
 === Enable Outbound Traffic from the VPC
@@ -231,8 +231,6 @@ AWS VPC:
 _Update screenshot - title, text, and style changed_
 +
 image::tgw-add-vpc-route.png[Add VPC route]
-+
-For information about routing, see xref:tgw-about.adoc#routing[Transit Gateway Routing].
 . Click *Add Route*.
 +
 Anypoint Platform submits the new route to AWS.
@@ -257,7 +255,7 @@ You might need to coordinate with your network administrator to enable inbound t
 
 * xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
 * xref:tgw-manage-arm.adoc[Manage Transit Gateway Attachments]
-* xref:tgw-about.adoc[Transit Gateways]
+* xref:tgw-about.adoc[Transit Gateway Attachments]
 * https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html[Transit gateway attachments to a VPC^] in the AWS documentation
 * https://docs.aws.amazon.com/vpc/latest/tgw/tgw-route-tables.html[Transit gateway route tables^] in the AWS documentation
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
