@@ -1,4 +1,4 @@
-= Add Transit Gateways
+= Attach to Transit Gateways
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -37,10 +37,13 @@ See xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager].
 
 The steps for adding a transit gateway to your VPC are:
 
-. <<add_tgw,Add the transit gateway>> to Anypoint Platform by <<create_resource_share,creating a resource share in AWS>> to share your transit gateway with Anypoint Platform.
+. Attach to the transit gateway:
+.. <<add_tgw,Add the transit gateway>> to Anypoint Platform.
+.. <<create_resource_share,Create a resource share in AWS>> to share your transit gateway with Anypoint Platform.
 . <<attach_vpc_tgw,Attach your VPCs>> to the transit gateway and <<accept_attachment,accept the VPC attachments>> in AWS.
-. <<enable_outbound_traffic_from_vpc,Enable outbound traffic from the Anypoint VPC>>. 
-. <<enable_inbound_traffic_on_aws,Enable inbound traffic through the transit gateway on AWS>>.
+. <<configure_tgw_routing,Configure transit gateway routing>>:
+.. <<enable_outbound_traffic_from_vpc,Enable outbound traffic from the Anypoint VPC>>. 
+.. <<enable_inbound_traffic_on_aws,Enable inbound traffic through the transit gateway on AWS>>.
 
 
 [[add_tgw]]
@@ -198,14 +201,26 @@ image::tgw-attached.png[VPC attached successfully]
 If the VPC attachment state is `Rejected`, see xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments].
 
 
+[[configure_tgw_routing]]
 
-[[enable_outbound_traffic_from_vpc]]
-== Enable Outbound Traffic from the VPC
+== Configure Transit Gateway Routing
 
-After attaching the VPC, enable outbound traffic from the VPC to an external destination so that apps can access the transit gateway and the transit gateway routes traffic correctly.
+VPC supports static routing for transit gateways.
 
+You must configure the network routes (subnets) that you want to be accessible through the transit gateway:
+
+* On Anypoint Platform, enable outbound traffic from the VPC to an external destination.
+* On AWS, enable inbound traffic through your transit gateway. 
+
+[NOTE]
 A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway attachments.
 Consolidate networks to the fewest number possible to avoid exceeding the limit.  
+
+
+[[enable_outbound_traffic_from_vpc]]
+=== Enable Outbound Traffic from the VPC
+
+After attaching the VPC, enable outbound traffic from the VPC to an external destination so that apps can access the transit gateway and the transit gateway routes traffic correctly.
 
 To do this, add routes to the transit gateway route table:
 
@@ -232,7 +247,7 @@ _Update screenshot - title, text, and style changed_
 image::tgw-route-added.png[Transit Gateway in the Next Hop column of the route table]
 
 [[enable_inbound_traffic_on_aws]]
-== Enable Inbound Traffic Through the Transit Gateway
+=== Enable Inbound Traffic Through the Transit Gateway
 
 After successfully adding routes to the transit gateway route table in Anypoint Platform, enable inbound traffic through your transit gateway on AWS. 
 

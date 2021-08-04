@@ -24,6 +24,30 @@ _update screenshot - content and styles changed_
 image::tgw-rename.png[Edit name option in the Transit Gateways menu]
 . In the popup window, enter a new name and click *Save*.
 
+== Add a Route to the Transit Gateway Route Table
+
+. In Anypoint Platform, on the *Transit Gateways* page, in the *VPCs* section, click *Add Route*. 
+. On the *Add VPC Route* window, use CIDR notation to enter a single subnet for your
+AWS VPC:
++
+_Update screenshot - title, text, and style changed_
++
+image::tgw-add-vpc-route.png[Add VPC route]
++
+For information about routing, see xref:tgw-about.adoc#routing[Transit Gateway Routing].
+. Click *Add Route*.
++
+Anypoint Platform submits the new route to AWS.
+
+When the route addition succeeds, the *Transit Gateways* page shows the *Route added* message
+and the *Transit Gateways* page shows the route CIDR in the route table.
+
+In the route table, added routes show *Transit Gateway* as the value in the *Next Hop* column:
+
+_Update screenshot - title, text, and style changed_
+
+image::tgw-route-added.png[Transit Gateway in the Next Hop column of the route table]
+
 
 == Remove a Route from the Transit Gateway Route Table
 
