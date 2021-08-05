@@ -122,7 +122,7 @@ The *Transit Gateways* page shows the progress for connecting to AWS and adding 
 When the transit gateway addition succeeds, the *Transit Gateways* page displays the *Transit gateway added* message.
 The *Transit Gateways* page updates the owner and ID from AWS and the state as *Available*:
 
-_Update screenshot - title and contents changed_
+_Update screenshot missing space_
 
 image::tgw-resource-share-available.png[Transit gateway added]
 
@@ -146,7 +146,7 @@ To attach a VPC to the transit gateway:
 The *Attach VPC* button is disabled if no VPCs are available to attach or if the transit gateway addition failed. 
 . From the *Select VPC* window, select the VPC to attach:
 +
-_Add screenshot?_
+image::tgw-select-vpc.png[Select VPC window]
 +
 The window displays only the VPCs that are:
 +
@@ -164,7 +164,7 @@ The window displays only the VPCs that are:
 . Sign in to your AWS corporate account.
 . In Anypoint Platform, on the *Accept VPC Attachment* page, click the *Transit Gateway Attachments* link:
 +
-_Add screenshot?_
+image::tgw-accept-vpc-attachment.png[Accept VPC Attachment page]
 +
 The link opens the AWS RAM console to the *Create Transit Gateway Attachment* page.
 . In the AWS console:
@@ -182,12 +182,10 @@ When the attachment acceptance succeeds, the *State* column shows *available*.
 +
 The *Transit Gateways* page shows the progress for accepting the VPC attachment from Anypoint Platform to AWS:
 +
-_Add screenshot?_
+image::tgw-checking-attachment-status.png[Checking VPC attachment status]
 . Click *Refresh* to update the attachment status.
 
 When the VPC attachment succeeds, the *Transit Gateways* page displays the *VPC attached* message and the attachment state indicates that it's attached to Transit Gateway:
-
-_Update screenshot - details and styling changed_
 
 image::tgw-attached.png[VPC attached successfully]
 
@@ -220,8 +218,6 @@ To do this, add routes to the transit gateway route table:
 . On the *Add VPC Route* window, use CIDR notation to enter a single subnet for your
 AWS VPC:
 +
-_Update screenshot - title, text, and style changed_
-+
 image::tgw-add-vpc-route.png[Add VPC route]
 . Click *Add Route*.
 +
@@ -231,8 +227,6 @@ When the route addition succeeds, the *Transit Gateways* page shows the *Route a
 and the *Transit Gateways* page shows the route CIDR in the route table.
 
 In the route table, added routes show *Transit Gateway* as the value in the *Next Hop* column:
-
-_Update screenshot - title, text, and style changed_
 
 image::tgw-route-added.png[Transit Gateway in the Next Hop column of the route table]
 
