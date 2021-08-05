@@ -33,15 +33,17 @@ image::vpc-overview-ipsec.png[IPsec Tunnel Overview]
 To create an Anypoint VPN connection to your network, see xref:vpn-about.adoc[Anypoint VPN].
 
 
-== Transit Gateways
+== Transit Gateway Attachments
 
-A _transit gateway_ is a network hub that connects your Anypoint VPCs to your Amazon VPCs and VPNs.
-The transit gateway simplifies your network connectivity by functioning
-as a cloud router, managing your VPC connections with a single connection from CloudHub.
+AWS Transit Gateway acts as a cloud router in AWS, simplifying network access between VPCs,
+on-premise, and third-party software, while providing increased visibility and control over the network.
+Transit gateways effectively merge your organization’s cloud resources and on-premises datacenters
+into one network topology.
 
-Use transit gateway attachments to create a secure connection between your Anypoint Virtual Private Cloud (VPC) and the Amazon VPCs and VPNs configured in your AWS account.
+On CloudHub, you can take advantage of this network simplification by securely attaching an Anypoint Virtual Private Cloud (VPC)
+to an AWS Transit Gateway in your AWS account.
 
-To use transit gateway attachments, your Anypoint VPC and AWS transit gateway must be in the same region:
+To use transit gateway attachments, your Anypoint VPC and AWS transit gateway must be in the same region.
 
 image::vpc-overview-tgw.png[Transit Gateway Overview]
 
