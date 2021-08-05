@@ -19,8 +19,6 @@ To rename a transit gateway attachment:
 
 . On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Edit name*:
 +
-_update screenshot - content and styles changed_
-+
 image::tgw-rename.png[Edit name option in the Transit Gateways menu]
 . In the popup window, enter a new name and click *Save*.
 
@@ -29,8 +27,6 @@ image::tgw-rename.png[Edit name option in the Transit Gateways menu]
 . In Anypoint Platform, on the *Transit Gateways* page, in the *VPCs* section, click *Add Route*. 
 . On the *Add VPC Route* window, use CIDR notation to enter a single subnet for your
 AWS VPC:
-+
-_Update screenshot - title, text, and style changed_
 +
 image::tgw-add-vpc-route.png[Add VPC route]
 . Click *Add Route*.
@@ -42,10 +38,7 @@ and the *Transit Gateways* page shows the route CIDR in the route table.
 
 In the route table, added routes show *Transit Gateway* as the value in the *Next Hop* column:
 
-_Update screenshot - title, text, and style changed_
-
 image::tgw-route-added.png[Transit Gateway in the Next Hop column of the route table]
-
 
 == Remove a Route from the Transit Gateway Route Table
 
@@ -53,12 +46,9 @@ You might need to remove a route if you no longer want a subnet to be accessible
 
 To remove a route:
 
-. On the *Transit Gateways* page, in the *VPCs* section, click the *X* icon in the appropriate TGW route row of the route table:
+. On the *Transit Gateways* page, in the *VPCs* section, click the *X* icon in the appropriate Transit Gateway route row of the route table:
 +
-_update screenshot - content and styles changed_
-+
-image::tgw-delete-route.png[Remove route icon in the VPCs section]
-
+image::tgw-remove-vpc-route.png[Remove route icon in the VPCs section]
 . At the confirmation prompt, click *Remove*.
 
 == Detach an Anypoint VPC from the Transit Gateway
@@ -71,8 +61,6 @@ Any apps deployed to the VPC continue to run, but they are no longer connected t
 To detach a VPC from the transit gateway:
 
 . On the *Transit Gateways* page, click the VPC menu (*...*) and select *Detach*:
-+
-_update screenshot - content and styles changed_
 +
 image::tgw-detach-vpc.png[Detach VPC option in the VPC menu]
 . At the confirmation prompt, click *Detach*.
@@ -110,8 +98,6 @@ To remove a transit gateway from Anypoint Platform:
 
 . On the *Transit Gateways* page, click the Transit Gateway menu (*...*) and select *Remove*:
 +
-_update screenshot - content and styles changed_
-+
 image::tgw-remove.png[Remove option in the Transit Gateway menu]
 +
 Anypoint Platform prevents you from removing a transit gateway if it has VPCs attached.
@@ -119,11 +105,10 @@ Anypoint Platform prevents you from removing a transit gateway if it has VPCs at
 If the *Transit Gateways* page doesn't list any VPCs, but you can't delete the transit gateway, the transit gateway might be attached to a VPC that belongs to another business group that you don't have access to.
 . At the confirmation prompt, click *Remove*.
 
-
 == See Also
 
 * xref:tgw-troubleshoot.adoc[Troubleshoot Transit Gateway Attachments]
-* xref:tgw-add-arm.adoc[Attach to Transit Gateways]
+* xref:tgw-attach-arm.adoc[Attach to Transit Gateways]
 * xref:tgw-about.adoc[Transit Gateway Attachments]
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]
 * xref:vpc-tutorial.adoc[Create and Update a VPC for Runtime Manager]
