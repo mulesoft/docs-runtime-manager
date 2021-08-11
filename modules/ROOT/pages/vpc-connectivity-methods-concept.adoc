@@ -63,7 +63,8 @@ To use VPC Peering, your AWS and Anypoint VPCs must be located in the same regio
 
 == AWS Direct Connect
 
-To create a Direct Connect connection to the CloudHub VPC, create an AWS Transit Gateway on your AWS account (or leverage an existing one you have on AWS) and set up the Direct Connect connection to the Transit Gateway. Then attach the CloudHub VPC to the Transit gateway and configure the required routing to enable CloudHub VPC to On-premise connectivity.
+To create a Direct Connect connection to Anypoint VPC, create or leverage an existing AWS Transit Gateway on your AWS account and set up the Direct Connect connection to the Transit Gateway.
+Then, attach Anypoint VPC to the transit gateway and configure the required routing to enable Anypoint VPC on-premise connectivity.
 
 image::vpc-overview-dx.png[AWS Direct Connect Overview]
 
