@@ -9,7 +9,7 @@ image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platfor
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
-Use Anypoint Runtime Manager to add a transit gateway and connect your MuleSoft Virtual Private Cloud (VPC) to your private corporate network.
+Use Anypoint Runtime Manager to add a transit gateway and connect your Anypoint Virtual Private Cloud (VPC) to your private corporate network.
 
 == Prerequisites
 
@@ -71,7 +71,7 @@ The name can contain up to 255 alphanumeric characters (a-z, A-Z, 0-9) and hyphe
 +
 See xref:cloudhub-networking-guide.adoc#regional-services[Regional Services].
 +
-Your VPC and AWS transit gateway must be in the same region.
+Your Anypoint VPC and AWS transit gateway must be in the same region.
 . Click *Next*.
 +
 The *Add transit gateway* page lists the steps to create a resource share in AWS:
@@ -129,15 +129,15 @@ If the transit gateway addition fails, see xref:tgw-troubleshoot.adoc[Troublesho
 
 
 [[attach_vpc_tgw]]
-== Attach a VPC to the Transit Gateway
+== Attach Anypoint VPC to the Transit Gateway
 
 After the transit gateway attachment succeeds, attach your Anypoint VPC to enable apps to access the transit gateway.
 
-For information about limitations when attaching a VPC to a transit gateway, 
+For information about limitations when attaching an Anypoint VPC to a transit gateway, 
 see 
 https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html[Transit gateway attachments to a VPC^] in the AWS documentation.
 
-To attach a VPC to the transit gateway:
+To attach Anypoint VPC to the transit gateway:
 
 . In Anypoint Platform, on the *Transit Gateways* page, click *Attach VPC*.
 +
@@ -193,11 +193,11 @@ If the VPC attachment state is `Rejected`, see xref:tgw-troubleshoot.adoc[Troubl
 [[configure_tgw_routing]]
 == Configure Transit Gateway Routing
 
-VPC supports static routing for transit gateways.
+Anypoint VPC supports static routing for transit gateways.
 
 You must configure the network routes (subnets) that you want to be accessible through the transit gateway:
 
-* On Anypoint Platform, <<enable_outbound_traffic_from_vpc,enable outbound traffic from the Anypoint VPC>> to an external destination.
+* On Anypoint Platform, <<enable_outbound_traffic_from_vpc,enable outbound traffic from Anypoint VPC>> to an external destination.
 * On AWS, <<enable_inbound_traffic_on_aws,enable inbound traffic>> through your transit gateway. 
 
 === Prerequisites 
@@ -206,9 +206,9 @@ A maximum of 95 route table entries is permitted per VPC, regardless of the numb
 Consolidate networks to the fewest number possible to avoid exceeding the limit.
 
 [[enable_outbound_traffic_from_vpc]]
-=== Enable Outbound Traffic from the VPC
+=== Enable Outbound Traffic from Anypoint VPC
 
-After attaching the VPC, enable outbound traffic from the VPC to an external destination so that apps can access the transit gateway and the transit gateway routes traffic correctly.
+After attaching the VPC, enable outbound traffic from Anypoint VPC to an external destination so that apps can access the transit gateway and the transit gateway routes traffic correctly.
 
 To do this, add routes to the transit gateway route table:
 
