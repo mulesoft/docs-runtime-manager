@@ -9,7 +9,7 @@ image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platfor
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
-Use Anypoint Runtime Manager to manage transit gateway attachments.
+Use Anypoint Runtime Manager to manage transit gateway attachments, such as adding and removing a route from the route table or detaching an Anypoint VPN from a transit gateway.
 
 == Rename a Transit Gateway Attachment
 
@@ -24,7 +24,9 @@ image::tgw-rename.png[Edit name option in the Transit Gateways menu]
 
 == Add a Route to the Transit Gateway Route Table
 
-. In Anypoint Platform, on the *Transit Gateways* page, in the *VPCs* section, click *Add Route*. 
+You might want to add a route to enable a new subnet to be accessible through the transit gateway.
+
+. In Anypoint Platform, navigate to *Transit Gateways* > *VPCs* and click *Add Route*. 
 . In the *Add VPC Route* window, use CIDR notation to enter a single subnet for your
 AWS VPC:
 +

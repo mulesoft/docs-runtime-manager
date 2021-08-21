@@ -20,9 +20,9 @@ Before you can add a transit gateway to CloudHub:
 See https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html[Getting started with transit gateways^] in the AWS documentation for information about creating a transit gateway on AWS.
 +
 One transit gateway can support up to 10 VPC attachments.
-* Purchase an Anypoint VPC offering with Transit Gateway entitlements.
+* Purchase an Anypoint VPC offering with AWS Transit Gateway entitlements.
 +
-The *Transit Gateways* page is visible in Runtime Manager to Anypoint organizations that have an Anypoint VPC/VPN license.
+The *Transit Gateways* page is visible in Runtime Manager to Anypoint organizations that have an Anypoint VPC and VPN license.
 +
 Attaching one Anypoint VPC to an AWS Transit Gateway uses one Anypoint VPN license.
 
@@ -202,8 +202,9 @@ Configure the network routes (subnets) that you want to be accessible through th
 
 === Prerequisites 
 
+Before configuring routing, consolidate networks to the fewest number possible.
 A maximum of 95 route table entries is permitted per VPC, regardless of the number of transit gateway attachments.
-Consolidate networks to the fewest number possible to avoid exceeding the limit.
+
 
 [[enable_outbound_traffic_from_vpc]]
 === Enable Outbound Traffic from Anypoint VPC
