@@ -42,7 +42,7 @@ During service updates or security patching, CloudHub waits two minutes for exis
 After two minutes, CloudHub retriggers any incomplete schedules.
 +
 To avoid retriggers with long-running schedules, make sure that the app executes the flow idempotently.
-* Schedules should be designed to prevent duplicate data processing as they can be triggered more than once due to the above mentioned issues.
+* Design your schedules to prevent duplicate data processing, as they can be triggered more than once due to the issues mentioned above.
 * For multi-worker apps, CloudHub guarantees that the schedule trigger executes on a single worker.
 +
 However, subsequent triggers might execute on a different worker.
