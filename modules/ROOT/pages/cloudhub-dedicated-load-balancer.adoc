@@ -58,10 +58,13 @@ When you restart or update the DLB, the DLB switches to use the group of unused 
 
 Switching between the two groups of static IP addresses enables zero-downtime restarts and updates, ensuring that no transactions are dropped or lost as long as the transaction times are shorter than 600s or the value of *Mule Application Response Timeout* (whichever is smaller).
 
-Since, static IPs will change when restarting or updating your DLB, it is recommended to use DLB's DNS address rather than the IP addresses when calling it from an external service. Ensure that the client includes the necessary retry mechanisms to account for DNS switch.
+=== Considerations
+
+* Static IPs will change when restarting or updating your DLB, it is recommended to use DLB's DNS address rather than the IP addresses when calling it from an external service. Ensure that the client includes the necessary retry mechanisms to account for DNS switch.
+* To avoid connection issues when the load balancers is restarting, it's recommended to honor the DNS TTL (30 seconds), including when using connection keep alive. The connections will be closed after the new workers are online and the TTl expires.
 
 [NOTE]
-For DLBs created before August 2021, click the *Update* button to avail the feature. After clicking *Update*, the DLB uses static IP model described above and you cannot revert to the old model.
+For DLBs created before September 2021, click the *Update* button to avail the feature. After clicking *Update*, the DLB uses static IP model described above and you cannot revert to the old model.
 
 For information on updating DLBs, see
 xref:lb-updates.adoc[Dedicated Load Balancer Updates].
