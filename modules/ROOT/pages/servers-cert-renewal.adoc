@@ -47,15 +47,38 @@ You can renew a certificate for a specific server or multiple servers within a c
 
 The status for the server must be `Running` to update its certificate.
 
-To renew a certificate for a server:
+To renew a certificate for a standalone server:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
 . Verify that the server status is `Running`.
 . Click the server name.
++
+image::rtm-server-standalone-name.png[Select Server]
 . Click *Settings*.
 . From the *Actions* menu, select *Renew Certificate*.
++
+image::rtm-server-standalone-settings.png[Settings Tab]
 . Select the checkbox to confirm your choice, and then click *Renew*.
++
+image::rtm-server-standalone-renew.png[Confirm Renewal]
+. Check *Certificate expiration date* to verify that the certificate renewed successfully.
+
+To renew a certificate for servers ins a cluster or group:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Verify that the server status is `Running`.
+. Click the group or cluster name.
++
+image::rtm-server-certificate-group-name.png[Select Group or Cluster]
+. Check the radio button to select the server or servers you want to update.
+. From the *Actions* menu, select *Renew Certificate*.
++
+image::rtm-server-certificate-group-select-server.png[Select Server]
+. Select the checkbox to confirm your choice, and then click *Renew*.
++
+image::rtm-server-certificate-group-renew.png[Confirm Renewal]
 . Check *Certificate expiration date* to verify that the certificate renewed successfully.
 
 
