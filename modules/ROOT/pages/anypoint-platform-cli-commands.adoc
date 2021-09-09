@@ -120,6 +120,7 @@ You can pass the `--fields` option after a command to get a list of all possible
 |Command |Description
 |<<exchange asset upload>> | Uploads an Exchange asset
 |<<exchange asset uploadv2>> | Uploads an Exchange asset using Exchange Experience API v2
+|<<exchange asset mutableDataUpload>> | Modifies mutable data of an existing asset
 |<<exchange asset modify>> | Modifies an Exchange asset
 |<<exchange asset download>> | Downloads an Exchange asset
 |<<exchange asset list>> | Lists all assets
@@ -1295,6 +1296,44 @@ Supported Values:
 | `--dependencies` | Asset dependencies (comma-separated) |
 
 `groupID:assetID:version,groupID2:assetID:version` |
+|===
+
+=== exchange asset mutableDataUpload
+
+----
+> exchange asset mutableDataUpload [properties] <assetIdentifier>
+----
+
+This command modify mutable data (tags, categories, fields and documentation) to an already created asset. 
+
+Use the following format for the _assetIdentifier_ argument:
+
+`([_groupID_]/)_assetID_/_version_`
+
+If _group_id_ is not specified, it defaults to the currently selected organization ID.
+
+[%header,cols="40a,30a,30a"]
+|===
+| Command | Description |  Example
+| `--docs` | Documentation file. (Should specify the the "zip" file path. E.g. "--docs /.../file-path/docs.zip") |
+`exchange asset mutableDataUpload --docs /Users/llucas/Desktop/examples/docs.zip --tags "tag1,tag2" --categories.beach sun --fields.central park fa7b266c-3817-4cbb-ae49-7f3cc6c8cd9e/asset-id/1.0.0`
+
+| `--categories` | Categories |
+
+`categories.someKey value`
+
+`categories.anotherKey anotherValue`
+
+| `--fields` | Fields |
+
+`fields.someKey value`
+
+`fields.anotherKey anotherValue`
+
+| `--tags` | Tags (comma-separated)|
+
+`api,tag1,tag2`
+
 |===
 
 === exchange asset modify
