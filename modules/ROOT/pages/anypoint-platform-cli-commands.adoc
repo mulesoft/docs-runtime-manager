@@ -618,8 +618,11 @@ This option takes `true` or `false` values.
 | Deployment type. +
 Supported values are `cloudhub`, `hybrid`, or `rtf`.
 
+| `--endpointUri <value>`
+| Consumer endpoint URI.
+
 | `--uri <value>`
-| Your implementation URI.
+| Implementation URI.
 
 | `--scheme <value>`
 | Proxy scheme. +
@@ -701,6 +704,9 @@ This option takes `true` or `false` values.
 | `--deploymentType <value>`
 | Deployment type. +
 Supported values are `cloudhub`, `hybrid`, or `rtf`.
+
+| `--endpointUri <value>`
+| Consumer endpoint URI.
 
 | `--uri <value>`
 | Implementation URI.
@@ -1263,10 +1269,30 @@ Supported Values:
 * `app`
 * `extension`
 * `external-library` |
-| `--keywords` | Keywords |
-| `--dependencies` | Asset dependencies, separated by "," 
 
-For example:
+| `--categories` | Categories |
+
+`categories.someKey value`
+
+`categories.anotherKey anotherValue`
+
+| `--fields` | Fields |
+
+`fields.someKey value`
+
+`fields.anotherKey anotherValue`
+
+| `--keywords` | Keywords (comma-separated) |
+
+
+`raml,rest-api,someKeyword`
+
+| `--tags` | Tags (comma-separated)|
+
+
+`api,tag1,tag2`
+
+| `--dependencies` | Asset dependencies (comma-separated) |
 
 `groupID:assetID:version,groupID2:assetID:version` |
 |===
