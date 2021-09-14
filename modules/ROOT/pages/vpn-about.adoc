@@ -36,8 +36,13 @@ Anypoint VPN supports any combination of the following IPsec settings:
 * SHA or SHA-2 (256) hashing
 * Diffie-Hellman Phase 1 groups 2, 14-18, 22, 23, 24
 * Diffie-Hellman Phase 2 groups 2, 5, 14-18, 22, 23, 24
-* IKE (Phase 1) Lifetime: 28000 seconds (7 hours and 50 minutes)
-* IPsec (Phase 2) Lifetime: 3000 seconds (50 minutes)
+* Timeouts for IKEv1
+** IKE (Phase 1) Lifetime: 28800 seconds (8 hours)
+** IPsec (Phase 2) Lifetime: 3600 seconds (1 hour)
+* Timeouts for IKEv2
+** IKE (Phase 1) Lifetime: 28000 seconds (7 hours and 50 minutes)
+** IPsec (Phase 2) Lifetime: 3000 seconds (50 minutes)
+
 
 [NOTE]
 Your endpoint must initiate traffic to establish and maintain the connection because the Anypoint VPN endpoint acts only as a responder.
@@ -77,7 +82,7 @@ You must fragment packets that are too large to transmit. Your VPN device must b
 Anypoint VPN supports one unique SA pair per tunnel (a pair refers to one inbound and one outbound connection). Some policy-based devices create an SA for each ACL (access-control list) entry. In this situation, you must consolidate your rules and then filter unwanted traffic.
 * Use IPsec Dead Peer Detection (DPD)
 +
-DPD allows devices to rapidly identify when network conditions change. You can enable DPD on the MuleSoft endpoint using `DPD Interval: 30` and `DPD Retries: 3`.
+DPD allows devices to rapidly identify when network conditions change. You can enable DPD on the MuleSoft endpoint using `DPD Interval: 10` and `DPD Retries: 3`.
 * Allow asymmetric routing
 +
 Asymmetric routing occurs when routing policies send traffic from your network to the VPC through one tunnel and traffic returns from the VPC through the other tunnel. The MuleSoft VPN endpoint selects the tunnel using an internal algorithm, making the return path dynamic. If your device uses an active/active tunnel configuration, you must allow asymmetric routing for each Anypoint VPN connection.
