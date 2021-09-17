@@ -17,8 +17,16 @@ When a server certificate expires, Runtime Manager displays `Disconnected` in th
 for the server on the *Servers* page.
 The `mule-agent.log` file displays a message like the following:
 
+* For Mule 3:
+
 ----
 com.mulesoft.agent.transport.WSConnection: Failed attempt to connect nro. 1 to the web socket client at mule-manager.anypoint.mulesoft.com: Connection refused.
+----
+
+* For Mule 4:
+
+----
+com.mulesoft.agent.transport.WSConnection: Failed attempt to connect nro. 1 to the web socket client at runtime-manager.anypoint.mulesoft.com: Connection refused.
 ----
 
 For applications deployed to the server, Runtime Manager displays `Unknown` in the *Status* column on the *Applications* page.
