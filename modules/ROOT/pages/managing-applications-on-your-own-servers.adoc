@@ -78,7 +78,17 @@ To delete a deployed application from a server, simply click on the arrow next t
 image::managing-applications-on-your-own-servers-96463.png[]
 
 [NOTE]
-Note that the server must be running for this option to be available. In case of a Cluster or Server Group, at least one of its nodes must be running.
+Note that the server must be running for this option to be available. In the case of a Cluster or Server Group, at least one of its nodes must be running.
+
+=== Redeploying Deleted Hybrid Applications
+
+For applications deployed on premises, a couple of scenarios may arise which will trigger specific behaviours by Runtime Manager:
+
+* If you manually delete one or several application folders from the server while Mule is not running, once the server re-syncs, Runtime Manager will notice the missing applications, force you to download the missing application or applications again into your server, and automatically re-deploy it.
+[NOTE]
+Only deleting from the UI or via REST will permanently remove the application.
+
+* When a new server is added into a Cluster or Server Group, even when no other server in that Group or Cluster is running, Runtime Manager will automatically deploy any applications into that Server Group or Cluster.
 
 == Download an Application Archive
 
