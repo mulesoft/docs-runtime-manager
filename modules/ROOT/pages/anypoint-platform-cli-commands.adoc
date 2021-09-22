@@ -126,6 +126,7 @@ You can pass the `--fields` option after a command to get a list of all possible
 |<<exchange asset page download>> | Downloads an asset's description page from Exchange
 |<<exchange asset page modify>> | Changes an asset's description page from Exchange
 |<<exchange asset page upload>> | Uploads an asset's description page from Exchange
+|<<exchange asset page update>> | Updates an asset's description page from Exchange
 |<<exchange asset page delete>> | Deletes an asset's description page from Exchange
 |<<exchange asset page list>> | List all pages for a given asset
 |<<exchange asset copy>> | Copies an Exchange asset
@@ -1394,6 +1395,23 @@ Besides the default `--help`, `-f`/`--fields` and `-o`/`--output` options, this 
 
 This command uploads an asset description page from the path passed in `<mdPath>` using the name specified in `<pageName>` to the Exchange asset identified with `<assetIdentifier>`. +
 Naming the page "home" makes the uploaded page the main description page for the Exchange asset.
+
+[CAUTION]
+This command publishes all active drafts as part of the operation.
+
+Argument `assetIdentifier` should be formatted as follows: `[group_id]/<asset_id>/<version>`. +
+If `group_id` is not specified, it defaults to the currently selected Organization ID. +
+// CLI DEFAULTS
+include::partial$cli-default-options.adoc[tag=CLIdefaultOptions]
+
+=== exchange asset page update
+
+----
+> exchange asset page update [options] <assetIdentifier> <pageName> <mdPath>
+----
+
+This command updates an asset description page from the path passed in `<mdPath>` using the name specified in `<pageName>` to the Exchange asset identified with `<assetIdentifier>`. +
+Naming the page "home" makes the updated page the main description page for the Exchange asset.
 
 [CAUTION]
 This command publishes all active drafts as part of the operation.
