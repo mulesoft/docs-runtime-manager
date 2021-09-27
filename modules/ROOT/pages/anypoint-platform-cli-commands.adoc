@@ -1250,6 +1250,7 @@ For example:
 To send multiple files, use the same option multiple times:
 
 `--files.custom.zip custom.zip --files.pom.xml pom.xml` | `exchange asset uploadv2 --files.mule-application.jar /..../file-path/mule-app.jar --files.pom /..../file-path/mule-app.pom fa7b266c-3817-4cbb-ae49-7f3cc6c8cd9e/my-mule-app/1.0.0`
+| `--classifier` | Valid asset classifiers are `oas`, `raml`, `wsdl`, `http`, and `custom`. |
 | `--type` | Asset type
 
 Required if no file is specified.
