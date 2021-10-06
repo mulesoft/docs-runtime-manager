@@ -21,7 +21,7 @@ Monitoring works differently depending on your Mule version.
 
 * Mule 4.x
 +
-Every 30 seconds, CloudHub checks the PID of the Mule process.
+CloudHub calls the Mule Agent health check endpoint determine the readiness of a deployment.
 +
 If CloudHub detects that the application process is not running three times in a row, the logs print a warning.
 
