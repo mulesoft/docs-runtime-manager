@@ -15,10 +15,18 @@ The certificate ensures secure communication between Runtime Manager and the Run
 
 When a server certificate expires, Runtime Manager displays `Disconnected` in the *Status* column
 for the server on the *Servers* page.
-The `mule-agent.log` file displays a message like the following:
+The `mule_agent.log` file displays a message like the following:
+
+* For Mule 3:
 
 ----
 com.mulesoft.agent.transport.WSConnection: Failed attempt to connect nro. 1 to the web socket client at mule-manager.anypoint.mulesoft.com: Connection refused.
+----
+
+* For Mule 4:
+
+----
+com.mulesoft.agent.transport.WSConnection: Failed attempt to connect nro. 1 to the web socket client at runtime-manager.anypoint.mulesoft.com: Connection refused.
 ----
 
 For applications deployed to the server, Runtime Manager displays `Unknown` in the *Status* column on the *Applications* page.
@@ -47,17 +55,46 @@ You can renew a certificate for a specific server or multiple servers within a c
 
 The status for the server must be `Running` to update its certificate.
 
-To renew a certificate for a server:
+To renew a certificate for a standalone server:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Click the *Servers* tab.
 . Verify that the server status is `Running`.
 . Click the server name.
++
+image::rtm-server-standalone-name.png[Select Server]
 . Click *Settings*.
 . From the *Actions* menu, select *Renew Certificate*.
++
+image::rtm-server-standalone-settings.png[Settings Tab]
 . Select the checkbox to confirm your choice, and then click *Renew*.
++
+image::rtm-server-standalone-renew.png[Confirm Renewal]
 . Check *Certificate expiration date* to verify that the certificate renewed successfully.
 
+To renew a certificate for servers in a cluster or group:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Servers* tab.
+. Verify that the server status is `Running`.
+. Click the group or cluster name.
++
+image::rtm-server-certificate-group-name.png[Select Group or Cluster]
+. Check the radio button to select the server or servers you want to update.
+. From the *Actions* menu, select *Renew Certificate*.
++
+image::rtm-server-certificate-group-select-server.png[Select Server]
+. Select the checkbox to confirm your choice, and then click *Renew*.
++
+image::rtm-server-certificate-group-renew.png[Confirm Renewal]
+. Check *Certificate expiration date* to verify that the certificate renewed successfully.
+
+If the *Renew Certificate* option in the *Actions* pull-down menu is not available after performing the previous steps, you may need to xref:installing-and-configuring-runtime-manager-agent#update-the-agent.adoc[update your *Agent* version].
+The *Server certificate renewal* feature, which enables you to renew server certificates directly from Runtime Manager, was introduced by Runtime Manager 2.8.4. This feature requires Runtime Manager Agent 1.10.0 or later.
+You can hover over the *Renew Certificate* option in the *Actions* pull-down menu, and a tooltip in the UI will indicate you the minimum required Runtime Agent version.
+
+[NOTE]
+Renewing server certificates does not trigger a runtime restart.
 
 If renewing the unexpired certificate fails, follow the steps in <<Renew a Certificate after It Expires>>.
 

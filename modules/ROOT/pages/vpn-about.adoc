@@ -36,8 +36,13 @@ Anypoint VPN supports any combination of the following IPsec settings:
 * SHA or SHA-2 (256) hashing
 * Diffie-Hellman Phase 1 groups 2, 14-18, 22, 23, 24
 * Diffie-Hellman Phase 2 groups 2, 5, 14-18, 22, 23, 24
-* IKE (Phase 1) Lifetime: 28000 seconds (7 hours and 50 minutes)
-* IPsec (Phase 2) Lifetime: 3000 seconds (50 minutes)
+* Timeouts for IKEv1
+** IKE (Phase 1) Lifetime: 28800 seconds (8 hours)
+** IPsec (Phase 2) Lifetime: 3600 seconds (1 hour)
+* Timeouts for IKEv2
+** IKE (Phase 1) Lifetime: 28000 seconds (7 hours and 50 minutes)
+** IPsec (Phase 2) Lifetime: 3000 seconds (50 minutes)
+
 
 [NOTE]
 Your endpoint must initiate traffic to establish and maintain the connection because the Anypoint VPN endpoint acts only as a responder.
@@ -58,7 +63,7 @@ Anypoint VPN does not support these features and configurations:
 * Network Address Translation (NAT)
 * IPv6
 * IKEv2 with policy-based VPNs
-* A single VPC with both Direct Connect and Anypoint VPN connections
+* A single VPC with both AWS Direct Connect and Anypoint VPN connections
 * Advertising a default route (0.0.0.0/0) over BGP or static routing
 
 [[vpn_requirements]]

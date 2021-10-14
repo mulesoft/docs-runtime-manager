@@ -43,6 +43,9 @@ Dedicated load balancers are an optional component of Anypoint Platform.
 
 For information about dedicated load balancers, see xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers].
 
+[IMPORTANT]
+Load balancers do not currently support HTTP streaming. When a call is made directly to the worker, HTTP streaming behavior occurs as expected (that is, an error response is received before the full attachment is uploaded). However, when you make a call to the load balancer, you don't receive the response until the full upload completes, which can take several minutes.
+
 == See Also
 
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
