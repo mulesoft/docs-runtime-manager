@@ -60,7 +60,7 @@ Switching between the two groups of static IP addresses enables zero-downtime re
 
 === Considerations
 
-* Static IPs will change when restarting or updating your DLB, it is recommended to use DLB's DNS address rather than the IP addresses when calling it from an external service. Ensure that the client includes the necessary retry mechanisms to account for DNS switch.
+* Because static IPs change when you restart or update your DLB, use the DLB's DNS address rather than the IP addresses when calling the DLB from an external service. Ensure that the client includes the necessary retry mechanisms to account for the DNS switch.
 * To avoid connection issues when the load balancers is restarting, it's recommended to honor the DNS TTL (30 seconds), including when using connection keep alive. The connections will be closed after the new workers are online and the TTl expires.
 
 [NOTE]
