@@ -64,7 +64,7 @@ Switching between the two groups of static IP addresses enables zero-downtime re
 * To avoid connection issues when the load balancers is restarting, it's recommended to honor the DNS TTL (30 seconds), including when using connection keep alive. The connections will be closed after the new workers are online and the TTl expires.
 
 [NOTE]
-For DLBs created before October 2021, click the *Update* button to avail the feature. After clicking *Update*, the DLB uses static IP model described above and you cannot revert to the old model.
+For DLBs created before October 2021, click *Update* to enable the feature. After clicking *Update*, the DLB uses the static IP model described above, and you cannot revert to the old model.
 
 For information on updating DLBs, see
 xref:lb-updates.adoc[Dedicated Load Balancer Updates].
