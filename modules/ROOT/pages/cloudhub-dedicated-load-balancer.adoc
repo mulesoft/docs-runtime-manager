@@ -56,7 +56,7 @@ For example, if your DLB has four workers, the DLB has eight associated static I
 Half the static IPs (equal to the number of worker instances) are in use at any given time.
 When you restart or update the DLB, the DLB switches to use the group of unused static IP addresses and transitions the first group of static IP addresses to the unused state.
 
-Switching between the two groups of static IP addresses enables zero-downtime restarts and updates, ensuring that no transactions are dropped or lost as long as the transaction times are shorter than 600s or the value of *Mule Application Response Timeout* (whichever is smaller).
+Switching between the two groups of static IP addresses enables zero-downtime restarts and updates, ensuring that no transactions are dropped or lost as long as the transaction times are shorter than 600 seconds or the value of *Mule Application Response Timeout* (whichever is smaller).
 
 === Considerations
 
