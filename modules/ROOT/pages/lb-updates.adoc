@@ -30,10 +30,21 @@ The *Update* button indicates a load balancer requires an update. You can schedu
 
 To update a load balancer:
 
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*.
 . Click the *Update* button.
-. At the *Update Load Balancer* prompt, click *Update*.
-. Click the *release notes* link for details on the update.
+. At the *Update load balancer* prompt, click *Update*.
++
+Click the *View release notes* link for details on the update. 
++
+[IMPORTANT]
+When you update a DLB with static IP addresses, the update might require additional static IPs. If you are prompted to add these new IP addresses to your allowlist, do so before you click *Update*.
+
 
 The update results in a rolling restart with no downtime. However, some inflight requests might be impacted.
 
 If you experience a sustained outage after updating, contact MuleSoft Support.
+
+== See Also
+
+* xref:cloudhub-dedicated-load-balancer.adoc#static-ip-addresses[Static IP Addresses]
