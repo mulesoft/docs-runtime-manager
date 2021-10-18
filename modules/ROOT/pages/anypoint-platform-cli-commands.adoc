@@ -1275,30 +1275,28 @@ If it is uploaded, the type is inferred from the classifier of the file.
 Depending on the type of asset, some possible classifier values are:
 
 * REST API
-** 'oas'  (with 'zip', 'yaml' or 'json' as packaging)
-** 'raml' (with 'zip' or 'raml' as packaging)
+** `oas`  (with `zip`, `yaml` or `json` as packaging)
+** `raml` (with `zip` or `raml` as packaging)
 * RAML Fragment
-** 'raml-fragment' (with 'zip' or 'raml' as packaging)
+** `raml-fragment` (with `zip` or `raml` as packaging)
 * SOAP API
-** 'wsdl' (with 'zip', 'wsld' or 'xml' as packaging)
+** `wsdl` (with `zip`, `wsld` or `xml` as packaging)
 * Custom
-** 'custom'
+** `custom`
 * Application
-** 'mule-application' (with 'jar' as packaging)
+** `mule-application` (with `jar` as packaging)
 * Policy
-** 'mule-policy' (with 'jar' as packaging) + 'policy-definition' (with 'yaml' as packaging)
+** `mule-policy` (with `jar` as packaging) + `policy-definition` (with `yaml` as packaging)
 * Example
-** 'mule-application-example' (with 'jar' as packaging)
+** `mule-application-exampl`' (with `jar` as packaging)
 * Template
-** 'mule-application-template' (with 'jar' as packaging)
+** `mule-application-template` (with `jar` as packaging)
 * Extension
-** 'mule-plugin' (with 'jar' as packaging)
+** `mule-plugin` (with `jar` as packaging)
 * Connector
-** 'studio-plugin' (with 'zip' as packaging) + file with no classifier and packaging 'jar'
+** `studio-plugin` (with `zip` as packaging) + file with no classifier and packaging `jar`
 * External Library
-** 'external-library' (with 'jar' as packaging)
-
-|
+** `external-library` (with `jar` as packaging) |
 
 | `--categories` | Categories |
 
