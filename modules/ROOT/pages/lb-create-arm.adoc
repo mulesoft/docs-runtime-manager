@@ -24,7 +24,7 @@ Similarly, the administrator role of the same organization also provides the aut
 == Create a Load Balancer
 
 . From Anypoint Platform, click *Runtime Manager*.
-. Click load balancers, then click *Create Load Balancer*.
+. Click *Load Balancers* > *Create Load Balancer*.
 . Enter a name for your load balancer.
 +
 The CloudHub DLB name must be unique across all DLBs defined in Anypoint Platform (by all MuleSoft customers).
@@ -59,8 +59,10 @@ Accepts the inbound request on the default SSL endpoint using the HTTP protocol.
 Redirects the request to the same URL using the HTTPS protocol.
 . Specify options:
 +
-* *Disable Static IPs* specifies to use dynamic IPs, which do not persist when the DLB restarts.
-* *Keep URL encoding* specifies the DLB passes only the %20 and %23 characters as is.
+* *Enable Static IPs* specifies to use static IPs, which persist when the DLB restarts.
++
+For more information about static IP addresses, see xref:cloudhub-dedicated-load-balancer.adoc#static-ip-addresses[Static IP Addresses].
+* *Keep URL encoding* specifies that the DLB passes only the `%20` and `%23` characters as is.
 +
 If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
 +
@@ -106,6 +108,7 @@ See xref:lb-cert-validation.adoc#change-the-default-cipher-suite-to-support-tls-
 == See Also
 
 * xref:access-management::index.adoc[Access Management]
+* xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]
 * xref:lb-cert-upload.adoc[Add Certificates to a Dedicated Load Balancer]
 * xref:lb-cert-validation.adoc[Certificate Validation in Dedicated Load Balancers]
 * xref:lb-allowlists.adoc[Allowlists]
