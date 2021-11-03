@@ -48,6 +48,26 @@ Each DLB unit that you purchase is the equivalent of two workers handling load b
 You can assign up to four load balancer units to a DLB.
 A DLB with four load balancer units assigned has eight workers.
 
+== Static IP Addresses
+
+If you enable static IP addresses for a DLB, the number of static IP addresses allocated to the DLB is equal to double the number of workers.
+For example, if your DLB has four workers, the DLB has eight associated static IP addresses.
+
+Half the static IPs (equal to the number of worker instances) are in use at any given time.
+When you restart or update the DLB, the DLB switches to use the group of unused static IP addresses and transitions the first group of static IP addresses to the unused state.
+
+Switching between the two groups of static IP addresses enables zero-downtime restarts and updates, ensuring that no transactions are dropped or lost as long as the transaction times are shorter than 600 seconds or the value of *Mule Application Response Timeout* (whichever is smaller).
+
+=== Considerations
+
+* Because static IPs change when you restart or update your DLB, use the DLB's DNS address rather than the IP addresses when calling the DLB from an external service. Ensure that the client includes the necessary retry mechanisms to account for the DNS switch.
+* To avoid connection issues when the load balancer is restarting, adhere to the DNS TTL (30 seconds), including connection keep alive. The connections are closed after the new workers are online and the TTL expires.
+
+[NOTE]
+For DLBs created before October 2021, click *Update* to enable the feature. After clicking *Update*, the DLB uses the static IP model described earlier, and you cannot revert to the former model.
+
+For information about updating DLBs, see
+xref:lb-updates.adoc[Dedicated Load Balancer Updates].
 
 == See Also
 

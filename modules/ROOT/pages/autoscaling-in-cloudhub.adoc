@@ -47,13 +47,16 @@ The percentage shown is the percentage of total memory or CPU allocated for the 
 .. If it will affect the *number* of workers or the *size* of them
 .. Set a *maximum* and *minimum* value to fluctuate in between
 
+[NOTE]
+Maximum number of workers is 4, and maximum worker size is 16 vCores for the Autoscaling policy.
+
 == Scaling Considerations
 
 All policies scale your application one step at a time. To scale up to meet a pronounced spike that requires scaling numerous steps, each step takes CloudHub the sum of the policy evaluation time plus the cool-down period.
 
 You can apply only one autoscaling policy per application.
 
-The maximum amount and size of workers that you have available is limited by the characteristics of your account. If multiple applications running in your account compete for limited resources, they are allocated in a first-come, first-serve manner.
+The maximum amount and size of workers that you have available is limited by the characteristics of your account. If multiple applications running in your account compete for limited resources, they are allocated in a first-come, first-served manner.
 
 == Edit an Existing Policy
 
