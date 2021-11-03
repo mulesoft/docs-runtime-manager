@@ -142,7 +142,7 @@ Set the CN to match the Runtime Manager agent hostname or IP address:
 ----
 echo "Generate a new keystore to identify the Runtime Manager agent. Use CN=localhost"
 
-keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
+keytool -keystore rmakeystore.jks -genkey -keyalg RSA -keypass mulesoft -storepass mulesoft -noprompt \
 -alias rma \
 -dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
 ----
@@ -262,7 +262,7 @@ Set the CN to match the Runtime Manager agent hostname or IP address.
 ----
 echo "Generate a new keystore to identify the Runtime Manager agent. Use CN=localhost"
 
-keytool -keystore rmakeystore.jks -keypass mulesoft -storepass mulesoft -genkey -keyalg RSA -keypass mulesoft -noprompt \
+keytool -keystore rmakeystore.jks -genkey -keyalg RSA -keypass mulesoft -storepass mulesoft -noprompt \
 -alias rma \
 -dname "CN=localhost, OU=Runtime Manager Agent, O=MuleSoft, L=San Francisco, S=Califorina, C=US"
 ----
