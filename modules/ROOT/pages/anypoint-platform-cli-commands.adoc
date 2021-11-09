@@ -981,8 +981,8 @@ This command only takes `true` or `false` values.
 | `--description <value>`
 | Tier description
 
-| -l, --limit <value>
-| -l, --limit | Single instance of an SLA tier limit in the form `--limit A,B,C` where:
+| `-l, --limit <value>`
+| Single instance of an SLA tier limit in the form `--limit A,B,C` where:
 
 * `A` is a boolean indicating whether or not this limit should be visible.
 * `B` is a number of requests per "C" time period.
@@ -1003,7 +1003,6 @@ To create multiple limits, you can provide multiple `--limit` options. +
 For example: `-l true,100,sec -l false,20,min`
 
 |===
-
 
 === api-mgr tier copy
 
