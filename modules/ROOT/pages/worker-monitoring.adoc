@@ -21,9 +21,14 @@ Monitoring works differently depending on your Mule version.
 
 * Mule 4.x
 +
-CloudHub calls the Mule Agent health check endpoint determine the readiness of a deployment.
+CloudHub uses the Mule Agent health check endpoint to determine the readiness of a deployment. This monitoring method provides a thorough check to ensure that the application is deployed and applies gateway policies.
 +
-If CloudHub detects that the application process is not running three times in a row, the logs print a warning.
+For readiness assessment to work when tracked endpoints are defined in your application, ensure that all tracked endpoints are correctly linked to the corresponding API in API Manager and that all policies are correctly applied to the tracked API. If a single custom policy of a particular tracked API is not applied, the whole deployment will be considered unsuccessful.
++
+If the deployment is not deemed ready within 5 minutes, it is considered a failed deployment, and the logs print an error message.
+
+[NOTE]
+The healthcheck endpoint is only available for 4.2.1 runtime version and above.
 
 * Mule 3.8.x
 +
