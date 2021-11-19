@@ -37,7 +37,7 @@ Contains the serial number used by the CA to identify the client
 The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single, unencrypted PEM-encoded file for upload. The order of items in the CRL is not important.
 
 
-To add a revocation list when you create the load balancer, use the `--crl` option with the xref:anypoint-cli::anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command.
+To add a revocation list when you create the load balancer, use the `--crl` option with the xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command.
 
 
 If your load balancer already exists, you can use the
@@ -55,7 +55,7 @@ to add or update your CRLs. To do so, send a `PATCH` request to the `/organizati
 ]
 ----
 
-To get the values for `myVpcID` and `myDlbID` values from the CLI, use the xref:anypoint-cli::anypoint-platform-cli-commands.adoc#cloudhub-vpc-describe-json[`cloudhub vpc describe-json`] and xref:anypoint-cli::anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-describe-json[`cloudhub load-balancer describe-json`] commands.
+To get the values for `myVpcID` and `myDlbID` values from the CLI, use the xref:anypoint-cli::cloudhub-vpc.adoc#cloudhub-vpc-describe-json[`cloudhub vpc describe-json`] and xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-describe-json[`cloudhub load-balancer describe-json`] commands.
 
 To update any other property, send a `PATCH` request to your load balancer endpoint.
 
@@ -69,10 +69,10 @@ To manage cipher suites with the CloudHub API, you must first:
 See https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/minor/1.0/console/method/%233736/[Retrieve a single organization].
 * Retrieve your VPC ID using the CloudHub CLI.
 +
-See xref:anypoint-cli::anypoint-platform-cli-commands.adoc#cloudhub-vpc-describe-json[cloudhub vpc describe-json].
+See xref:anypoint-cli::cloudhub-vpc.adoc#cloudhub-vpc-describe-json[cloudhub vpc describe-json].
 * Retrieve your DLB ID using the CloudHub CLI.
 +
-See xref:anypoint-cli::anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-describe-json[cloudhub load-balancer describe-json].
+See xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-describe-json[cloudhub load-balancer describe-json].
 * Install `jq` to format the JSON output.
 +
 See https://stedolan.github.io/jq/[jq].

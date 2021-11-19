@@ -15,7 +15,7 @@ The public CloudHub load balancer already redirects these requests, where `_myAp
 * HTTP requests to `+http://myApp.cloudhub.io+` redirects to `mule-worker-myApp.cloudhub.io:8081`
 * HTTPS traffic to `+https://myApp.cloudhub.io:443+` redirects to `+https://mule-worker-myApp.cloudhub.io:8082+`
 
-Your load balancer listens for outside requests over HTTPS and, by default, communicates internally with your worker over HTTP. If you configured your Mule application within the Anypoint VPC to listen on HTTPS, make sure you set `upstreamProtocol` to `HTTPS` when creating the mapping list using the xref:anypoint-cli::anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[`load-balancer mappings add`] command.
+Your load balancer listens for outside requests over HTTPS and, by default, communicates internally with your worker over HTTP. If you configured your Mule application within the Anypoint VPC to listen on HTTPS, make sure you set `upstreamProtocol` to `HTTPS` when creating the mapping list using the xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-mappings-add[`cloudhub load-balancer mappings add`] command.
 
 
 == Routing External Requests to the Dedicated Load Balancer
