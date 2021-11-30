@@ -1,0 +1,29 @@
+= CloudHub Command-Line Interface
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, cloudhub cli, manage, api, rest
+
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+Anypoint Platform provides a scripting and command-line tool for CloudHub.
+The command-line interface (CLI) supports both the interactive shell and standard CLI modes and works with:
+
+* <<CloudHub Applications>>
+* <<CloudHub Dedicated Load Balancers>>
+* <<Anypoint VPC>>
+
+include::anypoint-cli::page$cloudhub-apps.adoc[leveloffset=+1]
+
+include::anypoint-cli::page$cloudhub-dlb.adoc[leveloffset=+1]
+
+include::anypoint-cli::page$cloudhub-vpc.adoc[leveloffset=+1]
+
+
+== See Also
+
+* xref:anypoint-cli::index.adoc[Anypoint Platform CLI 3.x]
+

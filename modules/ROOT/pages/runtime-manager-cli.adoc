@@ -1,0 +1,39 @@
+= Runtime Manager Command-Line Interface
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: runtime manager, servers, cli
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+Anypoint Platform provides a scripting and command-line tool for Runtime Manager.
+The command-line interface (CLI) supports both the interactive shell and standard CLI modes and works with:
+
+* <<Locally Deployed Applications Managed by Runtime Manager>>
+* <<Alerts for Locally Deployed Applications Managed by Runtime Manager>>
+* <<Local Servers>>
+* <<Local Cluster Servers>>
+* <<Local Server Groups>>
+* <<Runtime Fabric Instances>>
+
+
+include::anypoint-cli::page$standalone-apps.adoc[leveloffset=+1]
+
+include::anypoint-cli::page$standalone-alerts.adoc[leveloffset=+1]
+
+include::anypoint-cli::page$servers.adoc[leveloffset=+1]
+
+include::anypoint-cli::page$server-clusters.adoc[leveloffset=+1]
+
+include::anypoint-cli::page$server-groups.adoc[leveloffset=+1]
+
+include::anypoint-cli::page$rtf-instances.adoc[leveloffset=+1]
+
+
+== See Also
+
+* xref:anypoint-cli::index.adoc[Anypoint Platform CLI 3.x]
+
