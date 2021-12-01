@@ -12,15 +12,32 @@ image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fa
 Anypoint Platform provides a scripting and command-line tool for CloudHub.
 The command-line interface (CLI) supports both the interactive shell and standard CLI modes and works with:
 
-* <<CloudHub Applications>>
-* <<CloudHub Dedicated Load Balancers>>
-* <<Anypoint Virtual Private Cloud>>
+* <<cloudhub-apps>>
+* <<cloudhub-dlb>>
+* <<cloudhub-vpc>>
 
-include::anypoint-cli::page$cloudhub-apps.adoc[leveloffset=+1]
+[[cloudhub-apps]]
+== CloudHub Applications
 
-include::anypoint-cli::page$cloudhub-dlb.adoc[leveloffset=+1]
+include::anypoint-cli::partial$cloudhub-apps.adoc[tag=summary,leveloffset=-1]
 
-include::anypoint-cli::page$cloudhub-vpc.adoc[leveloffset=+1]
+include::anypoint-cli::partial$cloudhub-apps.adoc[tag=commands,leveloffset=-1]
+
+[[cloudhub-dlb]]
+== CloudHub Dedicated Load Balancers
+
+include::anypoint-cli::partial$cloudhub-dlb.adoc[tag=summary,leveloffset=-1]
+
+include::anypoint-cli::partial$cloudhub-dlb.adoc[tag=commands,leveloffset=-1]
+
+
+[[cloudhub-vpc]]
+== CloudHub Anypoint VPCs
+
+include::anypoint-cli::partial$cloudhub-vpc.adoc[tag=summary,leveloffset=-1]
+
+include::anypoint-cli::partial$cloudhub-vpc.adoc[tag=commands,leveloffset=-1]
+
 
 
 == See Also

@@ -12,25 +12,57 @@ image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabr
 Anypoint Platform provides a scripting and command-line tool for Runtime Manager.
 The command-line interface (CLI) supports both the interactive shell and standard CLI modes and works with:
 
-* <<Locally Deployed Applications Managed by Runtime Manager>>
-* <<Alerts for Locally Deployed Applications Managed by Runtime Manager>>
-* <<Local Servers>>
-* <<Local Cluster Servers>>
-* <<Local Server Groups>>
-* <<Runtime Fabric Instances>>
+* <<standalone-apps>>
+* <<standalone-alerts>>
+* <<servers>>
+* <<server-groups>>
+* <<server-clusters>>
+* <<rtf-instances>>
 
 
-include::anypoint-cli::page$standalone-apps.adoc[leveloffset=+1]
+[[standalone-apps]]
+== Locally Deployed Applications Managed by Runtime Manager
 
-include::anypoint-cli::page$standalone-alerts.adoc[leveloffset=+1]
+include::anypoint-cli::partial$standalone-apps.adoc[tag=summary,leveloffset=-1]
 
-include::anypoint-cli::page$servers.adoc[leveloffset=+1]
+include::anypoint-cli::partial$standalone-apps.adoc[tag=commands,leveloffset=-1]
 
-include::anypoint-cli::page$server-clusters.adoc[leveloffset=+1]
+[[standalone-alerts]]
+== Alerts for Locally Deployed Applications Managed by Runtime Manager
 
-include::anypoint-cli::page$server-groups.adoc[leveloffset=+1]
+include::anypoint-cli::partial$standalone-alerts.adoc[tag=summary,leveloffset=-1]
 
-include::anypoint-cli::page$rtf-instances.adoc[leveloffset=+1]
+include::anypoint-cli::partial$standalone-alerts.adoc[tag=commands,leveloffset=-1]
+
+[[servers]]
+== Local Servers
+
+include::anypoint-cli::partial$servers.adoc[tag=summary,leveloffset=-1]
+
+include::anypoint-cli::partial$servers.adoc[tag=commands,leveloffset=-1]
+
+
+[[server-groups]]
+== Local Server Groups
+
+include::anypoint-cli::partial$server-groups.adoc[tag=summary,leveloffset=-1]
+
+include::anypoint-cli::partial$server-groups.adoc[tag=commands,leveloffset=-1]
+
+[[server-clusters]]
+== Local Cluster Servers
+
+include::anypoint-cli::partial$server-clusters.adoc[tag=summary,leveloffset=-1]
+
+include::anypoint-cli::partial$server-clusters.adoc[tag=commands,leveloffset=-1]
+
+[[rtf-instances]]
+== Runtime Fabric Instances
+
+include::anypoint-cli::partial$rtf-instances.adoc[tag=summary,leveloffset=-1]
+
+include::anypoint-cli::partial$rtf-instances.adoc[tag=commands,leveloffset=-1]
+
 
 
 == See Also
