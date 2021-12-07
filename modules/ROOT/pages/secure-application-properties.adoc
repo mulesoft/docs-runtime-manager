@@ -99,7 +99,7 @@ secure.properties=db.password,salesforce.password
 
 . Deploy the Mule application to CloudHub.
 . In the *Applications* page, click the application name and then click *Settings*.
-. In the *Properties* tab, click *List* and then enter your application properties:
+. In the *Properties* tab, click *Text View* and then enter your application properties:
 +
 .The screenshot shows (*1*) the *Properties* tab and (*2*) the key-value properties on the application *Settings* page.
 image::rtm-hide-props.png[Properties tab and key-value properties on the application Settings page]
@@ -221,7 +221,7 @@ An example of when to override secure properties is if you need to update the da
 After all dependent applications are migrated, the old account can be decommissioned.
 
 [NOTE]
-Use the list view in the application's *Properties* tab to update properties. If you use the text view to update properties, colons in property names must be escaped, for example: `secure\:\:someproperty`.
+If you use the *Table View* in the application’s *Properties* tab to update properties, you don't need to escape the colons in property names, for example: `secure::someproperty`. If you use the *Text View* to update properties, you need to escape the colons in property names, for example: `secure\:\:someproperty`.
 
 == Mule Applications Deployed Only to CloudHub Workers
 
