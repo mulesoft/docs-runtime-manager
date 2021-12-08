@@ -15,8 +15,6 @@ Use the *Schedules* tab in the left navigation menu to enable or disable Schedul
 change the frequency, or run the scheduled job immediately,
 all without changing the running application.
 
-By default, schedules run at the frequency defined in the application. When you change the frequency of a schedule from Runtime Manager, the schedule will run at the frequency configured on Runtime Manager even if you update and redeploy the same schedule in application jar.
-
 The *Schedules* tab is useful in the following scenarios:
 
 * You have a job that runs nightly but you want to debug it now.
@@ -96,6 +94,9 @@ The value for the frequency can be between 10 and 100 seconds.
 +
 You can also switch to advanced mode to use cron expressions to create more specific schedules,
 such as every Thursday at 3:00 pm.
++
+[NOTE]
+By default, schedules run at the frequency defined in the application. When you change the frequency of a schedule from Runtime Manager, the schedule will run at the frequency configured on Runtime Manager even if you update and redeploy the same schedule in the application JAR file.
 . Click *Update* to save changed settings or click *Cancel* to exit without saving.
 
 == Use Cron Expressions
