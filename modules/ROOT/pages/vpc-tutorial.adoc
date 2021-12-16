@@ -49,10 +49,12 @@ Make sure you thoroughly understand how to properly size the Anypoint VPC for yo
 * *Environments*: Optionally, select an environment to which to bind Anypoint VPC. +
 If you don't select an environment, all applications deployed to the selected region are associated with this Anypoint VPC.
 +
-[NOTE]
-Don't associate Anypoint VPC with a design environment.
-You can deploy apps to the design environment only from Design Center,
-not from Runtime Manager.
+Don't associate Anypoint VPC with a design environment. You can deploy apps to the design environment only from Design Center, not from Runtime Manager.
++
+[IMPORTANT]
+There is a cache timeframe between services that prevents rate limiting errors with different time configuration across Anypoint control planes.
+If you create an environment in Access Management and attempt to immediately use it to create or edit a VPC in Runtime Manager, you might experience a delay to see the newly created environment in the VPCs *Environments* dropdown.
+
 * *Set as default VPC*: Select this option to set the Anypoint VPC as the default for the region you set. +
 This means that all environments in this region not associated with an Anypoint VPC will be, by default, associated with this Anypoint VPC.
 * *Business Groups*: Optionally, bind the Anypoint VPC with a business group. +

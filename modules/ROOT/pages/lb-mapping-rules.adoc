@@ -10,7 +10,7 @@ image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fa
 
 
 The CloudHub dedicated load balancer (DLB) routes requests from clients to Mule apps deployed within the VPC.
-_Mapping rules_ enable you to forward requests received by the DLB (input URL) to a different Mule application name and domain.
+_Mapping rules_ enable you to forward requests received by the DLB (using the HTTP Host header to identify the matching rule) to a different Mule application name and domain.
 
 You can either define mapping rules when you create the DLB, or you can define and add them to an existing DLB using Runtime Manager, the command-line interface (CLI), or the CloudHub API.
 
