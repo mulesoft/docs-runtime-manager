@@ -80,7 +80,7 @@ When the operation succeeds, Anypoint Platform CLI displays the details of the n
 
 == Create Firewall Rules
 
-When the Anypoint VPC is created, four firewall rules are set by default. You can review them using the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-describe[vpc firewall-rules describe] command:
+When the Anypoint VPC is created, four firewall rules are set by default. You can review them using the xref:anypoint-cli::index.adoc#cloudhub-vpc-firewall-rules-describe[vpc firewall-rules describe] command:
 
 ----
 cloudhub vpc firewall-rules describe vpc-tutorial
@@ -104,7 +104,7 @@ This command returns:
 Rule `0` allows inbound connections from your local Anypoint VPC from ports 8091 and 8092, while rule `1` allows traffic from any host to reach your workers through ports 8081 and 8082.
 --
 
-You can use the xref:anypoint-platform-cli.adoc#cloudhub-vpc-delete[`vpc firewall-rules delete`] command to remove any of the default rules or you  can add new ones using the xref:anypoint-platform-cli.adoc#cloudhub-vpc-firewall-rules-add[`vpc firewall-rules add`] command.
+You can use the xref:anypoint-cli::cloudhub-vpc.adoc#cloudhub-vpc-delete[`vpc firewall-rules delete`] command to remove any of the default rules or you  can add new ones using the xref:anypoint-cli::cloudhub-vpc.adoc#cloudhub-vpc-firewall-rules-add[`vpc firewall-rules add`] command.
 
 Assume you want to enable TCP traffic through port 8090 inside your Anypoint VPC. You need to run the following:
 
@@ -144,9 +144,9 @@ For example, to update the environments of your Anypoint VPC you need to send a 
 
 [TIP]
 --
-You can query your `{orgid}` using the xref:anypoint-platform-cli.adoc#account-business-group-list[account business-group describe] command.
+You can query your `{orgid}` using the xref:anypoint-cli::env-business-groups.adoc#account-business-group-list[account business-group describe] command.
 
-Your `{vpcId}` value is listed by running a xref:anypoint-platform-cli.adoc#cloudhub-vpc-describe-json[cloudhub vpc describe-json] command.
+Your `{vpcId}` value is listed by running a xref:anypoint-cli::cloudhub-vpc.adoc#cloudhub-vpc-describe-json[cloudhub vpc describe-json] command.
 --
 
 [source,json,linenums]
@@ -161,10 +161,10 @@ Your `{vpcId}` value is listed by running a xref:anypoint-platform-cli.adoc#clou
 [NOTE]
 --
 `<EnvironmentId>` needs to be replaced by the Id of the environment to which you want to associate this Anypoint VPC. +
-You can get the Ids for your environments running a xref:anypoint-platform-cli.adoc#account-environment-list[account environment list] command.
+You can get the Ids for your environments running a xref:anypoint-cli::env-business-groups.adoc#account-environment-list[account environment list] command.
 --
 
 == See Also
 
 * xref:dedicated-load-balancer-tutorial.adoc[CloudHub Load Balancers]
-* xref:anypoint-platform-cli.adoc[Anypoint Platform CLI]
+* xref:anypoint-cli::index.adoc[Anypoint Platform CLI]
