@@ -10,7 +10,7 @@ image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fa
 
 
 The CloudHub dedicated load balancer (DLB) routes requests from clients to Mule apps deployed within the VPC.
-_Mapping rules_ enable you to forward requests received by the DLB (input URL) to a different Mule application name and domain.
+_Mapping rules_ enable you to forward requests received by the DLB (using the HTTP Host header to identify the matching rule) to a different Mule application name and domain.
 
 You can either define mapping rules when you create the DLB, or you can define and add them to an existing DLB using Runtime Manager, the command-line interface (CLI), or the CloudHub API.
 
@@ -102,7 +102,7 @@ To create a mapping rule in a DLB using the CLI:
 cloudhub load-balancer mappings add [options] <name> <index> <inputUri> <appName> <appUri> [certificateName]
 ----
 
-See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
+See xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
 
 === Create a Mapping Rule Using the CloudHub API
 
@@ -262,7 +262,7 @@ image::cloudhub-dlb-mapping-rules-reorder.png[Handle to use to reorder a mapping
 To specify the mapping rule priority when creating a mapping rule with the CLI, use the `index` value.
 The rule at index `0` has the highest priority. The higher the index assigned, the lower the priority.
 
-See xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
+See xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
 
 === Change the Priority of Mapping Rules Using the CloudHub API
 
@@ -285,8 +285,8 @@ To determine the load balancer ID, perform a GET request to your endpoint:
 
 == See Also
 
-* xref:anypoint-platform-cli-commands.adoc#commands-for-managing-your-cloudhub-dedicated-load-balancer[Commands for Managing your CloudHub Dedicated Load Balancer]
-* xref:anypoint-platform-cli-commands.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add]
+* xref:anypoint-cli::cloudhub-dlb.adoc[CloudHub Dedicated Load Balancer]
+See xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-mappings-add[cloudhub load-balancer mappings add].
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/version/V1/pages/home/[CloudHub API]
 * xref:lb-cert-upload.adoc[Add Certificates]
 * xref:lb-allowlists.adoc[Allowlists]

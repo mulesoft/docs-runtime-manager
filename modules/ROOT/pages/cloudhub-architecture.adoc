@@ -13,7 +13,7 @@ image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fa
 
 xref:cloudhub.adoc[CloudHub] is designed to provide enterprises with a multitenant, secure, elastic, and highly available integration platform as a service (iPaaS). To maximize your use of CloudHub, you should understand how the underlying mechanisms of the CloudHub platform work to achieve these goals.
 
-Manage CloudHub with the Anypoint Runtime Manager console in Anypoint Platform. You can also xref:deploying-to-cloudhub.adoc[deploy] to it directly from Anypoint Studio, via the xref:cloudhub-api.adoc[CloudHub REST API] or via the xref:anypoint-platform-cli.adoc[Anypoint Platform command-line interface].
+Manage CloudHub with the Anypoint Runtime Manager console in Anypoint Platform. You can also xref:deploying-to-cloudhub.adoc[deploy] to it directly from Anypoint Studio, via the xref:cloudhub-api.adoc[CloudHub REST API] or via the xref:anypoint-cli::index.adoc[Anypoint Platform command-line interface].
 
 [NOTE]
 ====
@@ -148,7 +148,7 @@ Because different levels of security and isolation are needed depending on the s
 
 == Availability and Scalability
 
-CloudHub is designed to be highly available and scalable through redundancy, intelligent healing, and zero-downtime updates. It also enables customers to scale and benefit from added reliability through xref:cloudhub-fabric.adoc[clustering].
+CloudHub is designed to be highly available and scalable through redundancy, intelligent healing, and zero-downtime updates. It also enables customers to scale and benefit from added reliability through xref:cloudhub-fabric.adoc[high availability features].
 
 === Redundant Platform
 
@@ -164,14 +164,14 @@ For more information about application monitoring and automatic restarts, see xr
 
 CloudHub supports updating your applications at runtime so end users of your HTTP APIs experience zero downtime. While your application update is deploying, CloudHub keeps the old version of your application running. Your domain points to the old version of your application until the newly uploaded version is fully started. This allows you to keep servicing requests from your old application while the new version of your application is starting.
 
-=== Clustering
+=== High Availability
 
-Clustering provides scalability, workload distribution, and added reliability to applications on CloudHub. These capabilities are powered by the scalable load-balancing service,
+High Availability features provide scalability, workload distribution, and added reliability to applications on CloudHub. These capabilities are powered by the scalable load-balancing service,
 xref:cloudhub-fabric.adoc#worker-scaleout[worker scaleout], and xref:cloudhub-fabric.adoc#persistent-queues[persistent queueing] features.
 
 ==== Worker Scale Out and Data Center Redundancy
 
-With xref:cloudhub-fabric.adoc[clustering], you can add multiple workers to your application to make it horizontally scale. CloudHub automatically distributes multiple workers for the same application across two or more data centers for maximum reliability.
+With xref:cloudhub-fabric.adoc[high availability], you can add multiple workers to your application to make it horizontally scale. CloudHub automatically distributes multiple workers for the same application across two or more data centers for maximum reliability.
 
 When deploying your application to two or more workers, the HTTP load balancing service distributes requests across these workers, allowing you to scale your services horizontally. Requests are distributed on a round-robin basis.
 
@@ -181,7 +181,7 @@ Persistent queues ensure zero message loss and allow you to distribute non-HTTP 
 
 Persistent queues also guarantee delivery of your messages; even if one or more workers or datacenters go down, persistent queues facilitate disaster recovery and provide resilience to hardware or application failures.
 
-For more details about worker scale out and persistent queues, refer to xref:cloudhub-fabric.adoc[Clustering].
+For more details about worker scale out and persistent queues, refer to xref:cloudhub-fabric.adoc[High Availability].
 
 == Security
 
@@ -203,6 +203,6 @@ For more information about MuleSoft’s approach to security, please see the htt
 * xref:maintenance-and-upgrade-policy.adoc[Maintenance and Upgrade Policy]
 * http://status.mulesoft.com/[status.mulesoft.com]
 * http://eu1-status.mulesoft.com/[eu1-status.mulesoft.com]
-* xref:cloudhub-fabric.adoc[Clustering]
+* xref:cloudhub-fabric.adoc[High Availability]
 * xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts]
 * https://aws.amazon.com/ec2/instance-types/[Amazon EC2 Instance Types]
