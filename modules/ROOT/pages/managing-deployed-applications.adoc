@@ -339,6 +339,10 @@ If you're deploying your application to an on-premises cluster, Runtime Manager 
 
 To update applications deployed to Runtime Fabric, see xref:runtime-fabric::app-versioning.adoc[Application Versioning on Runtime Fabric].
 
+=== Grace Period
+
+When you stop, restart, update, redeploy, or terminate an application, CloudHub tries to delete it from Mule with a timeout period of two minutes to wait for inflight messages to be delivered. After that period, CloudHub shuts down the whole instance.
+
 == Alerts
 
 You can set up email alerts that are sent whenever certain events occur to your application, such as deployment failures or application deletions. These alerts can be linked to a specific application or to all applications. See xref:alerts-on-runtime-manager.adoc[Alerts] for information.
