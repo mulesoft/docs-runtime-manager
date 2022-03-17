@@ -310,7 +310,7 @@ Run this command against the DLB SSL endpoint:
 
 To use an ECDSA-based authentication cipher, generate the certificate and key pair using an ECDSA-based algorithm and apply the same algorithm to the SSL certificate and key configuration on the DLB.
 
-If you try to use ECDSA based authentication cipher with RSA based certificate and key pair, the SSL handshake will fail and you will receive a either of the following error messages:
+If you try to use an ECDSA-based authentication cipher with an RSA-based certificate and key pair, the SSL handshake fails and you receive either of the following error messages:
 
 [source,linenums]
 ----
