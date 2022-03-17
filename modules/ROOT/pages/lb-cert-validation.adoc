@@ -324,10 +324,7 @@ or
 Error: write EPROTO 140434219616616:error:10000410:SSL routines:OPENSSL_internal:SSLV3_ALERT_HANDSHAKE_FAILURE:../../third_party/boringssl/src/ssl/tls_record.cc:594:SSL alert number 40 140434219616616:error:1000009a:SSL routines:OPENSSL_internal:HANDSHAKE_FAILURE_ON_CLIENT_HELLO:../../third_party/boringssl/src/ssl/handshake.cc:603:
 ----
 
-Current DLB configuration permits only one type of key pair for an SSL endpoint. You can configure the DLB to use an SSL certificate and a key that are generated using either an RSA or ECDSA algorithm, but not both.
-
-[NOTE]
-If you configure a DLB with an ECDSA based key pair, clients using RSA based ciphers won't be able to connect to that DLB.
+Because current DLB configuration permits only one type of SSL certificate and key pair per SSL endpoint, a client using an RSA-based cipher can not connect to an ECDSA-based configuration, and vice versa.
 
 
 == See Also
