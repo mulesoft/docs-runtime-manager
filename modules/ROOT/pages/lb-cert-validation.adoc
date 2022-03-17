@@ -306,6 +306,27 @@ Run this command against the DLB SSL endpoint:
 * If the command returns `curl: (35) Server aborted the SSL handshake`, TLS 1.0 is not supported.
 --
 
+== Limitation
+
+To use an ECDSA-based authentication cipher, generate the certificate and key pair using an ECDSA-based algorithm and apply the same algorithm to the SSL certificate and key configuration on the DLB.
+
+If you try to use an ECDSA-based authentication cipher with an RSA-based certificate and key pair, the SSL handshake fails and you receive either of the following error messages:
+
+[source,linenums]
+----
+SSL routines:CONNECT_CR_SRVR_HELLO:sslv3 alert handshake failure
+----
+
+or
+
+[source,linenums]
+----
+Error: write EPROTO 140434219616616:error:10000410:SSL routines:OPENSSL_internal:SSLV3_ALERT_HANDSHAKE_FAILURE:../../third_party/boringssl/src/ssl/tls_record.cc:594:SSL alert number 40 140434219616616:error:1000009a:SSL routines:OPENSSL_internal:HANDSHAKE_FAILURE_ON_CLIENT_HELLO:../../third_party/boringssl/src/ssl/handshake.cc:603:
+----
+
+Because current DLB configuration permits only one type of SSL certificate and key pair per SSL endpoint, a client using an RSA-based cipher can not connect to an ECDSA-based configuration, and vice versa.
+
+
 == See Also
 
 * xref:lb-ssl-endpoints.adoc[Configure SSL Endpoints and Certificates]
