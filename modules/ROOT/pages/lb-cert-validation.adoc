@@ -308,7 +308,7 @@ Run this command against the DLB SSL endpoint:
 
 == Limitation
 
-To use ECDSA based authentication cipher, you must generate the certificate and key pair using ECDSA based algorithm and apply it to the SSL certificate and key configuration on the DLB.
+To use an ECDSA-based authentication cipher, generate the certificate and key pair using an ECDSA-based algorithm and apply the same algorithm to the SSL certificate and key configuration on the DLB.
 
 If you try to use ECDSA based authentication cipher with RSA based certificate and key pair, the SSL handshake will fail and you will receive a either of the following error messages:
 
