@@ -1,0 +1,23 @@
+= Replica Status
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+The *Status* column in the list of gateways shows the connection status for the group of replicas associated with a particular gateway.
+
+The *Status* column in the list of replicas shows the connection status for that singular replica.
+
+The table below describes the meaning of each status for a single replica or a group of replicas:
+
+[%header,cols="20a,30a,30a"]
+|===
+|Status |Single Replica | Group of Replicas
+|Connected | The replica is connected to the platform and it is serving traffic. | All replicas are connected to the platform and they are serving traffic.
+|Disconnected |The replica is not connected to the platform. There is no information on whether it is serving traffic. Disconnected replicas are unregistered after a period of inactivity. |There are no replicas connected to the platform. There is no information on whether they are serving traffic.
+|Connected (x of y) | - |At least one (x) replica in this group is connected, while all other (y - x) replicas are disconnected.
+|===

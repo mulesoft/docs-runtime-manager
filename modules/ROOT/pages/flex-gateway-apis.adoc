@@ -1,0 +1,22 @@
+= Replicas
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+To check basic information about the APIs associated with your flex gateways from Runtime Manager:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Flex Gateway* in the left menu.
+. Click the name of the gateway whose APIs you want to check.
+. Click *APIs*.
++
+For each API, you will see the name, version, instance ID, label, and the date on which it was added.
+
+image::flex-gateway-apis.png[List of APIs in Runtime Manager]
+
+To see more detailed information and perform actions on your APIs, click *View details* to be redirected to API Manager.
