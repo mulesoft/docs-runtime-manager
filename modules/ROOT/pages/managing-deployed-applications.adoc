@@ -150,15 +150,16 @@ a|
 * *Started*
 * *Running*
 * *Updated*
-|Application is running or the updated succeeded.
+|Application is running or the update succeeded.
+
+The Application shows Started when running on at least one of the Cluster nodes.
 
 |image:console-overview-red-circle.png[console_overview_red_circle]
 a|
 
-* *Partially Started*
 * *Deployment Failed*
 
-|Application deployment failed or is not complete.
+|Application deployment failed.
 
 The cause of the failure appears in the console.
 
@@ -285,11 +286,10 @@ All servers in the server group are running.
 |===
 |Icon|State|Description
 |image:status-green.png[green]|Running|All nodes are running.
-|image:status-yellow.png[yellow]| Partial (x of y running)| Some nodes are running and some are down.
-|image::managing-deployed-applications-a665b.png[]|Disconnected|All nodes are disconnected.
-|image:status-black.png[black]|Created|A server/node is registered in the platform but never was started.
+|image:status-yellow.png[yellow]|Running |At least one of the Cluster nodes is running.
 |image:status-yellow.png[yellow]|Running with communication issue|All nodes are running, but communication issues exist between them.
-|image:status-yellow.png[yellow]|Partial (x of y running) with communication issue|Some nodes are running, some are down, and communication issues exist between them.
+|image::managing-deployed-applications-a665b.png[]|Disconnected|All nodes are disconnected.
+|image:status-black.png[black]|Created|A server/node is registered in the platform but is not started.
 |===
 
 == Applications Management Panel
