@@ -12,12 +12,17 @@ The *Status* column in the list of gateways shows the connection status for the 
 
 The *Status* column in the list of replicas shows the connection status for that singular replica.
 
-The table below describes the meaning of each status for a single replica or a group of replicas:
+The following table describes the meaning of each status for a single replica or a group of replicas:
 
 [%header,cols="20a,30a,30a"]
 |===
 |Status |Single Replica | Group of Replicas
 |Connected | The replica is connected to the platform and it is serving traffic. | All replicas are connected to the platform and they are serving traffic.
-|Disconnected |The replica is not connected to the platform. There is no information on whether it is serving traffic. Disconnected replicas are unregistered after a period of inactivity. |There are no replicas connected to the platform. There is no information on whether they are serving traffic.
+|Disconnected |The replica is not connected to the platform. There is no information on whether it is serving traffic. Flex Gateway unregisters disconnected replicas after a period of inactivity. |There are no replicas connected to the platform. There is no information on whether they are serving traffic.
 |Connected (x of y) | - |At least one (x) replica in this group is connected, while all other (y - x) replicas are disconnected.
 |===
+
+== See Also
+
+* xref:flex-gateway-replicas.adoc[Replicas]
+* xref:gateway::flex-gateway-replicas.adoc[Managing Flex Replicas]

@@ -8,18 +8,25 @@ image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments
 image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
-Anypoint Flex Gateway can run in two modes:
+Anypoint Flex Gateway runs in two modes:
 
 == Local Mode
 
-You can download Anypoint Flex Gateway for free and install it on a Linux server, VM, or Kubernetes cluster to immediately start applying out-of-the-box policies to non-Mule APIs running on those targets through declarative configuration files.
+You can download Anypoint Flex Gateway and install it on a Linux server, VM, or Kubernetes cluster to immediately start applying out-of-the-box policies to non-Mule APIs running on those targets through declarative configuration files.
 
 [NOTE]
 Local Mode flex gateways will not show in Anypoint Runtime Manager.
 
 == Connected Mode
 
-With a paid license, you can configure Anypoint Flex Gateway to surface your gateways in Runtime Manager, and their APIs and policy configurations in API Manager.
+With Connected Mode, you can configure Anypoint Flex Gateway to surface your gateways in Runtime Manager, and their APIs and policy configurations in API Manager.
 
 With Connected Mode Flex Gateway, you can manage all your non-Mule APIs from a single unified control plane.
 You also get monitoring and reusability capabilities through API Analytics and Exchange.
+
+== See Also
+
+* xref:flex-gateway-about.adoc[Flex Gateway]
+* xref:gateway::flex-gateway-overview.adoc[Anypoint Flex Gateway]
+* xref:gateway::flex-gateway-getting-started.adoc[Getting Started with Flex Gateway]
+* xref:gateway::flex-conn-reg-run.adoc[Registering and Running Flex Gateway in Connected Mode]
