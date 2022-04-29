@@ -328,7 +328,7 @@ Replace the generic `ApplicationValidationException` to `BusinessNotAllowedExcep
     throw new BusinessNotAllowedException(errorMessage);
 ----
 
-=== Add Guice Configuration
+=== Add the Guice Configuration
 
 . Create the BaseModuleProvider Class
 +
@@ -434,7 +434,7 @@ services:
         errorMessage: 'I am sorry, you are not allowed to be deployed in this Cluster'
 ----
 
-=== Start Mule
+=== Start the Mule
 
 The following logs show in the console:
 
@@ -496,7 +496,7 @@ MuleAgentHelloValidator: Hi, welcome to Finance Cluster Runtimes
 ----
 
 
-== Encrypt Values in the validators configuration
+== Encrypt Values in the Validator Configuration
 
 Let’s consider that the validator needs to use a secret provided in the `mule-agent.yml`. Secrets, passwords or any value can be encrypted using the `amc_setup.sh script`.  See the https://docs.mulesoft.com/runtime-manager/installing-and-configuring-runtime-manager-agent#encrypt-passwords[Encrypt Passwords] documentation.
 
