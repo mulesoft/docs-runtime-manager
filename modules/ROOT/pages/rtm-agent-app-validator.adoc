@@ -11,7 +11,7 @@ image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fa
 Use the Application Validator Service to create your own custom validators and prevent your application from being deployed if certain conditions are not met.
 Depending on the Mule Runtime Agent configuration, the service invokes your custom validators to enforce their business rules, such as signing validation, naming conventions or moratorium dates.
 
-image:app-validator-chart[flowchart]
+image:app-validator-chart.png[Application Validation Flowchart]
 
 The following example creates a custom validator that checks the value of an application property and stops the deployment if it does not meet the specified criteria.
 
@@ -21,7 +21,7 @@ The following example creates a custom validator that checks the value of an app
 
 Open a terminal, navigate to the folder you want to create the Java project, and type the following command:
 
-[source,xml,linenums]
+[source,console,linenums]
 ----
 mvn archetype:generate \
 	-DgroupId=org.example.agent \
@@ -370,7 +370,7 @@ In the project directory layout, now we can see:
 
 Run the command:
 
-[source,mvn]
+[source,console,linenums]
 ----
 mvn clean install
 ----
@@ -385,7 +385,7 @@ A jar file is generated in the target directory:
 
 === Install the Mule Agent Validator
 
-Place the jar file in ``$MULE_HOME/server-plugins/mule-agent-plugin/lib`.
+Place the jar file in `$MULE_HOME/server-plugins/mule-agent-plugin/lib`.
 
 Let’s access the args parameter keys and values and print them out to the console:
 
@@ -451,7 +451,7 @@ Now that the validator is ready, let’s deploy an application to see how the Ag
 
 Curl command:
 
-
+[source,console,linenums]
 ----
 curl -X PUT 'http://localhost:9999/mule/applications/app-01' \
 -H 'Content-Type: application/json' \
@@ -470,6 +470,7 @@ curl -X PUT 'http://localhost:9999/mule/applications/app-01' \
 
 Response:
 
+[source,console,linenums]
 ----
 {
   "application": {
@@ -481,6 +482,7 @@ Response:
 
 Console logs:
 
+[source,console,linenums]
 ----
 MuleAgentHelloValidator: Values injected by the service:
 MuleAgentHelloValidator:   Application name: app-01
@@ -510,6 +512,7 @@ Set the `AGENT_VAR_master_password` environment variable to the master password:
 +
 Output:
 +
+[source,console,linenums]
 ----
 Mule Agent Installer
 -----------------------------
@@ -567,6 +570,8 @@ LOGGER.info("\tSecret (plain text): {}", secretPlainText);
 == Use case: Pass Encrypted Values to the Validator
 
 Curl command:
+
+[source,console,linenums]
 ----
 curl -X PUT 'http://localhost:9999/mule/applications/app-01' \
 -H 'Content-Type: application/json' \
@@ -584,6 +589,7 @@ curl -X PUT 'http://localhost:9999/mule/applications/app-01' \
 ----
 
 Response:
+[source,console,linenums]
 ----
 {
   "application": {
@@ -594,6 +600,7 @@ Response:
 ----
 
 Console logs:
+[source,console,linenums]
 ----
 AgentApplicationService: Deploying the app-01 application from URL file:/tmp/app-01.jar
 MuleAgentHelloValidator: Values injected by the service:
