@@ -8,14 +8,6 @@ image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deploymen
 image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
-== Avoiding or Reducing Downtime During an Update
-
-Mule applications that use Anypoint VPN connectivity are impacted during the maintenance period. However, the impact on the Anypoint VPN varies depending on the VPN configuration:
-
-* An Anypoint VPN with at least one pair of tunnels configured with BGP routing and DPD (Dead Peer Detection) to reset the tunnels when triggered incurs minimal downtime. The switchover takes a few seconds. See https://help.mulesoft.com/s/article/DPD-Dead-Peer-Detection-and-Anypoint-VPN-Virtual-Private-Networking[this article^] for an explanation of DPD and VPN.
-* An Anypoint VPN tunnel pair configured with Static routing incurs some downtime before reconnection. The reconnection takes longer if you do not have an automated failover mechanism to detect failed tunnels.
-* For an Anypoint VPN configured without BGP routing, a failover mechanism, or if only one tunnel is configured, the outage is up to 60 minutes long as the update occurs and the original tunnel comes back up.
-
 == Anypoint VPN Update
 
 As part of the required regular maintenance, and to maintain good security hygiene, MuleSoft upgrades the infrastructure and configuration to power your VPN connectivity.
@@ -32,6 +24,16 @@ image::vpn-maintenance-2.png[The update button is visible the VPN detail page]
 
 
 Click the Update button to update the underlying Anypoint VPN to the latest and most secure version. This action also restarts the Anypoint VPN tunnels associated with your VPN device.
+
+Self-update your Anypoint VPNs before our automatic update to reduce the impact on your affected applications. See xref:release-notes::cloudhub/anypoint-vpn-release-notes.adoc[Anypoint VPN Updates Release Notes] for a schedule of the automatic updates.
+
+== Avoiding or Reducing Downtime During an Update
+
+Mule applications that use Anypoint VPN connectivity are impacted during the maintenance period. However, the impact on the Anypoint VPN varies depending on the VPN configuration:
+
+* An Anypoint VPN with at least one pair of tunnels configured with BGP routing and DPD (Dead Peer Detection) to reset the tunnels when triggered incurs minimal downtime. The switchover takes a few seconds. See https://help.mulesoft.com/s/article/DPD-Dead-Peer-Detection-and-Anypoint-VPN-Virtual-Private-Networking[this article^] for an explanation of DPD and VPN.
+* An Anypoint VPN tunnel pair configured with Static routing incurs some downtime before reconnection. The reconnection takes longer if you do not have an automated failover mechanism to detect failed tunnels.
+* For an Anypoint VPN configured without BGP routing or a failover mechanism or with only one tunnel configured, the outage is up to 60 minutes long while the update occurs and the original tunnel comes back up.
 
 == Troubleshoot Issues During an Anypoint VPN Update
 
