@@ -1,0 +1,616 @@
+= Application Validator Service
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+Use the Application Validator Service to create your own custom validators and prevent your application from being deployed if certain conditions are not met.
+Depending on the Mule Runtime Agent configuration, the service invokes your custom validators to enforce their business rules, such as signing validation, naming conventions or moratorium dates.
+
+image:app-validator-chart.png[Application Validation Flowchart]
+
+The following example creates a custom validator that checks the value of an application property and stops the deployment if it does not meet the specified criteria.
+
+== Create an Application Validator
+
+=== Create a Maven project
+
+Open a terminal, navigate to the folder you want to create the Java project, and type the following command:
+
+[source,console,linenums]
+----
+mvn archetype:generate \
+	-DgroupId=org.example.agent \
+	-DartifactId=mule-agent-hello-validator \
+	-DarchetypeArtifactId=maven-archetype-quickstart \
+	-DinteractiveMode=false
+----
+
+==== Maven directory layout
+
+The previous command creates the following project directory structure:
+
+[source,java,linenums]
+----
+./mule-agent-hello-validator
+./mule-agent-hello-validator/pom.xml
+./mule-agent-hello-validator/src
+./mule-agent-hello-validator/src/test
+./mule-agent-hello-validator/src/test/java
+./mule-agent-hello-validator/src/test/java/org
+./mule-agent-hello-validator/src/test/java/org/example
+./mule-agent-hello-validator/src/test/java/org/example/agent
+./mule-agent-hello-validator/src/test/java/org/example/agent/AppTest.java
+./mule-agent-hello-validator/src/main
+./mule-agent-hello-validator/src/main/java
+./mule-agent-hello-validator/src/main/java/org
+./mule-agent-hello-validator/src/main/java/org/example
+./mule-agent-hello-validator/src/main/java/org/example/agent
+./mule-agent-hello-validator/src/main/java/org/example/agent/App.java
+----
+
+=== POM File
+
+==== Properties
+
+. Enter the generated folder and review the generated pom.xml.
+. Add the following properties:
+
+[source,xml,linenums]
+----
+<properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <mule.agent.version>2.4.28</mule.agent.version>
+    <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+    <javax.ws.version>2.0</javax.ws.version>
+    <log4j.version>2.17.1</log4j.version>
+    <guice.version>5.0.1</guice.version>
+    <javax.inject.version>1</javax.inject.version>
+</properties>
+----
+
+The previous properties represent the versions used for the following required dependencies:
+
+[cols="15a,30a"]
+|===
+|`mule-agent-api` |Java API for the Mule Agent Plugin
+|`javax.ws.rs-api` |Java API for RESTful Web Services
+|`javax.servlet-api` |Java Servlet API
+|`javax.inject` |The javax.inject API
+|`guice` |Google Guice Core Library
+|`log4j-api` | The Apache Log4j API
+|===
+
+==== Dependencies
+
+Add the `com.mulesoft.agent:mule-agent-api` dependency:
+
+[source,xml,linenums]
+----
+        <dependency>
+            <groupId>com.mulesoft.agent</groupId>
+            <artifactId>mule-agent-api</artifactId>
+            <version>${mule.agent.version}</version>
+            <scope>provided</scope>
+        </dependency>
+----
+
+Add the `javax.ws.rs:javax.ws.rs-api` dependency:
+
+[source,xml,linenums]
+----
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>${javax.ws.version}</version>
+        </dependency>
+----
+
+Add the `javax.servlet:javax.servlet-api` dependency:
+
+[source,xml,linenums]
+----
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+        </dependency>
+----
+
+Add the `javax.inject:javax.inject` dependency:
+
+[source,xml,linenums]
+----
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>${javax.inject.version}</version>
+        </dependency>
+----
+
+Add the `com.google.inject:guice` dependency:
+
+[source,xml,linenums]
+----
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+----
+
+Add the `log4j` dependencies:
+
+[source,xml,linenums]
+----
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+----
+
+==== Repositories
+
+Add the MuleSoft releases and snapshots repositories:
+
+[source,xml,linenums]
+----
+    <repositories>
+        <repository>
+            <id>mulesoft-ci-releases</id>
+            <name>Mulesoft Release Repository</name>
+            <url>https://repository-master.mulesoft.org/nexus/content/repositories/releases-ee/</url>
+        </repository>
+        <repository>
+            <id>mulesoft-ci-snapshots</id>
+            <name>MuleSoft Snapshot Repository</name>
+            <url>https://repository-master.mulesoft.org/nexus/content/repositories/ci-snapshots/</url>
+        </repository>
+    </repositories>
+----
+
+=== Create the Validator Class
+
+. Rename the Default Class
++
+Rename the following class to `MuleAgentHelloValidator`:
++
+*Before*: `mule-agent-hello-validator/src/main/java/org/example/App.java`
++
+*After*: `mule-agent-hello-validator/src/main/java/org/example/MuleAgentHelloValidator.java`
+
+
+. Annotations
++
+Add the following annotations:
++
+[source,java,linenums]
+----
+@Named("MuleAgentHelloValidator")
+@Singleton
+----
+
+. Logger
++
+Add the following property to obtain a named logger based on our class:
++
+[source,java,linenums]
+----
+private static final Logger LOGGER = LogManager.getLogger(MuleAgentHelloWorld.class);
+----
+
+. Implement ArtifactValidator Interface
++
+[source,java,linenums]
+----
+public class MuleAgentHelloWorld implements ApplicationValidator {
+
+    private static final Logger LOGGER = LogManager.getLogger(MuleAgentHelloWorld.class);
+
+
+    // Type represents a group of validator implementations
+    public String getType() {
+        return "helloValidator";
+    }
+
+
+    // Custom name for the implementation.
+    // Represent a specific use case related to the validator type
+    // Must be unique in the type.
+    public String getName() {
+        return "defaultHelloValidator";
+    }
+
+    public void validate(Map<String, Object> args) throws ArtifactValidationException {
+
+    }
+}
+----
+
+. Args Parameter
++
+The args parameter contains the validator configuration that is provided in the `mule-agent.yml` file:
+services:
++
+[source,java,linenums]
+----
+  mule.agent.application.validator.service:
+    enabled: true
+    validators:
+    - type: helloValidator
+      name: defaultHelloValidator
+      enabled: true
+      args:
+        business: finance
+        welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
+        errorMessage: 'I am sorry, you are not allowed to deploy in this Cluster'
+----
+
+It also contains the following values that are injected by the service:
+
+[%header,cols="15a,30a"]
+|===
+|Key |Description
+|`_APPLICATION_NAME` |A string value that represents the name of the application.
+|`_APPLICATION_FILE_PATH` |A string value that represents the path of the temporary file used to deploy the application.
+|`_APPLICATION_PROPERTIES` |A Map<String, String> that represents the application properties.
+|===
+
+=== Implement Business Logic
+
+Let’s consider that every application deployed in the Mule runtime must have an application property called _business_, the value represents the department owner of the application and the Runtime is exclusively for the Finance department.
+
+
+[source,java,linenums]
+----
+    String applicationBusiness =
+       (applicationProperties == null)
+          ? null
+          : applicationProperties.get("business");
+
+    if (applicationBusiness != null && applicationBusiness.equals(allowedBusiness)) {
+        LOGGER.info(welcomeMessage);
+        return;
+    }
+
+    throw new ArtifactValidationException(errorMessage);
+----
+
+=== Implement Custom Exceptions
+
+Let’s create a custom exception that represents the previous error.
+
+In the package `org.example`, add a new package called exceptions and create the following class:
+
+[source,java,linenums]
+----
+public class BusinessNotAllowedException extends ApplicationValidationException {
+
+    public BusinessNotAllowedException(String message) {
+        super(message);
+    }
+}
+----
+
+In the project directory layout, now we can see:
+
+[source,java,linenums]
+----
+./mule-agent-hello-validator/src/main/java/org/example/agent/exceptions
+./mule-agent-hello-validator/src/main/java/org/example/agent/exceptions/BusinessNotAllowedException.java
+----
+
+Replace the generic `ApplicationValidationException` to `BusinessNotAllowedException`:
+
+[source,java,linenums]
+----
+    throw new BusinessNotAllowedException(errorMessage);
+----
+
+=== Add the Guice Configuration
+
+. Create the BaseModuleProvider Class
++
+In the package `org.example`, add a new package called `configuration.guice` and create the following class:
++
+[source,java,linenums]
+----
+public class MuleAgentHelloValidatorProvider extends BaseModuleProvider {
+    @Override
+    protected void configureModule(Binder binder) {
+        bindNamedSingleton(binder, ApplicationValidator.class, MuleAgentHelloValidator.class);
+    }
+}
+----
+
+. Create the BaseModuleProvider Class
++
+In the directory `src/main`, add a new folder called `META-INF/services` and create the following file:
++
+Name: `com.mulesoft.agent.configuration.guice.ModuleProvider`
++
+Content: `com.example.configuration.guice.MuleAgentHelloValidatorProvider`
+
+
+In the project directory layout, now we can see:
+
+[source,java,linenums]
+----
+./mule-agent-hello-validator/src/main/resources
+./mule-agent-hello-validator/src/main/resources/META-INF
+./mule-agent-hello-validator/src/main/resources/META-INF/services
+./mule-agent-hello-validator/src/main/resources/META-INF/services/com.mulesoft.agent.configuration.guice.ModuleProvider
+./mule-agent-hello-validator/src/main/java/org/example/agent/configuration
+./mule-agent-hello-validator/src/main/java/org/example/agent/configuration/guice
+./mule-agent-hello-validator/src/main/java/org/example/agent/configuration/guice/MuleAgentHelloValidatorProvider.java
+----
+
+== Build and Install the Mule Agent Validator
+
+Run the command:
+
+[source,console,linenums]
+----
+mvn clean install
+----
+
+A jar file is generated in the target directory:
+
+[source,java,linenums]
+----
+./mule-agent-hello-validator/target
+./mule-agent-hello-validator/target/mule-agent-hello-validator-1.0-SNAPSHOT.jar
+----
+
+=== Install the Mule Agent Validator
+
+Place the jar file in `$MULE_HOME/server-plugins/mule-agent-plugin/lib`.
+
+Let’s access the args parameter keys and values and print them out to the console:
+
+[source,java,linenums]
+----
+public void validate(Map<String, Object> args) throws ApplicationValidationException {
+
+    // Values injected by the MuleAgentApplicationValidator service
+    String applicationName = (String) args.get("_APPLICATION_NAME");
+    String applicationFilePath = (String) args.get("_APPLICATION_FILE_PATH");
+    Map<String, String> applicationProperties = (Map) args.get("_APPLICATION_PROPERTIES");
+
+    // Validator configuration values
+    String business = (String) args.get("business");
+    String welcomeMessage = (String) args.get("welcomeMessage");
+    String errorMessage = (String) args.get("errorMessage");
+
+    LOGGER.info("Values injected by the service:");
+    LOGGER.info("\tApplication name: {}", applicationName);
+    LOGGER.info("\tApplication file path: {}", applicationFilePath);
+    LOGGER.info("\tApplication properties: {}", applicationProperties);
+
+    LOGGER.info("Validator configurations:");
+    LOGGER.info("\tBusiness: {}", business);
+    LOGGER.info("\tWelcome message: {}", welcomeMessage);
+    LOGGER.info("\tError message: {}", errorMessage);
+}
+----
+
+==== Update the mule-agent.yml File
+
+Add the validation configuration in the service:
+
+[source,java,linenums]
+----
+services:
+  mule.agent.application.validator.service:
+    enabled: true
+    validators:
+    - type: helloValidator
+      name: defaultHelloValidator
+      enabled: true
+      args:
+        business: finance
+        welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
+        errorMessage: 'I am sorry, you are not allowed to be deployed in this Cluster'
+----
+
+=== Start the Mule
+
+The following logs show in the console:
+
+[source,java,linenums]
+----
+AgentArtifactValidatorService: Total validators loaded: 1
+AgentArtifactValidatorService: Validators listed by type:
+AgentArtifactValidatorService: 	Type: helloValidator Names: [defaultHelloValidator]
+----
+
+== Deploy an Application
+
+Now that the validator is ready, let’s deploy an application to see how the Agent Validator Service invokes the custom validator.
+
+Curl command:
+
+[source,console,linenums]
+----
+curl -X PUT 'http://localhost:9999/mule/applications/app-01' \
+-H 'Content-Type: application/json' \
+-d '{
+  "url": "file:/tmp/app-01.jar",
+  "configuration": {
+    "mule.agent.application.properties.service": {
+      "applicationName": "app-01",
+      "properties": {
+          "business": "finance"
+      }
+    }
+  }
+}'
+----
+
+Response:
+
+[source,console,linenums]
+----
+{
+  "application": {
+    "name": "app-01"
+  },
+  "status": "Deployment attempt started"
+}
+----
+
+Console logs:
+
+[source,console,linenums]
+----
+MuleAgentHelloValidator: Values injected by the service:
+MuleAgentHelloValidator:   Application name: app-01
+MuleAgentHelloValidator:   Application file path: /tmp/mule-received-artifact-1793122713159733968/app-01.jar
+MuleAgentHelloValidator:   Application properties: {business=finance}
+MuleAgentHelloValidator: Validator configurations:
+MuleAgentHelloValidator:   Allowed Business: finance
+MuleAgentHelloValidator:   Welcome message: Hi, welcome to Finance Cluster Runtimes
+MuleAgentHelloValidator:   Error message: I am sorry you not allowed to be deployed in this Cluster
+MuleAgentHelloValidator: Hi, welcome to Finance Cluster Runtimes
+----
+
+
+== Encrypt Values in the Validator Configuration
+
+Let’s consider that the validator needs to use a secret provided in the `mule-agent.yml`. Secrets, passwords or any value can be encrypted using the `amc_setup.sh script`.  See the https://docs.mulesoft.com/runtime-manager/installing-and-configuring-runtime-manager-agent#encrypt-passwords[Encrypt Passwords] documentation.
+
+. Encrypt a single value
++
+Set the `AGENT_VAR_master_password` environment variable to the master password:
++
+`export AGENT_VAR_master_password=myPassword`
+
+. Run the encryption utility:
++
+`$MULE_HOME/bin/amc_setup --encrypt my-secret-value`
++
+Output:
++
+[source,console,linenums]
+----
+Mule Agent Installer
+-----------------------------
+
+
+	INFO: The encrypted value to paste on the mule-agent.yml file is: '![PBEWITHSHA1ANDDESEDE,wFE1D5V4DMb0uG77mzU+gibrlmnj3Kzb]'
+----
+
+. Add the encrypted value in the validator configuration services:
+
+[source,yaml,linenums]
+----
+  mule.agent.artifact.validator.service:
+    enabled: true
+    validators:
+    - type: helloValidator
+      name: defaultHelloValidator
+      enabled: true
+      args:
+        business: finance
+        welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
+        errorMessage: 'I am sorry you not allowed to be deployed in this Cluster'
+        secret: '![PBEWITHSHA1ANDDESEDE,wFE1D5V4DMb0uG77mzU+gibrlmnj3Kzb]'
+----
+
+== Decrypt Values in the Validator
+
+Values can be decrypted using the Encryption Service.
+
+. Inject the Encryption Service in your validator class
++
+----
+    @Inject
+    EncryptionService encryptionService;
+----
+
+. Decrypt the value
++
+[source,java,linenums]
+----
+String secret = (String) args.get("secret");
+
+String secretPlainText = null;
+
+try {
+   secretPlainText = encryptionService.decrypt(secret);
+} catch (AgentEncryptionException e) {
+   LOGGER.error(e);
+}
+
+LOGGER.info("\tSecret: {}", secret);
+LOGGER.info("\tSecret (plain text): {}", secretPlainText);
+----
+
+== Use case: Pass Encrypted Values to the Validator
+
+Curl command:
+
+[source,console,linenums]
+----
+curl -X PUT 'http://localhost:9999/mule/applications/app-01' \
+-H 'Content-Type: application/json' \
+-d '{
+  "url": "file:/tmp/app-01.jar",
+  "configuration": {
+    "mule.agent.application.properties.service": {
+      "applicationName": "app-01",
+      "properties": {
+          "business": "finance"
+      }
+    }
+  }
+}'
+----
+
+Response:
+[source,console,linenums]
+----
+{
+  "application": {
+    "name": "app-01"
+  },
+  "status": "Deployment attempt started"
+}
+----
+
+Console logs:
+[source,console,linenums]
+----
+AgentApplicationService: Deploying the app-01 application from URL file:/tmp/app-01.jar
+MuleAgentHelloValidator: Values injected by the service:
+MuleAgentHelloValidator:   Application name: app-01
+MuleAgentHelloValidator:   Application file path: /tmp/mule-received-artifact-6683649864468336756/app-01.jar
+MuleAgentHelloValidator:   Application properties: {business=finance}
+MuleAgentHelloValidator: Validator configurations:
+MuleAgentHelloValidator:   Allowed Business: finance
+MuleAgentHelloValidator:   Welcome message: Hi, welcome to Finance Cluster Runtimes
+MuleAgentHelloValidator:   Secret: ![PBEWITHSHA1ANDDESEDE,wFE1D5V4DMb0uG77mzU+gibrlmnj3Kzb]
+MuleAgentHelloValidator:   Secret (plain text): my-secret-value
+MuleAgentHelloValidator: Hi, welcome to Finance Cluster Runtimes
+----
