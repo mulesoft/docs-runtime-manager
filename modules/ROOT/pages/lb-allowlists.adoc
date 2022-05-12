@@ -39,9 +39,9 @@ To add an IP address to the allowlist of a DLB using Runtime Manager:
 
 . From Anypoint Platform, click *Runtime Manager*.
 . Click *Load Balancers* and then click the load balancer name.
-. In the *Whitelisted CIDRs* tab, click *Add New CIDR*:
+. In the *Allowlisted CIDRs* tab, click *Add New CIDR*:
 +
-.The arrow shows the *Add New CIDR* option in the *Whitelisted CIDRs* tab.
+.The arrow shows the *Add New CIDR* option in the *Allowlisted CIDRs* tab.
 image::lb-allowlist-update.png[*Add New CIDR* option in the load balancer settings page]
 . Enter the IP address in valid CIDR format (for example, `10.2.0.0/16`).
 . Click *Add To List*.
@@ -52,7 +52,7 @@ image::lb-allowlist-update.png[*Add New CIDR* option in the load balancer settin
 To add a range of IP addresses to the allowlist for a DLB using the CLI:
 
 ----
-cloudhub load-balancer whitelist add myLB_name myCIDRblock
+cloudhub load-balancer allowlist add myLB_name myCIDRblock
 ----
 
 The IP addresses must be in valid CIDR format (for example, `10.2.0.0/16`).
@@ -60,13 +60,13 @@ The IP addresses must be in valid CIDR format (for example, `10.2.0.0/16`).
 If you want to remove IP addresses from the allowlist:
 
 ----
-cloudhub load-balancer whitelist remove myLB_name myCIDRblock
+cloudhub load-balancer allowlist remove myLB_name myCIDRblock
 ----
 
 == See Also
 
-* xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-whitelist-add[cloudhub load-balancer whitelist add]
-* xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-whitelist-remove[cloudhub load-balancer whitelist remove]
+* xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-allowlist-add[cloudhub load-balancer allowlist add]
+* xref:anypoint-cli::cloudhub-dlb.adoc#cloudhub-load-balancer-allowlist-remove[cloudhub load-balancer allowlist remove]
 * https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks[IPv4 CIDR blocks]
 * xref:index.adoc[Create a Load Balancer with Runtime Manager]
 * xref:lb-create-cli.adoc[Create a Load Balancer with the Anypoint Platform CLI]
