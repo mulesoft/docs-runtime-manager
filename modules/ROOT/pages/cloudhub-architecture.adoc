@@ -78,16 +78,16 @@ The memory capacity and processing power of a worker depends on how you configur
 Worker sizes have different compute, memory, and storage capacities.
 You can scale workers vertically by selecting one of the available worker sizes:
 
-[%header,cols="3*a"]
+[%header,cols="4*a"]
 |===
-|Worker Size |Heap Memory | Storage
-|0.1 vCores |500 MB | 8 GB
-|0.2 vCores |1 GB | 8 GB
-|1 vCore |1.5 GB | 12 GB
-|2 vCores |3.5 GB | 40 GB
-|4 vCores |7.5 GB | 88 GB
-|8 vCores |15 GB | 168 GB
-|16 vCores |32 GB | 328 GB
+|Worker Size |Worker Memory |Heap Memory | Disk Storage Size
+|0.1 vCores |1 GB |500 MB | 8 GB
+|0.2 vCores |2 GB |1 GB | 8 GB
+|1 vCore |4 GB |2 GB | 12 GB
+|2 vCores |8 GB |4 GB | 40 GB
+|4 vCores |16 GB |8 GB | 88 GB
+|8 vCores |32 GB |16 GB | 168 GB
+|16 vCores|64 GB |32 GB | 328 GB
 |===
 
 
@@ -104,8 +104,7 @@ Workers with 1 or more vCores:
 * Provide performance consistency
 * Are available only for Mule version 3.6.2 or later, or API gateway version 2.0.2 or later
 
-Each worker has a minimum of 8 GB of storage, which is used for both system and application storage.
-If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access additional storage in `/tmp`.
+Each worker has a minimum of 8 GB of storage allocated, which is used for both system and application storage, with about 3.0 GB used for OS and Mule components. If your application requires more storage (for example, verbose logging), use a worker with two or more vCores, enabling the application to access additional storage.
 
 Only running applications count toward worker usage.
 
