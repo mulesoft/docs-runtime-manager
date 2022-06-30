@@ -53,7 +53,10 @@ The schedule for date-patch updates is:
 +
 The update will be applied between the 10th and 12th day of the update to all Sandbox DLBs.
 Lastly, the update will be applied between the 13th and 14th day of the update to all Production DLBs.
-+
+
+[NOTE]
+A DLB will be considered as a Production DLB if it is part of a VPC that is default or if the VPC is associated with at least one production environment.
+
 Because these updates contain required security patches, you cannot roll back these updates once applied.
 
 === Updating Dedicated Load Balancers manually
