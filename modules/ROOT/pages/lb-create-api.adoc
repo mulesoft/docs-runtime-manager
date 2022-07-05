@@ -28,6 +28,7 @@ To create a load balancer using the CloudHub API, use the following endpoints:
 //NO RENAME SHARED
 include::partial$no-rename.adoc[tag=noRenameDLB]
 
+The CloudHub DLB name cannot start with `internal-`. Starting the DLB name with `internal-` results in error message: `LB name=internal-dlb-name cannot start with -internal`.
 
 == Enable TLS 1.0 on a DLB Using the CloudHub API
 
