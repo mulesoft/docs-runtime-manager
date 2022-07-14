@@ -355,14 +355,14 @@ Clusters::
 You can use the following variables in the alert email *Subject* and *Message* fields.
 For the description of each variable, see <<var-defs>>.
 
-// add cloudhub 2 alerts - deployment success and deployment failure
+// add cloudhub 2.0 alerts - deployment success and deployment failure
 
 [%header,cols="25a,50a,20a"]
 .Variables for Alerts
 |===
 | Alert Type | Alert | Applicable Variables
 2+| All Alerts | `${resource}` `${severity}` `${state}`
-.7+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}`
+.7+| CloudHub 1.0 App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}`
 | *Memory usage - CloudHub*
 | *Custom application notification* | `${user}` `${priority}` `${transactionId}` `${message}`
 | *Deployment failed* |  `${user}` `${message}`
@@ -421,6 +421,7 @@ For the description of each variable, see <<var-defs>>.
 |`${name}` a|Name of the item that triggers the alert:
 
 * Hybrid Apps: Name of the app that triggers the alert
+* CloudHub 2.0 Apps: Name of the app that triggers the alert
 * Servers: Name of the target (server, server group, or cluster) that triggers the alert
 |`${newVersion}`|New version number for the agent or runtime
 |`${oldVersion}`|Previous version number for the agent or runtime
@@ -432,8 +433,9 @@ For the description of each variable, see <<var-defs>>.
 |`${priority}` |Priority of the notification that triggers the alert
 |`${resource}` a| Name of the item that triggers the alert:
 
-* CloudHub Apps: Name of the app that triggers the alert
-* Hybrid Apps: Name of the resource in the app that triggers the alert
+* CloudHub 1.0 Apps: Name of the app that triggers the alert
+* CloudHub 2.0 Apps: ID of the app that triggers the alert
+* Hybrid Apps: ID of the resource in the app that triggers the alert
 |`${severity}` | Severity of the alert
 |`${state}` | State of the resource that triggers the alert, such as Running or Disconnected
 |`${threshold}` |Count over the period of time that triggers the alert
