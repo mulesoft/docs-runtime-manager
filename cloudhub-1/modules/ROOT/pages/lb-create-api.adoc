@@ -1,0 +1,74 @@
+= Create a Load Balancer with the CloudHub API
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::lb-create-api.adoc
+
+
+You can create a dedicated load balancer (DLB) using the CloudHub API.
+
+== Prerequisites
+
+To create a load balancer using the CloudHub API, ensure that you perform the following:
+
+* Ensure that you are an administrator in the organization where you are creating the load balancer.
+* Create an Anypoint Virtual Private Cloud (Anypoint VPC) in the organization where you want to create a load balancer.
+* Create at least one certificate and private key for your certificate.
+
+== Create a Load Balancer
+
+To create a load balancer using the CloudHub API, use the following endpoints:
+
+* `anypoint.mulesoft.com/cloudhub/api/organizations/_orgid_/loadbalancers`
+* `anypoint.mulesoft.com/cloudhub/api/organizations/_orgid_/vpcs`
+
+//NO RENAME SHARED
+include::partial$no-rename.adoc[tag=noRenameDLB]
+
+
+== Enable TLS 1.0 on a DLB Using the CloudHub API
+
+// TLS 1.0 Support
+include::partial$tls-support.adoc[tag=tlsSupport]
+
+To enable TLS 1.0 support on a DLB using the CloudHub API:
+
+. Run the following command:
++
+--
+[source,linenums]
+----
+curl -X PATCH \
+  https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID \
+  -H 'authorization: Bearer myAccessToken' \
+  -H 'content-type: application/json' \
+  -d '[
+  {
+    "op": "replace",
+    "path": "/sslEndpoints/0/tlsv1",
+    "value": "true"
+  }
+]'
+----
+In the command:
+
+* `_myOrgID_` is the organization ID.
+* `_myVpcID_` is the ID for the VPC.
+* `_myDlbID_` is the ID for the DLB.
+* `_myAccessToken_` is the access token you generated.
+
+The response includes the following:
+
+`"tlsv1": true,`
+--
+. Change the default cipher suite to `OldDefault`.
++
+See xref:lb-cert-validation.adoc#change-the-default-cipher-suite-to-support-tls-1-0[Change the Default Cipher Suite to Support TLS 1.0].
+
+
+== See Also
+
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/1.0.13/console/method/%233964/[CloudHub API Create New Load Balancer]
+* xref:access-management::index.adoc[Access Management]
+* xref:lb-cert-upload.adoc[Add Certificates to a Dedicated Load Balancer]
+* xref:lb-cert-validation.adoc[Certificate Validation in Dedicated Load Balancers]

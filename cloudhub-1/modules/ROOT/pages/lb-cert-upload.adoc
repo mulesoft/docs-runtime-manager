@@ -1,0 +1,112 @@
+= Add Certificates to a Dedicated Load Balancer
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::lb-cert-upload.adoc
+
+
+
+When you create a dedicated load balancer (DLB), you must add at least one certificate.
+You can add additional certificates to a DLB using Runtime Manager or the command-line interface.
+
+The certificate must be contained in one unencrypted, PEM-encoded file.
+If you are migrating a certificate created with Windows tools:
+
+* Remove all "Bag Attributes" and "Key Attributes".
+* Convert all end-of-line characters from `\r\n` to `\n`, if necessary.
+
+This file must contain the entire certificate chain ordered sequentially:
+
+[%header,cols="30a,70a"]
+|===
+| Certificate | Example
+| The Primary Certificate | -----BEGIN CERTIFICATE----- +
+(Your Primary SSL certificate: your_domain_name.crt) +
+-----END CERTIFICATE-----
+| The Intermediate Certificate | -----BEGIN CERTIFICATE----- +
+(Your Intermediate certificate: DigiCertCA.crt) +
+-----END CERTIFICATE-----
+|===
+
+You don't need to include the root certificate in the certificate chain.
+However, ensure that you include the ASCII armor in each certificate.
+
+
+== Add a Certificate to an Existing Load Balancer
+
+You can add a certificate to an existing DLB using Runtime Manager or the command-line interface.
+
+To add a certificate using Runtime Manager:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*, and then click the load balancer name.
+. In the *Certificates* tab, click *Add certificate*.
++
+.The arrow shows the *Add certificate* option in the *Certificates* tab.
+image::lb-cert-upload-update.png[Add certificate option in the load balancer settings page]
+. Select *Choose File* to upload the public key and private key files, such as:
+
+** Public key file
++
+A PEM file that includes both the server certificate and the intermediate CA certificate,
+for example, `example-com-crt.pem`
+** Private key file
++
+--
+A PEM file that contains a passphrase-less private key, for example, `example-com-private-noencrypt.pem`
+
+To create the passphrase-less file, run a command like the following:
+
+[source,console,linenums]
+----
+openssl rsa -in example-com-private.pem -out example-com-private_noencrypt.pem
+----
+--
+. Click *Save Certificate*.
+
+To add a certificate to an existing DLB using the CLI:
+
+[source,console,linenums]
+----
+cloudhub load-balancer ssl-endpoint add myLB_name example-com-crt.pem example-com-private.pem
+----
+
+
+== Replace a Certificate on an Existing Load Balancer
+
+You can replace a certificate on an existing DLB when the certificate is expiring or needs to be updated.
+
+To replace a certificate using Runtime Manager:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*, and then click the load balancer name.
+. In the *Certificates* tab, click the certificate name.
+. Select *Choose File* to upload the public key and private key files, such as:
+
+** Public key file
++
+A PEM file that includes both the server certificate and the intermediate CA certificate,
+for example, `new-example-com-crt.pem`
+
+** Private key file:
++
+--
+A PEM file that contains a passphrase-less private key, for example, `new-example-com-private-noencrypt.pem`
+
+To create the passphrase-less file, run a command like the following:
+
+[source,console,linenums]
+----
+openssl rsa -in new-example-com-private.pem -out new-example-com-private_noencrypt.pem
+----
+--
+. Click *Done Editing*.
+. Click *Apply Changes*.
+
+
+== See Also
+
+* xref:lb-ssl-endpoints.adoc[Configure SSL Endpoints]
+* xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
+* xref:lb-create-cli.adoc[Create a Load Balancer with the Anypoint Platform CLI]
+* xref:cloudhub-cli.adoc#cloudhub-load-balancer-ssl-endpoint-add[cloudhub load-balancer ssl-endpoint add]

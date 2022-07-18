@@ -1,0 +1,193 @@
+= View Log Data
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::viewing-log-data.adoc,
+
+
+
+CloudHub provides access to log data that includes deployment messages and events for each worker and Mule runtime engine logs.
+
+Logs and diagnostics are currently available only for applications deployed to CloudHub workers.
+For applications deployed to a local server, you can send data to external analytics software.
+See xref:runtime-manager::sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
+
+For more advanced searching and log management, you can:
+
+* Use Anypoint Monitoring.
++
+See xref:monitoring::index.adoc[Anypoint Monitoring Overview].
+* Integrate your CloudHub app with your logging system using the Log4j configuration.
++
+See xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j].
+
+== View Logs
+
+To view logs for applications deployed to CloudHub:
+
+. In Anypoint Platform, select *Runtime Manager*.
+. In the Runtime Manager navigation menu, click *Applications*, and then click the application name.
+. In the navigation menu, click *Logs*.
+. In the *Deployments* section, filter the output by day, deployment, system log, and workers.
++
+To remove a filter, deselect the checkbox for the date:
++
+.The arrow shows the checkbox to filter log output by deployment in the *Deployments* section.
+image::cloudhub-logs-deploy.png[Filter log output by deployment in the Deployments section]
+
+== Download Logs
+
+For each worker in a CloudHub deployment, you can download logs specific to that worker's activity:
+
+. In the *Deployments* section, select the date and worker for which you want to download logs.
+. Click the download icon for the worker and select *Logs*:
++
+.The arrow shows the icon to download log output by deployment in the *Deployments* section.
+image::cloudhub-logs-download.png[Download log output by worker in the Deployments section]
+
+CloudHub downloads the log output to a text file in the format `__deploymentID__.__instanceID__-__workerNumber__.log`.
+Use a text editor to view the log file.
+
+To archive or download CloudHub application logs for audit, analytics, or other purposes at regular intervals, use the custom log appender to extract logs.
+See xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j].
+
+
+== Download Diagnostics
+
+Diagnostics display the Java thread dump of each CloudHub worker in each deployment. These indicate the current state of the server, which is helpful for debugging and support.
+
+Diagnostics are not available for apps running on Mule versions earlier than 3.8.0 (excluding version 3.7.4).
+
+To download diagnostics:
+
+ . In the *Deployments* section, select the date and worker for which you want to download diagnostics.
+. Click the download icon for the worker and select *Diagnostics*:
++
+.The arrow shows the icon to download diagnostics by worker in the *Deployments* section.
+image::cloudhub-logs-diag-download.png[Download diagnostics by worker in the Deployments section]
+
+CloudHub downloads the diagnostic output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-diag.txt`.
+Use a text editor to view the diagnostics file.
+
+[TIP]
+====
+You can also use the following URL to download a diagnostics file directly:
+
+`api/v2/applications/__appName__/instances/__instanceId__/diagnostics`
+====
+
+== Download Mule Logs
+
+Mule logs display the logs of the Mule runtime engine for CloudHub.
+The Mule log contains information about app and lifecycle events.
+For example, the log records an entry when a Mule service or app starts, deploys, stops, or undeploys.
+
+ . In the *Deployments* section, select the date and worker for which you want to download Mule logs.
+ . Click the download icon for the worker and select *Mule Logs*:
++
+.The arrow shows the icon to download Mule log output by deployment in the *Deployments* section.
+image::cloudhub-logs-mule-download.png[Download Mule log output in the Deployments section]
+
+CloudHub downloads the Mule log output to a text file in the format `__appName__-instance-__instanceID__-__workerNumber__-mule_ee.log`.
+Use a text editor to view the log file.
+
+For more information about Mule logs, see xref:mule-runtime::logging-in-mule.adoc#runtime-log[Runtime Log].
+
+
+== Deployment History Persistence
+
+CloudHub stores up to 30 days of inactive deployments history based on the last modified time of the deployment.
+
+== Log Persistence
+
+CloudHub stores up to 100 MB of log data per application per worker, or up to 30 days, whichever limit is reached first.
+
+== Log Timezones
+
+CloudHub stores log data in Universal Time (UTC); however, the console displays the log using your computer's local time zone.
+
+
+== Search Logs
+
+Search for logs that contain specified values or search for logs by date and priority.
+
+
+To search logs:
+
+. Enter a value in the search box, or click *Advanced* to search for logs for a specified time, day, date range, and message priority.
+. Click *Apply*.
++
+.The screenshot shows (*1*) *Advanced* search and (*2*) *Priority* on the *Logs* page.
+image::cloudhub-logs-search-adv.png[Display Advanced search and Priority on the Logs page]
+
+=== Search by Date and Time
+
+The *Date & Time* filter lets you search the log by specifying a date range. Possible values are:
+
+* *Last hour*
+* *Last 24 hours*
+* *Last week*
+* *Last month*
+
+=== Search by Message Priority
+
+The *Priority* filter lets you view specific events in the log. You can also specify different priorities by typing `priority<type>` in the search box, as shown in the *Command* column in the table.
+
+Possible values are:
+
+[%header,cols="3*a"]
+|===
+| Value
+| Description
+| Command
+
+| All Priorities
+| List all messages
+| N/A
+
+| `ERROR`
+| List only error messages, such as when an exception occurs.
+| priority:ERROR
+
+| `FATAL`
+| List only fatal messages for when an application fails
+| priority:FATAL
+
+| `INFO`
+| List informative messages
+| priority:INFO
+
+| `SYSTEM`
+| List messages about application and worker startup
+| priority:SYSTEM
+
+| `CONSOLE`
+| List message about console events such as setting the object store
+| priority:CONSOLE
+
+| `WARN`
+| List warning messages
+| priority:WARN
+
+| `DEBUG`
+| List debugging messages
+| priority:DEBUG
+
+|===
+
+=== Wildcard Searching
+
+You can filter log data by entering search terms into the search box at the top of the log page that match results in the log message.
+
+You can also search for an exact term in the log message with a few common quantifiers for wildcard searching:
+
+* `?` matches zero or one of the preceding elements.
+* `&#8727;` matches zero or more of the preceding elements.
+
+== See Also
+
+* xref:runtime-manager::deployment-strategies.adoc[Deployment Options]
+* xref:runtime-manager::sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools]
+* xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j]
+* xref:runtime-manager::monitoring.adoc[Monitor Applications and Servers]
+* xref:mule-runtime::logging-in-mule.adoc[Configuring Logging]
