@@ -18,19 +18,28 @@ image:flex-gateway-delete.png[Delete Flex Gateway]
 
 If there are APIs associated to the gateway you want to delete, Runtime Manager displays a message prompting you to either:
 
-* Move the associated APIs to another gateway.
+* Move the associated APIs to another gateway; or
 * Delete all associated APIs.
 
 Once you have moved or deleted all the associated APIs, follow the steps previously described to delete a gateway and confirm the deletion.
 
-Deleted gateways are shown with status **Deleted** for 30 days before it is removed from the gateways list.
-
-Deleting a gateway from the Runtime Manager UI simply removes the connection between Anypoint Platform and the gateway and all its replicas.
-This action does not remove the gateway from the server. To manually delete a gateway from your server, see xref:gateway::flex-conn-manage.adoc[Managing Flex Gateway in Connected Mode]
-//Ask Chris about gateways unregistration.
-
 [NOTE]
 If you delete a gateway, you lose all its configuration history and will not be able to recover it.
+
+== Flex Gateway Status
+
+The following table describes the meaning of each status for a gateway:
+
+[%header,cols="20a,30a,30a"]
+|===
+|Status Name |Description
+|Connected |Gateway is connected to the platform and you can add APIs to it.
+|Disconnected |Gateway is not connected to the platform.
+|Deleting | Gateway is in the process of being deleted.
+|Deleted | Gateway is deleted from the platform, it stops accepting API requests and configuration changes, and stops reporting metrics.
+|===
+
+Deleted gateways are shown with status **Deleted** for 30 days before it is removed from the gateways list.
 
 == See Also
 
