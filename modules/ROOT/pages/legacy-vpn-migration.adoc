@@ -37,7 +37,7 @@ Actual configuration steps and functionality may differ based on the type of dev
 
 Download the VPN configuration file from Runtime Manager, and configure your VPN device. See xref:vpn-about.adoc#ipsec-settings[Anypoint VPN] for more information on IPsec Settings.
 
-Running both the legacy and new VPN using the same encryption domains for a single VPC creates asymmetric routing scenarios, and breaks connectivity to the VPC.
+Running both the legacy and Anypoint VPN using the same encryption domains for a single VPC creates asymmetric routing scenarios and breaks connectivity to the VPC.
 You can validate connectivity via the new VPN using a single host (a /32 encryption domain). Either create a single /32 static route, or propagate this route via BGP.
 
 Make sure you follow these rules when routing traffic:
