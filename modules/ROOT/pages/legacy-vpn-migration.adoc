@@ -40,7 +40,7 @@ Download the VPN configuration file from Runtime Manager, and configure your VPN
 Running both the legacy and Anypoint VPN using the same encryption domains for a single VPC creates asymmetric routing scenarios and breaks connectivity to the VPC.
 You can validate connectivity via Anypoint VPN using a single host (a /32 encryption domain). Either create a single /32 static route, or propagate this route via BGP.
 
-Make sure you follow these rules when routing traffic:
+When routing traffic, follow these guidelines :
 
 * When your VPC route table has multiple routes, use the most specific route.
 * When your VPC route table has duplicate routes, use the manually configured route pointing to the legacy VPN.
