@@ -34,6 +34,8 @@ For this reason, you might want to append your organization name to your DLB nam
 include::partial$no-rename.adoc[tag=noRenameDLB]
 +
 Each dedicated load balancer exposes an external domain `_lb-name_.lb.anypointdns.net` name where `_lb-name_` is the name you provide.
++
+The CloudHub DLB name cannot start with `internal-`.
 
 . Select a target Anypoint VPC from the drop-down list.
 . Specify the amount of time the DLB waits for a response from the Mule application in the *Timeout in Seconds* field.
