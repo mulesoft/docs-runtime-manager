@@ -25,6 +25,8 @@ The following example shows a High Availability VPN topology using a single Anyp
 A MuleSoft Virtual Private Gateway (VGW) supports one Anypoint VPC association, but it supports up to 10 VPN connections.
 You can locate your VPN Gateways in the same data center, or in different physical locations.
 
+To eliminate all single points of failure, the two customer gateways should be in different data centers, and preferably in different cities. A good choice is to you your Disaster Recovery location for the second gateway.
+
 image:vpn-ha-topology.png[VPN High Availability Topology]
 
 Use BGP routing to advertise the same routes via VPN-1 and VPN-2. See https://help.mulesoft.com/s/article/Anypoint-VPN-Path-Selection-using-BGP-Routing[Anypoint VPN Path Selection using BGP Routing] for instructions on how to control path selection via the routing protocol.
@@ -37,5 +39,6 @@ High Availability VPN connections also support static routing, in which you esta
 == See Also
 
 * xref:vpn-create-arm.adoc[Create an Anypoint VPN Connection]
+* xref:vpn-risk.adoc[Anypoint VPN risk]
 * https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html[Using Redundant Site-to-Site VPN Connections to Provide failover]
 * https://help.mulesoft.com/s/article/How-to-Calculate-VPC-and-VPN-License-Requirements[How to Calculate VPC and VPN License Requirements].
