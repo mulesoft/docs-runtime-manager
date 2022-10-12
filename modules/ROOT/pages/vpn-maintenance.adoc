@@ -10,55 +10,42 @@ image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fa
 
 == Anypoint VPN Update
 
-As part of the required regular maintenance, and to maintain good security hygiene, MuleSoft upgrades the infrastructure and configuration to power your VPN connectivity.
+MuleSoft Anypoint VPN is a managed service that is underpinned by AWS Site-to-Site VPN connections. For any integrations or flows that require connectivity to your on-premises or other external platforms, VPN is key to this connectivity. Updating an Anypoint VPN that is not set up with at least a pair of tunnels using BGP routing will experience a downtime. See xref:vpn-high-availability.adoc[Anypoint VPN High Availability] for more information.
 
-For any integrations or flows that require connectivity to your on-premises or other external platforms, VPN is key to this connectivity. Updating an Anypoint VPN that is not set up with at least a pair of tunnels using BGP routing experiences a downtime. See xref:vpn-high-availability.adoc[Anypoint VPN High Availability] for more information.
+After the October 2022 quarterly maintenance window, Anypoint VPN will no longer be able to support quarterly customer self-upgrades. From this point forward, updates made to Anypoint VPN will adhere to AWS's standard continuous upgrade process. Upgrades will be applied on-demand, with no published maintenance window scheduled, no customer opt-in self-upgrade capabilities, with *potential (limited) downtime for customers that do not have a* xref:vpn-high-availability.adoc[High Availability (HA) VPN implementation].
 
-To account for this, MuleSoft provides an update button that enables you to take this update during your own Maintenance Window.
+MuleSoft recommends that all customers plan to deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoid any downtime associated with these AWS delivered security updates. Please review the below section for recommendations and troubleshooting.
 
-The update button shows next to any Anypoint VPNs that has an update pending in the VPN lists page, and in the VPN detail page.
+== Avoiding or Reducing Downtime During an on-demand maintenance
 
-image::vpn-maintenance-1.png[The update button is visible next to any Anypoint VPNs that has not been updated yet in the VPN lists]
-
-image::vpn-maintenance-3.png[The update button is visible the VPN detail page]
-
-
-Click the Update button to update the underlying Anypoint VPN to the latest and most secure version. This action also restarts the Anypoint VPN tunnels associated with your VPN device.
-
-Self-update your Anypoint VPNs before our automatic update to reduce the impact on your affected applications. See xref:release-notes::cloudhub/anypoint-vpn-release-notes.adoc[Anypoint VPN Updates Release Notes] for a schedule of the automatic updates.
-
-== Avoiding or Reducing Downtime During an Update
-
-Mule applications that use Anypoint VPN connectivity are impacted during the maintenance period. However, the impact on the Anypoint VPN varies depending on the VPN configuration:
+Mule applications that use Anypoint VPN connectivity are impacted during the on-demand maintenance. However, the impact on the Anypoint VPN varies depending on the VPN configuration:
 
 * An Anypoint VPN with at least one pair of tunnels configured with BGP routing and DPD (Dead Peer Detection) to reset the tunnels when triggered incurs minimal downtime. The switchover takes a few seconds. See https://help.mulesoft.com/s/article/DPD-Dead-Peer-Detection-and-Anypoint-VPN-Virtual-Private-Networking[this article^] for an explanation of DPD and VPN.
 * An Anypoint VPN tunnel pair configured with Static routing incurs some downtime before reconnection. The reconnection takes longer if you do not have an automated failover mechanism to detect failed tunnels.
 * For an Anypoint VPN configured without BGP routing or a failover mechanism or with only one tunnel configured, the outage is up to 60 minutes long while the update occurs and the original tunnel comes back up.
 
-== Troubleshoot Issues During an Anypoint VPN Update
+== Troubleshoot Issues During an Anypoint VPN on-demand maintenance
 
-These are some of the possible issues you may encounter during the update:
+These are some of the possible issues you may encounter during the on-demand maintenance:
 
 === Tunnels not Coming Up
 
-If the tunnels are not back up within 10-15 minutes after initiating an update, try restarting your end of the tunnels to bring them back up.
+If the tunnels are not back up within 10-15 minutes at any point in time, try restarting your end of the tunnels to bring them back up.
 
 If your VPN is configured with static routing, try generating 'interesting' traffic towards the Anypoint VPN to bring up the VPN. See https://help.mulesoft.com/s/article/How-to-Generate-Interesting-Traffic-for-Anypoint-VPN[How to Generate Interesting Traffic for Anypoint VPN^] for more information.
 
 === Tunnel is Going Down Due to Inactivity
 
-If there is no traffic over the VPN tunnel, it goes down due to inactivity. Generate interesting traffic, or alternatively set Anypoint VPN to be the initiator. See https://help.mulesoft.com/s/article/How-to-enable-Initiator-mode-and-change-DPD-action-in-Anypoint-VPN[How to Enable Initiator Mode and Change DPD Action in Anypoint VPN^] for more information.
+If there is no traffic over the VPN tunnel, it goes down due to inactivity. Generate interesting traffic. The recommendation is for customers to move towards BGP.
 
 === IKE Phase Lifetimes Mismatch
 
 ==== If You Are Using IKEv2:
 
-To maintain a reliable tunnel operation after the upgrade, ensure that IKEv2 Phase 1 and Phase 2 lifetimes are set as described in xref:vpn-about.adoc#ipsec-settings[the documentation]:
+To maintain a reliable tunnel operation after the on-demand maintenance, ensure that IKEv2 Phase 1 and Phase 2 lifetimes are set as described in xref:vpn-about.adoc#ipsec-settings[the documentation]:
 
 * IKE Phase 1 lifetime: 28000 seconds
 * IKE Phase 2 lifetime: 3000 second
-
-Perform the upgrade of your non-production Anypoint VPNs first and ensure the tunnel is up, then plan for upgrading your Production Anypoint VPNs.
 
 [NOTE]
 AWS documentation states 28800 seconds for IKE Phase 1 lifetime, and 3600 seconds for IKE Phase 2 lifetime. MuleSoft recommends the 28000/3000 combination for your firewall device to timeout first and control the rekey process.
@@ -74,13 +61,9 @@ If you are using Azure VPN, ensure that PFS is enabled and adjust lifetimes for 
 * https://help.mulesoft.com/s/article/Anypoint-VPN-goes-Down-Periodically-Due-to-PFS-is-not-Enabled-for-IPsec-Phase-2[Anypoint VPN Goes Down Periodically Due to PFS not Enabled for IPsec Phase 2^]
 * https://help.mulesoft.com/s/article/Anypoint-VPN-to-Azure-keeps-going-down-every-hour[Anypoint VPN to Azure Keeps Going Down Every Hour^]
 
-=== Avoid Concurrent VPN Updates
-
-To prevent VPN update errors, update only one VPN at a time. Updating multiple VPNs at once can cause the call to fail, requiring you to manually reset the update flag.
-
 === Anypoint VPN with BGP Routing Enters Asymmetric Mode after Update
 
-Anypoint VPN enters into asymmetric model after an update if the AS paths for the two tunnels of the same VPN are different. See https://help.mulesoft.com/s/article/Anypoint-VPN-with-BGP-Routing-Enters-Asymmetric-Mode-After-update[Anypoint VPN with BGP Routing Enters Asymmetric Mode after Upgrade^] for more information.
+Anypoint VPN enters into asymmetric model after an on-demand maintenance if the AS paths for the two tunnels of the same VPN are different. See https://help.mulesoft.com/s/article/Anypoint-VPN-with-BGP-Routing-Enters-Asymmetric-Mode-After-update[Anypoint VPN with BGP Routing Enters Asymmetric Mode after Upgrade^] for more information.
 
 === Seeing IPsec DPD Failures in VPN Logs
 
@@ -88,4 +71,4 @@ Ensure your DPD settings are correctly configured. See https://help.mulesoft.com
 
 === Other issues
 
-For other issues with Anypoint VPN not particularly related to the update itself, see the general troubleshooting xref:vpn-troubleshooting.adoc[documentation].
+For other issues with Anypoint VPN not particularly related to the on-demand maintenance itself, see the general troubleshooting xref:vpn-troubleshooting.adoc[documentation].
