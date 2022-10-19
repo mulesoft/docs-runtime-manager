@@ -76,7 +76,10 @@ When BGP propagates the changes, the route table updates automatically.
 
 == IPsec
 
-You can set the Initiator Mode for Anypoint VPN. When enabled, your Anypoint VPN initiates IKE negotiation to bring tunnels up.
+You can set the *Initiator Mode* for Anypoint VPN. When enabled, your Anypoint VPN initiates IKE negotiation to bring tunnels up. If you decide to use this feature:
+
+* Configure your gateway to accept an IKEv2 connection, as IKEv1 is not supported.
+* Used route-based VPN, as policy-based VPN is not supported.
 
 All IPsec settings are defined on your endpoint.
 
@@ -91,3 +94,4 @@ You don't need to change any VPN settings in Runtime Manager.
 * xref:vpn-about.adoc[Anypoint VPN]
 * xref:virtual-private-cloud.adoc[Anypoint Virtual Private Cloud]
 * https://help.mulesoft.com/s/article/Anypoint-VPN-Knowledge-Articles[Anypoint VPN Knowledge Articles]
+* https://help.mulesoft.com/s/article/Issues-when-establishing-an-Anypoint-VPN-connection-with-Initiator-Mode-enabled[Issues when Establishing an Anypoint VPN Connection with Initiator Mode enabled]
