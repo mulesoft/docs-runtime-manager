@@ -1,0 +1,336 @@
+= Certificate Validation in Dedicated Load Balancers
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::lb-cert-validation.adoc
+
+
+If at least one CA certificate is provided for the SSL endpoint, the load balancer passes the client certificate data to the API using these HTTP headers:
+
+* X-SSL-Client-Verify
++
+Returns one of:
+
+** `SUCCESS`
++
+The client is verified only after `SUCCESS`.
+** `NONE` when the certificate is not present
+** `FAILED` when other validation problems occur
+
+* X-SSL-Client-DN
++
+Contains the full distinguished name of the client certificate
+
+* X-SSL-Issuer
++
+Contains the full distinguished name of the issuing certificate
+
+* X-SSL-Client-Serial
++
+Contains the serial number used by the CA to identify the client
+
+== Add Revocation Lists
+
+The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single, unencrypted PEM-encoded file for upload. The order of items in the CRL is not important.
+
+
+To add a revocation list when you create the load balancer, use the `--crl` option with the xref:cloudhub-cli.adoc#cloudhub-load-balancer-create[`cloudhub load-balancer create`] command.
+
+
+If your load balancer already exists, you can use the
+https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
+to add or update your CRLs. To do so, send a `PATCH` request to the `/organizations/{myOrgID}/vpcs/{myVpcID}/loadbalancers/{myDlbID}` endpoint and include a `revocationList` element:
+
+[source,json,linenums]
+----
+[
+  {
+    "op": "replace",
+    "path": "/sslEndpoints/0/revocationList",
+    "value": "-----BEGIN X509 CRL-----\nMIIBTTCBtwIBATANBgkqhkiG9w0BAQUFADBXMQswCQYDVQQGEwJBVTETMBEGA1UE\nCBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50ZXJuZXQgV2lkZ2l0cyBQdHkgTHRk\nMRAwDgYDVQQDEwdvcmcuY29tFw0xNjAzMTUwOTI2MThaFw0xODAzMTUwOTI2MTha\nMBwwGgIJAIBvvO4dJHjhFw0xNjAzMTUwODUwMTZaoA4wDDAKBgNVHRQEAwIBBjAN\nBgkqhkiG9w0BAQUFAAOBgQCCAbGXW+Hnzmd1bXqWsFXfogOsJScoxkJOhhmjui3I\nhTUyO5plGHUBLjBnDkypM+iLfn0W4wPcNj7FZdz4Hu/WLntxwrTtR5YOcfIhEGcq\nwvJq/1+WKUPC6eqGwx0iKOOBIWsaf5CNOOUQMo6RaeTeu8Uba2EGFk1Vu/SoZYAK\nsw==\n-----END X509 CRL-----\n"
+  }
+]
+----
+
+To get the values for `myVpcID` and `myDlbID` values from the CLI, use the xref:cloudhub-cli.adoc#cloudhub-vpc-describe-json[`cloudhub vpc describe-json`] and xref:cloudhub-cli.adoc#cloudhub-load-balancer-describe-json[`cloudhub load-balancer describe-json`] commands.
+
+To update any other property, send a `PATCH` request to your load balancer endpoint.
+
+== Prepare to Manage Certificate Cipher Suites
+
+To manage cipher suites with the CloudHub API, you must first:
+
+* <<Generate Authorization Bearer Token, Generate your authorization bearer token>>.
+* Retrieve your organization ID using the CloudHub API.
++
+See https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/minor/1.0/console/method/%233736/[Retrieve a single organization].
+* Retrieve your VPC ID using the CloudHub CLI.
++
+See xref:cloudhub-cli.adoc#cloudhub-vpc-describe-json[cloudhub vpc describe-json].
+* Retrieve your DLB ID using the CloudHub CLI.
++
+See xref:cloudhub-cli.adoc#cloudhub-load-balancer-describe-json[cloudhub load-balancer describe-json].
+* Install `jq` to format the JSON output.
++
+See https://stedolan.github.io/jq/[jq].
+
+
+=== Generate Authorization Bearer Token
+
+To generate your authorization bearer token for Anypoint Platform:
+
+. Send your Anypoint Platform user name and password to the API:
++
+[source,json,linenums]
+----
+curl -X POST 'https://anypoint.mulesoft.com/accounts/login' -H 'Content-Type: application/json' -d '{"username":"myUsername","password":"myPassword"}'
+----
++
+This command returns the access token:
++
+[source,json,linenums]
+----
+{
+  "access_token": "myAccessToken",
+  "token_type": "bearer",
+  "redirectUrl": "/home/"
+}
+----
+. Copy the value of `access_token` to use in the API calls.
+
+== Manage Certificate Cipher Suites
+
+Using the CloudHub API, you can:
+
+* <<List Available Cipher Suites,List available cipher suites>>.
+* <<Display the Default Cipher Suite for a DLB,Display the default cipher suite for a DLB>>.
+* <<Rotate the Cipher by Replacing the Default Cipher Suite,Rotate the cipher by replacing the default cipher suite>>.
+
+
+
+=== List Available Cipher Suites
+
+To list available cipher suites for an organization using the CloudHub API:
+
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. Run this GET call:
++
+--
+[source,linenums]
+----
+curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/loadbalancers/ciphersuites -H 'Authorization: Bearer myAccessToken' | jq
+----
+
+* `_myOrgID_` is the organization ID.
+* `_myAccessToken_` is the access token you generated.
+--
+
+The output includes `ciphers`:
+
+[source,json,linenums]
+----
+
+{
+  "data": [
+      {
+          "id": "5b4a36e1e65c892316abd4d1",
+          "name": "NewDefault-v1",
+          "ciphers": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384",
+          "description": "Default ciphers (new version)-v1",
+          "defaultSuite": true
+      },
+      {
+          "id": "5b4a36e1e65c892316abd4d2",
+          "name": "OldDefault",
+          "ciphers": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4",
+          "description": "Default ciphers (old version)",
+          "defaultSuite": false
+      },
+      {
+          "id": "5b4bfedee4b0f45ab1de6979",
+          "name": "EcdheEcdsaRsa",
+          "ciphers": "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384",
+          "description": "ECDHE ECDSA RSA ciphers",
+          "defaultSuite": false
+      },
+      {
+          "id": "5ba28106e4b00522d78f40b6",
+          "name": "RestrictCiphers",
+          "ciphers": "AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256",
+          "description": "Restricted Ciphers",
+          "defaultSuite": false
+      }
+  ],
+  "total": 4
+}
+----
+
+=== Recommended Cipher Suites
+
+The following recommended cipher suites provide a good balance between compatibility and security for your SSL endpoint:
+
+----
+ECDHE-RSA-AES256-GCM-SHA512
+DHE-RSA-AES256-GCM-SHA512
+ECDHE-RSA-AES256-GCM-SHA384
+DHE-RSA-AES256-GCM-SHA384
+----
+
+Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8) does not.
+For this reason, MuleSoft and Microsoft do not recommend using it.
+
+The CloudHub dedicated load balancer supports TLS 1.2.
+TLS 1.1 is disabled and is not supported by default.
+
+Although you can configure TLS 1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
+
+=== Display the Default Cipher Suite for a DLB
+
+To display the default cipher suite for a DLB using the CloudHub API:
+
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. Run this GET call:
++
+--
+[source,linenums]
+----
+curl https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID -H 'Authorization: Bearer myAccessToken' | jq
+----
+
+In the command:
+
+* `_myOrgID_` is the organization ID.
+* `_myVpcID_` is the ID for the VPC.
+* `_myDlbID_` is the ID for the DLB.
+* `_myAccessToken_` is the access token you generated.
+
+--
+
+The output includes `defaultCipherSuite`:
+
+[source,json,linenums]
+----
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384"
+----
+
+=== Rotate the Cipher by Replacing the Default Cipher Suite
+
+To rotate the cipher by replacing the default cipher suite for a DLB using the CloudHub API:
+
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. Run this PATCH call:
++
+--
+[source,linenums]
+----
+curl -X PATCH
+https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/
+myDlbID  -H 'Authorization: Bearer myAccessToken'
+-H 'Content-Type: application/json'
+-d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"NewDefault-v1"}]' | jq
+----
+
+In the command:
+
+* `_myOrgID_` is the organization ID.
+* `_myVpcID_` is the ID for the VPC.
+* `_myDlbID_` is the ID for the DLB.
+* `_myAccessToken_` is the access token you generated.
+* `NewDefault` is the value of `name` for a cipher suite from the list of available cipher suites that you generated in <<List Available Cipher Suites>>.
+--
+
+The output now includes `defaultCipherSuite`:
+
+[source,json,linenums]
+----
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384"
+----
+
+=== Change the Default Cipher Suite to Support TLS 1.0
+
+To support TLS 1.0, change the default cipher suite to `OldDefault`:
+
+. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
+. xref:lb-cert-validation.adoc#display-the-default-cipher-suite-for-a-dlb[Display the current default cipher suite].
+. Change the default cipher suite:
++
+--
+
+[source,linenums]
+----
+curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID  -H 'Authorization: Bearer myAccessToken' -H 'Content-Type: application/json' -d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"OldDefault"}]' | jq
+----
+
+In the command:
+
+* `_myOrgID_` is the organization ID.
+* `_myVpcID_` is the ID for the VPC.
+* `_myDlbID_` is the ID for the DLB.
+* `_myAccessToken_` is the access token you generated.
+* `OldDefault` is the name of the cipher suite that supports TLS 1.0.
+--
+. Check the default cipher suite and verify that the output includes the following line:
++
+[source,linenums]
+----
+"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
+----
+
+=== Verify the TLS 1.0 Connection
+
+After enabling TLS 1.0, test the connection:
+
+* `openssl`
++
+--
+Run this command against the DLB SSL endpoint:
+
+`openssl s_client -connect _DNS of the SSL endpoint_:443 -tls1`
+
+* If the output includes the certificate information and the message `Secure Renegotiation IS supported`, TLS 1.0 is supported.
+
+* If the command returns `write:errno=54`, TLS 1.0 is not supported.
+--
+* `curl`
++
+--
+Run this command against the DLB SSL endpoint:
+
+`curl -vI --insecure --tlsv1.0 https://_DNS of the SSL endpoint_`
+
+* If you see the returned results from the backend server or the HTTP error code, TLS 1.0 is supported.
+
+* If the command returns `curl: (35) Server aborted the SSL handshake`, TLS 1.0 is not supported.
+--
+
+== Limitation
+
+To use an ECDSA-based authentication cipher, generate the certificate and key pair using an ECDSA-based algorithm and apply the same algorithm to the SSL certificate and key configuration on the DLB.
+
+If you try to use an ECDSA-based authentication cipher with an RSA-based certificate and key pair, the SSL handshake fails and you receive either of the following error messages:
+
+[source,linenums]
+----
+SSL routines:CONNECT_CR_SRVR_HELLO:sslv3 alert handshake failure
+----
+
+or
+
+[source,linenums]
+----
+Error: write EPROTO 140434219616616:error:10000410:SSL routines:OPENSSL_internal:SSLV3_ALERT_HANDSHAKE_FAILURE:../../third_party/boringssl/src/ssl/tls_record.cc:594:SSL alert number 40 140434219616616:error:1000009a:SSL routines:OPENSSL_internal:HANDSHAKE_FAILURE_ON_CLIENT_HELLO:../../third_party/boringssl/src/ssl/handshake.cc:603:
+----
+
+Because current DLB configuration permits only one type of SSL certificate and key pair per SSL endpoint, a client using an RSA-based cipher can not connect to an ECDSA-based configuration, and vice versa.
+
+
+== See Also
+
+* xref:lb-ssl-endpoints.adoc[Configure SSL Endpoints and Certificates]
+* xref:lb-cert-upload.adoc[Add Certificates to a Dedicated Load Balancer]
+* xref:lb-allowlists.adoc[Allowlists]
+* xref:lb-mapping-rules.adoc[Mapping Rules]
+* xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
+* xref:lb-create-arm.adoc#enable-tls-1-0-on-a-dlb-using-runtime-manager[Enable TLS 1.0 on a DLB Using Runtime Manager]
+* xref:lb-create-cli.adoc#enable-tls-1-0-on-a-dlb-using-the-cli[Enable TLS 1.0 on a DLB Using the CLI]
+* xref:lb-create-api.adoc#enable-tls-1-0-on-a-dlb-using-the-cloudhub-api[Enable TLS 1.0 on a DLB Using the CloudHub API]

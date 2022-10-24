@@ -1,0 +1,86 @@
+= CloudHub Notifications on Runtime Manager
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::notifications-on-runtime-manager.adoc,
+
+
+== Overview
+
+*Notifications* are standard messages that appear in the Runtime Manager console to provide status information about your applications. You can access them via the bell icon on the top-right corner of the console.  When you have new notifications, the bell turns red.
+
+
+[TIP]
+You can also set up email xref:runtime-manager::alerts-on-runtime-manager.adoc[alerts] that can be sent to any email address to warn whenever a certain event has occurred. Notifications are currently only produced by applications deployed to CloudHub, for applications deployed on-premises, you should use Alerts.
+
+
+== Manage Notifications
+
+Each notification has a priority level and a message associated with it. If the notification is associated with a specific application, the application name is also provided.
+
+image::alertmessage.png[AlertMessage]
+
+Click *Show All Notifications* to view all notifications  including those that have already been read.
+
+== Standard Notifications
+
+
+For applications deployed to CloudHub, certain events that may occur to one of your applications automatically produces a notification:
+
+
+[%header,cols="30a,70a"]
+|===
+|Event |Message
+| Worker will restart | A worker `<ip>` has become unresponsive. Restarting the worker.
+| Worker has restarted | Restart SUCCEEDED for worker `<ip>`.
+| Worker restart failed | Restart FAILED for worker `<ip>`.
+| Maximum Restarts attempted for a worker| We've reached the maximum amount of restart attempts.
+| Worker needs restarting, but restarts are disabled | A worker `<ip>` has become unresponsive. Restarts are disabled.
+|===
+
+
+
+== Custom Notifications
+
+On applications that are deployed to CloudHub, you can create custom notifications using the CloudHub connector that must exist in your application.
+
+. Download the CloudHub connector from xref:exchange::index.adoc[Anypoint Exchange].
++
+image::cloudhub-connector.png[]
+
+. Place an instance of the CloudHub connector in one of your project's flows, to be triggered when something meaningful happens.
+. Configure the connector. In the *Operation* field select *Create Notification* and then set the *Domain*, *Message* and *Priority* for it.
+
++
+You should now be receiving notifications.
+
+. Optionally, set up email alerts to inform you when one of these custom events occurs. To set up email alerts, see xref:runtime-manager::alerts-on-runtime-manager.adoc[Alerts on Runtime Manager]. You must create an alert of type *Custom Notification Alert* that matches your custom notification.
+
+See the  tutorial.
+
+== Notification Retention
+
+Notifications are retained by Anypoint Platform within the bounds of the following limits, whatever happens first:
+
+* for 30 days
+* up to 1000 notifications per application
+
+
+
+== See Also
+
+* xref:custom-application-alerts.adoc[Custom Application Alerts] tutorial.
+* xref:runtime-manager::managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:index.adoc[CloudHub Overview]
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
+* xref:runtime-manager::deployment-strategies.adoc[Deployment Options]
+* xref:cloudhub-fabric.adoc[Clustering]
+* xref:runtime-manager::monitoring.adoc[Monitor Applications]
+* xref:managing-queues.adoc[Manage Queues]
+* xref:managing-schedules.adoc[Manage Schedules]
+* xref:managing-application-data-with-object-stores.adoc[Manage Application Data with Object Stores]
+* xref:anypoint-cli::index.adoc[Anypoint Platform Command-Line Interface]
+* xref:secure-application-properties.adoc[Secure Application Properties]
+* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:penetration-testing-policies.adoc[Penetration Testing Policies]
