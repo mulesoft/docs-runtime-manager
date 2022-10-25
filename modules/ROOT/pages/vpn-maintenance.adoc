@@ -18,7 +18,7 @@ Deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoi
 
 == Avoiding or Reducing Downtime During an On-demand Maintenance
 
-Mule applications that use Anypoint VPN connectivity are impacted during the on-demand maintenance. However, the impact on the Anypoint VPN varies depending on the VPN configuration:
+Mule applications that use Anypoint VPN connectivity are impacted during the on-demand maintenance. The impact on the Anypoint VPN varies depending on the VPN configuration:
 
 * An Anypoint VPN with at least one pair of tunnels configured with BGP routing and DPD (Dead Peer Detection) to reset the tunnels when triggered incurs minimal downtime. The switchover takes a few seconds. See https://help.mulesoft.com/s/article/DPD-Dead-Peer-Detection-and-Anypoint-VPN-Virtual-Private-Networking[this article^] for an explanation of DPD and VPN.
 * An Anypoint VPN tunnel pair configured with Static routing incurs some downtime before reconnection. The reconnection takes longer if you do not have an automated failover mechanism to detect failed tunnels.
