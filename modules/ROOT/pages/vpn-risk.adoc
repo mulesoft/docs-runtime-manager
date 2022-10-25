@@ -1,0 +1,52 @@
+= Anypoint VPN risk
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+Every VPN provisioned in Mulesoft has a risk associated depending on the state of the VPN tunnels.
+
+For High risk VPNs, deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoid any downtime associated with AWS-delivered auto-updates. Refer to xref:vpn-maintenance.adoc[VPN Maintenance] for more details.
+
+
+== Risk types
+
+VPN risk depends on the number of UP tunnels.
+
+There are 3 types of risk:
+
+* UNAVAILABLE
+* LOW
+* HIGH
+
+
+If both tunnels of the VPN are down, the VPN risk will be *UNAVAILABLE*, since no data is going through the VPN.
+
+If the VPN has one tunnel UP and the other one DOWN, then the VPN will have *HIGH* risk.
+
+If the VPN has both tunnels UP, then the VPN will have *LOW* risk.
+
+== Check the VPN Risk in Anypoint Platform
+
+The risk associated with your VPNs is shown in Anypoint Platform.
+
+To check your VPN risk:
+
+. Sign into Anypoint Platform.
+. Go to Runtime Manager.
+. Open the *VPNs* tab.
+. Check the *Downtime Risk* column for your VPNs.
+
+image:vpn-risk.png[VPN risk UI]
+
+
+
+== See Also
+
+* xref:vpn-high-availability.adoc[Anypoint VPN High Availability]
+* xref:vpn-maintenance.adoc[VPN Maintenance] 
+* https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html[Using Redundant Site-to-Site VPN Connections to Provide failover]
