@@ -1,4 +1,4 @@
-= Anypoint VPN risk
+= Anypoint VPN downtime risk
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -10,38 +10,38 @@ image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fa
 
 Every VPN provisioned in Mulesoft has a risk associated depending on the state of the VPN tunnels.
 
-For High risk VPNs, deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoid any downtime associated with AWS-delivered auto-updates. Refer to xref:vpn-maintenance.adoc[VPN Maintenance] for more details.
+For High downtime risk VPNs, deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoid any downtime associated with AWS-delivered auto-updates. Refer to xref:vpn-maintenance.adoc[VPN Maintenance] for more details.
 
 
-== Risk types
+== Downtime Risk types
 
-VPN risk depends on the number of UP tunnels.
+VPN downtime risk depends on the number of UP tunnels.
 
-There are 3 types of risk:
+There are 3 types of downtime risk:
 
 * UNAVAILABLE
 * LOW
 * HIGH
 
 
-If both tunnels of the VPN are down, the VPN risk will be *UNAVAILABLE*, since no data is going through the VPN.
+If both tunnels of the VPN are down, the VPN downtime risk will be *UNAVAILABLE*, since no data is going through the VPN.
 
-If the VPN has one tunnel UP and the other one DOWN, then the VPN will have *HIGH* risk.
+If the VPN has one tunnel UP and the other one DOWN, then the VPN will have *HIGH* downtime risk.
 
-If the VPN has both tunnels UP, then the VPN will have *LOW* risk.
+If the VPN has both tunnels UP, then the VPN will have *LOW* downtime risk.
 
 == Check the VPN Risk in Anypoint Platform
 
-The risk associated with your VPNs is shown in Anypoint Platform.
+The downtime risk associated with your VPNs is shown in Anypoint Platform.
 
-To check your VPN risk:
+To check your VPN downtime risk:
 
 . Sign into Anypoint Platform.
 . Go to Runtime Manager.
 . Open the *VPNs* tab.
 . Check the *Downtime Risk* column for your VPNs.
 
-image:vpn-risk.png[VPN risk UI]
+image:vpn-downtime-risk.png[VPN downtime risk UI]
 
 
 
