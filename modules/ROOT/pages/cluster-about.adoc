@@ -20,7 +20,7 @@ While configuring a cluster, specify either unicast or multicast options for ide
 
 * *Unicast*:
 +
-A unicast cluster requires that you configure the IP addresses of the nodes in the cluster. If a server has multiple interfaces, use the internal IP address that allows the node to communicate directly with other nodes. Clustering across different availability zones or regions can cause a cluster performance issue, as it relies on high speed connectivity. Putting all cluster nodes on one subnet or in a same availability zone reduces performance risks.
+A unicast cluster requires that you configure the IP addresses of the nodes in the cluster. If a server has multiple interfaces, use the internal IP address that allows the node to communicate directly with other nodes. Clustering across different availability zones or regions can cause a cluster performance issue, as it relies on high speed connectivity. Putting all cluster nodes on one subnet or in the same availability zone reduces performance risks.
 +
 Because Mule relies on the IP address to identify the server, IP addresses can't be dynamically assigned using DHCP for servers on a unicast cluster. If a server is restarted and uses DHCP to get a new IP address, you must add the server to the cluster using its new IP address.
 +
