@@ -8,9 +8,11 @@ image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deploymen
 image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
-To ensure your applications and related operations are tolerant to Anypoint VPN updates, issues, or individual Customer Gateway failures, implement High Availability VPN connections.
+Your VPN connection consists of two VPN tunnels, each terminating in a different Availability Zone, to provide increased availability to your VPC. During a mandatory upgrade, AWS may briefly disable one of the two tunnels of your VPN connection. When you configure your customer gateway, configure both tunnels for redundancy. When one tunnel becomes unavailable (for example, down for maintenance), AWS automatically routes network traffic to the other available tunnel for that specific VPN connection. When AWS performs updates on one VPN tunnel, they set a lower outbound multi-exit discriminator (MED) value on the other tunnel to ensure the failover.  AWS Site-to-Site VPN https://aws.amazon.com/vpn/site-to-site-vpn-sla/[SLA] also requires two VPN endpoints for each connection.  Redundant Anypoint VPN tunnel configuration prevents a significantly higher risk of MuleSoft service downtime during the AWS auto patching window.
 
+To ensure your applications and related operations are tolerant to Anypoint VPN updates, issues, or individual Customer Gateway failures, implement High Availability with redundant Anypoint VPN connections.
 Each Anypoint VPN connection consists of two endpoints, providing High Availability (HA) on the MuleSoft side by default.
+
 
 == Prerequisites
 
@@ -25,6 +27,8 @@ The following example shows a High Availability VPN topology using a single Anyp
 A MuleSoft Virtual Private Gateway (VGW) supports one Anypoint VPC association, but it supports up to 10 VPN connections.
 You can locate your VPN Gateways in the same data center, or in different physical locations.
 
+To eliminate all single points of failure, the two customer gateways should be in different data centers, and preferably in different cities. Ideally, use your Disaster Recovery location for the second gateway.
+
 image:vpn-ha-topology.png[VPN High Availability Topology]
 
 Use BGP routing to advertise the same routes via VPN-1 and VPN-2. See https://help.mulesoft.com/s/article/Anypoint-VPN-Path-Selection-using-BGP-Routing[Anypoint VPN Path Selection using BGP Routing] for instructions on how to control path selection via the routing protocol.
@@ -38,4 +42,5 @@ High Availability VPN connections also support static routing, in which you esta
 
 * xref:vpn-create-arm.adoc[Create an Anypoint VPN Connection]
 * https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html[Using Redundant Site-to-Site VPN Connections to Provide failover]
+* https://docs.aws.amazon.com/vpn/latest/s2svpn/disaster-recovery-resiliency.html[Continue to have redundant pair of VPNs as well]
 * https://help.mulesoft.com/s/article/How-to-Calculate-VPC-and-VPN-License-Requirements[How to Calculate VPC and VPN License Requirements].
