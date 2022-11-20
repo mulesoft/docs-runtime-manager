@@ -1,0 +1,81 @@
+= CloudHub Dedicated Load Balancer Continuous Updates
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: cloudhub, runtime manager, arm, runtime version, mule, updates,
+
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+
+Because CloudHub is an integration platform as a service (iPaaS),
+it manages the underlying operating sistem of your DLBs,
+enabling you to focus on developing and updating your applications.
+
+CloudHub applies security patches as needed to ensure that your dedicated load balancer is secure and,
+every 14 days, it updates the image of the operating system to maintain the stability of your DLB.
+
+Patch updates use blue-green deployment, which ensures zero downtime.
+
+
+CloudHub applies continuous updates to all three MuleSoft-managed deployment platforms:
+
+* US cloud
+* EU cloud
+* MuleSoft Government Cloud
+
+== Security Updates
+
+MuleSoft regularly runs scans to identify security vulnerabilities in underlying operating system, and then automatically applies security patches based on the following SLA:
+
+[%header,cols="20,25,40"]
+|===
+|Severity Level | Severity Definition | Patch Applied Within
+|P0 | Critical | 7 days
+|P1 | High | 30 days
+|===
+
+
+== Updates every 14 days
+
+Every 14 days, MuleSoft releases a _date-patch update_,
+which includes bug fixes to address any security vulnerability discovered in operating sistem of the dedicated load balancers.
+
+
+=== Update Schedule
+
+The schedule for date-patch updates is:
+
+* On the first day of the update, MuleSoft releases the date patch.
+* In the second full week of the update, MuleSoft automatically applies the date patch that was released.
++
+The update will be applied between the 10th and 12th day of the update to all Sandbox DLBs.
+Lastly, the update will be applied between the 13th and 14th day of the update to all Production DLBs.
+
+[NOTE]
+A DLB will be considered as a Production DLB if it is part of a VPC that is default or if the VPC is associated with at least one production environment.
+
+Because these updates contain required security patches, you cannot roll back these updates once applied.
+
+=== Updating Dedicated Load Balancers manually
+
+For information about updating DLBs, see
+xref:lb-updates.adoc[Dedicated Load Balancer Updates].
+
+== Zero-Downtime Considerations
+
+The update results in a rolling restart with no downtime. However, some inflight requests might be impacted.
+
+If you experience a sustained outage after updating, contact MuleSoft Support.
+
+== See Also
+
+* xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
+* xref:lb-create-cli.adoc[Create a Load Balancer with the Anypoint Platform CLI]
+* xref:lb-create-api.adoc[Create a Load Balancer with the CloudHub API]
+* xref:lb-ssl-endpoints.adoc[Configure SSL Endpoints and Certificates]
+* xref:virtual-private-cloud.adoc[Anypoint VPC]
+* xref:lb-mapping-rules.adoc[Mapping Rules]
+* xref:lb-allowlists.adoc[Allowlists]
