@@ -1,0 +1,103 @@
+= Develop Applications for CloudHub
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::developing-applications-for-cloudhub.adoc
+
+
+
+When developing applications for deployment to CloudHub, review the following considerations.
+
+== Specify an HTTP/HTTPS Host
+
+If you use Anypoint Connector for HTTP (HTTP Connector), define the host address
+in the CloudHub configuration as `0.0.0.0`.
+CloudHub routes requests from your application domain URL to the endpoint.
+If you deploy multiple workers, CloudHub load-balances incoming traffic automatically
+across the workers for you.
+As your application scales, work loads automatically distribute between your workers.
+
+== Provide an External HTTP/HTTPS Port
+
+If your application requires an externally accessible HTTP or HTTPS port to receive messages, trigger events, or expose a web service or user interface, declare the HTTP Listener port using the reserved property `${http.port}` or `${https.port}`. On CloudHub, port `${http.port}` or `${https.port}` is assigned automatically by the platform services. Traffic on port 80 to your application domain's URL is routed to `${http.port}` and traffic on port 443 is route to `${https.port}`.
+
+To support routing to multiple CloudHub services over this port, you need to configure each with unique paths on the URL that is exposed. For example:
+
+[source,console,linenums]
+----
+http://0.0.0.0:${http.port}/service/path/one
+http://0.0.0.0:${http.port}/service/path/two
+----
+
+== Deployment Option Flexibility
+
+To deploy the same Mule application to different deployment targets,
+such as an on-premises server and CloudHub,
+see xref:mule-runtime::deploying.adoc[Deploy Mule Applications].
+
+For the key differences between deployment environments, see xref:runtime-manager::deployment-strategies.adoc[Deployment Options].
+
+You can define properties and variables for each deployment outside of the application
+and then reference them from your application.
+For example, you can define a local value for the variable `http.port` or `https.port`.
+For information, see xref:mule-runtime::configuring-properties.adoc[Configuring Properties].
+
+You can also set these property variables using Runtime Manager or the
+Anypoint Platform command-line interface.
+
+== Configure Logging
+
+The CloudHub logging service captures all log messages from your application.
+You can view logs in the *Logging* tab in the Runtime Manager console.
+To expose additional information in your logs for diagnostic or audit purposes,
+use the xref:mule-runtime::logger-component-reference.adoc[Logger component].
+
+[IMPORTANT]
+On CloudHub, after you delete an application, your log data is no longer accessible through the console. CloudHub archives old log data for a limited period of time before it is purged,
+so you can recover the data if needed.
+For more information, open a support case at https://help.mulesoft.com[MuleSoft Help Center].
+
+== Package Third-Party Libraries
+
+CloudHub provides services in Anypoint Platform that support connecting over different protocols
+and transforming many data formats.
+All the standard Mule libraries are included and available to your application.
+If you need to include another third-party library, you can package that library
+in the application JAR file.
+For information, see xref:mule-runtime::intro-packaging.adoc[Introduction to Mule 4: Packaging Applications].
+
+== Access Resources Behind the Firewall
+
+When developing an application that needs to access resources from inside your firewall,
+you can configure Anypoint Virtual Private Cloud (Anypoint VPC) to host your CloudHub workers and
+configure an IPSec tunnel to access your applications.
+
+
+== Access Third-Party APIs and Services
+
+MuleSoft provides connectors for many third-party applications,
+such as Salesforce, NetSuite, and Twitter.
+For information about how to find and use connectors with your application, see the
+xref:connectors::introduction/introduction-to-anypoint-connectors.adoc[Introduction to Anypoint Connectors].
+In addition, you can create your own connectors using Anypoint Connector DevKit.
+
+== Use Secure Properties
+
+You can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console.
+For information, see xref:secure-application-properties.adoc[Secure Application Properties].
+
+
+
+== See Also
+
+
+* xref:connectors::http/http-connector.adoc[HTTP Connectors]
+* xref:runtime-manager::deployment-strategies.adoc[Deployment Options]
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:studio::index.adoc[Anypoint Studio]
+* xref:runtime-manager::managing-deployed-applications.adoc[Manage Deployed Applications]
+* xref:anypoint-cli::index.adoc[Anypoint Platform Command-Line Interface]
+* xref:viewing-log-data.adoc[View Log Data]
+* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:connector-devkit::index.adoc[Anypoint Connector DevKit]
+* xref:secure-application-properties.adoc[Secure Application Properties]
