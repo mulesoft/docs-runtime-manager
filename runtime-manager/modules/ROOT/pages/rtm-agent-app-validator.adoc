@@ -255,16 +255,16 @@ services:
 +
 [source,java,linenums]
 ----
-  mule.agent.application.validator.service:
-    enabled: true
-    validators:
-    - type: helloValidator
-      name: defaultHelloValidator
-      enabled: true
-      args:
-        business: finance
-        welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
-        errorMessage: 'I am sorry, you are not allowed to deploy in this Cluster'
+	mule.agent.artifact.validator.service:
+		enabled: true
+		validators:
+		- type: helloValidator
+			name: defaultHelloValidator
+			enabled: true
+			args:
+				business: finance
+				welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
+				errorMessage: 'I am sorry, you are not allowed to deploy in this Cluster'
 ----
 
 It also contains the following values that are injected by the service:
@@ -422,16 +422,16 @@ Add the validation configuration in the service:
 [source,java,linenums]
 ----
 services:
-  mule.agent.application.validator.service:
-    enabled: true
-    validators:
-    - type: helloValidator
-      name: defaultHelloValidator
-      enabled: true
-      args:
-        business: finance
-        welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
-        errorMessage: 'I am sorry, you are not allowed to be deployed in this Cluster'
+	mule.agent.artifact.validator.service:
+		enabled: true
+		validators:
+		- type: helloValidator
+			name: defaultHelloValidator
+			enabled: true
+			args:
+				business: finance
+				welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
+				errorMessage: 'I am sorry, you are not allowed to deploy in this Cluster'
 ----
 
 === Start the Mule
