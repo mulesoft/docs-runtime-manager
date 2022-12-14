@@ -9,6 +9,7 @@ image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments
 image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
+include::reuse::partial$non-inclusive-banner.adoc[]
 
 If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure the Runtime Manager agent to route traffic through the proxy server to Runtime Manager.
 
@@ -29,7 +30,7 @@ If you have previously installed the Runtime Manager agent and want to change th
 
 To configure the proxy server connection:
 
-. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the master password:
+. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the main password:
 +
 `export AGENT_VAR_master_password=myPassword`
 . Run this command:

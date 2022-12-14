@@ -8,6 +8,8 @@ image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments
 image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
+include::reuse::partial$non-inclusive-banner.adoc[]
+
 Use the Application Validator Service to create your own custom validators and prevent your application from being deployed if certain conditions are not met.
 Depending on the Mule Runtime Agent configuration, the service invokes your custom validators to enforce their business rules, such as signing validation, naming conventions or moratorium dates.
 
@@ -502,7 +504,7 @@ Let’s consider that the validator needs to use a secret provided in the `mule-
 
 . Encrypt a single value
 +
-Set the `AGENT_VAR_master_password` environment variable to the master password:
+Set the `AGENT_VAR_master_password` environment variable to the main password:
 +
 `export AGENT_VAR_master_password=myPassword`
 
