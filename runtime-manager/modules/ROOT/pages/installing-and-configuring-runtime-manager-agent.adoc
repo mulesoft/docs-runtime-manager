@@ -9,6 +9,8 @@ image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments
 image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
+include::reuse::partial$non-inclusive-banner.adoc[]
+
 The Anypoint Runtime Manager agent registers Mule runtime engine (Mule) with Runtime Manager. After Mule is registered, you can manage it using Runtime Manager within the specific environment and Anypoint Platform business group in which Mule was registered. You cannot register Mule with multiple Runtime Manager business groups or environments.
 
 Use the `amc_setup` command to install and configure the agent, using different parameters depending on the type of console to which you are connecting the agent:
@@ -232,10 +234,10 @@ For information, see <<Encrypt Passwords in an Existing mule-agent.yml File>>.
 
 `--decrypt`
 |
-|Decrypts the passwords in an existing `mule-agent.yml` file, for example, before changing the master password.
+|Decrypts the passwords in an existing `mule-agent.yml` file, for example, before changing the main password.
 
 Use this option alone to decrypt passwords.
-For information, see <<Update the Master Password>> and <<Display Passwords in mule-agent.yml in Plain Text>>.
+For information, see <<Update the Main Password>> and <<Display Passwords in mule-agent.yml in Plain Text>>.
 
 |`--mule-home`
 | `_mule-home-directory_`
@@ -349,7 +351,7 @@ image::rtm-add-server.png[amc_setup command in the Add Server window]
 . In a terminal window:
 +
 .. Change to the `$MULE_HOME/bin` directory for the Mule instance that you're registering.
-.. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the master password:
+.. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the main password:
 +
 `export AGENT_VAR_master_password=myPassword`
 .. Paste the command on the command line.
@@ -512,7 +514,7 @@ To update previous versions of the agent, see <<Update the Agent>>.
 
 To encrypt passwords in your `mule-agent.yml` file:
 
-. Set the `AGENT_VAR_master_password` environment variable to the master password:
+. Set the `AGENT_VAR_master_password` environment variable to the main password:
 +
 `export AGENT_VAR_master_password=myPassword`
 . Run the encryption utility:
@@ -557,14 +559,14 @@ To display the passwords in `mule-agent.yml` in plain text, run the decryption u
 
 This command outputs the contents of the `mule-agent.yml` file with plain-text passwords.
 
-=== Update the Master Password
+=== Update the Main Password
 
-To update the master password:
+To update the main password:
 
 . Run the decryption utility:
 +
 `$MULE_HOME/bin/amc_setup --decrypt`
-. Set the `AGENT_VAR_master_password` environment variable to the new master password:
+. Set the `AGENT_VAR_master_password` environment variable to the new main password:
 +
 `export AGENT_VAR_master_password=myNewPassword`
 . Run the encryption utility:
