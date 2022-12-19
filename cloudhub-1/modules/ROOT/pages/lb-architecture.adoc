@@ -19,10 +19,10 @@ Your load balancer listens for outside requests over HTTPS and, by default, comm
 
 A CloudHub dedicated load balancer provides an alternative domain name to route HTTP requests to Mule applications listening on port 8091 and HTTPS requests to Mule applications listening on port 8092. You can also use mapping rules to rename requests to the CloudHub DLB to a different Mule application domain name.
 
-The CloudHub DLB exposes an external domain name that resolves to two public IP addresses which are accessible from outside your CloudHub Anypoint VPC network. `_lb-name_` is the name you gave the load balancer when you created it:
+The CloudHub DLB exposes an external domain name that resolves to two public IP addresses which are accessible from outside your CloudHub Anypoint VPC network. `[lb-name]` is the name you gave the load balancer when you created it:
 
-* `_lb-name_.lb.anypointdns.net`
-* `_lb-name_.lb-prod-eu-rt.anypointdns.net` (EU control plane)
+* `[lb-name].lb.anypointdns.net`
+* `[lb-name].lb-prod-eu-rt.anypointdns.net` (EU control plane)
 
 
 == Renaming External Mule Application URLs Through a Dedicated Load Balancer
@@ -39,14 +39,14 @@ For example, suppose your company owns the DNS domain `example.com`. You can cre
 
 The CloudHub dedicated load balancer has an internal domain name that is used by applications and clients within the Anypoint VPC.
 
-The internal domain uses the following naming convention (`_lb-name_` is  the name you gave the load balancer when you created it):
+The internal domain uses the following naming convention (`[lb-name]` is  the name you gave the load balancer when you created it):
 
 ----
-internal-_lb-name_.lb.anypointdns.net
+internal-[lb-name].lb.anypointdns.net
 ----
 
 
-Each DLB has DNS A records `_lb-name_.lb.anypointdns.net` that resolve to the public IP addresses of the instances.
+Each DLB has DNS A records `[lb-name].lb.anypointdns.net` that resolve to the public IP addresses of the instances.
 The number of public IP addresses correlates to the number of workers.
 Through your DNS provider, you can add a CNAME record pointing to this A record and use your domain names to access it.
 
