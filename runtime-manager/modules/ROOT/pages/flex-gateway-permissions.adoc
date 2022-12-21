@@ -12,9 +12,20 @@ To see and use Flex Gateway Connected Mode capabilities, organizations must have
 
 Entitled organizations see a *Flex Gateway* tab in the Runtime Manager UI, and two new types of Runtime Manager permissions:
 
-[%header,cols="20a,60a"]
+[%header,cols="20,30a"]
 |===
-|Permission |Description
-|Manage Gateways |Access to create flex gateways and replicas.
-|Read Gateways|Access to view flex gateways and replicas.
+|Permission | Description
+|Manage Servers| Access to create flex gateways and replicas.
+|Read Servers| Access to view flex gateways and replicas.
 |===
+
+
+Your Anypoint Platform Admin can add these permissions in Access Management. See xref:access-management::configure-teams.adoc#manage-team-permissions [Manage Team Permissions] for more information.
+
+Your Anypoint Platform Admin can also add a Connected App with the appropriate permissions. See xref:access-management::connected-apps-overview.adoc [Connected Apps] for more information.
+
+If you are using a Connected App to register Flex Gateway, it will need the following scopes:
+
+* Manage Servers
+* Read Servers
+* View Organization
