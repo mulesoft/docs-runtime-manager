@@ -179,7 +179,7 @@ You can preallocate a static IP in the new region in the *Static IPs* tab in the
 
 No. CloudHub uses a pool of static IP addresses that are assigned to a CloudHub application only upon first deployment. If that application releases that static IP, then that IP address returns to the pool and is available to other applications.
 
-== If I am running in a CloudHub VPN, how do I assign a static IP to my internal private IP?
+== If I am running in a CloudHub VPC, how do I assign a static IP to my internal private IP?
 
 CloudHub can set the worker's public IP address to be static. However, the internal private IP address always remains dynamic. The private IP address is assigned from the range specified in the CloudHub worker's address space, which was determined when your xref:virtual-private-cloud.adoc[Anypoint VPC] was created.
 
