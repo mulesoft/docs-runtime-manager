@@ -276,6 +276,9 @@ The CPU usage of the servers that run the application is above or below the perc
 image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
 
 To enable this condition, specify the CPU percentage and duration that triggers the alert.
+
+[NOTE]
+For CloudHub multiworker applications, the alert considers the CPU threshold of the entire application.
 --
 
 Server Load average::
