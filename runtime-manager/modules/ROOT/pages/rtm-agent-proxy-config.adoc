@@ -51,8 +51,8 @@ $MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-use
 
 If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_. These options are required when using Kerberos authentication via _--use-kerberos-proxy_.
 
-*amc_setup -P parameters:*
-
+* *amc_setup -P parameters:*
++
 _proxy-host_::
 Specifies the hostname of the desired proxy server: for example, `proxy.acme.com`.
 Do not include `http://` or `https://` in the hostname.
@@ -63,8 +63,8 @@ Optionally specifies the user with which to authenticate against the proxy, if r
 _proxy-password_::
 Optionally specifies the password for the authentication _proxy-user_, if required.
 
-*amc_setup --use-kerberos-proxy parameters:*
-
+* *amc_setup --use-kerberos-proxy parameters:*
++
 _krb5-configuration-path_::
 Specifies the file path to the `krb5.conf` file, which is required to communicate with the Kerberos KDC.
 +
