@@ -41,7 +41,7 @@ For basic authentication, the -P parameter sets up the authenticated proxy.
 ----
 $MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password
 ----
-
++
 For Kereros authentication, use the new parameter to specify that this protocol will be used along with the configuration file paths.
 +
 [source,console,linenums]
@@ -49,9 +49,7 @@ For Kereros authentication, use the new parameter to specify that this protocol 
 $MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password --use-kerberos-proxy krb5-configuration-path jaas-configuration-path
 ----
 
-If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_.
-+
-These options are required if using Kerberos authentication via _--use-kerberos-proxy_.
+If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_. These options are required when using Kerberos authentication via _--use-kerberos-proxy_.
 
 ==== amc_setup -P parameters:
 
