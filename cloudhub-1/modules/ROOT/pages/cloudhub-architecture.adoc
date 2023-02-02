@@ -106,7 +106,7 @@ Only running applications count toward worker usage.
 If your applications require more vCores than are available, CloudHub allows you to create the application, but you cannot start it until the additional vCores become available.
 To increase vCore allocation, stop another application or contact your account manager to increase your subscription's vCore allocation.
 
-The metaspace limit for apps deployed to CloudHub is currently 256 MB, regardless of the worker size.
+The metaspace limit for apps deployed to CloudHub is currently unlimited, regardless of the worker size.
 The initial metaspace size is 128 MB; metaspace garbage collection begins after the metaspace reaches that threshold.
 
 You can scale your applications horizontally by adding multiple workers and enabling persistent queues to distribute workloads across workers.
