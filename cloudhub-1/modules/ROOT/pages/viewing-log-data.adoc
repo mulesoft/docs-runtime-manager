@@ -120,6 +120,8 @@ To search logs:
 .The screenshot shows (*1*) *Advanced* search and (*2*) *Priority* on the *Logs* page.
 image::cloudhub-logs-search-adv.png[Display Advanced search and Priority on the Logs page]
 
+You can search with queries. For more information, see xref:cloudhub-log-search-syntax.adoc[Log Search Syntax].
+
 === Search by Date and Time
 
 The *Date & Time* filter lets you search the log by specifying a date range. Possible values are:
@@ -175,15 +177,6 @@ Possible values are:
 
 |===
 
-=== Wildcard Searching
-
-You can filter log data by entering search terms into the search box at the top of the log page that match results in the log message.
-
-You can also search for an exact term in the log message with a few common quantifiers for wildcard searching:
-
-* `?` matches zero or one of the preceding elements.
-* `&#8727;` matches zero or more of the preceding elements.
-
 == See Also
 
 * xref:runtime-manager::deployment-strategies.adoc[Deployment Options]
@@ -191,3 +184,4 @@ You can also search for an exact term in the log message with a few common quant
 * xref:custom-log-appender.adoc[Integrate with Your Logging System Using Log4j]
 * xref:runtime-manager::monitoring.adoc[Monitor Applications and Servers]
 * xref:mule-runtime::logging-in-mule.adoc[Configuring Logging]
+* xref:cloudhub-log-search-syntax.adoc[Log Search Syntax]
