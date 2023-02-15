@@ -11,7 +11,7 @@ When you configure your customer gateway, configure both tunnels for redundancy.
 
 The AWS Site-to-Site VPN https://aws.amazon.com/vpn/site-to-site-vpn-sla/[SLA] requires two VPN endpoints for each connection.  Having redundant Anypoint VPN tunnels configured helps to prevent MuleSoft service downtime during the AWS auto-patching window.
 
-To ensure your applications and related operations are tolerant to Anypoint VPN updates, issues, or individual Customer Gateway failures, implement High Availability with redundant Anypoint VPN connections.
+To ensure that your applications and related operations can handle Anypoint VPN updates, issues and individual customer gateway failures, implement High Availability with redundant Anypoint VPN connections.
 Each Anypoint VPN connection consists of two endpoints, providing High Availability (HA) on the MuleSoft side by default.
 
 
