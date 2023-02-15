@@ -5,7 +5,11 @@ endif::[]
 :page-aliases: runtime-manager::vpc-high-availability.adoc,
 
 
-Your VPN connection consists of two VPN tunnels, each terminating in a different Availability Zone, to provide increased availability to your VPC. During a mandatory upgrade, AWS may briefly disable one of the two tunnels of your VPN connection. When you configure your customer gateway, configure both tunnels for redundancy. When one tunnel becomes unavailable (for example, down for maintenance), AWS automatically routes network traffic to the other available tunnel for that specific VPN connection. When AWS performs updates on one VPN tunnel, they set a lower outbound multi-exit discriminator (MED) value on the other tunnel to ensure the failover.  AWS Site-to-Site VPN https://aws.amazon.com/vpn/site-to-site-vpn-sla/[SLA] also requires two VPN endpoints for each connection.  Redundant Anypoint VPN tunnel configuration prevents a significantly higher risk of MuleSoft service downtime during the AWS auto patching window.
+Your VPN connection consists of two VPN tunnels that terminate in different Availability Zones to provide increased availability to your VPC. During a mandatory upgrade, AWS might briefly disable one of the two tunnels of your VPN connection. 
+
+When you configure your customer gateway, configure both tunnels for redundancy. When one tunnel becomes unavailable (for example, it is down for maintenance), AWS automatically routes network traffic to the other available tunnel for that specific VPN connection. When AWS performs updates on one VPN tunnel, it sets a lower outbound multi-exit discriminator (MED) value on the other tunnel to ensure failover.  
+
+The AWS Site-to-Site VPN https://aws.amazon.com/vpn/site-to-site-vpn-sla/[SLA] requires two VPN endpoints for each connection.  Having redundant Anypoint VPN tunnels configured helps to prevent MuleSoft service downtime during the AWS auto-patching window.
 
 To ensure your applications and related operations are tolerant to Anypoint VPN updates, issues, or individual Customer Gateway failures, implement High Availability with redundant Anypoint VPN connections.
 Each Anypoint VPN connection consists of two endpoints, providing High Availability (HA) on the MuleSoft side by default.
