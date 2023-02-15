@@ -18,7 +18,7 @@ Deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoi
 Mule applications that use Anypoint VPN connectivity are impacted during an on-demand maintenance. The impact on the Anypoint VPN varies depending on the VPN configuration:
 
 * An Anypoint VPN with at least one pair of tunnels configured with BGP routing and DPD (Dead Peer Detection) to reset the tunnels when triggered incurs minimal downtime. The switchover takes a few seconds. See https://help.mulesoft.com/s/article/DPD-Dead-Peer-Detection-and-Anypoint-VPN-Virtual-Private-Networking[this article^] for an explanation of DPD and VPN.
-* An Anypoint VPN tunnel pair configured with Static routing incurs some downtime before reconnection. The reconnection takes longer if you do not have an automated failover mechanism to detect failed tunnels.
+* An Anypoint VPN tunnel pair configured with static routing incurs some downtime before reconnection. The reconnection takes longer if you do not have an automated failover mechanism to detect failed tunnels.
 * For an Anypoint VPN configured without BGP routing or a failover mechanism or with only one tunnel configured, the outage is up to 60 minutes long while the update occurs and the original tunnel comes back up.
 
 == Troubleshoot Issues During an Anypoint VPN On-demand Maintenance
