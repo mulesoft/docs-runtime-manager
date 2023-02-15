@@ -17,7 +17,7 @@ Deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoi
 
 Mule applications that use Anypoint VPN connectivity are impacted during an on-demand maintenance. The impact on the Anypoint VPN varies depending on the VPN configuration:
 
-* An Anypoint VPN with at least one pair of tunnels configured with BGP routing and DPD (Dead Peer Detection) to reset the tunnels when triggered incurs minimal downtime. The switchover takes a few seconds. See https://help.mulesoft.com/s/article/DPD-Dead-Peer-Detection-and-Anypoint-VPN-Virtual-Private-Networking[this article^] for an explanation of DPD and VPN.
+* An Anypoint VPN with at least one pair of tunnels configured with BGP routing and DPD (Dead Peer Detection) to reset the tunnels when triggered incurs minimal downtime. The switchover takes a few seconds. See https://help.mulesoft.com/s/article/DPD-Dead-Peer-Detection-and-Anypoint-VPN-Virtual-Private-Networking[DPD (Dead Peer Detection) and Anypoint VPN (Virtual Private Networking)^] for an explanation of DPD and VPN.
 * An Anypoint VPN tunnel pair configured with static routing incurs some downtime before reconnection. The reconnection takes longer if you do not have an automated failover mechanism to detect failed tunnels.
 * For an Anypoint VPN configured without BGP routing or a failover mechanism or with only one tunnel configured, the outage is up to 60 minutes long while the update occurs and the original tunnel comes back up.
 
@@ -29,7 +29,7 @@ These are some of the possible issues you may encounter during an on-demand main
 
 If the tunnels are not back up within 10-15 minutes at any point in time, try restarting your end of the tunnels to bring them back up.
 
-If your VPN is configured with static routing, try generating 'interesting' traffic towards the Anypoint VPN to bring up the VPN. See https://help.mulesoft.com/s/article/How-to-Generate-Interesting-Traffic-for-Anypoint-VPN[How to Generate Interesting Traffic for Anypoint VPN^] for more information.
+If your VPN is configured with static routing, try generating interesting traffic towards the Anypoint VPN to bring up the VPN. See https://help.mulesoft.com/s/article/How-to-Generate-Interesting-Traffic-for-Anypoint-VPN[How to Generate Interesting Traffic for Anypoint VPN^] for more information.
 
 === Tunnel is Going Down Due to Inactivity
 
