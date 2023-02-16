@@ -5,7 +5,7 @@ endif::[]
 :page-aliases: runtime-manager::vpc-downtime-risk.adoc,
 
 
-Every VPN provisioned in Mulesoft has an associated risk depending on the state of the VPN tunnels.
+Every VPN provisioned in Mulesoft has an associated risk that depends on the state of the VPN tunnels.
 
 For high downtime risk VPNs, deploy a xref:vpn-high-availability.adoc[high-availability VPN] solution to avoid any downtime associated with AWS-delivered auto-updates. See xref:vpn-maintenance.adoc[VPN Maintenance] for more details.
 
@@ -14,18 +14,18 @@ For high downtime risk VPNs, deploy a xref:vpn-high-availability.adoc[high-avail
 
 VPN downtime risk depends on the number of UP tunnels.
 
-There are 3 types of downtime risk:
+There are three types of downtime risks:
 
 * UNAVAILABLE
 * LOW
 * HIGH
 
 
-If both tunnels of the VPN are down, the VPN downtime risk will be *UNAVAILABLE*, since no data is going through the VPN.
+If both tunnels of the VPN are down, the VPN downtime risk is *UNAVAILABLE*, since no data is going through the VPN.
 
-If the VPN has one tunnel UP and the other one DOWN, then the VPN will have *HIGH* downtime risk.
+If the VPN has one tunnel UP and the other one DOWN, then the VPN has *HIGH* downtime risk.
 
-If the VPN has both tunnels UP, then the VPN will have *LOW* downtime risk.
+If the VPN has both tunnels UP, then the VPN has *LOW* downtime risk.
 
 == Check the VPN Risk in Anypoint Platform
 
@@ -33,10 +33,10 @@ You can check the downtime risk associated with your VPNs in Anypoint Platform.
 
 To check your VPN downtime risk:
 
-. Sign into Anypoint Platform.
+. Sign in to Anypoint Platform.
 . Go to Runtime Manager.
 . Open the *VPNs* tab.
-. Check the *Downtime Risk* column for your VPNs.
+. Check the *Downtime Risk* column for your VPN.
 
 image:vpn-downtime-risk.png[VPN Downtime Risk UI]
 
