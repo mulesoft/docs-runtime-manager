@@ -45,6 +45,30 @@ For information, see xref:mule-runtime::configuring-properties.adoc[Configuring 
 You can also set these property variables using Runtime Manager or the
 Anypoint Platform command-line interface.
 
+=== Avoid HTTP Proxy Settings
+
+In the CloudHub environment, Mule applications access a target HTTP server directly on the Internet; but in other local development environments, the Internet is only accessible via an HTTP proxy server.
+
+You can avoid adding proxy settings in the HTTP request configuration in a Mule application by using JVM system properties, so that when you deploy the application to CloudHub, you don't need to change the code.
+
+To do this:
+
+. For Mule 4 applications, enter timeout settings on the HTTP request configuration, for example:
++
+** HTTP Request configuration -> General: Connection idle timeout: 30000
+** HTTP Request configuration -> Settings: Response timeout: 30000
++
+You can adjust the timeout values to any number greater than 0. A blank or 0 timeout value can cause a connection failure.
+. Add the following to the local Mule runtime command line.
++
+ For Anypoint Studio, change the Run Configurations and add the following parameters as one line:
+
+`-Dhttp.nonProxyHosts="localhost" -Dhttps.proxyHost={proxy server ip} -Dhttps.proxyPort={proxy server port} -Dhttp.proxyHost={proxy server ip} -Dhttp.proxyPort={proxy server port}
+-Djava.net.useSystemProxies=false -Dcom.ning.http.client.AsyncHttpClientConfig.useProxySelector=false -Dcom.ning.http.client.AsyncHttpClientConfig.useProxyProperties=true`
+
+[NOTE]
+Replace {proxy server ip} and {proxy server port} to the actual HTTP proxy server IP address and port number.
+
 == Configure Logging
 
 The CloudHub logging service captures all log messages from your application.
