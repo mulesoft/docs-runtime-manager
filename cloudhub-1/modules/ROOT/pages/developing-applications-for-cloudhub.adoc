@@ -59,14 +59,12 @@ To do this:
 ** HTTP Request configuration -> Settings: Response timeout: 30000
 +
 You can adjust the timeout values to any number greater than 0. A blank or 0 timeout value can cause a connection failure.
-. Add the following to the local Mule runtime command line.
-+
-For Anypoint Studio, change the Run Configurations and add the following parameters as one line:
-
+. Add the following to the local Mule runtime command line. In Anypoint Studio, change the Run Configurations and add the following parameters as one line:
 
 [source,console,linenums]
 ----
--Dhttp.nonProxyHosts="localhost" -Dhttps.proxyHost={proxy server ip}
+-Dhttp.nonProxyHosts="localhost" 
+-Dhttps.proxyHost={proxy server ip}
 -Dhttps.proxyPort={proxy server port}
 -Dhttp.proxyHost={proxy server ip}
 -Dhttp.proxyPort={proxy server port}
