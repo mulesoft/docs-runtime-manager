@@ -122,9 +122,11 @@ Use your Anypoint Platform credentials on the command line:
 `java -jar ./agent-certificate-renewer.jar -u _username_ -p _password_`
 ** External identity
 +
-Copy the registration token for the server from the *Runtime Manager > Servers > Add Server* page and include it on the command line:
+Copy the registration token for the server from the *Runtime Manager > Servers > Add Server* popup screen and include it on the command line:
 +
 `java -jar ./agent-certificate-renewer.jar -H _ServerToken_`
++
+image::rtm-server-certificate-external-identity.png[Add Registration Token]
 ** Proxy connection
 +
 Use your Anypoint Platform and proxy server credentials on the command line:
