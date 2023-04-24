@@ -5,30 +5,13 @@ endif::[]
 :page-aliases: runtime-manager::penetration-testing-policies.adoc,
 
 
-If your company security policies require that you perform vulnerability and penetration testing
-against Anypoint Platform, request a Security Assessment before proceeding.
+If your company security policies require that you perform vulnerability and penetration testing against Anypoint Platform, you may commence testing without notifying Salesforce beforehand.
 
-
-== Request a Security Assessment
-
-To request a Security Assessment:
-
-. Navigate to https://security.secure.force.com/securityassessments.
-. If you do not already have a Salesforce account, click *Sign-in with SecureAssess*.
-. Select *New User*.
-. Complete the request form with the details you want to register. For further information about completing the request form, see https://help.salesforce.com/articleView?id=000322336&type=1&mode=1[Complete the Security Assessment].
-. Accept the agreement and wait for automated approval.
-. If you do not receive the approval notice, check your Spam folder before contacting Salesforce.
-+
-After you are approved, you can log in to the portal and submit your pen test request.
-
-[NOTE]
-If you prefer, you can request approval manually by submitting your completed https://content.api.getguru.com/files/view/fbf972df-460b-4881-b84b-94d2cd3efc72[Security Assessment Request] to mailto:securityassessment@salesforce.com[securityassessment@salesforce.com].
+All assessments must be performed in accordance with the https://help.salesforce.com/s/articleView?id=000392845&type=1[Security Assessment Agreement^].
 
 == Run Penetration and Vulnerability Tests
 
-Because penetration testing could interfere with other tenants, MuleSoft allows penetration testing
-on your workers but not on other Anypoint Platform services.
+Because penetration testing could interfere with other tenants, MuleSoft allows penetration testing on your workers but not on other Anypoint Platform services.
 
 [IMPORTANT]
 Salesforce does not address any vulnerabilities found with custom development.
@@ -46,8 +29,6 @@ For information about how to enable static IPs, see xref:deploying-to-cloudhub.a
 
 === Steps
 
-After your Security Assessment request is approved, follow these steps:
-
 . Run the penetration tests.
 +
 The Security Assessment Agreement includes restrictions and requirements for testing.
@@ -58,10 +39,8 @@ The Security Assessment Agreement includes restrictions and requirements for tes
 ** https://help.salesforce.com[Salesforce Help]
 --
 +
-[IMPORTANT]
-You must complete this step before following up with Salesforce.
 
-. Send any outstanding security vulnerability findings to mailto:security@salesforce.com[security@salesforce.com].
+. If your assessment generates vulnerability findings, please complete validation for any automated findings. Send any outstanding validated security vulnerability findings to mailto:security@salesforce.com[security@salesforce.com].
 +
 --
 Include the following information in your email:
@@ -89,7 +68,6 @@ Salesforce does not address any security vulnerabilities in the following catego
 
 == See Also
 
-* https://help.salesforce.com/articleView?id=000336416&type=1&mode=1[Salesforce Security vulnerability assessment and penetration test]
 * xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
 * xref:index.adoc[CloudHub]
 * xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
