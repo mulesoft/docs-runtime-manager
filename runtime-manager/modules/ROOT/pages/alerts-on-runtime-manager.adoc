@@ -43,9 +43,8 @@ assigned to the application.
 Custom notifications that trigger emails are also subject to the rate limit on email notifications.
 * Alert emails (CloudHub and on-premises)
 +
-For both standard and custom alerts, the rate limit is one alert notification email sent every 2.5 seconds per organization.
-This limit is enforced by a combination of organization, environment, alert (name or ID), and resource
-(application, server, server group, or cluster).
+The Mail Transfer Agent (MTA), a service that transfers emails between a sender's and a recipient's email server, sets alert notification email sending rates.
+The MTA stores an agreed rate between the email servers and sends emails below the agreed rate.
 
 == Create an Alert
 
