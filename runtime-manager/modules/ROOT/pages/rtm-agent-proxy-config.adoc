@@ -13,7 +13,7 @@ include::reuse::partial$non-inclusive-banner.adoc[]
 
 If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure the Runtime Manager agent to route traffic through the proxy server to Runtime Manager.
 
-The Runtime Manager agent supports only the basic access authentication method.
+The Runtime Manager agent supports the basic access and Kerberos v5 (via SPNEGO) authentication schemes for proxied communication.
 
 
 == Configure the Agent to Connect Through a Proxy Server
@@ -35,13 +35,24 @@ To configure the proxy server connection:
 `export AGENT_VAR_master_password=myPassword`
 . Run this command:
 +
+For basic authentication, the -P parameter sets up the authenticated proxy.
++
 [source,console,linenums]
 ----
 $MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password
 ----
++
+For Kerberos authentication, use the new parameter to specify that this protocol will be used along with the configuration file paths.
++
+[source,console,linenums]
+----
+$MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password --use-kerberos-proxy krb5-configuration-path jaas-configuration-path
+----
 
-If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_.
+If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_. These options are required when using Kerberos authentication via _--use-kerberos-proxy_.
 
+* *amc_setup -P parameters:*
++
 _proxy-host_::
 Specifies the hostname of the desired proxy server: for example, `proxy.acme.com`.
 Do not include `http://` or `https://` in the hostname.
@@ -52,6 +63,16 @@ Optionally specifies the user with which to authenticate against the proxy, if r
 _proxy-password_::
 Optionally specifies the password for the authentication _proxy-user_, if required.
 
+* *amc_setup --use-kerberos-proxy parameters:*
++
+_krb5-configuration-path_::
+Specifies the file path to the `krb5.conf` file, which is required to communicate with the Kerberos KDC.
++
+This is Kerberos flavor-dependent. See the https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html[MIT Kerceros Documentation^] for reference on the MIT implementation, which is the standard in most UNIX and Windows systems.
+_jaas-configuration-path_::
+Specifies the file path to the JAAS login configuration file, which is required to login to the Kerberos KDC.
++
+See https://docs.oracle.com/javase/8/docs/technotes/guides/security/jgss/tutorials/LoginConfigFile.html[JAAS Login Configuration File^] for a reference on this file format.
 
 This example configures the agent to work with a proxy server (`acme.proxy.com`) and specifies a Runtime Manager token:
 
@@ -132,5 +153,5 @@ contact your networking team with the `openssl` command's output.
 
 == See Also
 
-* xref:installing-and-configuring-runtime-manager-agent.adoc#encrypt_password[Encrypt Passwords in an Existing mule-agent.yml File]
-* https://help.mulesoft.com/s/article/How-to-troubleshoot-communication-issues-between-the-Mule-Runtime-Agent-and-the-OnPrem-server[How to troubleshoot communication issues between the Mule Runtime Agent and the OnPrem server]
+* xref:installing-and-configuring-runtime-manager-agent.adoc#encrypt_password[Encrypt Passwords in an Existing mule-agent.yml File].
+* https://help.mulesoft.com/s/article/How-to-troubleshoot-communication-issues-between-the-Mule-Runtime-Agent-and-the-OnPrem-server[How to troubleshoot communication issues between the Mule Runtime Agent and the OnPrem server^].

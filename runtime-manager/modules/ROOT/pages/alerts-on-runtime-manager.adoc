@@ -43,9 +43,8 @@ assigned to the application.
 Custom notifications that trigger emails are also subject to the rate limit on email notifications.
 * Alert emails (CloudHub and on-premises)
 +
-For both standard and custom alerts, the rate limit is one alert notification email sent every 2.5 seconds per organization.
-This limit is enforced by a combination of organization, environment, alert (name or ID), and resource
-(application, server, server group, or cluster).
+The Mail Transfer Agent (MTA), a service that transfers emails between a sender's and a recipient's email server, sets alert notification email sending rates.
+The MTA stores an agreed rate between the email servers and sends emails below the agreed rate.
 
 == Create an Alert
 
@@ -185,8 +184,7 @@ For information, see xref:mule-runtime::business-events.adoc[Business Events].
 Memory usage - Cloudhub::
 +
 --
-The percentage of the total memory allocated to the CloudHub workers that run the application,
-including the memory consumed by the JVM itself, is above or below the limit for the specified period of time.
+Memory usage is a percentage that represents the JVM heap-used/JVM total memory. The alert triggers if the memory usage is above or below the limit for the specified period of time.
 
 image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
 
@@ -276,6 +274,9 @@ The CPU usage of the servers that run the application is above or below the perc
 image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
 
 To enable this condition, specify the CPU percentage and duration that triggers the alert.
+
+[NOTE]
+For CloudHub multiworker applications, the alert considers the CPU threshold of the entire application.
 --
 
 Server Load average::
