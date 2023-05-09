@@ -47,7 +47,7 @@ The certificate expiration date appears on the server dashboard:
 image::rtm-server-certificate.png[Certificate expiration date on the Dashboard page]
 
 
-== Renew a Certificate before It Expires
+== Renew a Certificate from Runtime Manager
 
 Before a certificate expires, you can renew it directly from Runtime Manager.
 
@@ -96,9 +96,11 @@ You can hover over the *Renew Certificate* option in the *Actions* pull-down men
 [NOTE]
 Renewing server certificates requires a manual runtime restart to start using the new certificates.
 
-If renewing the unexpired certificate fails, follow the steps in <<Renew a Certificate after It Expires>>.
+If renewing the unexpired certificate via Runtime Manager fails, follow the steps in <<Renew a Certificate via the Command Line>>.
 
-== Renew a Certificate after It Expires
+== Renew a Certificate via the Command Line
+
+You can use this method to renew a certificate even after it has expired.
 
 The agent connects with Runtime Manager using mutual SSL authentication and stores the key pair
 in the `$MULE_HOME/conf/mule-agent.jks` file.
