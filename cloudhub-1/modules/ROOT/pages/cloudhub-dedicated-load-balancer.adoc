@@ -57,6 +57,7 @@ Switching between the two groups of static IP addresses enables zero-downtime re
 * Because static IPs change when you restart or update your DLB, use the DLB's DNS address rather than the IP addresses when calling the DLB from an external service. Ensure that the client includes the necessary retry mechanisms to account for the DNS switch.
 * To avoid connection issues when the load balancer is restarting, adhere to the DNS TTL (30 seconds), including connection keep alive. The connections are closed after the new workers are online and the TTL expires.
 * DLB uses DNS-based routing to distribute traffic across DLB workers and returns the IP address of all DLB workers to the calling client. A single DLB worker might receive all the client traffic within the TTL window regardless of the amount of transactions per second. To avoid this, ensure that you have granular load distribution between the DLB workers by alternating between the IP addresses returned in the DNS resolution.
+* When the DLB is stopped during configuration change, the DNS are deleted. If, at restart, there is DNS lookup, the `NXDOMAIN` error is cached for 15 minutes. To avoid this negative cache, ensure that you stop all API calls.
 
 [NOTE]
 For DLBs created before October 2021, click *Update* to enable the feature. After clicking *Update*, the DLB uses the static IP model described earlier, and you cannot revert to the former model.
