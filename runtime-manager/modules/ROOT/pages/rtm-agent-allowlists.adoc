@@ -125,18 +125,22 @@ Include the following fully qualified hostnames in your Layer 7 firewall rules:
 |*EU*|data-authenticator.eu1.anypoint.mulesoft.com
 |===
 
-[IMPORTANT]
---
+=== Allowlist
+
 Allowlist the following URLs only if you are using Agent versions earlier than 1.12.0 (in Mule 3.x) and 2.2.0 (in Mule 4.x):
 
-* mule-manager.anypoint.mulesoft.com +
+[%header,cols="30a,60a"]
+|===
+|URL |Description
+|mule-manager.anypoint.mulesoft.com| Connection for ARM management capabilities (*self-signed agents*)
+|arm-auth-proxy.prod.cloudhub.io| Connection to the metrics ingestion service of arm-monitoring stack (*self-signed agents*)
+|===
 
-* arm-auth-proxy.prod.cloudhub.io
+Allowlist the following URLs only if you are using Agent versions 1.12.0 (in Mule 3.x) and 2.2.0 (in Mule 4.x) or higher:
 
-
-Allowlist the following URLs only if you are using Agent versions 1.12.0 (in Mule 3.x) and 2.2.0 (in Mule 4.x) or older:
-
-* runtime-manager.anypoint.mulesoft.com +
-
-* data-authenticator.anypoint.mulesoft.com
---
+[%header,cols="30a,60a"]
+|===
+|URL |Description
+|runtime-manager.anypoint.mulesoft.com| Connection for ARM management capabilities (*public-cert agents*)
+|data-authenticator.anypoint.mulesoft.com| Connection to the metrics ingestion service of arm-monitoring stack (*public-cert agents*)
+|===
