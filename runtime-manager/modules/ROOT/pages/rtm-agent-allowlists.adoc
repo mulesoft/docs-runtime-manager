@@ -125,10 +125,11 @@ Include the following fully qualified hostnames in your Layer 7 firewall rules:
 |*EU*|data-authenticator.eu1.anypoint.mulesoft.com
 |===
 
+=== Allowlist
 
 Allowlist the following URLs only if you are using Agent versions earlier than 1.12.0 (in Mule 3.x) and 2.2.0 (in Mule 4.x):
 
-[%header,cols="10a,60a"]
+[%header,cols="30a,60a"]
 |===
 |URL |Description
 |mule-manager.anypoint.mulesoft.com| Connection for ARM management capabilities (*self-signed agents*)
@@ -137,7 +138,7 @@ Allowlist the following URLs only if you are using Agent versions earlier than 1
 
 Allowlist the following URLs only if you are using Agent versions 1.12.0 (in Mule 3.x) and 2.2.0 (in Mule 4.x) or higher:
 
-[%header,cols="10a,60a"]
+[%header,cols="30a,60a"]
 |===
 |URL |Description
 |runtime-manager.anypoint.mulesoft.com| Connection for ARM management capabilities (*public-cert agents*)
