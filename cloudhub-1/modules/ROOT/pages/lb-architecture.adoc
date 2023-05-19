@@ -1,0 +1,74 @@
+= Dedicated Load Balancer Architecture
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::lb-architecture.adoc
+
+
+A CloudHub dedicated load balancer (DLB) enables you to route external HTTP and HTTPS traffic to multiple Mule applications deployed into CloudHub workers inside a Virtual Private Cloud (VPC). Each CloudHub DLB is assigned to an Anypoint VPC, and that Anypoint VPC runs within a particular service region. The DLB routes both external and VPC-internal traffic to CloudHub workers deployed into that Anypoint VPC.
+
+The public CloudHub load balancer already redirects these requests, where `_myApp_` is the name of the Mule application deployment to CloudHub:
+
+* HTTP requests to `+http://myApp.cloudhub.io+` redirects to `mule-worker-myApp.cloudhub.io:8081`
+* HTTPS traffic to `+https://myApp.cloudhub.io:443+` redirects to `+https://mule-worker-myApp.cloudhub.io:8082+`
+
+Your load balancer listens for outside requests over HTTPS and, by default, communicates internally with your worker over HTTP. If you configured your Mule application within the Anypoint VPC to listen on HTTPS, make sure you set `upstreamProtocol` to `HTTPS` when creating the mapping list using the xref:cloudhub-cli.adoc#cloudhub-load-balancer-mappings-add[`cloudhub load-balancer mappings add`] command.
+
+
+== Routing External Requests to the Dedicated Load Balancer
+
+A CloudHub dedicated load balancer provides an alternative domain name to route HTTP requests to Mule applications listening on port 8091 and HTTPS requests to Mule applications listening on port 8092. You can also use mapping rules to rename requests to the CloudHub DLB to a different Mule application domain name.
+
+The CloudHub DLB exposes an external domain name that resolves to two public IP addresses which are accessible from outside your CloudHub Anypoint VPC network. `[lb-name]` is the name you gave the load balancer when you created it:
+
+* `[lb-name].lb.anypointdns.net`
+* `[lb-name].lb-prod-eu-rt.anypointdns.net` (EU control plane)
+
+
+== Renaming External Mule Application URLs Through a Dedicated Load Balancer
+
+You can create a mapping rule to rename the Mule application, so it can be accessed through a different domain name.
+
+For example, suppose you deploy a Mule application named myApp-myCompany-prod.cloudhub.io. CloudHub domain names must be globally unique among every other MuleSoft customer and Mule application. A DLB helps you hide this naming complexity within your corporate DNS domain name.
+
+You can set a CNAME record in your corporate DNS nameserver to mask the `lb-name.lb.anypointdns.net` domain to your company's "vanity" domain.
+
+For example, suppose your company owns the DNS domain `example.com`. You can create a CNAME record to route requests to `myapp.example.com` to a Cloudhub application named `myapp` using the `{subdomain}` pattern. This hides the complexity of the CloudHub domain name in the `cloudhub.io` domain.
+
+== Routing Internal Requests to the Dedicated Load Balancer
+
+The CloudHub dedicated load balancer has an internal domain name that is used by applications and clients within the Anypoint VPC.
+
+The internal domain uses the following naming convention (`[lb-name]` is  the name you gave the load balancer when you created it):
+
+----
+internal-[lb-name].lb.anypointdns.net
+----
+
+
+Each DLB has DNS A records `[lb-name].lb.anypointdns.net` that resolve to the public IP addresses of the instances.
+The number of public IP addresses correlates to the number of workers.
+Through your DNS provider, you can add a CNAME record pointing to this A record and use your domain names to access it.
+
+If you want your load balancer to manage all connections to your application but do not want your default domain name for your application publicly exposed, then each application must listen on HTTP port 8091 or 8092. Alternatively, you can create a custom mapping policy to redirect outside requests from your load balancer to your specific application.
+
+The following graphic shows how a load balancer interacts between a VPC and Anypoint Platform.
+
+image::pxty-lb.png[Load Balancer]
+
+Your load balancer listens for outside requests over HTTPS and, by default, communicates internally with your worker over HTTP. If you configured your Mule application within the Anypoint VPC to listen on HTTPS, you must set `upstreamProtocol` to HTTPS when creating the mapping list using the `load-balancer mappings add` command.
+
+The internal HTTP mode lets you configure how HTTP requests are managed. They are either silently ignored, mapped HTTPS on the default SSL endpoint, or the URL is mapped straight through to the corresponding HTTPS URL.
+
+== DLB URL Encoding
+
+You can configure the DLB to pass request URIs unchanged or decoded:
+
+* If you select *Keep URL encoding*, the DLB passes only the %20 and %23 characters as is.
+* If you deselect *Keep URL encoding*, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
+
+== See Also
+
+* xref:virtual-private-cloud.adoc[Virtual Private Cloud]
+* xref:index.adoc[CloudHub]
+* xref:lb-mapping-rules.adoc[Mapping Rules]

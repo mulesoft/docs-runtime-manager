@@ -1,0 +1,89 @@
+= Legacy VPN Migration to Anypoint VPN
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+If you are using a legacy VPN system, you can now migrate to Anypoint VPN on a per-route basis, and delete your legacy VPN from the Anypoint Console UI.
+All VPN connections configured before November 2018 are eligible for migration to Anypoint VPN.
+
+== Prerequisites
+
+=== Check Device Requirements
+
+Before migrating to Anypoint VPN, ensure that your device meets all necessary requirements. See xref:cloudhub-1::vpn-about.adoc[Anypoint VPN] for more information.
+
+[TIP]
+Actual configuration steps and functionality may differ based on the type of device you use. If your device supports it, use Border Gateway Protocol (BGP) routing.
+
+=== Verify Anypoint VPN Entitlements
+
+. Using an account with the required roles and permissions, log in to Runtime Manager. See xref:cloudhub-1::vpn-create-arm.adoc#prerequisites[Create an Anypoint VPN Connection] for more information.
+. If it's not in the parent organization, navigate to the Business Group where your VPC resides.
+** If the VPNs option is present in the navigation menu, you have the necessary entitlements to create an Anypoint VPN connection.
+. If your VPC resides in the parent organization, contact Customer Success Manager for assistance with this request.
+. If your VPC resides in a child Business Group, assign the VPN entitlements:
+.. Log into Access Management.
+.. Go to Organization.
+.. Select the Business Group.
+.. Use the sliders in the Business Group Info box to assign the required number of VPNs.
+
+
+=== Configure VPN Device
+
+Download the VPN configuration file from Runtime Manager, and configure your VPN device. See xref:cloudhub-1::vpn-about.adoc#ipsec-settings[Anypoint VPN] for more information on IPsec Settings.
+
+Running both the legacy and Anypoint VPN using the same encryption domains for a single VPC creates asymmetric routing scenarios and breaks connectivity to the VPC.
+You can validate connectivity via Anypoint VPN using a single host (a /32 encryption domain). Either create a single /32 static route, or propagate this route via BGP.
+
+When routing traffic, follow these guidelines :
+
+* If your VPC route table has multiple routes, use the most specific route.
+* If your VPC route table has duplicate routes, use the manually configured route pointing to the legacy VPN.
+
+[NOTE]
+When the same route is set for the legacy VPN and Anypoint VPN, the traffic goes to the legacy VPN.
+
+See https://help.mulesoft.com/s/article/How-to-View-the-VPC-Route-Table-via-the-UI[How to View the VPC Route Table via the UI^] for information on how to check your VPC route table.
+
+
+=== Create an Anypoint VPN in Runtime Manager
+
+Follow the step-by-step instructions in xref:cloudhub-1::vpn-create-arm.adoc[Create an Anypoint VPN Connection] to create a new Anypoint VPN in Runtime Manager.
+
+Provisioning the Anypoint VPN before deleting the legacy one will reduce downtime.
+To reduce the impact on connectivity while validating the new VPN connection, establish the new VPN for a /32 encryption domain (a single host address in your network).
+When migrating from the legacy VPN to Anypoint VPN, you can update your new VPN connection to include all the required encryption domains.
+
+== Migrate the Legacy VPN to Anypoint VPN
+
+Once you have created your new Anypoint VPN:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. From the navigation menu, select *Legacy VPN*.
+. Select the legacy VPN you want to migrate. 
++
+image:legacy-vpn-select.png[Select Legacy VPN]
+. Disable a route and then test the connection going through the Anypoint VPN.
+.. Repeat this step for each route. 
++
+image:legacy-vpn-disable-routes.png[Disable Legacy VPN Routes]
+. Once you disable all legacy VPN routes, select *Delete VPN*. 
++
+image:legacy-vpn-delete.png[Delete Legacy VPN]
+. When prompted, confirm the deletion. Click *Delete*. 
++
+image:legacy-vpn-confirm-deletion.png[Confirm Legacy VPN Deletion]
+
+[NOTE]
+Deleting a legacy VPN is irreversible.
+
+== See Also
+
+* xref:cloudhub-1::vpn-about.adoc[Anypoint VPN]
+* xref:cloudhub-1::vpn-create-arm.adoc[Create an Anypoint VPN Connection]
+* https://help.mulesoft.com/s/article/How-to-Migrate-from-legacy-VPN-to-Anypoint-VPN[How to Migrate from legacy VPN to Anypoint VPN]

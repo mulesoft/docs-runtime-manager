@@ -1,0 +1,41 @@
+= Deployment and Server Scaling
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+To ensure platform stability and performance, Anypoint Platform provides the following recommended and hard limits on the number of deployments, targets, and servers in a hybrid deployment scenario. These limits are specific to an environment in a business group.
+
+[NOTE]
+A _target_ is any destination for a Mule app, such as a server group, cluster, or on-premises Mule instance.
+For example, a server group comprised of 8 servers (Mule instances) constitutes a single target.
+
+To create additional deployments or servers beyond these limits, you can use different accounts, environments, or business groups. To exceed these limits within the same environment, contact your customer success representative.
+
+The tested and recommended limits on the number of deployments in a hybrid deployment scenario are:
+
+[%header%autowidth.spread]
+|===
+| Component | Tested/Recommended Limit
+| Maximum number of deployments per environment | 1000
+| Maximum number of deployments per hybrid target (not Runtime Fabric) | 200
+| Maximum number of properties per application | 300
+| Maximum deployment size for CloudHub 1.0, Runtime Fabric, and standalone | 200 MB
+| Maximum deployment size for CloudHub 2.0 | 350 MB
+|===
+
+The hard limits on the number of targets and servers in a hybrid deployment scenario are:
+
+[%header%autowidth.spread]
+|===
+| Component | Hard Limit
+| Maximum number of targets (not Runtime Fabric) | 500
+| Maximum number of servers per server group | 20
+| Maximum number of servers per cluster | 8
+|===
+
+As an example, if you have 500 clusters (targets) with 8 servers each, the maximum number of servers is 4000.

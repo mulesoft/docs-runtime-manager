@@ -1,0 +1,356 @@
+= Monitor Dashboards on Runtime Manager
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+The Anypoint Runtime Manager monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to.
+
+Anypoint Platform Private Cloud Edition doesn't support the Anypoint Monitoring dashboard feature.
+
+To view dashboards, you must have either the Runtime Manager Read Applications permission or the Runtime Manager Read Servers permission for the resource.
+
+Anypoint Runtime Manager provides these dashboards:
+
+* <<Application Monitoring Dashboards,Application monitoring dashboards>>
++
+Displays information about applications, including deployment target and status.
++
+Runtime Manager provides two application dashboard interfaces: built-in and classic. The dashboard you see depends on the version, type, and deployment method of the selected application.
+* <<Server Monitoring Dashboard,Server monitoring dashboard>>
++
+Provides high-level information about the servers, including heap memory and CPU percentage, as well as detailed memory usage metrics.
+* <<Server Group or Cluster Monitoring Dashboard,Server group or cluster monitoring dashboards>>
++
+Displays aggregated metrics for selected servers in a group or cluster.
+
+Using the information gathered from these dashboards, you can:
+
+* Set up alerts for applications and servers to notify you automatically when any of these metrics reaches a critical value for a sustained period.
+* Use Insight to help analyze the root cause of failures, isolate performance bottlenecks, and test for compliance with company procedures.
+
+== Application Monitoring Dashboards
+
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+
+The app monitoring dashboards help you answer questions about your integrated apps, such as:
+
+* When did peaks in usage occur?
+* What impact do high traffic peaks have on response time?
+* How well is the processing power behind my app coping with these high traffic peaks?
+* What impact do high traffic peaks have on the message fail rate?
+* What impact do high traffic peaks of other apps running on the same server have on the performance of a given app?
+
+
+[NOTE]
+After the worker is restarted, the CPU and memory information is not available in the dashboards. To retain these statistics, use the `dashboardStats` API. Alternatively, you can use Anypoint Monitoring with a Titanium subscription to store this data.
+
+=== Built-in Anypoint Monitoring Dashboard
+
+The Anypoint Monitoring dashboard provides a wider array of monitoring metrics than the classic application monitoring dashboard and includes several pages in which to view different types of charts.
+
+This dashboard is displayed if the selected application is:
+
+* Deployed to CloudHub or Runtime Fabric
+* Running on Mule 3.8.7-AM or 3.9.0 and later
+* Has Anypoint Monitoring enabled
+
+For information, see xref:monitoring::app-dashboards.adoc[Built-in Application Dashboard] in the Anypoint Monitoring documentation.
+
+=== Classic Application Monitoring Dashboard
+
+The classic application monitoring dashboard displays metrics for Mule messages, CPU, and memory.
+
+This dashboard is displayed if the selected application is:
+
+* Deployed to CloudHub
+* Running on Mule versions earlier than 3.8.7
+* Deployed on-premises (hybrid)
++
+For hybrid apps, the dashboard appears if monitoring is enabled and there are CPU metrics for the last 24 hours of monitoring.
+* Not enabled for monitoring
+
+
+=== Access the Application Monitoring Dashboard
+
+When you access the monitoring dashboard for an application, the dashboard you see depends on the version, type, and deployment method of the selected application.
+
+To access the application monitoring dashboard:
+
+. In Runtime Manager, click *Applications*.
+. Click the name of the application to monitor.
+
+=== Navigate the Application Monitoring Dashboard
+
+You can view all graphs for different time ranges by selecting the desired time interval in the top-right corner of the dashboard you are viewing:
+
+* Built-in Anypoint Monitoring dashboard:
++
+image::monitoring-dashboards-time-ranges.png[]
+* Classic application monitoring dashboard:
++
+--
+image::monitoring-dashboards-cbd92.png[]
+
+
+The following table lists the time units for each selected time range:
+
+////
+[%header,cols="15,15,15,15,15"]
+|===
+| 4+| *Selected Time Range*
+|*Average, Minimum, Maximum*| *3 Hours* | *24 Hours* | *7 Days* | *2 Weeks*
+| Number of Mule Messages .3+| Per minute .3+| Per 8 minutes .3+| Per hour .3+| Per 2 hours
+| Number of Errors
+| Response Time (in milliseconds)
+|===
+////
+
+[%header,cols="15,15,15,15"]
+|===
+| 3+| *Graphs Display the Average, Minimum, and Maximum:*
+| *Selected Time Range* | *Number of Mule Messages* | *Number of Errors* | *Response Time (milliseconds)*
+| *3 Hours* | Per minute | Per minute | Per minute
+| *24 Hours* | Per 8 minutes | Per 8 minutes | Per 8 minutes
+| *7 Days*  | Per hour | Per hour | Per hour
+| *2 Weeks* | Per 2 hours | Per 2 hours | Per 2 hours
+|===
+
+
+If your application runs on multiple workers, the workers are charted as different curves on the same graphs, differentiated by different colors.
+
+If your application runs on a server group or cluster, the aggregated metrics of the servers in the group or cluster appear as a single plot line on each graph. If you want to see the metrics at the individual server level, you can look at the dashboard for the individual server. If multiple apps are running on the server, you see the overall server performance, without a distinction between each of the apps running on it.
+--
+
+== Server Monitoring Dashboard
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+
+The server monitoring dashboard displays high-level information about the servers, including heap memory and CPU percentage, as well as detailed memory usage metrics.
+
+=== Access the Server Monitoring Dashboard
+
+To access the server monitoring dashboard:
+
+. In Runtime Manager, click *Servers*.
+. Click the name of the server to monitor.
++
+The dashboard for the server appears:
++
+image::monitoring-dashboards-server.png[]
+
+You can also navigate to a server's monitoring dashboard from the <<Access the Server Group or Cluster Dashboard,server group or cluster dashboard>> that includes the server.
+
+=== Navigate the Server Monitoring Dashboard
+
+The server monitoring dashboard displays metrics divided into two tabs:
+
+* <<Overview Tab,Overview>>
++
+Displays memory and CPU usage for the server at a high level.
+* <<Breakdown Tab,Breakdown>>
++
+Displays detailed metrics that track each part of the server's memory separately.
+
+You can view all graphs for different time ranges by selecting the desired time interval in the top-right corner of the dashboard you are viewing:
+
+image::monitoring-dashboards-cbd92.png[]
+
+You can display an overlay of numerical detail about activity that occurred at a specific time by hovering over the graph:
+
+image::monitoring-dashboards-hover.png[]
+
+If your server runs multiple applications, you can view the performance of each in a separate set of charts by selecting the application checkboxes to display the details pane on the right with this data.
+
+The memory usage graphs on the dashboards track these values:
+
+* *Usage*
++
+The amount of memory (in MB) currently in use.
++
+If the Java VM attempts to increase the used memory to be greater than committed memory,  memory allocation fails even if the amount of used memory is increased to below the total memory.
+* *Total*
++
+The maximum amount of memory (in MB) for use by the server. The maximum amount can change or be undefined.
+* *Committed*
++
+The amount of memory (in MB) available for use by the Java VM. This amount varies over time. The amount of committed memory is always greater than or equal to the amount of used memory.
+
+
+==== Overview Tab
+
+The graphs in the Overview tab provide high-level metrics related to memory and CPU usage.
+
+[[heap_memory]]
+Heap Memory::
+The total heap memory usage in MB:
++
+
+* Heap memory usage
+* Total memory
+* Heap committed memory
+
++
+image::monitoring-dashboards-heap.png[]
+
++
+See the <<Breakdown Tab,Breakdown tab>> for details about each of the components of the heap memory.
+
+
+[[cpu]]
+CPU::
+This metric is not available on Windows.
++
+The total CPU Usage of the server:
+
+* CPU Usage
+* Available Processors
+* Load Average
+
++
+image::monitoring-dashboards-cpu.png[]
+
+*CPU Usage* is a percentage value that indicates how much of the server's processing capacity is being used. *Available Processors* is an integer value that indicates the number of processors available in the server.
+CPU load is the number of tasks that are being executed, or waiting to be executed, by the server's CPU. *Load Average* is an integer value that indicates the average number of processes that are running or waiting to be assigned CPU time over a given period of time.
+
+==== Breakdown Tab
+
+The graphs in the Breakdown tab provide detailed metrics, including graphs that track each part of the server's memory separately.
+
+* Heap memory metrics relate to the portion of the server memory that makes up the JVM heap:
+** <<eden,Eden>>
+** <<survivor,Survivor>>
+** <<old_gen,Old Gen>>
+
+* Non-heap memory metrics refer to memory that exists outside the JVM heap:
++
+** <<code_cache,Code Cache>>
+** <<compressed_class,Compressed Class Space>>
+** <<metaspace,Metaspace>>
+
+
+[[thread_count]]
+Thread Count::
+The number of individual Java execution threads over time:
++
+
+image::monitoring-dashboards-threads.png[]
+
+[[garbage_collection]]
+Garbage Collection::
+Metrics for these areas of the heap:
+
+* Young Generation, where all new objects are allocated.
+* Old Generation, where long-surviving objects are stored.
++
+
+image::monitoring-dashboards-garbage.png[]
+
+[[class_loading]]
+Class Loading::
+The total number of classes that are currently loaded or being loaded across all apps in the JVM:
++
+image::monitoring-dashboards-classloading.png[]
+
+[[eden]]
+Eden::
+The pool in the heap space from which memory is initially allocated for most objects.
++
+image::monitoring-dashboards-eden.png[]
+
+[[survivor]]
+Survivor::
+The pool in the heap containing objects that have survived the garbage collection of the Eden space.
++
+image::monitoring-dashboards-survivor.png[]
+
+[[old_gen]]
+Old Gen::
+The pool in the heap containing objects that have existed for some time in the Survivor space.
++
+image::monitoring-dashboards-tenure.png[]
+
+[[code_cache]]
+Code Cache::
+The space containing memory that is used for compilation and storage of native code.
++
+image::monitoring-dashboards-cache.png[]
+
+[[compressed_class]]
+Compressed Class Space::
+This metric is available only when using JDK 8+.
++
+image::monitoring-dashboards-class-space.png[]
+
+[[metaspace]]
+Metaspace::
+The JVM memory space that uses native memory for the representation of class metadata.
++
+This metric is available only when using JDK 8+.
++
+image::monitoring-dashboards-meta.png[]
++
+The metaspace limit is currently 256 MB.
+
+== Server Group or Cluster Monitoring Dashboard
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+You can use the server group or cluster monitoring dashboard to view aggregated metrics for servers in a group or cluster.
+
+The server group or cluster monitoring dashboard displays these aggregated metrics:
+
+* CPU usage, as a percentage of the capacity
+* Memory usage, in MB
+* Heap total, in MB
+
+The aggregated metrics of the selected servers appear as a single plot line on each graph.
+
+=== Access the Server Group or Cluster Dashboard
+
+To view aggregated metrics for servers in a server group or cluster for on-premises deployment:
+
+. In Runtime Manager, click *Servers*.
+. Click the cluster or server group name to display the dashboard.
+. Select one or more servers or applications from the list to display aggregated metrics in the details pane.
+
+=== Navigate the Group or Cluster Dashboard
+
+// image::monitoring-dashboards-5cd3c.png[]
+
+You can view graphs for specific periods by selecting the time interval in the top-right corner:
+
+image::monitoring-dashboards-cbd92.png[]
+
+You can display this information for either servers or applications by clicking the appropriate tab:
+
+image::monitoring-dashboards-6fe9f.png[]
+
+From this dashboard, you can click a <<Access the Server Monitoring Dashboard,server>> or <<Access the Application Monitoring Dashboard,application>> name to access the dashboard for that item.
+
+
+== See Also
+
+* xref:monitoring::index.adoc[Anypoint Monitoring Overview]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/1.0.11/console/method/%231708/[CloudHub API dashboardStats]
+* xref:monitoring::configure-monitoring-cloudhub.adoc[Configure and Enable Anypoint Monitoring for Mule Apps (CloudHub)]
+* xref:monitoring::app-dashboards.adoc[Built-in Application Dashboard]
+* xref:cloudhub.adoc[CloudHub]
+* xref:cloudhub-fabric.adoc[Clustering]
+* xref:alerts-on-runtime-manager.adoc[Alerts]
+* xref:insight.adoc[Insight]

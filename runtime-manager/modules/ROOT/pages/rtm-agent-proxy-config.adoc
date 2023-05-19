@@ -1,0 +1,157 @@
+= Connect the Agent Through a Proxy Server
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
+
+image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+include::reuse::partial$non-inclusive-banner.adoc[]
+
+If your Mule runtime engine runs inside a firewall that restricts external communication through a proxy server, you can configure the Runtime Manager agent to route traffic through the proxy server to Runtime Manager.
+
+The Runtime Manager agent supports the basic access and Kerberos v5 (via SPNEGO) authentication schemes for proxied communication.
+
+
+== Configure the Agent to Connect Through a Proxy Server
+
+To configure the agent to connect through a proxy server, you must:
+
+* Run the `amc_setup` command to create the `$MULE_HOME/conf/mule-agent.yml` file.
+* Set up your proxy server configuration in the `$MULE_HOME/conf/wrapper.conf` file.
+
+
+=== Run amc_setup to Create mule-agent.yml
+
+If you have previously installed the Runtime Manager agent and want to change the configuration to use a proxy, you can add the proxy configuration to the `mule-agent.yml` file.
+
+To configure the proxy server connection:
+
+. If you want to encrypt passwords in the `mule-agent.yml` file, set the `AGENT_VAR_master_password` environment variable to the main password:
++
+`export AGENT_VAR_master_password=myPassword`
+. Run this command:
++
+For basic authentication, the -P parameter sets up the authenticated proxy.
++
+[source,console,linenums]
+----
+$MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password
+----
++
+For Kerberos authentication, use the new parameter to specify that this protocol will be used along with the configuration file paths.
++
+[source,console,linenums]
+----
+$MULE_HOME/bin/amc_setup -H token server-name -P proxy-host proxy-port proxy-user proxy-password --use-kerberos-proxy krb5-configuration-path jaas-configuration-path
+----
+
+If the proxy server doesn't require authentication, omit _proxy-user_ and _proxy-password_. These options are required when using Kerberos authentication via _--use-kerberos-proxy_.
+
+* *amc_setup -P parameters:*
++
+_proxy-host_::
+Specifies the hostname of the desired proxy server: for example, `proxy.acme.com`.
+Do not include `http://` or `https://` in the hostname.
+_proxy-port_::
+Specifies the port of the desired proxy server.
+_proxy-user_::
+Optionally specifies the user with which to authenticate against the proxy, if required.
+_proxy-password_::
+Optionally specifies the password for the authentication _proxy-user_, if required.
+
+* *amc_setup --use-kerberos-proxy parameters:*
++
+_krb5-configuration-path_::
+Specifies the file path to the `krb5.conf` file, which is required to communicate with the Kerberos KDC.
++
+This is Kerberos flavor-dependent. See the https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html[MIT Kerceros Documentation^] for reference on the MIT implementation, which is the standard in most UNIX and Windows systems.
+_jaas-configuration-path_::
+Specifies the file path to the JAAS login configuration file, which is required to login to the Kerberos KDC.
++
+See https://docs.oracle.com/javase/8/docs/technotes/guides/security/jgss/tutorials/LoginConfigFile.html[JAAS Login Configuration File^] for a reference on this file format.
+
+This example configures the agent to work with a proxy server (`acme.proxy.com`) and specifies a Runtime Manager token:
+
+[source, console, linenums]
+----
+amc_setup -H myToken myMuleServer -P acme.proxy.com 443
+----
+
+This example configures the agent to work with a proxy server that requires authentication:
+
+[source, console, linenums]
+----
+amc_setup -H myToken myMuleServer -P acme.proxy.com 443 internalAdmin Ins1d3V0icePassword
+----
+
+=== Set Up Proxy Server Configuration in the wrapper.conf File
+
+To specify proxy server configuration in the `$MULE_HOME/conf/wrapper.conf` file,
+add your proxy server information to the following properties:
+
+* `anypoint.platform.proxy_host=_hostname_`
+* `anypoint.platform.proxy_port=_port_`
+* `anypoint.platform.proxy_username=_username_`
+* `anypoint.platform.proxy_password=_password_`
+
+
+== Verify That the Proxy Server Does Not Modify the Runtime Manager Certificate
+
+To ensure that your firewall or proxy does not intercept or modify the
+Runtime Manager certificate, run one of the following commands, depending on the version of your Runtime Manager agent.
+
+The commands run a probe to determine whether the firewall or proxy is tampering with the certificate.
+
+* Agent versions 1.12.0 and later, and 2.2.0 and later:
++
+--
+[source,console,linenums]
+----
+echo -e "GET / HTTP/1.0\r\n" | openssl s_client -connect runtime-manager.anypoint.mulesoft.com:443 -ign_eof
+----
+
+The output of this command should include the following information:
+
+[source,console,linenums]
+----
+-----END CERTIFICATE-----
+subject=/C=US/ST=California/L=San Francisco/O=salesforce.com, inc./CN=runtime-manager.anypoint.mulesoft.com issuer=/C=US/O=DigiCert Inc/CN=DigiCert TLS RSA SHA256 2020 CA1
+----
+--
+
+* Agent versions earlier than 1.12.0 and 2.2.0:
++
+--
+[source,console,linenums]
+----
+echo -e "GET / HTTP/1.0\r\n" | openssl s_client -connect mule-manager.anypoint.mulesoft.com:443 -ign_eof
+----
+
+The output of this command should include the following information:
+
+[source,console,linenums]
+----
+-----END CERTIFICATE-----
+subject=/C=US/ST=CA/L=San Francisco/O=Mulesoft/OU=Mulesoft/CN=mule-manager.anypoint.mulesoft.com/emailAddress=devops@mulesoft.com issuer=/C=US/ST=CA/L=San Francisco/O=Mulesoft/OU=Mulesoft/CN=Mulesoft/emailAddress=devops@mulesoft.com
+----
+--
+
+If the expected information does not appear in the output,
+contact your networking team with the `openssl` command's output.
+
+== Known Issues
+
+[%header,cols="15a,85a"]
+|===
+|Issue |Description
+|SE-8011 | Agent setup returns `407 Proxy Authentication Required` when passing proxy information during setup.
+|===
+
+== See Also
+
+* xref:installing-and-configuring-runtime-manager-agent.adoc#encrypt_password[Encrypt Passwords in an Existing mule-agent.yml File].
+* https://help.mulesoft.com/s/article/How-to-troubleshoot-communication-issues-between-the-Mule-Runtime-Agent-and-the-OnPrem-server[How to troubleshoot communication issues between the Mule Runtime Agent and the OnPrem server^].

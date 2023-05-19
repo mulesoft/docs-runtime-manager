@@ -1,0 +1,180 @@
+= Manage Properties for Applications on CloudHub
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::cloudhub-manage-props.adoc
+
+
+
+In a CloudHub deployment, you can add properties to an application by using either Anypoint Runtime Manager or a properties file.
+
+If you set properties both in the properties file in your application and in Runtime Manager, the values set in Runtime Manager always override the values in the properties file when your application deploys.
+
+
+== Add Application Properties in Runtime Manager
+
+The easiest way to load properties to applications deployed to CloudHub is to use the *Properties* tab in Anypoint Runtime Manager.
+
+
+To add properties:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Applications* tab.
+. Click the *Status* column to display the details pane.
+. Click *Manage Application*.
+. On the *Settings* page, click the *Properties* tab:
++
+.The screenshot shows (*1*) the *Properties* tab, (*2*) the *List* button, (*3*) the key and value fields, and (*4*) the *X* icon on the application *Settings* page.
+image::cloudhub-app-props.png[*Properties* tab, key and value fields, and *X* icon on the application *Settings* page]
+. Click *List*.
++
+Alternatively, you can enter the key-value pair in the *Text* field in this format: `key=value`.
+. Enter the property name in the key field.
+. Enter the property value in the value field.
++
+If the save password feature of Chrome is enabled and includes a username for `anypoint.mulesoft.com` that matches the contents of the key field, Chrome overwrites the value field with the stored password associated with that username.
+To work around this limitation, use Chrome in incognito mode or use another browser.
+. If you want to change a key or value, edit the text in the field.
+. If you want to delete a property, click *X*.
+. Click *Apply Changes*.
+. Select *Restart* from the menu in the top right to restart the application.
+
+
+
+=== Example: Using Properties to Set Environment Variables
+
+You can specify Java system environment variables, which function the same as adding environment variables when you deploy to an on-premises server.
+
+You can also configure environment variables for your application.
+Properties enable you to externalize settings that change depending on the environment you're deploying to.
+For example, if you use a Mule application locally, you might configure your database host to be `0.0.0.0`.
+If you deploy the same app to CloudHub, you might configure the database host to be an Amazon RDS server.
+
+To create or set an environment variable using an application property:
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Applications* tab.
+. Click the *Status* column to display the details pane.
+. Click *Manage Application*.
+. On the *Settings* page, click the *Properties* tab:
+. Define the variable by entering it in the *Text* view, in `key=value` format:
++
+.The arrow shows the variable on the *Properties* tab of the application *Settings* page.
+image::rtm-env-variables.png[*Properties* tab on the *Settings* page]
+
++
+[NOTE]
+In the *Text* view, use the backslash character (`\`) as an escape character.
+For example, to use `:` in a key or value, use `\:` in the syntax.
+To use `\` in a key or value, use `\\` in the syntax.
+*List* view syntax requires no escape character.
+
+. Use the environment variable in your Mule app configuration.
+
+== Add Application Properties Using a Properties File
+
+You can add properties to an app by including a file in the deployable application archive file:
+
+* Property placeholder YAML file (Mule 4)
++
+See xref:mule-runtime::configuring-properties.adoc[Configuring Properties].
+* `mule-app.properties` (Mule 3)
++
+See xref:3.9@mule-runtime::configuring-properties.adoc[Configuring Properties].
+
+CloudHub then loads these properties into the application when the application starts.
+
+Although this method is not the best practice on CloudHub (because CloudHub *Properties* tab values override any with the same name in the file), you can work around this by changing options in the Mule app.
+
+To prevent CloudHub properties from overriding properties bundled with the deployable archive, change options in the `property-placeholder` element in the Mule application.
+For more information about nondefault property placeholder options, see the https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html[Spring documentation on Property Placeholder options].
+
+== CloudHub Reserved Properties
+
+CloudHub reserves a set of properties and prevents apps from overwriting the values of those properties.
+If an application attempts to assign a value to a reserved property, CloudHub doesn't use the assigned value.
+Instead, it returns the value as set internally, without throwing an error or exception, and adds a warning message to the log.
+
+Applications can reference reserved properties, for example, to retrieve the application name or deployment region.
+Use the `${csorganization.id}` and `${environment.id}` properties to retrieve those values if your app makes Anypoint Platform API calls.
+Use `${worker.id}` to identify each worker in a multiworker application.
+
+[IMPORTANT]
+Do not use the `${spring.profiles.active}` and `${logging.*}` properties.
+
+[%header,cols="3*a"]
+|===
+|Property|Description|Example
+|`${java.vendor}`|Vendor providing the JVM|Oracle Corporation
+|`${java.runtime.name}`|JVM name|Java&#8482; SE Runtime Environment
+|`${java.version}`|JVM version, excluding the dot (point) release.
+
+If a CloudHub runtime release upgrades the JDK, this value changes.|1.8.0_141
+|`${csorganization.id}`|Main or business group ID|09396371-2cd4-412e-8d08-4356dd3e7bfc
+|`${environment.id}`|Environment ID|52a69d49e4b0e3c7324ae5b6
+|`${environment.type}`|Environment type|production
+|`${worker.id}`|Worker ID (for multiworker apps)|0
+|`${domain}`|App name|`ch-https-41-demo`
+|`${fullDomain}`|Full domain name of app|`ch-https-41-demo.au-s1.cloudhub.io`
+|`${application.aws.region}`|App deployment region|`ap-southeast-2`
+|`${http.port}`|HTTP port|8081
+|`${https.port}`|HTTPS port|8082
+|`${http.private.port}`|HTTP private port|8091
+|`${https.private.port}`|HTTPS private port|8092
+|`${mule.home}`|Absolute path to Mule installation|`/opt/mule/mule-4.1.1`
+|`${spring.profiles.active}`|Used internally, *do not use*|`\***`
+|`${logging.*}`|Used internally, *do not use*| `\***`
+|`${host}`|Used internally for the local IP address of a worker|`10.40.122.33`
+|`${anypoint.url}`|Used internally as the base Anypoint Platform URL|US: `\https://anypoint.mulesoft.com`
+
+MuleSoft Government Cloud: `\https://gov.anypoint.mulesoft.com`
+|===
+
+--
+[NOTE]
+For proprietary reasons, MuleSoft doesn't make public all internal, reserved properties.
+CloudHub runtime release updates might change the reserved properties.
+--
+
+=== Non-reserved Pre-populated Properties
+
+Mule runtime pre-populates the values for the following two properties. However, you have the option to overwrite these pre-filled values.
+
+[%header,cols="3*a"]
+|===
+|Property|Description|Example
+|`${app.name}` |The name of the application `.jar` file. | myApplication
+|`${app.home}` |The root directory of the application during run time. | /opt/mule/mule-4.3.0/apps/myApplication
+|===
+
+
+=== Example: Retrieve the Values of Reserved Properties
+
+[source,xml,linenums]
+----
+<set-payload value="java.vendor=${java.vendor}, java.runtime.name=${java.runtime.name}, java.version=${java.version}, application.aws.region=${application.aws.region},
+      http.port=${http.port}, http.ports=${http.port}, mule.home=${mule.home}, csorganization.id=${csorganization.id}, environment.id=${environment.id},
+      environment.type=${environment.type}, worker.id=${worker.id}, domain=${domain}, fullDomain=${fullDomain}" doc:name="Set Payload"/>
+<logger message="#[payload]" level="INFO" doc:name="Logger"/>
+----
+
+Example output:
+
+[source,console,linenums]
+----
+16:33:08.572     07/02/2020     Worker-0     [cloudhub-reserved-properties].HTTP_Listener_Configuration.worker.01     INFO
+   java.vendor=Oracle Corporation, java.runtime.name=Java(TM) SE Runtime Environment, java.version=1.8.0_141, application.aws.region=ap-southeast-2,
+   http.port=8081, http.ports=8081, mule.home=/opt/mule/mule-4.3.0, csorganization.id=09396371-2cd4-412e-8d08-4356dd3e7bfc, environment.id=52a69d49e4b0e3c7324ae5b6,
+   environment.type=production, worker.id=0, domain=cloudhub-reserved-properties, fullDomain=cloudhub-reserved-properties.au-s1.cloudhub.io
+----
+
+
+
+
+== See Also
+
+* xref:mule-runtime::configuring-properties.adoc[Configuring Properties] (Mule 4)
+* xref:3.9@mule-runtime::configuring-properties.adoc[Configuring Properties] (Mule 3)
+* xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
+* xref:secure-application-properties.adoc[Safely Hide Application Properties]

@@ -1,0 +1,97 @@
+= Provision a VPC
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::vpc-management-permission-topic.adoc,  runtime-manager::vpc-provisioning-concept.adoc,
+
+
+Provisioning an Anypoint VPC for your organization consists of two major steps:
+
+. Create the VPC. +
+This is a self-service process. You can create a VPC using either the Runtime Manager UI, or the Anypoint Platform CLI. +
+[NOTE]
+The Anypoint Platform base subscription includes two Anypoint VPC licenses, which entitles your Anypoint Platform organization to two VPCs. Once your Anypoint VPC license limit is reached, the *Create VPC* option is disabled in the user interface.
+. Connect to your Anypoint VPC. +
+Configure your xref:to-request-vpc-connectivity.adoc[Anypoint VPN] or
+xref:tgw-about.adoc[transit gateway] to connect the Anypoint VPC to your on-premises network.
++
+To connect your Anypoint VPC using VPC peering or AWS Direct Connect, contact your MuleSoft Support representative.
+
+[NOTE]
+--
+To avoid unnecessary downtime, it is critical to define the Anypoint VPC settings when you first create a new Anypoint VPC. +
+If you edit these settings after the Anypoint VPC is created, you must then remove all your workers and redeploy them after the change is complete.
+--
+
+These settings include:
+
+* The address space for your network. +
+This determines the size of your Anypoint VPC.
+* The location of your VPC. +
+To enable the VPC to host your workers, the Anypoint VPC must be bound to a business group and a specific CloudHub region.
++
+** The Organization or Business Group for your VPC.
+** The CloudHub Region for your VPC.
+
+Read the following FAQs to understand how to plan a successful VPC setup.
+
+== FAQ: How to Calculate Anypoint VPC and VPN Licensing Requirements
+
+To connect an Anypoint VPC through IPSec VPN, you must have the required number of licenses for your deployment scenario.
+
+The Anypoint Platform base subscription includes two Anypoint VPC licenses, which entitles your Anypoint Platform organization to two licensed Anypoint VPCs. Anypoint VPN licenses are bundled with the Anypoint VPC license, so each Anypoint VPC license also entitles the organization to one VPN gateway with a connection to one public IP address in a remote location.
+
+[NOTE]
+Anypoint VPN licenses do not need to have a one-to-one relationship with the Anypoint VPC licenses. For example, you can have one Anypoint VPC with two Anypoint VPNs and another VPC with no VPNs.
+
+An additional Anypoint VPC license is required for each remote location that needs to be accessible from the Anypoint VPC.
+
+[[faq_how_to_size_vpc]]
+== FAQ: How to Size my VPC
+
+When you create an Anypoint VPC, the range of IP addresses for the network must be specified in the form of a Classless Inter-Domain Routing (CIDR) block, using CIDR notation. +
+This address space is reserved for Mule workers, so it cannot overlap with any address space used in your data center if you want to peer it with your VPC.
+
+To calculate the proper sizing for your Anypoint VPC, you first need to understand that the number of dedicated IP addresses is not the same as the number of workers you have deployed. +
+For each worker deployed to CloudHub, the following IP assignation takes place:
+
+* For better fault tolerance, the VPC subnet may be divided into up to four Availability Zones.
+* A few IP addresses are reserved for infrastructure.
+* At least two IP addresses per worker to perform at zero-downtime.
+
+Due to this structure, the smallest network subnet block you can assign for your Anypoint VPC is /24 and the largest /16.
+
+The safe rule of thumb for deciding the size of your Anypoint VPC subnet is to calculate 10 times the maximum number of expected apps to deploy in the VPC.
+
+== FAQ: Where to Place an Anypoint VPC inside My Organization
+
+As an organization administrator, you can create an Anypoint VPC and share it with any business group within your main organization. +
+However, once the Anypoint VPC is inherited by a business group, only the administrator of said business group can operate the Anypoint VPC. For example, an Anypoint organization administrator or a business group owner can create or update an existing Anypoint VPC (owned or inherited) to make it the default for either the region, the environment, or both. +
+However, if such an association already exists, it's overwritten by the requested Anypoint VPC.
+
+If no business group association is specified, or if your organization does not have any business groups, the Anypoint VPC ownership remains associated with the main organization. The organization under which the Anypoint VPC is created is the VPC owner and this organization's administrator is the only one who can share the Anypoint VPC. +
+Anypoint VPCs can only be shared vertically from the main organization to one of its business groups, or from a business group to one of its child business groups. +
+You cannot share an Anypoint VPC created by a business group with another business group that is higher in the hierarchy.
+
+It is recommended that you create your Anypoint VPC in your main organization, and share it with the other business groups.
+
+== FAQ: Which Region to use When Creating an Anypoint VPC
+
+You can create your Anypoint VPC inside any of the available CloudHub regions. +
+The recommended region to use might vary depending on how you connect to your Anypoint VPC. If you are using a VPN tunnel, you might want to choose the CloudHub region closest to your data center. +
+However, if you are peering with your private AWS VPC, you need to create your Anypoint VPC in the same AWS region.
+
+== FAQ: How to deploy or move applications to a VPC
+
+MuleSoft applications are deployed to an environment, such as development or sandbox.
+
+When the deployment region matches the VPC region:
+
+* If the environment is already associated with a VPC at the time of application deployment, the app resides inside the VPC.
+* If the environment is associated with a VPC after the app deployment, the app will not reside inside the VPC until the app is restarted.
+
+When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means that the app does not have access to any connectivity methods configured for the VPC.
+
+== See Also
+
+* xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity to Your Network]

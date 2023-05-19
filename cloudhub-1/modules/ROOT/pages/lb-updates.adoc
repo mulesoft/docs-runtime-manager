@@ -1,0 +1,45 @@
+= Dedicated Load Balancer Updates
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::lb-updates.adoc
+
+
+The CloudHub dedicated load-balancer service provides quarterly updates that include the latest OS and security patches. If necessary, additional patches provide updates more often.
+These updates don't include feature changes.
+
+Because these updates contain required security patches, you cannot roll back these updates once applied.
+
+When updates are available, an *Update* button appears on the load balancers page:
+
+image::lb-update-page.png[LoadBalancerUpdatePage]
+
+The *Update* button also appears on the details page for the individual load balancer:
+
+image::lb-update-details.png[LoadBalancerUpdateDetails Page]
+
+
+== Update the Dedicated Load Balancer
+
+The *Update* button indicates a load balancer requires an update. You can schedule the update to occur at your convenience. Before updating the Production DLBs, update the Sandbox DLB and run required tests.
+
+To update a load balancer:
+
+. From Anypoint Platform, click *Runtime Manager*.
+. Click *Load Balancers*.
+. Click the *Update* button.
+. At the *Update load balancer* prompt, click *Update*.
++
+Click the *View release notes* link for details on the update. 
++
+[IMPORTANT]
+When you update a DLB with static IP addresses, the update might require additional static IPs. If you are prompted to add these new IP addresses to your allowlist, do so before you click *Update*.
+
+
+The update results in a rolling restart with no downtime. However, some inflight requests might be impacted.
+
+If you experience a sustained outage after updating, contact MuleSoft Support.
+
+== See Also
+
+* xref:cloudhub-dedicated-load-balancer.adoc#static-ip-addresses[Static IP Addresses]
