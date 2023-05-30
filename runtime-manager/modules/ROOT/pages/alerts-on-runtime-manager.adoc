@@ -30,21 +30,7 @@ Runtime Manager retains 30 days of alert history.
 == Rate Limits on Alerts
 
 Anypoint Platform enforces rate limits that determine how often an alert is triggered and prevent excessive emails from being sent.
-The following factors determine the rate limit:
-
-* CloudHub custom application alerts
-+
-When using CloudHub Connector to trigger notifications and alerts,
-the rate limit is five custom application alerts per IP address, per second.
-This limit is enforced by IP address.
-If an application uses multiple workers, this limit is multiplied by the number of workers
-assigned to the application.
-+
-Custom notifications that trigger emails are also subject to the rate limit on email notifications.
-* Alert emails (CloudHub and on-premises)
-+
-The Mail Transfer Agent (MTA), a service that transfers emails between a sender's and a recipient's email server, sets alert notification email sending rates.
-The MTA stores an agreed rate between the email servers and sends emails below the agreed rate.
+At present, there is no defined limit to the number of Runtime Manager alerts.
 
 == Create an Alert
 
