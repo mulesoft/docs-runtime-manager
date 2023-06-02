@@ -83,10 +83,10 @@ For an overview of the Runtime Manager features available with all deployment op
 |===
 |Environment | Implementation               | Additional Features      | Reference
 |CloudHub 2.0 |    |   |
-|CloudHub 1.0 |Clustering, which includes load balancing, persistent message queues, and horizontal scaleout. | Active monitoring of services and workers for problem and issue solving. | xref:cloudhub-fabric.adoc[Clustering]
-|Hybrid | Server groups or clusters |Clustered Mule instances have distributed shared memory, which provides persistent VM queues, transactions, and cluster-wide data storage. | xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview].
-|Private Cloud Edition | Server groups or clusters |Clustered Mule instances have distributed shared memory, which provides persistent VM queues, transactions, and cluster-wide data storage. | xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview].
-|Runtime Fabric | Automatic application fail-over. | High availability when you deploy two or more replicas per application. | xref:runtime-fabric::deploy-resource-allocation.adoc[Deploy a Mule Application to Runtime Fabric]
+|CloudHub 1.0 |Clustering, which includes load balancing, persistent message queues, and horizontal scaleout. | Active monitoring of services and workers for problem and issue solving. | xref:cloudhub-fabric.adoc[Clustering].
+|Hybrid | Server groups or clusters. |Clustered Mule instances have distributed shared memory, which provides persistent VM queues, transactions, and cluster-wide data storage. | xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview].
+|Private Cloud Edition | Server groups or clusters. |Clustered Mule instances have distributed shared memory, which provides persistent VM queues, transactions, and cluster-wide data storage. | xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview].
+|Runtime Fabric | Automatic application fail-over. | High availability when you deploy two or more replicas per application. | xref:runtime-fabric::deploy-resource-allocation.adoc[Deploy a Mule Application to Runtime Fabric].
 |===
 
 == JDK Versions
@@ -97,7 +97,7 @@ For an overview of the Runtime Manager features available with all deployment op
 |===
 |Environment | Version         | Reference
 |CloudHub 2.0 |                   |
-|CloudHub 1.0 |JDK 8, for all applications built with Mule runtime 3.9.x, 4.1.x, 4.2.x and later | xref:release-notes::cloudhub/cloudhub-runtimes-release-notes.adoc[CloudHub Runtime and Operating System Release Notes].
+|CloudHub 1.0 |JDK 8, for all applications built with Mule runtime 3.9.x, 4.1.x, 4.2.x and later. | xref:release-notes::cloudhub/cloudhub-runtimes-release-notes.adoc[CloudHub Runtime and Operating System Release Notes].
 |Hybrid | See the  Mule runtime engine release notes to determine the minimum JDK supported version. | xref:release-notes::mule-runtime/mule-esb.adoc[Mule Runtime Release Notes].
 |Private Cloud Edition | See the  Mule runtime engine release notes to determine the minimum JDK supported version. |xref:release-notes::mule-runtime/mule-esb.adoc[Mule Runtime Release Notes].
 |===
@@ -111,9 +111,9 @@ For an overview of the Runtime Manager features available with all deployment op
 |Environment | Supported Load Balancing        | Alternative / Workaround
 |CloudHub 2.0 |  |
 |CloudHub 1.0 | If your app runs on multiple workers, the CloudHub 1.0 shared load automatically balances incoming traffic.  | Use the optional dedicated load balancer (DLB) component to
-route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC)
-|Hybrid | Not Supported  | You can manage load balancing with the tools connected to your on-premises resources.
-|Private Cloud Edition | Not Supported  | You can manage load balancing with the tools connected to your on-premises resources.
+route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC).
+|Hybrid | Not Supported.  | You can manage load balancing with the tools connected to your on-premises resources.
+|Private Cloud Edition | Not Supported. | You can manage load balancing with the tools connected to your on-premises resources.
 |Runtime Fabric |  Internal load balancer for basic load balancing. | You can also forward logs from Runtime Fabric to a rsyslog server.
 |===
 
@@ -125,8 +125,8 @@ route external traffic to multiple Mule applications deployed to CloudHub worker
 [%header,cols="15,50,40,35"]
 |===
 |Environment | Description       | Alternative / Workaround | Reference
-|CloudHub 2.0 |    |  |
-|CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. | xref:viewing-log-data.adoc[View Log Data].
+|CloudHub 2.0 |                  |                          |
+|CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[View Log Data].
 |Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 |Private Cloud Edition | The Runtime Manager logging feature is not available for hybrid deployments. | The Runtime Manager logging feature is not available for hybrid deployments. | xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 |Runtime Fabric | Runtime Fabric supports Anypoint Monitoring Titanium logging.  | You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric].
