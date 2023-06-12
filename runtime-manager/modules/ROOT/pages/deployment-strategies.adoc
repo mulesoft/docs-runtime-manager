@@ -136,13 +136,13 @@ route external traffic to multiple Mule applications deployed to CloudHub worker
 
 == Monitoring
 
-[%header,cols="15,50,40,35"]
+[%header,cols="15,30,55,30"]
 |===
 |Environment | Implementation       | Functionality| Reference
 |CloudHub 2.0|  |  |
-|CloudHub 1.0| The Runtime Manager cloud console includes dashboards that provide performance metrics for all deployed applications. | - Set up alerts based on alert conditions on deployed apps / - Set up standard notifications to inform you when events occur in your applications / - Add a CloudHub connector to your app’s flows to set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers].
-|Hybrid| The Runtime Manager cloud console includes dashboards that provide performance metrics for all deployed applications. | - Set up alerts based on alert conditions on deployed apps. / - Set up standard notifications to inform you when events occur in your applications. / - Set up alerts triggered by events related to the servers on which they run, such as reaching a certain CPU usage threshold or adding a new node to a cluster.  | xref:monitoring.adoc[Monitor Applications and Servers].
-|Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | - Set up alerts based on alert conditions on deployed apps. / - Set up standard notifications to inform you when events occur in your applications. / - Set up alerts triggered by events related to the servers on which they run, such as reaching a certain CPU usage threshold or adding a new node to a cluster. | xref:monitoring.adoc[Monitor Applications and Servers].
+|CloudHub 1.0| The Runtime Manager cloud console includes dashboards that provide performance metrics for all deployed applications. | Set up alerts based on alert conditions on deployed apps. Set up standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your app's flows to set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers].
+|Hybrid| The Runtime Manager cloud console includes dashboards that provide performance metrics for all deployed applications. | Set up alerts based on alert conditions on deployed apps. Set up standard notifications to inform you when events occur in your applications. Set up alerts triggered by events related to the servers on which they run, such as reaching a certain CPU usage threshold or adding a new node to a cluster.  | xref:monitoring.adoc[Monitor Applications and Servers].
+|Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Set up alerts based on alert conditions on deployed apps. Set up standard notifications to inform you when events occur in your applications. Set up alerts triggered by events related to the servers on which they run, such as reaching a certain CPU usage threshold or adding a new node to a cluster. | xref:monitoring.adoc[Monitor Applications and Servers].
 |Runtime Fabric| Use Anypoint Monitoring to view application metrics with Anypoint Platform. | Runtime Fabric provides dashboards and alerts in Ops Center for viewing performance and availability metrics. Use an SMTP server to receive and send alerts. | xref:runtime-fabric::manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric]. xref:runtime-fabric::configure-alerting.adoc[Configure Alerting on Runtime Fabric].
 
 == Object Store
