@@ -74,15 +74,14 @@ For an overview of the Runtime Manager features available with all deployment op
 * <<Security Updates>>
 * <<Shared Resource Support>>
 * <<Troubleshooting>>
-* <<Distributed Locks>>
 
 
 === High Availability
 
-[%header,cols="15,50,30"]
+[%header,cols="15,50,20"]
 |===
 |Environment | Implementation      | Reference
-|CloudHub 2.0 | Via clustering with two or more replicas, and Anypoint VPN. |   xref:cloudhub-2::ch2-clustering.adoc[Clustering], xref:cloudhub-2::ps-vpn-about.adoc#vpn-ha[VPN High Availability] 
+|CloudHub 2.0 | Via clustering with two or more replicas, and Anypoint VPN. |   xref:cloudhub-2::ch2-clustering.adoc[Clustering], xref:cloudhub-2::ps-vpn-about.adoc#vpn-ha[VPN High Availability]. 
 |CloudHub 1.0 |Via clustering, with two or more workers, and Anypoint VPN. | xref:cloudhub-fabric.adoc[Clustering], xref:vpn-high-availability.adoc[Anypoint VPN High Availability].
 |Hybrid | Via server groups or clusters. Clustered Mule instances have distributed shared memory, which provides persistent VM queues, transactions, and cluster-wide data storage. | xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview].
 |Private Cloud Edition | Via server groups or clusters. Clustered Mule instances have distributed shared memory, which provides persistent VM queues, transactions, and cluster-wide data storage. | xref:server-group-about.adoc[Server Groups], xref:cluster-about.adoc[Clusters], and xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview].
@@ -102,23 +101,23 @@ For an overview of the Runtime Manager features available with all deployment op
 
 === Load Balancing
 
-[%header,cols="15,30,50,20"]
+[%header,cols="15,50,50"]
 |===
-|Environment | Supported Load Balancing        | Alternative / Workaround | Reference
-|CloudHub 2.0 | When deploying your application to two or more replicas, CloudHub's HTTP load balancing service distributes requests across these replicas. |   | xref:cloudhub-2::ch2-architecture.adoc#scale-out-and-data-center-redundancy[Scale Out and Data Center Redundancy]
-|CloudHub 1.0 | If your app runs on multiple workers, the CloudHub 1.0 shared load automatically balances incoming traffic.  | Use the optional dedicated load balancer (DLB) component to route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC). | 
-|Hybrid | Not Supported.  | You can manage load balancing with the tools connected to your on-premises resources.| 
-|Private Cloud Edition | Not Supported. | You can manage load balancing with the tools connected to your on-premises resources.| 
-|Runtime Fabric |  Internal load balancer for basic load balancing. | You can also forward logs from Runtime Fabric to a rsyslog server.| 
+|Environment | Supported Load Balancing        | Alternative / Workaround 
+|CloudHub 2.0 | When deploying your application to two or more replicas, CloudHub's HTTP load balancing service distributes requests across these replicas. See xref:cloudhub-2::ch2-architecture.adoc#scale-out-and-data-center-redundancy[Scale Out and Data Center Redundancy] |   
+|CloudHub 1.0 | If your app runs on multiple workers, the CloudHub 1.0 shared load automatically balances incoming traffic. See xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]. | Use the optional dedicated load balancer (DLB) component to route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC). 
+|Hybrid | Not Supported.  | You can manage load balancing with the tools connected to your on-premises resources.
+|Private Cloud Edition | Not Supported. | You can manage load balancing with the tools connected to your on-premises resources.
+|Runtime Fabric |  Internal load balancer for basic load balancing. | You can also forward logs from Runtime Fabric to a rsyslog server.
 |===
 
 
 === Logging
 
-[%header,cols="15,50,40,35"]
+[%header,cols="15,50,50,20"]
 |===
 |Environment | Description       | Alternative / Workaround | Reference
-|CloudHub 2.0 | CloudHub 2.0 provides access to log data that includes deployment messages and events for each replica and Mule runtime engine logs. |  | xref:cloudhub-2::ch2-view-logs.adoc[Viewing Log Data for Deployed Apps]
+|CloudHub 2.0 | CloudHub 2.0 provides access to log data that includes deployment messages and events for each replica and Mule runtime engine logs. |  | xref:cloudhub-2::ch2-view-logs.adoc[Viewing Log Data for Deployed Apps].
 |CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[View Log Data].
 |Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
 |Private Cloud Edition | The Runtime Manager logging feature is not available for hybrid deployments. | The Runtime Manager logging feature is not available for hybrid deployments. | xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
@@ -128,10 +127,10 @@ For an overview of the Runtime Manager features available with all deployment op
 
 === Monitoring
 
-[%header,cols="15,30,55,30"]
+[%header,cols="15,45,50,20"]
 |===
 |Environment | Implementation       | Functionality| Reference
-|CloudHub 2.0| You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. | Run thread dumps. Configure application alerts. | xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0]
+|CloudHub 2.0| You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. | Run thread dumps. Configure application alerts. | xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0].
 |CloudHub 1.0| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your app's flows and set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers].
 |Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers].
 |Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run. | xref:monitoring.adoc[Monitor Applications and Servers].
@@ -140,10 +139,10 @@ For an overview of the Runtime Manager features available with all deployment op
 
 === Object Store
 
-[%header,cols="15,40,35,40"]
+[%header,cols="15,50,40,20"]
 |===
 |Environment | Implementation       | Note | Reference
-|CloudHub 2.0 | You do not need to configure your apps to use Object Store in CloudHub 2.0. Additionally, Mule 4 apps support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview]
+|CloudHub 2.0 | You do not need to configure your apps to use Object Store in CloudHub 2.0. Additionally, Mule 4 apps support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview].
 |CloudHub 1.0 | CloudHub provides a preconfigured default object store that you can reference using Anypoint Connector for Object Store. | Idempotent routers work only with in-memory stores. | xref:managing-application-data-with-object-stores.adoc[Manage Application Data Storage with Object Stores].
 |Hybrid | Not available for hybrid deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Stores].
 |Private Cloud Edition | Not available for Anypoint Platform PCE deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Stores].  
@@ -152,7 +151,7 @@ For an overview of the Runtime Manager features available with all deployment op
 
 === Scheduling
 
-[%header,cols="15,40,35,40"]
+[%header,cols="15,40,40,20"]
 |===
 |Environment | Implementation       | Note | Reference
 |CloudHub 2.0 | You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications without changing your running application. | To view the application schedules, you must have the Exchange Viewer permission, in addition to the Read Applications permission.| xref:cloudhub-2::ch2-manage-schedules.adoc[Managing App Schedules].
@@ -167,8 +166,8 @@ For an overview of the Runtime Manager features available with all deployment op
 [%header,cols="15,60"]
 |===
 |Environment | Implementation 
-|CloudHub 2.0 | CloudHub 2.0 regularly applies security patches as needed to ensure that your application is secure. See xref:cloudhub-2::ch2-patch-updates[CloudHub 2.0 Operating System Patch Updates].
-|CloudHub 1.0 | CloudHub applies security patches as needed to ensure that your application is secure and, once per month, it updates Mule to maintain the stability of your application. See xref:cloudhub-app-runtime-version-updates[CloudHub Runtime Continuous Updates].
+|CloudHub 2.0 | CloudHub 2.0 regularly applies security patches as needed to ensure that your application is secure. See xref:cloudhub-2::ch2-patch-updates.adoc[CloudHub 2.0 Operating System Patch Updates].
+|CloudHub 1.0 | CloudHub applies security patches as needed to ensure that your application is secure and, once per month, it updates Mule to maintain the stability of your application. See xref:cloudhub-app-runtime-version-updates.adoc[CloudHub Runtime Continuous Updates].
 |Hybrid| After an application is deployed and running, you must apply any security updates for the selected runtime version manually. See <<Security for Hybrid Deployments>>.
 |Private Cloud Edition | After an application is deployed and running, you must apply any security updates for the selected runtime version manually.
 |Runtime Fabric | When a security update is available for the runtime version for an app, you can see and apply the update in Runtime Manager.
