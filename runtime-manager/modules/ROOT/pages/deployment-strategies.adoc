@@ -5,11 +5,11 @@ endif::[]
 :page-aliases: general:getting-started:deploy-to-server.adoc, deploying-to-pcf.adoc
 
 
-image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 2.0"]
-image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 1.0"]
-image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+image:logo-cloud2-active.png[title="CloudHub 2.0"]
+image:logo-cloud-active.png[title="CloudHub 1.0"]
+image:logo-hybrid-active.png[title="Hybrid"]
+image:logo-server-active.png[title="Anypoint Platform PCE"]
+image:logo-rtf-active.png[title="Runtime Fabric"]
 
 
 When you run an app in Anypoint Studio, the app deploys to an embedded test server in Studio. Because this server is not meant for production deployment and uptime restrictions apply, deploy your Mule app using one of the deployment options supported by Anypoint Runtime Manager.
@@ -98,7 +98,7 @@ For an overview of the Runtime Manager features available with each deployment o
  | Via server groups or clusters. Clustered Mule instances have distributed shared memory, which provides persistent VM queues, transactions, and cluster-wide data storage. |
   xref:server-group-about.adoc[Server Groups] +
   xref:cluster-about.adoc[Clusters] +
-  xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview]
+  *xref:mule-runtime::mule-high-availability-ha-clusters.adoc[Mule Runtime High Availability (HA) Cluster Overview]
 |Runtime Fabric | Via automatic application fail-over. You obtain high availability when you deploy two or more replicas per application. |  xref:runtime-fabric::deploy-resource-allocation.adoc[Deploy a Mule Application to Runtime Fabric].
 |===
 
