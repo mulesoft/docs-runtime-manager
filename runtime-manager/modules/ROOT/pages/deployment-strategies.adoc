@@ -104,7 +104,7 @@ For an overview of the Runtime Manager features available with all deployment op
 [%header,cols="15,50,50"]
 |===
 |Environment | Supported Load Balancing        | Alternative/Workaround 
-|CloudHub 2.0 | When deploying your application to two or more replicas, CloudHub's HTTP load balancing service distributes requests across these replicas. See xref:cloudhub-2::ch2-architecture.adoc#scale-out-and-data-center-redundancy[Scale Out and Data Center Redundancy] |   
+|CloudHub 2.0 | When deploying your application to two or more replicas, the CloudHub HTTP load balancing service distributes requests across these replicas. See xref:cloudhub-2::ch2-architecture.adoc#scale-out-and-data-center-redundancy[Scale Out and Data Center Redundancy]. |   
 |CloudHub 1.0 | If your app runs on multiple workers, the CloudHub 1.0 shared load automatically balances incoming traffic. See xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]. | Use the optional dedicated load balancer (DLB) component to route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC). 
 |Hybrid | Not Supported.  | You can manage load balancing with the tools connected to your on-premises resources.
 |Private Cloud Edition | Not Supported. | You can manage load balancing with the tools connected to your on-premises resources.
