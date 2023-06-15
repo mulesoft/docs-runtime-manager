@@ -115,7 +115,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 === Load Balancing
 
-[%header,cols="15,45,45"]
+[%header,cols="20,40,45"]
 |===
 |Environment | Supported Load Balancing        | Alternative/Workaround
 |CloudHub 2.0 | When deploying your application to two or more replicas, the CloudHub HTTP load balancing service distributes requests across these replicas. See xref:cloudhub-2::ch2-architecture.adoc#scale-out-and-data-center-redundancy[Scale Out and Data Center Redundancy]. |
@@ -128,7 +128,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 === Logging
 
-[%header,cols="15,40,40,20"]
+[%header,cols="20,35,35,20"]
 |===
 |Environment | Description       | Alternative/Workaround | More Information
 |CloudHub 2.0 | CloudHub 2.0 provides access to log data that includes deployment messages and events for each replica and Mule runtime engine logs. |  | xref:cloudhub-2::ch2-view-logs.adoc[Viewing Log Data for Deployed Apps].
@@ -141,7 +141,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 === Monitoring
 
-[%header,cols="15,40,45,20"]
+[%header,cols="20,35,45,20"]
 |===
 |Environment | Implementation       | Functionality| More Information
 |CloudHub 2.0| You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. | Run thread dumps. Configure application alerts. | xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0]
@@ -157,7 +157,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 === Object Store
 
-[%header,cols="15,50,40,20"]
+[%header,cols="20,40,40,20"]
 |===
 |Environment | Implementation       | Note | More Information
 |CloudHub 2.0 | You do not need to configure your apps to use Object Store in CloudHub 2.0. Additionally, Mule 4 apps support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview].
@@ -169,7 +169,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 === Scheduling
 
-[%header,cols="15,40,30,25"]
+[%header,cols="20,30,30,25"]
 |===
 |Environment | Implementation       | Note | More Information
 |CloudHub 2.0 | You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications without changing your running application. | To view the application schedules, you must have the Exchange Viewer permission, in addition to the Read Applications permission.| xref:cloudhub-2::ch2-manage-schedules.adoc[Managing App Schedules]
