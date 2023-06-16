@@ -144,7 +144,7 @@ For an overview of the Runtime Manager features available with each deployment o
 |CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[]
 |Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
 |Private Cloud Edition | The Runtime Manager logging feature is not available for hybrid deployments. | The Runtime Manager logging feature is not available for hybrid deployments. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
-|Runtime Fabric | Runtime Fabric supports Anypoint Monitoring Titanium logging.  | You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::manage-monitor-applications.adoc#logs[]
+|Runtime Fabric | Runtime Fabric supports Anypoint Monitoring Titanium logging.  | You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::manage-monitor-applications.adoc#logs[Logs]
 |===
 
 
@@ -160,8 +160,8 @@ For an overview of the Runtime Manager features available with each deployment o
 |Runtime Fabric
  | The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`.
   | When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. |
-   xref:runtime-fabric::index.adoc#monitoring-application-deployments[] +
-   xref:runtime-fabric::cindex.adoc#logs[]
+   xref:runtime-fabric::index.adoc#monitoring-application-deployments[Monitoring Application Deployments] +
+   xref:runtime-fabric::manage-monitor-applications.adoc#logs[Logs]
 |===
 
 === Object Store
@@ -169,11 +169,11 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="20,40,40,20"]
 |===
 |Environment | Implementation       | Note | More Information
-|CloudHub 2.0 | You do not need to configure your apps to use Object Store in CloudHub 2.0. Additionally, Mule 4 apps support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview].
-|CloudHub 1.0 | CloudHub provides a preconfigured default object store that you can reference using Anypoint Connector for Object Store. | Idempotent routers work only with in-memory stores. | xref:managing-application-data-with-object-stores.adoc[Manage Application Data Storage with Object Stores].
-|Hybrid | Not available for hybrid deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Store Connector].
-|Private Cloud Edition | Not available for Anypoint Platform PCE deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Stores].
-|Runtime Fabric | Not available for Runtime Fabric deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Stores].
+|CloudHub 2.0 | You do not need to configure your apps to use Object Store in CloudHub 2.0. Additionally, Mule 4 apps support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview]
+|CloudHub 1.0 | CloudHub provides a preconfigured default object store that you can reference using Anypoint Connector for Object Store. | Idempotent routers work only with in-memory stores. | xref:managing-application-data-with-object-stores.adoc[Manage Application Data Storage with Object Stores]
+|Hybrid | Not available for hybrid deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Store Connector]
+|Private Cloud Edition | Not available for Anypoint Platform PCE deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Store Connector]
+|Runtime Fabric | Not available for Runtime Fabric deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Store Connector]
 |===
 
 === Scheduling
@@ -181,8 +181,8 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="20,30,30,25"]
 |===
 |Environment | Implementation       | Note | More Information
-|CloudHub 2.0 | You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications without changing your running application. | To view the application schedules, you must have the Exchange Viewer permission, in addition to the Read Applications permission.| xref:cloudhub-2::ch2-manage-schedules.adoc[Managing App Schedules]
-|CloudHub 1.0 |You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.| You cannot manage CloudHub schedules using scripts. Use the *Schedules* tab or the CloudHub API to manage CloudHub schedules.|xref:managing-schedules.adoc[Manage Schedules]
+|CloudHub 2.0 | You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications without changing your running application. | To view the application schedules, you must have the Exchange Viewer permission, in addition to the Read Applications permission.| xref:cloudhub-2::ch2-manage-schedules.adoc[]
+|CloudHub 1.0 |You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.| You cannot manage CloudHub schedules using scripts. Use the *Schedules* tab or the CloudHub API to manage CloudHub schedules.|xref:managing-schedules.adoc[]
 |Hybrid |Not available for hybrid deployments. | To schedule tasks, use the Scheduler endpoint element in your flows. | xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint]
 |Private Cloud Edition | Not available for Anypoint Platform PCE deployments | To schedule tasks, use the Scheduler endpoint element in your flows. | xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint]
 |Runtime Fabric | Not available for Runtime Fabric deployments. | To schedule tasks, use the Scheduler endpoint element in your flows. | xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint]
@@ -205,7 +205,7 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="15,50,20"]
 |===
 |Environment | Implementation | More Information
-|CloudHub 2.0 | A shared space is an elastic cloud of resources that includes Mule instances running in a multi-tenant environment. CloudHub 2.0 provides one shared space in each supported region, to which you deploy your integration applications. |  xref:cloudhub-2::ch2-shared-space-about.adoc[Shared Spaces]
+|CloudHub 2.0 | A shared space is an elastic cloud of resources that includes Mule instances running in a multi-tenant environment. CloudHub 2.0 provides one shared space in each supported region, to which you deploy your integration applications. |  xref:cloudhub-2::ch2-shared-space-about.adoc[]
 |CloudHub 1.0 | Each application deployed to CloudHub runs on a separate virtual server. You don't need to use domains to share ports or other resources between apps.|
 |Hybrid | When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other apps deployed to the same server. | <<Shared Resource Support for On-Premises App Deployments>>
 |Private Cloud Edition | When deploying on-premises, you can create  `Domain` mule projects with no flows and a set of global configuration elements to share among other apps deployed to the same server. | <<Shared Resource Support for On-Premises App Deployments>>
@@ -217,7 +217,7 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="15,60"]
 |===
 |Environment | Implementation
-|CloudHub 2.0 | CloudHub 2.0 does not support the Insight troubleshooting tool. Use xref:monitorin::index.adoc[Anypoint Monitoring].
+|CloudHub 2.0 | CloudHub 2.0 does not support the Insight troubleshooting tool. Use xref:monitoring::index.adoc[Anypoint Monitoring] instead.
 |CloudHub 1.0 | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager. You can enable the Insight analytics feature and specify metadata options on the Insight tab.
 |Hybrid | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager.
 |Private Cloud Edition | Anypoint Platform PCE does not include the Insight troubleshooting tool.
