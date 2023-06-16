@@ -116,10 +116,10 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="15,30,30"]
 |===
 |Environment | Version         | More Information
-|CloudHub 2.0 | JDK 11 | xref:release-notes::cloudhub-2/cloudhub-2-runtimes-release-notes.adoc[CloudHub 2.0 Runtime and Infrastructure Patch Update Release Notes]
-|CloudHub 1.0 |JDK 11 | xref:release-notes::cloudhub/cloudhub-runtimes-release-notes.adoc[CloudHub Runtime and Operating System Release Notes]
-|Hybrid | See the Mule runtime engine release notes to determine the minimum supported JDK version. | xref:release-notes::mule-runtime/mule-esb.adoc[Mule Runtime Release Notes]
-|Private Cloud Edition | See the  Mule runtime engine release notes to determine the minimum JDK supported version. |xref:release-notes::mule-runtime/mule-esb.adoc[Mule Runtime Release Notes].
+|CloudHub 2.0 | JDK 11 | xref:release-notes::cloudhub-2/cloudhub-2-runtimes-release-notes.adoc[]
+|CloudHub 1.0 |JDK 11 | xref:release-notes::cloudhub/cloudhub-runtimes-release-notes.adoc[]
+|Hybrid | See the Mule runtime engine release notes to determine the minimum supported JDK version. | xref:release-notes::mule-runtime/mule-esb.adoc[]
+|Private Cloud Edition | See the  Mule runtime engine release notes to determine the minimum JDK supported version. |xref:release-notes::mule-runtime/mule-esb.adoc[]
 |===
 
 === Load Balancing
@@ -140,11 +140,11 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="20,35,35,20"]
 |===
 |Environment | Description       | Alternative/Workaround | More Information
-|CloudHub 2.0 | CloudHub 2.0 provides access to log data that includes deployment messages and events for each replica and Mule runtime engine logs. |  | xref:cloudhub-2::ch2-view-logs.adoc[Viewing Log Data for Deployed Apps].
-|CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[View Log Data].
-|Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
-|Private Cloud Edition | The Runtime Manager logging feature is not available for hybrid deployments. | The Runtime Manager logging feature is not available for hybrid deployments. | xref:sending-data-from-arm-to-external-analytics-software.adoc[Export Data to External Analytics Tools].
-|Runtime Fabric | Runtime Fabric supports Anypoint Monitoring Titanium logging.  | You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric].
+|CloudHub 2.0 | CloudHub 2.0 provides access to log data that includes deployment messages and events for each replica and Mule runtime engine logs. |  | xref:cloudhub-2::ch2-view-logs.adoc[]
+|CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[]
+|Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
+|Private Cloud Edition | The Runtime Manager logging feature is not available for hybrid deployments. | The Runtime Manager logging feature is not available for hybrid deployments. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
+|Runtime Fabric | Runtime Fabric supports Anypoint Monitoring Titanium logging.  | You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::manage-monitor-applications.adoc#logs[]
 |===
 
 
@@ -158,10 +158,10 @@ For an overview of the Runtime Manager features available with each deployment o
 |Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run. | xref:monitoring.adoc[Monitor Applications and Servers]
 |Runtime Fabric
- | Use Anypoint Monitoring to view application metrics with Anypoint Platform.
-  | Runtime Fabric provides dashboards and alerts in Ops Center for viewing performance and availability metrics. Use an SMTP server to receive and send alerts. |
-   xref:runtime-fabric::manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric] +
-   xref:runtime-fabric::configure-alerting.adoc[Configure Alerting on Runtime Fabric]
+ | The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`.
+  | When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. |
+   xref:runtime-fabric::index.adoc#monitoring-application-deployments[] +
+   xref:runtime-fabric::cindex.adoc#logs[]
 |===
 
 === Object Store
