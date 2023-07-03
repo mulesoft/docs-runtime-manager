@@ -42,12 +42,12 @@ Deploy your apps from the https://anypoint.mulesoft.com[Anypoint Platform] Runti
 
 == Deployment Option Icons
 
-Icons appear at the top of each page in the Runtime Manager documentation, indicating the deployment options to which the content applies. If the content doesn't apply to a deployment option, the icon appears deactivated.
+Icons appear at the begining of each page in the Runtime Manager documentation, indicating the deployment options to which the content applies. If the content doesn't apply to a deployment option, the icon appears deactivated.
 
 [%header,cols="20,10,10"]
 
 |===
-|Deployment|Content Applies |Content Doesn't Apply
+|Deployment Option|Content Applies |Content Doesn't Apply
 |CloudHub 2.0
 |image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
 |image:logo-cloud2-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 2.0"]
@@ -89,10 +89,10 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="15,45,25"]
 |===
-|Environment | Implementation      | More Information
+|Deployment Option | Implementation      | More Information
 |CloudHub 2.0
  | Via clustering with two or more replicas and Anypoint VPN. |
-  xref:cloudhub-2::ch2-clustering.adoc[] +
+  xref:cloudhub-2::ch2-clustering.adoc#replica-scale-out[] +
   xref:cloudhub-2::ps-vpn-about.adoc#vpn-ha[VPN High Availability]
 |CloudHub 1.0
  | Via clustering with two or more workers and Anypoint VPN. |
@@ -115,7 +115,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="15,30,30"]
 |===
-|Environment | Version         | More Information
+|Deployment Option | Version         | More Information
 |CloudHub 2.0 | JDK 11 | xref:release-notes::cloudhub-2/cloudhub-2-runtimes-release-notes.adoc[]
 |CloudHub 1.0 |JDK 11 | xref:release-notes::cloudhub/cloudhub-runtimes-release-notes.adoc[]
 |Hybrid | See the Mule runtime engine release notes to determine the minimum supported JDK version. | xref:release-notes::mule-runtime/mule-esb.adoc[]
@@ -126,7 +126,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="20,40,45"]
 |===
-|Environment | Supported Load Balancing        | Alternative/Workaround
+|Deployment Option | Supported Load Balancing        | Alternative/Workaround
 |CloudHub 2.0 | When deploying your application to two or more replicas, the CloudHub HTTP load balancing service distributes requests across these replicas. See xref:cloudhub-2::ch2-architecture.adoc#scale-out-and-data-center-redundancy[Scale Out and Data Center Redundancy]. |
 |CloudHub 1.0 | If your app runs on multiple workers, the CloudHub 1.0 shared load automatically balances incoming traffic. See xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]. | Use the optional dedicated load balancer (DLB) component to route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC).
 |Hybrid | Not Supported.  | You can manage load balancing with the tools connected to your on-premises resources.
@@ -139,7 +139,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="20,35,35,20"]
 |===
-|Environment | Description       | Alternative/Workaround | More Information
+|Deployment Option | Description       | Alternative/Workaround | More Information
 |CloudHub 2.0 | CloudHub 2.0 provides access to log data that includes deployment messages and events for each replica and Mule runtime engine logs. |  | xref:cloudhub-2::ch2-view-logs.adoc[]
 |CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[]
 |Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
@@ -152,7 +152,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="20,35,45,20"]
 |===
-|Environment | Implementation       | Functionality| More Information
+|Deployment Option | Implementation       | Functionality| More Information
 |CloudHub 2.0| You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. | Run thread dumps. Configure application alerts. | xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0]
 |CloudHub 1.0| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your app's flows and set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers]
@@ -168,7 +168,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="20,40,40,20"]
 |===
-|Environment | Implementation       | Note | More Information
+|Deployment Option | Implementation | Note | More Information
 |CloudHub 2.0 | You do not need to configure your apps to use Object Store in CloudHub 2.0. Additionally, Mule 4 apps support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview]
 |CloudHub 1.0 | CloudHub provides a preconfigured default object store that you can reference using Anypoint Connector for Object Store. | Idempotent routers work only with in-memory stores. | xref:managing-application-data-with-object-stores.adoc[Manage Application Data Storage with Object Stores]
 |Hybrid | Not available for hybrid deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Store Connector]
@@ -180,7 +180,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="20,30,30,25"]
 |===
-|Environment | Implementation       | Note | More Information
+|Deployment Option | Implementation       | Note | More Information
 |CloudHub 2.0 | You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications without changing your running application. | To view the application schedules, you must have the Exchange Viewer permission, in addition to the Read Applications permission.| xref:cloudhub-2::ch2-manage-schedules.adoc[]
 |CloudHub 1.0 |You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.| You cannot manage CloudHub schedules using scripts. Use the *Schedules* tab or the CloudHub API to manage CloudHub schedules.|xref:managing-schedules.adoc[]
 |Hybrid |Not available for hybrid deployments. | To schedule tasks, use the Scheduler endpoint element in your flows. | xref:mule-runtime::scheduler-concept.adoc[Scheduler Endpoint]
@@ -192,7 +192,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="15,45,20"]
 |===
-|Environment | Implementation | More Information
+|Deployment Option | Implementation | More Information
 |CloudHub 2.0 | CloudHub 2.0 regularly applies security patches as needed to ensure that your application is secure. | xref:cloudhub-2::ch2-patch-updates.adoc[CloudHub 2.0 Operating System Patch Updates]
 |CloudHub 1.0 | CloudHub applies security patches as needed to ensure that your application is secure and, once per month, it updates Mule to maintain the stability of your application. | xref:cloudhub-app-runtime-version-updates.adoc[CloudHub Runtime Continuous Updates]
 |Hybrid| After an application is deployed and running, you must apply any security updates for the selected runtime version manually. | <<Security for Hybrid Deployments>>
@@ -204,7 +204,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="15,50,20"]
 |===
-|Environment | Implementation | More Information
+|Deployment Option | Implementation | More Information
 |CloudHub 2.0 | A shared space is an elastic cloud of resources that includes Mule instances running in a multi-tenant environment. CloudHub 2.0 provides one shared space in each supported region, to which you deploy your integration applications. |  xref:cloudhub-2::ch2-shared-space-about.adoc[]
 |CloudHub 1.0 | Each application deployed to CloudHub runs on a separate virtual server. You don't need to use domains to share ports or other resources between apps.|
 |Hybrid | When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other apps deployed to the same server. | <<Shared Resource Support for On-Premises App Deployments>>
@@ -216,7 +216,7 @@ For an overview of the Runtime Manager features available with each deployment o
 
 [%header,cols="15,60"]
 |===
-|Environment | Implementation
+|Deployment Option | Implementation
 |CloudHub 2.0 | CloudHub 2.0 does not support the Insight troubleshooting tool. Use xref:monitoring::index.adoc[Anypoint Monitoring] instead.
 |CloudHub 1.0 | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager. You can enable the Insight analytics feature and specify metadata options on the Insight tab.
 |Hybrid | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager.
