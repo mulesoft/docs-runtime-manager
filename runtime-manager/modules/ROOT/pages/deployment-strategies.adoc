@@ -6,61 +6,69 @@ endif::[]
 :page-deployment-options: ch2, ch1, rtf, pce, hybrid
 
 
-When you run an app in Anypoint Studio, the app deploys to an embedded test server in Studio. Because this server is not meant for production deployment and uptime restrictions apply, deploy your Mule app using one of the deployment options supported by Anypoint Runtime Manager.
+When you run an application in Anypoint Studio, it deploys to an embedded test server in Studio. Because this server is not meant for production deployment and uptime restrictions apply, deploy your Mule applications using one of the deployment options supported by Anypoint Runtime Manager.
 
-[#cloudhub-2-deployments]
-* *CloudHub 2.0 Deployments*
-+
-Deploy your apps from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:cloudhub-2::index.adoc[CloudHub 2.0].
 
-[#cloudhub-deployments]
-* *CloudHub 1.0 Deployments*
-+
-Deploy your apps from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:cloudhub.adoc[CloudHub 1.0].
+== CloudHub 2.0
 
-[#hybrid-deployments]
-* *Hybrid Deployments*
-+
-Deploy your apps from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them on your Mule servers.
+CloudHub 2.0 is a fully managed, containerized integration platform as a service (iPaaS) where you can deploy APIs and integrations as lightweight containers in the cloud.
 
-[#anypoint-platform-pce-deployments]
-* *Anypoint Platform PCE Deployments*
-+
-Deploy your apps from your on-premises Runtime Manager instance provided with xref:private-cloud::index.adoc[Anypoint Platform PCE] and host them on your Mule servers.
+You can deploy your applications from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:cloudhub-2::index.adoc[CloudHub 2.0]. For more information about how to deploy applications to CloudHub 2.0, see xref:cloudhub-2::ch2-deploy.adoc[].
 
-[#anypoint-runtime-fabric-deployments]
-* *Anypoint Runtime Fabric Deployments*
-+
-Deploy your apps from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric].
+== CloudHub 1.0
 
+CloudHub 1.0 is a complete integration platform as a service (iPaaS) that provides server functionality for you to deploy your applications without having to configure a hosting environment. Based on your contract, you control how many resources to assign to your application.
+
+You can deploy your applications from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:cloudhub.adoc[CloudHub 1.0]. For more information on how to deploy applications to CloudHub 1.0, see xref:deploying-to-cloudhub.adoc[].
+
+== Hybrid Deployments
+
+With the hybrid deployment option, you deploy your apps from the Runtime Manager cloud console to your Mule servers and use Runtime Manager to manage them. This option provides you with flexibility and control over your on-premises security but requires you to provide the hosting infrastructure.
+
+To use the hybrid option, you first register your Mule servers with the Runtime Manager agent. Then, from Runtime Manager, you can optionally add those servers to server groups or clusters to provide high availability. Finally, you deploy your applications from Runtime Manager to either a server, server group, or cluster.
+
+For more information on how to deploy applications to your Mule servers, see xref:deploying-to-your-own-servers.adoc[].
+
+== Anypoint Platform Private Cloud Edition
+
+xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition] is a containerized distribution of the management and engagement capabilities of Anypoint Platform that you host on-premises or in your organization's private cloud environment.
+
+If your organization has strict regulatory or compliance requirements that limit the use of cloud solutions, you can use Anypoint Platform PCE to deploy and host your apps on-premises.
+
+ For more information on how to deploy applications to Anypoint Platform Private Cloud Edition, see xref:deploying-to-your-own-servers.adoc[].
+
+== Anypoint Runtime Fabric Deployments
+
+Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule applications and API gateways. Runtime Fabric runs within a customer-managed infrastructure on AWS, Azure, virtual machines (VMs), and bare-metal servers.
+
+Runtime Fabric contains all of the components it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
+
+To use the Runtime Fabric option, you first create a Runtime Fabric using Runtime Manager. Then, you install Runtime Fabric on your infrastructure. Finally, you deploy your applications from the Runtime Manager cloud console to the Runtime Fabric you created.
+
+You can deploy your apps from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric]. For more information on how to deploy applications to Runtime Fabric, see xref:runtime-fabric::deploy-to-runtime-fabric.adoc[].
 
 == Deployment Option Icons
 
-Icons appear at the begining of each page in the Runtime Manager documentation, indicating the deployment options to which the content applies. If the content doesn't apply to a deployment option, the icon appears deactivated.
+Icons appear at the begining of each page in the Runtime Manager documentation, indicating the deployment options to which the content applies.
 
-[%header,cols="20,10,10"]
+[%header,cols="20,10"]
 
 |===
-|Deployment Option|Content Applies |Content Doesn't Apply
+|Deployment Option|Icon 
 |CloudHub 2.0
 |image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
-|image:logo-cloud2-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 2.0"]
 
 |CloudHub 1.0
 |image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 1.0"]
-|image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 1.0"]
 
 |Hybrid
 |image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-|image:logo-hybrid-disabled.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
 
 |Anypoint Platform Private Cloud Edition
 |image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-|image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 
 |Anypoint Runtime Fabric
 |image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
-|image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 |===
 
 == Runtime Manager Features
@@ -86,7 +94,7 @@ For an overview of the Runtime Manager features available with each deployment o
 |Deployment Option | Implementation      | More Information
 |CloudHub 2.0
  | Via clustering with two or more replicas and Anypoint VPN. |
-  xref:cloudhub-2::ch2-clustering.adoc#replica-scale-out[] +
+  xref:cloudhub-2::ch2-clustering.adoc#replica-scale-out[Clustering] +
   xref:cloudhub-2::ps-vpn-about.adoc#vpn-ha[VPN High Availability]
 |CloudHub 1.0
  | Via clustering with two or more workers and Anypoint VPN. |
@@ -122,7 +130,7 @@ For an overview of the Runtime Manager features available with each deployment o
 |===
 |Deployment Option | Supported Load Balancing        | Alternative/Workaround
 |CloudHub 2.0 | When deploying your application to two or more replicas, the CloudHub HTTP load balancing service distributes requests across these replicas. See xref:cloudhub-2::ch2-architecture.adoc#scale-out-and-data-center-redundancy[Scale Out and Data Center Redundancy]. |
-|CloudHub 1.0 | If your app runs on multiple workers, the CloudHub 1.0 shared load automatically balances incoming traffic. See xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]. | Use the optional dedicated load balancer (DLB) component to route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC).
+|CloudHub 1.0 | If your application runs on multiple workers, the CloudHub 1.0 shared load automatically balances incoming traffic. See xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]. | Use the optional dedicated load balancer (DLB) component to route external traffic to multiple Mule applications deployed to CloudHub workers in Anypoint Virtual Private Cloud (VPC).
 |Hybrid | Not Supported.  | You can manage load balancing with the tools connected to your on-premises resources.
 |Private Cloud Edition | Not Supported. | You can manage load balancing with the tools connected to your on-premises resources.
 |Runtime Fabric |  Internal load balancer for basic load balancing. | You can also forward logs from Runtime Fabric to a rsyslog server.
@@ -136,7 +144,7 @@ For an overview of the Runtime Manager features available with each deployment o
 |Deployment Option | Description       | Alternative/Workaround | More Information
 |CloudHub 2.0 | CloudHub 2.0 provides access to log data that includes deployment messages and events for each replica and Mule runtime engine logs. |  | xref:cloudhub-2::ch2-view-logs.adoc[]
 |CloudHub 1.0 | CloudHub 1.0 provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[]
-|Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises apps to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
+|Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises applications to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
 |Private Cloud Edition | The Runtime Manager logging feature is not available for hybrid deployments. | The Runtime Manager logging feature is not available for hybrid deployments. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
 |Runtime Fabric | Runtime Fabric supports Anypoint Monitoring Titanium logging.  | You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::manage-monitor-applications.adoc#logs[Logs]
 |===
@@ -148,9 +156,9 @@ For an overview of the Runtime Manager features available with each deployment o
 |===
 |Deployment Option | Implementation       | Functionality| More Information
 |CloudHub 2.0| You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. | Run thread dumps. Configure application alerts. | xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0]
-|CloudHub 1.0| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your app's flows and set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers]
-|Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers]
-|Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Alerts based on alert conditions on deployed apps. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run. | xref:monitoring.adoc[Monitor Applications and Servers]
+|CloudHub 1.0| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your application's flows and set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers]
+|Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers]
+|Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run. | xref:monitoring.adoc[Monitor Applications and Servers]
 |Runtime Fabric
  | The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`.
   | When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. |
@@ -163,7 +171,7 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="20,40,40,20"]
 |===
 |Deployment Option | Implementation | Note | More Information
-|CloudHub 2.0 | You do not need to configure your apps to use Object Store in CloudHub 2.0. Additionally, Mule 4 apps support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview]
+|CloudHub 2.0 | You do not need to configure your applications to use Object Store in CloudHub 2.0. Additionally, Mule 4 applications support Object Store v2, which can be enabled from Anypoint Runtime Manager console.  | When you enable Object Store v2 in CloudHub 2.0, note that it is rate limited.  | xref:object-store::index.adoc[Object Store v2 Overview]
 |CloudHub 1.0 | CloudHub provides a preconfigured default object store that you can reference using Anypoint Connector for Object Store. | Idempotent routers work only with in-memory stores. | xref:managing-application-data-with-object-stores.adoc[Manage Application Data Storage with Object Stores]
 |Hybrid | Not available for hybrid deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Store Connector]
 |Private Cloud Edition | Not available for Anypoint Platform PCE deployments. | To use object stores, you must configure a database to store data.  | xref:connectors::object-store/object-store-connector.adoc[Object Store Connector]
@@ -211,20 +219,16 @@ For an overview of the Runtime Manager features available with each deployment o
 [%header,cols="15,60"]
 |===
 |Deployment Option | Implementation
-|CloudHub 2.0 | CloudHub 2.0 does not support the Insight troubleshooting tool. Use xref:monitoring::index.adoc[Anypoint Monitoring] instead.
-|CloudHub 1.0 | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager. You can enable the Insight analytics feature and specify metadata options on the Insight tab.
-|Hybrid | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule apps deployed through Runtime Manager.
-|Private Cloud Edition | Anypoint Platform PCE does not include the Insight troubleshooting tool.
+|CloudHub 2.0 | CloudHub 2.0 does not support the xref:insight.adoc[Insight] troubleshooting tool. Use xref:monitoring::index.adoc[Anypoint Monitoring] instead.
+|CloudHub 1.0 | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule applications deployed through Runtime Manager. You can enable the Insight analytics feature and specify metadata options on the Insight tab.
+|Hybrid | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule applications deployed through Runtime Manager.
+|Private Cloud Edition | Anypoint Platform PCE does not include the xref:insight.adoc[Insight] troubleshooting tool.
 |Runtime Fabric | Use Anypoint Monitoring to view information about applications deployed to Runtime Fabric. To obtain the health status of the cluster and components, use Runtime Fabric command-line tools. See xref:runtime-fabric::manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric].
 |===
 
 == Security for Hybrid Deployments
 
-image:logo-cloud2-disabled.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
-image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 1.0"]
 image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 By default, only metadata pushed by the Runtime Manager agent in each Mule runtime engine flows to the cloud. No application data is exposed.
 
@@ -238,14 +242,11 @@ You can also tokenize sensitive data. See xref:anypoint-security::tokenization-f
 
 == Shared Resource Support for On-Premises App Deployments
 
-image:logo-cloud2-disabled.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
-image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 1.0"]
 image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
 image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
-When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other apps deployed to the same server.
+When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other applications deployed to the same server.
 
 Use this strategy to avoid configuring the same settings and credentials for each application.
 You can also use it to configure multiple applications to listen on the same HTTP host and port, or other exclusive resources.
@@ -254,6 +255,7 @@ See xref:mule-runtime::shared-resources.adoc[Shared Resources].
 
 == See Also
 
+* xref:hosting-home::index.adoc[Hosting Options]
 * xref:studio::index.adoc[Anypoint Studio]
 * xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
 * xref:deploying-to-cloudhub.adoc[Deploy to CloudHub]
