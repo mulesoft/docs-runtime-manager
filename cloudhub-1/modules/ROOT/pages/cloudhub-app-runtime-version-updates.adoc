@@ -64,8 +64,7 @@ Applications in environments other than production are updated during the week.
 Production applications are updated on the weekend.
 +
 [NOTE]
-All patch updates occur in the local time zone of the app's deployment region.
-For example, CloudHub applies updates to apps deployed in the Asia-Pacific (Sydney) region in the AEST time zone and to apps deployed in the US West region in the PST time zone.
+include::release-notes::partial$cloudhub/cloudhub-patch-dates-timezones.adoc[tag=timeZoneNote]
 +
 When an automatic update occurs, the audit log for your app contains an entry by user `Anypoint Staff`,
 which shows the date and time an update occurred and whether it was successful.
