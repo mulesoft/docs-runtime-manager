@@ -23,7 +23,7 @@ You can deploy your applications from the https://anypoint.mulesoft.com[Anypoint
 
 == Hybrid Deployments
 
-With the hybrid deployment option, you deploy your apps from the Runtime Manager cloud console to your Mule servers and use Runtime Manager to manage them. This option provides you with flexibility and control over your on-premises security but requires you to provide the hosting infrastructure.
+With the hybrid deployment option, you deploy your applications from the Runtime Manager cloud console to your Mule servers and use Runtime Manager to manage them. This option provides you with flexibility and control over your on-premises security but requires you to provide the hosting infrastructure.
 
 To use the hybrid option, you first register your Mule servers with the Runtime Manager agent. Then, from Runtime Manager, you can optionally add those servers to server groups or clusters to provide high availability. Finally, you deploy your applications from Runtime Manager to either a server, server group, or cluster.
 
@@ -33,7 +33,7 @@ For more information on how to deploy applications to your Mule servers, see xre
 
 xref:private-cloud::index.adoc[Anypoint Platform Private Cloud Edition] is a containerized distribution of the management and engagement capabilities of Anypoint Platform that you host on-premises or in your organization's private cloud environment.
 
-If your organization has strict regulatory or compliance requirements that limit the use of cloud solutions, you can use Anypoint Platform PCE to deploy and host your apps on-premises.
+If your organization has strict regulatory or compliance requirements that limit the use of cloud solutions, you can use Anypoint Platform PCE to deploy and host your applications on-premises.
 
 For more information on how to deploy applications to Anypoint Platform Private Cloud Edition, see xref:deploying-to-your-own-servers.adoc[].
 
@@ -45,7 +45,7 @@ Runtime Fabric contains all of the components it requires. These components, inc
 
 To use the Runtime Fabric option, you first create a Runtime Fabric using Runtime Manager. Then, you install Runtime Fabric on your infrastructure. Finally, you deploy your applications from the Runtime Manager cloud console to the Runtime Fabric you created.
 
-You can deploy your apps from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric]. For more information on how to deploy applications to Runtime Fabric, see xref:runtime-fabric::deploy-to-runtime-fabric.adoc[].
+You can deploy your applications from the https://anypoint.mulesoft.com[Anypoint Platform] Runtime Manager cloud console and host them in xref:runtime-fabric::index.adoc[Anypoint Runtime Fabric]. For more information on how to deploy applications to Runtime Fabric, see xref:runtime-fabric::deploy-to-runtime-fabric.adoc[].
 
 == Deployment Option Icons
 
@@ -208,9 +208,9 @@ For an overview of the Runtime Manager features available with each deployment o
 |===
 |Deployment Option | Implementation | More Information
 |CloudHub 2.0 | A shared space is an elastic cloud of resources that includes Mule instances running in a multi-tenant environment. CloudHub 2.0 provides one shared space in each supported region, to which you deploy your integration applications. |  xref:cloudhub-2::ch2-shared-space-about.adoc[]
-|CloudHub 1.0 | Each application deployed to CloudHub runs on a separate virtual server. You don't need to use domains to share ports or other resources between apps.|
-|Hybrid | When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other apps deployed to the same server. | <<Shared Resource Support for On-Premises App Deployments>>
-|Private Cloud Edition | When deploying on-premises, you can create  `Domain` mule projects with no flows and a set of global configuration elements to share among other apps deployed to the same server. | <<Shared Resource Support for On-Premises App Deployments>>
+|CloudHub 1.0 | Each application deployed to CloudHub runs on a separate virtual server. You don't need to use domains to share ports or other resources between applications.|
+|Hybrid | When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other applications deployed to the same server. | <<Shared Resource Support for On-Premises App Deployments>>
+|Private Cloud Edition | When deploying on-premises, you can create  `Domain` mule projects with no flows and a set of global configuration elements to share among other applications deployed to the same server. | <<Shared Resource Support for On-Premises App Deployments>>
 |===
 
 
