@@ -66,7 +66,7 @@ image::rtm-server-standalone-settings.png[Settings Tab]
 . Select the checkbox to confirm your choice, and then click *Renew*.
 +
 image::rtm-server-standalone-renew.png[Confirm Renewal]
-. Check *Certificate expiration date* to verify that the certificate renewed successfully.
+. Check *Certificate expiration date* to verify that the certificate is renewed successfully, and restart Mule runtime to start using the new certificates.
 
 To renew a certificate for servers in a cluster or group:
 
@@ -87,7 +87,7 @@ image::rtm-server-certificate-group-renew.png[Confirm Renewal]
 
 If the *Renew Certificate* option in the *Actions* pull-down menu is not available after performing the previous steps, you may need to xref:installing-and-configuring-runtime-manager-agent#update-the-agent.adoc[update your *Agent* version].
 The *Server certificate renewal* feature, which enables you to renew server certificates directly from Runtime Manager, was introduced by Runtime Manager 2.8.4. This feature requires Runtime Manager Agent 1.10.0 or later.
-You can hover over the *Renew Certificate* option in the *Actions* pull-down menu, and a tooltip in the UI will indicate you the minimum required Runtime Agent version.
+You can hover over the *Renew Certificate* option in the *Actions* pull-down menu, and a tooltip in the UI indicates you the minimum required Runtime Agent version.
 
 [NOTE]
 Renewing server certificates requires a manual runtime restart to start using the new certificates.
@@ -132,7 +132,7 @@ And execute the following command:
 Use your Anypoint Platform and proxy server credentials on the command line:
 +
 `java -jar agent-certificate-renewer-{version}.jar -u <username> -p <password> -P <host> <port> <username> <password>`
-** US GovCloud Control Plane
+** US MuleSoft Government Cloud Control Plane
 +
 Use the following -r flag:
 +
