@@ -2,11 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-
-image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
-image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+:page-deployment-options: ch2, ch1, rtf, pce, hybrid
 
 The Anypoint Runtime Manager monitoring dashboards give you in-depth visibility into usage metrics about both your deployed apps and the systems they're deployed to.
 
@@ -35,9 +31,9 @@ Using the information gathered from these dashboards, you can:
 
 == Application Monitoring Dashboards
 
+image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-0", title="CloudHub 2.0"]
 image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
 image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
@@ -132,10 +128,8 @@ If your application runs on a server group or cluster, the aggregated metrics of
 
 == Server Monitoring Dashboard
 
-image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
 image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
 image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 
 The server monitoring dashboard displays high-level information about the servers, including heap memory and CPU percentage, as well as detailed memory usage metrics.
@@ -306,10 +300,8 @@ The metaspace limit is currently 256 MB.
 
 == Server Group or Cluster Monitoring Dashboard
 
-image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
 image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
 image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 You can use the server group or cluster monitoring dashboard to view aggregated metrics for servers in a group or cluster.
 

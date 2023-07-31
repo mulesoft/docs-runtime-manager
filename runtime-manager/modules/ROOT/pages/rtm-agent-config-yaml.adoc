@@ -3,11 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
-
-image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
-image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+:page-deployment-options: pce, hybrid
 
 
 When you run `amc_setup` with parameters to install the Runtime Manager agent, the agent configuration is written to the `$MULE_HOME/conf/mule-agent.yml` file. At startup, the agent reads its configuration from this file.
