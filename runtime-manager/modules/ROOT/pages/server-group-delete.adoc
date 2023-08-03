@@ -2,11 +2,8 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-deployment-options: ce, hybrid
 
-image:logo-cloud-disabled.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
-image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 When you delete a server group, the following actions occur:
 
@@ -25,3 +22,8 @@ The servers assigned to the deleted server group are not deleted, restarted, or 
 .The arrow shows the *Delete* option in the details pane.
 image::rtm-group-delete.png[Delete option]
 . In the *Delete* confirmation window, select the checkbox to verify that you want to delete the server group, and then click the *Delete Server Group* button.
+
+== See Also
+
+* xref:server-group-about.adoc[]
+* xref:server-group-remove.adoc[]
