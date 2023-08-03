@@ -2,13 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-
-
-image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
-image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-disabled.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
-
+:page-deployment-options: ch2, ch1, rtf, pce, hybrid
 
 You can set up alerts to send email notifications when application or server events occur.
 
@@ -122,10 +116,6 @@ Some more complex conditions require that you define parameters that appear as n
 === Conditions for Applications Deployed to CloudHub
 
 image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
-
 
 For applications deployed to CloudHub, the following alert conditions apply:
 
@@ -192,10 +182,7 @@ The following alerts for applications deployed to CloudHub require no additional
 
 === Conditions for Applications Deployed to Local Servers
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 For applications deployed to local servers, the following alert conditions apply:
 
@@ -243,10 +230,7 @@ The following alerts for applications deployed to local servers require no addit
 
 === Conditions for Local Servers
 
-image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
 image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
-image:logo-rtf-disabled.png[link="/runtime-manager/deployment-strategies#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 
 The available alert events depend on the server type.
 The following alerts are available for all target types (servers and nodes in server groups and clusters):
@@ -529,3 +513,4 @@ When prompted, click *OK* to confirm the deletion.
 * xref:monitoring-dashboards.adoc[Monitoring Dashboards]
 * xref:monitoring.adoc[Monitor Applications]
 * xref:mule-runtime::business-events-in-components.adoc[Configure Default Events Tracking]
+* xref:monitoring::basic-alerts.adoc[]
