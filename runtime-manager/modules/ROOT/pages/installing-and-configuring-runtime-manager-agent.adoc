@@ -168,9 +168,9 @@ To roll back the agent:
 . Restart Mule or the API gateway runtime.
 
 
-== Uninstall the Agent
+== Disable the Agent
 
-To uninstall the agent:
+To disable the agent:
 
 . Stop Mule or the API gateway runtime.
 . Remove these files:
@@ -181,6 +181,9 @@ $MULE_HOME/conf/mule-agent.jks
 $MULE_HOME/conf/mule-agent.yml
 ----
 . Restart Mule or the API gateway runtime.
+
+[NOTE]
+The agent still starts up when disabled, but it does not perform any operation.
 
 
 == amc_setup Parameters
