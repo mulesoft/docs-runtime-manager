@@ -9,8 +9,6 @@ CloudHub provides high availability (HA) and disaster recovery for application a
 
 CloudHub uses Amazon AWS for its cloud infrastructure, so availability is dependent on Amazon. The availability and deployments in CloudHub are separated into different regions, which in turn point to the corresponding Amazon regions. If an Amazon region goes down, the applications within the region are unavailable and not automatically replicated in other regions.
 
-image::hadr-aws-global-infrastructure.png[]
-
 For example, if the US East region is unavailable, the CloudHub management UI, as well as the various REST services that enable deployments, are unavailable until the region's availability is restored.
 New applications can't be deployed while US East is down.
 
