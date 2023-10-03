@@ -249,6 +249,19 @@ image::cloudhub-deploy-app-config-tabs.png[Configuration tabs on the Deploy Appl
 
 The *Runtime* tab includes the following settings:
 
+Use Edge Release Channel::
+Starting with Mule 4.5, MuleSoft introduces two new release channels, xref:release-notes::mule-runtime/lts-edge-release-cadence.adoc[Edge and Long-term Support (LTS)].
++
+For new applications, the *Use Edge Release Channel* box is enabled by default. Uncheck this box if you don’t want to use the new release channel.
++
+For existing applications not using the new release channel, the *Use Edge Release Channel* box is disabled by default. The *Runtime version* dropdown list indicates if there is an update available, as well as the previous and latest version of the application. Check the  *Use Edge Release Channel* box if you want to change to an Edge version.
++
+For existing applications using an Edge version, the *Use Edge Release Channel* box is enabled by default. The *Runtime version* dropdown list indicates if there is an update available, as well as the previous and latest version of the application. Uncheck the  *Use Edge Release Channel* box if you don’t want to use the new Edge Release Channel.
++
+For existing applications that are currently not running on the Edge version but were originally deployed using an Edge version, you must check the *Use Edge Release Channel* box to see the previous version on the *Runtime version* dropdown list.
++
+For existing applications using an Edge version on extended support, a warning message appears indicating the version's EOL.
+
 Runtime version::
 The runtime version must be the same Mule version used to develop your application.
 +
