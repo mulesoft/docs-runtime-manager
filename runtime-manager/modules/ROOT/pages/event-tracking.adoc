@@ -6,7 +6,7 @@ endif::[]
 :page-deployment-options: pce, hybrid
 
 
-Event tracking enables you to to view real-time information about messages being processed by a specific flow. You can view message payloads before, during, and after they are processed, and you can view information about the message processors in the flow and message metadata.
+Event tracking enables you to view real-time information about messages being processed by a specific flow. You can view message payloads before, during, and after they are processed, and you can view information about the message processors in the flow and message metadata.
 
 Event tracking enables you to view business transactions and events on your Mule servers so that you can track and analyze the flow and disposition of particular messages. For example, you can use the data to perform root cause analysis on a failure within a business transaction, or to identify message processing bottlenecks.
 
@@ -377,3 +377,10 @@ Response:
     ]
   }
 ----
+
+[NOTE]
+The event tracking log file (`$MULE_HOME/logs/events-%d{yyyy-dd-MM}-%i.log`) is not automatically deleted. You must manually delete the logs periodically.
+
+== See Also 
+
+* xref:sending-data-from-arm-to-external-analytics-software.adoc[]
