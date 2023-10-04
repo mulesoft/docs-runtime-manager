@@ -30,6 +30,9 @@ In addition, the following endpoints use WebSockets:
 * runtime-manager.eu1.anypoint.mulesoft.com
 * runtime-manager.gov.anypoint.mulesoft.com
 
+[NOTE]
+The ports, IP address, and hostnames are required for outbound connectivity. Inbound connectivity is not required to your network and servers. The connection between customer-hosted Mule runtime and Anypoint Platform is established via persistent Websocket connections. All connections are outbound.
+
 == Ports
 
 [%header,cols="10a,50a,10a"]
