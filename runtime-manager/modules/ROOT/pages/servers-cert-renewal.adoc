@@ -102,6 +102,9 @@ The agent connects with Runtime Manager using mutual SSL authentication and stor
 in the `$MULE_HOME/conf/mule-agent.jks` file.
 The key pair is valid for two years, after which the certificate expires and the connection with Runtime Manager terminates.
 
+[NOTE]
+Make sure you disable MFA before implementing these steps.
+
 To renew the agent key pair:
 
 . Download the appropriate `agent-certificate-renewer-{version}.jar` file for your Mule version from https://help.mulesoft.com/s/article/Applications-and-Servers-showing-as-Unknown-and-Disconnected-state-in-Anypoint-Runtime-Manager-due-to-expired-key-pair[Applications and Servers Displayed as `unknown` or `disconnected` in Anypoint Runtime Manager Due to an Expired Key Pair].
