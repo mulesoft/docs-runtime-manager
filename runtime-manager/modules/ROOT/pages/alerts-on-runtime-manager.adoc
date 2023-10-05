@@ -13,13 +13,18 @@ Runtime Manager includes several standard alert types that trigger notifications
 * The worker monitoring system notifies CloudHub about a problem with a worker on an application.
 * A server is disconnected or deleted.
 
-You can also create custom alerts for applications deployed to CloudHub.
-Custom alerts are triggered when your application sends notifications to the Runtime Manager console
-using Anypoint Connector for CloudHub (CloudHub Connector).
-See xref:custom-application-alerts.adoc[Custom Application Alerts] for information.
-
+[NOTE]
 Runtime Manager retains 30 days of alert history.
 
+You can also create custom alerts for applications deployed to CloudHub and CloudHub 2.0.
+
+Custom alerts in CloudHub are triggered when your application sends notifications to the Runtime Manager console
+using Anypoint Connector for CloudHub (CloudHub Connector). See xref:custom-application-alerts.adoc[Custom Application Alerts] for information.
+
+For applications deployed to CloudHub 2.0, custom alerts indicate whether an app was successfully deployed and whether it is behaving as expected. See xref:cloudhub-2::ch2-config-app-alerts.adoc[] for more information.
+
+[NOTE]
+For CloudHub 2.0, Alerts apply to applications only, not servers.
 
 == Rate Limits on Alerts
 
