@@ -13,7 +13,9 @@ The command-line interface (CLI) supports both the interactive shell and standar
 * <<servers>>
 * <<server-groups>>
 * <<server-clusters>>
-* <<rtf-instances>>
+* <<cloudhub-2>>
+* <<cloudhub>>
+* <<rtf>>
 
 
 [[standalone-apps]]
@@ -52,15 +54,33 @@ include::anypoint-cli::partial$server-clusters.adoc[tag=summary,leveloffset=+1]
 
 include::anypoint-cli::partial$server-clusters.adoc[tag=commands,leveloffset=+1]
 
-[[rtf-instances]]
-== Runtime Fabric Instances
+[[cloudhub-2]]
+== CLI for Cloudhub 2.0 
 
-include::anypoint-cli::partial$rtf-instances.adoc[tag=summary,leveloffset=+1]
+You can use CLI commands for deploying and managing applications in Cloudhub 2.0.
 
-include::anypoint-cli::partial$rtf-instances.adoc[tag=commands,leveloffset=+1]
+* xref:anypoint-cli::cloudhub2-apps.adoc[Deploying Apps with Anypoint CLI] 
+
+
+[[cloudhub]]
+== CLI for CloudHub
+
+Anypoint CLI supports managing these CloudHub features:
+
+* xref:anypoint-cli::cloudhub-apps.adoc[CloudHub Applications]
+* xref:anypoint-cli::cloudhub-dlb.adoc[CloudHub Dedicated Load Balancers]
+* xref:anypoint-cli::cloudhub-vpc.adoc[Anypoint Virtual Private Cloud]
+
+[[rtf]]
+== CLI for Anypoint Runtime Fabric
+
+Anypoint CLI supports managing these Runtime Fabric features:
+
+* xref:anypoint-cli::runtime-fabric-apps.adoc[Runtime Fabric App Management]
+* xref:anypoint-cli::rtf-instances.adoc[Runtime Fabric Instances]
 
 
 
 == See Also
 
-* xref:anypoint-cli::index.adoc[Anypoint Platform CLI 3.x]
+* xref:anypoint-cli::index.adoc[]
