@@ -89,11 +89,13 @@ amc_setup -H myToken myMuleServer -P acme.proxy.com 443 internalAdmin Ins1d3V0ic
 To specify proxy server configuration in the `$MULE_HOME/conf/wrapper.conf` file,
 add your proxy server information to the following properties:
 
-* `anypoint.platform.proxy_host=_hostname_`
-* `anypoint.platform.proxy_port=_port_`
-* `anypoint.platform.proxy_username=_username_`
-* `anypoint.platform.proxy_password=_password_`
+* `wrapper.java.additional.<n>=-Danypoint.platform.proxy_host={hostname}`
+* `wrapper.java.additional.<n>=-Danypoint.platform.proxy_port={port}`
+* `wrapper.java.additional.<n>=-Danypoint.platform.proxy_username={username}`
+* `wrapper.java.additional.<n>=-Danypoint.platform.proxy_password={password}`
 
+[IMPORTANT]
+These are additional parameters to pass to Java when it is launched. The <n> element refers to the number of additional parameters in the configuration. It is indicated with an integer number counting up from `1` and must follow a sequence without any gaps. 
 
 == Verify That the Proxy Server Does Not Modify the Runtime Manager Certificate
 
