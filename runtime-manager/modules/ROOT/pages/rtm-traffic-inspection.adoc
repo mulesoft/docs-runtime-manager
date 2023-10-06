@@ -60,10 +60,13 @@ If prompted, overwrite any conflicting files.
 Register the Mule Runtime::
 
 . Update the file `wrapper.conf` file with the IP and port of the traffic inspection proxy by following instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
-. Login in to the Anypoint console
+. Login in to the Anypoint console.
 . From the Anypoint Platform, select *Runtime Manager*.
 . Click *Servers* in the left menu.
-. Click *Add Server* 
+. Click *Add Server* .
++
+image::traffic-add-server.png[]
++
 . In a terminal window, change the `$MULE_HOME/bin` directory to the Mule instance that you're registering.
 . Paste the command on the command line and append the proxy's IP address or domain name and port, and the `--enable-traffic-inspection `configuration flag. 
 +
@@ -76,8 +79,11 @@ Register the Mule Runtime::
 Note the space between the proxy's domain name and port number.
 +
 . Confirm that the mule has registered successfully. The runtime should show up as *Created* in the Anypoint console:
-. Edit the file `$MULE_HOME/conf/mule-agent.yml` and set the property authenticationProxy.endpoint to null
-Start the mule
++
+image::mule-registered.png[]
++
+. Edit the file `$MULE_HOME/conf/mule-agent.yml` and set the property `authenticationProxy.endpoint` to `null`.
+. Start the mule.
 
 Check that the mule runtime is connected to the control plane::
 
