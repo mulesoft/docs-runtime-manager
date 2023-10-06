@@ -36,6 +36,7 @@ sudo keytool -import -alias testCert -keystore $JAVA_HOME/jre/lib/security/cacer
 . Password is `changeit`.
 . If you have multiple versions of Java, insert the certificate in the version that is being used by the Mule runtime.
 
+[[install-mule-runtime]]
 Install the Mule Runtime::
 
 . Install the latest available Mule Runtime version, which currently is `4.4.0-20230918`. You can skip this step if already installed.
@@ -95,8 +96,8 @@ INFO  2023-04-19 17:27:42,179 [WebSocketInboundExecutor] [processor: ; event: ] 
 
 == Notes
 
-* For agent version 2.5.6, you cannot renew mule certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[]. 
+* For agent version 2.5.6, you cannot renew mule certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[Renew a Certificate via the Command Line]. 
 ** Use version `2.4.37` of the application. 
 ** Certificates are valid for 2 years out of the box.
 * To enable traffic inspection, the mule runtime and agent must be installed from scratch as per instructions in this document. Upgrading from a standalone mule deployed in a PCE environment is not supported.
-** Using a runtime version earlier than the one specified during the installation might result in some functionality not working as expected.
+** Using a runtime version earlier than the one specified in <<install-mule-runtime>> might result in some functionality not working as expected.
