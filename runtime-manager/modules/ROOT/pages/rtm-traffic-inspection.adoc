@@ -14,9 +14,9 @@ The Traffic Inspection feature for Mules adds support in the agent for a forward
 * An HTTP Inspection Proxy is required, with support for TLS connections to the runtime client, and mTLS connections to the control plane server.
 * The Inspection Proxy server does not require client authentication from the agents. The proxy does not require the Mule Agent to present a client certificate. The communication between the Mule Agent and the inspection proxy is TLS, not mTLS.
 * The inspection proxy must be provisioned to send a BofA private certificate to the Mule Agent. The Mule Agent uses a Certificate Authority from the JVM's keystore to validate the public certificate presented by the inspection proxy.
-* The the inspection proxy and the Mulesoft control plane communicate via mTLS communication. There are two certificates involved:
-** The control plane presents a Mulesoft Public server certificate to the Inspection Proxy. The proxy must be provisioned with the right Certificate Authority to validate the server certificate presented by the Mulesoft Control Plane
-** The control plane requires a client certificate from the inspection roxy. This certificate must be the one shared by BofA to Mulesoft on April 17th, 2023, with serial number `133250979737618478378908091430693006357` and Common Name `anypoint-test.bankofamerica.com`. 
+* The the inspection proxy and the MuleSoft control plane communicate via mTLS communication. There are two certificates involved:
+** The control plane presents a MuleSoft Public server certificate to the Inspection Proxy. The proxy must be provisioned with the correct Certificate Authority to validate the server certificate presented by the MuleSoft Control Plane
+** The control plane requires a client certificate from the inspection roxy. This certificate must be the one shared by BofA to MuleSoft on April 17th, 2023, with serial number `133250979737618478378908091430693006357` and Common Name `anypoint-test.bankofamerica.com`. 
 +
 [NOTE]
 Communication with the control plane might fail if the certificate does not match the specified serial number and common name.
@@ -62,7 +62,7 @@ Register the Mule Runtime::
 . Update the file `wrapper.conf` file with the IP and port of the traffic inspection proxy by following instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
 . Login in to the Anypoint console.
 . From the Anypoint Platform, select *Runtime Manager*.
-. Click *Servers* in the left menu.
+. Click *Servers* in the navigation menu.
 . Click *Add Server* .
 +
 image::traffic-add-server.png[]
@@ -76,7 +76,7 @@ image::traffic-add-server.png[]
 ----
 +
 [NOTE]
-Note the space between the proxy's domain name and port number.
+Make sure to leave a space between the proxy's domain name and port number.
 +
 . Confirm that the mule has registered successfully. The runtime should show up as *Created* in the Anypoint console:
 +
