@@ -31,7 +31,7 @@ Provision the truststore of the Java Virtual Machine with the Root CA of the Pro
 [source,console,linenums]
 ----
 sudo keytool -import -alias testCert -keystore $JAVA_HOME/jre/lib/security/cacerts -file proxy_cacert.pem
----
+----
 +
 . Password is `changeit`.
 . If you have multiple versions of Java, insert the certificate in the version that is being used by the Mule runtime.
