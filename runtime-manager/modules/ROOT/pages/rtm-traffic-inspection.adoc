@@ -1,0 +1,105 @@
+= Traffic Inspection for Standalone Mules
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: agent, runtime manager, traffic inspection, standalone
+:page-deployment-options: hybrid
+
+The Traffic Inspection feature for Mules adds support in the agent for a forward proxy that is deployed in customer premises and acts as a man in the middle between the Mule and the control plane by intercepting and inspecting all HTTPS traffic. 
+
+== Prerequisites 
+
+=== Traffic Inspection Proxy
+
+* An HTTP Inspection Proxy is required, with support for TLS connections to the runtime client, and mTLS connections to the control plane server.
+* The Inspection Proxy server does not require client authentication from the agents. The proxy does not require the Mule Agent to present a client certificate. The communication between the Mule Agent and the inspection proxy is TLS, not mTLS.
+* The inspection proxy must be provisioned to send a BofA private certificate to the Mule Agent. The Mule Agent uses a Certificate Authority from the JVM's keystore to validate the public certificate presented by the inspection proxy.
+* The the inspection proxy and the Mulesoft control plane communicate via mTLS communication. There are two certificates involved:
+** The control plane presents a Mulesoft Public server certificate to the Inspection Proxy. The proxy must be provisioned with the right Certificate Authority to validate the server certificate presented by the Mulesoft Control Plane
+** The control plane requires a client certificate from the inspection roxy. This certificate must be the one shared by BofA to Mulesoft on *April 17th, 2023*, with serial number `133250979737618478378908091430693006357` and Common Name `anypoint-test.bankofamerica.com`. 
++
+[NOTE]
+Communication with the control plane might fail if the certificate does not match the specified serial number and common name.
+
+== Mule Installation and Registration Steps
+
+Provision the truststore of the Java Virtual Machine with the Root CA of the Proxy::
+
+. Identify the folder location of the Java Virtual Machine.
+. Insert the Root CA of the proxy in the truststore of the mule's JVM: in your terminal window run the following command, replacing `$JAVA_HOME` with the actual path:
++
+[source,console,linenums]
+----
+sudo keytool -import -alias testCert -keystore $JAVA_HOME/jre/lib/security/cacerts -file proxy_cacert.pem
+---
++
+. Password is `changeit`.
+. If you have multiple versions of Java, insert the certificate in the version that is being used by the Mule runtime.
+
+Install the Mule Runtime::
+
+. Install the latest available Mule Runtime version, which currently is `4.4.0-20230918`. You can skip this step if already installed.
++
+To check the latest Mule Runtime version, see  xref:release-notes::mule-runtime/mule-esb.adoc[].
++
+[NOTE] 
+The Mule Runtime Installation bundle includes both the Mule Runtime Engine and the Mule Runtime Agent. 
+
+Upgrade the Mule Runtime Agent::
+
+Make sure that the version of the Mule Runtime Agent is `2.5.6`. If the version is 2.5.6 or later, skip to the next section. If you have an earlier version, update the runtime agent before registering.
+
+To upgrade the Runtime Agent:
+
+. Download the Agent's zip file
+. Extract the downloaded `agent-setup-2.5.6.zip` file to `$MULE_HOME/bin`.
++
+If prompted, overwrite any conflicting files.
+. Do NOT run `amc_setup -U`.
+
+
+Register the Mule Runtime::
+
+. Update the file `wrapper.conf` with the IP and port of the traffic inspection proxy by following instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[].
+. Login in to the Anypoint console
+. From the Anypoint Platform, select *Runtime Manager*.
+. Click *Servers* in the left menu.
+. Click *Add Server* 
+. In a terminal window, change the `$MULE_HOME/bin` directory to the Mule instance that you're registering.
+. Paste the command on the command line and append the proxy's IP address or domain name and port, and the `--enable-traffic-inspection `configuration flag. 
++
+[source,console,linenums]
+----
+./amc_setup -H 42081e44-288b-4ebc-a1b5-6092a7cbd9d5---1 server-name -P proxy.bofa.com 4128 --enable-traffic-inspection 
+---
++
+[NOTE]
+Note the space between the proxy's domain name and port number.
++
+. Confirm that the mule has registered successfully. The runtime should show up as *Created* in the Anypoint console:
+. Edit the file `$MULE_HOME/conf/mule-agent.yml` and set the property authenticationProxy.endpoint to null
+Start the mule
+
+Check that the mule runtime is connected to the control plane::
+
+If the connection was successful, you should see the runtime with status *Running* in the Anypoint console:
+
+
+Also, if the connection has been established, the mule agent terminal window displays the following message:
+
+
+[source,console,linenums]
+----
+INFO  2023-04-19 17:27:41,307 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.transport.handlers.GenericWebSocketHandler: Opening Mule Agent WebSocket
+INFO  2023-04-19 17:27:41,316 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.transport.handlers.GenericWebSocketHandler: Mule Agent WebSocket opened
+INFO  2023-04-19 17:27:41,316 [pool-12-thread-1] [processor: ; event: ] com.mulesoft.agent.transport.connections.AsyncHttpWSConnectionThread: Mule Agent WebSocket connection was initialized after: 1 attempts
+INFO  2023-04-19 17:27:42,179 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.services.security.HandshakeAuthorizationService: WebSocket Client connection authorized
+---
+
+== Notes
+
+* For agent version 2.5.6, you cannot renew mule certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[]. 
+** Use version `2.4.37` of the application. 
+** Certificates are valid for 2 years out of the box.
+* To enable traffic inspection, the mule runtime and agent must be installed from scratch as per instructions in this document. Upgrading from a standalone mule deployed in a PCE environment is not supported.
+** Using a runtime version earlier than the one specified during the installation might result in some functionality not working as expected.
