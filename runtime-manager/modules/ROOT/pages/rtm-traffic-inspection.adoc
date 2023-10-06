@@ -48,15 +48,14 @@ The Mule Runtime Installation bundle includes both the Mule Runtime Engine and t
 Upgrade the Mule Runtime Agent::
 
 Make sure that the version of the Mule Runtime Agent is `2.5.6`. If the version is 2.5.6 or later, skip to the next section. If you have an earlier version, update the runtime agent before registering.
-
++
 To upgrade the Runtime Agent:
-
++
 . Download the Agent's zip file
 . Extract the downloaded `agent-setup-2.5.6.zip` file to `$MULE_HOME/bin`.
 +
 If prompted, overwrite any conflicting files.
 . Do NOT run `amc_setup -U`.
-
 
 Register the Mule Runtime::
 
@@ -71,7 +70,7 @@ Register the Mule Runtime::
 [source,console,linenums]
 ----
 ./amc_setup -H 42081e44-288b-4ebc-a1b5-6092a7cbd9d5---1 server-name -P proxy.bofa.com 4128 --enable-traffic-inspection 
----
+----
 +
 [NOTE]
 Note the space between the proxy's domain name and port number.
@@ -83,18 +82,16 @@ Start the mule
 Check that the mule runtime is connected to the control plane::
 
 If the connection was successful, you should see the runtime with status *Running* in the Anypoint console:
-
-
++
 Also, if the connection has been established, the mule agent terminal window displays the following message:
-
-
++
 [source,console,linenums]
 ----
 INFO  2023-04-19 17:27:41,307 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.transport.handlers.GenericWebSocketHandler: Opening Mule Agent WebSocket
 INFO  2023-04-19 17:27:41,316 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.transport.handlers.GenericWebSocketHandler: Mule Agent WebSocket opened
 INFO  2023-04-19 17:27:41,316 [pool-12-thread-1] [processor: ; event: ] com.mulesoft.agent.transport.connections.AsyncHttpWSConnectionThread: Mule Agent WebSocket connection was initialized after: 1 attempts
 INFO  2023-04-19 17:27:42,179 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.services.security.HandshakeAuthorizationService: WebSocket Client connection authorized
----
+----
 
 == Notes
 
