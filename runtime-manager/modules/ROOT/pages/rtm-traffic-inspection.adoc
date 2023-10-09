@@ -23,7 +23,7 @@ Communication with the control plane fails if the certificate does not match the
 
 == Mule Installation and Registration Steps
 
-=== . Provision the truststore of the Java Virtual Machine with the Root CA of the Proxy
+=== Provision the truststore of the Java Virtual Machine with the Root CA of the Proxy
 
 . Identify the folder location of the Java Virtual Machine.
 . Insert the Root CA of the proxy in the truststore of the mule's JVM: in your terminal window, run the following command, replacing `$JAVA_HOME` with the actual path:
@@ -37,7 +37,7 @@ sudo keytool -import -alias testCert -keystore $JAVA_HOME/jre/lib/security/cacer
 . If you have multiple versions of Java, insert the certificate in the version that is being used by the Mule runtime.
 
 [[install-mule-runtime]]
-=== . Install the Mule Runtime
+=== Install the Mule Runtime
 
 . Install the latest available Mule runtime version, which currently is `4.4.0-20230918`. You can skip this step if already installed.
 +
@@ -46,7 +46,7 @@ To check the latest Mule Runtime version, see xref:release-notes::mule-runtime/m
 [NOTE] 
 The Mule runtime installation bundle includes both the Mule Runtime Engine and the Mule Runtime Agent. 
 
-=== . Upgrade the Mule Runtime Agent
+=== Upgrade the Mule Runtime Agent
 
 Make sure that the version of the Mule Runtime agent is `2.5.6` or later. If you have an earlier version, update the runtime agent before registering.
 +
@@ -58,7 +58,7 @@ To update the Runtime agent:
 If prompted, overwrite any conflicting files.
 . Do NOT run `amc_setup -U`.
 
-=== . Register the Mule Runtime
+=== Register the Mule Runtime
 
 . Update the file `wrapper.conf` file with the IP and port of the traffic inspection proxy by following instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
 . Login in to the Anypoint console.
@@ -86,7 +86,7 @@ image::mule-registered.png[]
 . Edit the file `$MULE_HOME/conf/mule-agent.yml` and set the property `authenticationProxy.endpoint` to `null`.
 . Start the mMule.
 
-=== . Check that the Mule runtime is connected to the control plane
+=== Check that the Mule runtime is connected to the control plane
 
 If the connection is successful, you should see the runtime with status *Running* in the Anypoint console:
 +
