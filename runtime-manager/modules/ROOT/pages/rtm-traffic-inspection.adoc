@@ -16,10 +16,10 @@ The Traffic Inspection feature for Mules adds support in the agent for a forward
 * The inspection proxy must be provisioned to send a BofA private certificate to the Mule Agent. The Mule Agent uses a Certificate Authority from the JVM's keystore to validate the public certificate presented by the inspection proxy.
 * The the inspection proxy and the MuleSoft control plane communicate via mTLS communication. There are two certificates involved:
 ** The control plane presents a MuleSoft Public server certificate to the Inspection Proxy. The proxy must be provisioned with the correct Certificate Authority to validate the server certificate presented by the MuleSoft Control Plane
-** The control plane requires a client certificate from the inspection roxy. This certificate must be the one shared by BofA to MuleSoft on April 17th, 2023, with serial number `133250979737618478378908091430693006357` and Common Name `anypoint-test.bankofamerica.com`. 
+** The control plane requires a client certificate from the inspection proxy. This certificate must be the one shared by BofA to MuleSoft on April 17th, 2023, with serial number `133250979737618478378908091430693006357` and Common Name `anypoint-test.bankofamerica.com`. 
 +
 [NOTE]
-Communication with the control plane might fail if the certificate does not match the specified serial number and common name.
+Communication with the control plane fails if the certificate does not match the specified serial number and common name.
 
 == Mule Installation and Registration Steps
 
