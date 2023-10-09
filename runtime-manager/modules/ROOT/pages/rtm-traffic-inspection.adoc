@@ -23,7 +23,7 @@ Communication with the control plane fails if the certificate does not match the
 
 == Mule Installation and Registration Steps
 
-=== Provision the truststore of the Java Virtual Machine with the Root CA of the Proxy
+=== Provision the Truststore of the JVM with the Proxy Root CA
 
 . Identify the folder location of the Java Virtual Machine.
 . Insert the Root CA of the proxy in the truststore of the mule's JVM: in your terminal window, run the following command, replacing `$JAVA_HOME` with the actual path:
@@ -86,7 +86,7 @@ image::mule-registered.png[]
 . Edit the file `$MULE_HOME/conf/mule-agent.yml` and set the property `authenticationProxy.endpoint` to `null`.
 . Start the mMule.
 
-=== Check that the Mule runtime is connected to the control plane
+=== Check that the Mule Runtime is Connected to the Control Plane
 
 If the connection is successful, you should see the runtime with status *Running* in the Anypoint console:
 +
