@@ -13,7 +13,7 @@ The Traffic Inspection feature for Mules adds support in the agent for a forward
 
 * An HTTP Inspection Proxy is required, with support for TLS connections to the runtime client, and mTLS connections to the control plane server.
 * The Inspection Proxy server does not require client authentication from the agents. The proxy does not require the Mule Agent to present a client certificate. Communication between the Mule Agent and the inspection proxy is TLS, not mTLS.
-* The inspection proxy must be provisioned to send a BofA private certificate to the Mule Agent. The Mule Agent uses a Certificate Authority from the JVM's keystore to validate the public certificate presented by the inspection proxy.
+* The inspection proxy must be provisioned to send a customer-private certificate to the Mule Agent. The Mule Agent uses a Certificate Authority from the JVM's keystore to validate the public certificate presented by the inspection proxy.
 * The inspection proxy and the MuleSoft control plane communicate via mTLS. There are two certificates involved:
 ** The control plane presents a MuleSoft public server certificate to the inspection proxy. The proxy must be provisioned with the correct Certificate Authority to validate the server certificate presented by the MuleSoft control plane
 ** The control plane requires a client certificate from the inspection proxy. This certificate must be provided by the customer to MuleSoft. 
