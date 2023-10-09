@@ -49,9 +49,9 @@ The Mule runtime installation bundle includes both the Mule Runtime Engine and t
 === Upgrade the Mule Runtime Agent
 
 Make sure that the version of the Mule Runtime agent is `2.5.6` or later. If you have an earlier version, update the runtime agent before registering.
-+
+
 To update the Runtime agent:
-+
+
 . Download the agent's zip file
 . Extract the downloaded `agent-setup-2.5.6.zip` file to `$MULE_HOME/bin`.
 +
@@ -89,11 +89,11 @@ image::mule-registered.png[]
 === Check that the Mule Runtime is Connected to the Control Plane
 
 If the connection is successful, you should see the runtime with status *Running* in the Anypoint console:
-+
+
 image::mule-running.png[]
-+
+
 Also, if the connection has been established, the Mule agent terminal window displays the following message:
-+
+
 [source,console,linenums]
 ----
 INFO  2023-04-19 17:27:41,307 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.transport.handlers.GenericWebSocketHandler: Opening Mule Agent WebSocket
