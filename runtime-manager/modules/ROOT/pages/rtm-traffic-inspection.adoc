@@ -26,7 +26,9 @@ Communication with the control plane fails if the certificate does not match the
 === Provision the Truststore of the JVM with the Proxy Root CA
 
 . Identify the folder location of the Java Virtual Machine (JVM).
-. Insert the Root CA of the proxy in the truststore of the mule's JVM: in your terminal window, run the following command, replacing `$JAVA_HOME` with the actual path:
+. Insert the root CA of the proxy in the truststore of the Mule JVM:
++
+In the terminal window, run the following command, replacing `$JAVA_HOME` with the actual path:
 +
 [source,console,linenums]
 ----
