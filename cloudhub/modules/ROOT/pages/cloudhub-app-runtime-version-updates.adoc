@@ -106,11 +106,11 @@ If you want, you can update them manually at your convenience.
 CloudHub uses kernel live patching in the underlying VMs to apply the latest security and critical bug patches to the OS without requiring to restart the CloudHub application in between the monthly patching cycles. 
 
 [IMPORTANT]
----
-CloudHub applications must be running 90-day-old or newer releases to be live patched.
+--
+* CloudHub applications must be running 90-day-old or newer releases to be live patched.
 
-CloudHub live patching process checks the application to ensure it has enough memory and CPU available to live patch. If there is not enough capacity, it skips the patching and retries at a later time. 
----
+* CloudHub live patching process checks the application to ensure it has enough memory and CPU available to live patch. If there is not enough capacity, it skips the patching and retries at a later time. 
+--
 
 === Determine if an Application Has Been Live-patched
 
