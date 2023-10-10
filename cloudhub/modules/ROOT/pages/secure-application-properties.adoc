@@ -129,11 +129,11 @@ When moving applications between sandboxes, safely hidden application property v
 
 Mule applications can also store properties with encrypted values using secure properties placeholders.
 
-See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] for more information on creating and using secure configuration properties.
+See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties] for more information about creating and using secure configuration properties.
 
 With encrypted properties, the Mule application bundles the secure property placeholder files inside the Mule application's deployable archive .jar file.
 
-A secure property placeholder combines together the file containing the encrypted properties, plus details about the encryption algorithm that is used to encrypt the secure property values. Secure properties are encrypted using a secret key. It is important to never store the secret key inside your Mule applications. Instead, you need to safely (securely) pass in the secret key value at deployment time.
+A secure property placeholder combines together the file containing the encrypted properties, plus details about the encryption algorithm that is used to encrypt the secure property values. Secure properties are encrypted using a secret key. Never store the secret key inside your Mule applications. Instead, you need to safely (securely) pass in the secret key value at deployment time.
 
 To safely pass the secret key into the Mule application, develop the Mule application with a property placeholder to represent the secret key value. There are then several options for how an operator can safely pass in the secret key value at deployment time.
 
@@ -203,14 +203,14 @@ Encrypted properties that are bundled with a Mule application inside a secure pr
 
 If encrypted property names are listed in the Mule application's `secureProperties` entry in `mule-artifact.json`, once the application is deployed, the value of the encrypted property names is hidden in the Runtime Manager *Properties* tab, along with decrypted properties.
 
-The decrypted values are stored securely in the Mule worker's memory and the encrypted values are stored in the CloudHub database for your user account. The decrypted values are never stored in any CloudHub worker's files, nor are they ever passed between any other machines (including the Runtime Manager Console).
+The decrypted values are stored securely in the Mule worker's memory and the encrypted values are stored in the CloudHub database for your user account. The decrypted values are never stored in any CloudHub worker's files, nor are they ever passed between any other machines (including the Runtime Manager console).
 
 So for any encrypted property that is also marked as hidden in the Mule application's `secureProperties` entry, you can safely replace any encrypted property with a clear-text value. The clear-text value is then securely stored in the CloudHub properties database, and securely passed into the Mule application every time the Mule application is started.
 
 For CloudHub deployments, the new value is hidden once the application is deployed and can never be viewed again.
 For hybrid deployments, the new value remains visible, even after the redeployment.
 
-This means that when you override a secure property in the CloudHub *Properties* tab for the application, the value doesn't need to be encrypted. In this scenario, only users who have access to the values in the application's source files when they deploy or redeploy a secure application can override secure properties.
+This means that when you override a secure property in the CloudHub *Properties* tab for the application, the value must not be encrypted. In this scenario, only users who have access to the values in the application's source files when they deploy or redeploy a secure application can override secure properties.
 
 An example of when to override secure properties is if you need to update the database user and password stored in two properties named `db.user` and `db.password` in a production application. You can enter the new `db.user` and `db.password` values in the CloudHub *Properties* tab for the application and then start or restart the application. This allows the new application to upgrade the secure login information with zero downtime.
 After all dependent applications are migrated, the old account can be decommissioned.
