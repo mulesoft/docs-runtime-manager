@@ -101,6 +101,23 @@ image::cloudhub-app-update-versions.png[Date patch version update and Update ava
 MuleSoft applies the monthly updates automatically, based on the published schedule.
 If you want, you can update them manually at your convenience.
 
+== Live Patching
+
+CloudHub uses kernel live patching in the underlying VMs to apply the latest security and critical bug patches to the OS without requiring to restart the CloudHub application in between the monthly patching cycles. 
+
+[IMPORTANT]
+---
+CloudHub applications must be running 90-day-old or newer releases to be live patched.
+
+CloudHub's live patching process checks the application to ensure it has enough memory and CPU available to live patch. If there is not enough capacity, it skips the patching and retries at a later time. 
+---
+
+=== Determine if an Application Has Been Live-patched
+
+You can check your xref:viewing-log-data.adoc#view-logs[application logs] to determine if their application has been live patched. 
+
+image::live-patching-log.png[Application live patching log]
+
 == Update the Runtime Version Manually
 
 The *Update Available* tab indicates that one or more apps require a runtime version update.
