@@ -42,8 +42,10 @@ sudo keytool -import -alias testCert -keystore $JAVA_HOME/jre/lib/security/cacer
 . Enter the provided password.
 . If you have multiple versions of Java, insert the certificate in the version of Java that the Mule instance uses.
 
-Install Mule Runtime::
+Install Mule::
 Install the latest available Mule version. You can skip this step if already installed. 
++
+For instructions about how to install Mule, see xref:mule-runtime::runtime-installation-task.adoc[]
 +
 Using an earlier version might result in some functionalities not working as expected. To check the latest Mule version, see xref:release-notes::mule-runtime/mule-esb.adoc[].
 +
@@ -51,7 +53,9 @@ Using an earlier version might result in some functionalities not working as exp
 The Mule runtime installation bundle includes both Mule runtime engine and the Runtime Manager agent. 
 
 Upgrade the Runtime Manager Agent::
-Make sure that the version of Runtime Manager agent is 2.5.6 or later. If you have an earlier version, update the agent by following these steps:
+Make sure that the version of Runtime Manager agent is 2.5.6 or later. For instructions about how to check your agent version, see xref:debugging-the-runtime-manager-agent.adoc#troubleshoot-connection-issues-between-the-agent-and-mule[Troubleshoot the Runtime Manager Agent].
++ 
+If you have an earlier version, update the agent by following these steps:
 +
 . Download the `agent-setup-2.5.6.zip` file.
 . Extract the downloaded ZIP file to `$MULE_HOME/bin`.
@@ -90,7 +94,9 @@ Make sure to leave a space between the proxy's domain name and port number.
 image::mule-registered.png[The Mule instance appears as created]
 +
 . Edit the file `$MULE_HOME/conf/mule-agent.yml` and set the property `authenticationProxy.endpoint` to `null`.
-. Start the Mule instance.
+. Start the Mule instance. 
++
+See xref:mule-runtime::starting-and-stopping-mule-esb.adoc[]
 
 Check that the Mule Instance is Connected to the Control Plane::
 If the connection is successful, the status of the Mule instance appears as  *Running* in the Anypoint Platform console:
