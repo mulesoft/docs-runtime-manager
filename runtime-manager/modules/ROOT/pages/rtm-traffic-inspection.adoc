@@ -5,7 +5,7 @@ endif::[]
 :keywords: agent, runtime manager, traffic inspection, standalone
 :page-deployment-options: hybrid
 
-The Traffic Inspection feature for Mule instances adds support to the Runtime Manager agent for a forward proxy that is deployed in your environment. This proxy acts as a man-in-the-middle between Mule and the control plane, intercepting and inspecting all HTTPS traffic. 
+The Traffic Inspection feature for standalone Mule instances adds support to the Runtime Manager agent for a forward proxy that is deployed in your environment. This proxy acts as a man-in-the-middle between Mule and the control plane, intercepting and inspecting all HTTPS traffic. 
 
 == Before You Begin
 
@@ -23,6 +23,11 @@ Communication with the control plane fails if the certificate does not match the
 
 == Install and Register Mule 
 
+To enable traffic inspection, you must install the Mule instance and the Runtime Manager agent from scratch as per the instructions in this document. 
+
+[NOTE]
+Upgrading from a standalone Mule deployed in a PCE environment is not supported.
+
 Provision the Truststore of the JVM with the Proxy Root CA::
 . Identify the folder location of the JVM.
 . Insert the root CA of the proxy in the truststore of the Mule JVM:
@@ -37,22 +42,29 @@ sudo keytool -import -alias testCert -keystore $JAVA_HOME/jre/lib/security/cacer
 . Enter the provided password.
 . If you have multiple versions of Java, insert the certificate in the version of Java that the Mule instance uses.
 
-[[install-mule-runtime]] Install Mule Runtime::
-. Install the latest available Mule runtime version. You can skip this step if already installed.
+Install Mule Runtime::
+Install the latest available Mule version. You can skip this step if already installed. 
 +
-To check the latest Mule version, see xref:release-notes::mule-runtime/mule-esb.adoc[].
+Using an earlier version might result in some functionalities not working as expected. To check the latest Mule version, see xref:release-notes::mule-runtime/mule-esb.adoc[].
 +
 [NOTE] 
 The Mule runtime installation bundle includes both Mule runtime engine and the Runtime Manager agent. 
 
 Upgrade the Runtime Manager Agent::
-Make sure that the version of Runtime Manager agent is 2.5.6 or later. If you have an earlier version, update the agent before registering by following these steps:
+Make sure that the version of Runtime Manager agent is 2.5.6 or later. If you have an earlier version, update the agent by following these steps:
 +
 . Download the `agent-setup-2.5.6.zip` file.
 . Extract the downloaded ZIP file to `$MULE_HOME/bin`.
 . If prompted, overwrite any conflicting files. 
 + 
 Do not run `amc_setup -U`.
+
+Check Your Server Certificates::
+Registering a Mule server requires a valid certificate to secure communication between Runtime Manager and the Runtime Manager agent.
++
+Certificates are valid for two years. To check a certificate expiration date, follow the steps in xref:servers-cert-renewal.adoc#view-a-certificate-expiration-date[View a Certificate Expiration Date].
++
+For agent version 2.5.6, you cannot renew your certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[Renew a Certificate via the Command Line]. Use version 2.4.37 of the certificate renewal JAR file.
 
 Register Mule::
 . Update the `wrapper.conf` file with the IP and port of the traffic inspection proxy by following the instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
@@ -96,9 +108,3 @@ INFO  2023-04-19 17:27:42,179 [WebSocketInboundExecutor] [processor: ; event: ] 
 ----
 
 == Notes
-
-* For agent version 2.5.6, you cannot renew your certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[Renew a Certificate via the Command Line]. 
-** Use version `2.4.37` of the application. 
-** Certificates are valid for 2 years.
-* To enable traffic inspection, you must install the Mule instance and the Runtime Manager agent from scratch as per the instructions in this document. Upgrading from a standalone Mule deployed in a PCE environment is not supported.
-** Using a Mule version earlier than the one specified in <<install-mule-runtime>> might result in some functionality not working as expected.
