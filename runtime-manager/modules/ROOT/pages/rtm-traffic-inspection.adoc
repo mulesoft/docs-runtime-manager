@@ -60,13 +60,12 @@ Do not run `amc_setup -U`.
 
 === Register Mule
 
-. Update the `wrapper.conf` file with the IP and port of the traffic inspection proxy by following instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
-. Log in to the Anypoint console.
-. From the Anypoint Platform, select *Runtime Manager*.
-. Click *Servers* in the navigation menu.
-. Click *Add Server* .
+. Update the `wrapper.conf` file with the IP and port of the traffic inspection proxy by following the instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
+. Log in to Anypoint Platform.
+. From Anypoint Platform, select *Runtime Manager* > *Servers*.
+. Click *Add Server*.
 +
-image::traffic-add-server.png[]
+image::traffic-add-server.png[Add server]
 +
 . In a terminal window, change the `$MULE_HOME/bin` directory to the Mule instance that you're registering.
 . Paste the command on the command line and append the proxy's IP address or domain name and port, and the `--enable-traffic-inspection` configuration flag. 
