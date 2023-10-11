@@ -107,9 +107,9 @@ CloudHub uses kernel live patching in the underlying VMs to apply the latest sec
 
 [IMPORTANT]
 --
-* CloudHub applications must be running 90-day-old or newer releases to be live patched.
+CloudHub applications must be running 90-day-old or newer releases to be live patched.
 
-* CloudHub live patching process checks the application to ensure that it has enough memory and CPU available to live patch. If there is not enough capacity, it skips the patching and retries at a later time. 
+CloudHub live patching process checks the application to ensure that it has enough memory and CPU available to live patch. If there is not enough capacity, it skips the patching and retries at a later time. 
 --
 
 === Determine if an Application Has Been Live-patched
@@ -129,9 +129,9 @@ Before updating apps in the production environment, update them in the sandbox e
 
 To update an app to the latest date patch:
 
-. In the Runtime Manager left menu, click *Applications*.
+. In the Runtime Manager navigation menu, click *Applications*.
 . Click the *Update Available* tab.
-. Click in the *Status* column for the app to display the details pane on the right.
+. Click in the *Status* column for the app to display the details pane.
 . Click the *Manage Application* button to display the *Settings* page for the app.
 +
 If the app requires an update, *Update available* appears in the *Runtime version* menu:
