@@ -50,17 +50,15 @@ The Mule runtime installation bundle includes both Mule runtime engine and the R
 
 === Upgrade the Runtime Manager Agent
 
-Make sure that the version of Runtime Manager agent is 2.5.6 or later. If you have an earlier version, update the agent before registering.
-
-To update the Runtime agent:
+Make sure that the version of Runtime Manager agent is 2.5.6 or later. If you have an earlier version, update the agent before registering by following these steps:
 
 . Download the `agent-setup-2.5.6.zip` file.
 . Extract the downloaded `agent-setup-2.5.6.zip` file to `$MULE_HOME/bin`.
-+
-If prompted, overwrite any conflicting files.
-. Do NOT run `amc_setup -U`.
+. If prompted, overwrite any conflicting files. 
++ 
+Do not run `amc_setup -U`.
 
-=== Register the Mule Runtime
+=== Register Mule
 
 . Update the file `wrapper.conf` file with the IP and port of the traffic inspection proxy by following instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
 . Login in to the Anypoint console.
