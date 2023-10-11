@@ -103,8 +103,8 @@ INFO  2023-04-19 17:27:42,179 [WebSocketInboundExecutor] [processor: ; event: ] 
 
 == Notes
 
-* For agent version 2.5.6, you cannot renew mule certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[Renew a Certificate via the Command Line]. 
+* For agent version 2.5.6, you cannot renew your certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[Renew a Certificate via the Command Line]. 
 ** Use version `2.4.37` of the application. 
-** Certificates are valid for 2 years out of the box.
-* To enable traffic inspection, the Mule runtime and agent must be installed from scratch as per instructions in this document. Upgrading from a standalone Mule deployed in a PCE environment is not supported.
-** Using a runtime version earlier than the one specified in <<install-mule-runtime>> might result in some functionality not working as expected.
+** Certificates are valid for 2 years.
+* To enable traffic inspection, you must install the Mule instance and the Runtime Manager agent from scratch as per the instructions in this document. Upgrading from a standalone Mule deployed in a PCE environment is not supported.
+** Using a Mule version earlier than the one specified in <<install-mule-runtime>> might result in some functionality not working as expected.
