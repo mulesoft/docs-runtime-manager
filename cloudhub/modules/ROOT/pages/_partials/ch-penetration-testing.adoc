@@ -1,0 +1,85 @@
+//Run Vulnerability Assessment and Penetration Tests
+
+//tag::intro[]
+If your company security policies require that you perform vulnerability and penetration testing against Anypoint Platform, you may commence testing without notifying Salesforce beforehand.
+
+All assessments must be performed in accordance with the https://help.salesforce.com/s/articleView?id=000392845&type=1[Security Assessment Agreement^].
+// end::intro[]
+
+//tag::runTest[]
+== Run Penetration and Vulnerability Tests
+
+Because penetration testing could interfere with other tenants, MuleSoft allows penetration testing on your workers but not on other Anypoint Platform services.
+
+[IMPORTANT]
+Salesforce does not address any vulnerabilities found with custom development.
+You must validate and fix any findings with your custom development.
+
+// end::runTest[]
+
+//tag::prereqIntro[]
+=== Prerequisites
+
+Before initiating penetration testing:
+
+* Enable static IPs for the app.
+// end::prereqIntro[]
+
+//tag::prereqCh1[]
++
+By default, CloudHub workers do not use static IP addresses, so you can't test them because their IP addresses might change.
+// end::prereqCh1[]
+
+//tag::prereqEnd[]
+For information about how to enable static IPs, see xref:deploying-to-cloudhub.adoc#static-ips-tab-settings[Static IPs Tab Settings].
+* Assign a security resource at your company to review and validate findings from the tests.
+// end::prereqEnd[]
+
+//tag::steps[]
+=== Steps
+
+. Run the penetration tests.
++
+The Security Assessment Agreement includes restrictions and requirements for testing.
+. Have your security resource use the following documents to identify common false positives or security issues related to settings:
++
+--
+** https://help.salesforce.com/articleView?id=Salesforce-Platform-Security-FAQs&type=1&language=en_US[Platform Security FAQ]
+** https://help.salesforce.com[Salesforce Help]
+--
++
+
+. If your assessment generates vulnerability findings, please complete validation for any automated findings. Send any outstanding validated security vulnerability findings to mailto:security@salesforce.com[security@salesforce.com].
++
+--
+Include the following information in your email:
+
+** Confirmation number for your Security Assessment approved by Salesforce
+** Summary of all findings and associated severity level of each finding
+** Detailed assessment report noting each finding
+** Steps to reproduce the vulnerability
+** All applicable HTTP requests and responses
+** Explanation of why the example is considered a finding
+--
+//end::steps[]
+
+//tag::reporting[]
+=== Reporting Security Vulnerabilities
+
+To report security vulnerability findings, follow the https://help.salesforce.com/articleView?id=000320207&type=1&mode=1[Security Vulnerability Finding Submittal Guide]. Security vulnerability reports that do not follow the required steps will be rejected.
+
+Salesforce does not address any security vulnerabilities in the following categories:
+
+* Scan output from automated vulnerability scanning tools without any valid proof of concept
+* Security bugs without valid proof of concept
+* Vulnerabilities identified in old or deprecated versions of Mule runtime engine
+* Vulnerabilities introduced via code customization made by your company
+* Known security issues that do not pose any risk
+//end::reporting[]
+
+== See Also
+
+* xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub]
+* xref:index.adoc[CloudHub]
+* xref:developing-applications-for-cloudhub.adoc[Develop Applications for CloudHub]
+* xref:runtime-manager::deployment-strategies.adoc[Deployment Options]
