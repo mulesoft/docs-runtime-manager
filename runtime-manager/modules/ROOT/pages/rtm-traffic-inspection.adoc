@@ -7,28 +7,30 @@ endif::[]
 
 The Traffic Inspection feature for standalone Mule instances adds support to the Runtime Manager agent for a forward proxy that is deployed in your environment. This proxy acts as a man-in-the-middle between Mule and the control plane, intercepting and inspecting all HTTPS traffic. 
 
-== Before You Begin
-
-To enable traffic inspection for standalone Mules, you must build an HTTP proxy with support for TLS connections to the runtime client and mTLS connections to the control plane server. The inspection proxy server does not require the Runtime Manager agent to present a client certificate. Communication between the agent and the inspection proxy is TLS, not mTLS.
-
-The inspection proxy must be provisioned to send a customer-private certificate to the Runtime Manager agent. The agent uses a Certificate Authority from the Java Virtual Machine (JVM) keystore to validate the public certificate presented by the inspection proxy.
-
-The inspection proxy and the MuleSoft control plane communicate via mTLS. The two certificates involved are:
-
-* The control plane presents a MuleSoft public server certificate to the inspection proxy. The proxy must be provisioned with the correct Certificate Authority to validate the server certificate presented by the MuleSoft control plane.
-* The control plane requires a client certificate from the inspection proxy. The customer must provide this certificate to MuleSoft. 
-+
-[NOTE]
-Communication with the control plane fails if the certificate does not match the specified serial number and common name.
-
-== Install and Register Mule 
-
 To enable traffic inspection, you must install the Mule instance and the Runtime Manager agent from scratch as per the instructions in this document. 
 
 [NOTE]
 Upgrading from a standalone Mule deployed in a PCE environment is not supported.
 
-Provision the Truststore of the JVM with the Proxy Root CA::
+== Before You Begin
+
+* Build an HTTP proxy with support for TLS connections to the runtime client and mTLS connections to the control plane server. 
++
+The inspection proxy server does not require the Runtime Manager agent to present a client certificate. Communication between the agent and the inspection proxy is TLS, not mTLS.
+
+* Provision this inspection proxy to send a customer-private certificate to the Runtime Manager agent. 
++
+The agent uses a Certificate Authority from the Java Virtual Machine (JVM) keystore to validate the public certificate presented by the inspection proxy.
++
+The inspection proxy and the MuleSoft control plane communicate via mTLS. The two certificates involved are:
+** The control plane presents a MuleSoft public server certificate to the inspection proxy. The proxy must be provisioned with the correct Certificate Authority to validate the server certificate presented by the MuleSoft control plane.
+** The control plane requires a client certificate from the inspection proxy. The customer must provide this certificate to MuleSoft. 
++
+[NOTE]
+Communication with the control plane fails if the certificate does not match the specified serial number and common name.
+
+== Provision the Truststore of the JVM with the Proxy Root CA
+
 . Identify the folder location of the JVM.
 . Insert the root CA of the proxy in the truststore of the Mule JVM:
 +
@@ -42,35 +44,39 @@ sudo keytool -import -alias testCert -keystore $JAVA_HOME/jre/lib/security/cacer
 . Enter the provided password.
 . If you have multiple versions of Java, insert the certificate in the version of Java that the Mule instance uses.
 
-Install Mule::
+== Install Mule
+
 Install the latest available Mule version. You can skip this step if already installed. 
-+
-For instructions about how to install Mule, see xref:mule-runtime::runtime-installation-task.adoc[]
-+
+
+For instructions about how to install Mule, see xref:mule-runtime::runtime-installation-task.adoc[].
+
 Using an earlier version might result in some functionalities not working as expected. To check the latest Mule version, see xref:release-notes::mule-runtime/mule-esb.adoc[].
-+
+
 [NOTE] 
 The Mule runtime installation bundle includes both Mule runtime engine and the Runtime Manager agent. 
 
-Upgrade the Runtime Manager Agent::
+== Upgrade the Runtime Manager Agent
+
 Make sure that the version of Runtime Manager agent is 2.5.6 or later. For instructions about how to check your agent version, see xref:debugging-the-runtime-manager-agent.adoc#troubleshoot-connection-issues-between-the-agent-and-mule[Troubleshoot the Runtime Manager Agent].
-+ 
+
 If you have an earlier version, update the agent by following these steps:
-+
+
 . Download the `agent-setup-2.5.6.zip` file.
 . Extract the downloaded ZIP file to `$MULE_HOME/bin`.
 . If prompted, overwrite any conflicting files. 
 + 
 Do not run `amc_setup -U`.
 
-Check Your Server Certificates::
+== Check Your Server Certificates
+
 Registering a Mule server requires a valid certificate to secure communication between Runtime Manager and the Runtime Manager agent.
-+
+
 Certificates are valid for two years. To check a certificate expiration date, follow the steps in xref:servers-cert-renewal.adoc#view-a-certificate-expiration-date[View a Certificate Expiration Date].
-+
+
 For agent version 2.5.6, you cannot renew your certificates from Runtime Manager. If you need to renew your certificates, follow the instructions in xref:servers-cert-renewal.adoc#renew-a-certificate-via-the-command-line[Renew a Certificate via the Command Line]. Use version 2.4.37 of the certificate renewal JAR file.
 
-Register Mule::
+== Register Mule
+
 . Update the `wrapper.conf` file with the IP and port of the traffic inspection proxy by following the instructions in xref:rtm-agent-proxy-config.adoc#set-up-proxy-server-configuration-in-the-wrapper-conf-file[Set Up Proxy Server Configuration in the wrapper.conf File].
 . Log in to Anypoint Platform.
 . From Anypoint Platform, select *Runtime Manager* > *Servers*.
@@ -98,13 +104,14 @@ image::mule-registered.png[The Mule instance appears as created]
 +
 See xref:mule-runtime::starting-and-stopping-mule-esb.adoc[].
 
-Check that the Mule Instance is Connected to the Control Plane::
+== Check that the Mule Instance is Connected to the Control Plane
+
 If the connection is successful, the status of the Mule instance appears as  *Running* in the Anypoint Platform console:
-+
+
 image::mule-running.png[The Mule instance appears as running]
-+
+
 If the connection is established, the agent terminal window displays the following message:
-+
+
 [source,console,linenums]
 ----
 INFO  2023-04-19 17:27:41,307 [WebSocketInboundExecutor] [processor: ; event: ] com.mulesoft.agent.transport.handlers.GenericWebSocketHandler: Opening Mule Agent WebSocket
