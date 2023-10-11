@@ -5,7 +5,7 @@ endif::[]
 :keywords: agent, runtime manager, traffic inspection, standalone
 :page-deployment-options: hybrid
 
-The Traffic Inspection feature for standalone Mule instances adds support to the Runtime Manager agent for a forward proxy that is deployed in your environment. This proxy acts as a man-in-the-middle between Mule and the control plane, intercepting and inspecting all HTTPS traffic. 
+The traffic inspection feature for standalone Mule instances adds support to the Runtime Manager agent for a forward proxy that is deployed in your environment. This proxy acts as a man-in-the-middle between Mule and the control plane, intercepting and inspecting all HTTPS traffic. 
 
 To enable traffic inspection, you must install the Mule instance and the Runtime Manager agent from scratch as per the instructions in this document. 
 
@@ -96,7 +96,7 @@ image::traffic-add-server.png[Add server]
 [NOTE]
 Make sure to leave a space between the proxy's domain name and port number.
 +
-. Confirm that the Mule instance registered successfully. The runtime should appear as *Created* in the Anypoint Platform console:
+. Confirm that the Mule instance registered successfully by checking that the runtime appears as *Created* in the Anypoint Platform console:
 +
 image::mule-registered.png[The Mule instance appears as created]
 +
