@@ -226,6 +226,18 @@ In this case, CloudHub waits up to three minutes for the application to connect 
 
 If either case applies to your application, contact Support and your CSM account representative for information about updating the application to be cloud-ready.
 
+== Failed Automated Updates
+
+With blue-green deployments, when an automated update fails to be deployed to a new worker, the application continues to run the non-latest patch version on the currently running worker.
+
+Possible failure reasons include but are not limited to: 
+
+* Removing one of the application properties from the Anypoint Runtime Manager UI after deployment.
+
+* Incompatibility of a custom module with the latest patch version release.
+
+
+If an application fails to be automatically updated after two monthly patching cycles, the application is stopped and force updated to the latest patch version. Applications that fail to start require your action to address patches. 
 
 == See Also
 
