@@ -6,18 +6,29 @@ endif::[]
 
 include::reuse::partial$non-inclusive-banner.adoc[]
 
-Use the Application Validator Service to create your own custom validators and prevent your application from being deployed if certain conditions are not met.
+The Application Validator Service allows you to create your own custom validators and prevent your application from being deployed if certain conditions are not met.
 Depending on the Mule Runtime Agent configuration, the service invokes your custom validators to enforce their business rules, such as signing validation, naming conventions or moratorium dates.
 
 image:app-validator-chart.png[Application Validation Flowchart]
 
-The following example creates a custom validator that checks the value of an application property and stops the deployment if it does not meet the specified criteria.
-
 == Create an Application Validator
 
-=== Create a Maven project
+You can follow these steps to create a custom validator that checks the value of an application property and stops the deployment if it does not meet the specified criteria:
 
-Open a terminal, navigate to the folder you want to create the Java project, and type the following command:
+* <<create-a-maven-project>>
+* <<create-the-project-object-model-pom-file>>
+* <<create-the-validator-class>>
+* <<implement-business-logic>>
+* <<implement-custom-exceptions>>
+* <<add-the-guice-configuration>>
+* <<build-the-agent-validator>>
+* <<install-the-agent-validator>>
+* <<update-the-mule-agent-yml-file>>
+* <<start-the-mule>>
+
+=== Create a Maven Project
+
+Open a terminal, navigate to the folder where you want to create the Java project, and type the following command:
 
 [source,console,linenums]
 ----
@@ -28,7 +39,7 @@ mvn archetype:generate \
 	-DinteractiveMode=false
 ----
 
-==== Maven directory layout
+==== Maven Directory Layout
 
 The previous command creates the following project directory structure:
 
@@ -51,11 +62,13 @@ The previous command creates the following project directory structure:
 ./mule-agent-hello-validator/src/main/java/org/example/agent/App.java
 ----
 
-=== POM File
+=== Create the Project Object Model (POM) File
+
+Create a POM file with the following configuration details:
 
 ==== Properties
 
-. Enter the generated folder and review the generated pom.xml.
+. Access the generated folder and find the generated `pom.xml` file.
 . Add the following properties:
 
 [source,xml,linenums]
@@ -190,18 +203,13 @@ Add the MuleSoft releases and snapshots repositories:
 
 === Create the Validator Class
 
-. Rename the Default Class
-+
-Rename the following class to `MuleAgentHelloValidator`:
+. Rename the default class to `MuleAgentHelloValidator`: 
 +
 *Before*: `mule-agent-hello-validator/src/main/java/org/example/App.java`
 +
 *After*: `mule-agent-hello-validator/src/main/java/org/example/MuleAgentHelloValidator.java`
 
-
-. Annotations
-+
-Add the following annotations:
+. Add the following annotations:
 +
 [source,java,linenums]
 ----
@@ -209,16 +217,14 @@ Add the following annotations:
 @Singleton
 ----
 
-. Logger
-+
-Add the following property to obtain a named logger based on our class:
+. Add the following property to obtain a named logger based on our class:
 +
 [source,java,linenums]
 ----
 private static final Logger LOGGER = LogManager.getLogger(MuleAgentHelloWorld.class);
 ----
 
-. Implement ArtifactValidator Interface
+. Implement the artifact validator interface:
 +
 [source,java,linenums]
 ----
@@ -246,9 +252,7 @@ public class MuleAgentHelloWorld implements ApplicationValidator {
 }
 ----
 
-. Args Parameter
-+
-The args parameter contains the validator configuration that is provided in the `mule-agent.yml` file:
+. Add the args parameter, which contains the validator configuration that is provided in the `mule-agent.yml` file:
 +
 [source,java,linenums]
 ----
@@ -264,7 +268,7 @@ The args parameter contains the validator configuration that is provided in the 
 				welcomeMessage: 'Hi, welcome to Finance Cluster Runtimes'
 				errorMessage: 'I am sorry, you are not allowed to deploy in this Cluster'
 ----
-
++
 It also contains the following values that are injected by the service:
 
 [%header,cols="15a,30a"]
@@ -277,7 +281,7 @@ It also contains the following values that are injected by the service:
 
 === Implement Business Logic
 
-Let’s consider that every application deployed in the Mule runtime must have an application property called _business_, the value represents the department owner of the application and the Runtime is exclusively for the Finance department.
+In the following example, every application deployed in the Mule runtime must have an application property called _business_. Its value represents the department owner of the application and the runtime is exclusively for the Finance department.
 
 
 [source,java,linenums]
@@ -297,9 +301,9 @@ Let’s consider that every application deployed in the Mule runtime must have a
 
 === Implement Custom Exceptions
 
-Let’s create a custom exception that represents the previous error.
+Create a custom exception that represents the previous error.
 
-In the package `org.example`, add a new package called exceptions and create the following class:
+In the package `org.example`, add a new package called `exceptions` and create the following class:
 
 [source,java,linenums]
 ----
@@ -311,7 +315,7 @@ public class BusinessNotAllowedException extends ApplicationValidationException 
 }
 ----
 
-In the project directory layout, now we can see:
+Te project directory layout shows the following:
 
 [source,java,linenums]
 ----
@@ -328,7 +332,7 @@ Replace the generic `ApplicationValidationException` to `BusinessNotAllowedExcep
 
 === Add the Guice Configuration
 
-. Create the BaseModuleProvider Class
+. Create the `BaseModuleProvider` class.
 +
 In the package `org.example`, add a new package called `configuration.guice` and create the following class:
 +
@@ -342,7 +346,7 @@ public class MuleAgentHelloValidatorProvider extends BaseModuleProvider {
 }
 ----
 
-. Create the BaseModuleProvider Class
+. Create the `BaseModuleProvider` Class
 +
 In the directory `src/main`, add a new folder called `META-INF/services` and create the following file:
 +
@@ -351,7 +355,7 @@ Name: `com.mulesoft.agent.configuration.guice.ModuleProvider`
 Content: `com.example.configuration.guice.MuleAgentHelloValidatorProvider`
 
 
-In the project directory layout, now we can see:
+The project directory layout shows the following:
 
 [source,java,linenums]
 ----
@@ -364,16 +368,16 @@ In the project directory layout, now we can see:
 ./mule-agent-hello-validator/src/main/java/org/example/agent/configuration/guice/MuleAgentHelloValidatorProvider.java
 ----
 
-== Build and Install the Mule Agent Validator
+=== Build the Agent Validator
 
-Run the command:
+Run the following command:
 
 [source,console,linenums]
 ----
 mvn clean install
 ----
 
-A jar file is generated in the target directory:
+A JAR file is generated in the target directory:
 
 [source,java,linenums]
 ----
@@ -381,12 +385,12 @@ A jar file is generated in the target directory:
 ./mule-agent-hello-validator/target/mule-agent-hello-validator-1.0-SNAPSHOT.jar
 ----
 
-=== Install the Mule Agent Validator
+=== Install the Agent Validator
 
-Place the jar file in `$MULE_HOME/server-plugins/mule-agent-plugin/lib`.
+. Place the JAR file in `$MULE_HOME/server-plugins/mule-agent-plugin/lib`.
 
-Access the args parameter keys and values and print them out to the console:
-
+. Access the args parameter keys and values and print them out to the console:
++
 [source,java,linenums]
 ----
 public void validate(Map<String, Object> args) throws ApplicationValidationException {
@@ -413,7 +417,7 @@ public void validate(Map<String, Object> args) throws ApplicationValidationExcep
 }
 ----
 
-==== Update the mule-agent.yml File
+=== Update the mule-agent.yml File
 
 Add the validation configuration in the service:
 
@@ -434,7 +438,7 @@ services:
 
 === Start the Mule
 
-The following logs show in the console:
+Start the Mule and verify that the validator configuration was successful. The console shows following logs:
 
 [source,console,linenums]
 ----
@@ -445,7 +449,7 @@ AgentArtifactValidatorService: 	Type: helloValidator Names: [defaultHelloValidat
 
 == Deploy an Application
 
-Now that the validator is ready, let’s deploy an application to see how the Agent Validator Service invokes the custom validator.
+Once the validator has been built and installed, the Agent Validator Service invokes the custom validator when deploying an application:
 
 Curl command:
 
@@ -496,7 +500,8 @@ MuleAgentHelloValidator: Hi, welcome to Finance Cluster Runtimes
 
 == Encrypt Values in the Validator Configuration
 
-Let’s consider that the validator needs to use a secret provided in the `mule-agent.yml`. Secrets, passwords or any value can be encrypted using the `amc_setup.sh script`.  See the https://docs.mulesoft.com/runtime-manager/installing-and-configuring-runtime-manager-agent#encrypt-passwords[Encrypt Passwords] documentation.
+If the validator requires a secret provided in the `mule-agent.yml`, you can use the `amc_setup.sh` script to encrypt secrets, passwords or any other value. 
+Visit https://docs.mulesoft.com/runtime-manager/installing-and-configuring-runtime-manager-agent#encrypt-passwords[Encrypt Passwords] to obtain more information.
 
 . Encrypt a single value
 +
@@ -538,16 +543,16 @@ Mule Agent Installer
 
 == Decrypt Values in the Validator
 
-Values can be decrypted using the Encryption Service.
+You can use the the encryption service to decrypt values. 
 
-. Inject the Encryption Service in your validator class
+. Inject the encryption service in your validator class:
 +
 ----
     @Inject
     EncryptionService encryptionService;
 ----
 
-. Decrypt the value
+. Decrypt the value:
 +
 [source,java,linenums]
 ----
@@ -587,6 +592,7 @@ curl -X PUT 'http://localhost:9999/mule/applications/app-01' \
 ----
 
 Response:
+
 [source,console,linenums]
 ----
 {
@@ -602,70 +608,20 @@ Console logs:
 ----
 AgentApplicationService: Deploying the app-01 application from URL file:/tmp/app-01.jar
 MuleAgentHelloValidator: Values injected by the service:
-MuleAgentHelloValidator:   Application name: app-01
-MuleAgentHelloValidator:   Application file path: /tmp/mule-received-artifact-6683649864468336756/app-01.jar
-MuleAgentHelloValidator:   Application properties: {business=finance}
+MuleAgentHelloValidator: Application name: app-01
+MuleAgentHelloValidator: Application file path: /tmp/mule-received-artifact-6683649864468336756/app-01.jar
+MuleAgentHelloValidator: Application properties: {business=finance}
 MuleAgentHelloValidator: Validator configurations:
-MuleAgentHelloValidator:   Allowed Business: finance
-MuleAgentHelloValidator:   Welcome message: Hi, welcome to Finance Cluster Runtimes
-MuleAgentHelloValidator:   Secret: ![PBEWITHSHA1ANDDESEDE,wFE1D5V4DMb0uG77mzU+gibrlmnj3Kzb]
-MuleAgentHelloValidator:   Secret (plain text): my-secret-value
+MuleAgentHelloValidator: Allowed Business: finance
+MuleAgentHelloValidator: Welcome message: Hi, welcome to Finance Cluster Runtimes
+MuleAgentHelloValidator: Secret: ![PBEWITHSHA1ANDDESEDE,wFE1D5V4DMb0uG77mzU+gibrlmnj3Kzb]
+MuleAgentHelloValidator: Secret (plain text): my-secret-value
 MuleAgentHelloValidator: Hi, welcome to Finance Cluster Runtimes
 ----
 
-== JAR Signature Validator
 
-The application validator service implements a JAR signature validator by default to prevent the deployment of a non-authorized artifacts. Each signed entry in the artifact JAR file must match one of the keystore aliases. You can to indicate which single keystore alias you want to use to validate all artifacts deployed in the runtime. Artifacts signed with expired certificates are now allowed.
+== See Also
 
-=== Configure the JAR Signature Validator
-
-Modify the file `$MULE_HOME/conf/mule-agent.yml` to include the following:
-
-[source,java,linenums]
-----
- services:
-  mule.agent.artifact.validator.service:
-    enabled: true
-    validators:
-    - type: jarSignatureValidator
-      name: defaultJarSignatureValidator
-      enabled: true
-      args:
-        truststore: signers-truststore.jks
-        truststoreType: JKS
-        truststoreAlias: code-signer-alias-1
-        truststorePassword: '![PBEWITHSHA1ANDDESEDE,U/nA0wV714oNi9LHoAkDtiwg22ngG6b7yFTtg7fk2d4=]'
-----
-
-Use the following properties to configure the JAR signature validator:
-
-[%header,cols="10a,60a"]
-|===
-|Key |Description
-|`type`| Required. `jarSignatureValidator` is the validator type implemented in the Mule agent plugin to verify the signature of all jar files used for deployments in the Mule runtime.
-|`name`| Required. A validator type can have multiple implementations. The name for the `jarSignatureValidator` type implemented in the Runtime Manager agent is  `defaultJarSignatureValidator`.
-|`enabled`| Optional. Set to `true` to enable the validator implementation or `false` to disable it. The default value is `true`.
-|===
-
-Use the following arguments to configure the JAR signature validator:
-
-[%header,cols="10a,60a"]
-|===
-|Key |Description
-|`truststore`| Optional. The keystore file name that contains one or more certificates used to validate the signature of all jar files used for deployments. The default location is `$MULE_HOME/conf`. You can use a relative path to reference the truststore file. If no value is provided, the validator loads the cacerts truststore file used by the JVM.
-|`truststoreType`| Optional. JKS or PKCS12. The default value is JKS.
-|`truststoreAlias`| Optional. Each certificate stored in a keystore file is identified by an alias string. This property specifies a single alias used to validate all jar files. If you don't provide an alias, the validator uses all certificates in the keystore file to match the signature in the JAR files.
-|`truststorePassword`| Optional for JKS. Required for PKCS12. The keystore file password.
-|===
-
-=== Start the Mule
-
-Start the Mule and verify that the validator configuration was successful. The console shows following logs:
-
-[source,console,linenums]
-----
-AgentApplicationValidatorService: Initializing Artifact Validator service
-AgentApplicationValidatorService: Total validators loaded: 1
-AgentApplicationValidatorService: Validators listed by type:
-AgentApplicationValidatorService: Type: jarSignatureValidator Names: [defaultJarSignatureValidator]
-----
+* xref:runtime-manager-agent.adoc[]
+* xref:advanced-usage.adoc[]
+* xref:rtm-agent-jar-signature-validator.adoc[] 
