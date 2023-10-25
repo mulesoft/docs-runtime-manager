@@ -34,8 +34,8 @@ Use the following properties to configure the JAR signature validator:
 [%header,cols="10a,60a"]
 |===
 |Key |Description
-|`type`| Required. `jarSignatureValidator` is the validator type implemented in the Mule agent plugin to verify the signature of all jar files used for deployments in the Mule runtime.
-|`name`| Required. A validator type can have multiple implementations. The name for the `jarSignatureValidator` type implemented in the Runtime Manager agent is  `defaultJarSignatureValidator`.
+|`type`| Required. `jarSignatureValidator` is the validator type implemented in the Runtime Manager agent plugin to verify the signature of all JAR files used for deployments in the Mule runtime.
+|`name`| Required. A validator type can have multiple implementations. The name for the `jarSignatureValidator` type implemented in the Runtime Manager agent is `defaultJarSignatureValidator`.
 |`enabled`| Optional. Set to `true` to enable the validator implementation or `false` to disable it. The default value is `true`.
 |===
 
@@ -44,15 +44,15 @@ Use the following arguments to configure the JAR signature validator:
 [%header,cols="10a,60a"]
 |===
 |Key |Description
-|`truststore`| Optional. The keystore file name that contains one or more certificates used to validate the signature of all jar files used for deployments. The default location is `$MULE_HOME/conf`. You can use a relative path to reference the truststore file. If no value is provided, the validator loads the cacerts truststore file used by the JVM.
+|`truststore`| Optional. The keystore file name that contains one or more certificates used to validate the signature of all JAR files that you use for deployments. The default location is `$MULE_HOME/conf`. You can use a relative path to reference the truststore file. If you don’t provide any, the validator loads the cacerts truststore file used by the JVM.
 |`truststoreType`| Optional. JKS or PKCS12. The default value is JKS.
-|`truststoreAlias`| Optional. Each certificate stored in a keystore file is identified by an alias string. This property specifies a single alias used to validate all jar files. If you don't provide an alias, the validator uses all certificates in the keystore file to match the signature in the JAR files.
-|`truststorePassword`| Optional for JKS. Required for PKCS12. The keystore file password.
+|`truststoreAlias`| Optional. Each certificate stored in a keystore file is identified by an alias string. This property specifies a single alias used to validate all JAR files. If you don't provide an alias, the validator uses all certificates in the keystore file to match the signature in the JAR files.
+|`truststorePassword`| Optional for JKS, required for PKCS12. The keystore file password.
 |===
 
 == Start the Mule
 
-Start the Mule and verify that the validator configuration was successful. The console shows following logs:
+Start the Mule and verify that the validator configuration was successful. The console shows the following logs:
 
 [source,console,linenums]
 ----
@@ -67,8 +67,8 @@ AgentApplicationValidatorService: Type: jarSignatureValidator Names: [defaultJar
 
 Required files:
 
-* app-signed-by-trust-signer-01.jar
-* signers-truststore.jks
+* `app-signed-by-trust-signer-01.jar`
+* `signers-truststore.jks`
 
 File: `mule-agent.yaml` 
 [source,java,linenums]
@@ -123,8 +123,8 @@ AgentApplicationValidatorService: Application validation success for application
 
 Required files:
 
-* app-signed-by-trust-signer-01.jar 
-* signers-truststore.jks
+* `app-signed-by-trust-signer-01.jar`
+* `signers-truststore.jks`
 
 File: `mule-agent.yaml`
 [source,java,linenums]
@@ -179,8 +179,8 @@ AgentApplicationValidatorService: Application validation success for application
 
 Required files:
 
-* app-signed-by-expired-trusted-signer.jar
-* signers-truststore.jks 
+* `app-signed-by-expired-trusted-signer.jar`
+* `signers-truststore.jks` 
 
 File: `mule-agent.yaml`
 [source,java,linenums]
