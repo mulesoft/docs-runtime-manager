@@ -7,7 +7,7 @@ endif::[]
 
 By default, the application validator service implements a JAR signature validator to prevent the deployment of non-authorized artifacts. 
 Each signed entry in the artifact JAR file must match one of the keystore aliases. 
-You can indicate which single keystore alias you want to use to validate all artifacts deployed in the runtime. Artifacts signed with expired certificates are allowed.
+You can indicate which keystore alias to use to validate all artifacts deployed in the runtime. Artifacts signed with expired certificates are allowed.
 
 == Configure the JAR Signature Validator
 
