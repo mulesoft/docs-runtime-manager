@@ -44,10 +44,10 @@ Use the following arguments to configure the JAR signature validator:
 [%header,cols="10a,60a"]
 |===
 |Key |Description
-|`truststore`| Optional. The keystore file name that contains one or more certificates used to validate the signature of all JAR files that you use for deployments. The default location is `$MULE_HOME/conf`. You can use a relative path to reference the truststore file. If you don’t provide any, the validator loads the cacerts truststore file used by the JVM.
+|`truststore`| Optional. The truststore file name that contains one or more certificates used to validate the signature of all JAR files that you use for deployments. The default location is `$MULE_HOME/conf`. You can use a relative path to reference the truststore file. If you don’t provide any, the validator loads the cacerts truststore file used by the JVM.
 |`truststoreType`| Optional. `JKS` (default) or `PKCS12`.
-|`truststoreAlias`| Optional. Each certificate stored in a keystore file is identified by an alias string. This property specifies a single alias used to validate all JAR files. If you don't provide an alias, the validator uses all certificates in the keystore file to match the signature in the JAR files.
-|`truststorePassword`| Optional for JKS, required for PKCS12. The keystore file password.
+|`truststoreAlias`| Optional. Each certificate stored in a truststore file is identified by an alias string. This property specifies a single alias used to validate all JAR files. If you don't provide an alias, the validator uses all certificates in the truststore file to match the signature in the JAR files.
+|`truststorePassword`| Optional for JKS, required for PKCS12. The truststore file password.
 |===
 
 == Start the Mule
