@@ -1,0 +1,238 @@
+= JAR Signature Validator
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-deployment-options: hybrid
+
+
+By default, the application validator service implements a JAR signature validator to prevent the deployment of non-authorized artifacts. 
+Each signed entry in the artifact JAR file must match one of the keystore aliases. 
+You can indicate which keystore alias to use to validate all artifacts deployed in the runtime. Artifacts signed with expired certificates are allowed.
+
+== Configure the JAR Signature Validator
+
+Modify the `$MULE_HOME/conf/mule-agent.yml` file to include the following:
+
+[source,java,linenums]
+----
+ services:
+  mule.agent.artifact.validator.service:
+    enabled: true
+    validators:
+    - type: jarSignatureValidator
+      name: defaultJarSignatureValidator
+      enabled: true
+      args:
+        truststore: signers-truststore.jks
+        truststoreType: JKS
+        truststoreAlias: code-signer-alias-1
+        truststorePassword: '![PBEWITHSHA1ANDDESEDE,U/nA0wV714oNi9LHoAkDtiwg22ngG6b7yFTtg7fk2d4=]'
+----
+
+Use the following properties to configure the JAR signature validator:
+
+[%header,cols="10a,60a"]
+|===
+|Key |Description
+|`type`| Required. `jarSignatureValidator` is the validator type implemented in the Runtime Manager agent plugin to verify the signature of all JAR files used for deployments in Mule runtime.
+|`name`| Required. A validator type can have multiple implementations. The name for the `jarSignatureValidator` type implemented in the Runtime Manager agent is `defaultJarSignatureValidator`.
+|`enabled`| Optional. Set to `true` to enable the validator implementation or `false` to disable it. The default value is `true`.
+|===
+
+Use the following arguments to configure the JAR signature validator:
+
+[%header,cols="10a,60a"]
+|===
+|Key |Description
+|`truststore`| Optional. The truststore filename that contains one or more certificates used to validate the signature of all JAR files that you use for deployments. The default location is `$MULE_HOME/conf`. You can use a relative path to reference the truststore file. If you don’t provide a path, the validator loads the cacerts truststore file used by the JVM.
+|`truststoreType`| Optional. `JKS` (default) or `PKCS12`.
+|`truststoreAlias`| Optional. Each certificate stored in a truststore file is identified by an alias string. This property specifies a single alias used to validate all JAR files. If you don't provide an alias, the validator uses all certificates in the truststore file to match the signature in the JAR files.
+|`truststorePassword`| Optional for JKS, required for PKCS12. The truststore file password.
+|===
+
+== Start Mule Runtime Engine
+
+Start Mule runtime engine and verify that the validator configuration is successful. The console shows the following logs:
+
+[source,console,linenums]
+----
+AgentApplicationValidatorService: Initializing Artifact Validator service
+AgentApplicationValidatorService: Total validators loaded: 1
+AgentApplicationValidatorService: Validators listed by type:
+AgentApplicationValidatorService: Type: jarSignatureValidator Names: [defaultJarSignatureValidator]
+----
+
+
+== Use Case 1: Deploy a JAR File Signed by a Trusted Code Signer - Success
+
+Required files:
+
+* `app-signed-by-trust-signer-01.jar`
+* `signers-truststore.jks`
+
+File: `mule-agent.yaml` 
+[source,java,linenums]
+----
+ services:
+  mule.agent.artifact.validator.service:
+    enabled: true
+    validators:
+    - type: jarSignatureValidator
+      name: defaultJarSignatureValidator
+      enabled: true
+      args:
+        truststore: signers-truststore.jks
+        truststoreType: JKS
+        truststorePassword: mulesoft
+----
+
+Curl command:
+[source,copy,linenums]
+----
+curl -X PUT 'http://localhost:9999/mule/applications/app-signed-by-trust-signer-01' \
+     -H 'Content-Type: application/json' \
+     -d '{"url": "file:/tmp/yahoo/app-signed-by-trust-signer-01.jar", \
+          "configuration": {}
+         }'
+----
+
+Response:
+[source,json,linenums]
+----
+{
+  "application": {
+     "name": "app-signed-by-trust-signer-01"
+   },
+  "status": "Deployment attempt started"
+}
+----
+
+
+Console logs:
+[source,console,linenums]
+----
+AgentApplicationService: Deploying the app-signed-by-trust-signer-01 application from URL file:/tmp/yahoo/app-signed-by-trust-signer-01.jar
+KeystoreUtils: Loading Jar Signers Truststore from '/private/tmp/trash/server-yahoo/conf/signers-truststore.jks'
+JarSigner: Jar Signature verified: File /var/folders/sq/71l1hxdn171dpc46fn675yk80000gq/T/mule-received-artifact-5158252349422012120/app-signed-by-trust-signer-01.jar
+AgentApplicationValidatorService: Application validation success for application: 'app-signed-by-trust-signer-01'
+----
+
+
+
+== Use Case 2: Deploy a JAR File Signed by a Trusted Code Signer and Validate with the Truststore Alias Signer - Success
+
+Required files:
+
+* `app-signed-by-trust-signer-01.jar`
+* `signers-truststore.jks`
+
+File: `mule-agent.yaml`
+[source,java,linenums]
+----
+ services:
+  mule.agent.artifact.validator.service:
+    enabled: true
+    validators:
+    - type: jarSignatureValidator
+      name: defaultJarSignatureValidator
+      enabled: true
+      args:
+        truststore: signers-truststore.jks
+        truststoreType: JKS
+        truststoreAlias: code-signer-alias-01
+        truststorePassword: mulesoft
+----
+
+Curl command:
+[source,copy,linenums]
+----
+curl -X PUT http://localhost:9999/mule/applications/app-signed-by-trust-signer-01
+     -H "Content-Type: application/json"
+     -d '{"url": "file:/tmp/yahoo/app-signed-by-trust-signer-01.jar",\
+          "configuration": {}  
+         }'
+----
+
+
+Response: 
+[source,json,linenums]
+----
+{
+  "application": {
+     "name": "app-signed-by-trust-signer-01"
+    },
+  "status": "Deployment attempt started"
+}
+----
+
+Console logs:
+[source,console,linenums]
+----
+AgentApplicationService: Deploying the app-signed-by-trust-signer-01 application from URL file:/tmp/yahoo/app-signed-by-trust-signer-01.jar
+KeystoreUtils: Loading Jar Signers Truststore from '/private/tmp/trash/server-yahoo/conf/signers-truststore.jks'
+JarSigner: Jar Signature verified using certificate alias 'code-signer-alias-01': File '/var/folders/sq/71l1hxdn171dpc46fn675yk80000gq/T/mule-received-artifact-3796117303843373481/app-signed-by-trust-signer-01.jar'
+AgentApplicationValidatorService: Application validation success for application: 'app-signed-by-trust-signer-01'
+----
+
+
+== Use Case 3:  Deploy a JAR File Signed by an Expired Code Signer - Failed
+
+Required files:
+
+* `app-signed-by-expired-trusted-signer.jar`
+* `signers-truststore.jks` 
+
+File: `mule-agent.yaml`
+[source,java,linenums]
+----
+services:
+  mule.agent.artifact.validator.service:
+    enabled: true
+    validators:
+    - type: jarSignatureValidator
+      name: defaultJarSignatureValidator
+      enabled: true
+      args:
+        truststore: signers-truststore.jks
+        truststoreType: JKS
+        truststoreAlias: expired-code-signer
+        truststorePassword: mulesoft
+----
+
+
+Curl command:
+[source,copy,linenums]
+----
+curl -X PUT http://localhost:9999/mule/applications/app-signed-by-expired-trusted-signer \
+     -H "Content-Type: application/json"
+     -d '{"url": "file:/tmp/yahoo/app-signed-by-expired-trusted-signer.jar", \
+          "configuration": {}
+         }'
+----
+
+
+
+Response:
+[source,json,linenums]
+----
+{
+  "type": "class com.mulesoft.agent.exception.ApplicationValidationException",
+  "message": "CertificateExpiredException - NotAfter: Wed Dec 22 14:45:54 AST 2021"
+}
+----
+
+Console logs: 
+[source,console,linenums]
+----
+AgentApplicationService: Deploying the app-signed-by-expired-trusted-signer application from URL file:/tmp/yahoo/app-signed-by-expired-trusted-signer.jar
+KeystoreUtils: Loading Jar Signers Truststore from '/private/tmp/trash/server-yahoo/conf/signers-truststore.jks'
+MuleAgentSignatureValidator: There was an error validating the certificate with the alias 'expired-code-signer' - CertificateExpiredException Reason: 'NotAfter: Wed Dec 22 14:45:54 AST 2021'
+ApplicationsRequestHandler: Error performing the deployment of app-signed-by-expired-trusted-signer. Cause: ApplicationValidationException: CertificateExpiredException - NotAfter: Wed Dec 22 14:45:54 AST 2021
+----
+
+
+== See Also
+
+* xref:runtime-manager-agent.adoc[]
+* xref:advanced-usage.adoc[]
+* xref:rtm-agent-app-validator.adoc[] 
