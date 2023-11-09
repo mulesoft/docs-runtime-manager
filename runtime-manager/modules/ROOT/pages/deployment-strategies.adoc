@@ -85,7 +85,7 @@ For an overview of the Runtime Manager features available with each deployment o
 * <<Security Updates>>
 * <<Shared Resource Support>>
 * <<Troubleshooting>>
-* <<Autoscaling>>
+* <<Horizontal Autoscaling>>
 
 
 === High Availability
@@ -228,13 +228,13 @@ For an overview of the Runtime Manager features available with each deployment o
 |===
 
 
-=== Autoscaling 
+=== Horizontal Autoscaling 
 
 [%header,cols="15,50,20"]
 |===
 |Deployment Option | Implementation | More Information
-|CloudHub 2.0 |  Autoscaling makes Mule applications deployed to CHloudHub 2.0 responsive to resource usage by automatically scaling up or down the number replicas as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand.  |  xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
-|Runtime Fabric | Runtime Fabric instances support scaling Mule app deployments by initiating additional replicas in response to the signals configured.  In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand. | xref:runtime-fabric::configure-horizontal-autoscaling.adoc[]
+|CloudHub 2.0 |  Horizontal autoscaling makes Mule applications deployed to CHloudHub 2.0 responsive to resource usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand.  |  xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
+|Runtime Fabric | Runtime Fabric instances support scaling Mule application deployments by initiating additional replicas in response to the signals configured. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand. | xref:runtime-fabric::configure-horizontal-autoscaling.adoc[]
 |===
 
 == Security for Hybrid Deployments
