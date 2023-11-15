@@ -42,7 +42,7 @@ The workflow executes the following API calls in sequence:
 
 image::arm-api-workflow.png[workflow]
 
-To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management] API:
+To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management^] API:
 
 . Call `/login` on the Access Management API with a valid Anypoint Platform user name and password to obtain the `access_token` and `token_type` to use in all the subsequent calls.
 
@@ -63,7 +63,7 @@ The task must then extract the organization identifier from the location 'user.o
 [TIP]
 The organization `id` retrieved in Step 2 must be passed as part of the API URI. The environment `id` must be extracted from the path 'data[i].id', where 'data[i].name == inputEnvironment' (it can take values like 'Dev', 'Test', 'Production' or any valid environment name that is set up in your Anypoint Platform).
 
-To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Standalone Runtime Manager] API*:
+To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Standalone Runtime Manager API^]:
 
 . Call either `/servers`, `/clusters`, or `/serverGroups` on the Runtime Manager API, passing the server, cluster, or server group name, as well as the retrieved organization `id` and environment `id`. This call returns all of the data about this server, cluster, or server group, including the `targetId`.
 
@@ -110,7 +110,7 @@ The workflow executes the following API calls in sequence.
 [NOTE]
 This step is required to ensure high availability when failure occurs in the target and the Control Plane needs to re-deploy artifacts for recovery.
 
-To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management] API:
+To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/access-management-api/[Anypoint Platform Access Management^] API:
 
 . Call `/login` on the Access Management API with a valid Anypoint Platform user name and password to obtain the `access_token` and `token_type` to use in all the subsequent calls.
 
@@ -132,7 +132,7 @@ The task must then extract the organization identifier from the location 'user.o
 [TIP]
 The organization `id` retrieved in Step 2 must be passed as part of the API URI. The environment `id` must be extracted from the path 'data[i].id', where 'data[i].name == inputEnvironment' (it can take values like 'Dev', 'Test', 'Production', or any valid environment name that is set up in your Anypoint Platform).
 
-To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-deployment-target-registry[AMC Deployment Target Registry] API:
+To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-deployment-target-registry[AMC Deployment Target Registry^] API:
 
 . Call the `/targets` on the Target Registry API, passing the provider `id`, as well as the retrieved organization `id` and environment `id`. This returns all of the registered targets for the organization, including the `targetId`.
 
