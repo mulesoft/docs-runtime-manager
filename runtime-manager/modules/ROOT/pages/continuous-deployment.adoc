@@ -15,7 +15,7 @@ You can implement the process described here as a task in the continuous deploym
 
 For a more complete reference of all the operations, resources, methods, required properties, and expected responses that are supported through the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Standalone Runtime Manager API Reference ^] or https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/runtime-fabric/[Runtime Fabric API Reference ^]
 
-A Mule Maven plugin that provides the same capabilities is also available. Therefore, use the process described here as an alternative if you cannot, or do not want, to use the https://docs.mulesoft.com/mule-runtime/4.1/mmp-deployment-concept[Mule Maven Plugin].
+A Mule Maven plugin that provides the same capabilities is also available. Therefore, use the process described here as an alternative if you cannot, or do not want, to use the xref:mule-runtime::mmp-concept.adoc[Mule Maven Plugin].
 
 It is advisable to create a dedicated Anypoint Platform account used exclusively for deployment and CI related activities.
 
@@ -140,7 +140,7 @@ To use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e9
 [NOTE]
 This step retrieves the target `id`, which is then used as a target for the deployment. The task needs to pick up the right target identifier based on the target name you provided as an input at the beginning of the workflow. The target `id` must be extracted from 'data[i].id' where 'data[i].name == inputTargetName'.
 
-*Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/1.0.3/console/summary/[Application Manager] API*:
+*Using the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/[Application Manager API^]:
 
 . Call deployments on the Application Manager API, passing the organization's `id` and the environment's `id`, to retrieve the application's `id` and the rest of its data.
 
