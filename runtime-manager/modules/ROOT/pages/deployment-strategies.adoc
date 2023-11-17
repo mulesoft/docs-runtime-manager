@@ -85,7 +85,7 @@ For an overview of the Runtime Manager features available with each deployment o
 * <<Security Updates>>
 * <<Shared Resource Support>>
 * <<Troubleshooting>>
-* <<CPU-based Horizontal Pod Autoscaling (HPA)>>
+* <<Horizontal Autoscaling>>
 
 
 === High Availability
@@ -228,14 +228,12 @@ For an overview of the Runtime Manager features available with each deployment o
 |===
 
 
-=== CPU-based Horizontal Pod Autoscaling (HPA)
+=== Horizontal Autoscaling 
 
-[%header,cols="15,50,20"]
-|===
-|Deployment Option | Implementation | More Information
-|CloudHub 2.0 |  Horizontal autoscaling makes Mule applications deployed to CloudHub 2.0 and RTF responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand. |  xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
-|Runtime Fabric | Horizontal autoscaling makes Mule applications deployed to CloudHub 2.0 and RTF responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand. | xref:runtime-fabric::configure-horizontal-autoscaling.adoc[]
-|===
+Horizontal autoscaling makes Mule app deployed to CloudHub 2.0 and Runtime Fabric responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand.
+
+* CloudHub 2.0 xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
+* Runtime Fabric Configure Horizontal Autoscaling (HPA) for Runtime Fabric Deployments
 
 == Security for Hybrid Deployments
 
