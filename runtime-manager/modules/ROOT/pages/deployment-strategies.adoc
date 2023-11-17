@@ -85,7 +85,7 @@ For an overview of the Runtime Manager features available with each deployment o
 * <<Security Updates>>
 * <<Shared Resource Support>>
 * <<Troubleshooting>>
-* <<Horizontal Pod Autoscaling (HPA)>>
+* <<CPU-based Horizontal Pod Autoscaling (HPA)>>
 
 
 === High Availability
@@ -228,13 +228,13 @@ For an overview of the Runtime Manager features available with each deployment o
 |===
 
 
-=== Horizontal Pod Autoscaling (HPA)
+=== CPU-based Horizontal Pod Autoscaling (HPA)
 
 [%header,cols="15,50,20"]
 |===
 |Deployment Option | Implementation | More Information
-|CloudHub 2.0 |  HPA makes Mule applications deployed to CloudHub 2.0 responsive to CPU signals by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) updates a workload resource to automatically match demand when the demand results in a surge in CPU usage.  |  xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
-|Runtime Fabric | Runtime Fabric instances support horizontal autoscaling for Mule application deployments by initiating additional replicas in response to the application's CPU usage. In Kubernetes, a Horizontal Pod Autoscaler (HPA) updates a workload resource to automatically match demand when the demand results in a surge in CPU usage. | xref:runtime-fabric::configure-horizontal-autoscaling.adoc[]
+|CloudHub 2.0 |  Horizontal autoscaling makes Mule applications deployed to CloudHub 2.0 and RTF responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand. |  xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
+|Runtime Fabric | Horizontal autoscaling makes Mule applications deployed to CloudHub 2.0 and RTF responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand. | xref:runtime-fabric::configure-horizontal-autoscaling.adoc[]
 |===
 
 == Security for Hybrid Deployments
