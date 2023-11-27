@@ -63,6 +63,9 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 
 == Static IP Addresses
 
+[NOTE]
+As part of our continuous infrastructure improvement, Mulesoft is introducing a new set of static ip addresses in Runtime Manager that will augment the existing ones. To avoid service disruption, allow the following IP addresses or domain (depending on your network policy) through your organization's firewall before the February 2024 release as listed below.
+
 * Allowlist these static IPs in the `US` region to access the `mule-manager` hosts:
 +
 [%header,cols="10a,60a,30a"]
@@ -70,6 +73,9 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 |Region |Name |IP Address
 |*US*|mule-manager.anypoint.mulesoft.com |52.201.174.72
 |*US*|mule-manager.anypoint.mulesoft.com |52.201.67.218
+|*US*|mule-manager.anypoint.mulesoft.com |44.196.243.83 (Starting Feb 2024)
+|*US*|mule-manager.anypoint.mulesoft.com |3.223.189.76 (Starting Feb 2024)
+|*US*|mule-manager.anypoint.mulesoft.com |18.210.198.109 (Starting Feb 2024)
 |===
 
 * Allowlist these static IPs in the `US` region to access the `runtime-manager` hosts:
@@ -79,6 +85,9 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 |Region |Name |IP Address
 |*US*|runtime-manager.anypoint.mulesoft.com |18.214.68.14
 |*US*|runtime-manager.anypoint.mulesoft.com |35.174.151.175
+|*US*|runtime-manager.anypoint.mulesoft.com |18.213.137.40 (Starting Feb 2024)
+|*US*|runtime-manager.anypoint.mulesoft.com |34.232.255.44 (Starting Feb 2024)
+|*US*|runtime-manager.anypoint.mulesoft.com |44.209.29.79 (Starting Feb 2024)
 |===
 
 * Allowlist these static IPs in the `EU` region to access the `mule-manager` hosts:
@@ -88,6 +97,9 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 |Region |Name |IP Address
 |*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.195.19.18
 |*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.194.245.32
+|*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.193.248.250 (Starting Feb 2024)
+|*EU*|mule-manager.eu1.anypoint.mulesoft.com |3.76.156.245 (Starting Feb 2024)
+|*EU*|mule-manager.eu1.anypoint.mulesoft.com |3.122.182.28 (Starting Feb 2024)
 |===
 
 * Allowlist these static IPs in the `EU` region to access the `runtime-manager` hosts:
@@ -97,6 +109,9 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 |Region |Name |IP Address
 |*EU*|runtime-manager.eu1.anypoint.mulesoft.com |18.185.141.77
 |*EU*|runtime-manager.eu1.anypoint.mulesoft.com |3.123.216.217
+|*EU*|runtime-manager.eu1.anypoint.mulesoft.com |3.127.253.183 (Starting Feb 2024)
+|*EU*|runtime-manager.eu1.anypoint.mulesoft.com |35.158.72.97 (Starting Feb 2024)
+|*EU*|runtime-manager.eu1.anypoint.mulesoft.com |18.198.198.255 (Starting Feb 2024)
 |===
 
 == Dynamic IP Addresses
