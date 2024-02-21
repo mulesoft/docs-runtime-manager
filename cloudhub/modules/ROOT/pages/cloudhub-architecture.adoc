@@ -114,7 +114,7 @@ CloudHub monitors workers to verify that they are operating correctly.
 If you enable automatic restarts, CloudHub also automatically restarts applications, if necessary.
 
 [NOTE]
-The Limit for the *JVM - Heap Used* graph on Runtime Manager and Anypoint Monitoring can sometimes dynamically increase. It technically shows JVM property `maxMemory()` under the hood, which means the max amount of memory that JVM attempts to use for the heap. And by the nature of Java, it dynamically changes within the JVM runtime heap size available, depending on a number of factors such as memory fragmentation, garbage collection, and other memory management used by JVM.
+The Limit for the *JVM - Heap Used* graph on Runtime Manager and Anypoint Monitoring can sometimes dynamically increase. It technically shows JVM property `maxMemory()` under the hood, which means the max amount of memory that JVM attempts to use for the heap. Due to the nature of Java, it dynamically changes within the JVM runtime heap size available, depending on a number of factors such as memory fragmentation, garbage collection, and other memory management used by JVM.
 
 
 == Global Worker Clouds
