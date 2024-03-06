@@ -47,7 +47,10 @@ The app monitoring dashboards help you answer questions about your integrated ap
 
 
 [NOTE]
-After the worker is restarted, the CPU and memory information is not available in the dashboards. To retain these statistics, use the `dashboardStats` API. Alternatively, you can use Anypoint Monitoring with a Titanium subscription to store this data.
+====
+After the worker is restarted, the CPU and memory information is not available in the dashboards. To retain these statistics, use the `dashboardStats` API. Alternatively, you can use Anypoint Monitoring to store this data 
+include::reuse::partial$billing/pricing.adoc[tag=availabilityParenthetical]
+====
 
 === Built-in Anypoint Monitoring Dashboard
 
@@ -74,6 +77,8 @@ This dashboard is displayed if the selected application is:
 For hybrid apps, the dashboard appears if monitoring is enabled and there are CPU metrics for the last 24 hours of monitoring.
 * Not enabled for monitoring
 
+[NOTE]
+The *Mule Messages* graph displays all Mule messages produced by the application during the specified time frame.
 
 === Access the Application Monitoring Dashboard
 
