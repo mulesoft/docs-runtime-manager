@@ -155,10 +155,17 @@ include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
 
 === Monitoring
 
-[%header,cols="20,35,45,20"]
+[%header,cols="15,40,40,25"]
 |===
 |Deployment Option | Implementation       | Functionality| More Information
-|CloudHub 2.0| You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. | Run thread dumps. Configure application alerts. | xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0]
+|CloudHub 2.0
+ | - You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. +
+   - You can enable trace data collection for your CloudHub 2.0 applications that are deployed to either shared or private spaces and running on Mule runtime 4.6.0 or later.
+  | - Run thread dumps. Configure application alerts. +
+  +
+     - Once you enable tracing, and redeploy the application, the Runtime Manager backend starts instrumenting traces for your application.
+   | - xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0] +
+     - xref:cloudhub-2::ch2-deploy-private-space.adoc#enable-distributed-tracing[Enable Trace Data Collection]
 |CloudHub| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your application's flows and set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run. | xref:monitoring.adoc[Monitor Applications and Servers]
