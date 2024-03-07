@@ -85,6 +85,7 @@ For an overview of the Runtime Manager features available with each deployment o
 * <<Security Updates>>
 * <<Shared Resource Support>>
 * <<Troubleshooting>>
+* <<Horizontal Autoscaling>>
 
 
 === High Availability
@@ -234,6 +235,16 @@ include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
 |Private Cloud Edition | Anypoint Platform PCE does not include the xref:insight.adoc[Insight] troubleshooting tool.
 |Runtime Fabric | Use Anypoint Monitoring to view information about applications deployed to Runtime Fabric. To obtain the health status of the cluster and components, use Runtime Fabric command-line tools. See xref:runtime-fabric::manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric].
 |===
+
+
+=== Horizontal Autoscaling 
+
+image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
+
+Horizontal autoscaling makes Mule apps deployed to CloudHub 2.0 responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand.
+
+* CloudHub 2.0: xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
+
 
 == Security for Hybrid Deployments
 
