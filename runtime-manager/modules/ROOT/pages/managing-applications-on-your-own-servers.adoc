@@ -88,9 +88,22 @@ Only deleting from the UI or via REST permanently removes the application.
 == Download an Application Archive
 
 Runtime Manager doesn't support downloading the application archive (ZIP or JAR file) from the application *Settings* page for an application deployed to an on-premises server.
-However, you can download the archive using an ARM REST Services API call or the Anypoint command-line interface.
+However, you can download the archive using an ARM REST Services API call or the Anypoint xref:anypoint-cli::standalone-apps.adoc#runtime-mgr-standalone-application-artifact[command-line interface].
 
-For information, see https://help.mulesoft.com/s/article/How-to-Download-an-Archive-of-an-Application-Deployed-in-Hybrid-On-Premise-from-Anypoint-Platform-using-API-and-CLI[How to Download an Archive of an Application Deployed in Hybrid from Anypoint Platform using API and CLI].
+== Download CloudHub 2.0, CloudHub, and Runtime Fabric Application Archives
+
+image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+You can download the archive file for applications deployed to CloudHub 2.0, CloudHub, and Runtime Fabric.
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Applications* tab.
+. Click the name of the application whose archive you want to download.
+. Click the name of the archive file in the *Application File* field.
++
+image::download-archive-file.png[]
 
 
 == See Also
