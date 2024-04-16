@@ -64,10 +64,6 @@ For more information about static IP addresses, see xref:cloudhub-dedicated-load
 * *Keep URL encoding* specifies that the DLB passes only the `%20` and `%23` characters as is.
 +
 If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
-+
-* *Support TLS 1.0* specifies to support TLS 1.0 between the client and the DLB.
-+
-To use TLS 1.0, see <<Enable TLS 1.0 on a DLB Using Runtime Manager>>.
 * *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
 * *Forward Client Certificate* specifies that the DLB forwards the client certificate to the CloudHub worker.
 . Add a certificate.
@@ -91,18 +87,6 @@ If you add more than one URL mapping rule, order the rules in the list according
 Click *Add New Rule*, and then specify the input path, target app, output path, and protocol.
 .. Click *Save Certificate*.
 . Click *Create Load Balancer*.
-
-== Enable TLS 1.0 on a DLB Using Runtime Manager
-
-// TLS 1.0 Support
-include::partial$tls-support.adoc[tag=tlsSupport]
-
-To enable TLS support:
-
-. Select the *Support TLS 1.0* option.
-. Using the API, change the default cipher suite to `OldDefault`.
-+
-See xref:lb-cert-validation.adoc#change-the-default-cipher-suite-to-support-tls-1-0[Change the Default Cipher Suite to Support TLS 1.0].
 
 
 == See Also
