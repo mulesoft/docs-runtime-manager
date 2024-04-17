@@ -348,17 +348,17 @@ If Anypoint Monitoring does not publish metrics immediately after installing the
 
 . Start Mule for all the servers that you want to add to the server group, using the command `./mule start` from the `$MULE_HOME/bin` directory.
 
-. In Anypoint Platform go to *Runtime Manager* > *Servers*, click on the server group name, and click *Add Server* to dd all the servers to the group.
+. In Anypoint Platform go to *Runtime Manager* > *Servers*, click on the server group name, and click *Add Server* to add all the servers to the group.
 
 . Deploy an API to the server group.
 
-. Stop any running filebeat process in all the servers of the server group and run the `./Install` command from the `$MULE_HOME/am/bin` directory in all the servers of the server group.
+. Stop any running filebeat process in all the servers of the server group and run the `./install` command from the `$MULE_HOME/am/bin` directory in all the servers of the server group.
 
 . In Anypoint Platform go to *Runtime Manager* > *Servers*, click on the server group name, and restart all the servers in the server group via *Actions* > *Restart*.
 
 . Run `./setup` from the `$MULE_HOME/am/bin` for all the servers in the server group.
 +
-If after this step the metrics don't show up, repeat steps last two steps.
+If after this step the metrics don't show up, repeat the last two steps.
 
 == See Also
 
