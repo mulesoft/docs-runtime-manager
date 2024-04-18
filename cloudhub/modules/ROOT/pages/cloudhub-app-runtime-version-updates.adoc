@@ -52,6 +52,8 @@ Here's an example version number, including the patch date:
 The monthly patches update applications only to the latest date patch for the patch version.
 They do not change the patch version number.
 
+include::anypoint-cli::partial$mule-4.5-release-channels.adoc[]
+
 
 === Update Schedule
 
@@ -81,26 +83,6 @@ See <<Update the Runtime Version Manually>>.
 To update multiple applications, use the CloudHub API.
 See <<Update Multiple Apps to the Latest Runtime Release>>.
 
-=== Update Notification
-
-When a new runtime version is available:
-
-* The *Applications* page displays a banner and the *Update Available* tab lists the apps that require updates:
-+
-.The screenshot shows (*1*) the banner and (*2*) the *Update Available* tab on the *Applications* page.
-image::cloudhub-app-update-req-page.png[Applications page with banner and Update Available tab]
-+
-If no apps require updates, no banner appears and the *Update Available* tab is empty.
-
-*  *Update available* and the new date patch appear in the *Runtime version* menu in the *Settings* page for the application:
-+
-.The screenshot shows (*1*) the date patch version update and (*2*) *Update available* in the *Runtime version* menu.
-image::cloudhub-app-update-versions.png[Date patch version update and Update available in the Runtime version menu.]
-
-
-MuleSoft applies the monthly updates automatically, based on the published schedule.
-If you want, you can update them manually at your convenience.
-
 == Live Patching
 
 CloudHub uses kernel live patching in the underlying VMs to apply the latest security and critical bug patches to the OS. You do not have to restart the CloudHub application between the monthly patching cycles.
@@ -118,53 +100,6 @@ You can check your xref:viewing-log-data.adoc#view-logs[application logs] to det
 
 image::live-patching-log.png[Application live patching log]
 
-== Update the Runtime Version Manually
-
-The *Update Available* tab indicates that one or more apps require a runtime version update.
-You can schedule the update to occur at your convenience.
-
-Before updating apps in the production environment, update them in the sandbox environment and run required tests.
-
-=== Update a Single App to the Latest Runtime Release
-
-To update an app to the latest date patch:
-
-. In the Runtime Manager navigation menu, click *Applications*.
-. Click the *Update Available* tab.
-. Click in the *Status* column for the app to display the details pane.
-. Click the *Manage Application* button to display the *Settings* page for the app.
-+
-If the app requires an update, *Update available* appears in the *Runtime version* menu:
-+
-.The screenshot shows (*1*) *Update available* and (*2*) the *Runtime version* menu on the *Settings* page.
-image::cloudhub-app-update-available-setting.png[Update available and the Runtime version menu on the application Settings page]
-
-. Select the latest version from the *Runtime version* menu.
-+
-Although the version number of the update might be the same as the installed version, a later date identifies the update:
-+
-.The arrow shows the version update date in the *Runtime version* menu.
-image::cloudhub-app-update-available-versions.png[Version update date in the Runtime version menu]
-
-. If you want to see details about the version, click the *Read release notes* link.
-. Click the *Apply Changes* button to update the app.
-
-CloudHub updates the app with the version you selected and displays a message indicating success or failure.
-
-If the app update was successful, the app no longer appears in the *Update Available* tab on the *Applications* page.
-
-If the app update was unsuccessful, the app remains in the *Update Available* tab.
-In this case, the app continues to run correctly on the previous runtime version and no action is required.
-
-=== Update Multiple Apps to the Latest Runtime Release
-
-Although the Runtime Manager UI doesn't support updating multiple apps to the latest runtime version,
-you can use the CloudHub API to perform a bulk update.
-See https://help.mulesoft.com/s/article/How-to-Perform-a-Bulk-CloudHub-Application-Update-to-the-Latest-Runtime-Releases[How to Perform a Bulk CloudHub Application Update to the Latest Runtime Releases].
-
-[NOTE]
-Applications updated using the Bulk Update API are processed with a lower priority and may take slightly longer to update.
-
 == Edge and LTS Releases for Mule
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro]
@@ -172,6 +107,8 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=CHa]
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1]
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1A]
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro2]
 
@@ -211,6 +148,66 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro6]
 
 
+== Update the Runtime Version Manually
+
+The *Update Available* column indicates which apps require a runtime version update.
+You can schedule the update to occur at your convenience.
+
+Before updating apps in the production environment, update them in the sandbox environment and run the required tests.
+
+=== Update a Single App to the Latest Runtime Release
+
+To update an app to the latest date patch:
+
+. In the Runtime Manager navigation menu, click *Applications*.
+. Click the name of the application you want to update to display the details pane.
+. Access the *Settings* page for the application.
+. Click the *Runtime* tab.
++
+If the app requires an update, *Update available* appears in the *Runtime version* menu:
++
+image::cloudhub-app-update-available-setting.png[Update available and the Runtime version menu on the application Settings page]
+
+. Select the latest version from the *Runtime version* drop-down menu.
+. If you want to see details about the version, click the *Read release notes* link.
+. Click the *Apply Changes* button to update the app.
+
+CloudHub updates the app with the version you selected and displays a message indicating success or failure.
+
+If the app update is unsuccessful, the app remains in the *Update Available* tab.
+In this case, the app continues to run correctly on the previous runtime version and no action is required.
+
+If you select the Edge release channel, a banner appears indicating the date of the next automatic update.
+
+image::cloudhub-app-edge-auto-update.png[Banner indicating the date of automatic update for Edge release channel.]
+
+=== Update Multiple Apps to the Latest Runtime Release
+
+Although the Runtime Manager UI doesn't support updating multiple apps to the latest runtime version,
+you can use the CloudHub API to perform a bulk update.
+See https://help.mulesoft.com/s/article/How-to-Perform-a-Bulk-CloudHub-Application-Update-to-the-Latest-Runtime-Releases[How to Perform a Bulk CloudHub Application Update to the Latest Runtime Releases].
+
+[NOTE]
+Applications updated using the Bulk Update API are processed with a lower priority and may take slightly longer to update.
+
+
+== Update Notification
+
+When a new runtime version is available:
+
+* The *Applications* page displays an *Update Available* column that indicates if there is an update available for the application:
++
+image::cloudhub-app-update-req-page.png[Applications page with banner and Update Available tab]
+
+*  *Update available* and the new available updates appear in the *Runtime version* tab of the *Settings* page for the application:
++
+image::cloudhub-app-update-versions.png[Runtime update version and Update available in the Runtime version menu.]
+
+
+MuleSoft applies the updates automatically, based on the published schedules.
+If you want, you can update them manually at your convenience.
+
+
 == Zero-Downtime Restart Limitations
 
 Zero-downtime restarts don't work in the following cases:
@@ -226,6 +223,15 @@ In this case, CloudHub waits up to three minutes for the application to connect 
 
 If either case applies to your application, contact Support and your CSM account representative for information about updating the application to be cloud-ready.
 
+== Check Your Application Status After an Update
+
+After a new update occurs, you can check your xref:managing-deployed-applications.adoc#application_status_states[applications status state] in the *Status* column in Runtime Manager's *Applications* tab.
+
+You can also check your application logs to verify if your application was deployed correctly and take any remediation actions in the event of some auto-minor update-related issue. For more information, visit xref:viewing-log-data.adoc#view-logs[View Logs].
+
+To be notified by e-mail when an error occurs after an automated update, you can xref:alerts-on-runtime-manager.adoc#create-an-alert[create an alert]. 
+
+
 == Failed Automated Updates
 
 With blue-green deployments, when an automated update fails to be deployed to a new worker, the application continues to run the non-latest patch version on the currently running worker.
@@ -238,6 +244,7 @@ Possible failure reasons include but are not limited to:
 
 
 If an application fails to be automatically updated after two monthly patching cycles, the application is stopped and force updated to the latest patch version. Applications that fail to start require your action to address patches. 
+
 
 == See Also
 

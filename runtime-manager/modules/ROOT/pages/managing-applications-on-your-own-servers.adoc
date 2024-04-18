@@ -23,7 +23,7 @@ If you manually deploy applications on your on-premises servers, you can't see o
 
 == Applications Dashboard
 
-If you select any of the applications on the Applications tab, a panel opens on the right. Here you will be able to read additional information about the application and access its settings.
+If you select any of the applications on the Applications tab, a panel opens. Here you can read additional information about the application and access its settings.
 
 image::managing-applications-on-your-own-servers-26ef4.png[]
 
@@ -50,11 +50,11 @@ The *Insight* feature isn't currently available on the Anypoint Platform Private
 
 == Access App Settings
 
-Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager. Select one of your CloudHub running applications to open a panel on the right side. On that panel, click the *Manage Application* button to open up the application's settings.
+Sign in to the https://anypoint.mulesoft.com[Anypoint Platform] and view the *Applications* tab of the Runtime Manager. Select one of your CloudHub running applications to open a panel. On that panel, click the *Manage Application* button to open up the application's settings.
 
 image::managing-applications-on-your-own-servers-1fd39.png[]
 
-In this menu you will be able to view all of the same data that's available on the panel, with the addition of an *Alerts History* tab, that displays a record of the triggered alerts on this app. See xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager] for more on this.
+In this menu you can view all of the same data that's available on the panel, with the addition of an *Alerts History* tab, that displays a record of the triggered alerts on this app. See xref:alerts-on-runtime-manager.adoc[Alerts on Runtime Manager] for more on this.
 
 
 == Flow Management
@@ -88,9 +88,22 @@ Only deleting from the UI or via REST permanently removes the application.
 == Download an Application Archive
 
 Runtime Manager doesn't support downloading the application archive (ZIP or JAR file) from the application *Settings* page for an application deployed to an on-premises server.
-However, you can download the archive using an ARM REST Services API call or the Anypoint command-line interface.
+However, you can download the archive using an Runtime Manager REST Services API call or the Anypoint xref:anypoint-cli::standalone-apps.adoc#runtime-mgr-standalone-application-artifact[command-line interface].
 
-For information, see https://help.mulesoft.com/s/article/How-to-Download-an-Archive-of-an-Application-Deployed-in-Hybrid-On-Premise-from-Anypoint-Platform-using-API-and-CLI[How to Download an Archive of an Application Deployed in Hybrid from Anypoint Platform using API and CLI].
+== Download CloudHub 2.0, CloudHub, and Runtime Fabric Application Archives
+
+image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
+image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+
+You can download the archive file for applications deployed to CloudHub 2.0, CloudHub, and Runtime Fabric.
+
+. From Anypoint Platform, select *Runtime Manager*.
+. Click the *Applications* tab.
+. Click the name of the application whose archive you want to download.
+. Click the name of the archive file in the *Application File* field.
++
+image::download-archive-file.png[]
 
 
 == See Also
