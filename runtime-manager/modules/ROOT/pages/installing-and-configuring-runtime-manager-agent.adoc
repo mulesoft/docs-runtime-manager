@@ -46,6 +46,21 @@ The version of Runtime Manager agent must support the version of Mule and Runtim
 
 Mule 3.7.x and earlier and the API gateway 2.x and earlier include an earlier version of the Runtime Manager agent, which doesn't provide support for exporting data to external analytics tools. If you are running these earlier versions, you can download and update the agent to the latest version.
 
+===  Mule - Java Compatibility Map
+
+[%header,cols="10,10,30"]
+|===
+|Mule version | Runtime Manager Agent version | Java version
+|4.3.0 | 2.4.3 or later | 8
+|4.4.0 | 2.4.27 or later | 8
+|4.4.0 | 2.4.28 or later | 8,11
+|4.5.0 | 2.5.6 or later  | 8,11
+|4.6.0 | 2.6.0 or later | 8,11,17
+|===
+
+[NOTE]
+Using a Runtime Manager Agent version earlier than the ones provided in the compatibility map can result in incompatibilities or introduce unforeseen errors.
+
 == Prerequisites
 
 * Your enterprise license is current.
