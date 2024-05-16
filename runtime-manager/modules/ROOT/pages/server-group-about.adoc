@@ -13,7 +13,10 @@ Unlike clusters, application instances in a server group run in isolation from t
 
 == Requirements and Restrictions
 
-* All servers in a server group must be running the same version of Mule runtime engine and the same version of Runtime Manager agent.
+* All servers in a server group must be running the same versions of:
+** Mule runtime engine
+** Runtime Manager agent
+** Java 
 * You can create a server group with servers with the Running or the Disconnected status, but these can't be in the same group as servers with the Created status.
 * You can create a server group with servers with the Created status.
 * To add a server on which existing applications are currently running to a server group, first stop and delete the applications from the server.
