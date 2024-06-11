@@ -47,7 +47,10 @@ The app monitoring dashboards help you answer questions about your integrated ap
 
 
 [NOTE]
-After the worker is restarted, the CPU and memory information is not available in the dashboards. To retain these statistics, use the `dashboardStats` API. Alternatively, you can use Anypoint Monitoring with a Titanium subscription to store this data.
+====
+After the worker is restarted, the CPU and memory information is not available in the dashboards. To retain these statistics, use the `dashboardStats` API. Alternatively, you can use Anypoint Monitoring to store this data 
+include::reuse::partial$billing/pricing.adoc[tag=availabilityParenthetical]
+====
 
 === Built-in Anypoint Monitoring Dashboard
 
@@ -74,6 +77,8 @@ This dashboard is displayed if the selected application is:
 For hybrid apps, the dashboard appears if monitoring is enabled and there are CPU metrics for the last 24 hours of monitoring.
 * Not enabled for monitoring
 
+[NOTE]
+The *Mule Messages* graph displays all Mule messages produced by the application during the specified time frame.
 
 === Access the Application Monitoring Dashboard
 
@@ -335,6 +340,30 @@ image::monitoring-dashboards-6fe9f.png[]
 
 From this dashboard, you can click a <<Access the Server Monitoring Dashboard,server>> or <<Access the Application Monitoring Dashboard,application>> name to access the dashboard for that item.
 
+
+=== Troubleshoot Anypoint Monitoring Metrics not Working in Server Groups 
+
+If Anypoint Monitoring does not publish metrics immediately after installing the Anypoint Monitoring agent on a hybrid server in a server group, follow these steps to correctly install Anypoint Monitoring to a server in a server group: 
+
+. In Anypoint Platform go to *Runtime Manager* > *Servers* > *Add Server* to create an Anypoint Runtime Manager token.
+
+. Execute the command provided in the *Add Server* screen.
+
+. In Anypoint Platform go to *Runtime Manager* > *Servers* > *Create Group* to create the server group.
+
+. Start Mule for all the servers to be added to the server group by using the command `./mule start` from the `$MULE_HOME/bin` directory.
+
+. In Anypoint Platform go to *Runtime Manager* > *Servers*, click the server group name, and *Add Server* to add all the servers to the group.
+
+. Deploy an API to the server group.
+
+. Stop any running filebeat process in all the servers of the server group and run the `./install` command from the `$MULE_HOME/am/bin` directory in all the servers of the server group.
+
+. In Anypoint Platform go to *Runtime Manager* > *Servers*, click the server group name, and restart all the servers in the server group via *Actions* > *Restart*.
+
+. Run `./setup` from the `$MULE_HOME/am/bin` for all the servers in the server group.
++
+If after this step the metrics don't show up, repeat the last two steps.
 
 == See Also
 

@@ -14,7 +14,11 @@ Runtime Manager includes several standard alert types that trigger notifications
 * A server is disconnected or deleted.
 
 [NOTE]
-Runtime Manager retains 30 days of alert history.
+====
+Runtime Manager retains thirty days of alert history.
+
+Alerts retrigger when the conditions exceed the specified threshold. 
+====
 
 You can also create custom alerts for applications deployed to CloudHub and CloudHub 2.0.
 
@@ -133,8 +137,6 @@ image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
 
 To enable this condition, specify the percentage and duration that triggers the alert.
 
-// ALERTS SHARED
-include::partial$alert-conditions.adoc[tag=CHalertTriggerNote]
 --
 
 Custom application alert::
@@ -171,8 +173,6 @@ image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
 
 To enable this condition, specify the percentage and duration that triggers the alert.
 
-// ALERTS SHARED
-include::partial$alert-conditions.adoc[tag=CHalertTriggerNote]
 --
 
 
@@ -331,6 +331,9 @@ Clusters::
 You can use the following variables in the alert email *Subject* and *Message* fields.
 For the description of each variable, see <<var-defs>>.
 
+[NOTE]
+You can’t use the combination of characters _$&_.
+
 [%header,cols="25a,50a,20a"]
 .Variables for Alerts
 |===
@@ -412,7 +415,7 @@ For the description of each variable, see <<var-defs>>.
 |`${state}` | State of the resource that triggers the alert, such as Running or Disconnected
 |`${threshold}` |Count over the period of time that triggers the alert
 |`${transactionId}` | Transaction ID defined in the app or assigned by Mule
-|`${user}` | Anypoint Platform username
+|`${user}` | Anypoint Platform organization name
 |`${value}` | A value associated with an element
 |===
 
