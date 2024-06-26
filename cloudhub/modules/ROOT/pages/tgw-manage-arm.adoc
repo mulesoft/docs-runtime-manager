@@ -35,7 +35,9 @@ Anypoint Platform submits the new route to AWS.
 When the route addition succeeds, the *Transit Gateways* page shows the *Route added* message
 and the *Transit Gateways* page shows the route CIDR in the route table.
 
-In the route table, added routes show *Transit Gateway* as the value in the *Next Hop* column:
+In the route tables, added routes show *Transit Gateway* as the value in the *Next Hop* column. 
+
+Specific routes attached to the transit gateway show under *Transit Gateway Routes*. Other routes in the VPC show under *VPC Routes*.
 
 image::tgw-route-added.png[Transit Gateway in the Next Hop column of the route table]
 
