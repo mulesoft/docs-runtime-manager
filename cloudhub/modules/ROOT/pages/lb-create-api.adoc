@@ -27,46 +27,6 @@ include::partial$no-rename.adoc[tag=noRenameDLB]
 
 The CloudHub DLB name cannot start with `internal-`. Starting the DLB name with `internal-` results in error message: `LB name=internal-dlb-name cannot start with -internal`.
 
-== Enable TLS 1.0 on a DLB Using the CloudHub API
-
-// TLS 1.0 Support
-include::partial$tls-support.adoc[tag=tlsSupport]
-
-To enable TLS 1.0 support on a DLB using the CloudHub API:
-
-. Run the following command:
-+
---
-[source,linenums]
-----
-curl -X PATCH \
-  https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID \
-  -H 'authorization: Bearer myAccessToken' \
-  -H 'content-type: application/json' \
-  -d '[
-  {
-    "op": "replace",
-    "path": "/sslEndpoints/0/tlsv1",
-    "value": "true"
-  }
-]'
-----
-In the command:
-
-* `_myOrgID_` is the organization ID.
-* `_myVpcID_` is the ID for the VPC.
-* `_myDlbID_` is the ID for the DLB.
-* `_myAccessToken_` is the access token you generated.
-
-The response includes the following:
-
-`"tlsv1": true,`
---
-. Change the default cipher suite to `OldDefault`.
-+
-See xref:lb-cert-validation.adoc#change-the-default-cipher-suite-to-support-tls-1-0[Change the Default Cipher Suite to Support TLS 1.0].
-
-
 == See Also
 
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/1.0.13/console/method/%233964/[CloudHub API Create New Load Balancer]

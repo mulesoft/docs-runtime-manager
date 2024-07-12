@@ -183,9 +183,6 @@ Most cipher suites offer forward secrecy. RC4-SHA (supports Internet Explorer 8)
 For this reason, MuleSoft and Microsoft do not recommend using it.
 
 The CloudHub dedicated load balancer supports TLS 1.2.
-TLS 1.1 is disabled and is not supported by default.
-
-Although you can configure TLS 1.0, PCI compliance doesn't accept this protocol because of its significant vulnerabilities.
 
 === Display the Default Cipher Suite for a DLB
 
@@ -249,63 +246,6 @@ The output now includes `defaultCipherSuite`:
 "defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384"
 ----
 
-=== Change the Default Cipher Suite to Support TLS 1.0
-
-To support TLS 1.0, change the default cipher suite to `OldDefault`:
-
-. xref:lb-cert-validation.adoc#prepare-to-manage-certificate-cipher-suites[Prepare to manage certificate cipher suites].
-. xref:lb-cert-validation.adoc#display-the-default-cipher-suite-for-a-dlb[Display the current default cipher suite].
-. Change the default cipher suite:
-+
---
-
-[source,linenums]
-----
-curl -X PATCH https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/vpcs/myVpcID/loadbalancers/myDlbID  -H 'Authorization: Bearer myAccessToken' -H 'Content-Type: application/json' -d '[{"op":"replace", "path":"/defaultCipherSuiteName", "value":"OldDefault"}]' | jq
-----
-
-In the command:
-
-* `_myOrgID_` is the organization ID.
-* `_myVpcID_` is the ID for the VPC.
-* `_myDlbID_` is the ID for the DLB.
-* `_myAccessToken_` is the access token you generated.
-* `OldDefault` is the name of the cipher suite that supports TLS 1.0.
---
-. Check the default cipher suite and verify that the output includes the following line:
-+
-[source,linenums]
-----
-"defaultCipherSuite": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
-----
-
-=== Verify the TLS 1.0 Connection
-
-After enabling TLS 1.0, test the connection:
-
-* `openssl`
-+
---
-Run this command against the DLB SSL endpoint:
-
-`openssl s_client -connect _DNS of the SSL endpoint_:443 -tls1`
-
-* If the output includes the certificate information and the message `Secure Renegotiation IS supported`, TLS 1.0 is supported.
-
-* If the command returns `write:errno=54`, TLS 1.0 is not supported.
---
-* `curl`
-+
---
-Run this command against the DLB SSL endpoint:
-
-`curl -vI --insecure --tlsv1.0 https://_DNS of the SSL endpoint_`
-
-* If you see the returned results from the backend server or the HTTP error code, TLS 1.0 is supported.
-
-* If the command returns `curl: (35) Server aborted the SSL handshake`, TLS 1.0 is not supported.
---
-
 == Limitation
 
 To use an ECDSA-based authentication cipher, generate the certificate and key pair using an ECDSA-based algorithm and apply the same algorithm to the SSL certificate and key configuration on the DLB.
@@ -334,6 +274,3 @@ Because current DLB configuration permits only one type of SSL certificate and k
 * xref:lb-allowlists.adoc[Allowlists]
 * xref:lb-mapping-rules.adoc[Mapping Rules]
 * xref:lb-create-arm.adoc[Create a Load Balancer with Runtime Manager]
-* xref:lb-create-arm.adoc#enable-tls-1-0-on-a-dlb-using-runtime-manager[Enable TLS 1.0 on a DLB Using Runtime Manager]
-* xref:lb-create-cli.adoc#enable-tls-1-0-on-a-dlb-using-the-cli[Enable TLS 1.0 on a DLB Using the CLI]
-* xref:lb-create-api.adoc#enable-tls-1-0-on-a-dlb-using-the-cloudhub-api[Enable TLS 1.0 on a DLB Using the CloudHub API]
