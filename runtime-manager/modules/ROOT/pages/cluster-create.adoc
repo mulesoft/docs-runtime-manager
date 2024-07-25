@@ -5,7 +5,7 @@ endif::[]
 :page-deployment-options: pce, hybrid
 
 
-To deploy applications to a cluster, you can either add the servers to Runtime Manager first and then create the cluster, or you can create the cluster and add servers to it later.
+To deploy applications to a cluster, add the servers to Runtime Manager first and then create the cluster. You need to add at least one server to create a cluster.
 
 //CLUSTER-SERVER SHARED
 include::partial$cluster-server.adoc[tag=addServerToCluster]
@@ -22,8 +22,10 @@ Before you add servers to a cluster, note the following restrictions:
 * Servers cannot belong to another cluster or group.
 * Multicast servers can be in the *Running* or *Disconnected* state.
 * Unicast servers must be in the Running state.
-* All servers in a cluster must be running the same Mule runtime engine version
-(including monthly update) and Runtime Manager agent version.
+* All servers in a cluster must be running the same versions of:
+** Mule runtime engine (including monthly update)
+** Runtime Manager agent
+** Java
 +
 For information about monthly updates, see
 xref:cloudhub-app-runtime-version-updates.adoc#monthly-date-patch-updates[Monthly Date-Patch Updates].
@@ -34,7 +36,7 @@ xref:cloudhub-app-runtime-version-updates.adoc#monthly-date-patch-updates[Monthl
 To create a cluster:
 
 . From Anypoint Platform, select *Runtime Manager*.
-. Select *Servers* in the left menu.
+. Select *Servers* in the menu.
 . Click the *Create Cluster* button:
 +
 .The arrow shows the *Create Cluster* button on the *Servers* page.

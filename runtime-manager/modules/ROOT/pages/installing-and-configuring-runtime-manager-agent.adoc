@@ -4,6 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :keywords: agent, runtime manager, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 :page-deployment-options: pce, hybrid
+:page-aliases: installing-and-configuring-mule-agent.adoc
 
 include::reuse::partial$non-inclusive-banner.adoc[]
 
@@ -44,6 +45,23 @@ MuleSoft support provides migration scripts to migrate from MMC to Runtime Manag
 The version of Runtime Manager agent must support the version of Mule and Runtime Manager you are using. To determine compatibility, check the xref:release-notes::runtime-manager-agent/runtime-manager-agent-release-notes.adoc[Runtime Manager Agent Release Notes].
 
 Mule 3.7.x and earlier and the API gateway 2.x and earlier include an earlier version of the Runtime Manager agent, which doesn't provide support for exporting data to external analytics tools. If you are running these earlier versions, you can download and update the agent to the latest version.
+
+===  Runtime Manager Agent Compatibility
+
+[%header,cols="10,30,10"]
+|===
+|Mule version | Runtime Manager Agent version | Java version
+|4.3.0 | 2.4.3 or later | 8
+|4.4.0 | 2.4.27 or later | 8
+|4.4.0 | 2.4.28 or later | 8,11
+|4.5.0 | 2.5.6 or later  | 8,11
+|4.6.0 | 2.6.0 or later | 8,11,17
+|===
+
+[NOTE]
+Using a Runtime Manager Agent version earlier than the ones provided in the compatibility table can result in incompatibilities or introduce inconsistencies.
+
+For more information on Java compatibility, see xref:general::java-support.adoc[].
 
 == Prerequisites
 

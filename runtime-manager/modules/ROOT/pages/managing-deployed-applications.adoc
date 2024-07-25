@@ -28,7 +28,8 @@ On applications deployed to xref:cloudhub-2::ch2-manage-apps.adoc[CloudHub 2.0],
 * xref:cloudhub-2::ch2-manage-schedules.adoc[Manage Application Schedules]
 * xref:cloudhub-2::ch2-manage-props.adoc[Add Application Properties]
 * xref:cloudhub-2::ch2-view-logs.adoc[View Log Data for Deployed Applications]
-* xref:cloudhub-2::ch2-view-diag.adoc[View Diagnostic Data for Deployed Applications] 
+* xref:cloudhub-2::ch2-view-diag.adoc[View Diagnostic Data for Deployed Applications]
+* xref:cloudhub-2::ch2-deploy-private-space.adoc#enable-distributed-tracing[Enable Distributed Tracing] 
 * xref:cloudhub-2::ch2-clustering.adoc#cloudhub-2-0-clustering-and-object-store-v2[Use Object Store v2] 
 
 
@@ -330,7 +331,7 @@ In the app's settings page, the *Dashboard* button displays the full detail dash
 image::managing-deployed-applications-107ad.png[]
 
 [NOTE]
-The *Dashboard* option is only available for Titanium subscriptions.
+include::reuse::partial$billing/pricing.adoc[tag=dashboard]
 
 The *Insight* button enables you to see data at a transaction level. See xref:insight.adoc[Insight].
 

@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: runtime-manager::deploying-to-cloudhub.adoc
+:page-aliases: runtime-manager::deploying-to-cloudhub.adoc, general::getting-started/deploy-to-cloudhub.adoc
 
 
 You can deploy Mule applications to CloudHub using:
@@ -10,6 +10,7 @@ You can deploy Mule applications to CloudHub using:
 
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-runtime-manager[Anypoint Runtime Manager]
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-studio[Anypoint Studio]
+* xref:anypoint-code-builder::int-deploy-mule-apps.adoc[Anypoint Code Builder]
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-the-command-line[CloudHub CLI]
 * xref:design-center::promote-app-prod-env-design-center.adoc[Flow Designer in Anypoint Design Center]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
@@ -33,7 +34,6 @@ To deploy from Runtime Manager to CloudHub:
 +
 You see the *Deploy Application* page:
 +
-.The screenshot shows (*1*) the *Application Name* field, (*2*) the *Choose file* menu, and (*3*) the *Deploy Application* button on the *Deploy Application* page.
 image::cloudhub-deploy-app.png[Application Name field, Choose file menu, and the Deploy Application button]
 . Provide a name for your application.
 +
@@ -184,7 +184,6 @@ See xref:runtime-manager::runtime-manager-switch-env.adoc#switch-environments-us
 +
 You see the *Deploy Application* page:
 +
-.The screenshot shows (*1*) the *Application Name* field, (*2*) the *Get from sandbox* button, and (*3*) the *Deploy Application* button on the *Deploy Application* page.
 image::cloudhub-deploy-app-sandbox.png[Application Name field and Get from sandbox and Deploy Application buttons]
 . Provide a unique name for your application in production and click *Get from sandbox*.
 +
@@ -249,24 +248,25 @@ image::cloudhub-deploy-app-config-tabs.png[Configuration tabs on the Deploy Appl
 
 The *Runtime* tab includes the following settings:
 
-Use Edge Release Channel::
+Release Channel::
 Starting with Mule 4.5, MuleSoft introduces two new release channels, xref:release-notes::mule-runtime/lts-edge-release-cadence.adoc[Edge and Long-term Support (LTS)].
 +
-For new applications, the *Use Edge Release Channel* box is enabled by default. Uncheck this box if you don’t want to use the new release channel.
+For new applications, the Edge channel is selected by default in the *Release Channel* drop-down menu. 
 +
-For existing applications not using the new release channel, the *Use Edge Release Channel* box is disabled by default. The *Runtime version* dropdown list indicates if there is an update available, as well as the previous and latest version of the application. Check the  *Use Edge Release Channel* box if you want to change to an Edge version.
+For existing applications using a legacy version, the *Release Channel* drop-down list is selected as `None` by default. Use the *Release Channel* drop-down list to select the desired release channel. 
 +
-For existing applications using an Edge version, the *Use Edge Release Channel* box is enabled by default. The *Runtime version* dropdown list indicates if there is an update available, as well as the previous and latest version of the application. Uncheck the  *Use Edge Release Channel* box if you don’t want to use the new Edge Release Channel.
+For existing applications using an Edge version, the *Release Channel* drop-down list is selected as `Edge`. The *Runtime Version* dropdown list indicates if there is an update available, as well as the previous, latest and recommended version of the application. Use the  *Release Channel* drop-down list to change to a legacy version.
 +
-For existing applications that are currently not running on the Edge version but were originally deployed using an Edge version, you must check the *Use Edge Release Channel* box to see the previous version on the *Runtime version* dropdown list.
-+
-For existing applications using an Edge version on extended support, a warning message appears indicating the version's EOL.
+For existing applications using an Edge or an LTS version on extended support, a warning message appears indicating the version's EOL.
 
 Runtime version::
 The runtime version must be the same Mule version used to develop your application.
 +
 After you deploy the app, CloudHub automatically alerts you when updates for the selected runtime version are available.
 See xref::cloudhub-app-runtime-version-updates.adoc[CloudHub Runtime Continuous Updates].
+
+Java Version:: 
+Select the Java version for your application. For more information, visit xref:general::java-support.adoc[].
 
 Worker size::
 See <<Worker Size and vCores>>.
@@ -306,7 +306,7 @@ See xref:object-store::index.adoc[Object Store V2].
 Enable Monitoring and Visualizer::
 Use Anypoint Monitoring and Visualizer for Mule applications running on supported versions of Mule.
 +
-This option appears only you if have a Titanium subscription to Anypoint Monitoring enabled for your organization.
+include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
 +
 See xref:monitoring::index.adoc[Anypoint Monitoring] and xref:visualizer::index.adoc[Anypoint Visualizer].
 
@@ -364,7 +364,7 @@ to twice the number of production vCores in your subscription and appears under 
 
 If you need to free some of your static IP allocations, you can release unused IP addresses from an application.
 To increase your allocation of static IP addresses, contact your Customer Success Manager.
-For more information about adding more static IPs, see https://help.mulesoft.com/s/article/How-to-Request-Additional-Static-IPs-for-your-Anypoint-Organisation[How to Request Additional Static IPs for your Anypoint Organization].
+For more information about adding more static IPs, see https://help.salesforce.com/s/articleView?id=001121221&type=1[How to Request Additional Static IPs for your Anypoint Organization].
 
 
 
@@ -391,7 +391,7 @@ To edit the settings of a deployed application:
 
 CloudHub redeploys the application with zero downtime.
 
-
+include::partial$downtime-during-deployment.adoc[]
 
 == Deployment Progress
 

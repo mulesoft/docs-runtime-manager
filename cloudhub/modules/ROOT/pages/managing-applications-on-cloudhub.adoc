@@ -124,6 +124,8 @@ CloudHub supports updating your application so users of your HTTP APIs experienc
 [IMPORTANT]
 If an application uses static IPs, updates might cause up to one minute of downtime while CloudHub reassigns the static IP address from the previous version of the application to the new version. Ensure that the client includes the necessary retry mechanisms to account for the downtime.
 
+include::partial$downtime-during-deployment.adoc[]
+
 == Static IPs
 
 CloudHub supports allocating a static IP for applications so that they can be allowlisted for other services. To enable a static IP for your application, go to the *Static IPs* tab on your application settings page, then enable the *Use Static IP* checkbox. A static IP is allocated to your application and displayed in the table below; it will be used by the application when it restarts. If your application is not running, you can pre-allocate a static IP before starting the application. For details, see xref:deploying-to-cloudhub.adoc#static-ips-tab-settings[Static IPs Tab Settings].

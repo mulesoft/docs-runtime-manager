@@ -6,7 +6,7 @@ endif::[]
 :page-deployment-options: ch2, ch, rtf, pce, hybrid
 
 
-When you run an application in Anypoint Studio, it deploys to an embedded test server in Studio. Because this server is not meant for production deployment and uptime restrictions apply, deploy your Mule applications using one of the deployment options supported by Anypoint Runtime Manager.
+Mule applications that run in the Anypoint Studio or Anypoint Code Builder IDEs deploy to an embedded test server in within the IDE. Because this server is not meant for production deployment and uptime restrictions apply, deploy your Mule applications using one of the deployment options supported by Anypoint Runtime Manager.
 
 
 == CloudHub 2.0
@@ -59,7 +59,7 @@ Icons appear at the begining of each page in the Runtime Manager documentation, 
 |image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
 
 |CloudHub
-|image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub 1.0"]
+|image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
 
 |Hybrid
 |image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
@@ -76,7 +76,7 @@ Icons appear at the begining of each page in the Runtime Manager documentation, 
 For an overview of the Runtime Manager features available with each deployment option, see:
 
 * <<High Availability>>
-* <<JDK Versions>>
+* <<Java Versions>>
 * <<Load Balancing>>
 * <<Logging>>
 * <<Monitoring>>
@@ -85,6 +85,7 @@ For an overview of the Runtime Manager features available with each deployment o
 * <<Security Updates>>
 * <<Shared Resource Support>>
 * <<Troubleshooting>>
+* <<Horizontal Autoscaling>>
 
 
 === High Availability
@@ -113,15 +114,15 @@ For an overview of the Runtime Manager features available with each deployment o
 |Runtime Fabric | Via automatic application fail-over. You obtain high availability when you deploy two or more replicas per application. |  xref:runtime-fabric::deploy-to-runtime-fabric.adoc[]
 |===
 
-=== JDK Versions
+=== Java Versions
 
 [%header,cols="15,30,30"]
 |===
 |Deployment Option | Version         | More Information
-|CloudHub 2.0 | JDK 11 | xref:release-notes::cloudhub-2/cloudhub-2-runtimes-release-notes.adoc[]
-|CloudHub |JDK 11 | xref:release-notes::cloudhub/cloudhub-runtimes-release-notes.adoc[]
-|Hybrid | See the Mule runtime engine release notes to determine the minimum supported JDK version. | xref:release-notes::mule-runtime/mule-esb.adoc[]
-|Private Cloud Edition | See the  Mule runtime engine release notes to determine the minimum JDK supported version. |xref:release-notes::mule-runtime/mule-esb.adoc[]
+|CloudHub 2.0 | Java 8, Java 17 | xref:release-notes::cloudhub-2/cloudhub-2-runtimes-release-notes.adoc[]
+|CloudHub |Java 8, Java 17 | xref:release-notes::cloudhub/cloudhub-runtimes-release-notes.adoc[]
+|Hybrid | See the Mule runtime engine release notes to determine the minimum supported Java version. | xref:release-notes::mule-runtime/mule-esb.adoc[]
+|Private Cloud Edition | See the  Mule runtime engine release notes to determine the minimum Java supported version. |xref:release-notes::mule-runtime/mule-esb.adoc[]
 |===
 
 === Load Balancing
@@ -146,16 +147,25 @@ For an overview of the Runtime Manager features available with each deployment o
 |CloudHub | CloudHub provides a logging service for customizing log levels, searching logs, and downloading logs. |   | xref:viewing-log-data.adoc[]
 |Hybrid | The Runtime Manager logging feature is not available for hybrid deployments. | You can configure on-premises applications to send data to external analytics tools, such as Splunk or ELK, to manage your logs. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
 |Private Cloud Edition | The Runtime Manager logging feature is not available for hybrid deployments. | The Runtime Manager logging feature is not available for hybrid deployments. | xref:sending-data-from-arm-to-external-analytics-software.adoc[]
-|Runtime Fabric | Runtime Fabric supports Anypoint Monitoring Titanium logging.  | You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::manage-monitor-applications.adoc#logs[Logs]
+|Runtime Fabric a| Runtime Fabric supports Anypoint Monitoring. +
+include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]  
+| You can also forward logs from Runtime Fabric to a rsyslog server. | xref:runtime-fabric::manage-monitor-applications.adoc#logs[Logs]
 |===
 
 
 === Monitoring
 
-[%header,cols="20,35,45,20"]
+[%header,cols="15,40,40,25"]
 |===
 |Deployment Option | Implementation       | Functionality| More Information
-|CloudHub 2.0| You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. | Run thread dumps. Configure application alerts. | xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0]
+|CloudHub 2.0
+ | - You can create alerts in xref:alerts-on-runtime-manager.adoc[Runtime Manager] for applications deployed to CloudHub 2.0. +
+   - You can enable trace data collection for your CloudHub 2.0 applications that are deployed to either shared or private spaces and running on Mule runtime 4.6.0 or later.
+  | - Run thread dumps. Configure application alerts. +
+  +
+     - Once you enable tracing, and redeploy the application, the Runtime Manager backend starts instrumenting traces for your application.
+   | - xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0] +
+     - xref:cloudhub-2::ch2-deploy-private-space.adoc#enable-distributed-tracing[Enable Trace Data Collection]
 |CloudHub| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your application's flows and set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run. | xref:monitoring.adoc[Monitor Applications and Servers]
@@ -225,6 +235,19 @@ For an overview of the Runtime Manager features available with each deployment o
 |Private Cloud Edition | Anypoint Platform PCE does not include the xref:insight.adoc[Insight] troubleshooting tool.
 |Runtime Fabric | Use Anypoint Monitoring to view information about applications deployed to Runtime Fabric. To obtain the health status of the cluster and components, use Runtime Fabric command-line tools. See xref:runtime-fabric::manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric].
 |===
+
+
+=== Horizontal Autoscaling 
+
+image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
+
+Horizontal autoscaling makes Mule apps deployed to CloudHub 2.0 responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand.
+
+* CloudHub 2.0: xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
+* Runtime Fabric: xref:runtime-fabric::configure-horizontal-autoscaling.adoc[]
+
+[NOTE]
+This feature applies to select customers who opted into the new pricing and packaging model. For more details, visit xref:general::pricing.adoc[Anypoint Platform Pricing].
 
 == Security for Hybrid Deployments
 
