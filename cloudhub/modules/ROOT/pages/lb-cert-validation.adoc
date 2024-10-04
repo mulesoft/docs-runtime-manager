@@ -4,6 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: runtime-manager::lb-cert-validation.adoc
 
+include::reuse::partial$feature-unsupported-banner.adoc[tag=deprecateTLS]
 
 If at least one CA certificate is provided for the SSL endpoint, the load balancer passes the client certificate data to the API using these HTTP headers:
 
