@@ -1,0 +1,85 @@
+= VPC Upgrade to Private Space 
+
+//Overview
+CloudHub VPC upgrade is an out-of-the-box tool and guided UI experience for an infrastructure upgrade to accelerate the migration of a VPC into a Private Space.
+
+// Benefits
+This tool enables you to provision the infrastructure of a CloudHb 2.0 Private Space by cloning the existing configurations of eligible CloubHub VPCs, and carrying over any existing network connections, including TGWs and VPNs. 
+
+At the same time, this UI experience reduces migration time and costs by eliminating a two- to-three-month toil to obtain all the necessary infrastructure and security approvals on new network connections and CIDR blocks. 
+
+
+== Understand Eligibility
+//Which VPCs are eligible for upgrade
+
+Due to their architectural differences and distinct interfaces, CloudHub 2.0 doesn't support some features in the same way CloudHub does. Follow this eligibility check to confirm which VPCs are eligible for upgrade:
+
+Availability of IPs::
++
+Your VPC must have at least 25% free space, and 100 or more available IP addresses per subnet to be eligible for upgrade.
+
+Deprecated Availability Zones (AZs)::
++
+VPCs using deprecated AZs are not eligible for upgrade.
+
+Legacy VPNs::
++
+VPCs with legacy VPNs configured are not eligible for upgrade.
+
+Direct Connect or VPC Peering:: 
+If your VPC has Direct Connect or VPC Peering configured in their VPC, migrate to Transit Gateway before upgrading.
+
+TLS 1.1 ciphers::
++
+The following ciphers can't be carried over from CloudHub to CloudHub 2.0:
+
+* ECDHE-ECDSA-AES128-SHA1
+* ECDHE-ECDSA-AES256-SHA1
+* ECDHE-RSA-AES128-SHA1
+* ECDHE-RSA-AES256-SHA1
+
+
+== Upgrade your VPC via Anypoint Platform
+
+//Steps to upgrade
+
+. From *Anypoint Platform*, select *Runtime Manager* >*Upgrade*
++
+Alternatively, select *Runtime Manager* >*What's New* to read about how the VPC upgrade works, and click *Continue to Upgrade* to start upgrading your VPCs.
++ 
+The *Upgrade to CloudHub 2.0* window lists all VPCs that are eligible for upgrade.
+. Click *Upgrade Now*, under the *Upgrade Status* column for the VPC you want to upgrade.
++
+The *Upgrade to CloudHub 2.0* review page shows what elements are already available in your VPC and what elements are created during the upgrade.
++
+Image::upgrade-ch2-review-conf.png[]
++
+. Click *Next* to continue.
+. Provide a name for the new private space. 
++ 
+Optionally, you can specify reserved CIDRs to connect to your new private space.
+. Click *Create* to create the new private space.
++
+The *Upgrade to CloudHub 2.0* review page opens showing the progress of the VPC upgrade process, which takes approximately fifteen to thirty minutes.
+
+As soon as the upgrade process starts, the upgraded VPC is locked for any further updates. 
+
+You can cancel the upgrade process to revert to your VPC at any time by clicking *Cancel Upgrade*. In that case, the newly created private space is deleted, and your VPC is unlocked.
+
+
+== Next Steps 
+
+//after VPC Upgrade
+
+Once the upgrade process completes, the private space is fully provisioned and you can start deploying applications to it.
+
+You can continue to deployand manage applications into your VPC; however you can't change any VPC configurations. Make any infrastructure changes in the newly upgraded private space.
+
+
+=== See Also
+
+* xref:cloudhub-2::index.adoc[]
+* xref:cloudhub-2::ch2-features.adoc[]
+* xref:cloudhub-2::ch2-comparison.adoc[]
+* xref:cloudhub-2::ch2-private-space-about.adoc[]
+* xref:cloudhub-2::ch2-deploy-private-space.adoc[]
