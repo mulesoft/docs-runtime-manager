@@ -1,18 +1,18 @@
-= VPC Upgrade to Private Space 
+= CloudHub VPC to CloudHub 2.0 Private Space Upgrade  
 
 //Overview
-CloudHub VPC upgrade is an out-of-the-box tool and guided UI experience for an infrastructure upgrade to accelerate the migration of a VPC into a Private Space.
+To migrate your workloads from CloudHub 1.0 to CloudHub 2.0, you have to start by setting up your CloudHub 2.0 infrastructure and network connections. One way to achieve this is by creating fresh CloudHub 2.0 Private Spaces with different configurations from what you had on CloudHub 1.0. However, if you prefer to keep your infrastructure configuration the same, you can use the in-product upgrade tool to easily upgrade your CloudHub dedicated VPC to a CloudHub 2.0 private space.
+Once your new private space is ready, you can gradually migrate your applications from the CloudHub VPC to the CloudHub 2.0 private space. After all your applications have been successfully moved, you can decommission your old VPC.
+
 
 // Benefits
-This tool enables you to provision the infrastructure of a CloudHb 2.0 Private Space by cloning the existing configurations of eligible CloubHub VPCs, and carrying over any existing network connections, including TGWs and VPNs. 
-
-At the same time, this UI experience reduces migration time and costs by eliminating a two- to-three-month toil to obtain all the necessary infrastructure and security approvals on new network connections and CIDR blocks. 
-
+This VPC to private space in-product upgrade tool helps you speed up the creation of a CloudHub 2.0 private space. Instead of starting from scratch, you can easily upgrade your existing CloudHub dedicated VPC. This process saves you time by eliminating the need to acquire new CIDR blocks, set up new network connections, and configure the private space from the ground up.
+The tool provisions the infrastructure for a CloudHub 2.0 private space by cloning the existing configurations of your eligible CloudHub dedicated VPC, using the same CIDR block. If your VPC has existing TGW or VPN network connections, they are seamlessly transferred to the new CloudHub 2.0 private space. This ensures that any new applications deployed into the new private space can communicate effectively.
 
 == Understand Eligibility
 //Which VPCs are eligible for upgrade
 
-Due to their architectural differences and distinct interfaces, CloudHub 2.0 doesn't support some features in the same way CloudHub does. Follow this eligibility check to confirm which VPCs are eligible for upgrade:
+Due to their architectural differences and distinct interfaces, CloudHub 2.0 doesn’t support some features in the same way CloudHub does. Follow this eligibility check to confirm which VPCs are eligible for upgrade:
 
 Availability of IPs::
 +
@@ -20,18 +20,18 @@ Your VPC must have at least 25% free space, and 100 or more available IP address
 
 Deprecated Availability Zones (AZs)::
 +
-VPCs using deprecated AZs are not eligible for upgrade.
+VPCs using deprecated AZs aren’t eligible for the upgrade.
 
 Legacy VPNs::
 +
-VPCs with legacy VPNs configured are not eligible for upgrade.
+VPCs with legacy VPNs configured aren’t eligible for the upgrade.
 
 Direct Connect or VPC Peering:: 
-If your VPC has Direct Connect or VPC Peering configured in their VPC, migrate to Transit Gateway before upgrading.
+If your VPC has Direct Connect or VPC Peering configured in their VPC, migrate to Transit Gateway or VPN before upgrading.
 
 TLS 1.1 ciphers::
 +
-The following ciphers can't be carried over from CloudHub to CloudHub 2.0:
+These ciphers can’t be carried over from CloudHub to CloudHub 2.0:
 +
 * ECDHE-ECDSA-AES128-SHA1
 * ECDHE-ECDSA-AES256-SHA1
@@ -41,23 +41,19 @@ The following ciphers can't be carried over from CloudHub to CloudHub 2.0:
 
 == Upgrade your VPC via Anypoint Platform
 
-//Steps to upgrade
-
 . From *Anypoint Platform*, select *Runtime Manager* > *Upgrade*.
 +
 Alternatively, select *Runtime Manager* > *What's New* to read about how the VPC upgrade works, and click *Continue to Upgrade* to start upgrading your VPCs.
-+ 
-The *Upgrade to CloudHub 2.0* window lists all VPCs that are eligible for upgrade.
 . Click *Upgrade Now*, under the *Upgrade Status* column for the VPC you want to upgrade.
 +
-The *Upgrade to CloudHub 2.0* review page shows what elements are already available in your VPC and what elements are created during the upgrade.
+The *Upgrade to CloudHub 2.0* review page displays the configurations currently available in your VPC, as well as the configurations that are created during the upgrade.
 +
 image::upgrade-ch2-review-conf.png[]
 +
 . Click *Next* to continue.
-. Provide a name for the new private space. 
+. Provide a name for the new private space.
 + 
-Optionally, you can specify reserved CIDRs to connect to your new private space.
+Optionally, you can specify xref:ps-gather-setup-info.adoc#cidr-block[reserved CIDRs] to connect to your new private space.
 . Click *Create* to create the new private space.
 +
 The *Upgrade to CloudHub 2.0* review page shows the progress of the VPC upgrade process, which takes approximately fifteen to thirty minutes.
@@ -67,13 +63,18 @@ As soon as the upgrade process starts, the upgraded VPC is locked for any furthe
 You can cancel the upgrade process to revert to your VPC at any time by clicking *Cancel Upgrade*. In that case, the newly created private space is deleted, and your VPC is unlocked.
 
 
-== Next Steps 
+== Next Steps after VPC Upgrade
 
-//after VPC Upgrade
+After the upgrade is completed, the private space is fully provisioned and you can start deploying applications into it.
 
-Once the upgrade process completes, the private space is fully provisioned and you can start deploying applications to it.
+You can start migrating your applications individually by creating new versions in the CloudHub 2.0 private space and then deleting the corresponding application in the CloudHub VPC. Once you’ve successfully migrated all your applications, make sure to delete your old VPC and any attached Dedicated Load Balancers on CloudHub.
 
-You can continue to deployand manage applications into your VPC, but you can't change any VPC configurations. Make any infrastructure changes in the newly upgraded private space.
+During your migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. However, after the upgrade, your CloudHub 1.0 Dedicated VPC will be locked from any new infrastructure changes to prevent configuration drift. This includes adjustments to environment or business group associations, network connections, and internal DNS. Make all changes in the newly created private space instead. Any configuration changes carried over to the CloudHub 2.0 Private Space are applied to the CloudHub VPC during your upgrade. If your CloudHub VPC doesn’t have any network connections and you create new ones in your new CloudHub 2.0 private space post-upgrade, these new connections aren’t reflected back in your CloudHub VPC.
+The firewall rules configured in your VPC get copied to the Private Space during the upgrade. After that, you can make additional changes to the firewall rules in both the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout your migration.
+
+== Entitlements for VPCs, Private Spaces, and Network Connections (VPNs/TGW)
+
+Once you’ve upgraded your CloudHub VPC to a CloudHub 2.0 private space and brought over any existing TGW and VPN network connections, both your old and new infrastructure are counted separately towards your usage. Therefore, if your organization is already using up all of your purchased quota, your usage might exceed the allowed quota until you’ve moved all your applications to CloudHub 2.0 and decommissioned your old VPC. To avoid any disruptions, work with your account team to plan for additional entitlements, and make sure you decommission your CloudHub infrastructure (VPCs and associated DLBs) promptly. If you don’t decommission your VPC within six months after the upgrade,  you might face interruptions when trying to create or edit VPCs, private spaces, or network connections.
 
 
 == See Also
