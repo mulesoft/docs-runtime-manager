@@ -7,7 +7,11 @@ Once your new private space is ready, you can gradually migrate your application
 
 // Benefits
 This VPC to private space in-product upgrade tool helps you speed up the creation of a CloudHub 2.0 private space. Instead of starting from scratch, you can easily upgrade your existing CloudHub dedicated VPC. This process saves you time by eliminating the need to acquire new CIDR blocks, set up new network connections, and configure the private space from the ground up.
+
 The tool provisions the infrastructure for a CloudHub 2.0 private space by cloning the existing configurations of your eligible CloudHub dedicated VPC, using the same CIDR block. If your VPC has existing TGW or VPN network connections, they are seamlessly transferred to the new CloudHub 2.0 private space. This ensures that any new applications deployed into the new private space can communicate effectively.
+
+The default Cloudhub certificates are configured as part of the private space’s default certificates. The DLB custom domains of the migrated VPC are created as part of the private space’s custom TLS certificates.
+
 
 == Understand Eligibility
 //Which VPCs are eligible for upgrade
