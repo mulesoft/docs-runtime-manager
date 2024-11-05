@@ -102,23 +102,23 @@ Depending on what region you deploy your application in, the DNS record and the 
 |===
 | Region Name | Region | Example DNS Record 
 3+h| US Control Plane Regions
-| US East (N. Virginia) |usa-e1 | `myapp-_uniq-id_._shard_.usa-e1.cloudhub.io` 
-| US East (Ohio) |usa-e2| `myapp-_uniq-id_._shard_.usa-e2.cloudhub.io` 
-| US West (N. California) |usa-w1 |`myapp-_uniq-id_._shard_.usa-w1.cloudhub.io` 
-| US West (Oregon) |usa-w2| `myapp-_uniq-id_._shard_.usa-w2.cloudhub.io` 
-| Canada (Central) |can-c1| `myapp-_uniq-id_._shard_.can-c1.cloudhub.io` 
-| South America (Sao Paulo) |bra-s1| `myapp-_uniq-id_._shard_.bra-s1.cloudhub.io` 
-| Asia Pacific (Singapore) |sgp-s1| `myapp-_uniq-id_._shard_.sgp-s1.cloudhub.io` 
-| Asia Pacific (Sydney) |aus-s1| `myapp-_uniq-id_._shard_.aus-s1.cloudhub.io` 
-| Asia Pacific (Tokyo) |jpn-e1| `myapp-_uniq-id_._shard_.jpn-e1.cloudhub.io` 
-| EU (Ireland) |irl-e1 | `myapp-_uniq-id_._shard_.irl-e1.cloudhub.io` 
-| EU (Frankfurt) |deu-c1 | `myapp-_uniq-id_._shard_.deu-c1.cloudhub.io` 
-| EU (London) |gbr-e1 | `myapp-_uniq-id_._shard_.gbr-e1.cloudhub.io`
+| US East (N. Virginia) |us-e1 | `myapp.us-e1.cloudhub.io` 
+| US East (Ohio) |us-e2| `myapp.us-e2.cloudhub.io` 
+| US West (N. California) |us-w1 |`myapp.us-w1.cloudhub.io` 
+| US West (Oregon) |us-w2| `myapp.us-w2.cloudhub.io` 
+| Canada (Central) |ca-c1| `myapp.ca-c1.cloudhub.io` 
+| South America (Sao Paulo) |br-s1| `myapp.br-s1.cloudhub.io` 
+| Asia Pacific (Singapore) |sg-s1| `myapp.sg-s1.cloudhub.io` 
+| Asia Pacific (Sydney) |au-s1| `myapp.au-s1.cloudhub.io` 
+| Asia Pacific (Tokyo) |jp-e1| `myapp.jp-e1.cloudhub.io` 
+| EU (Ireland) |ir-e1 | `myapp.ir-e1.cloudhub.io` 
+| EU (Frankfurt) |de-c1 | `myapp.de-c1.cloudhub.io` 
+| EU (London) |uk-e1 | `myapp.uk-e1.cloudhub.io`
 3+h|  MuleSoft Government Cloud
-| US Gov West |usag-w1.gov| `myapp-_uniq-id_._shard_.usg-w1.gov.cloudhub.io` 
+| US Gov West |usg-w1.gov| `myapp.usg-w1.gov.cloudhub.io` 
 3+h| EU Control Plane Regions
-| EU (Ireland) |irl-e1.eu1 | `myapp-_uniq-id_._shard_.irl-e1.eu1.cloudhub.io`
-| EU (Frankfurt) |deu-c1.eu1 | `myapp-_uniq-id_._shard_.deu-c1.eu1.cloudhub.io` 
+| EU (Ireland) |ir-e1.eu1 | `myapp.ir-e1.eu1.cloudhub.io`
+| EU (Frankfurt) |de-c1.eu1 | `myapp.de-c1.eu1.cloudhub.io` 
 |===
 
 Note that DNS records are unique to each control plane. Though the EU control plane
