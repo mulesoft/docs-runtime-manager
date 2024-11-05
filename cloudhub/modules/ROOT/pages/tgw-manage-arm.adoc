@@ -32,6 +32,9 @@ image::tgw-add-vpc-route.png[Add VPC route]
 +
 Anypoint Platform submits the new route to AWS.
 
+[NOTE]
+When you add a new route, the platform ensures it doesn't conflict with any existing routes in the VPC, whether they're static or propagated from a BGP connection. If the new route is a duplicate, either remove the existing route or split the new route into smaller ones to avoid any collisions.
+
 When the route addition succeeds, the *Transit Gateways* page shows the *Route added* message
 and the *Transit Gateways* page shows the route CIDR in the route table.
 
