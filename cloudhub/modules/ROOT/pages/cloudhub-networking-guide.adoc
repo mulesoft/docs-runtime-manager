@@ -98,43 +98,27 @@ You can assign Static IP to applications with multiple workers. However, it is n
 
 Depending on what region you deploy your application in, the DNS record and the load balancer for your integration may change. The following table summarizes what DNS records are available for your application in each region:
 
-https://anypoint.mulesoft.com[Anypoint Platform] for the U.S. control plane
-covers the following regions.
-
-[%header,cols="2*a"]
+[%header,cols="15a,10a,40a"]
 |===
-| Regions in U.S. Control Plane | DNS Record
-| US East (N. Virginia) | `myapp.us-e1.cloudhub.io`
-| US East (Ohio) | `myapp.us-e2.cloudhub.io`
-| US West (N. California) | `myapp.us-w1.cloudhub.io`
-| US West (Oregon) | `myapp.us-w2.cloudhub.io`
-| Canada (Central) | `myapp.ca-c1.cloudhub.io`
-| South America (Sao Paulo) | `myapp.br-s1.cloudhub.io`
-| Asia Pacific (Singapore) | `myapp.sg-s1.cloudhub.io`
-| Asia Pacific (Sydney) | `myapp.au-s1.cloudhub.io`
-| Asia Pacific (Tokyo) | `myapp.jp-e1.cloudhub.io`
-| EU (Ireland) | `myapp.ir-e1.cloudhub.io`
-| EU (Frankfurt) | `myapp.de-c1.cloudhub.io`
-| EU (London) | `myapp.uk-e1.cloudhub.io`
-|===
-
-https://anypoint.mulesoft.com[Anypoint Platform] for MuleSoft Government Cloud
-covers the following regions.
-
-[%header,cols="2*a"]
-|===
-| Regions in U.S. Control Plane | DNS Record
-| US Gov West | `myapp.usg-w1.gov.cloudhub.io`
-|===
-
-https://eu1.anypoint.mulesoft.com[Anypoint Platform] for the EU control plane
-covers the following regions.
-
-[%header,cols="2*a"]
-|===
-| Regions in EU Control Plane | DNS Record
-| EU (Ireland) | `myapp.ir-e1.eu1.cloudhub.io`
-| EU (Frankfurt) | `myapp.de-c1.eu1.cloudhub.io`
+| Region Name | Region | Example DNS Record 
+3+h| US Control Plane Regions
+| US East (N. Virginia) |us-e1 | `myapp.us-e1.cloudhub.io` 
+| US East (Ohio) |us-e2| `myapp.us-e2.cloudhub.io` 
+| US West (N. California) |us-w1 |`myapp.us-w1.cloudhub.io` 
+| US West (Oregon) |us-w2| `myapp.us-w2.cloudhub.io` 
+| Canada (Central) |ca-c1| `myapp.ca-c1.cloudhub.io` 
+| South America (Sao Paulo) |br-s1| `myapp.br-s1.cloudhub.io` 
+| Asia Pacific (Singapore) |sg-s1| `myapp.sg-s1.cloudhub.io` 
+| Asia Pacific (Sydney) |au-s1| `myapp.au-s1.cloudhub.io` 
+| Asia Pacific (Tokyo) |jp-e1| `myapp.jp-e1.cloudhub.io` 
+| EU (Ireland) |ir-e1 | `myapp.ir-e1.cloudhub.io` 
+| EU (Frankfurt) |de-c1 | `myapp.de-c1.cloudhub.io` 
+| EU (London) |uk-e1 | `myapp.uk-e1.cloudhub.io`
+3+h|  MuleSoft Government Cloud
+| US Gov West |usg-w1.gov| `myapp.usg-w1.gov.cloudhub.io` 
+3+h| EU Control Plane Regions
+| EU (Ireland) |ir-e1.eu1 | `myapp.ir-e1.eu1.cloudhub.io`
+| EU (Frankfurt) |de-c1.eu1 | `myapp.de-c1.eu1.cloudhub.io` 
 |===
 
 Note that DNS records are unique to each control plane. Though the EU control plane
