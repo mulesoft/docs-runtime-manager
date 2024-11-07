@@ -13,7 +13,7 @@ Using the in-product VPC upgrade tool saves you time because you don't need to a
 
 The tool provisions the infrastructure for a CloudHub 2.0 private space by cloning the existing configurations of your eligible CloudHub dedicated VPC, using the same CIDR block. 
 
-If your VPC has existing Transit Gateways (TGW) or Virtual Private Networks (VPN) connections, they are seamlessly transferred to the new CloudHub 2.0 private space. This ensures that any new applications deployed into the new private space can communicate effectively.
+If your VPC has existing Transit Gateways (TGW) or Virtual Private Networks (VPN) connections, they transfer seamlessly to the new CloudHub 2.0 private space. This migration ensures that any new applications deployed into the new private space can communicate effectively.
 
 The default Cloudhub certificates are configured as part of the private space's default certificates. The DLB custom domains of the migrated VPC are created as part of the private space's custom TLS certificates.
 
