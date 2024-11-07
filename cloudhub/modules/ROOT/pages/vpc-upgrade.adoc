@@ -86,7 +86,7 @@ During your migration, you can continue to deploy and manage applications in you
 
 If your CloudHub VPC doesn't have any network connections and you create new ones in your new CloudHub 2.0 private space after the upgrade, these new connections aren’t reflected back in your CloudHub VPC.
 
-The firewall rules configured in your VPC get copied to the private space during the upgrade. After that, you can make additional changes to the firewall rules in both the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout your migration.
+The firewall rules configured in your VPC are copied to the private space. After that, you can make additional changes to the firewall rules in both the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout your migration.
 
 == Entitlements for VPCs, Private Spaces, and Network Connections (VPNs/TGW)
 
