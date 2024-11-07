@@ -80,7 +80,7 @@ After you provision the private space, the *Cancel Upgrade* button no longer sho
 
 After you complete the upgrade, the private space is fully provisioned and you can start deploying applications to it.
 
-You can start migrating your applications individually by creating new versions in the CloudHub 2.0 private space and then deleting the corresponding application in the CloudHub VPC. Once you’ve successfully migrated all your applications, make sure to delete your old VPC and any attached Dedicated Load Balancers on CloudHub.
+You can start migrating your applications individually by creating new versions in the CloudHub 2.0 private space and then deleting the corresponding application in the CloudHub VPC. Once you’ve successfully migrated all your applications, delete your old VPC and any attached dedicated load balancers on CloudHub.
 
 During your migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. However, after the upgrade, your CloudHub Dedicated VPC is locked for any infrastructure changes to prevent configuration drift. This includes adjustments to environment or business group associations, network connections, and internal DNS. Make all changes in the newly created private space instead. Any configuration changes carried over to the CloudHub 2.0 private space are applied to the CloudHub VPC during your upgrade. 
 
