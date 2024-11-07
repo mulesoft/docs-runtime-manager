@@ -27,11 +27,12 @@ Starting a flow doesn't imply triggering its endpoints, it just makes it active 
 
 == Set Flows to Unmanaged
 
-In some special cases, you might have apps that are explicitly set up to start and stop flows automatically, according to any criteria you want. In these cases, this behavior is carried out by logic in the applications running inside the Mule itself, and Runtime Manager is unaware of the logic behind these changes.
+In some cases, you can explicitly set up your applications to start and stop flows automatically according to any criteria you want. In these cases, this behavior is carried out by logic in the applications running inside Mule runtime itself, and Runtime Manager is unaware of the logic behind these changes.
 
-If you click *Start* or *Stop* for a flow in the *Flow Management* tab, Runtime Manager continually enforces the active or inactive state onto the flow, regardless of any changes that the Mule may attempt.
+The default flow status for every application is unmanaged. This means that your flows freely transition states between active and inactive according to the behavior set up in application logic running in Mule runtime. 
 
-If you want your flows to freely transition states between active and inactive according to the behavior set up in application logic running in Mule, then you can click *Unmanage* to set the flow to Unmanaged. Then the flow will no longer be affected by the *Start* and *Stop* buttons in this tab.
+You can click *Start* or *Stop* for a flow in the *Flow Management* tab to override the unmanaged status. In this case, Runtime Manager continually enforces the active or inactive state of the flow, regardless of any changes Mule runime attempts. Click *Unmanage* to reset the flow status to unmanaged at any time.
+
 
 image::flow-management-unmanage.png[]
 
