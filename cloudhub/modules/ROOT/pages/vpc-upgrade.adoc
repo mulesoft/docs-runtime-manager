@@ -76,6 +76,9 @@ Optionally, you can specify xref:ps-gather-setup-info.adoc#cidr-block[reserved C
 +
 The *Upgrade to CloudHub 2.0* review page shows the progress of the VPC upgrade process, which takes about 15 to 30 minutes.
 
+[NOTE]
+If you create a VPN to provision your CloudHub VPC, wait until the newly created VPN status shows as available before migrating your VPC to a CloudHub 2.0 private space. 
+
 As soon as the upgrade process starts, the upgraded VPC is locked for any further updates. 
 
 You can cancel the upgrade process to revert to your VPC at any time by clicking *Cancel Upgrade*. In that case, the newly created private space is deleted, and your VPC is unlocked.
