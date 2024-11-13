@@ -98,6 +98,9 @@ If your CloudHub VPC doesn't have any network connections and you create new one
 
 The firewall rules configured in your VPC are copied to the private space. After that, you can make additional changes to the firewall rules in the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout the migration.
 
+[WARNING]
+VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` are dropped during migration. 
+
 == Entitlements for VPCs, Private Spaces, and Network Connections (VPNs/TGW)
 
 After you complete the VPC upgrade and bring over any existing TGW and VPN network connections, your old and new infrastructure count separately against your usage. Therefore, if your organization uses all purchased quota, your usage can exceed the allowed quota until you move all your applications to CloudHub 2.0 and decommission your old VPC. 
