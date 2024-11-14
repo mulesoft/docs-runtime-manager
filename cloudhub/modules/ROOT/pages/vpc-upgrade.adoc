@@ -59,6 +59,9 @@ These ciphers can't be carried over from CloudHub to CloudHub 2.0:
 Multiple Internal DNS Special Domains::
 VPCs with more than one internal DNS special domain configured aren’t eligible for the upgrade.
 
+Limitation for Restricting Outbound Egress Traffic::
+CloudHub VPC doesn't restrict outbound egress traffic, so removing the default firewall rule that allows this traffic can cause failures in your migrated private space.
+
 == Upgrade your VPC via Anypoint Platform
 
 . From *Anypoint Platform*, select *Runtime Manager* > *Upgrade*.
