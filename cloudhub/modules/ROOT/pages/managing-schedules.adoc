@@ -47,7 +47,7 @@ CloudHub distributes multiple concurrent schedules across workers.
 CloudHub triggers the job as soon as it restarts.
 * When a Mule 4.x app uses a schedule to trigger a flow with subflow, the scheduler waits until both main flow and subflow complete before scheduling the next run.
 +
-Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.) characters.
+Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.) characters. The following characters are invalid: slash (/), square brackets ([]), curly brackets ({}), hash (#), and colon (:).
 * All schedules are based in the UTC timezone, regardless of the geographic region where you deploy the app.
 
 
