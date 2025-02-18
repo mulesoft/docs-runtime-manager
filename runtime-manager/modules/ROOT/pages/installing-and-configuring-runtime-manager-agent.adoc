@@ -158,6 +158,18 @@ When you update the agent, the `amc_setup` script:
 This directory contains all custom modules added to the agent (not included in the agent distribution).
 * Updates the default agent truststore name from `truststore.jks` to `anypoint-truststore.jks` (for updates to versions 1.11.0 or 2.1.4 and later).
 
+== Installing or Updating to Runtime Manager Agent Version 2.7.0
+
+Before installing or updating to Runtime Manager Agent Version 2.7.0, update your network configuration to add the following endpoint to your allowlist:
+
+* Port : `8443`
+* Protocol: `https`
+* Source: `All nodes`
+* Destination: 
+** US control plane: `us1.ingest.mulesoft.com`
+** EU control plane: `eu1.ingest.mulesoft.com`
+* Description: `Anypoint Monitoring Ingestion`
+
 == Roll Back the Agent
 
 If you need to roll back the agent, for example, if problems occur when you update the agent,
