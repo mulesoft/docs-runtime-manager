@@ -26,6 +26,8 @@ When you update the scheduler configuration, the change takes effect the next ti
 You cannot manage CloudHub schedules using scripts.
 Use the *Schedules* tab or the CloudHub API to manage CloudHub schedules.
 
+[IMPORTANT]
+To view the application schedules, you must have the *Exchange Viewer* and *Read Applications* permissions.
 
 == Considerations and Limitations
 
@@ -47,7 +49,7 @@ CloudHub distributes multiple concurrent schedules across workers.
 CloudHub triggers the job as soon as it restarts.
 * When a Mule 4.x app uses a schedule to trigger a flow with subflow, the scheduler waits until both main flow and subflow complete before scheduling the next run.
 +
-Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.) characters.
+Flow names can contain only letters (a-zA-Z), numbers (0-9), hyphen (-), underscore (_), and period (.) characters. The following characters are invalid: slash (/), square brackets ([]), curly brackets ({}), hash (#), and colon (:).
 * All schedules are based in the UTC timezone, regardless of the geographic region where you deploy the app.
 
 
@@ -90,8 +92,7 @@ The value for the frequency can be between 10 and 100 seconds.
 You can also switch to advanced mode to use cron expressions to create more specific schedules,
 such as every Thursday at 3:00 pm.
 +
-[NOTE]
-By default, schedules run at the frequency defined in the application. When you change the frequency of a schedule from Runtime Manager, the schedule runs at the frequency configured in Runtime Manager even if you update and redeploy the same schedule in the application JAR file.
+include::partial$ch-app-schedule-freq.adoc[]
 . Click *Update* to save changed settings or click *Cancel* to exit without saving.
 
 == Use Cron Expressions

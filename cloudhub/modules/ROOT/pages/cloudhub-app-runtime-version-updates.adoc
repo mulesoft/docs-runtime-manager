@@ -108,7 +108,17 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1]
 
-include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1A]
+// include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1A]
+
+== Mule Runtime Release Cadence Support
+
+The following table shows the Mule runtime release cadence support for CloudHub:
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1A2]
+
+[NOTE]
+If you are a CloudHub or a CloudHub 2.0 customer and you want to create or test Mule 4.6 applications in Anypoint Studio, the Studio version required is the next upcoming release in March. Meanwhile, MuleSoft enables you to deploy new apps in Mule runtime 4.5e version via API, Mule Maven plugin, and Anypoint Platform CLI starting February 14 until April 19. Auto-upgrade from Mule 4.5 Edge to Mule 4.6 Edge for CloudHub and CloudHub 2.0 applications will be performed in April instead of February. See https://help.mulesoft.com/s/article/Mule-Runtime-4-6-release-temporary-changes-to-auto-upgrade-and-new-app-deployment[Temporary changes to auto-upgrade and new app deployment for Mule 4.5 Edge].
+
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro2]
 
@@ -229,8 +239,7 @@ After a new update occurs, you can check your xref:managing-deployed-application
 
 You can also check your application logs to verify if your application was deployed correctly and take any remediation actions in the event of some auto-minor update-related issue. For more information, visit xref:viewing-log-data.adoc#view-logs[View Logs].
 
-To be notified by e-mail when an error occurs after an automated update, you can xref:alerts-on-runtime-manager.adoc#create-an-alert[create an alert]. 
-
+To be notified by e-mail when an error occurs after an automated update, you can xref:runtime-manager::alerts-on-runtime-manager.adoc#create-an-alert[create an alert]. 
 
 == Failed Automated Updates
 
@@ -243,7 +252,8 @@ Possible failure reasons include but are not limited to:
 * Incompatibility of a custom module with the latest patch version release.
 
 
-If an application fails to be automatically updated after two monthly patching cycles, the application is stopped and force updated to the latest patch version. Applications that fail to start require your action to address patches. 
+[IMPORTANT]
+Using a runtime version that is more than three months old can introduce security vulnerabilities. If your application fails to be automatically updated after two monthly patching cycles, the application is stopped and force-updated to the latest patch version. Applications that fail to start require your action to address patches. 
 
 
 == See Also

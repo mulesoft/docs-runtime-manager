@@ -110,6 +110,8 @@ image::apps-update-runtime-version.png[New label for updating runtime version fo
 
 To update multiple apps at the same time, use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/1.0.13/console/method/%231545/[CloudHub API Bulk Action] operation.
 
+include::partial$mule-runtime-eos-note.adoc[]
+
 === Zero Downtime Updates with CloudHub
 
 CloudHub supports updating your application so users of your HTTP APIs experience zero downtime. During your application update, CloudHub keeps both the old version and the new version of your application running. Your domain points to the old version of your application until the new version is fully started. This allows you to keep servicing requests from your old application while the new version of your application is starting.
@@ -123,6 +125,8 @@ CloudHub supports updating your application so users of your HTTP APIs experienc
 
 [IMPORTANT]
 If an application uses static IPs, updates might cause up to one minute of downtime while CloudHub reassigns the static IP address from the previous version of the application to the new version. Ensure that the client includes the necessary retry mechanisms to account for the downtime.
+
+include::partial$downtime-during-deployment.adoc[]
 
 == Static IPs
 

@@ -10,8 +10,8 @@ You can deploy Mule applications to CloudHub using:
 
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-runtime-manager[Anypoint Runtime Manager]
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-studio[Anypoint Studio]
+* xref:anypoint-code-builder::int-deploy-mule-apps.adoc[Anypoint Code Builder]
 * xref:deploying-to-cloudhub.adoc#deploy-an-application-from-the-command-line[CloudHub CLI]
-* xref:design-center::promote-app-prod-env-design-center.adoc[Flow Designer in Anypoint Design Center]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[CloudHub API]
 * xref:mule-runtime::deploy-to-cloudhub.adoc[Mule Maven plugin]
 
@@ -76,8 +76,6 @@ This option is helpful if you want to test your application while developing it.
 [NOTE]
 --
 You can deploy an application from Studio to any environment except *Design*.
-The *Design* environment is specific to applications created in Anypoint Design Center.
-See xref:design-center::promote-app-prod-env-design-center.adoc[Deploy a Mule Application from Flow Designer].
 --
 
 To deploy from Studio to CloudHub:
@@ -263,6 +261,8 @@ The runtime version must be the same Mule version used to develop your applicati
 +
 After you deploy the app, CloudHub automatically alerts you when updates for the selected runtime version are available.
 See xref::cloudhub-app-runtime-version-updates.adoc[CloudHub Runtime Continuous Updates].
++
+include::partial$mule-runtime-eos-note.adoc[]
 
 Java Version:: 
 Select the Java version for your application. For more information, visit xref:general::java-support.adoc[].
@@ -363,7 +363,7 @@ to twice the number of production vCores in your subscription and appears under 
 
 If you need to free some of your static IP allocations, you can release unused IP addresses from an application.
 To increase your allocation of static IP addresses, contact your Customer Success Manager.
-For more information about adding more static IPs, see https://help.mulesoft.com/s/article/How-to-Request-Additional-Static-IPs-for-your-Anypoint-Organisation[How to Request Additional Static IPs for your Anypoint Organization].
+For more information about adding more static IPs, see https://help.salesforce.com/s/articleView?id=001121221&type=1[How to Request Additional Static IPs for your Anypoint Organization].
 
 
 
@@ -390,7 +390,7 @@ To edit the settings of a deployed application:
 
 CloudHub redeploys the application with zero downtime.
 
-
+include::partial$downtime-during-deployment.adoc[]
 
 == Deployment Progress
 
