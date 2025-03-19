@@ -26,6 +26,8 @@ To perform custom load balancer configuration or have higher rate limit threshol
 
 The shared load balancer supports TLS versions 1.1 and TLS 1.2.
 
+If you expose an API using TLS on CloudHub with the shared load balancer, you can use a self-signed certificate in your Mule application. The shared load balancer replaces that certificate with a publicly trusted certificate. 
+
 == Dedicated Load Balancers
 
 Dedicated load balancers enable you to:
