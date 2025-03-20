@@ -64,16 +64,10 @@ CloudHub VPC doesn't restrict outbound egress traffic, so removing the default f
 
 When upgrading your CloudHub VPC to a CloudHub 2.0 private space, the environments associated with your VPC stays in sync with the environments associated with the upgraded CloudHub 2.0 private space to avoid configuration drift.
 
-Environment association works differently in xref:cloudhub-2::ps-config-env.adoc[CloudHub 2.0] and xref:vpc-tutorial.adoc#update-an-existing-anypoint-vpc[CloudHub 1.0]. In CloudHub 2.0, an environment can be associated with multiple: whereas iin CloudHub, an environment can be associated to only one VPC.
-
-=== Upgrading the Default VPC
-
-If an organization has several environments in a given region, you can xref:vpc-tutorial.adoc#create-the-anypoint-vpc[set a VPC as default VPC]. All environments in this region that are not associated with an Anypoint VPC are associated with the default VPC.
-
-When you upgrade a default VPC using the upgrade tool, all the environments in the same region get associated with the newly created private space. As CloudHub 1.0 VPC does not support an environment to be associated with multiple VPCs, the existing environment associations on other VPCs are removed and re-associated with the upgraded default VPC. For this reason, do not start your migration by upgrading the default VPC.
+Environment association works differently in xref:cloudhub-2::ps-config-env.adoc[CloudHub 2.0] and xref:vpc-tutorial.adoc#update-an-existing-anypoint-vpc[CloudHub 1.0]. In CloudHub 2.0, an environment can be associated with multiple private spaces, whereas, in CloudHub, one environment can only be associated with one VPC in a given region.
 
 [WARNING]
-The upgrade tooling does not support the upgrade of a default VPC. Uncheck the default VPC configuration before you can proceed to upgrade.
+The upgrade tooling doesn't support the upgrade of a default VPC. Uncheck the default VPC configuration before you can proceed to upgrade.
 
 
 == Upgrade your VPC via Anypoint Platform
