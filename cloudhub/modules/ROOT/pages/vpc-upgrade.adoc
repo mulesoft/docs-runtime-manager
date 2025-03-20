@@ -59,6 +59,19 @@ These ciphers can't be carried over from CloudHub to CloudHub 2.0:
 Limitation for Restricting Outbound Egress Traffic::
 CloudHub VPC doesn't restrict outbound egress traffic, so removing the default firewall rule that allows this traffic can cause failures in your migrated private space.
 
+
+== Understand Environment Association
+
+During the upgrade process from CloudHub VPC to CloudHub 2.0 Private Space, the environments associated with your VPC stay in sync with the environments associated with the upgraded CloudHub 2.0 Private Space to avoid configuration drift.
+
+Environment association works differently in xref:cloudhub-2::ps-config-env.adoc[CloudHub 2.0] and xref:vpc-tutorial.adoc#update-an-existing-anypoint-vpc[CloudHub 1.0]. In CloudHub 2.0, an environment can be associated with multiple private spaces, whereas, in CloudHub, one environment can only be associated with one VPC in a given region.
+
+Additionally, doing bulk environment association for an upgraded private space can result in all environments in the same region to get associated with the underlying VPC. If those environments were previously associated with other CloudHub 1.0 VPCs, they get disassociated.
+
+[WARNING]
+The upgrade tooling doesn't support the upgrade of a default VPC. To proceed with the upgrade, disable the default VPC configuration.
+
+
 == Upgrade your VPC via Anypoint Platform
 
 . From *Anypoint Platform*, select *Runtime Manager* > *Upgrade*.
