@@ -69,7 +69,7 @@ Environment association works differently in xref:cloudhub-2::ps-config-env.adoc
 Additionally, doing bulk environment association for an upgraded private space can result in all environments in the same region to get associated with the underlying VPC. If those environments were previously associated with other CloudHub 1.0 VPCs, they get disassociated.
 
 [WARNING]
-The upgrade tooling doesn't support the upgrade of a default VPC. Uncheck the default VPC configuration before you can proceed to upgrade.
+The upgrade tooling doesn't support the upgrade of a default VPC. To proceed with the upgrade, disable the default VPC configuration.
 
 
 == Upgrade your VPC via Anypoint Platform
