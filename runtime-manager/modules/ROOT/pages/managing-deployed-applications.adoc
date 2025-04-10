@@ -362,8 +362,7 @@ To update applications deployed to Runtime Fabric, see xref:runtime-fabric::app-
 
 === Grace Period
 
-When you stop, restart, update, redeploy, or terminate an application, CloudHub tries to delete it from Mule with a timeout period of two minutes to wait for inflight messages to be delivered. After that period, CloudHub shuts down the whole instance.
-This grace period applies to the application instance, not to the runtime. The runtime uses its own configuration for the gracefully shutdown, which is, by default, five seconds.
+When you stop, restart, update, redeploy, or terminate an application, CloudHub tries to delete it from Mule. To make sure inflight messages are delivered, there's a two-minute timeout period. After that period, CloudHub shuts down the whole instance. This grace period applies to the application instance, not to the runtime. The runtime uses its own configuration for shutdown. By default, the runtime grace period is five seconds.
 
 == Alerts
 
