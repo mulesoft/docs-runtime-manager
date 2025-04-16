@@ -116,9 +116,6 @@ If your CloudHub VPC doesn't have any network connections and you create new one
 
 The firewall rules configured in your VPC are copied to the private space. After that, you can make additional changes to the firewall rules in the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout the migration.
 
-[NOTE]
-You can't download ingress logs from an upgraded private space.
-
 [WARNING]
 VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` are dropped during migration. 
 
