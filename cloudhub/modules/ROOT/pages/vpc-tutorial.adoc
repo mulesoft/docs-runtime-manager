@@ -51,6 +51,10 @@ Don't associate Anypoint VPC with a design environment. You can deploy apps to t
 There is a cache timeframe between services that prevents rate limiting errors with different time configuration across Anypoint control planes.
 If you create an environment in Access Management and attempt to immediately use it to create or edit a VPC in Runtime Manager, you might experience a delay to see the newly created environment in the VPCs *Environments* dropdown.
 
+[NOTE]
+If you create a new VPC or update an existing one and associate an environment that is used in other VPCs in the same region, any applications deployed in those other VPCs are automatically deployed in the new or updated VPC as soon as it is restarted or updated.
+
+
 * *Set as default VPC*: Select this option to set the Anypoint VPC as the default for the region you set. +
 This means that all environments in this region not associated with an Anypoint VPC will be, by default, associated with this Anypoint VPC.
 * *Business Groups*: Optionally, bind the Anypoint VPC with a business group. +
