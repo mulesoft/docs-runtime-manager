@@ -52,7 +52,7 @@ There is a cache timeframe between services that prevents rate limiting errors w
 If you create an environment in Access Management and attempt to immediately use it to create or edit a VPC in Runtime Manager, you might experience a delay to see the newly created environment in the VPCs *Environments* dropdown.
 
 [NOTE]
-If you create a new VPC or update an existing one and associate an environment that is used in another VPC in the same region, any applications deployed in that other VPC are automatically deployed in the new or updated VPC as soon as it is restarted or updated.
+If a new or updated VPC (VPC A) is associated with an environment already linked to another VPC (VPC B) in the same region, VPC B loses the environment, and it is automatically attached to VPC A. As a result, any applications in that environment are deployed to VPC A when the VPC is updated or restarted.
 
 
 * *Set as default VPC*: Select this option to set the Anypoint VPC as the default for the region you set. +
