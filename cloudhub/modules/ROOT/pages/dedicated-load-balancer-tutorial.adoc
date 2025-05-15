@@ -46,6 +46,8 @@ Dedicated load balancers are an optional component of Anypoint Platform.
 
 For information about dedicated load balancers, see xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers].
 
+[NOTE]
+CloudHub load balancers use Nginx HTTP server capabilities. Nginx reverse proxies ignore HTTP header fields with invalid names. Valid HTTP header names are composed of English letters, numbers, hyphens, and underscores. Only valid headers are forwarded to the Mule application. Use only valid header names to avoid any issues. This applies to both shared and dedicated load balancers.
 
 == See Also
 

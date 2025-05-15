@@ -29,17 +29,6 @@ Availability of IPs::
 +
 Your VPC must have at least 25% free space, and 100 or more available IP addresses per subnet to be eligible for the upgrade.
 
-Deprecated Availability Zones (AZs)::
-+
-VPCs using any of these deprecated AZs aren't eligible for the upgrade:
-+
-* use1-az3
-* usw1-az2
-* cac1-az3 
-* apne1-az3
-* sae1-az2
-* usw2-az4
-
 Legacy VPNs::
 +
 VPCs with legacy VPNs configured aren't eligible for the upgrade.
@@ -58,6 +47,19 @@ These ciphers can't be carried over from CloudHub to CloudHub 2.0:
 
 Limitation for Restricting Outbound Egress Traffic::
 CloudHub VPC doesn't restrict outbound egress traffic, so removing the default firewall rule that allows this traffic can cause failures in your migrated private space.
+
+
+== Understand Environment Association
+
+During the upgrade process from CloudHub VPC to CloudHub 2.0 Private Space, the environments associated with your VPC stay in sync with the environments associated with the upgraded CloudHub 2.0 Private Space to avoid configuration drift.
+
+Environment association works differently in xref:cloudhub-2::ps-config-env.adoc[CloudHub 2.0] and xref:vpc-tutorial.adoc#update-an-existing-anypoint-vpc[CloudHub 1.0]. In CloudHub 2.0, an environment can be associated with multiple private spaces, whereas, in CloudHub, one environment can only be associated with one VPC in a given region.
+
+Additionally, doing bulk environment association for an upgraded private space can result in all environments in the same region to get associated with the underlying VPC. If those environments were previously associated with other CloudHub 1.0 VPCs, they get disassociated.
+
+[WARNING]
+The upgrade tooling doesn't support the upgrade of a default VPC. To proceed with the upgrade, disable the default VPC configuration.
+
 
 == Upgrade your VPC via Anypoint Platform
 
@@ -102,9 +104,6 @@ During the migration, you can continue to deploy and manage applications in your
 If your CloudHub VPC doesn't have any network connections and you create new ones in your new CloudHub 2.0 private space after the upgrade, these new connections aren’t reflected back in your CloudHub VPC.
 
 The firewall rules configured in your VPC are copied to the private space. After that, you can make additional changes to the firewall rules in the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout the migration.
-
-[NOTE]
-You can't download ingress logs from an upgraded private space.
 
 [WARNING]
 VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` are dropped during migration. 
