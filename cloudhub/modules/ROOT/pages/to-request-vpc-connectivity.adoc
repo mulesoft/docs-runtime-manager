@@ -77,6 +77,18 @@ To avoid processing delays, ensure that you complete all fields on both tabs.
 The MuleSoft Support team accepts the VIF or connection request.
 Support updates your ticket to notify you when your request is complete.
 
+== Configure Several Connections per VPC
+
+Each MuleSoft VPC supports up to 48 active peering connections. A single VPC may also support multiple VPN connections, depending on the VPN capacity allocated to your account.
+For example, you create a VPN to the first datacenter, another VPN to the second datacenter, and a peering connection to an AWS VPC.
+
+[NOTE]
+Each VPN connection requires a VPN license. Each peering connection is included in the VPC license.
+
+== Share Connections Between Different VPCs
+
+Each VPC is independent, and you must create connections on a per-VPC basis. However, you can use a Transit Gateway to share Direct Connect, VPC Peering, and AWS Site-to-Site VPN connections.
+
 
 == See Also
 
