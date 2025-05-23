@@ -137,7 +137,7 @@ These policies track the number of processed requests and can sometimes exhibit 
 If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requets can sometimes double as each application maintains an independent counting mechanism.
 
 
-During the CloudHub to CloudHub 2.0 application migration, traffic is gradually shifts, and both applications are active simultaneously. If your API Manager policies are closely integrated with your original CloudHub application, these configurations can’t be easily shared or migrated in real time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
+During the CloudHub to CloudHub 2.0 application migration, traffic gradually shifts, and both applications are active simultaneously. If your API Manager policies are closely integrated with your original CloudHub application, these configurations can’t be easily shared or migrated in real time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
 
 Auto-discovery connects a deployed Mule application with an API defined in API Manager. Throughout the migration, both your CloudHub and CloudHub 2.0 applications are linked to the same API.
 
