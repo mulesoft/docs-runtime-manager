@@ -95,9 +95,9 @@ If you change your application's endpoint configuration, the inferred traffic so
 
 === Managing API Policies During Traffic Switching
 
-When API policies are applied to your application in the new runtime, they begin with a clean internal status.
+When API policies are applied to your new application, they begin with a clean internal status.
 
-==== Policies Unchanged by the Runtime:
+==== Policies Unchanged by the App Migration:
 
 These policies don't rely on internal status and their behavior remains consistent:
 
@@ -116,6 +116,7 @@ These policies don't rely on internal status and their behavior remains consiste
 ==== Policies Affected by Internal Status (Caching)
 
 These policies rely on internal status to cache data: 
+
 * external-oauth2-access-token-enforcement
 * openam-access-token-enforcement
 * openidconnect-access-token-enforcement
@@ -123,15 +124,17 @@ These policies rely on internal status to cache data:
 * mule-http-caching-policy
 * jwt-validation
 
-When transitioning to the new runtime, they can either trigger additional requests to the origin servers or have different cached values depending on which runtime receives the requests.
+When transitioning to the new application, these policies can either trigger additional requests to the origin servers or have different cached values depending on which application receives the requests.
 
-==== Policies Affected by Internal Status (Request Counting):
+==== Policies Affected by Internal Status (Request Counting)
 
-Policies that track the number of processed requests can sometimes exhibit unexpected behavior during runtime transitions. Complete traffic shifts reset counters. In a balanced round-robin traffic distribution, the effective quota can sometimes double as each runtime maintains an independent counter:
+These policies track the number of processed requests and can sometimes exhibit unexpected behavior during the transition to the new application: 
 
 * rate-limiting
 * rate-limiting-sla-based
 * spike-control
+
+If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requets can sometimes double as each application maintains an independent counting mechanism.
 
 
 During the CloudHub to CloudHub 2.0 application migration, traffic is gradually shifts, and both applications are active simultaneously. If your API Manager policies are closely integrated with your original CloudHub application, these configurations can’t be easily shared or migrated in real time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
