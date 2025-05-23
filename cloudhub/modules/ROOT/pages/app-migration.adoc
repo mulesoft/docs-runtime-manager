@@ -76,7 +76,7 @@ CloudHub can theoretically receive traffic from two main sources:
 * Shared Load Balancer (SLB): This source is typically associated with the default endpoints of your CloudHub application, often listening on ports `8081/8082`.
 * Dedicated Load Balancer (DLB): This source is usually associated with vanity domains configured for your CloudHub application, often listening on ports `8091/8092`.
 
-CloudHub 2.0 applications, in contrast, only listen on a single port, `8081`. 
+CloudHub 2.0 applications listen on a single port: `8081`. 
 
 During traffic switching, CloudHub needs to know the traffic source to correctly modify the DNS records. This is because applications using SLB have a different DNS record structure than those using DLB.
 
