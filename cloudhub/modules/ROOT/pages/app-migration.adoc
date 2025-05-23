@@ -115,14 +115,15 @@ These policies don't rely on internal status and their behavior remains consiste
 
 ==== Policies Affected by Internal Status (Caching)
 
-These policies rely on internal status to cache data. When transitioning to the new runtime, they can either trigger additional requests to the origin servers or have different cached values depending on which runtime receives the requests:
-
+These policies rely on internal status to cache data: 
 * external-oauth2-access-token-enforcement
 * openam-access-token-enforcement
 * openidconnect-access-token-enforcement
 * pingfederate-access-token-enforcement
 * mule-http-caching-policy
 * jwt-validation
+
+When transitioning to the new runtime, they can either trigger additional requests to the origin servers or have different cached values depending on which runtime receives the requests.
 
 ==== Policies Affected by Internal Status (Request Counting):
 
