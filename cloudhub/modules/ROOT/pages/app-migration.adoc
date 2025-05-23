@@ -28,7 +28,7 @@ To use a different name for your CloudHub 2.0 application, change it by editing 
 * *Upgrading From* field shows the name of the CloudHub application the new application is being upgraded from.
 +
 You can’t edit this field.
-. *Deployment Target* field shows the preselected private space for the application deployment based on the upgraded CloudHub VPC.
+* *Deployment Target* field shows the preselected private space for the application deployment based on the upgraded CloudHub VPC.
 +
 You can’t edit this field.
 . For the *Application File*, you can either:
@@ -47,7 +47,7 @@ If you're using `anypoint.dns.net` without a TLS context, the *Ingress* tab does
 . Follow the steps to xref:cloudhub-2::ch2-deploy.adoc[deploy an application to CloudHub 2.0].
 
 [NOTE]
-The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the underlying VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear in the *Host* dropdown list.
+The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the underlying VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
 
 == Next Steps After Application Upgrade
 
@@ -59,7 +59,7 @@ MuleSoft-managed:: Carry over vanity URLs while incrementally switching percenta
 
 To gradually switch traffic from CloudHub to CloudHub 2.0:
 
-. In *Runtime Manager*, go to *Traffic Switching*.
+. In *Runtime Manager*, go to *Finish Upgrade*.
 . Select the percentage of traffic to direct from CloudHub to CloudHub 2.0, and click *Save changes*.
 +
 image::traffic-switching.png[CloudHub to CloudHub 2.0 app traffic switching window.]
