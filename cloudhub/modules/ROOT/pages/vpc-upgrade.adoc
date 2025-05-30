@@ -48,6 +48,10 @@ These ciphers can't be carried over from CloudHub to CloudHub 2.0:
 Limitation for Restricting Outbound Egress Traffic::
 CloudHub VPC doesn't restrict outbound egress traffic, so removing the default firewall rule that allows this traffic can cause failures in your migrated private space.
 
+Non-HTTP/S TCP Traffic::
++
+You can send only HTTP and HTTPS traffic to applications in the migrated private space. Upgraded private spaces don't support TCP traffic.
+
 
 == Understand Environment Association
 
