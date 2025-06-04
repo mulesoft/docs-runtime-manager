@@ -17,6 +17,9 @@ If your VPC has existing Transit Gateways (TGW) or Virtual Private Networks (VPN
 
 The default CloudHub certificates are configured as part of the private space's default certificates. The DLB custom domains of the migrated VPC are created as part of the private space's custom TLS certificates.
 
+The VPC upgrade tool migrates the DLB certificates to the new private space on a best-effort basis only. If needed, you can create the DLB certificates on the new private space under the *Domains & TLS* tab. 
+
+
 [NOTE]
 During the VPC upgrade process, you use doubled entitlements for your VPC and network connections. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
 
