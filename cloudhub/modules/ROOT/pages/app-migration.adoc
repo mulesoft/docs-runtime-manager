@@ -46,6 +46,11 @@ If you're using `anypoint.dns.net` without a TLS context, the *Ingress* tab does
 .. Select whether you want to provide internal or external access to your endpoint.
 . Follow the steps to xref:cloudhub-2::ch2-deploy.adoc[deploy an application to CloudHub 2.0].
 
+[WARNING]
+If you use a different name for the cloudHub 2.0 application, make sure you input the CloudHub application name as part of the URL in the Ingress tab settings. Failing to configure the the correct URLs can sometimes result in traffic not reaching the CloudHub 2.0 application.
++
+By default, this action enables DLB traffic switching. To enable SLB traffic switching, add the CloudHub application endpoint in the format: `<app_name>.<region>.cloudhub.io`.
+
 [NOTE]
 The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the underlying VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
 
