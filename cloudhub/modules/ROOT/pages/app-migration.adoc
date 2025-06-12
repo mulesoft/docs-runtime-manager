@@ -93,6 +93,17 @@ Make sure that the vanity domain on CloudHub 2.0 matches the one on the CloudHub
 
 If you change your application's endpoint configuration, the inferred traffic source can also change. For example, if you initially had only vanity domains (DLB) and then add a CloudHub default endpoint, the traffic source is inferred as SLB.
 
+==== HTTP and HTTPS Requests
+
+When sending traffic via SLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on wether the SLB  uses port 8081 or 8082 to forward requests to your application: 
+
+* If you target HTTP, the  SLB receives on HTTP and forwards to port 8081. The app then receives on port 8081.
+* If you target HTTPS, the SLB receives on HTTPS and forwards to port 8082. The app then receives on port 8082.
+
+CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. However, this configuration does not redirect HTTP traffic sent by the legacy CloudHub application. To prevent HTTP requests to fail during traffic switching, enable the *Accept HTTP* option within the *Advanced* tab of the private space settings. This option allows CloudHub 2.0 to accept HTTP traffic. 
+
+image::accept-http.png[Option to accept HTTP traffic.]
+
 === Managing API Policies During Traffic Switching
 
 When API policies are applied to your new application, they begin with a clean internal status.
@@ -134,7 +145,7 @@ These policies track the number of processed requests and can sometimes exhibit 
 * rate-limiting-sla-based
 * spike-control
 
-If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requets can sometimes double as each application maintains an independent counting mechanism.
+If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requests can sometimes double as each application maintains an independent counting mechanism.
 
 
 During the CloudHub to CloudHub 2.0 application migration, traffic gradually shifts, and both applications are active simultaneously. If your API Manager policies are closely integrated with your original CloudHub application, these configurations can’t be easily shared or migrated in real time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
