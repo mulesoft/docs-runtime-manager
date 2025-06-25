@@ -40,7 +40,7 @@ transports:
     enabled: false
   websocket.transport:
     enabled: true
-    consoleUri: wss://mule-manager.anypoint.mulesoft.com:443/mule
+    consoleUri: wss://runtime-manager.anypoint.mulesoft.com:443/mule
     handshake:
       enabled: true
       body: null
@@ -50,7 +50,7 @@ globalConfiguration:
     keyStoreAlias: agent
     keyStoreAliasPassword: keyStoreAliasPass
   authenticationProxy:
-    endpoint: https://arm-auth-proxy.cloudhub.io
+    endpoint: https://data-authenticator.anypoint.mulesoft.com:443
 internalHandlers:
   mule.agent.tracking.handler.analytics:
     enabled: false
