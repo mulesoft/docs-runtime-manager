@@ -64,6 +64,9 @@ To avoid updating your client applications that connect to CloudHub, retain the 
 Customer-managed:: Switch the application’s xref:cloudhub-2::ch2-config-endpoints-paths.adoc[DNS] to point to CloudHub 2.0.
 MuleSoft-managed:: Carry over vanity URLs while incrementally switching percentage of traffic from CloudHub to CloudHub 2.0.
 
+[IMPORTANT]
+Restart your Dedicated Load Balancer before initiating the traffic switching.
+
 To gradually switch traffic from CloudHub to CloudHub 2.0:
 
 . In *Runtime Manager*, go to *Finish Upgrade*.
