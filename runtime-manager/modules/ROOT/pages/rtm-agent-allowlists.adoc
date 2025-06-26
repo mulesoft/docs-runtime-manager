@@ -13,12 +13,9 @@ These tables show you the ports or IP addresses and hostnames to add to your all
 
 Because the following endpoints use mutual TLS authentication, to establish the connection, you must configure SSL passthrough to allow the certificates:
 
-* mule-manager.anypoint.mulesoft.com
-* mule-manager.eu1.anypoint.mulesoft.com
 * runtime-manager.anypoint.mulesoft.com
 * runtime-manager.eu1.anypoint.mulesoft.com
 * runtime-manager.gov.anypoint.mulesoft.com
-* arm-auth-proxy.prod.cloudhub.io
 * data-authenticator.anypoint.mulesoft.com
 * data-authenticator.gov.anypoint.mulesoft.com
 * us1.ingest.mulesoft.com 
@@ -26,8 +23,6 @@ Because the following endpoints use mutual TLS authentication, to establish the 
 
 In addition, the following endpoints use WebSockets:
 
-* mule-manager.anypoint.mulesoft.com
-* mule-manager.eu1.anypoint.mulesoft.com
 * runtime-manager.anypoint.mulesoft.com
 * runtime-manager.eu1.anypoint.mulesoft.com
 * runtime-manager.gov.anypoint.mulesoft.com
@@ -41,10 +36,8 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 |===
 |Region |Name |Port
 |*US*|anypoint.mulesoft.com | 443
-|*US*|mule-manager.anypoint.mulesoft.com | 443
 |*US*|runtime-manager.anypoint.mulesoft.com | 443
 |*US*|analytics-ingest.anypoint.mulesoft.com |  443
-|*US*|arm-auth-proxy.prod.cloudhub.io |  443
 |*US*|data-authenticator.anypoint.mulesoft.com |  443
 |*US*|exchange-files.anypoint.mulesoft.com | 443
 |*US*|exchange2-asset-manager-kprod.s3.amazonaws.com |  443
@@ -55,10 +48,8 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 |*US-GOV*|exchange-files.gov.anypoint.mulesoft.com | 443
 |*US-GOV*|exchange2-asset-manager-kgprod.s3.us-gov-west-1.amazonaws.com | 443
 |*EU*|eu1.anypoint.mulesoft.com | 443
-|*EU*|mule-manager.eu1.anypoint.mulesoft.com | 443
 |*EU*|runtime-manager.eu1.anypoint.mulesoft.com | 443
 |*EU*|analytics-ingest.eu1.anypoint.mulesoft.com |  443
-|*EU*|arm-auth-proxy.prod-eu.msap.io |  443
 |*EU*|data-authenticator.eu1.anypoint.mulesoft.com |  443
 |*EU*|exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com |  443
 |*EU*|eu1.ingest.mulesoft.com |  8443
@@ -70,18 +61,6 @@ Ports, IP addresses, and hostnames are required for outbound connectivity. Inbou
 [NOTE]
 As part of our continuous infrastructure improvement, MuleSoft introduces a new set of static IP addresses in Runtime Manager to augment existing ones. To avoid service disruption, allow the IP addresses or domains, depending on your network policy, through your organization's firewall before February 1st, 2024, as listed below. For more information, visit https://help.mulesoft.com/s/article/New-IP-addresses-in-Runtime-Manager-2024-February[KB: New IP addresses in Runtime Manager 2024 February ^].
 
-* Allowlist these static IPs in the `US` region to access the `mule-manager` hosts:
-+
-[%header,cols="10a,60a,30a"]
-|===
-|Region |Name |IP Address
-|*US*|mule-manager.anypoint.mulesoft.com |52.201.174.72
-|*US*|mule-manager.anypoint.mulesoft.com |52.201.67.218
-|*US*|mule-manager.anypoint.mulesoft.com |44.196.243.83 (Starting Feb 2024)
-|*US*|mule-manager.anypoint.mulesoft.com |3.223.189.76 (Starting Feb 2024)
-|*US*|mule-manager.anypoint.mulesoft.com |18.210.198.109 (Starting Feb 2024)
-|===
-
 * Allowlist these static IPs in the `US` region to access the `runtime-manager` hosts:
 +
 [%header,cols="10a,60a,30a"]
@@ -92,16 +71,6 @@ As part of our continuous infrastructure improvement, MuleSoft introduces a new 
 |*US*|runtime-manager.anypoint.mulesoft.com |18.213.137.40 (Starting Feb 2024)
 |*US*|runtime-manager.anypoint.mulesoft.com |34.232.255.44 (Starting Feb 2024)
 |*US*|runtime-manager.anypoint.mulesoft.com |44.209.29.79 (Starting Feb 2024)
-|===
-
-* Allowlist these static IPs in the `EU` region to access the `mule-manager` hosts:
-+
-[%header,cols="10a,60a,30a"]
-|===
-|Region |Name |IP Address
-|*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.195.19.18
-|*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.194.245.32
-|*EU*|mule-manager.eu1.anypoint.mulesoft.com |18.193.248.250 (Starting Feb 2024)
 |===
 
 * Allowlist these static IPs in the `EU` region to access the `runtime-manager` hosts:
@@ -127,7 +96,6 @@ Include the following fully qualified hostnames in your Layer 7 firewall rules:
 |Region |Hostname
 |*US*|anypoint.mulesoft.com
 |*US*|analytics-ingest.anypoint.mulesoft.com
-|*US*|arm-auth-proxy.prod.cloudhub.io
 |*US*|data-authenticator.anypoint.mulesoft.com
 |*US*| us1.ingest.mulesoft.com
 |*US-GOV*|runtime-manager.gov.anypoint.mulesoft.com
@@ -135,23 +103,13 @@ Include the following fully qualified hostnames in your Layer 7 firewall rules:
 |*US-GOV*|gov.anypoint.mulesoft.com
 |*EU*|eu1.anypoint.mulesoft.com
 |*EU*|analytics-ingest.eu1.anypoint.mulesoft.com
-|*EU*|arm-auth-proxy.prod-eu.msap.io
 |*EU*|data-authenticator.eu1.anypoint.mulesoft.com
 |*EU*|eu1.ingest.mulesoft.com  
 |===
 
 === Allowlist
 
-Allowlist the following URLs only if you are using Agent versions earlier than 1.12.0 (in Mule 3.x) and 2.2.0 (in Mule 4.x):
-
-[%header,cols="30a,60a"]
-|===
-|URL |Description
-|mule-manager.anypoint.mulesoft.com| Connection for ARM management capabilities (*self-signed agents*)
-|arm-auth-proxy.prod.cloudhub.io| Connection to the metrics ingestion service of arm-monitoring stack (*self-signed agents*)
-|===
-
-Allowlist the following URLs only if you are using Agent versions 1.12.0 (in Mule 3.x) and 2.2.0 (in Mule 4.x) or higher:
+Allowlist the following URLs, the valid Agents are only 1.12.0+ (in Mule 3.x) and 2.2.0+ (in Mule 4.x):
 
 [%header,cols="30a,60a"]
 |===

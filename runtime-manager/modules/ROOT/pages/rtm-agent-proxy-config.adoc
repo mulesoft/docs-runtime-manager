@@ -121,23 +121,6 @@ subject=/C=US/ST=California/L=San Francisco/O=salesforce.com, inc./CN=runtime-ma
 ----
 --
 
-* Agent versions earlier than 1.12.0 and 2.2.0:
-+
---
-[source,console,linenums]
-----
-echo -e "GET / HTTP/1.0\r\n" | openssl s_client -connect mule-manager.anypoint.mulesoft.com:443 -ign_eof
-----
-
-The output of this command should include the following information:
-
-[source,console,linenums]
-----
------END CERTIFICATE-----
-subject=/C=US/ST=CA/L=San Francisco/O=Mulesoft/OU=Mulesoft/CN=mule-manager.anypoint.mulesoft.com/emailAddress=devops@mulesoft.com issuer=/C=US/ST=CA/L=San Francisco/O=Mulesoft/OU=Mulesoft/CN=Mulesoft/emailAddress=devops@mulesoft.com
-----
---
-
 If the expected information does not appear in the output,
 contact your networking team with the `openssl` command's output.
 
