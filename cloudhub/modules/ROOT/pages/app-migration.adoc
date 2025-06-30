@@ -103,8 +103,8 @@ Make sure that the vanity domain on CloudHub 2.0 matches the one on the CloudHub
 
 If you change your application's endpoint configuration, the inferred traffic source can also change. For example, if you initially had only vanity domains (DLB) and then add a CloudHub default endpoint, the traffic source is inferred as SLB.
 
-[IMPORTANT]
-The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. Mapping rules enable you to forward requests received by the DLB (using the HTTP Host header to identify the matching rule) to a different Mule application name and domain. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. This behavior is not supported in CloudHub 2.0. 
+[WARNING]
+The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. CloudHub 2.0 doesn't support using the default certificate endpoint.
 
 
 === Managing API Policies During Traffic Switching
