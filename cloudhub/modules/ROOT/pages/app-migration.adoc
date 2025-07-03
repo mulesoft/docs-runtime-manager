@@ -97,23 +97,24 @@ If you change your application's endpoint configuration, the inferred traffic so
 
 ==== HTTP and HTTPS Requests
 
-When sending traffic via SLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on wether the SLB  uses port 8081 or 8082 to forward requests to your application: 
+When sending traffic via SLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on whether the SLB  uses port 8081 or 8082 to forward requests to your application: 
 
 * If you target HTTP, the  SLB receives on HTTP and forwards to port 8081. The app then receives on port 8081.
 * If you target HTTPS, the SLB receives on HTTPS and forwards to port 8082. The app then receives on port 8082.
 
-CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. However, this configuration does not redirect HTTP traffic sent by the legacy CloudHub application. 
+CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. If you use a mix of HTTP and HTTPS applications in CloudHub SLB and want to migrate this configuration, use either of these workarounds:
 
-If you use a mix of HTTP and HTTPS application in CloudHub SLB and want to migrate this configuration, use either of these workarounds:
-
-* Enable the *Accept HTTP* option within the *Advanced* tab of the private space settings for your CloudHub 2.0 application. This option allows CloudHub 2.0 to accept HTTP traffic. 
+* Enable the *Accept HTTP* option within the *Advanced* tab of the private space settings for your CloudHub 2.0 application. This allows CloudHub 2.0 to accept HTTP traffic. 
 +
 image::accept-http.png[Option to accept HTTP traffic.]
++
+[WARNING]
+This option applies to all client-to-private-space traffic. If you enable it, all the applications in that private space become open to accepting HTTP traffic.
 +
 * Update your CloudHub HTTP applications to become HTTPS. In this case, you can leave the “redirect to HTTPS” option on the private space settings. 
 +
 [NOTE]
-This workaround can take more work and time depending how many HTTP CloudHub applications you have.
+This workaround can take more work and time depending on how many HTTP CloudHub applications you have.
 
 === Managing API Policies During Traffic Switching
 
