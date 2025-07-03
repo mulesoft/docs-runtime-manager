@@ -37,7 +37,7 @@ You can’t edit this field.
 . In the *Ingress* tab, specify the *Endpoint* configuration:
 .. Select a *Host* from the dropdown list.
 +
-[NOTE] 
+[NOTE]
 If you're using `anypoint.dns.net` without a TLS context, the *Ingress* tab doesn’t show it as a possible endpoint.
 +
 .. Select a specific subdomain from the dropdown list.
@@ -103,6 +103,10 @@ Make sure that the vanity domain on CloudHub 2.0 matches the one on the CloudHub
 
 If you change your application's endpoint configuration, the inferred traffic source can also change. For example, if you initially had only vanity domains (DLB) and then add a CloudHub default endpoint, the traffic source is inferred as SLB.
 
+[WARNING]
+The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
+
+
 === Managing API Policies During Traffic Switching
 
 When API policies are applied to your new application, they begin with a clean internal status.
@@ -144,7 +148,7 @@ These policies track the number of processed requests and can sometimes exhibit 
 * rate-limiting-sla-based
 * spike-control
 
-If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requets can sometimes double as each application maintains an independent counting mechanism.
+If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requests can sometimes double as each application maintains an independent counting mechanism.
 
 
 During the CloudHub to CloudHub 2.0 application migration, traffic gradually shifts, and both applications are active simultaneously. If your API Manager policies are closely integrated with your original CloudHub application, these configurations can’t be easily shared or migrated in real time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
