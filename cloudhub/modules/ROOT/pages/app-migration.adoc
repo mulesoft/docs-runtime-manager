@@ -61,7 +61,9 @@ The *Host* dropdown list shows only the domains added under the certificates of 
 After the CloudHub 2.0 application is deployed, you can test the app by directing traffic to it and verifying network connectivity and the app behavior. 
 
 To avoid updating your client applications that connect to CloudHub, retain the domains from CloudHub on CloudHub 2.0. To link your applications, apply either of these options:
+
 Customer-managed:: Switch the application’s xref:cloudhub-2::ch2-config-endpoints-paths.adoc[DNS] to point to CloudHub 2.0.
+
 MuleSoft-managed:: Carry over vanity URLs while incrementally switching percentage of traffic from CloudHub to CloudHub 2.0.
 
 [IMPORTANT]
@@ -102,6 +104,29 @@ Make sure that the vanity domain on CloudHub 2.0 matches the one on the CloudHub
 * If your application has both default domains and vanity domains configured, default domains take precedence over vanity domains.
 
 If you change your application's endpoint configuration, the inferred traffic source can also change. For example, if you initially had only vanity domains (DLB) and then add a CloudHub default endpoint, the traffic source is inferred as SLB.
+
+
+==== HTTP and HTTPS Requests
+
+When sending traffic via SLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on whether the SLB uses port 8081 or 8082 to forward requests to your application: 
+
+* If you target HTTP, the SLB receives traffic on HTTP and forwards it to port 8081. The app then receives on port 8081.
+* If you target HTTPS, the SLB receives traffic on HTTPS and forwards it to port 8082. The app then receives on port 8082.
+
+CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. If you use a mix of HTTP and HTTPS applications in CloudHub SLB and want to migrate this configuration, use either of these workarounds:
+
+* Enable the *Accept HTTP* option within the *Advanced* tab of the private space settings. This allows CloudHub 2.0 to accept HTTP traffic. 
++
+image::accept-http.png[Option to accept HTTP traffic.]
++
+[WARNING]
+This option applies to all client-to-private-space traffic. If you enable it, all the applications in that private space become open to accepting HTTP traffic.
++
+* Update your CloudHub HTTP applications to become HTTPS. In this case, you can leave the “redirect to HTTPS” option on the private space settings. 
++
+[NOTE]
+This workaround can take more work and time depending on the number of HTTP CloudHub applications you have.
+=======
 
 [WARNING]
 The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
