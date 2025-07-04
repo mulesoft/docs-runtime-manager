@@ -37,7 +37,7 @@ You can’t edit this field.
 . In the *Ingress* tab, specify the *Endpoint* configuration:
 .. Select a *Host* from the dropdown list.
 +
-[NOTE] 
+[NOTE]
 If you're using `anypoint.dns.net` without a TLS context, the *Ingress* tab doesn’t show it as a possible endpoint.
 +
 .. Select a specific subdomain from the dropdown list.
@@ -46,8 +46,15 @@ If you're using `anypoint.dns.net` without a TLS context, the *Ingress* tab does
 .. Select whether you want to provide internal or external access to your endpoint.
 . Follow the steps to xref:cloudhub-2::ch2-deploy.adoc[deploy an application to CloudHub 2.0].
 
+[WARNING]
+====
+If you use a different name for the CloudHub 2.0 application, make sure you put the CloudHub application name in the *Ingress* tab settings in the subdomain field of the endpoint configuration. If you configure URLs incorrectly, traffic doesn't reach the CloudHub 2.0 application during xref:app-migration.adoc#next-steps-after-application-upgrade[traffic switching].
+
+By default, this action enables Dedicated Load Balancer (DLB) traffic switching. To enable Shared Load Balancer (SLB) traffic switching, add the CloudHub application endpoint in the format: `<app_name>.<region>.cloudhub.io`. For more information about SLB and DLB traffic switching, see xref:app-migration.adoc#understanding-the-traffic-source[Understanding the Traffic Source].
+====
+
 [NOTE]
-The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the underlying VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
+The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the original VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
 
 == Next Steps After Application Upgrade
 
@@ -58,6 +65,9 @@ To avoid updating your client applications that connect to CloudHub, retain the 
 Customer-managed:: Switch the application’s xref:cloudhub-2::ch2-config-endpoints-paths.adoc[DNS] to point to CloudHub 2.0.
 
 MuleSoft-managed:: Carry over vanity URLs while incrementally switching percentage of traffic from CloudHub to CloudHub 2.0.
+
+[IMPORTANT]
+Restart your Dedicated Load Balancer before initiating the traffic switching.
 
 To gradually switch traffic from CloudHub to CloudHub 2.0:
 
@@ -95,6 +105,7 @@ Make sure that the vanity domain on CloudHub 2.0 matches the one on the CloudHub
 
 If you change your application's endpoint configuration, the inferred traffic source can also change. For example, if you initially had only vanity domains (DLB) and then add a CloudHub default endpoint, the traffic source is inferred as SLB.
 
+
 ==== HTTP and HTTPS Requests
 
 When sending traffic via SLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on whether the SLB uses port 8081 or 8082 to forward requests to your application: 
@@ -115,6 +126,11 @@ This option applies to all client-to-private-space traffic. If you enable it, al
 +
 [NOTE]
 This workaround can take more work and time depending on the number of HTTP CloudHub applications you have.
+=======
+
+[WARNING]
+The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
+
 
 === Managing API Policies During Traffic Switching
 
