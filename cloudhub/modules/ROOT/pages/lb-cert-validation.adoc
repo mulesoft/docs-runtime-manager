@@ -3,6 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: runtime-manager::lb-cert-validation.adoc
+:page-notice-banner-message: Support for TLS 1.1 and earlier versions in Dedicated Load Balancers (DLB) ends soon. For new DLBs, support for TLS 1.1 and earlier versions ends on <b>October 7, 2025</b>. For existing DLBs, support for TLS 1.1 and earlier versions ends on <b>January 31, 2026</b>. Update your DLB configuration to use TLS 1.2 or a later version to prevent service interruptions.
 
 
 If at least one CA certificate is provided for the SSL endpoint, the load balancer passes the client certificate data to the API using these HTTP headers:
