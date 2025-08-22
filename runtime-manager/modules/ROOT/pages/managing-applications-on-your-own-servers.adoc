@@ -79,9 +79,13 @@ The server must be running for this option to be available. In the case of a Clu
 
 For applications deployed on-premises, a couple of scenarios may arise which trigger specific behaviors by Runtime Manager:
 
-* If you manually delete one or several application folders from the server while Mule is not running, once the server re-syncs, Runtime Manager notices the missing applications, forces you to download the missing application or applications again into your server, and automatically re-deploys it.
+* If you manually delete an application folder or anchor file while the Mule runtime is running, the affected applications are undeployed from that local server. Applications on other nodes in a server group or cluster aren't affected.
 [NOTE]
-Only deleting from the UI or via REST permanently removes the application.
+Only deleting from the Anypoint Runtime Manager UI or via the Runtime Manager REST API permanently removes the application.
+
+* When Mule runtime restarts, it triggers a resync process. During the resync, Runtime Manager detects the missing applications and automatically redeploys them. This applies to single servers, server groups, and clusters.
+[NOTE]
+The resync only occurs when the local Mule runtime restarts.
 
 * When a new server is added into a Cluster or Server Group, even when no other server in that Group or Cluster is running, Runtime Manager automatically deploys any applications into that Server Group or Cluster.
 
