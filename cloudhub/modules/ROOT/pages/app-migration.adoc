@@ -127,7 +127,7 @@ This option applies to all client-to-private-space traffic. If you enable it, al
 [NOTE]
 This workaround can take more work and time depending on the number of HTTP CloudHub applications you have.
 
-To migrate your CloudHub app's HTTP traffic configuration, enable the Accept HTTP option in the Advanced tab of your private space settings. Then, configure these firewall rules to ensure successful HTTP traffic switching:
+To migrate your CloudHub app's HTTP traffic configuration, enable the *Accept HTTP* option in the *Advanced* tab of your private space settings. Then, configure these firewall rules to ensure successful HTTP traffic switching:
 
 * For traffic switching involving a Dedicated Load Balancer (DLB), which typically operates on ports 8091 and 8092, add a firewall rule to allow HTTP from the local private network.
 * For traffic switching involving a Shared Load Balancer (SLB), which typically operates on ports 8081 and 8082, add a firewall rule to allow HTTP from any source.
