@@ -5,8 +5,6 @@ After your Anypoint VPC upgrade is complete, you can migrate all associated appl
 
 The current CloudHub application continues to run without any disruption until the upgrade is complete. After the upgrade is complete, you can continue to use the same CloudHub URL for your new CloudHub 2.0 application.
 
-Some configuration settings of the CloudHub application aren't automatically mapped to the new CloudHub 2.0 application. Go to your new CloudHub 2.0 application settings to finish the configuration.
-
 [NOTE]
 During the application upgrade process, no out-of-the-box entitlements are provided. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
 
@@ -55,6 +53,19 @@ In applications with inbound traffic, the Shared Load Balancer (SLB) handles tra
 
 [NOTE]
 The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the original VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
+
+
+=== Considerations and Limitations
+
+The upgrade process doesn’t automatically map some configuration settings to the new CloudHub 2.0 application. Go to your new CloudHub 2.0 application settings to finish the configuration.
+
+==== Application Properties 
+The upgrade process doesn’t carry over application properties to CloudHub 2.0. Reconfigure these properties manually for a successful upgrade:
+• When properties are initially copied during CloudHub 2.0 application configuration, they do not persist unless you edit at least one property. Editing a single property causes the edited property and all other copied properties to persist.
+• The upgrade process copies the protected properties added during CloudHub 1.0 with `****` as their displayed value. Change this displayed value  manually to the correct protected value within your CloudHub 2.0 application settings.
+
+
+
 
 == Next Steps After Application Upgrade
 
