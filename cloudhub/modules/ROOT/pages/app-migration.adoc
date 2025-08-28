@@ -124,6 +124,11 @@ When sending traffic via SLB in CloudHub applications, you can target either HTT
 * If you target HTTP, the SLB receives traffic on HTTP and forwards it to port 8081. The app then receives on port 8081.
 * If you target HTTPS, the SLB receives traffic on HTTPS and forwards it to port 8082. The app then receives on port 8082.
 
+When sending traffic via DLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on whether the DLB uses port 8091 or 8092 to forward requests to your application:
+
+* If you target HTTP, the DLB receives traffic on HTTP and forwards it to port 8091. The app then receives on port 8091.
+* If you target HTTPS, the DLB receives traffic on HTTPS and forwards it to port 8092. The app then receives on port 8092.
+
 CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. If you use a mix of HTTP and HTTPS applications in CloudHub SLB and want to migrate this configuration, use either of these workarounds:
 
 * Enable the *Accept HTTP* option within the *Advanced* tab of the private space settings. This allows CloudHub 2.0 to accept HTTP traffic. 
