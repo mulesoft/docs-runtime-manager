@@ -189,6 +189,40 @@ If you change your CloudHub application after it stops, the changes aren't repli
 
 After your CloudHub application is stopped, you have 30 days to delete it. If you don't delete it within this period, the platform automatically deletes the application for you.
 
+[NOTE]
+Complete or delete all CloudHub apps in a given upgraded VPC to release entitlements.
+
+== Perform DLB Failover 
+
+After your Anypoint VPC upgrade is complete and all associated CloudHub applications are migrated and traffic is fully redirected to your CloudHub 2.0 application, an important step for configurations that involve Dedicated Load Balancers (DLBs) is to complete a DLB failover.
+
+The DLB failover helps you retain the same domains as you transition from CloudHub to CloudHub 2.0. This ensures that client apps connecting to CloudHub remain compatible.
+
+To complete a DLB failover:
+
+. For each linked DLB, failover the DLB domain `anypointdns.net` to CloudHub 2.0. This is important to remove an additional DLB hop and direct traffic to your new CloudHub 2.0 private space URL.
+
+. After the traffic failover completes, stop and delete the CloudHub 1.0 DLB that was linked to the VPC.
+
+[NOTE]
+You can roll back to CloudHub 1.0 if there are failures during this stage.
+
+
+== Mark Upgrade as Complete
+
+After you complete the individual application migrations, stop and delete your CloudHub 1.0 applications, and stop and delete any associated CloudHub 1.0 Dedicated Load Balancers via DLB failover, the final step for the VPC upgrade is to Mark Upgrade Complete.
+
+To mark the upgrade process as complete, navigate to the Upgrade tab and click Mark Upgrade Complete.
+
+[WARNING] 
+This is an irreversible action. Clicking Mark Upgrade Complete deletes the original VPC, stopped Dedicated Load Balancers (DLBs), and all CloudHub 1.0 applications marked as upgraded. All traffic then flows through the CloudHub 2.0 private space.
+
+After you mark the upgrade complete, you can complete the migration, shut down CloudHub 1.0 resources, and release associated entitlements. 
+
+When CloudHub 1.0 resources are replaced by CloudHub 2.0, the CloudHub 1.0 assets become immutable. Make sure that you make all changes on CloudHub 2.0.
+
+
+
 == See Also
 
 * xref:vpc-upgrade.adoc[]
