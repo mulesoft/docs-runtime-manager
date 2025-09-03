@@ -5,8 +5,6 @@ After your Anypoint VPC upgrade is complete, you can migrate all associated appl
 
 The current CloudHub application continues to run without any disruption until the upgrade is complete. After the upgrade is complete, you can continue to use the same CloudHub URL for your new CloudHub 2.0 application.
 
-Some configuration settings of the CloudHub application aren't automatically mapped to the new CloudHub 2.0 application. Go to your new CloudHub 2.0 application settings to finish the configuration.
-
 [NOTE]
 During the application upgrade process, no out-of-the-box entitlements are provided. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
 
@@ -55,6 +53,19 @@ In applications with inbound traffic, the Shared Load Balancer (SLB) handles tra
 
 [NOTE]
 The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the original VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
+
+
+=== Considerations and Limitations
+
+The upgrade process doesn’t automatically map some configuration settings to the new CloudHub 2.0 application. Go to your new CloudHub 2.0 application settings to finish the configuration.
+
+==== Application Properties 
+The upgrade process doesn’t carry over application properties to CloudHub 2.0. Reconfigure these properties manually for a successful upgrade:
+• When properties are initially copied during CloudHub 2.0 application configuration, they don't persist unless you edit at least one property or add a new property. Editing a single property, or adding a new one, causes the edited or new property and all other copied properties to persist.
+• The upgrade process copies the protected properties added during CloudHub 1.0 with `****` as their displayed value. Change this displayed value  manually to the correct protected value within your CloudHub 2.0 application settings.
+
+
+
 
 == Next Steps After Application Upgrade
 
@@ -108,11 +119,6 @@ If you change your application's endpoint configuration, the inferred traffic so
 
 ==== HTTP and HTTPS Requests
 
-When sending traffic via SLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on whether the SLB uses port 8081 or 8082 to forward requests to your application: 
-
-* If you target HTTP, the SLB receives traffic on HTTP and forwards it to port 8081. The app then receives on port 8081.
-* If you target HTTPS, the SLB receives traffic on HTTPS and forwards it to port 8082. The app then receives on port 8082.
-
 CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. If you use a mix of HTTP and HTTPS applications in CloudHub SLB and want to migrate this configuration, use either of these workarounds:
 
 * Enable the *Accept HTTP* option within the *Advanced* tab of the private space settings. This allows CloudHub 2.0 to accept HTTP traffic. 
@@ -127,9 +133,15 @@ This option applies to all client-to-private-space traffic. If you enable it, al
 [NOTE]
 This workaround can take more work and time depending on the number of HTTP CloudHub applications you have.
 
+To migrate your CloudHub app's HTTP traffic configuration, enable the *Accept HTTP* option in the *Advanced* tab of your private space settings. Then, configure these firewall rules to ensure successful HTTP traffic switching:
+
+* For traffic switching involving a Dedicated Load Balancer (DLB), add a firewall rule to allow HTTP from the local private network.
+* For traffic switching involving a Shared Load Balancer (SLB), add a firewall rule to allow HTTP from any source.
+
 
 [WARNING]
 The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
+
 
 
 === Managing API Policies During Traffic Switching
