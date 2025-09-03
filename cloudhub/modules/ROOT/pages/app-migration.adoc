@@ -119,16 +119,6 @@ If you change your application's endpoint configuration, the inferred traffic so
 
 ==== HTTP and HTTPS Requests
 
-When sending traffic via SLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on whether the SLB uses port 8081 or 8082 to forward requests to your application: 
-
-* If you target HTTP, the SLB receives traffic on HTTP and forwards it to port 8081. The app then receives on port 8081.
-* If you target HTTPS, the SLB receives traffic on HTTPS and forwards it to port 8082. The app then receives on port 8082.
-
-When sending traffic via DLB in CloudHub applications, you can target either HTTP or HTTPS. This impacts on whether the DLB uses port 8091 or 8092 to forward requests to your application:
-
-* If you target HTTP, the DLB receives traffic on HTTP and forwards it to port 8091. The app then receives on port 8091.
-* If you target HTTPS, the DLB receives traffic on HTTPS and forwards it to port 8092. The app then receives on port 8092.
-
 CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. If you use a mix of HTTP and HTTPS applications in CloudHub SLB and want to migrate this configuration, use either of these workarounds:
 
 * Enable the *Accept HTTP* option within the *Advanced* tab of the private space settings. This allows CloudHub 2.0 to accept HTTP traffic. 
@@ -145,8 +135,8 @@ This workaround can take more work and time depending on the number of HTTP Clou
 
 To migrate your CloudHub app's HTTP traffic configuration, enable the *Accept HTTP* option in the *Advanced* tab of your private space settings. Then, configure these firewall rules to ensure successful HTTP traffic switching:
 
-* For traffic switching involving a Dedicated Load Balancer (DLB), which typically operates on ports 8091 and 8092, add a firewall rule to allow HTTP from the local private network.
-* For traffic switching involving a Shared Load Balancer (SLB), which typically operates on ports 8081 and 8082, add a firewall rule to allow HTTP from any source.
+* For traffic switching involving a Dedicated Load Balancer (DLB), add a firewall rule to allow HTTP from the local private network.
+* For traffic switching involving a Shared Load Balancer (SLB), add a firewall rule to allow HTTP from any source.
 
 
 [WARNING]
