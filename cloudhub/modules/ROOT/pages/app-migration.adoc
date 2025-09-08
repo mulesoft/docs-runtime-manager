@@ -108,18 +108,15 @@ To ensure successful traffic switching, make sure to follow these specific confi
 
 For applications using a Dedicated Load Balancer and expecting HTTPS traffic:
 
-* Update your CloudHub HTTP applications to become HTTPS. CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS, so you can leave this option on the private space settings.
 * Enable Last-Mile Security for the CloudHub 2.0 application.
-* Enable Upstream TLS 1.2 or higher in your DLB settings if switching traffic from the DLB.
-* Make sure that vanity domains on CloudHub 2.0 match those on the CloudHub application to prevent dropped traffic, or avoid setting a traffic switch percentage.
+* Enable Upstream TLS 1.2 or higher in your DLB settings.
+* Make sure that vanity domains on CloudHub 2.0 match those on the CloudHub application to prevent dropped traffic.
 
 ==== DLB with HTTP Traffic Switching
 
 For applications using a Dedicated Load Balancer and expecting HTTP traffic:
 
 * Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
-+
-This option applies to all client-to-private-space traffic. If enabled, all applications within that private space accept HTTP traffic.
 * Add a firewall rule to allow HTTP from the local private network.
 
 [WARNING]
@@ -129,7 +126,6 @@ The CloudHub DLB routes requests from clients to Mule apps deployed within the V
 
 For applications using a Shared Load Balancer and expecting HTTPS traffic:
 
-* Update your CloudHub HTTP applications to become HTTPS. CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS, so you can leave this option on the private space settings.
 * Enable Last-Mile Security for the CloudHub 2.0 application.
 
 ==== SLB with HTTP Traffic Switching
@@ -137,8 +133,6 @@ For applications using a Shared Load Balancer and expecting HTTPS traffic:
 For applications using a Shared Load Balancer and expecting HTTP traffic:
 
 * Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
-+
-This option applies to all client-to-private-space traffic. If enabled, all applications within that private space accept HTTP traffic.
 * Add a firewall rule to allow HTTP from any source.
 
 
