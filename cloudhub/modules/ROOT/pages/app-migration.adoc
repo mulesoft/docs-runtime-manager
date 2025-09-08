@@ -200,12 +200,12 @@ The DLB failover helps you retain the same domains as you transition from CloudH
 
 To complete a DLB failover:
 
-. For each linked DLB, failover the DLB domain `anypointdns.net` to CloudHub 2.0. This is important to remove an additional DLB hop and direct traffic to your new CloudHub 2.0 private space URL.
+* For each linked DLB, failover the DLB domain `anypointdns.net` to CloudHub 2.0. This is important to remove an additional DLB hop and direct traffic to your new CloudHub 2.0 private space URL.
 
-. After the traffic failover completes, stop and delete the CloudHub 1.0 DLB that was linked to the VPC.
+* After the traffic failover completes, stop and delete the CloudHub 1.0 DLB that is linked to the VPC.
 
 [NOTE]
-If there are failures during this stage, restart the DLB to point `anypointdns.net` to CloudHub 1.0, provided the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub 1.0.
+If there are failures during this stage, you can restart the DLB to point `anypointdns.net` to CloudHub 1.0 while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub 1.0.
 
 == Mark Upgrade as Complete
 
