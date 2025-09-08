@@ -1,6 +1,6 @@
 = CloudHub to CloudHub 2.0 Application Migration
 
-After your Anypoint VPC upgrade is complete, you can migrate all associated applications. Migration involves creating an equivalent CloudHub 2.0 application for every CloudHub application, and linking them to create weighted DNS records for both the CloudHub and the CloudHub 2.0 URLs. 
+After your Anypoint VPC upgrade is complete, you can migrate all associated applications. Migration involves creating an equivalent CloudHub 2.0 application for every CloudHub application, and linking them. 
 
 
 The current CloudHub application continues to run without any disruption until the upgrade is complete. After the upgrade is complete, you can continue to use the same CloudHub URL for your new CloudHub 2.0 application.
@@ -52,7 +52,7 @@ In applications with inbound traffic, the Shared Load Balancer (SLB) handles tra
 ====
 
 [NOTE]
-The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the original VPC Dedicated Load Balancer after the application upgrade has started, you need to manually add it under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
+The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the original VPC Dedicated Load Balancer after the application upgrade has started, add it manually under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
 
 
 === Considerations and Limitations
@@ -60,9 +60,9 @@ The *Host* dropdown list shows only the domains added under the certificates of 
 The upgrade process doesn’t automatically map some configuration settings to the new CloudHub 2.0 application. Go to your new CloudHub 2.0 application settings to finish the configuration.
 
 ==== Application Properties 
-The upgrade process doesn’t carry over application properties to CloudHub 2.0. Reconfigure these properties manually for a successful upgrade:
-• When properties are initially copied during CloudHub 2.0 application configuration, they don't persist unless you edit at least one property or add a new property. Editing a single property, or adding a new one, causes the edited or new property and all other copied properties to persist.
-• The upgrade process copies the protected properties added during CloudHub 1.0 with `****` as their displayed value. Change this displayed value  manually to the correct protected value within your CloudHub 2.0 application settings.
+The upgrade process doesn't carry over application properties to CloudHub 2.0. Reconfigure these properties manually for a successful upgrade:
+* When properties are initially copied during CloudHub 2.0 application configuration, they don't persist unless you edit at least one property or add a new property. Editing a single property, or adding a new one, causes the edited or new property and all other copied properties to persist.
+* The upgrade process copies the protected properties added during CloudHub 1.0 with `****` as their displayed value. Change this displayed value  manually to the correct protected value within your CloudHub 2.0 application settings.
 
 
 
@@ -94,53 +94,52 @@ You can roll back to CloudHub if there are failures during this stage.
 
 The traffic source determines which type of DNS record is updated to manage the traffic flow between your CloudHub and CloudHub 2.0 applications during the migration process. Understanding this concept helps you anticipate how ‌‌traffic is managed based on your application's existing and new endpoint configurations.
 
-CloudHub can theoretically receive traffic from two main sources:
+CloudHub receives traffic from two main sources:
 
-* Shared Load Balancer (SLB): This source is typically associated with the default endpoints of your CloudHub application, often listening on ports `8081/8082`.
-* Dedicated Load Balancer (DLB): This source is usually associated with vanity domains configured for your CloudHub application, often listening on ports `8091/8092`.
+* Shared Load Balancer (SLB): This source is typically associated with the default endpoints of your CloudHub application. In applications with inbound traffic, the SLB handles traffic switching if your Ingress configuration includes the default CloudHub application endpoint in the format: `<app_name>.<region>.cloudhub.io`.
+* Dedicated Load Balancer (DLB): This source is usually associated with vanity domains configured for your CloudHub application. If the default CloudHub endpoint is missing and you have configured a vanity domain or an `anypointdns.net` endpoint, the DLB switches the traffic.
 
-CloudHub 2.0 applications listen on a single port: `8081`. 
+During traffic switching, CloudHub needs to know the traffic source to correctly switch traffic between CloudHub and CloudHub 2.0. If you change your application's endpoint configuration, the inferred traffic source also changes. For example, if you initially have only vanity domains (DLB) and then add a CloudHub default endpoint, CloudHub infers the traffic source as SLB.
 
-During traffic switching, CloudHub needs to know the traffic source to correctly modify the DNS records. This is because applications using SLB have a different DNS record structure than those using DLB.
+To ensure successful traffic switching, make sure to follow these specific configurations depending on the type of load balancer you want to use and the type of traffic you expect.
 
-To facilitate the gradual migration of traffic from CloudHub to CloudHub 2.0, the system creates weighted DNS records. These records direct a certain percentage of traffic to your CloudHub application and the remaining percentage to your linked CloudHub 2.0 application. The specific DNS record that needs to be weighted depends on whether the traffic to your CloudHub application originates from the SLB or the DLB.
 
-The system infers the traffic source based on the endpoints configured for your application. The rules for inference are:
+==== DLB with HTTPS Traffic Switching
 
-* If your application has a CloudHub default endpoint, the SLB DNS record is used for traffic switching. CloudHub default domains follow patterns like `$region.$env.cloudhub.io` or `*.ca-c1.stgx.cloudhub.io/`.
-* If your application has any other endpoints, such as vanity domains or mule-worker endpoints, the DLB DNS record is used for traffic switching. 
-* Vanity domains are any domains other than the default CloudHub or CloudHub 2.0 domains.
+For applications using a Dedicated Load Balancer and expecting HTTPS traffic:
+
+* Update your CloudHub HTTP applications to become HTTPS. CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS, so you can leave this option on the private space settings.
+* Enable Last-Mile Security for the CloudHub 2.0 application.
+* Enable Upstream TLS 1.2 or higher in your DLB settings if switching traffic from the DLB.
+* Make sure that vanity domains on CloudHub 2.0 match those on the CloudHub application to prevent dropped traffic, or avoid setting a traffic switch percentage.
+
+==== DLB with HTTP Traffic Switching
+
+For applications using a Dedicated Load Balancer and expecting HTTP traffic:
+
+* Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
 +
-Make sure that the vanity domain on CloudHub 2.0 matches the one on the CloudHub application, or avoid setting a traffic switch percentage to prevent dropped traffic.
-* If your application has both default domains and vanity domains configured, default domains take precedence over vanity domains.
-
-If you change your application's endpoint configuration, the inferred traffic source can also change. For example, if you initially had only vanity domains (DLB) and then add a CloudHub default endpoint, the traffic source is inferred as SLB.
-
-
-==== HTTP and HTTPS Requests
-
-CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS. If you use a mix of HTTP and HTTPS applications in CloudHub SLB and want to migrate this configuration, use either of these workarounds:
-
-* Enable the *Accept HTTP* option within the *Advanced* tab of the private space settings. This allows CloudHub 2.0 to accept HTTP traffic. 
-+
-image::accept-http.png[Option to accept HTTP traffic.]
-+
-[WARNING]
-This option applies to all client-to-private-space traffic. If you enable it, all the applications in that private space become open to accepting HTTP traffic.
-+
-* Update your CloudHub HTTP applications to become HTTPS. In this case, you can leave the “redirect to HTTPS” option on the private space settings. 
-+
-[NOTE]
-This workaround can take more work and time depending on the number of HTTP CloudHub applications you have.
-
-To migrate your CloudHub app's HTTP traffic configuration, enable the *Accept HTTP* option in the *Advanced* tab of your private space settings. Then, configure these firewall rules to ensure successful HTTP traffic switching:
-
-* For traffic switching involving a Dedicated Load Balancer (DLB), add a firewall rule to allow HTTP from the local private network.
-* For traffic switching involving a Shared Load Balancer (SLB), add a firewall rule to allow HTTP from any source.
-
+This option applies to all client-to-private-space traffic. If enabled, all applications within that private space accept HTTP traffic.
+* Add a firewall rule to allow HTTP from the local private network.
 
 [WARNING]
 The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
+
+==== SLB with HTTPS Traffic Switching
+
+For applications using a Shared Load Balancer and expecting HTTPS traffic:
+
+* Update your CloudHub HTTP applications to become HTTPS. CloudHub 2.0 private spaces are configured by default to redirect traffic to HTTPS, so you can leave this option on the private space settings.
+* Enable Last-Mile Security for the CloudHub 2.0 application.
+
+==== SLB with HTTP Traffic Switching
+
+For applications using a Shared Load Balancer and expecting HTTP traffic:
+
+* Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
++
+This option applies to all client-to-private-space traffic. If enabled, all applications within that private space accept HTTP traffic.
+* Add a firewall rule to allow HTTP from any source.
 
 
 
