@@ -194,9 +194,9 @@ Complete or delete all CloudHub apps in a given upgraded VPC to release entitlem
 
 == Perform DLB Failover 
 
-After your Anypoint VPC upgrade is complete and all associated CloudHub applications are migrated and traffic is fully redirected to your CloudHub 2.0 application, an important step for configurations that involve Dedicated Load Balancers (DLBs) is to complete a DLB failover.
+After your Anypoint VPC upgrade is complete and all associated CloudHub applications are migrated and traffic is fully redirected to your CloudHub 2.0 application, an important step for configurations that involve DLBs is to complete a DLB failover.
 
-The DLB failover helps you retain the same domains as you transition from CloudHub to CloudHub 2.0. This ensures that client apps connecting to CloudHub remain compatible.
+The DLB failover helps you retain the same domains as you transition from CloudHub to CloudHub 2.0. This makes sure that client applications connecting to CloudHub remain compatible.
 
 To complete a DLB failover:
 
@@ -205,17 +205,19 @@ To complete a DLB failover:
 . After the traffic failover completes, stop and delete the CloudHub 1.0 DLB that was linked to the VPC.
 
 [NOTE]
-You can roll back to CloudHub 1.0 if there are failures during this stage.
-
+If there are failures during this stage, restart the DLB to point `anypointdns.net` to CloudHub 1.0, provided the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub 1.0.
 
 == Mark Upgrade as Complete
 
-After you complete the individual application migrations, stop and delete your CloudHub 1.0 applications, and stop and delete any associated CloudHub 1.0 Dedicated Load Balancers via DLB failover, the final step for the VPC upgrade is to Mark Upgrade Complete.
+After you complete the individual application migrations, stop and delete your CloudHub 1.0 applications, and stop and delete any associated CloudHub 1.0 DLBs via DLB failover, the final step for the VPC upgrade is to mark the upgrade as complete.
 
-To mark the upgrade process as complete, navigate to the Upgrade tab and click Mark Upgrade Complete.
+To mark the upgrade process as complete, go to the *Upgrade* tab and click *Mark Upgrade Complete*.
+
+image::mark-upgrade-complete.png[*Mark Upgrade Complete* button within the Upgrade tab]
+
 
 [WARNING] 
-This is an irreversible action. Clicking Mark Upgrade Complete deletes the original VPC, stopped Dedicated Load Balancers (DLBs), and all CloudHub 1.0 applications marked as upgraded. All traffic then flows through the CloudHub 2.0 private space.
+This is an irreversible action. Clicking *Mark Upgrade Complete* deletes the original VPC, stopped DLBs, and all CloudHub 1.0 applications marked as upgraded. All traffic then flows through the CloudHub 2.0 private space.
 
 After you mark the upgrade complete, you can complete the migration, shut down CloudHub 1.0 resources, and release associated entitlements. 
 
