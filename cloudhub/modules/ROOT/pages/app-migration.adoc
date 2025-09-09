@@ -66,7 +66,7 @@ The upgrade process doesn’t carry over application properties to CloudHub 2.0.
 
 ==== Managing Migrated Apps via MMP
 
-After migrating your applications to CloudHub 2.0, to manage a migrated app via the Mule Maven Plug-in (MMP), copy the same public URL as the one you configured on Runtime Manager during the migration. If the endpoints in your `pom.xml` file don't match the ones configured via the UI during the migration, the Ingress configuration gets lost.
+After migrating applications to CloudHub 2.0, to manage a migrated app using the Mule Maven Plug-in (MMP), copy the public URL configured on Runtime Manager during the migration. If the endpoints specified in the `publicUrl` field of your `pom.xml` file don't match the ones configured in the UI, the Ingress configuration is lost.
 
 
 == Next Steps After Application Upgrade
