@@ -221,7 +221,7 @@ If there are failures during this stage, you can restart the DLB to point `anypo
 
 == Mark Upgrade as Complete
 
-After you complete the individual application migrations, stop and delete your CloudHub 1.0 applications, and stop and delete any associated CloudHub 1.0 DLBs via DLB failover, the final step for the VPC upgrade is to mark the upgrade as complete.
+After you complete the individual application migrations, stop and delete your CloudHub 1.0 applications, and stop and delete any associated CloudHub 1.0 DLBs via DLB failover, mark the upgrade as complete to finish the VPC upgrade process.
 
 To mark the upgrade process as complete, go to the *Upgrade* tab and click *Mark Upgrade Complete*.
 
@@ -233,7 +233,7 @@ This is an irreversible action. Clicking *Mark Upgrade Complete* deletes the ori
 
 After you mark the upgrade complete, you can complete the migration, shut down CloudHub 1.0 resources, and release associated entitlements. 
 
-When CloudHub 1.0 resources are replaced by CloudHub 2.0, the CloudHub 1.0 assets become immutable. Make sure that you make all changes on CloudHub 2.0.
+After CloudHub 2.0 replaces all CloudHub 1.0 resources, the CloudHub 1.0 assets become immutable. Perform any required changes on CloudHub 2.0.
 
 
 
