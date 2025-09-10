@@ -57,14 +57,18 @@ The *Host* dropdown list shows only the domains added under the certificates of 
 
 === Considerations and Limitations
 
-The upgrade process doesn’t automatically map some configuration settings to the new CloudHub 2.0 application. Go to your new CloudHub 2.0 application settings to finish the configuration.
+The upgrade process doesn’t automatically map some configuration settings to the new CloudHub 2.0 application. 
 
 ==== Application Properties 
+
 The upgrade process doesn't carry over application properties to CloudHub 2.0. Reconfigure these properties manually for a successful upgrade:
-* When properties are initially copied during CloudHub 2.0 application configuration, they don't persist unless you edit at least one property or add a new property. Editing a single property, or adding a new one, causes the edited or new property and all other copied properties to persist.
+
+* The upgrade process initially copies your CloudHub app's properties during the CloudHub 2.0 application configuration. These properties don't persist unless you edit at least one property or add a new property. Editing a single property, or adding a new one, causes the edited or new property and all other copied properties to persist.
 * The upgrade process copies the protected properties added during CloudHub 1.0 with `****` as their displayed value. Change this displayed value  manually to the correct protected value within your CloudHub 2.0 application settings.
 
+==== Managing Migrated Apps via MMP
 
+After migrating applications to CloudHub 2.0, to manage a migrated app using the Mule Maven Plug-in (MMP), copy the public URL configured on Runtime Manager during the migration. If the endpoints specified in the `publicUrl` field of your `pom.xml` file don't match the ones configured in the UI, the Ingress configuration is lost.
 
 
 == Next Steps After Application Upgrade
