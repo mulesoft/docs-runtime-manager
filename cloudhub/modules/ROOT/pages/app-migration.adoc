@@ -139,7 +139,7 @@ For applications using a Shared Load Balancer and expecting HTTP traffic:
 
 === Managing API Policies During Traffic Switching
 
-When API policies are applied to your new application, they begin with a clean internal status.
+When you apply API policies to your new application, they begin with a clean internal status.
 
 ==== Policies Unchanged by the App Migration
 
@@ -206,15 +206,15 @@ Complete or delete all CloudHub apps in a given upgraded VPC to release entitlem
 
 == Perform DLB Failover 
 
-After the VPC upgrade is complete, and once all associated CloudHub applications are migrated to CloudHub 2.0, perform a DLB failover to retain your existing domains as you transition from CloudHub to CloudHub 2.0. This ensures client applications remain compatible.
+After the VPC upgrade is complete and the associated CloudHub applications are migrated to CloudHub 2.0, perform a DLB failover to retain your existing domains as you transition from CloudHub to CloudHub 2.0. This makes sure that client applications remain compatible.
 
 To perform a DLB failover:
 
 . For each DLB linked to your upgraded VPC, go to the DLB settings page and click *Failover to CloudHub 2.0*. 
 +
-This fails over the `anypointdns.net` domain to CloudHub 2.0, removing any additional DLB hop and directing traffic to your new CloudHub 2.0 private space URL.
+This fails over the `anypointdns.net` domain to CloudHub 2.0, removes any additional DLB hop, and redirects traffic to your new CloudHub 2.0 private space URL.
 
-. After the traffic failover completes, stop and delete the CloudHub 1.0 DLB that is linked to the VPC.
+. After the traffic failover completes, stop and delete the CloudHub 1.0 DLB linked to the VPC.
 
 [NOTE]
 If there are failures during this stage, you can restart the DLB to point `anypointdns.net` to CloudHub 1.0 while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub 1.0.
