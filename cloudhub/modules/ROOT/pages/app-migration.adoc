@@ -143,7 +143,7 @@ For applications using a Shared Load Balancer and expecting HTTP traffic:
 
 === Managing API Policies During Traffic Switching
 
-When API policies are applied to your new application, they begin with a clean internal status.
+When you apply API policies to your new application, they begin with a clean internal status.
 
 ==== Policies Unchanged by the App Migration
 
@@ -192,11 +192,54 @@ Auto-discovery connects a deployed Mule application with an API defined in API M
 
 == Complete the Application Upgrade
 
-After traffic is fully redirected to the CloudHub 2.0 application, you have 30 days to stop your CloudHub application and mark the upgrade as complete. If you don't stop it within this period, the platform automatically stops the application for you.
+After traffic fully redirects to the CloudHub 2.0 application, stop your CloudHub application within 30 days and mark the upgrade as complete. 
 
 If you change your CloudHub application after it stops, the changes aren't replicated in your new CloudHub 2.0 application.  Make any changes to the CloudHub 2.0 application settings. 
 
-After your CloudHub application is stopped, you have 30 days to delete it. If you don't delete it within this period, the platform automatically deletes the application for you.
+After your CloudHub application is stopped, delete it within 30 days. 
+
+
+[NOTE]
+====
+After the CloudHub 1.0 application stops, traffic switches to the linked CloudHub 2.0 application. To roll back the application upgrade, restart your CloudHub 1.0 application and configure the traffic switching percentage.
+After you delete the CloudHub 1.0 application, the migration is complete. You then can't create a CloudHub 1.0 application with the same application name.
+====
+
+Complete or delete all CloudHub apps in a given upgraded VPC to release entitlements.
+
+
+== Perform DLB Failover 
+
+After the VPC upgrade is complete and the associated CloudHub applications are migrated to CloudHub 2.0, perform a DLB failover to retain your existing domains as you transition from CloudHub to CloudHub 2.0. This makes sure that client applications remain compatible.
+
+To perform a DLB failover:
+
+. For each DLB linked to your upgraded VPC, go to the DLB settings page and click *Failover to CloudHub 2.0*. 
++
+This fails over the `anypointdns.net` domain to CloudHub 2.0, removes any additional DLB hop, and redirects traffic to your new CloudHub 2.0 private space URL.
+
+. After the traffic failover completes, stop and delete the CloudHub 1.0 DLB linked to the VPC.
+
+[NOTE]
+If there are failures during this stage, you can restart the DLB to point `anypointdns.net` to CloudHub 1.0 while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub 1.0.
+
+== Mark Upgrade as Complete
+
+After you complete the individual application migrations, stop and delete your CloudHub 1.0 applications, and stop and delete any associated CloudHub 1.0 DLBs via DLB failover, mark the upgrade as complete to finish the VPC upgrade process.
+
+To mark the upgrade process as complete, go to the *Upgrade* tab and click *Mark Upgrade Complete*.
+
+image::mark-upgrade-complete.png[*Mark Upgrade Complete* button within the Upgrade tab]
+
+
+[WARNING] 
+This is an irreversible action. Clicking *Mark Upgrade Complete* deletes the original VPC, stopped DLBs, and all CloudHub 1.0 applications marked as upgraded. All traffic then flows through the CloudHub 2.0 private space.
+
+After you mark the upgrade complete, you can complete the migration, shut down CloudHub 1.0 resources, and release associated entitlements. 
+
+After CloudHub 2.0 replaces all CloudHub 1.0 resources, the CloudHub 1.0 assets become immutable. Perform any required changes on CloudHub 2.0.
+
+
 
 == See Also
 
