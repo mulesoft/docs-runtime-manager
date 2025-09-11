@@ -109,9 +109,11 @@ You have two options for migrating your applications:
 
 Self-Service:: Create new versions in the CloudHub 2.0 private space. Then, delete the corresponding application in the CloudHub VPC.
 
-Runtime Manager Tool:: Alternatively, migrate your applications using the application migration tool. See xref:app-migration.adoc[]
+Runtime Manager Tool:: Alternatively, migrate your applications using the application migration tool. See xref:app-migration.adoc[].
 
 After you migrate all the applications in a VPC, delete the VPC and any associated DLBs to release your CloudHub entitlements. This action doesn’t affect your CloudHub 2.0 private space.
+
+For the final steps after VPC upgrade and CloudHub application migration, see xref:ch-ch2-migration-completion.adoc[].
 
 [NOTE]
 When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
@@ -124,6 +126,7 @@ The firewall rules configured in your VPC are copied to the private space. After
 
 [WARNING]
 VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` are dropped during migration. 
+
 
 
 == See Also
