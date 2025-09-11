@@ -1,12 +1,12 @@
 = CloudHub to CloudHub 2.0 Application Migration
 
-After your Anypoint VPC upgrade is complete, you can migrate all associated applications. Migration involves creating an equivalent CloudHub 2.0 application for every CloudHub application, and linking them. 
+After your Anypoint Virtual Private Cloud (VPC) upgrade is complete, you can migrate all associated applications. Migration involves creating an equivalent CloudHub 2.0 application for every CloudHub application, and linking them. 
 
 
-The current CloudHub application continues to run without any disruption until the upgrade is complete. After the upgrade is complete, you can continue to use the same CloudHub URL for your new CloudHub 2.0 application.
+The current CloudHub application runs without disruption until the upgrade completes. Then, you can use the same CloudHub URL for your CloudHub 2.0 application.
 
 [NOTE]
-During the application upgrade process, no out-of-the-box entitlements are provided. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
+During the application upgrade process, MuleSoft doesn't provide any out-of-the-box entitlements. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
 
 == Upgrade Your CloudHub Application to CloudHub 2.0 via Anypoint Platform
 
@@ -20,13 +20,13 @@ image::upgrade-application-window.png[CloudHub to CloudHub 2.0 application upgra
 +
 The *Upgrade Application to CloudHub 2.0* page opens.
 +
-* *Application Name* field shows the inherited CloudHub application name by default.
+The *Application Name* field shows the inherited CloudHub application name by default.
 +
 To use a different name for your CloudHub 2.0 application, change it by editing the field.
-* *Upgrading From* field shows the name of the CloudHub application the new application is being upgraded from.
+* The *Upgrading From* field shows the name of the CloudHub application the new application.
 +
 You can’t edit this field.
-* *Deployment Target* field shows the preselected private space for the application deployment based on the upgraded CloudHub VPC.
+The *Deployment Target* field shows the preselected private space for the application deployment based on the upgraded CloudHub VPC.
 +
 You can’t edit this field.
 . For the *Application File*, you can either:
@@ -48,11 +48,11 @@ If you're using `anypoint.dns.net` without a TLS context, the *Ingress* tab does
 ====
 If you use a different name for the CloudHub 2.0 application, make sure you put the CloudHub application name in the *Ingress* tab settings in the subdomain field of the endpoint configuration. If you configure URLs incorrectly, traffic doesn't reach the CloudHub 2.0 application during xref:app-migration.adoc#next-steps-after-application-upgrade[traffic switching].
 
-In applications with inbound traffic, the Shared Load Balancer (SLB) handles traffic switching if your Ingress configuration includes the default CloudHub application endpoint in the format: `<app_name>.<region>.cloudhub.io`. However, if that default endpoint is missing and you have configured a vanity domain or an `anypointdns.net endpoint` instead, the Dedicated Load Balancer (DLB) switches the traffic. For more information about SLB and DLB traffic switching, see xref:app-migration.adoc#understanding-the-traffic-source[Understanding the Traffic Source].
+In applications with inbound traffic, the Shared Load Balancer (SLB) handles traffic switching if your Ingress configuration includes the default CloudHub application endpoint in the format: `<app_name>.<region>.cloudhub.io`. However, if that default endpoint is missing, and you have configured a vanity domain or an `anypointdns.net endpoint` instead, the Dedicated Load Balancer (DLB) switches the traffic. For more information about SLB and DLB traffic switching, see xref:app-migration.adoc#understanding-the-traffic-source[Understanding the Traffic Source].
 ====
 
 [NOTE]
-The *Host* dropdown list shows only the domains added under the certificates of the underlying VPC Dedicated Load Balancer configuration before the application upgrade started. If you add a new certificate to the original VPC Dedicated Load Balancer after the application upgrade has started, add it manually under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
+The *Host* dropdown list shows only the domains initially added under the certificates of the underlying VPC's DLB configuration. If you add a new certificate to the original VPC's DLB after the application upgrade starts, add it manually under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
 
 
 === Considerations and Limitations
@@ -63,17 +63,17 @@ The upgrade process doesn’t automatically map some configuration settings to t
 
 The upgrade process doesn't carry over application properties to CloudHub 2.0. Reconfigure these properties manually for a successful upgrade:
 
-* The upgrade process initially copies your CloudHub app's properties during the CloudHub 2.0 application configuration. These properties don't persist unless you edit at least one property or add a new property. Editing a single property, or adding a new one, causes the edited or new property and all other copied properties to persist.
-* The upgrade process copies the protected properties added during CloudHub 1.0 with `****` as their displayed value. Change this displayed value  manually to the correct protected value within your CloudHub 2.0 application settings.
+* The upgrade process copies your CloudHub app's properties during the CloudHub 2.0 application configuration. These properties don't persist unless you edit at least one property or add a new property. Editing a single property, or adding a new one, causes the edited or new property and all other copied properties to persist.
+* The upgrade process copies the protected properties added during CloudHub 1.0 with `****` as their displayed value. Change this displayed value manually to the correct protected value within your CloudHub 2.0 application settings.
 
-==== Managing Migrated Apps via MMP
+==== Managing Migrated Apps via Mule Maven Plug-in (MMP) 
 
-After migrating applications to CloudHub 2.0, to manage a migrated app using the Mule Maven Plug-in (MMP), copy the public URL configured on Runtime Manager during the migration. If the endpoints specified in the `publicUrl` field of your `pom.xml` file don't match the ones configured in the UI, the Ingress configuration is lost.
+To manage a migrated app using the Mule Maven Plug-in (MMP), copy the public URL configured on Runtime Manager during the migration. If the endpoints specified in the `publicUrl` field of your `pom.xml` file don't match the ones configured in the UI, the Ingress configuration is lost.
 
 
 == Next Steps After Application Upgrade
 
-After the CloudHub 2.0 application is deployed, you can test the app by directing traffic to it and verifying network connectivity and the app behavior. 
+After the upgrade process deploys your CloudHub 2.0 application, test the app by directing traffic to it and verifying network connectivity and the app behavior. 
 
 To avoid updating your client applications that connect to CloudHub, retain the domains from CloudHub on CloudHub 2.0. To link your applications, apply either of these options:
 
@@ -82,7 +82,7 @@ Customer-Managed:: Switch the application’s xref:cloudhub-2::ch2-config-endpoi
 MuleSoft-Managed:: Carry over vanity URLs while incrementally switching percentage of traffic from CloudHub to CloudHub 2.0.
 
 [IMPORTANT]
-Restart your Dedicated Load Balancer before initiating the traffic switching.
+Restart your DLB before initiating the traffic switching.
 
 To gradually switch traffic from CloudHub to CloudHub 2.0:
 
@@ -96,21 +96,21 @@ You can roll back to CloudHub if there are failures during this stage.
 
 === Understanding the Traffic Source
 
-The traffic source determines which type of DNS record is updated to manage the traffic flow between your CloudHub and CloudHub 2.0 applications during the migration process. Understanding this concept helps you anticipate how ‌‌traffic is managed based on your application's existing and new endpoint configurations.
+The traffic source determines which type of DNS record the process updates to manage the traffic flow between your CloudHub and CloudHub 2.0 applications during the migration process. Understanding this concept helps you anticipate how the system manages the ‌‌traffic based on your application's existing and new endpoint configurations.
 
 CloudHub receives traffic from two main sources:
 
 * Shared Load Balancer (SLB): This source is typically associated with the default endpoints of your CloudHub application. In applications with inbound traffic, the SLB handles traffic switching if your Ingress configuration includes the default CloudHub application endpoint in the format: `<app_name>.<region>.cloudhub.io`.
-* Dedicated Load Balancer (DLB): This source is usually associated with vanity domains configured for your CloudHub application. If the default CloudHub endpoint is missing and you have configured a vanity domain or an `anypointdns.net` endpoint, the DLB switches the traffic.
+* Dedicated Load Balancer (DLB): This source is usually associated with vanity domains configured for your CloudHub application. If the default CloudHub endpoint is missing, and you have configured a vanity domain or an `anypointdns.net` endpoint, the DLB switches the traffic.
 
 During traffic switching, CloudHub needs to know the traffic source to correctly switch traffic between CloudHub and CloudHub 2.0. If you change your application's endpoint configuration, the inferred traffic source also changes. For example, if you initially have only vanity domains (DLB) and then add a CloudHub default endpoint, CloudHub infers the traffic source as SLB.
 
-To ensure successful traffic switching, make sure to follow these specific configurations depending on the type of load balancer you want to use and the type of traffic you expect.
+To ensure successful traffic switching, follow specific configurations depending on the type of load balancer you want to use and the type of traffic you expect.
 
 
 ==== DLB with HTTPS Traffic Switching
 
-For applications using a Dedicated Load Balancer and expecting HTTPS traffic:
+For applications using a DLB and expecting HTTPS traffic:
 
 * Enable Last-Mile Security for the CloudHub 2.0 application.
 * Enable Upstream TLS 1.2 or higher in your DLB settings.
@@ -118,26 +118,26 @@ For applications using a Dedicated Load Balancer and expecting HTTPS traffic:
 
 ==== DLB with HTTP Traffic Switching
 
-For applications using a Dedicated Load Balancer and expecting HTTP traffic:
+For applications using a DLB and expecting HTTP traffic:
 
 * Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
-* Add a firewall rule to allow HTTP from the local private network.
+* Add a firewall rule allowing HTTP from the local private network.
 
 [WARNING]
 The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
 
 ==== SLB with HTTPS Traffic Switching
 
-For applications using a Shared Load Balancer and expecting HTTPS traffic:
+For applications using an SLB and expecting HTTPS traffic:
 
 * Enable Last-Mile Security for the CloudHub 2.0 application.
 
 ==== SLB with HTTP Traffic Switching
 
-For applications using a Shared Load Balancer and expecting HTTP traffic:
+For applications using an SLB and expecting HTTP traffic:
 
 * Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
-* Add a firewall rule to allow HTTP from any source.
+* Add a firewall rule allowing HTTP from any source.
 
 
 
@@ -185,18 +185,18 @@ These policies track the number of processed requests and can sometimes exhibit 
 If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requests can sometimes double as each application maintains an independent counting mechanism.
 
 
-During the CloudHub to CloudHub 2.0 application migration, traffic gradually shifts, and both applications are active simultaneously. If your API Manager policies are closely integrated with your original CloudHub application, these configurations can’t be easily shared or migrated in real time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
+During the CloudHub to CloudHub 2.0 application migration, traffic gradually shifts, and both applications are active simultaneously. If your API Manager policies are integrated with your original CloudHub application, the system can’t share or migrate these configurations in real-time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
 
-Auto-discovery connects a deployed Mule application with an API defined in API Manager. Throughout the migration, both your CloudHub and CloudHub 2.0 applications are linked to the same API.
+Autodiscovery connects a deployed Mule application with an API defined in API Manager. Throughout the migration, both your CloudHub and CloudHub 2.0 applications link to the same API.
 
 
 == Complete the Application Upgrade
 
 After traffic fully redirects to the CloudHub 2.0 application, stop your CloudHub application within 30 days and mark the upgrade as complete. 
 
-If you change your CloudHub application after it stops, the changes aren't replicated in your new CloudHub 2.0 application.  Make any changes to the CloudHub 2.0 application settings. 
+If you change your CloudHub application after it stops, the changes aren't replicated in your new CloudHub 2.0 application. Make any required changes to the CloudHub 2.0 application settings. 
 
-After your CloudHub application is stopped, delete it within 30 days. 
+After you your CloudHub application stops, delete it within 30 days. 
 
 
 [NOTE]
@@ -210,7 +210,7 @@ Complete or delete all CloudHub applications in a given upgraded VPC to release 
 
 == Perform DLB Failover 
 
-After the VPC upgrade is complete and the associated CloudHub applications are migrated to CloudHub 2.0, perform a DLB failover to retain your existing domains as you transition from CloudHub to CloudHub 2.0. This makes sure that client applications remain compatible.
+After the VPC upgrade and CloudHub application migration to CloudHub 2.0, perform a DLB failover to retain domains during the transition from CloudHub to CloudHub 2.0. This ensures client application compatibility.
 
 To perform a DLB failover:
 
@@ -221,7 +221,7 @@ This fails over the `anypointdns.net` domain to CloudHub 2.0, removes any additi
 . After the traffic failover completes, stop and delete the CloudHub DLB linked to the VPC.
 
 [NOTE]
-If there are failures during this stage, you can restart the DLB to point `anypointdns.net` to CloudHub while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub.
+If there are failures during this stage, restart the DLB to point `anypointdns.net` to CloudHub while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub.
 
 
 For the final steps after VPC upgrade and CloudHub application migration, see xref:ch-ch2-migration-completion.adoc[].
