@@ -17,6 +17,9 @@ If your VPC has existing Transit Gateways (TGW) or Virtual Private Networks (VPN
 
 The default CloudHub certificates are configured as part of the private space's default certificates. The DLB custom domains of the migrated VPC are created as part of the private space's custom TLS certificates.
 
+The VPC upgrade tool migrates the DLB certificates to the new private space on a best-effort basis only. If needed, you can create the DLB certificates on the new private space under the *Domains & TLS* tab. 
+
+
 [NOTE]
 During the VPC upgrade process, you use doubled entitlements for your VPC and network connections. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
 
@@ -28,17 +31,6 @@ Due to their architectural differences and distinct interfaces, CloudHub 2.0 sup
 Availability of IPs::
 +
 Your VPC must have at least 25% free space, and 100 or more available IP addresses per subnet to be eligible for the upgrade.
-
-Deprecated Availability Zones (AZs)::
-+
-VPCs using any of these deprecated AZs aren't eligible for the upgrade:
-+
-* use1-az3
-* usw1-az2
-* cac1-az3 
-* apne1-az3
-* sae1-az2
-* usw2-az4
 
 Legacy VPNs::
 +
@@ -58,6 +50,10 @@ These ciphers can't be carried over from CloudHub to CloudHub 2.0:
 
 Limitation for Restricting Outbound Egress Traffic::
 CloudHub VPC doesn't restrict outbound egress traffic, so removing the default firewall rule that allows this traffic can cause failures in your migrated private space.
+
+Non-HTTP/S TCP Traffic::
++
+You can send only HTTP and HTTPS traffic to applications in the migrated private space. Upgraded private spaces don't support TCP traffic.
 
 
 == Understand Environment Association
@@ -86,7 +82,7 @@ image::upgrade-ch2-review-conf.png[VPC upgrade review page showing available con
 . Click *Next* to continue.
 . Provide a name for the new private space.
 + 
-Optionally, you can specify xref:ps-gather-setup-info.adoc#cidr-block[reserved CIDRs] to connect to your new private space.
+Optionally, you can specify xref:cloudhub-2::ps-gather-setup-info.adoc#cidr-block[reserved CIDRs] to connect to your new private space.
 . Click *Create* to create the new private space.
 +
 The *Upgrade to CloudHub 2.0* review page shows the progress of the VPC upgrade process, which takes about 15 to 30 minutes.

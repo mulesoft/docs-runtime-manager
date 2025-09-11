@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: runtime-manager::dedicated-load-balancer-tutorial.adoc
-
+:page-notice-banner-message: Support for TLS version 1.1 and earlier in CloudHub Shared Load Balancer (SLB) ends on <b>October 17th, 2025</b>.
 
 CloudHub provides two types of load balancers:
 
@@ -16,7 +16,9 @@ Enables you to deploy and configure one or more custom load balancers within an 
 
 == Shared Load Balancers
 
-CloudHub provides a default shared load balancer that is available in all environments. The shared load balancer provides basic functionality, such as TCP load balancing. Shared load balancers don't allow you to configure custom SSL certificates or proxy rules.
+CloudHub provides a default shared load balancer that is available in all environments. The shared load balancer provides basic functionality, such as TCP load balancing. 
+
+Shared load balancers don't allow you to configure custom SSL certificates or proxy rules. The shared load balancer has its own SSL certificate. If you use the shared load balancer to access your application, the system uses this certificate. If you access your application directly, the system uses the SSL certificate configured in the application.
 
 Additionally, shared load balancers have lower rate limits that help ensure platform stability. MuleSoft regularly monitors and scales these limits as necessary. Rate limits on shared load balancers are applied according to region. If you are deploying an application to workers in multiple regions, the rate limit for each region might be different.
 
