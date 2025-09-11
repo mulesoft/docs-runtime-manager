@@ -201,11 +201,11 @@ After your CloudHub application is stopped, delete it within 30 days.
 
 [NOTE]
 ====
-After the CloudHub 1.0 application stops, traffic switches to the linked CloudHub 2.0 application. To roll back the application upgrade, restart your CloudHub 1.0 application and configure the traffic switching percentage.
-After you delete the CloudHub 1.0 application, the migration is complete. You then can't create a CloudHub 1.0 application with the same application name.
+After the CloudHub application stops, traffic switches to the linked CloudHub 2.0 application. To roll back the application upgrade, restart your CloudHub application and configure the traffic switching percentage.
+After you delete the CloudHub application, the migration is complete. You then can't create a new CloudHub application with the same application name.
 ====
 
-Complete or delete all CloudHub apps in a given upgraded VPC to release entitlements.
+Complete or delete all CloudHub applications in a given upgraded VPC to release entitlements.
 
 
 == Perform DLB Failover 
@@ -218,10 +218,10 @@ To perform a DLB failover:
 +
 This fails over the `anypointdns.net` domain to CloudHub 2.0, removes any additional DLB hop, and redirects traffic to your new CloudHub 2.0 private space URL.
 
-. After the traffic failover completes, stop and delete the CloudHub 1.0 DLB linked to the VPC.
+. After the traffic failover completes, stop and delete the CloudHub DLB linked to the VPC.
 
 [NOTE]
-If there are failures during this stage, you can restart the DLB to point `anypointdns.net` to CloudHub 1.0 while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub 1.0.
+If there are failures during this stage, you can restart the DLB to point `anypointdns.net` to CloudHub while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub.
 
 
 For the final steps after VPC upgrade and CloudHub application migration, see xref:ch-ch2-migration-completion.adoc[].
