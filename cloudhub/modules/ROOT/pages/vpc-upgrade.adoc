@@ -103,12 +103,18 @@ After you provision the private space, the *Cancel Upgrade* button no longer sho
 
 == Next Steps After VPC Upgrade
 
-After you complete the upgrade, the private space is fully provisioned and you can start deploying applications to it.
+Following the VPC upgrade, the CloudHub 2.0 private space is fully provisioned and you can deploy applications to it.
+
+You have two options for migrating your applications:
+
+Self-Service:: Create new versions in the CloudHub 2.0 private space. Then, delete the corresponding application in the CloudHub VPC.
+
+Runtime Manager Tool:: Alternatively, migrate your applications using the application migration tool. See xref:app-migration.adoc[]
+
+After you migrate all the applications in a VPC, delete the VPC and any associated DLBs to release your CloudHub entitlements. This action doesn’t affect your CloudHub 2.0 private space.
 
 [NOTE]
-When deploying new CloudHub 2.0 application, don't use CloudHub default domain as using CloudHub default domains can lead to issues such as potential traffic outages.
-
-You can start migrating your applications individually by creating new versions in the CloudHub 2.0 private space and then deleting the corresponding application in the CloudHub VPC. After migrating all your applications, delete your old VPC and any attached dedicated load balancers on CloudHub.
+When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
 
 During the migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. After the upgrade, your CloudHub dedicated VPC is locked for any changes to the infrastructure, including environment or business group associations, network connections, and internal DNS, to prevent configuration drift. Make all changes in the newly created private space instead. Any configuration changes carried over to the CloudHub 2.0 private space are applied to the CloudHub VPC during the upgrade. 
 
@@ -119,15 +125,12 @@ The firewall rules configured in your VPC are copied to the private space. After
 [WARNING]
 VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` are dropped during migration. 
 
-== Entitlements for VPCs, Private Spaces, and Network Connections (VPNs/TGW)
-
-After you complete the VPC upgrade and bring over any existing TGW and VPN network connections, your old and new infrastructure count separately against your usage. Therefore, if your organization uses all purchased quota, your usage can exceed the allowed quota until you move all your applications to CloudHub 2.0 and decommission your old VPC. 
-
-Work with your account representative to plan for additional entitlements, and decommission your CloudHub infrastructure (VPCs and associated DLBs) within six months after the upgrade to avoid interruptions when trying to create or edit VPCs, private spaces, or network connections.
-
 
 == See Also
 
+* xref:app-migration.adoc[]
+* xref:ch-ch2-migration-completion.adoc[]
+* xref:cloudhub-2::index.adoc[]
 * xref:cloudhub-2::index.adoc[]
 * xref:cloudhub-2::ch2-features.adoc[]
 * xref:cloudhub-2::ch2-comparison.adoc[]
