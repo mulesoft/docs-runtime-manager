@@ -114,7 +114,7 @@ For the final steps after VPC upgrade and CloudHub application migration, see xr
 [NOTE]
 When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
 
-During the migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. After the upgrade, your CloudHub dedicated VPC becomes locked for any changes to the infrastructure, including environment or business group associations, network connections, and internal DNS, to prevent configuration drift. Make any required changes in the newly created private space instead. The upgrade process applies any CloudHub 2.0 configuration changes to the CloudHub VPC. 
+During the migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. To prevent configuration drift, after the upgrade, your CloudHub dedicated VPC is locked for any changes to the infrastructure, including environment or business group associations, network connections, and internal DNS. Make any required changes to the newly created private space. The upgrade process applies any CloudHub 2.0 configuration changes to the CloudHub VPC. 
 
 If your CloudHub VPC doesn't have any network connections, and you create new ones in your new CloudHub 2.0 private space after the upgrade, these new connections aren’t reflected in your CloudHub VPC.
 
