@@ -222,7 +222,7 @@ This fails over the `anypointdns.net` domain to CloudHub 2.0, removes any additi
 . After the traffic failover completes, stop and delete the CloudHub DLB linked to the VPC.
 
 [NOTE]
-If there are failures during this stage, restart the DLB to point `anypointdns.net` to CloudHub while the DLB is in a 'stopped' state. After you delete the DLB, you can't roll back to CloudHub.
+If there are failures during this stage, restart the DLB to point `anypointdns.net` to CloudHub while the DLB is in a stopped state. After you delete the DLB, you can't roll back to CloudHub.
 
 
 For the final steps after VPC upgrade and CloudHub application migration, see xref:ch-ch2-migration-completion.adoc[].
