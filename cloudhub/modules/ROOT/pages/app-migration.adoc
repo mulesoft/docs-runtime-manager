@@ -183,7 +183,7 @@ These policies track the number of processed requests and can sometimes exhibit 
 * rate-limiting-sla-based
 * spike-control
 
-If there's a hard change on traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requests can sometimes double as each application maintains an independent counting mechanism.
+If there's a hard change in traffic from one application to the other, policy counters behave as if they were reset. In a balanced round-robin traffic distribution, the effective number of requests can sometimes double because each application maintains an independent counting mechanism.
 
 
 During the CloudHub to CloudHub 2.0 application migration, traffic gradually shifts, and both applications are active simultaneously. If your API Manager policies are integrated with your original CloudHub application, the system can’t share or migrate these configurations in real-time. To maintain consistent policy enforcement, configure equivalent policies on your CloudHub 2.0 application's API instance during traffic switching.
