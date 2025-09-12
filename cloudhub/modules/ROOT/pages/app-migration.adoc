@@ -125,7 +125,7 @@ For applications using a DLB and expecting HTTP traffic:
 * Add a firewall rule allowing HTTP from the local private network.
 
 [WARNING]
-The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application. It uses the HTTP Host header to find the certificate endpoint that matches the request. Then, it uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
+The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application and uses the HTTP Host header to find the certificate endpoint that matches the request. Then, the DLB uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
 
 ==== SLB with HTTPS Traffic Switching
 
