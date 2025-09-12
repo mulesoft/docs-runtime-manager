@@ -118,7 +118,7 @@ To ensure successful traffic switching, follow specific configurations depending
 For applications using a DLB and expecting HTTPS traffic:
 
 . Enable the *Last-Mile Security* setting in the *Ingress* tab of the deployment settings for the CloudHub 2.0 application.
-. Enable Upstream TLS 1.2 or higher in your DLB settings.
+. Enable *Upstream TLS 1.2* or higher in your DLB settings.
 . Make sure that vanity domains on CloudHub 2.0 match those on the CloudHub application to prevent dropped traffic.
 
 ==== DLB with HTTP Traffic Switching
