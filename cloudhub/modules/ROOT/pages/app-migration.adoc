@@ -71,6 +71,10 @@ The upgrade process doesn't carry over application properties to CloudHub 2.0. R
 
 To manage a migrated app using the Mule Maven plugin (MMP), copy the public URL configured in Runtime Manager during the migration. If the endpoints specified in the `publicUrl` field of your `pom.xml` file don't match the ones configured in the UI, the Ingress configuration is lost.
 
+==== CloudHub Application Default Domain
+
+When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
+
 
 == Next Steps After Application Upgrade
 
