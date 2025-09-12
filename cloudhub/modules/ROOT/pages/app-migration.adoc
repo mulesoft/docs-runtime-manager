@@ -113,16 +113,16 @@ To ensure successful traffic switching, follow specific configurations depending
 
 For applications using a DLB and expecting HTTPS traffic:
 
-* Enable Last-Mile Security for the CloudHub 2.0 application.
-* Enable Upstream TLS 1.2 or higher in your DLB settings.
-* Make sure that vanity domains on CloudHub 2.0 match those on the CloudHub application to prevent dropped traffic.
+. Enable Last-Mile Security for the CloudHub 2.0 application.
+. Enable Upstream TLS 1.2 or higher in your DLB settings.
+. Make sure that vanity domains on CloudHub 2.0 match those on the CloudHub application to prevent dropped traffic.
 
 ==== DLB with HTTP Traffic Switching
 
 For applications using a DLB and expecting HTTP traffic:
 
-* Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
-* Add a firewall rule allowing HTTP from the local private network.
+. Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
+. Add a firewall rule allowing HTTP from the local private network.
 
 [WARNING]
 The CloudHub DLB routes requests from clients to Mule apps deployed within the VPC. The DLB sends requests to a Mule application and uses the HTTP Host header to find the certificate endpoint that matches the request. Then, the DLB uses the URL mapping rules for that endpoint to send the request to the Mule application. If the request doesn't match any certificate configured on the DLB, the DLB uses the "default" certificate endpoint to match the request against its URL mapping rules. During traffic switching, CloudHub 2.0 doesn't contain mapping rules for this unmatched host within the default certificate.
@@ -137,8 +137,8 @@ For applications using an SLB and expecting HTTPS traffic:
 
 For applications using an SLB and expecting HTTP traffic:
 
-* Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
-* Add a firewall rule allowing HTTP from any source.
+. Enable the *Accept HTTP* option within the *Advanced* tab of your private space settings. 
+. Add a firewall rule allowing HTTP from any source.
 
 
 
