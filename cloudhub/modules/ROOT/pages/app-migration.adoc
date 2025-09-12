@@ -104,7 +104,7 @@ CloudHub receives traffic from two main sources:
 * Shared Load Balancer (SLB): This source is typically associated with the default endpoints of your CloudHub application. In applications with inbound traffic, the SLB handles traffic switching if your Ingress configuration includes the default CloudHub application endpoint in the format: `<app_name>.<region>.cloudhub.io`.
 * Dedicated Load Balancer (DLB): This source is usually associated with vanity domains configured for your CloudHub application. If the default CloudHub endpoint is missing, and you have configured a vanity domain or an `anypointdns.net` endpoint, the DLB switches the traffic.
 
-During traffic switching, CloudHub needs to know the traffic source to correctly switch traffic between CloudHub and CloudHub 2.0. If you change your application's endpoint configuration, the inferred traffic source also changes. For example, if you initially have only vanity domains (DLB) and then add a CloudHub default endpoint, CloudHub infers the traffic source as SLB.
+During traffic switching, CloudHub needs to know the traffic source to correctly switch traffic between CloudHub and CloudHub 2.0. If you change your application's endpoint configuration, the inferred traffic source also changes. For example, if you initially have only vanity domains (DLB) and then add a CloudHub default endpoint, CloudHub infers the traffic source as the SLB.
 
 To ensure successful traffic switching, follow specific configurations depending on the type of load balancer you want to use and the type of traffic you expect.
 
