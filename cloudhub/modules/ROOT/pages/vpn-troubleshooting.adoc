@@ -11,17 +11,6 @@ These are some of the possible errors you may encounter when attempting to conne
 
 If you are unable to connect to the Anypoint VPN, ensure any firewalls that are configured are allowing traffic through the IP addresses in the `localExternalIpAddress` field in the VPN tunnels.
 
-== `NO_PROPOSAL_CHOSEN` Error or `Cannot Establish Phase 1 Connection`
-
-This is likely due to a problem with your Phase 1 configuration.
-Anypoint VPN connections support only IKEv1, meaning IKEv2 doesn't work.
-
-Phase 1 Diffie-Hellman (DH) groups that are supported include 2, 14-18, 22, 23, and 24.
-
-== Cannot Establish a Phase 2 Connection
-
-It is possible that your Phase 2 DH group is not supported. Phase 2 DH groups that are supported include 2, 5, 14-18, 22, 23, and 24.
-
 == Routes are Not Present in the VPC Route Table
 
 The VPC route table is not updated until the tunnels are active.
@@ -51,4 +40,4 @@ Because the time to retrieve the tunnel status includes the inherent delay in th
 
 == See Also
 
-* https://help.mulesoft.com/s/article/Anypoint-VPN-Knowledge-Articles-Main-Page[Anypoint VPN Knowledge Articles Main Page^]
+* https://help.mulesoft.com/s/knowledge[Anypoint VPN Knowledge Articles Main Page^]

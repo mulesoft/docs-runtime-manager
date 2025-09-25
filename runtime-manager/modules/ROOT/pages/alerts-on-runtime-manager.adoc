@@ -14,7 +14,11 @@ Runtime Manager includes several standard alert types that trigger notifications
 * A server is disconnected or deleted.
 
 [NOTE]
-Runtime Manager retains 30 days of alert history.
+====
+Runtime Manager retains thirty days of alert history.
+
+Alerts retrigger when the conditions exceed the specified threshold. 
+====
 
 You can also create custom alerts for applications deployed to CloudHub and CloudHub 2.0.
 
@@ -56,7 +60,7 @@ image::alerts-create-alert.png[Create an Alert page]
 +
 Unique and meaningful name for the alert
 +
-The *Name* is limited to 256 characters.
+The *Name* is limited to 40 characters.
 * *Severity level*
 +
 Severity of the alert: *Critical*, *Warning*, or *Info*
@@ -120,7 +124,7 @@ Some more complex conditions require that you define parameters that appear as n
 
 === Conditions for Applications Deployed to CloudHub
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-cloud-active.png[width=24,height=24,link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
 
 For applications deployed to CloudHub, the following alert conditions apply:
 
@@ -133,8 +137,9 @@ image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
 
 To enable this condition, specify the percentage and duration that triggers the alert.
 
-// ALERTS SHARED
-include::partial$alert-conditions.adoc[tag=CHalertTriggerNote]
+[NOTE]
+For CloudHub multiworker applications, the alert considers the CPU threshold of the entire application.
+
 --
 
 Custom application alert::
@@ -171,8 +176,6 @@ image::alerts-conditions-apps-memory.png[Memory usage - Cloudhub]
 
 To enable this condition, specify the percentage and duration that triggers the alert.
 
-// ALERTS SHARED
-include::partial$alert-conditions.adoc[tag=CHalertTriggerNote]
 --
 
 
@@ -187,7 +190,7 @@ The following alerts for applications deployed to CloudHub require no additional
 
 === Conditions for Applications Deployed to Local Servers
 
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-hybrid-active.png[width=24,height=24,link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
 
 For applications deployed to local servers, the following alert conditions apply:
 
@@ -235,7 +238,7 @@ The following alerts for applications deployed to local servers require no addit
 
 === Conditions for Local Servers
 
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-hybrid-active.png[width=24,height=24,link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
 
 The available alert events depend on the server type.
 The following alerts are available for all target types (servers and nodes in server groups and clusters):
@@ -250,8 +253,6 @@ image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
 
 To enable this condition, specify the CPU percentage and duration that triggers the alert.
 
-[NOTE]
-For CloudHub multiworker applications, the alert considers the CPU threshold of the entire application.
 --
 
 Server Load average::
@@ -330,6 +331,9 @@ Clusters::
 
 You can use the following variables in the alert email *Subject* and *Message* fields.
 For the description of each variable, see <<var-defs>>.
+
+[NOTE]
+You can’t use the combination of characters _$&_.
 
 [%header,cols="25a,50a,20a"]
 .Variables for Alerts
@@ -412,7 +416,7 @@ For the description of each variable, see <<var-defs>>.
 |`${state}` | State of the resource that triggers the alert, such as Running or Disconnected
 |`${threshold}` |Count over the period of time that triggers the alert
 |`${transactionId}` | Transaction ID defined in the app or assigned by Mule
-|`${user}` | Anypoint Platform username
+|`${user}` | Anypoint Platform organization name
 |`${value}` | A value associated with an element
 |===
 

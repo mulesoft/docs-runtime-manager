@@ -73,12 +73,16 @@ image::logo-monitor.png[monitor]
 
 Through various tools, Runtime Manager enables you to triage problems, view logs, set up alerts, view dashboards, and more. See xref:runtime-manager::monitoring.adoc[Monitor Applications] for an overview on the different ways that Runtime Manager enables you to monitor your running applications.
 
+[NOTE]
+include::partial$heap-dump-note.adoc[]
+
+
 == Limitations
 
-When deploying to CloudHub, keep in mind the following limitations:
+When deploying to CloudHub, keep in mind the following limitation:
 
 * CloudHub blocks outbound SMTP traffic when more than 20 emails are sent in one hour.
-* CloudHub deployment from Flow Designer fails when the external identity is set up.
+
 
 == See Also
 

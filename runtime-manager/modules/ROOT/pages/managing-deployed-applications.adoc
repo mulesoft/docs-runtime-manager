@@ -28,8 +28,8 @@ On applications deployed to xref:cloudhub-2::ch2-manage-apps.adoc[CloudHub 2.0],
 * xref:cloudhub-2::ch2-manage-schedules.adoc[Manage Application Schedules]
 * xref:cloudhub-2::ch2-manage-props.adoc[Add Application Properties]
 * xref:cloudhub-2::ch2-view-logs.adoc[View Log Data for Deployed Applications]
-* xref:cloudhub-2::ch2-view-diag.adoc[View Diagnostic Data for Deployed Applications] 
-* xref:cloudhub-2::ch2-deploy-private-space.adoc#enable-distributed-tracing[Enable Distributed Tracing]
+* xref:cloudhub-2::ch2-view-diag.adoc[View Diagnostic Data for Deployed Applications]
+* xref:cloudhub-2::ch2-deploy-private-space.adoc#enable-distributed-tracing[Enable Distributed Tracing] 
 * xref:cloudhub-2::ch2-clustering.adoc#cloudhub-2-0-clustering-and-object-store-v2[Use Object Store v2] 
 
 
@@ -331,7 +331,7 @@ In the app's settings page, the *Dashboard* button displays the full detail dash
 image::managing-deployed-applications-107ad.png[]
 
 [NOTE]
-The *Dashboard* option is only available for Titanium subscriptions.
+include::reuse::partial$billing/pricing.adoc[tag=dashboard]
 
 The *Insight* button enables you to see data at a transaction level. See xref:insight.adoc[Insight].
 
@@ -362,7 +362,7 @@ To update applications deployed to Runtime Fabric, see xref:runtime-fabric::app-
 
 === Grace Period
 
-When you stop, restart, update, redeploy, or terminate an application, CloudHub tries to delete it from Mule with a timeout period of two minutes to wait for inflight messages to be delivered. After that period, CloudHub shuts down the whole instance.
+When you stop, restart, update, redeploy, or terminate an application, CloudHub tries to delete it from Mule. To make sure inflight messages are delivered, there's a two-minute timeout period. After that period, CloudHub shuts down the whole instance. This grace period applies to the application instance, not to the runtime. The runtime uses its own configuration for shutdown. By default, the runtime grace period is five seconds.
 
 == Alerts
 

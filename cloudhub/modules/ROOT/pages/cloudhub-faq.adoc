@@ -85,11 +85,12 @@ A Mule flow defines how Mule processes messages between different applications. 
 
 == What Java version are you using?
 
-* Workers that use Mule 4.0.0 and later run on JDK 8.
-* Workers that use Mule 3.8.0 and later run on JDK 8.
-* Workers that use Mule 3.7.0 and later run on JDK 8.
-* Workers that use Mule 3.5.1 and later run on JDK 7.
-* Workers that use Mule 3.5.0 and earlier run on JDK 6.
+* Workers that use Mule 4.6.x and later run on JDK 8 or JDK 17.
+* Workers that use Mule 4.5.x and later run on JDK 8 or JDK 11.
+* Workers that use Mule 4.4.x and later run on JDK 8 or JDK 11.
+* Workers that use Mule 4.3.x and later run on JDK 8 or JDK 11.
+* Workers that use Mule 4.2.x and later run on JDK 8 or JDK 11.
+* Workers that use Mule 3.9.x and later run on JDK 8.
 
 == How much storage does each worker have?
 
@@ -153,7 +154,7 @@ Our load balancers time out after 300 seconds if no data is read.
 
 == Can I get a static IP for my application?
 
-You can assign a static IP to your application by using the *Static IPs* application settings tab. For details, see xref:deploying-to-cloudhub.adoc#static-ips-tab-settings[Static IPs Tab Settings]. By default, you are allocated a number of static IPs equal to twice the number of production vCores in your subscription. To raise this limit, contact MuleSoft Support.
+You can assign a static IP to your application by using the *Static IPs* application settings tab. For details, see xref:deploying-to-cloudhub.adoc#static-ips-tab-settings[Static IPs Tab Settings]. By default, you are allocated a number of static IPs equal to twice the number of production vCores in your subscription. To increase the number of static IPs allocated to your organization, reach out directly to your Account Team. Your Account Team can start the request process with you.
 
 == How do I know what my static IP is?
 
@@ -195,6 +196,11 @@ Customers with an Enterprise account can choose any global region in which to de
 == Proactive Monitoring
 
 The CloudHub platform is monitored 24 hours a day, 7 days a week, by automated systems. Should any issue affect the health of the CloudHub infrastructure, the operations team is notified and responds immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users. You can view the current status of CloudHub services and upcoming maintenance at http://status.mulesoft.com[`status.mulesoft.com`] and http://eu1-status.mulesoft.com[`eu1-status.mulesoft.com`].
+
+== Can I request access to heap dumps for troubleshooting purposes?
+
+No.
+include::partial$heap-dump-note.adoc[]
 
 == See Also
 
