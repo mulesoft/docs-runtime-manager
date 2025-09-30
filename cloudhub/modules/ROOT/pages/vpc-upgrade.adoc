@@ -1,7 +1,7 @@
 = CloudHub VPC to CloudHub 2.0 Private Space Upgrade  
 
 //Overview
-To migrate your workloads from CloudHub to CloudHub 2.0, you need to set up your CloudHub 2.0 infrastructure and network connections. One approach is to create new CloudHub 2.0 private spaces with configurations that differ from your existing CloudHub setup. 
+To migrate your workloads from CloudHub to CloudHub 2.0, you must set up your CloudHub 2.0 infrastructure and network connections. One approach is to create new CloudHub 2.0 private spaces with configurations that differ from your existing CloudHub setup. 
 
 To retain your infrastructure configuration, use the in-product VPC upgrade tool to easily migrate your CloudHub dedicated Virtual Private Cloud (VPC) to a CloudHub 2.0 private space.
 
@@ -17,6 +17,9 @@ If your VPC has existing Transit Gateways (TGW) or Virtual Private Networks (VPN
 
 The default CloudHub certificates are configured as part of the private space's default certificates. The DLB custom domains of the migrated VPC are created as part of the private space's custom TLS certificates.
 
+The VPC upgrade tool migrates the DLB certificates to the new private space on a best-effort basis only. If needed, you can create the DLB certificates on the new private space under the *Domains & TLS* tab. 
+
+
 [NOTE]
 During the VPC upgrade process, you use doubled entitlements for your VPC and network connections. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
 
@@ -28,17 +31,6 @@ Due to their architectural differences and distinct interfaces, CloudHub 2.0 sup
 Availability of IPs::
 +
 Your VPC must have at least 25% free space, and 100 or more available IP addresses per subnet to be eligible for the upgrade.
-
-Deprecated Availability Zones (AZs)::
-+
-VPCs using any of these deprecated AZs aren't eligible for the upgrade:
-+
-* use1-az3
-* usw1-az2
-* cac1-az3 
-* apne1-az3
-* sae1-az2
-* usw2-az4
 
 Legacy VPNs::
 +
@@ -59,6 +51,23 @@ These ciphers can't be carried over from CloudHub to CloudHub 2.0:
 Limitation for Restricting Outbound Egress Traffic::
 CloudHub VPC doesn't restrict outbound egress traffic, so removing the default firewall rule that allows this traffic can cause failures in your migrated private space.
 
+Non-HTTP/S TCP Traffic::
++
+You can send only HTTP and HTTPS traffic to applications in the migrated private space. Upgraded private spaces don't support TCP traffic.
+
+
+== Understand Environment Association
+
+During the upgrade process from CloudHub VPC to CloudHub 2.0 Private Space, the environments associated with your VPC stay in sync with the environments associated with the upgraded CloudHub 2.0 Private Space to avoid configuration drift.
+
+Environment association works differently in xref:cloudhub-2::ps-config-env.adoc[CloudHub 2.0] and xref:vpc-tutorial.adoc#update-an-existing-anypoint-vpc[CloudHub 1.0]. In CloudHub 2.0, an environment can be associated with multiple private spaces, whereas, in CloudHub, one environment can only be associated with one VPC in a given region.
+
+Additionally, doing bulk environment association for an upgraded private space can result in all environments in the same region to get associated with the underlying VPC. If those environments were previously associated with other CloudHub 1.0 VPCs, they get disassociated.
+
+[WARNING]
+The upgrade tooling doesn't support the upgrade of a default VPC. To proceed with the upgrade, disable the default VPC configuration.
+
+
 == Upgrade your VPC via Anypoint Platform
 
 . From *Anypoint Platform*, select *Runtime Manager* > *Upgrade*.
@@ -66,14 +75,14 @@ CloudHub VPC doesn't restrict outbound egress traffic, so removing the default f
 Alternatively, select *Runtime Manager* > *What's New* to read more about the VPC upgrade, and click *Continue to Upgrade* to start upgrading your VPCs.
 . Click *Upgrade Now* in the *Upgrade Status* column for the VPC to upgrade.
 +
-The *Upgrade to CloudHub 2.0* review page displays the configurations currently available in your VPC, as well as the configurations that are created during the upgrade.
+The *Upgrade to CloudHub 2.0* review page displays the configurations currently available in your VPC, as well as the configurations created during the upgrade.
 +
 image::upgrade-ch2-review-conf.png[VPC upgrade review page showing available configurations.]
 +
 . Click *Next* to continue.
 . Provide a name for the new private space.
 + 
-Optionally, you can specify xref:ps-gather-setup-info.adoc#cidr-block[reserved CIDRs] to connect to your new private space.
+Optionally, you can specify xref:cloudhub-2::ps-gather-setup-info.adoc#cidr-block[reserved CIDRs] to connect to your new private space.
 . Click *Create* to create the new private space.
 +
 The *Upgrade to CloudHub 2.0* review page shows the progress of the VPC upgrade process, which takes about 15 to 30 minutes.
@@ -83,41 +92,43 @@ If you create a VPN to provision your CloudHub VPC, wait until the newly created
 
 As soon as the upgrade process starts, the upgraded VPC is locked for any further updates. 
 
-You can cancel the upgrade process to revert to your VPC at any time by clicking *Cancel Upgrade*. In that case, the newly created private space is deleted, and your VPC is unlocked.
+You can cancel the upgrade process to revert to your VPC at any time by clicking *Cancel Upgrade*. In that case, the system deletes the newly created private space, and your VPC is unlocked.
 
 After you provision the private space, the *Cancel Upgrade* button no longer shows. However, you can still roll back the upgrade by deleting the private space.
 
 
 == Next Steps After VPC Upgrade
 
-After you complete the upgrade, the private space is fully provisioned and you can start deploying applications to it.
+Following the VPC upgrade, the CloudHub 2.0 private space is fully provisioned, and you can deploy applications to it.
+
+You have two options for migrating your applications:
+
+Self-Service:: Create new versions in the CloudHub 2.0 private space. Then, delete the corresponding application in the CloudHub VPC.
+
+Runtime Manager Tool:: Migrate your applications using the application migration tool. See xref:app-migration.adoc[].
+
+After you migrate all the applications in a VPC, delete the VPC and any associated DLBs to release your CloudHub entitlements. This action doesn’t affect your CloudHub 2.0 private space.
+
+For the final steps after VPC upgrade and CloudHub application migration, see xref:ch-ch2-migration-completion.adoc[].
 
 [NOTE]
-When deploying new CloudHub 2.0 application, don't use CloudHub default domain as using CloudHub default domains can lead to issues such as potential traffic outages.
+When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
 
-You can start migrating your applications individually by creating new versions in the CloudHub 2.0 private space and then deleting the corresponding application in the CloudHub VPC. After migrating all your applications, delete your old VPC and any attached dedicated load balancers on CloudHub.
+During the migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. To prevent configuration drift, after the upgrade, your CloudHub dedicated VPC is locked for any changes to the infrastructure, including environment or business group associations, network connections, and internal DNS. Make any required changes to the newly created private space. The upgrade process applies any CloudHub 2.0 configuration changes to the CloudHub VPC. 
 
-During the migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. After the upgrade, your CloudHub dedicated VPC is locked for any changes to the infrastructure, including environment or business group associations, network connections, and internal DNS, to prevent configuration drift. Make all changes in the newly created private space instead. Any configuration changes carried over to the CloudHub 2.0 private space are applied to the CloudHub VPC during the upgrade. 
-
-If your CloudHub VPC doesn't have any network connections and you create new ones in your new CloudHub 2.0 private space after the upgrade, these new connections aren’t reflected back in your CloudHub VPC.
+If your CloudHub VPC doesn't have any network connections, and you create new ones in your new CloudHub 2.0 private space after the upgrade, these new connections aren’t reflected in your CloudHub VPC.
 
 The firewall rules configured in your VPC are copied to the private space. After that, you can make additional changes to the firewall rules in the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout the migration.
 
-[NOTE]
-You can't download ingress logs from an upgraded private space.
-
 [WARNING]
-VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` are dropped during migration. 
+VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` drop during the migration. 
 
-== Entitlements for VPCs, Private Spaces, and Network Connections (VPNs/TGW)
-
-After you complete the VPC upgrade and bring over any existing TGW and VPN network connections, your old and new infrastructure count separately against your usage. Therefore, if your organization uses all purchased quota, your usage can exceed the allowed quota until you move all your applications to CloudHub 2.0 and decommission your old VPC. 
-
-Work with your account representative to plan for additional entitlements, and decommission your CloudHub infrastructure (VPCs and associated DLBs) within six months after the upgrade to avoid interruptions when trying to create or edit VPCs, private spaces, or network connections.
 
 
 == See Also
 
+* xref:app-migration.adoc[]
+* xref:ch-ch2-migration-completion.adoc[]
 * xref:cloudhub-2::index.adoc[]
 * xref:cloudhub-2::ch2-features.adoc[]
 * xref:cloudhub-2::ch2-comparison.adoc[]

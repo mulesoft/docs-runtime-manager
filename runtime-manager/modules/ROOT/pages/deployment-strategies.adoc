@@ -56,19 +56,19 @@ Icons appear at the begining of each page in the Runtime Manager documentation, 
 |===
 |Deployment Option|Icon 
 |CloudHub 2.0
-|image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
+|image:logo-cloud2-active.png[width=24,height=24,xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
 
 |CloudHub
-|image:logo-cloud-active.png[xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
+|image:logo-cloud-active.png[width=24,height=24,xref="deployment-strategies.adoc#cloudhub-deployments", title="CloudHub"]
 
 |Hybrid
-|image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+|image:logo-hybrid-active.png[width=24,height=24,xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
 
 |Anypoint Platform Private Cloud Edition
-|image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+|image:logo-server-active.png[width=24,height=24,xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 
 |Anypoint Runtime Fabric
-|image:logo-rtf-active.png[xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
+|image:logo-rtf-active.png[width=24,height=24,xref="deployment-strategies.adoc#anypoint-runtime-fabric-deployments", title="Runtime Fabric"]
 |===
 
 == Runtime Manager Features
@@ -165,15 +165,17 @@ include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
   +
      - Once you enable tracing, and redeploy the application, the Runtime Manager backend starts instrumenting traces for your application.
    | - xref:cloudhub-2::ch2-monitor-apps.adoc[Monitoring Apps Deployed to CloudHub 2.0] +
-     - xref:cloudhub-2::ch2-deploy-private-space.adoc#enable-distributed-tracing[Enable Trace Data Collection]
+     - xref:cloudhub-2::ch2-deploy-private-space.adoc#enable-trace-data-collection[Enable Trace Data Collection]
 |CloudHub| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Add a CloudHub connector to your application's flows and set up custom alerts and notifications triggered by any event.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Hybrid| Runtime Manager dashboards provide performance metrics for all deployed applications. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run.  | xref:monitoring.adoc[Monitor Applications and Servers]
 |Private Cloud Edition| Anypoint Platform PCE does not support Runtime Manager dashboards. | Alerts based on alert conditions on deployed applications. Standard notifications to inform you when events occur in your applications. Alerts triggered by events related to the servers on which they run. | xref:monitoring.adoc[Monitor Applications and Servers]
 |Runtime Fabric
- | The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`.
+ | - The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`. +
+    - You can enable trace data collection for your Runtime Fabric applications running on Mule version 4.6 or later. 
   | When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. |
-   xref:runtime-fabric::index.adoc#monitoring-application-deployments[Monitoring Application Deployments] +
-   xref:runtime-fabric::manage-monitor-applications.adoc#logs[Logs]
+   - xref:runtime-fabric::index.adoc#monitoring-application-deployments[Monitoring Application Deployments] +
+   - xref:runtime-fabric::manage-monitor-applications.adoc#logs[Logs] +
+   - xref:runtime-fabric::use-anypoint-monitoring.adoc#enable-trace-data[Enable Trace Data Collection]
 |===
 
 === Object Store
@@ -239,7 +241,7 @@ include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
 
 === Horizontal Autoscaling 
 
-image:logo-cloud2-active.png[xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
+image:logo-cloud2-active.png[width=24,height=24,xref="deployment-strategies.adoc#cloudhub-2-deployments", title="CloudHub 2.0"]
 
 Horizontal autoscaling makes Mule apps deployed to CloudHub 2.0 responsive to CPU usage by automatically scaling up or down replica capacity as needed. In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource to automatically match demand.
 
@@ -251,7 +253,7 @@ This feature applies to select customers who opted into the new pricing and pack
 
 == Security for Hybrid Deployments
 
-image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-hybrid-active.png[width=24,height=24,xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
 
 By default, only metadata pushed by the Runtime Manager agent in each Mule runtime engine flows to the cloud. No application data is exposed.
 
@@ -265,8 +267,8 @@ You can also tokenize sensitive data. See xref:anypoint-security::tokenization-f
 
 == Shared Resource Support for On-Premises App Deployments
 
-image:logo-hybrid-active.png[xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
-image:logo-server-active.png[xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+image:logo-hybrid-active.png[width=24,height=24,xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[width=24,height=24,xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
 
 
 When deploying on-premises, you can create `Domain` mule projects with no flows and a set of global configuration elements to share among other applications deployed to the same server.
