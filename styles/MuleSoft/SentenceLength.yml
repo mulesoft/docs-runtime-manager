@@ -1,0 +1,13 @@
+# Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Flags occurrences in which there are more than 40 words in a sentence.
+#
+extends: occurrence
+message: "Try to limit sentences to 32 words."
+scope: sentence
+level: suggestion
+max: 32
+token: \b(\w+)\b

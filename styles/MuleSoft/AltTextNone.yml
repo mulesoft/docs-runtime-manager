@@ -1,0 +1,14 @@
+# Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Flags missing alt text
+#
+extends: existence
+message: "'%s' requires alt text"
+link: https://confluence.internal.salesforce.com/display/MTDT/Writing+for+Accessibility
+ignorecase: true
+level: error
+raw:
+  - image::[\w-_\.]+(\[\s*\]|\s)

@@ -1,0 +1,6 @@
+extends: existence
+message: "Do not use ordinal indicators (st, nd, rd, th) in dates"
+level: error
+scope: text
+raw:
+  - '\b\d+(st|nd|rd|th)\b'

@@ -1,0 +1,26 @@
+# Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+#
+# Flags inaccessible words
+#
+extends: existence
+message: "'%s' is not accessible."
+link: https://confluence.internal.salesforce.com/display/MTDT/Writing+for+Accessibility
+level: warning
+ignorecase: true
+tokens:
+  - round
+  - square
+  - left
+  - above
+  - below
+  - bottom
+  - upper
+  - lower
+  - beside
+  - 'corner(?![ -]case?)'
+  - 'right(?![ -]click)'
+  - 'top(?![ -]level)'
+  

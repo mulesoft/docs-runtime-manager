@@ -1,0 +1,32 @@
+# # Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Proposes substitutions for commonly misspelled product names
+#
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: error
+ignorecase: false
+action:
+  name: replace
+swap:
+  'ACM': API Community Manager
+  'APM': Partner Manager
+  'ARM': Runtime Manager
+  'AnyPoint': Anypoint
+  'Anypoint platform': Anypoint Platform
+  'APIK[Ii][Tt]': APIkit
+  '[Aa]pi[Kk]it': APIkit
+  'Cloud ?[Hh]ub': CloudHub
+  'Data ?[Gg]raph': DataGraph
+  'Dataweave': DataWeave
+  'DW': DataWeave
+  'Gov ?Cloud': MuleSoft Government Cloud
+  'Mulesoft': MuleSoft
+  'Munit': MUnit
+  'Object Store V2': Object Store v2
+  'RPA Manger': RPA Manager
+  'RTF': Runtime Fabric
+  'RTM': Runtime Manager

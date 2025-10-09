@@ -1,0 +1,93 @@
+= Dedicated Load Balancer Reserved Headers
+
+HTTP requests and HTTP responses use header fields to send information about the HTTP messages.
+
+A load balancer adds HTTP headers to provide backend servers with crucial information about the original client connection. This information supports routing and security. 
+
+The CloudHub Dedicated Load Balancer (DLB) reserves and injects specific HTTP headers into incoming requests. You can't overwrite these headers.
+
+[%header%autowidth.spread]
+|===
+|Header Name |Description |Value
+
+|`Strict-Transport-Security`
+|Enables HTTP Strict Transport Security (HSTS) to force HTTPS connections and prevent protocol downgrade attacks.
+|`max-age=31536000; includeSubdomains;`
+
+|`X-Content-Type-Options`
+|Prevents MIME type sniffing attacks by instructing browsers to not override the declared content type.
+|`nosniff`
+
+|`X-Frame-Options`
+|Prevents browsers from loading your web page in iframes to protect against click-jacking.
+|`SAMEORIGIN`
+
+|`X-XSS-Protection`
+|Enables basic cross-site scripting (XSS) protection in browsers that support it.
+|`1; mode=block`
+
+|`x-ch1-path`
+|Preserves the original request path before the system applies the DLB mapping rules. It's injected in the DLB request to the upstream server.
+|Original request path. For example, `/v1/orders`.
+|===
+
+== Header Injection Rules
+
+Security Headers::
++
+* The DLB enforces the security headers, and you can't override them.
+* The DLB injects the `X-Content-Type-Options`, `X-Frame-Options`, and `X-XSS-Protection` headers in the DLB response to callers for successful responses (`2xx` and `3xx` status codes).
+* The DLB always injects the `Strict-Transport-Security` regardless of the response code.
+
+x-ch1-path Header::
++
+* The DLB injects the x-ch1-path header in the request sent to the upstream server, not in the response.
+
+== Header Details
+
+Strict-Transport-Security::
++
+* The `Strict-Transport-Security` header forces browsers to use HTTPS for all future requests to the domain.
+* The `max-age` value represents the duration in seconds that the browser remembers and enforces the HSTS policy after receiving the header.
+* The `includeSubdomains` directive extends the HTTPS enforcement policy beyond just the main domain to cover all subdomains.
+* The `always` parameter includes the `Strict-Transport-Security` in every HTTP response, regardless of the response status code.
+
+
+X-Content-Type-Options::
++
+* The `X-Content-Type-Options` header prevents browsers from MIME-sniffing a response away from the declared content-type.
+* The `nosniff` directive instructs browsers to trust the content-type header declared by the server and never attempt to guess or "sniff" the actual content type by examining the content itself.
+
+X-Frame-Options::
++
+* The `X-Frame-Options` header controls whether a browser can to load your web page inside a `<frame>` or `<iframe>` element on another website.
+* The `SAMEORIGIN` value allows your page to load in an iframe only if both pages share the same origin.
+
+X-XSS-Protection::
++
+* The `X-XSS-Protection` header enables and configures the browser's built-in Cross-Site Scripting (XSS) filter.
+*< The `1; mode=block` value enables the XSS filtering and blocks the page if it detects an XSS attack.
+
+x-ch1-path::
++
+* The `x-ch1-path` header preserves the original request path before the system applies the DLB mapping rules.
+* The value is the original request path as received by the DLB. For example, `/v1/orders`.
+* This header allows Mule applications to access the original request path for logging, analytics, or business logic.
+
+== Additional DLB Headers
+
+The DLB also forwards several headers to upstream applications for authentication and routing purposes:
+
+* `X-SSL-Client-Verify`: Client certificate verification status
+* `X-SSL-Client-DN`: Client certificate distinguished name
+* `X-SSL-Issuer`: Client certificate issuer
+* `X-SSL-Client-Serial`: Client certificate serial number
+* `X-Real-IP`: Original client IP address
+* `X-Forwarded-For`: Forwarded client IP addresses
+* `X-Forwarded-Proto-Real`: Original protocol (HTTP/HTTPS)
+
+
+== See Also
+
+* xref:lb-mapping-rules[]
+* xref:lb-cert-validation.adoc[]

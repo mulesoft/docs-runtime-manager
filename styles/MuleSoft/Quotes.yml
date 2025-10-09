@@ -1,0 +1,14 @@
+# # Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Flags sentences in which commas and periods are outside rather than inside of quotes
+#
+extends: existence
+message: 'Punctuation should be inside the quotes.'
+link: https://docs.microsoft.com/en-us/style-guide/punctuation/quotation-marks
+level: error
+nonword: true
+tokens:
+  - '["“][^"”“]+["”][.,]'

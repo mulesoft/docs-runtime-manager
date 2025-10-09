@@ -1,0 +1,351 @@
+extends: substitution
+message: '%s'
+level: warning
+ignorecase: true
+swap:
+  above: Don't use above in UI text to describe the location of an element on an application
+    page, or in documentation to describe the location of an item in a section. If
+    necessary, use preceding or previous.
+  below: 'Don''t use "below" in:
+
+
+    -UI text to describe the location of an element on an application page
+
+
+    -Documentation to describe the location of an item in a section. If necessary,
+    use "later" or "next."'
+  allow: Don't use "permissive" language, such as "allow" or "let," when what you
+    mean is to make possible. Use permissive language only when documenting how to
+    permit access to specific actions or resources.
+  run time: 'Outside of Apex content, "run time" (noun) is the time an application
+    is running. Often preceded by "at."
+
+
+    In Apex content, "runtime" (also a noun) is an environment.
+
+
+    MuleSoft: "run time" (noun) is OK.'
+  click: 'Generally, use "select" when describing a user picking an option in the
+    UI.
+
+
+    All references to mouse clicks assume that the user has configured the left mouse
+    button as the primary mouse button and the right one as the
+
+    secondary.
+
+
+    Click means click the left mouse button.
+
+
+    Right-click means click the right mouse button.
+
+
+    Double-click means click the left mouse button twice.
+
+
+    Don’t use click on. Do use: Click Merge to finish.
+
+
+    Don’t use click, use tap when describing gestures users perform in a mobile app
+    with a touchscreen interface.
+
+
+    Don''t use click into. Do use: Click in the Search field.
+
+
+    Don''t use Click Save. Toward universal help content, use: Save your changes.
+    Save your work.'
+  choose: 'Generally, use "select" when describing a user picking an option in the
+    UI.
+
+
+    Use "choose" when the action is focused on user preference or outcome, such as,
+    "In Settings, choose a background color or photo you want to use."'
+  component: "OK to use in developer content. \n\nIf your content is about building\
+    \ user interfaces, see \"Lightning Component Framework Style Guide\" in Confluence.\
+    \ The usage rules here are complicated."
+  already: If removing "already" doesn't change the meaning of the sentence, delete
+    it.
+  usage-based pricing: After first reference, say "UBP."
+  rail: Unless you're documenting how to build a UI, use "sidebar" (the SLDS term)
+    instead.
+  agent: 'An AI agent. For human assistants, use "service rep," "sales rep," or "rep."
+
+
+    Capitalization is tricky. Generally lowercase, EXCEPT when...
+
+    • used for one of our character agents (Agent Astro)
+
+    • used for one of our products (Agent Builder)
+
+    • writing about "Agentforce" (always capped)
+
+    ...or, if you''re using title case.
+
+
+    MuleSoft: A plug-in to the Mule runtime engine. Lowercase.'
+  specification: 'MuleSoft: Both spec and specification are acceptable.'
+  Security Assessment Plan: Every first letter capitalized. After first mention, use
+    SAP.
+  org preference: '"An Internal Doc term for an organization-wide setting the customer
+    can enable or disable, such as Opportunity Update Reminders, Self-Service portal,
+    or schedules. Usually, an administrator enables these features through Setup.
+
+
+    In external content, use ""setting"" instead."'
+  org permission: An Internal Doc term for anything that salesforce.com enables in
+    Black Tab manually, or via provisioning, to give customers access to certain features.
+    Also known internally as an org perm or BT perm.
+  air gap: 'Use to describe a method of isolating a computer system from the internet. '
+  autobuild: A defined set of tests that run at defined cadence, on a branch of code
+    and against a specific configuration of the CRM Core codebase.
+  bootstrap: bootstrap is the Honuapps system configuration tool, which replaces Ansible
+    Bootstrap. The Bootstrap Honuapp installs software and configures system level
+    settings for CRM Core App development.
+  corecli: Core Command Line Interface -- successor to BLT for Core App development.
+    It provides better transparency and sheds layers of configuration. CoreCLI doesn’t
+    rely on config.blt or sync.blt. It uses only what’s available in the Core directory
+    structure.
+  gack: An Internal Doc term for the message sent when a production server error occurs.
+    Do not use in customer-facing text.
+  grounding: The process through which domain-specific knowledge and customer information
+    is added to the prompt to give the model the context it needs to respond more
+    accurately.
+  high side: When used as a noun, don't use the hyphen. Alternatively, when it is
+    used as an adjective, use a hyphen.
+  hallucination: A type of output where the model generates semantically correct text
+    that is factually incorrect or makes little to no sense, given the context.
+  miniftest: A miniftest file is a file, configured by a development team, that defines
+    the team's selected fTests to execute in CRST.
+  low side: When used as a noun, don't use the hyphen. Alternatively, when it is used
+    as an adjective, use a hyphen.
+  pod: 'A set of the software and hardware that is home to a set of organizations
+    in Salesforce. Pods are also called instances, especially when talking about just
+    the software. Pods (instances) have names like na1 (production) or cs0 (sandboxtest
+    database). Pods can be added or removed dynamically, and are a key component of
+    multi-tenant architecture. '
+  Analytics: "In documentation, use Analytics. Don't use Wave, Wave Analytics, or\
+    \ Einstein Analytics. \n\nMarketing Cloud uses Analytics and analytics. \n\nMuleSoft:\
+    \ Anypoint Analytics (always include \"Anypoint\")"
+  datasource: 'Use data source in common usage. Use datasource only when it''s the
+    specific name of something.
+
+
+    MuleSoft: Two words. Use "datasource" (or DataSource) only when quoting syntax.'
+  must: ' "Must" is sometimes needed in API doc, developer doc, and RN Where sections.
+    Otherwise, avoid it.'
+  git: 'Capitalize "Git" if referring to the version-control system. Lowercase "git"
+    if it''s part of a command. '
+  queueable: Initial cap only for "Queueable interface in Apex." Otherwise, use lowercase.
+  Integration Procedure: Capitalize only when referring to the Omnistudio feature.
+  Salesforce administrator: 'Generally say "Salesforce admin" on first mention and
+    "admin" after that.
+
+
+    Exception: The edge case related to "Black Tab."'
+  precheckin: 'INTERNAL DOC ONLY. No hyphens.
+
+
+    (It''s without hyphens because it''s that way in the UI that our engineers use.)'
+  following: "In documentation, don't describe the location of an element using the\
+    \ following or as follows.\r\n\r\nRefer to the element directly: this table, the\
+    \ diagram, these field types.\r\n\r\nIn UI text, don't use following to describe\
+    \ the location of an element on an application page.\r\n\r\nTo indicate upcoming\
+    \ information in documentation, instead of below, use later."
+  navigate: 'Don''t use "navigate" when what you mean is "go."
+
+
+    In developer content about building user interfaces, it''s sometimes OK to use
+    "navigate" to describe what the future user of the interface will do. '
+  launch: ''
+  Connected App: 'Connected App (the feature) is used to create connected apps. Capitalize
+    appropriately.
+
+
+    If you mean a connected app in the generic sense, use lower case.
+
+    '
+  retrieve: Use only in an appropriate technical context, such as content for developers.
+  invalid: Use only in an appropriate technical context, such as content for developers.
+  abort: Use only in an appropriate technical context, such as content for developers.
+  display: "As a transitive verb (with an object), consider show instead of display,\
+    \ as in Salesforce shows a dialog box. It's simpler.\r\n\r\nDon't use display\
+    \ as an intransitive verb (without an object), as in A dialog box displays. Use\
+    \ appears or rewrite to Salesforce shows a dialog box."
+  submit: Use only in an appropriate technical context, such as content for developers.
+    In a developer context, "submit" also means "send."
+  Superbadge: Capitalize the names of specific superbadges ("Security Specialist Superbadge").
+    Otherwise, lowercase it ("create a new superbadge").
+  superbadges: Capitalize the names of specific superbadges ("Security Specialist
+    Superbadge"). Otherwise, lowercase it ("create a new superbadge").
+  toggle: 'In admin or end-user doc, when documenting an action via a toggle, use
+    "switch," "turn on," and "turn off" to describe actions. Don''t use "toggle" as
+    a verb. And avoid "click," since it has other meanings. For UI text that shows
+    the toggle''s state, use "on/off" for features and "enabled/disabled" for records.
+
+
+    "Toggle "is acceptable in the context of building user interfaces, as we have
+    a component and a widget named Toggle.'
+  disabled: 'Use "disabled" to refer to a feature that isn''t turned on or enabled,
+    even if it''s never been on or enabled.
+
+
+    Note: It''s acceptable to use "disabled" in a technical context. There''s no implied
+    negativity in a UI component being disabled because it describes a state and isn''t
+    a metaphor.'
+  segmentation: Segmentation means something specific in the AI world. It means building
+    a separate model for each segment. In most of our products, what we're doing is
+    segments or segmenting, but not true segmentation. As some of our products move
+    towards true segmentation, it's important to use these terms correctly.
+  Pardot: 'Pardot is now "[Marketing Cloud]* Account Engagement," but Pardot still
+    appears in some dev doc.
+
+
+    On first mention, say "Marketing Cloud Account Engagement." Thereafter, say "Account
+    Engagement."'
+  runtime: 'In Apex content, "runtime" (noun) is an environment.
+
+
+    Outside of Apex, "run time" (also a noun) is the time an application is running.
+    Often preceded by "at."'
+  patch release: 'Don''t use the internal release number (250) or patch number (250.12)
+    externally.  It''s OK to refer to a patch release number in internal content.
+
+    If the product change is released in a patch or on a unique schedule, be as specific
+    as possible and include the date of the change.'
+  Lightning Web Components: 'Capitalization is tricky. See the "Lightning Component
+    Framework Style Guide" in Confluence: https://confluence.internal.salesforce.com/x/TQWiCQ '
+  entity: 'See "entity" in the style guide.
+
+
+    At Salesforce, the term entity has multiple meanings, and there are times when
+    you should use other terms, depending on the context.'
+  Starter: Capitalize when referring to the Salesforce edition.
+  since: Since has multiple meanings. Don't use it to mean because.
+  disable: For other UI text and for documentation, disable is acceptable. For admin
+    or end-user doc, you can also use turn off.
+  enable: "In UI text for permissions, preferences, and checkboxes, avoid enable—it's\
+    \ repetitive. All perms and prefs enable and disable something.\r\n\r\nInstead,\
+    \ describe the effect of enabling the setting. In documentation, when referring\
+    \ to the action of a toggle, use whatever terms are in the UI.\r\n\r\nFor other\
+    \ UI text and for documentation, enable is acceptable. For admin or end-user doc,\
+    \ you can also use turn on."
+  UI elements: "In documentation:\r\nAvoid referring to UI elements. Try to describe\
+    \ a procedure rather than name it.\r\n\r\nIf you can't avoid referring to UI elements,\
+    \ use the name of the UI element exactly as it appears on screen, excluding end\
+    \ punctuation.\r\nPrefer setup flow to wizard.\r\n\r\nDon’t specify the following\
+    \ UI element types unless you need to for clarity or navigation: button, checkbox,\
+    \ drop-down button, field, icon, menu, link, radio button, or window."
+  uneditable: 'Don''t refer to a button as "grayed out", "dimmed", or "uneditable";
+    instead, describe an option as unavailable.
+
+
+    OK in dev doc when the reader is making the field uneditable.'
+  the Tooling API: Don't use "the" in front of Tooling API when referring to the product
+    name. You can use "the" when referring to a feature ("the Tooling API ___").
+  the Metadata API: Don't use "the" in front of Metadata API when referring to the
+    product name. You can use "the" when referring to a feature ("the Metadata API
+    ___").
+  the Data Cloud: Don't use "the" in front of Data Cloud when referring to the product
+    name. You can use "the" when it's modifying a feature (the Data Cloud dashboard).
+  the Financial Services Cloud: Don't use "the" in front of Financial Services Cloud
+    when referring to the product name. You can use "the" when referring to a feature
+    ("the Financial Services Cloud ___").
+  the Health Cloud: Don't use "the" in front of Health Cloud when referring to the
+    product name. You can use "the" when referring to a feature ("the Health Cloud
+    ___").
+  the Automotive Cloud: Don't use "the" in front of Automotive Cloud when referring
+    to the product name. You can use "the" when referring to a feature ("the Automotive
+    Cloud ___").
+  scoring set: In general, use "prediction set" for the set of data that Einstein
+    scores or provides prediction results for. You can use the term "scoring set"
+    in conjunction with this term, for a data science audience.
+  principle: 'A principle is a rule, a law, a guideline, or a fact.
+
+    A principal is the person who''s in charge of or leading something.'
+  principal: 'A principal is the person who''s in charge of or leading something.
+    A principle is a rule, a law, a guideline, or a fact.  '
+  outage: Don't use if it suggests the problem is the fault of Salesforce.
+  organization-wide defaults: 'An exception to the general rule that "org-wide" is
+    preferred. It''s OK to use "organization-wide" if needed to match the UI.
+
+
+    These are settings that allow you to specify the baseline level of data access
+    that a user has in your organization. For example, you can set organization-wide
+    defaults so that any user can see any record of a particular object that is enabled
+    via their object permissions, but they need extra permissions to edit one.'
+  organization-wide address: 'An exception to the general rule that "org-wide" is
+    preferred. It''s OK to use "organization-wide" if needed to match the UI.
+
+    '
+  modal: 'Don''t use "modal" to describe an overlay window in the UI. Just call it
+    a window.
+
+
+    If your audience is developers, use "modal" to align with SLDS terminology.'
+  menu: Don’t specify UI element types unless you need to for clarity or navigation.
+  when: Use "when" to refer to the time of a future situation or condition that is
+    certain. Don't use "when" to mean "after," "once," or "if."
+  standalone: 'One word only when preceding the noun it modifies
+
+
+    Two words when used as a verbal phrase.'
+  link: Don’t specify UI elements unless needed for clarity or navigation.
+  insufficient privileges: Use only in the context of managing users and data access.
+    It's jargony everywhere else.
+  in your org: 'Avoid for end-user audiences because it''s implied that they''re in
+    their Salesforce environment.
+
+
+    OK for developer audiences because they use multiple orgs.'
+  icon: 'Don’t specify UI elements unless needed for clarity or navigation.
+
+    '
+  foo: OK in code samples, but better to use more realistic sample data.
+  excludelist: Acceptable, but "blocklist" is the preferred term.
+  training set: In general, use "example set" for the set of data that Einstein learns
+    from. You can use the term "training set" in conjunction with this term, for a
+    data science audience
+  dropdown button: Don’t specify this UI element type unless you need to for clarity
+    or navigation
+  Deactivated: Generally replace with "disabled" except in Tableau doc or when describing
+    how to turn off Salesforce user accounts.
+  Deactivate: Generally replace with "disable" except in Tableau doc or when describing
+    turning off Salesforce user accounts.
+  the AppExchange: When AppExchange is the noun, don't put "the" in front of it. You
+    can use "the" when referring to a feature or a component of AppExchange.
+  once: Don't use once to mean when or after.
+  between: Use among instead of between when referring to more than two things.
+  among: Use instead of between when referring to more than two things.
+  associate with: "Don't use associate to or associate with when referring to the\
+    \ relationship between objects. Use relate to instead.\r\n\r\nBut associate with\
+    \ is OK in dev doc when describing different kinds of metadata: the kind of associated\
+    \ type that they’re interested in and\r\nthe parent type that they’re interested\
+    \ in.\r\n\r\nAnd If your feature or UI labels include the words associate or association,\
+    \ you can use this terminology."
+  Breach: Don't use  if they suggest the fault of Salesforce
+  button: Don’t specify the following UI element types unless you need to for clarity
+    or navigation
+  data loss: Don't use  if they suggest the fault of Salesforce
+  foobar: Don't use in code examples
+  mobile: To refer to the phone version of the Salesforce app, use Salesforce app
+    or Salesforce mobile app. Mobile (by itself) is valid only when we mean all our
+    mobile apps, including Salesforce Classic Mobile, which is rarely the case.
+  performs: ''
+  please: "Use please sparingly. Avoid it except when prompting the user to do something\
+    \ inconvenient or when Salesforce is to blame for a situation.\r\n\r\nException:\
+    \ \"Your attention, please\" is OK to introduce an error popover, as it's more\
+    \ an assertive than a beseeching tone."
+  Sorry: "Use sorry only in error messages that result in serious problems for the\
+    \ user such as for data loss, when the user cannot continue to use Salesforce,\
+    \ or when the user must get help from Customer Support to continue. \r\n\r\nAvoid\
+    \ apologizing if the issue occurred during normal Salesforce funct ions. Before\
+    \ you use sorry in user interface text, ask yourself if we could change the design\
+    \ to avoid the situation altogether. It's better to design a solution that doesn't\
+    \ require an apology."
+  thumbs up: Use only to refer to the icon that customers use to up-vote content.
+    Don't use as a cliché.
+  associate to: "If your feature or UI labels include the words associate or association,\
+    \ you can use this terminology.\r\n\r\nDon't use associate to or associate with\
+    \ when referring to the relationship between objects. Use relate to instead."

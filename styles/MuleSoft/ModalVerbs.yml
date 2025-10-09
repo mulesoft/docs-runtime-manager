@@ -1,0 +1,17 @@
+# # Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Flags these modal verbs: may, could, ought to, shall, should 
+#
+extends: existence
+message: "Don't use the modal verb '%s'."
+level: warning
+link: https://confluence.internal.salesforce.com/display/MTDT/MuleSoft+CX+Writing+Style+Reference#MuleSoftCXWritingStyleReference-modalverbs
+tokens:
+  - may
+  - could
+  - ought to
+  - shall
+  - should

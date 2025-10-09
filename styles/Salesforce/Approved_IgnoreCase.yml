@@ -1,0 +1,1608 @@
+extends: substitution
+message: '%s ''%s'''
+level: suggestion
+ignorecase: true
+swap:
+  line: ''
+  new: ''
+  and later: 'For API and product version numbers:
+
+
+    Use "and later" instead of "and above," as in "Internet Explorer 7.0 and later."'
+  create: Just say "create a __" instead of "create a new __," etc.
+  by using: To eliminate ambiguity, say "by using" or "that use" (rather than "with").
+  Save As: Option on any standard, public, or custom report to save the parameters
+    of the report without altering the original report. It creates a new custom report
+    with your saved changes.
+  deselect: For options and checkboxes, the opposite action is deselect (not uncheck).
+  ditamap: In the Darwin Information Typing Architecture (DITA), a container for topics
+    used to transform a collection of content into a publication. (Wikipedia)
+  invocable action: A reusable piece of functionality, typically written in Apex,
+    that can be called from various declarative tools like Flow Builder or Process
+    Builder, as well as through the REST API.
+  reprice: To change the price of a product or service.
+  commercial: Salesforce commercial refers to Salesforce products, services, and technologies
+    that are available to the public.
+  connection: 'What we used to call an agent "surface" we now refer to as an agent
+    "connection."  '
+  connections: 'What we used to call an agent "surface" we now refer to as an agent
+    "connection."  '
+  one-dimensional: Abbreviate as "1D" (no hyphen, no space), following how Microsoft
+    handles dimensions.
+  time frame: Two words.
+  run-time interpreter: ''
+  run-time error: ''
+  run-time engine: 'MuleSoft: For "Mule runtime engine," don''t use a hyphen. And
+    always include "Mule," because it''s part of the product name.'
+  COIN: Acronym for Cloud Optimization Index. Commonly used in Falcon/Cost-to-Serve.
+  configuration: Spell out instead of "config."
+  at no additional cost: ''
+  plug-in: 'A component that helps browsers support the file format of an object embedded
+    in an HTML page.
+
+
+    Also used hyphenated as an adjective ("plug-in hybrid").
+
+
+    MuleSoft: plugin is OK (Apache Maven)
+
+    Salesforce CLI: "plugin" is OK'
+  low-code: When this is an adjective preceding the noun, use a hyphen.
+  no-code: When this is an adjective preceding the noun, use a hyphen.
+  pro-code: When this is an adjective preceding the noun, use a hyphen.
+  inline: As in "inline editing."
+  select: "Use select, not choose or check, when a user selects from a specified list\
+    \ of items such as a menu, dropdown, picklist, or list view or options/actions,\
+    \ including checkboxes.\r\n\r\nWhen you use select, to refer to an element in\
+    \ the UI, surround the element with the uicontrol\r\ntag."
+  object permissions: Permissions on an object.
+  implementation: As in "a Salesforce implementation" or "an implementation guide."
+  org: "Use sparingly, except in developer content. In most contexts, saying \"in\
+    \ Salesforce\" is clear.\n\nTry to avoid prepositional phrases such as \"in your\
+    \ org\" because it's not needed. \n\nSay \"Salesforce\" or \"Salesforce org\"\
+    \ not \"Salesforce organization\" or \"Salesforce instance.\""
+  metric: Metrics are a type of Tableau content that tracks the value of an aggregate
+    measure, such as sum of sales.
+  calc: Abbreviation of calculation, often used when referring to a table calc in
+    Tableau.
+  caching: CX style for the gerund of "cache" is "caching."
+  built-in: ''
+  dropdown: Describes a UI feature, like a dropdown list.
+  this: ''
+  rep: A human sales or support representative (vs an AI agent).
+  sales rep: A human sales representative (vs an AI agent).
+  service rep: A human support representative (vs an AI agent).
+  deduplication: Doesn't take a hyphen.
+  dedupe: Doesn't take a hyphen. In doc, use instead of "deduplicate."
+  dataset: "One word. \n\nTableau Core: Two words are allowed in Tableau Help."
+  spec: 'MuleSoft: Acceptable short name for "spec"'
+  sidebar: 'Column appearing on the left side of each page that provides links to
+    recent items and other resources.
+
+
+    MuleSoft: refers to navigation pane in Anypoint Platform'
+  log in: 'It''s "log in to" [something]; not "log into."
+
+
+    MuleSoft: "sign on" OK in context of "single sign-on" (SSO); "sign in" OK in context
+    of Anypoint Platform'
+  login: ''
+  blue-green: A deployment strategy where the service is first released to instances
+    that aren’t taking customer traffic. After the release passes all necessary tests
+    to validate its stability, traffic is switched to the new instances (green), and
+    the instances with the previous deployment (blue) are decommissioned.
+  on-premises: 'Use on-premises, not on-premise, to mean on-site or in the building.
+
+
+    MuleSoft: "on-prem" is OK if audience is familiar.'
+  air-gapped environment: Use to describe a computer system environment isolated from
+    the internet.
+  ad hoc release: An on-demand release that is initiated manually, as opposed to a
+    release triggered automatically upon the update of an artifact. You can initiate
+    ad hoc releases from the Falcon Developer Portal.
+  task bar links: 'Links on tabbed pages that provide quick access to the most common
+    operations available for a particular page.
+
+
+    MuleSoft: taskbar OK'
+  multichannel: ''
+  hard code: ''
+  grey: 'MuleSoft: use the American spelling "gray"'
+  fail safe mode: 'MuleSoft: fail-safe mode OK'
+  app: Short for application. A collection of components such as tabs, reports, dashboards,
+    and Visualforce pages that address a specific business need. Salesforce provides
+    standard apps such as Sales and Call Center. You can customize the standard apps
+    to match the way you work. In addition, you can package an app and upload it to
+    the AppExchange along with related components such as custom fields, custom tabs,
+    and custom objects. Then, you can make the app available to other Salesforce users
+    from the AppExchange.  AppExchange apps do not need to contain a custom tab unless
+    they display in the Force.com app menu.
+  calculated insights: ''
+  key-value pair: Use a hyphen.
+  static enum: Don't spell ou "static enumeration" in CX doc.
+  namespace: One word.
+  multitenancy: No hyphen.
+  anti-join: Can be used as a noun or an adjective.
+  bulkification: Acceptable jargon for more technical audiences.
+  query locator: Two words.
+  semi-join: Takes a hyphen even when used as a noun.
+  subflow: One word.
+  Writer AI: The Writer content authoring tool. "Writer AI" and "Writer.ai" are both
+    approved.
+  Writer.ai: 'The Writer content authoring tool. Use "Writer.ai" or "Writer AI" to
+    distinguish it from the common noun "writer". '
+  run-time: 'Run-time describes something occurring at or relevant to run time.
+
+
+    MuleSoft: '
+  admin: "Salesforce: Use \"Salesforce admin\" on first reference.  If you’re using\
+    \ the phrase more than a few times in a topic, it's OK to shorten to \"admin.\"\
+    \ \n\nMuleSoft: It's OK to abbreviate \"administrator\" in narrative text if doing\
+    \ so doesn’t cause confusion with accompanying syntax or UI labels that include\
+    \ \"admin.\"\n\nMake sure to be clear, though, because In general usage, \"admin\"\
+    \ is short for \"administrative assistant.\""
+  blocklist: One word.
+  big object: 'Big objects are used to store and manage massive amounts of data on
+    the Salesforce platform.
+
+
+    When referring to the product name, capitalize Big Objects. Otherwise, lowercase
+    "big object" when used in context.'
+  lifecycle: ''
+  ruleset: "One word, no hyphen. A ruleset is a collection of rules. \n\nFor example,\
+    \ one kind of ruleset contains match and reconciliation rules that tell the customer\
+    \ data platform how to link multiple sources of data into a unified profile."
+  generative AI: Okay to use gen AI on subsequent references
+  want: ''
+  revert: ''
+  add: ''
+  open: ''
+  go: ''
+  codeline: One word. A codeline is a group of files that evolve together. Internally,
+    we commonly talk about codelines for a given release. https://confluence.internal.salesforce.com/x/Jo9zBQ
+  changelist: One word, plural allowed
+  API Name: 'In UI text, use API Name for the field that the admin sets when creating
+    custom objects, custom fields, and any customization that requires a unique name
+    that an admin can reference from another customization.
+
+
+    In Help, use API Name to refer to this field.
+
+
+    In dev doc, it''s the name of a field in a programming context, so it can be used
+    generically (API name).'
+  hotfix: A hotfix is a software update that is released outside the normal update
+    cycle or intended to be applied to a live system, often to fix a serious bug.
+  real-time: ''
+  save: ''
+  status: '"Status" is usually one of a predefined set of possibilities. Don’t use
+    it to mean a general state of something, when the modifier is a common adjective
+    (not among a set).
+
+
+    In IdeaExchange,  an idea''s status helps zone members track the progress of the
+    idea. For example, Under Review, Reviewed, Coming Soon, and Now Available are
+    common status values. '
+  Salesforce Superbadge: ''
+  setting: ''
+  settings: 'When the user has Lightning UI, personal settings are available from
+    the Settings menu under the user avatar.
+
+
+    "Setting" is the replacement term for "org preference" in external content.'
+  real time: ''
+  monitor: ''
+  these: ''
+  used: ''
+  uses: ''
+  natural language processing (NLP): In documentation, use natural language processing
+    (NLP) on first mention, NLP thereafter.
+  C# sample: You can also specify the language in a heading, such as Java sample or
+    C# sample. Use this in a reference guide when you are presenting more than one
+    version of a program, class, or method.
+  Java sample: You can also specify the language in a heading, such as Java sample
+    or C# sample. Use this in a reference guide when you are presenting more than
+    one version of a program, class, or method.
+  test period: ''
+  enable test run: ''
+  top all-time ideas: 'On the Top All-Time subtab, ideas are sorted from most number
+    of points to fewest. '
+  super sets: A group of related superbadges that challenge Trailblazers to solve
+    real-world use cases with Salesforce. When a Trailblazer completes the superbadges
+    in a super set and the associated capstone superbadge, they receive a credential
+    recognition that is displayed on their Trailblazer.me profile
+  because: ''
+  session ID: 'An authentication token that is returned when a user successfully logs
+    in to Salesforce. '
+  turn off: More friendly than "disable" for admin or end-user doc.
+  turn on: More friendly than "enable" for admin or end-user doc.
+  enabled: ''
+  user permissions: ''
+  web app: ''
+  service provider access: ''
+  prediction set: In general, use "prediction set" for the set of data that Einstein
+    scores or provides prediction results for. You can use the term "scoring set"
+    in conjunction with this term, for a data science audience.
+  reply-to address: ''
+  cancel: ''
+  platform events: ''
+  picklist values: "Selections displayed in drop-down lists for particular fields.\
+    \ Some values come predefined, and other values can be changed or defined by an\
+    \ administrator. \n\nIn Help and the user interface, do not use any special font\
+    \ or quotation marks when referring to picklist values. In dev doc, "
+  overview page: 'An internal salesforce.com term for the page that displays when
+    you click one of the major tabs in Salesforce. In customer-facing text, use tab
+    home page.
+
+
+    An "overview" [no "page"] is also the front page of a project on developer.salesforce.com.
+    It has a tab on a dev doc page if the doc is done in SFDocs.'
+  on-premises software: On-premises software is installed and runs on computers on
+    the premises (in the building) of the person or organization using the software,
+    rather than at a remote facility such as a server farm or cloud.
+  natural language search: ''
+  low-vision: ''
+  Long Text Area: If referring to the field label, use title case. If used generically,
+    use lowercase.
+  Login IP address ranges: ''
+  on-line help: "Term used to describe the method of delivering software on the Web\
+    \ using a subscription-based \"pay as you go\" plan.\r\n\r\nDon't use to describe\
+    \ the Salesforce delivery model. Instead, use Cloud Computing."
+  solution: 'A detailed description of the resolution to a customer issue.
+
+
+    A solution is also what Salesforce ISV partners sell on AppExchange.'
+  pilot: 'New functionality with limited customer access to and feedback on scale,
+    functionality, Performance, and other areas. '
+  that is: ''
+  high volume portal users: 'NOT hyphenated because the profile name is not.
+
+
+    Limited-access users intended for organizations with many thousands to millions
+    of portal users. Unlike other users, high-volume portal users don''t have roles,
+    which eliminates performance issues associated with role hierarchy calculations.
+    High-volume portal users include both the High Volume Customer Portal User and
+    Authenticated Website User license types.'
+  example set: In general, use "example set" for the set of data that Einstein learns
+    from. You can use the term "training set" in conjunction with this term, for a
+    data science audience
+  unavailable: ''
+  Developer Preview: Provide early testing on upcoming developer technologies to Developer
+    Edition orgs to solicit feedback from developer type audience.
+  Boolean operators: 'You can use Boolean operators in report filters to specify the
+    logical relationship between two values. For example, the AND operator between
+    two values yields search results that include both values. Likewise, the OR operator
+    between two values yields search results that include either value.
+
+
+    In our dev doc, "boolean" is often lowercase.'
+  beta: Minimum feature set available to a set of customers who opt in to encourage
+    early adoption of a feature or functionality while the product team makes minor
+    enhancements prior to making it generally available.
+  add-on: An add-on is a type of quote for a current customer who wants to add a license
+    or product through the end of the current contract. For Falcon, add-ons define
+    and configure a service or resource, such as BOM changes, pipelines, configuration,
+    and so on.
+  gen AI: Spell out generative AI on first reference. Okay to use gen AI on subsequent
+    references
+  contact: Contacts are the individuals associated with your accounts.
+  role: 'Assigned responsibility of a user, partner account, or contact for specific
+    accounts and opportunities. '
+  every two weeks: ''
+  twice a month: ''
+  get it just right: ''
+  a big success: ''
+  it’s working great: ''
+  previous: ''
+  it’s your move: ''
+  surprise: ''
+  here’s what you can do: ''
+  it’s your turn: ''
+  the perfect scenario: ''
+  appears: ''
+  we’re here to help: ''
+  it’s up to you: ''
+  preceding: ''
+  permission or authority to do something: ''
+  employ: ''
+  try again: ''
+  let’s go back: ''
+  show: ''
+  next: ''
+  access: 'Permissions and access settings determine what users can do in Salesforce.
+    Include required permissions in task topics but not in concept or reference topics.
+    Use the permission name exactly as it appears in the UI. For object permissions,
+    include the name of the object, such as the Create permission on assets. '
+  Alternatively: To choose as another possible path.
+  Alternately: To interchange repeatedly and regularly.
+  and others: ''
+  and so on: ''
+  application programming interface (API): ''
+  Assigned app access: ''
+  asynchronously: ''
+  assure: Assure means to set someone's mind at rest.
+  asynchronous: These term refers to whether transactions in a group are executed
+    at the same or overlapping times
+  authority to do something: ''
+  bot: Use bot, because we market it as Einstein Bots.
+  call outcomes: ''
+  change: ''
+  configure: "Use configure to mean set up.\r\n\r\nNote that Support uses configure\
+    \ for point-and-click and customize for code."
+  complete: "Complete means fully constituted of all of its parts or steps, fully\
+    \ carried out, or thorough.\r\n\r\nSo something is complete."
+  Complete steps by: ''
+  completed: "Complete means to bring to an end or a perfected status.\r\n\r\nSo something\
+    \ has been or was completed."
+  cursor: "A cursor points to a particular record in a set of records in an API or\
+    \ database context. Less often, it refers to a location on the command line in\
+    \ a\r\ndeveloper context.\r\n\r\nWhen referring to the mouse, use pointer."
+  data assessment: ''
+  customize: "Use customize to mean tailor.\r\n\r\nNote that Support uses configure\
+    \ for point-and-click and customize for code."
+  data point: ''
+  database: Don't capitalize database when you use it as part of a name, unless in
+    a heading or it is considered part of the proper name.
+  downvoted: ''
+  downvotes: ''
+  downvoting: ''
+  drag (mobile): "A user gesture typically used to scroll, pan, move the view, or\
+    \ move an object on a mobile device touchscreen.\r\n\r\nTo drag, users place a\
+    \ finger on the screen and move it in the desired direction without lifting it\
+    \ from the screen."
+  earlier: "For API and product version numbers:\r\n\r\nUse earlier instead of lower\
+    \ or below, as in Internet Explorer 6.0 and earlier"
+  edition: 'Capitalize both words in an edition name, as in Enterprise Edition and
+    Group Edition. Don''t capitalize edition when it appears by itself as a common
+    noun: Accounts are available in all editions.'
+  effect: result
+  error: ''
+  Essentials: ''
+  feeling familiar: ''
+  field on: When referring to fields in relation to objects, use on instead of in.
+  Field permissions: (field-level security)
+  file: Don't capitalize file when it's used as part of a name, unless in a heading
+    or considered part of the proper name.
+  Flick: "A user gesture used to scroll or pan quickly on a mobile device touchscreen.\
+    \ To flick, users place a finger on the screen and quickly fling it in the\r\n\
+    desired direction.\r\n\r\nFlick implies a less controlled motion than swipe and\
+    \ is best used to describe fast-paced scanning."
+  flow: ''
+  for example: ''
+  genuine: ''
+  geocode rule: ''
+  Group: ''
+  hard coded: ''
+  hard coding: Hard coding refers to the software development practice of embedding
+    output or configuration data directly into the source code of a program.
+  hard-coded: ''
+  hover: Use hover instead of mouse over to describe moving the mouse pointer over
+    an icon, field, or button.
+  hover over: "Write hover over instead of hover your mouse pointer over.\r\n\r\n\
+    Don't apply special formatting (for example, uicontrol) to the UI element that\
+    \ the user's hovering over."
+  in a large group: ''
+  in other words: ''
+  in relation to: ''
+  installation: ''
+  install: ''
+  insure: Insure means to indemnify against loss.
+  internet: Lowercase
+  issue: ''
+  Look for: ''
+  Login hours: ''
+  lower: ''
+  machine learning: ''
+  Manually disable: ''
+  Manually enable: ''
+  mute: It's OK to use mute in a technical context because there's no implied negativity
+    in a feature being muted because it describes a state.
+  not supported: Use not supported to describe a feature that is available but doesn’t
+    have any associated help, and is used at the user’s own risk.
+  object: When referring only to Salesforce objects.
+  'off': Use off to refer to something that isn't on or enabled, even if the feature
+    has never been on or enabled.
+  Page layout access: ''
+  pages: 'Use page instead of screen to refer to the user interface. Exception: For
+    mobile interfaces, use OS-specific terminology if it applies.'
+  permissions: 'Permissions and access settings determine what users can do in Salesforce.
+    Include required permissions in task topics but not in concept or reference topics.
+    Use the permission name exactly as it appears in the UI. For object permissions,
+    include the name of the object, such as the Create permission on assets. '
+  pinch: "A two-finger user gesture used to zoom out on a mobile device touchscreen.\r\
+    \n\r\nTo pinch, users place the thumb and a finger (or two fingers) a little distance\
+    \ apart on the screen and move them together without lifting them from\r\nthe\
+    \ screen."
+  Personal: ''
+  pop out: Use pop out to describe opening a separate browser window.
+  pop-out: 'Use pop-out as an adjective to describe the type of browser window. '
+  postal code: For postal codes in general when not referring to US ZIP codes.
+  press: To describe the act of striking keys on a keyboard or of pressing a button
+    on a mobile device.
+  problem: ''
+  report: Don't capitalize report unless it's part of the report name.
+  resync: ''
+  screenshot: ''
+  Segment: ''
+  set up: ''
+  setup: 'A menu where administrators can customize and define organization settings
+    and Lightning Platform apps. '
+  setup flow: ''
+  sign-up: ''
+  sign up: ''
+  Social accounts: When referring to social media accounts specifically
+  Social media: Use when referring to the likes of Facebook and Twitter
+  Social media accounts: When referring to social media accounts specifically
+  spread: "A two-finger user gesture used to zoom in on a mobile device touchscreen.\r\
+    \n\r\nTo spread, users place the thumb and a finger (or two fingers) close together\
+    \ on the screen and spread them apart without lifting them from the\r\nscreen.\
+    \ Touch doesn’t currently support spreading."
+  stem: "A stem is a fragment or a sentence that introduces a set of steps in a task\
+    \ topic.\r\n\r\na. A stem often repeats the topic title in a different part of\
+    \ speech.\r\nb. Don't include a stem to introduce a set of steps in a task topic\
+    \ unless you have multiple paragraphs of prerequisite information or\r\ncontext.\r\
+    \nc. If you have so much introductory content that you’re tempted to use a stem,\
+    \ create a separate concept or task topic to provide the\r\ncontext.\r\n\r\nFor\
+    \ task topics write the minimum information required between the title and the\
+    \ steps.\r\na. If the user can read the title and the steps without scrolling,\
+    \ no stem is needed."
+  step: ''
+  success manager: ''
+  switch: ''
+  swipe: "A user gesture typically used to interact with UI elements like pages and\
+    \ panels, reveal context-sensitive options and menus, and scroll at medium speed\
+    \ on a mobile device touchscreen.\r\n\r\nTo swipe, users place a finger on the\
+    \ screen and move it in the desired direction, lifting the finger from the screen\
+    \ toward the end of the movement."
+  support supervisor: 'In Service Cloud documentation and UI text, use support supervisor
+    to refer to the customer user. '
+  synchronous: 'These term refers to whether transactions in a group are executed
+    one at a time '
+  tap: "A gesture for pressing or selecting an element on a mobile device touchscreen\
+    \ (analogous to a single click in a desktop application).\r\n\r\nTo tap, users\
+    \ lightly strike the screen with one finger."
+  that use: In instructions or technical content, use by using or that use to eliminate
+    ambiguity.
+  touch and hold: "A gesture used to display an information bubble, magnify content\
+    \ under the finger, or perform specific interactions in applications for mobile\r\
+    \ndevices. Don’t hyphenate.\r\nTo touch and hold, users touch the screen, leaving\
+    \ their finger motionless until the information is displayed or the action occurs."
+  update: A single activity that displays in a Chatter feed, such as a post, or field
+    change.
+  upvote: ''
+  upvoted: ''
+  upvotes: ''
+  upvoting: ''
+  warning: Warning is a type of note that informs users that failure to perform or
+    avoid a specific action could result in a loss of data.
+  White space: The term white space is OK to use because color is not used as a value
+    judgment.
+  writes: ''
+  emoji: 'Small images, symbols, or icons used in text fields in electronic communications
+    that: express the emotional attitude or reaction of the writer; convey information
+    succinctly; or communicate a message without using words.
+
+
+    The preferred plural is emoji with no added s, as supported by the Unicode Consortium.'
+  service contract: Service contracts are agreements between you and your customers
+    for a type of customer support. Service contracts can represent different kinds
+    of customer support, such as warranties, subscriptions, or service level agreements
+    (SLAs).
+  service: 'A service is an offering of professional assistance. '
+  session timeout: 'The period of time after login before a user is automatically
+    logged out. '
+  setup assistant: ''
+  shared activities: A feature that allows users to relate as many as 10 contacts
+    to a single non-recurring and non-group task, or to a single non-recurring event.
+    One contact is the primary contact; all others are secondary contacts.
+  share group: A set of Salesforce users who can access records owned by high volume
+    portal users. Each Customer Portal has its own share group.
+  sharing model: Behavior defined by your administrator that determines default access
+    by users to different types of records.
+  setup page: ''
+  hide details: Option available for reports that lets you show or hide the details
+    of individual column values in report results.
+  show details: Option available for reports that lets you show or hide the details
+    of individual column values in report results.
+  sharing rule: Type of default sharing created by administrators. Allows users in
+    a specified group or role to have access to all information created by users within
+    a given group or role. Do not capitalize sharing rule in general usage.
+  sites: Lightning Platform Sites enables you to create public websites and applications
+    that are directly integrated with your Salesforce organization, without requiring
+    users to log in with a username and password.
+  single-line: ''
+  sidebar search: A search feature available in Salesforce
+  Omni-Channel Skills-Based Routing: Way of routing work items (cases, leads, orders,
+    and custom objects) by matching the skills needed to complete a work item to agent
+    skills.
+  skills-based routing: Way of routing work items (cases, leads, orders, and custom
+    objects) by matching the skills needed to complete a work item to agent skills.
+  social accounts and contacts: A feature that allows you to view the social network
+    profiles and other information of your accounts, contacts, and leads social directly
+    in Salesforce. It helps you to get deeper insights into your existing and potential
+    customers' needs and issues.
+  social handle: 'The unique identifier for a person or company on a social network.
+    Social handle is a complete URL including the social network domain and the person''s
+    user name. For example, LinkedIn: http://www.linkedin.com/in/marcbenioff.'
+  social profile or social network profile: On social network sites, the content that
+    appears when someone connects to a person or company via their social handle (for
+    example, a person's timeline on Facebook). A social profile generally includes
+    identifying information and a feed.
+  social key: 'Social Key works with Social Accounts and Contacts and Data.com Clean
+    to make it easier to follow your contacts and leads on social networks. '
+  softphone: The telephone interface that a Salesforce CRM Call Center user sees in
+    either the sidebar of Salesforce pages or the footer of the Salesforce console.
+  solution manager: 'One or more individuals in your organization who can review,
+    edit, publish, and delete solutions. '
+  softphone connector: A component of a Computer Telephony Integration (CTI) adapter
+    that converts SoftPhone XML into HTML and distributes it to a Salesforce CRM Call
+    Center user's browser.  The capitalization is SoftPhone Connector.
+  source report: A custom report scheduled to run and load data as records into a
+    target object for an analytic snapshot.
+  special terms: Any terms that you have specifically agreed to and want to track
+    in your contract.
+  stage history: Related list on an opportunity detail page that lists changes in
+    status and stage for the opportunity.
+  stage duration: In opportunity reports, the number of days the opportunity was in
+    the stage listed in the Stage column.
+  staging database: Staging databases copy your entire production organization and
+    all its data, including custom object records. You can refresh a staging database
+    every 29 days. This is for Database.com. A Full Sandbox is the Salesforce.com
+    equivalent.
+  standard price book: Automatically generated price book containing all your products
+    and their standard prices.
+  standard price: Price for a product that is included in the Standard Price Book.
+  standards mode: A browser implementation that respects all parts of the HTML and
+    CSS language specifications. To use standards mode, you must set the DOCTYPE properly
+    at the top of a Web page.
+  statement: A statement that you can generate. A statement summarizes payments, invoices,
+    and credit memos.
+  standby: ''
+  stemming: 'The process of reducing a word to its root form. In searches, stemming
+    matches expanded forms of a search term. '
+  subordinate: ''
+  stop words: Words of little importance in a text search, such as articles and prepositions.
+    These words are excluded in a search even if entered in a query string.
+  subscriber: The subscriber of a package is a Salesforce user with an installed package
+    in their Salesforce organization.
+  summary report: 'Summary reports are similar to tabular reports, but also allow
+    users to group rows of data, view subtotals, and create charts. '
+  subtab: Refers to a tab within a tab as used in customizable forecasting, recurring
+    events, and the Salesforce console.
+  summary field: 'A summary field is a numerical report column with one of the following
+    summaries applied: sum, average, largest value, smallest value. '
+  syndication feeds: Give users the ability to subscribe to changes within Lightning
+    Platform sites and receive updates in external news readers.
+  sync profile: Personal settings that define what records are included when you synchronize
+    with Connect for Outlook or Connect for Lotus Notes.
+  Synchronized Data Sources: Synchronized Data Sources allows you to access data from
+    the Sales and Service Clouds within the Marketing Cloud for use in your marketing
+    activities. As changes occur in the Sales or Service Clouds, the Marketing Cloud
+    receives those updates.
+  tab: 'A tab is an interface component that allows you to navigate around an app. '
+  system testing: 'The phase of testing that detects problems caused by multiple integrations
+    or within the system as a whole. '
+  tab home page: "The tab home page is the page that displays when you click one of\
+    \ the major tabs in Salesforce.\r\n\r\nUse tab home page instead of tab overview\
+    \ page."
+  tabular report: 'Tabular reports are similar to a spreadsheet. They consist simply
+    of an ordered set of fields in columns, with each matching record listed in a
+    row. '
+  tag cloud: 'In Salesforce CRM Content, a way of showing you how the content in your
+    libraries has been tagged. '
+  tag: 'In Salesforce, a word or short phrases that users can associate with most
+    records to describe and organize their data in a personalized way. '
+  task: 'Assigns a task to a user you specify. '
+  territory: For forecasting versions where territories are used, this is a collection
+    of accounts and users that generates a forecast.
+  templatize: Analytics term
+  test database version for db.com  sandbox: A nearly identical copy of a Salesforce
+    production organization. You can create a sandbox for a variety of purposes, such
+    as testing and training, without compromising the data and applications in your
+    production environment.
+  test organization: 'A Salesforce organization used strictly for testing. '
+  test database version for db.com sandbox templates: Sandbox templates provide control
+    over the objects copied to your sandbox. You create a sandbox template that defines
+    the object data you want in your sandbox.
+  test drive: 'A test drive is a fully functional Salesforce organization that contains
+    an app and any sample records added by the publisher for a particular package. '
+  text area: A custom field data type that allows entry of up to 255 characters on
+    separate lines.
+  text: Data type of a custom field that allows entry of any combination of letters,
+    numbers, or symbols, up to a maximum length of 255 characters.
+  text box: Style Guide only. Do not conref into userdoc glossaries. Use as two words,
+    text box not textbox.
+  time out: ''
+  timeline: ''
+  time trigger: 'An event that starts according to a specified time threshold, such
+    as seven days before an opportunity close date. '
+  timeout: 'The period of time after login before a user is automatically logged out. '
+  timestamp: Use one word to refer to the computer-generated data indicating when
+    an event occurred. Note that a timestamp usually includes information about the
+    date as well as the time of day. Example To view a single Chatter post that's
+    in a feed, click the timestamp that appears in the post (for example, "February
+    27, 2018 at 4:28 PM").
+  Today: Product name for the mobile time management app that's included in Salesforce1.
+  toolbar: Selection of tools or buttons in a software application. Use toolbar, not
+    tool bar. Style Guide only. Do not conref into userdoc glossaries.
+  topics: 'A topic is a way to categorize a post or comment so other people can find
+    it more easily. '
+  trailmix: A learning path that a myTrailhead user can compile, consisting of any
+    Trailhead modules, projects, superbadges, or trails that the user chooses.
+  trending topics: 'The Trending Topics area on the Chatter tab shows the topics being
+    discussed right now in Chatter. '
+  trigram: 'In search, a subsequence of three words from a sequence of words. '
+  two-factor authentication: ''
+  twisties: Internal salesforce.com term for icons in the application that allow users
+    to collapse and expand page sections. Use Collapsible Page Sections in the documentation
+    instead of twisties.
+  unfollow: To stop following a user or record and stop seeing related posts in your
+    Chatter feed.
+  upgrade: An upgrade is a type of quote for a Salesforce customer who wants to upgrade
+    their Salesforce edition.
+  usage-based entitlement: A usage-based entitlement is a limited resource that your
+    organization can use on a periodic basis, such as the allowed number of monthly
+    logins to a Partner Community or the record limit for Data.com list users.
+  user license: A user license determines the baseline of features that the user can
+    access. Every user must have exactly one user license.
+  use: ''
+  user interface: The layouts that specify how a data model should be displayed.
+  username: Use one word, not two. Note that the website uses two words whereas the
+    application and online help use one. Style Guide only. Do not conref into userdoc
+    glossaries.
+  vice versa: Latin expression that is ok to use.
+  validation rule: A rule that prevents a record from being saved if it does not meet
+    the standards that are specified.
+  voicemail: ''
+  vote in Chatter Answers community: In an answers community, a vote means you either
+    like or dislike a reply to a question.
+  vote in ideas community: In an ideas community, a vote means you have either promoted
+    or demoted an idea. After you vote on an idea, your nickname displays at the bottom
+    of the idea's detail page to track that your vote was made. You can use your Recent
+    Activity page to see a list of all the ideas you have voted on.
+  workflow and approval actions: Workflow and approval actions, such as email alerts,
+    tasks, field updates, and outbound messages, can be triggered by a workflow rule
+    or approval process.
+  wildcard: A character that is used in a search term to represent one or more other
+    characters. In most Salesforce searches, the asterisk (*) and question mark (?)
+    can be used as wildcards.
+  wizard: A user interface that leads a user through a complex task in multiple steps.
+  zen-assistiveText: Specific color setting for CSS to assist visually impaired users.
+  zone: Zones organize ideas and questions into logical groups, with each zone having
+    its own focus and unique ideas and questions.
+  OK: In documentation and UI text, use OK, not okay.
+  object-level help: Custom help text that you can provide for any custom object.
+    It displays on custom object record home (overview), detail, and edit pages, as
+    well as list views and related lists.
+  object-level security: Settings that allow an administrator to hide whole objects
+    from users so that they don't know that type of data exists. Object-level security
+    is specified with object permissions.
+  on-demand document: Documents that are hosted by an application service provider
+    and accessed via the Internet. Google's Google Docs service provides on-demand
+    documents.
+  one-to-many relationship: A relationship in which a single object is related to
+    many other objects. For example, an account with one or more related contacts.
+  operating system: ''
+  opportunity team: 'An opportunity team is a set of users that work together on sales
+    opportunities. For example, a typical opportunity team includes the account manager,
+    the sales representative, and a pre-sales consultant. '
+  opt-ins: 'GroupConnect recognizes opt-ins and opt-outs based on information from
+    the messaging app. '
+  order: An order is a transaction indicating that you have agreed to purchase specific
+    products and services from Salesforce. For example, an order could be for a seat,
+    training course, or professional services.
+  organic search leads: Organic search lead is a specific lead source indicating that
+    the lead was generated when a user, who arrived at your website by way of an unpaid
+    (organic) listing on a major search engine, filled out the Web-to-Lead form containing
+    the Salesforce tracking code. The lead source details contain the search engine
+    and the search phrase for each organic lead.
+  Organization Sync: Organization Sync
+  outbound call: Any call that originates from a user to a number outside of a call
+    center in Salesforce CRM Call Center.
+  outbound message: An outbound message is a workflow, approval, or milestone action
+    that sends the information you specify to an endpoint you designate, such as an
+    external service.
+  overlay: An overlay displays additional information when you hover your mouse over
+    certain user interface elements. Depending on the overlay, it will close when
+    you move your mouse away, click outside of the overlay, or click a close button.
+  owner: Individual user to which a record (for example, a contact or case) is assigned.
+  owner only amount: Applies to Collaborative Forecasts. The sum of all of a person's
+    revenue opportunities, without adjustments.
+  owner only quantity: Applies to Collaborative Forecasts. The sum of all of a person's
+    quantity opportunities, without adjustments.
+  page: "A single Web screen in the user interface that allows users to interact with\
+    \ the application.\r\n\r\nUse the term page instead of screen in customer-facing\
+    \ text, unless you're documenting screens in Visual Workflow."
+  page layout: Page layout is the organization of fields, custom links, and related
+    lists on a record detail or edit page. Use page layouts primarily for organizing
+    pages for your users. In Enterprise, Unlimited, Performance, and Developer Editions,
+    use field-level security to restrict users' access to specific fields.
+  parent account: An organization or company that an account is affiliated. By specifying
+    a parent for an account, you can get a global view of all parent/subsidiary relationships
+    using the View Hierarchy link.
+  partner accounts: Partner accounts are Salesforce accounts that a channel manager
+    uses to manage partner organizations, partner users, and activities when using
+    the partner portal.
+  partner portal: Partner portal allows partner users to log in to Salesforce through
+    a Web portal rather than through salesforce.com.
+  partner role: Selection for an account on the Partners related list of an individual
+    account or opportunity that specifies the role that the account has in related
+    sales deals.
+  partner user: Partner users are Salesforce users with limited capabilities. They
+    are external to your organization but sell your products or services through indirect
+    sales channels. They are associated with a particular partner account, have limited
+    access to your organization's data, and log in via a partner portal.
+  payment: A payment is an amount of money that was paid toward your account. Checkout
+    shows all payments made for orders placed by users within your organization.
+  pen test: ''
+  people: Users in your Salesforce organization. A list of people is available on
+    the People tab in Chatter.
+  percent quota: For forecasting versions where quotas are available, this is the
+    calculated value in forecasts that indicates what percentage (%) of the quota
+    a salesperson is confident of closing. This amount is the Commit Amount divided
+    by the Quota.
+  permission: A permission is a setting that allows a user to perform certain functions
+    in Salesforce. Permissions can be enabled in permission sets and profiles. Examples
+    of permissions include the Edit permission on a custom object and the Modify All
+    Data permission.
+  permission set: A collection of permissions and settings that gives users access
+    to specific tools and functions.
+  permission set license: Permission set licenses incrementally entitle users to access
+    features that are not included in their user licenses. Users can be assigned any
+    number of permission set licenses.
+  person account: A person account is an individual consumer with whom you do business,
+    such as a financial services client, an online shopper, or a vacation traveler.
+    Person accounts are applicable to organizations that operate on a business-to-consumer
+    model as opposed to a business-to-business model.
+  personal information: User information including personal contact information, quotas,
+    personal group information, and default opportunity team. o not refer to this
+    as the user's personal profile.
+  personal settings: Settings and customization options to help users personalize
+    their Salesforce experience. All Salesforce users can edit their own personal
+    settings. Depending on an organization's user interface settings, personal settings
+    are either in the Personal Setup area of the Setup menu, or available from a separate
+    My Settings menu.
+  phone: ''
+  phrase search: A type of full-text search that matches only items that contain a
+    specified phrase, such as customer relationship management.
+  picklist: A complete list of picklist values available for a record type or business
+    process.
+  pinned lists: Lists that display at the top or on the left side of a Service Cloud
+    console; they're always visible and let you see the list you're working from and
+    a record's details at the same time. Pinned lists must be turned on by an administrator.
+  pipelet: Defines a business function in the CC Digital API.
+  pipelets: Plural of pipelet. Defines a business function in the CC Digital API.
+  pipeline: Calculated amount of open opportunities that have a close date within
+    the quarter. Displays on forecast detail and edit pages. For managers, this amount
+    includes open opportunities for them and their entire team.
+  platform connect: Salesforce1 Platform Connect enables you to access records that
+    are stored outside Salesforce, such as data in an enterprise resource planning
+    (ERP) system. Salesforce represents the data in external objects and accesses
+    the external data in real time via Web service callouts to external data sources.
+  popover: 'Popovers are smaller contextual dialogs that are generally triggered by
+    a click. '
+  popup: One word. Don't hyphenate. Style Guide only. Do not conref into userdoc glossaries.
+  porter stemming: The standard algorithm for Western language word stemming.
+  post: A top-level comment in a Chatter feed.
+  post sharing: Lets you copy a public Chatter post and publish it to your profile
+    or a group you're a member of. You can also share the post with other Chatter
+    users by sending a link to the post in an email or instant message.
+  price book: A price book is a list of products that your organization sells. Available
+    in Professional, Enterprise, Unlimited, Performance, and Developer editions only.
+  primary contact: Field in company information that lists the primary contact for
+    your organization.  Also indicates the primary contact associated with an account,
+    contract, or opportunity. Specified as a checkbox in the Contact Roles related
+    list of an account, contract, or opportunity.
+  primary key: A relational database concept. Each table in a relational database
+    has a field in which the data value uniquely identifies the record. This field
+    is called the primary key. The relationship is made between two tables by matching
+    the values of the foreign key in one table with the values of the primary key
+    in another.
+  primary partner: Partner account designated as playing a key role in closing an
+    opportunity. Specified as a checkbox in the Partners related list of an opportunity.
+  primary tab: A tab in a Salesforce console that displays the main item to work on,
+    such as an account.
+  private file: A private file in Chatter is indicated by the private icon () and
+    is only available to the file owner and isn't shared with anyone. A private file
+    is created when you upload a file on the Files tab or contribute a file to a Salesforce
+    CRM Content personal library. You own files you upload or contribute.
+  private question: An issue posted to an answers community, but marked Private so
+    that only support agents can view and respond to it.
+  private sharing: Private sharing is the process of sharing an uploaded package by
+    using the URL you receive from Salesforce. This URL is not listed in the AppExchange.
+    Using the unlisted URL allows you to share a package without going through the
+    listing process or making it public.
+  privately shared file: A privately shared file in Chatter is indicated by the privately
+    shared icon () and is only available to the file owner and the specific people
+    or groups it has been shared with.
+  product: A product is any item or service your organization sells. Products are
+    defined in a price book, and can be added to opportunities. Available in Professional,
+    Enterprise, Unlimited, Performance, and Developer editions only.
+  product family: A picklist field on products that you can customize to categorize
+    types of products.
+  production organization: A Salesforce organization that has live users accessing
+    data.
+  profile: A personal page for each Salesforce user that includes contact information,
+    following and followers lists, a Chatter feed, and a photo.
+  public group: A set of users defined for sharing purposes. Only administrators can
+    create public groups. Use public group instead of public sharing group.
+  published article: Published articles are available on the Articles tab in the internal
+    app and, if applicable, in the Customer Portal, partner portal, and public knowledge
+    base. To remove a published article, you can archive it or change its status to
+    draft on the Article Management tab. To access published articles on the Articles
+    Management tab, click the Articles tab in the View area and choose Published Articles.
+  published translation: 'Published translations are articles translated into multiple
+    languages that are available on the Articles tab in the internal app and, if applicable,
+    in the Customer Portal, partner portal, and public knowledge base. '
+  publisher: The publisher of an AppExchange listing is the Salesforce user or organization
+    that published the listing.
+  publishing cycle: 'Salesforce Knowledge Articles move through a publishing cycle
+    from their creation to their deletion. '
+  purchase rules: Purchase rules are the criteria your organization must satisfy before
+    a purchase is approved.
+  quantity forecasting: Forecasting based on the projected number of units sold.
+  quantity schedule: A quantity schedule outlines the dates, number of units (i.e.,
+    quantity), and number of installments for billing or shipping a product. Your
+    organization can decide exactly how to use schedules. Available in Enterprise,
+    Unlimited, Performance, and Developer editions only.
+  quantity without adjustments: Applies to Collaborative Forecasts. The sum of a person's
+    owned quantity opportunities and also his or her subordinates' opportunities,
+    without adjustments. Subordinates include everyone reporting up to a person in
+    the forecast hierarchy.
+  quantity without manager adjustment: Applies to Collaborative Forecasts. The forecast
+    number as seen by the forecast owner. This is the sum of the owner's quantity
+    opportunities and his or her subordinates' opportunities, including adjustments
+    made on the subordinates' forecasts. It doesn't include adjustments made by forecast
+    managers above the owner in the forecast hierarchy.
+  quick text: Quick Text lets users create messages, such as greetings, answers to
+    common questions, and short notes, which support agents can easily insert into
+    case updates and communications with customers to save time and increase standardization.
+  quota: The sales goal assigned to a user on a monthly and quarterly basis. (If you
+    use Collaborative Forecasts, it's the sales goal assigned to a user on a monthly
+    basis.) A manager's quota should equal the amount she and her team are expected
+    to generate together.
+  quote: A record showing proposed prices for products and services. Quotes can be
+    created from opportunities and emailed as PDFs to customers.
+  quote line item: Any product or service you offer to your customers in a quote.
+    Quote line items represent products from the selected price book.
+  rac node: A single server in an Oracle Real Application Cluster (RAC). For example
+    dev1-db12-1-sfm.ops.sfdc.net:1521:dmainu12:dvmainutf12-1 is a node of the cluster
+    of machines that represents the database instance dmainu12. Using RAC allows many
+    physical machines to appear as a single database, improving fault tolerance, load
+    balancing, and scalability.
+  radio button: A user interface control that offers several mutually exclusive options.
+    Users can select only one of the radio button options. Style Guide only. Do not
+    conref into userdoc glossaries.
+  recall actions: 'Recall actions are the actions that occur when a submitted approval
+    request is recalled. By default, an action to unlock the record runs automatically
+    on recall. '
+  recent activity: 'Your Recent Activity page contains a summary of all the recent
+    activity that relates to your participation within a zone. '
+  recent items: 'List of links in the sidebar for most recently accessed records.
+    Note that not all types of records are listed in the recent items. '
+  recognition badges: Badges community managers can give members for things like welcome,
+    nice work, or congratulations.
+  record: 'A single instance of a Salesforce object. For example, John Jones could
+    be the name of a contact record. Use this term when referring to a particular
+    instance of an object. Use the term object when referring to the overall concept
+    of a custom object or standard Salesforce object like accounts and contacts. '
+  record ID: A unique 15- or 18-character alphanumeric string that identifies a single
+    record in Database.com.
+  record locking: Record locking is the process of preventing users from editing a
+    record, regardless of field-level security or sharing settings. Salesforce automatically
+    locks records that are pending approval. Users must have the Modify All object-level
+    permission for the given object, or the Modify All Data permission, to edit locked
+    records. The Initial Submission Actions, Final Approval Actions, Final Rejection
+    Actions, and Recall Actions related lists contain Record Lock actions by default.
+    You cannot edit this default action for initial submission and recall actions.
+  record name: A standard field on all Salesforce objects. Whenever a record name
+    is displayed in a Force.com application, the value is represented as a link to
+    a detail view of the record. A record name can be either free-form text or an
+    autonumber field. Record Name does not have to be a unique value.
+  record type: A record type is a field available for certain records that can include
+    some or all of the standard and custom picklist values for that record. You can
+    associate record types with profiles to make only the included picklist values
+    available to users with that profile.  Generic phrase formerly used to mean any
+    kind of record in the application. No longer used in this context except in user
+    interface text or documentation that has not been updated. If possible, try to
+    rephrase as object or type of record.
+  record update: A post in a Chatter feed that is the result of a field change on
+    a record that is being followed.
+  record-level security: A method of controlling data in which you can allow a particular
+    user to view and edit an object, but then restrict the records that the user is
+    allowed to see.
+  related list: 'A section of a record or other detail page that lists items related
+    to that record. '
+  related list hover links: 'A type of link that allows you to quickly view information
+    on a detail page about related lists, by hovering your mouse over the link. '
+  related list item: Any entry within a related list such as a note, contact, or activity.
+  related object: 'Objects chosen by an administrator to display in the Agent console''s
+    mini view when records of a particular type are shown in the console''s detail
+    view. '
+  related record: A single instance of a Salesforce object. Use the term record when
+    referring to a particular instance of an object. Use the term object when referring
+    to the overall concept of a custom object or standard Salesforce object like accounts
+    and contacts. For example, "You can create custom fields for each of the objects
+    your organization uses." and "In the Recycle Bin, select the checkbox next to
+    the records you want to recover." Avoid the use of entity in customer-facing text.
+  relationship: 'A connection between two objects, used to create related lists in
+    page layouts and detail levels in reports. '
+  relationship group: Custom object records used to store collections of accounts.
+  relationship group member: The accounts that you add to relationship groups are
+    called relationship group members.
+  remote access application: A remote access application is an application external
+    to Salesforce that uses the OAuth protocol to verify both the Salesforce user
+    and the external application. A remote access application is implemented as a
+    connected app.
+  remote access application definition: Removed entry Connected Apps covers it. JMJ
+    186.
+  renewal: A renewal is a type of quote for a Salesforce customer whose contract is
+    expiring.
+  reply: The response to a question in an answers community. When community members
+    reply to a question, the person who asked the question can mark one of the replies
+    as the best answer to resolve and close the question.
+  report builder: Report builder is a visual editor for reports.
+  report type: A report type defines the set of records and fields available to a
+    report based on the relationships between a primary object and its related objects.
+    Reports display only records that meet the criteria defined in the report type.
+    Salesforce provides a set of pre-defined standard report types; administrators
+    can create custom report types as well.
+  representational state transfer: A software architecture that lets clients and servers
+    communicate resources, usually via HTTP.
+  requested meeting: 'A meeting that a Salesforce user requests with a contact, lead
+    or person account. '
+  resource calendar: A calendar in which multiple people can coordinate their usage
+    of a shared resource such as a conference room or printer.
+  return orders: Object/feature in Field Service Lightning that tracks asset returns
+    and repairs for customers.
+  revenue forecasting: Forecasting based on projected revenue amounts.
+  revenue schedule: 'A revenue schedule outlines the dates, revenue amounts, and number
+    of installments for billing or recognizing revenue from a product. '
+  roadmap: ''
+  role hierarchy: A record-level security setting that defines different levels of
+    users. Do not capitalize role or role hierarchy in general usage.
+  roll-up summary field: A field type that automatically provides aggregate values
+    from child records in a master-detail relationship.
+  rollout: ''
+  roll out: ''
+  routing point: A mechanism that determines the Salesforce CRM Call Center queue
+    that should control an incoming call.
+  running user: 'Each dashboard has a running user, whose security settings determine
+    which data to display in a dashboard. '
+  safehouse: Safehouse locations reside on highly redundant, highly available central
+    storage servers and can be accessed only by authenticated users. Creating a safehouse
+    location allows you to import decrypted files into Marketing Cloud without them
+    being exposed in the Enhanced FTP Site Import directory.
+  sales price: The price of a product on an opportunity. This can be different than
+    the product's standard or list price. Doesn't apply to Database.com. Separate
+    Test Database entry for Database.com
+  scalable: ''
+  scratch org: An ephemeral org that customers can create, configure, and delete.
+    Used for development and testing.
+  screen pop: Page that displays for an inbound call to a Salesforce CRM Call Center.
+  search: 'Feature that lets you search for information that matches specified keywords. '
+  search layout: The organization of fields included in search results, in lookup
+    dialogs, and in the key lists on tab home pages.
+  search phrase: Search phrases are queries that users enter when searching on www.google.com.
+  self-reg: Refers to the Configurable Self-Reg Page. With this self-registration
+    page, users can sign up with only an email address or phone number, instead of
+    having to create a username and password.
+  self-service: "A Web portal feature that allows your customers to search your organization's\
+    \ public solutions to find answers to their questions and to submit new cases\
+    \ to your customer support team.\r\n\r\nSelf-Service provides an online support\
+    \ channel for our customers' customers, allowing them to resolve cases without\
+    \ contacting a customer service representative. Always capitalize Self-Service\
+    \ when referring to the feature."
+  self-service portal: Refers to the Self-Service site that an organization posts
+    online so their customers can use the Self-Service feature.
+  send: ''
+  sends: Sends is a feature in Marketing Cloud.
+  global search: Search more records and fields in Salesforce from the header search
+    box. Global search keeps track of which objects you use and how often you use
+    them, and arranges the search results accordingly. Search results for the objects
+    you use most frequently appear at the top of the list.
+  global variable: A special merge field that you can use to reference data in your
+    organization. A method access modifier for any method that needs to be referenced
+    outside of the application, either in the SOAP API or by other Apex code.
+  group task: A task that was assigned to multiple users when it was created. Note
+    that group tasks are independent records that are not linked; they can be edited,
+    transferred, or deleted individually.
+  grouping: A report grouping determines how report data is aggregated for columns
+    or rows for summary, matrix, and joined reports. This data is displayed on the
+    X-axis for vertical column charts and on the Y-axis for horizontal bar charts.
+  guest user: "Guest users can access public Site.com and Force.com sites, and public\
+    \ pages in Communities, via the Guest User license associated with each site or\
+    \ community.\r\n\r\nMysti: we can't conref into glossary_master. If you change\
+    \ communities_single_lc, change this instance as well..Guest users access to objects\
+    \ and data is controlled by public access settings on the Guest User profile."
+  half-life: The half-life setting determines how quickly old ideas drop in ranking
+    on the Popular Ideas subtab, to make room for ideas with more recent votes. A
+    shorter half-life moves older ideas down the page faster than a longer half-life.
+    This setting affects all zones in your organization.
+  healthcare: ''
+  high-contrast: ''
+  highlights panel: A customizable table of up to four columns and two rows that appears
+    at the top of every primary tab in a Salesforce console. It lets you view key
+    information about records at a glance.
+  home tab: Starting page from which users can choose sidebar shortcuts and options,
+    view current tasks and activities, or select another tab.
+  host name: Two words, unless you're referring to a programming element, such as
+    the hostname property.
+  hostname: 'Two words, unless you''re referring to a programming element, such as
+    the hostname property. Example Toolkit didn''t initialize for the following hostnames:
+    {hostnames}'
+  hover detail: Hover details display an interactive overlay containing detailed information
+    about a record when users hover the mouse over a link to that record in the Recent
+    Items list on the sidebar or in a lookup field on a record detail page. Users
+    can quickly view information about a record before clicking View for the record's
+    detail page or Edit for the edit page. The fields displayed in the hover details
+    are determined by the record's mini page layout. The fields that display in document
+    hover details are not customizable.
+  hypernyms: "Hypernyms describe the categorical relationships between words. You\
+    \ can express a hypernym as œ____ is a ____.\x9D So for example, œan apple is\
+    \ a fruit,\x9D or œa duck is a bird.\x9D Simply put, hypernyms add context about\
+    \ a word."
+  Idea themes: Idea Themes lets you invite community members to post ideas about specific
+    topics so that members can solve problems or propose innovations for your company.
+    For example, to engage with your community and create excitement around the launch
+    of a new product, you can ask community members to work together to create the
+    product's name. Community members collaborate and add ideas to the idea theme,
+    while you monitor their activities as they vote and comment on each other's ideas
+    until they find a winner.
+  Idea: 'Ideas are suggestions posted by the members of an ideas community and are
+    organized by zones. For example, if the focus of a particular zone is "Ideas for
+    car features", an appropriate idea for that zone could be "Insulated cup holders
+    that keep your beverage hot or cold". '
+  import wizard: A tool for importing data into your Salesforce organization, accessible
+    from Setup.
+  inbound call: A call that originates from another party in Salesforce CRM Call Center.
+  indirect lookup relationship: An indirect lookup relationship links a child external
+    object to a parent standard or custom object. When you create an indirect lookup
+    relationship field on an external object, you specify the parent object field
+    and the child object field to match and associate records in the relationship.
+    Specifically, you select a custom unique, external ID field on the parent object
+    to match against the child's indirect lookup relationship field, whose values
+    come from an external data source.
+  Inbox: Product name for the acquired Salesforce Inbox IQ.
+  instance: 'The cluster of software and hardware represented as a single logical
+    server that hosts an organization''s data and runs their applications. '
+  initial submission actions: Initial submission actions are the actions that occur
+    when a user first submits a record for approval. By default, an action to lock
+    the record runs automatically on initial submission. Initial submission actions
+    can include any approval actions such as email alerts, field updates, tasks, or
+    outbound messages. For example, an initial submission action can update a custom
+    approval status field to In Progress.
+  itself: ''
+  Jigsaw: 'A leading provider of business information and data services that leverages
+    user-generated content contributed by its global business-to-business community.
+    Jigsaw provides a variety of cloud-based data acquisition and management services. '
+  key prefix: An internal term for the first three letters in the ID of most records.
+    Each prefix corresponds to an object, for example, Account record IDs begin with
+    001.
+  knowledge base: Use to refer to an organization's collection of solutions or articles.
+    Use knowledge base, not knowledgebase. Use also Salesforce Knowledge when you
+    refer only to articles.
+  knowledge agent: Salesforce uses the term knowledge agent to represent a specific
+    type of user. Knowledge agents are article consumers in the internal Salesforce
+    Knowledge app. These users can access the Articles tab to search for and view
+    articles, but they cannot create, edit, or manage articles.
+  knowledge sidebar: 'A sidebar in a Salesforce console that displays titles of Salesforce
+    Knowledge articles. It automatically searches and returns articles from your knowledge
+    base that match any of the words you type in the Subject of a case. '
+  last name: ''
+  license management organization: 'The Salesforce organization that you use to track
+    all the Salesforce users who install your package. A license management organization
+    must have the License Management Application (LMA) installed. '
+  library permission: A group of privileges that determines user access within a Salesforce
+    CRM Content library.
+  list email: The Lightning Experience version of mass email.
+  list price: The price of a product in a custom price book.
+  list view: A list display of items (for example, accounts or contacts) based on
+    specific criteria. Salesforce provides some predefined views. Also referred to
+    as custom views or custom list views. In the Agent console, the list view is the
+    top frame that displays a list view of records based on specific criteria. The
+    list views you can select to display in the console are the same list views defined
+    on the tabs of other objects. You cannot create a list view within the console.
+  lookup field: 'A type of field that contains a linkable value to another record.
+    For example, cases have a lookup relationship with assets. '
+  lookup dialog: Popup dialog available for some fields that allows you to search
+    for a new item, such as a contact, account, or user.
+  lookup filter: 'An administrator setting on a lookup or master-detail relationship
+    field that specifies the criteria records must meet to be valid values for the
+    field. '
+  lookup relationship: 'A relationship between two records, so you can associate records
+    with each other. For example, cases have a lookup relationship with assets that
+    lets you associate a particular asset with a case. '
+  lookup icon: A magnifying glass icon that displays next to certain fields and launches
+    the lookup dialog window.
+  mail merge: A mail merge is the process of generating form letters and other Microsoft
+    Word documents that are personalized for the recipient.
+  manual sharing: Record-level access rules that allow record owners to give read
+    and edit permissions to other users who might not have access to the record any
+    other way.
+  many-to-many relationship: A relationship where each side of the relationship can
+    have many children on the other side. Many-to-many relationships are implemented
+    through the use of junction objects.
+  marketing user: 'One or more individuals in your organization who can manage campaigns. '
+  master flow: A master flow is a flow that contains a subflow element. The term master
+    is used to distinguish it from the flow that is referenced and called by the subflow
+    element.
+  mass reassign account teams: An internal salesforce.com term for mass reassign account
+    teams.
+  master picklist: A complete list of picklist values available for a record type
+    or business process.
+  master-detail relationship: 'A relationship between two different types of records
+    that associates the records with each other. For example, accounts have a master-detail
+    relationship with opportunities. '
+  matrix report: 'Matrix reports are similar to summary reports but allow you to group
+    and summarize data by both rows and columns. They can be used as the source report
+    for dashboard components. '
+  member status: The status of a lead or contact in relation to a campaign. For example,
+    a lead or contact could have a member status of Planned, Sent, or Responded at
+    different stages of an email campaign.
+  merge field: 'A merge field is a field you can put in an email template, mail merge
+    template, custom link, or formula to incorporate values from a record. '
+  metadata: Information about the structure, appearance, and functionality of an organization
+    and any of its parts. Force.com uses XML to describe metadata.
+  microservice: ''
+  micro-moment: ''
+  milestone: Milestones are required steps in your support process. They're metrics
+    that represent service levels to provide to each of your customers. Examples of
+    milestones include First Response and Resolution Times on cases.
+  milestone actions: 'Milestone actions are time-dependent workflow actions that occur
+    at every step (milestone) in an entitlement process. '
+  mini page layout: 'A subset of the items in a record''s existing page layout that
+    administrators choose to display in the Agent console''s Mini View and in Hover
+    Details. '
+  mobile device: ''
+  mini view: The Agent console's right frame which displays the records associated
+    with the record displayed in the detail view. The fields displayed in the mini
+    view are defined in the mini page layouts by an administrator. The mini view does
+    not display if the record in the detail view does not have any records associated
+    with it.
+  mobile configuration: 'A set of parameters that determines the data Salesforce transmits
+    to users'' mobile devices, and which users receive that data on their mobile devices. '
+  mobile phone: ''
+  mobile push notifications: Push notifications are alerts that apps render on mobile
+    device home screens when users aren't using the app. These alerts can consist
+    of text, icons, and sounds, depending on the device type.
+  most recently used: ''
+  multi-person event: A planned event to which multiple users are invited, also referred
+    to as a meeting. You can create multi-person events by inviting other users to
+    any calendar event you create.
+  multi-factor authentication: ''
+  multi-select picklist: 'Selection list of options available for specific fields
+    in a Salesforce object. Multi-select picklists allow users to choose one or more
+    values. '
+  multiline: When multiline statements are present, more lines are counted as part
+    of the code coverage calculation. Both single-line and multiline comments are
+    supported in Apex code.
+  multitenant: All users log in to that same instance, instead of maintaining separate
+    software instances for individual users. Multitenant applications are designed
+    so that users share the same physical instance and version of the application.
+  my settings: When the improved Setup user interface is enabled in an organization,
+    personal settings are available from a separate My Settings menu.
+  navigation bar: Short form feature name for the horizontal bar at the top of Lightning
+    Experience. The bar displays the tabs for the selected Salesforce app.
+  new business quote: A new business quote is a type of quote for a new customer who
+    has a trial version of Salesforce and would like to purchase Salesforce seats
+    and other related products.
+  navigation tab: A tab with a drop-down button in a Salesforce console that lets
+    you select and view object home pages.
+  nickname: A nickname is the name used to identify this user in a community. Up to
+    40 alphanumeric characters are allowed. Standard users can edit this field.
+  No-Reply: "The default sender (From line) for customer emails.\r\n\r\nThe default\
+    \ sender (From line) for customer emails is No-Reply. Write an additional, user-friendly\
+    \ string to appear on the From line. Always start with the word Salesforce, and\
+    \ follow it with the feature name. Repeat this same string as the signature. Use\
+    \ title caps."
+  Notes: Notes is a rich text note-taking tool that lets mobile users take better
+    notes faster.
+  Notes is: Notes is a rich text note-taking tool that lets mobile users take better
+    notes faster.
+  end-to-end: ''
+  endpoint: Location to which an outbound message is sent. One word, not two.
+  event series: A series of events that recur with a regular pattern. For example,
+    you may have a weekly meeting with a customer defined as an event series.
+  event sink: An object in a computer telephony integration (CTI) connector that receives
+    CTI system events and routes them to other methods for processing.
+  external data source: A data source outside of Salesforce and which you can connect
+    to and create an external object for.
+  external lookup relationship: An external lookup relationship links a child standard,
+    custom, or external object to a parent external object. When you create an external
+    lookup relationship field, the standard External ID field on the parent external
+    object is matched against the values of the child's external lookup relationship
+    field. External object field values come from an external data source.
+  external object: External objects behave similarly to custom objects, except that
+    they map to data that's stored outside Salesforce. Each external object maps to
+    a data table in a defined external data source, and each external object field
+    maps to a table column. The data in the mapped external tables can be included
+    in global Salesforce searches and queried via SOQL or SOSL.
+  feature license: A feature license entitles a user to access an additional feature
+    that is not included with his or her user license, such as Marketing or Work.com.
+    Users can be assigned any number of feature licenses.
+  external user: External users are users with Community, Customer Portal, or partner
+    portal licenses.
+  file viewer: Users with the viewer permission can view, download, and share files
+    in Chatter.
+  file collaborator: Users with the collaborator permission can view, download, share,
+    change permission, edit the file, and upload new versions of files in Chatter.
+  your company file: The your company icon () indicates a file that is shared with
+    all Chatter users in your company. All Chatter users in your company can find
+    and view this file.
+  files tab: A tab that lists a user's Chatter and Salesforce CRM Content files.
+  final approval actions: Final approval actions are the actions that occur when all
+    required approvals have been given for a record. Final approval actions can include
+    email alerts, field updates, tasks, or outbound messages. For example, a final
+    approval action can change the status to Approved and send an email notification.
+  final rejection actions: Final rejection actions are the actions that occur when
+    an approver rejects the request and it goes to the final rejection state. Final
+    rejection actions can include email alerts, field updates, tasks, or outbound
+    messages. For example, a final rejection action can change the status to Rejected,
+    send an email notification, and unlock the record so that users can edit it before
+    resubmitting.
+  flashcard: A flashcard is an interactive element in a Trailhead badge showing a
+    term/concept on a virtual card; a definition or more information is revealed when
+    a learner clicks the card to flip it over.
+  flow trigger: A flow trigger is a workflow action that launches a flow. With flow
+    triggers, you can automate complex business processes, create flows to perform
+    logic, and have events trigger the flows via workflow rules, without writing code.
+    For example, suppose you have a flow that looks up and assigns the relevant entitlement
+    for a case. You can create a flow trigger to launch the flow whenever a case is
+    created, so that all new cases are automatically set with a default entitlement.
+  focus on: ''
+  forecast amount: Applies to Collaborative Forecasts. The revenue forecast from the
+    forecast manager's perspective and the sum of the owner's and subordinates' opportunities,
+    including all forecast adjustments.
+  forecast category: Determines the category to which an opportunity is attributed
+    in a forecast. The default category setting for an opportunity is tied to its
+    stage, as set in the Stage picklist. To update the Forecast Category for a particular
+    opportunity, you must edit that opportunity's forecast.
+  forecast user: A user who can see and work with forecasts below them in either the
+    forecast hierarchy or territory hierarchy.
+  forecast quantity: Applies to Collaborative Forecasts. The quantity forecast from
+    the forecast manager's perspective and the sum of the owner's and subordinates'
+    opportunities, including all forecast adjustments.
+  foreign key: A field whose value is the same as the primary key of another table.
+    You can think of a foreign key as a copy of a primary key from another table.
+    A relationship is made between two tables by matching the values of the foreign
+    key in one table with the values of the primary key in another.
+  forecasts: Projections of sales based on the organization's fiscal year.
+  formula field: A type of custom field. Formula fields automatically calculate their
+    values based on the values of merge fields, expressions, or other values.
+  full site: 'Short form term for referring to the desktop version of Salesforce (whether
+    Lightning Experience, Salesforce Classic, or both) when you need to differentiate
+    between Salesforce on the desktop and Salesforce1 or other Salesforce mobile apps. '
+  fundraising: ''
+  Futureforce: ''
+  data center: ''
+  data integration: Feature used to integrate third-party data into salesforce accounts,
+    contacts, and leads.
+  data encryption: The process of applying a cryptographic function to data that results
+    in ciphertext. The platform encryption process uses symmetric key encryption and
+    a 256-bit Advanced Encryption Standard (AES) algorithm using CBC mode, PKCS5 padding,
+    and a randomized, 128-bit initializati‹on vector (IV) to encrypt field-level data
+    and files stored on the Salesforce platform. Both data encryption and decryption
+    occur on the application servers.
+  data encryption keys: Shield Platform Encryption uses data encryption keys to encrypt
+    and decrypt data. Data encryption keys are derived on a key derivation server
+    using keying material split between a per-release master secret and an organization-specific
+    tenant secret stored encrypted in the database as a part of your organization.
+    The 256-bit derived keys exist in memory until evicted from the cache.
+  data is: ''
+  data state: The structure of data in an object at a particular point in time.
+  database table: A list of information, presented with rows and columns, about the
+    person, thing, or concept you want to track. See also Object.
+  dataflow: ''
+  dataset builder: ''
+  dated exchange rates: Dated exchange rates allow you to map a currency conversion
+    rate to a specific date range. For example, the exchange rate on January 1 was
+    1 USD to 1.39 AUD, but on February 1, it changed to 1 USD to 1.42 AUD. Your opportunities
+    that closed between January 1 and February 1 use the first exchange rate (1 =
+    1.39), while opportunities that closed after February 1 used the second exchange
+    rate (1 = 1.42).
+  date literal: A keyword in a SOQL or SOSL query that represents a relative range
+    of time such as last month or next year.
+  decisioning: Noun. decisioning (uncountable) Decision making, especially by means
+    of a formal computational methodology. Used in Interaction Studio - "Combining
+    rule-based decisioning with the machine learning provided by the Einstein Decisions
+    ensures that your customers and prospects see the promotion, offer, or next best
+    action that's right for them, regardless of the channel. "
+  delegated authentication: A security process where an external authority is used
+    to authenticate Force.com platform users.
+  default organization template: A dummy organization that contains default data which
+    is copied over to a new organization at sign-up. The data is contained in an XML
+    template file. For example, the All Contacts list view is default data. This term
+    is for internal salesforce.com use only. Do not use in customer-facing text.
+  delegated administration: A security model in which a group of non-administrator
+    users perform administrative tasks.
+  delegated approver: A delegated approver is a user appointed by an assigned approver
+    as an alternate for approval requests.
+  detail view: The Agent console's center frame, which is the detail page view of
+    any record selected from any of the console's other frames. The detail view displays
+    the same page layouts defined for the object's detail pages. When a record is
+    displayed in the detail view, it is highlighted in the list view.
+  demote: If you dislike an idea, you can click demote to subtract 10 points from
+    its overall score and decrease the idea's overall popularity ranking. You cannot
+    demote the same idea more than once, and after you demote an idea you cannot promote
+    it. An idea can have negative overall points if more users demote the idea than
+    promote it.
+  dependent field: Any custom picklist or multi-select picklist field that displays
+    available values based on the value selected in its corresponding controlling
+    field.
+  dial tone multi-frequency: The system that informs a switch of the number that is
+    being pressed by a caller in Salesforce CRM Call Center.
+  dialed number identification service: The number a caller dialed in Salesforce CRM
+    Call Center.
+  directory number: Any internal number that is configured on a public branch exchange.
+    You can define additional directory numbers through the Salesforce CRM Call Center
+    setup within Salesforce.
+  distributed cache: Distributed cache is a layer of intelligence over the non-transactional,
+    clustered memcached cache and the non-transactional, in-memory caches in Salesforce.
+  document, lucene: Search uses a data structure called a document, which contains
+    fields whose values are obtained from records, and then creates an index for searches
+    to use. This is unrelated to the Salesforce Document object.
+  document library: A place to store documents without attaching them to accounts,
+    contacts, opportunities, or other records.
+  dot: A dummy organization that contains default data which is copied over to a new
+    organization at sign-up. The data is contained in an XML template file. For example,
+    the All Contacts list view is default data. This term is for internal salesforce.com
+    use only. Do not use in customer-facing text.
+  double-tap: ''
+  downvote: ''
+  draft article: Draft articles are in-progress articles that have not been published,
+    which means they are not visible on the Articles tab (in any channel) or in a
+    public knowledge base. Article managers can access draft articles on the Article
+    Management tab by clicking the Articles tab in the View area and choosing Draft
+    Articles. You can filter draft articles by those assigned to you or those assign
+    to anyone (all draft articles for your organization). Draft articles can be assigned
+    to any user involved in the editorial work.
+  dropdown menu: ''
+  drag: The action of dragging includes dropping the item in place.
+  draft translation: Draft translations are in-progress translations of articles into
+    multiple languages. They have not been published, which means they are not visible
+    on the Articles tab (in any channel) or in a public knowledge base. Article managers
+    can access draft translations on the Articles Management tab by clicking the Translations
+    tab in the View area and choosing Draft Translations. You can filter draft translations
+    by those assigned to you, those assigned to a translation queue, or those assigned
+    to anyone (all draft translations in your organization). Translations can be assigned
+    to any user who can publish Salesforce Knowledge articles.
+  duplicate job: Detects duplicate records across an org.
+  duplicate management: Collection of features for managing duplicate records individually
+    and across an org.
+  dynamic dashboard: A dynamic dashboard runs using the security settings of the user
+    viewing the dashboard. Each user sees the dashboard according to his or her own
+    access level. This approach helps administrators share one common set of dashboard
+    components to users with different levels of access.
+  dashboard designer: 'The tool used to build Einstein Analytics dashboards.
+
+
+    The old designer is still referred to as "classic designer."'
+  company-wide: ''
+  community expert: A community expert is a member of the community who speaks credibly
+    and authoritatively on behalf of your organization. When a community expert posts
+    a comment or idea, a unique icon () displays next to his or her name so other
+    community members can easily identify credible information within the community.
+    The Salesforce administrator can designate as many community experts as necessary.
+  competitor: Related list that displays competitor names, strengths, and weaknesses
+    entered for a specific opportunity.
+  console layout: Objects chosen by an administrator to display in the list view frame
+    of the Agent console. For example, if an administrator adds cases to a console
+    layout, then users whose profiles are assigned to that console layout can see
+    list views of cases in the console's list view frame.
+  console tab: "A tab containing the Agent console, which combines related records\
+    \ into one screen with different frames so that users can view and edit information\
+    \ all in one place.\r\n\r\nThe Agent console in the Console tab and Salesforce\
+    \ console are the support-related consoles available in the app. Console is not\
+    \ capitalized when used in text; for example, The console helps boost user productivity."
+  consult call: A call that results from a Salesforce CRM Call Center user initiating
+    a conference or transfer.
+  contact role: The role that a contact plays in a specific account, contract, or
+    opportunity, such as Decision Maker or Evaluator. You can mark one contact as
+    the primary contact for the account, contract, or opportunity. A contact may have
+    different roles in various accounts, contract, or opportunities.
+  content delivery: A file that has been converted into an optimized online format
+    for distributions to leads, contacts, and colleagues.
+  content pack: A collection of related documents or files that are stored as a group
+    in Salesforce CRM Content.
+  contract line item: Contract line items are specific products covered by a service
+    contract. They only display to users on the Contract Line Items related list on
+    service contracts, not contracts.
+  convert: Button or link that allows you to change a qualified lead into an account,
+    contact, and, optionally, an opportunity. Information from the lead fields is
+    transferred into the appropriate account, contact, and opportunity fields.
+  controlling field: Any standard or custom picklist or checkbox field whose values
+    control the available values in one or more corresponding dependent fields.
+  credit memo: A credit memo is a pricing adjustment that credits your account.
+  cookie: Client-specific data used by some Web applications to store user and session-specific
+    information. Salesforce issues a session cookie only to record encrypted authentication
+    information for the duration of a specific session.
+  cross-network streams: The exposure of community streams in LEX. Users who spend
+    time in communities and their internal Salesforce orgs (i.e., LEX), now have a
+    single point of access to their community and internal streams.
+  custom help: Custom text administrators create to provide users with on-screen information
+    specific to a standard field, custom field, or custom object.
+  custom links: Custom links are URLs defined by administrators to integrate your
+    Salesforce data with external websites and back-office systems. Formerly known
+    as Web links.
+  custom object: Custom records that allow you to store information unique to your
+    organization.
+  dashboard: A dashboard shows data from source reports as visual components, which
+    can be charts, gauges, tables, metrics, or Visualforce pages. The components provide
+    a snapshot of key metrics and performance indicators for your organization. Each
+    dashboard can have up to 20 components.
+  dashboard builder: Dashboard builder is a drag-and-drop interface for creating and
+    modifying dashboards.
+  data assessment for Lightning Data: A free assessment that an admin can run to try
+    out data in a Lightning Data package from AppExchange.
+  dashboard filters: Filters on a dashboard allow you to choose different views of
+    data.
+  comment: Comments are plain text responses to posted ideas that enable discussions
+    about the ideas. On the Ideas tab, the Comments subtab lists the comments that
+    have most recently been submitted. On the detail page of an idea, comments are
+    sorted in chronological order from oldest to newest.
+  case feed: Case Feed gives support agents a more streamlined way of creating, managing,
+    and viewing cases. It includes actions and a Chatter feed. The actions let agents
+    create case notes, log calls, change the status of cases, and communicate with
+    customers. The feed displays important case events in chronological order, so
+    it's easy to see the progress of each case.
+  category: 'Use solution categories to group similar solutions together. '
+  channel: 'A channel refers to the medium by which an article is available. Salesforce
+    Knowledge offers four channels where you can make articles available. Internal
+    App: Salesforce users can access articles in the Articles tab depending on their
+    role visibility.Customer: Customers can access articles if the Articles tab is
+    available in the portal. Customer Portal users inherit the role visibility of
+    the manager on the account. Partner: Partners can access articles if the Articles
+    tab is available in the portal. Partner portal users inherit the role visibility
+    of the manager on the account.Public Knowledge Base: Articles can be made available
+    to anonymous users by creating a public knowledge base using the Sample Public
+    Knowledge Base for Salesforce Knowledge app from the AppExchange. Creating a public
+    knowledge base requires Sites and Visualforce.Your own website. Articles can be
+    made available to users through your company website.'
+  channel manager: Channel managers are the internal users that manage your partners.
+  chatbot: ''
+  chatlet: A chatlet is a mini application that runs within the Live Agent console.
+    There are chatlets that integrate with Salesforce and Salesforce Knowledge, as
+    well as chatlets that provide information on incoming chat requests, visitor geographical
+    location, and browsing history.
+  Checkout: Checkout is the online store where you can purchase seats and other related
+    products for Salesforce and Data.com.
+  checkout contract: A contract is a written agreement defining the terms of doing
+    business between salesforce.com and your organization.
+  checkbox: ''
+  Checkout transaction: A transaction is a financial adjustment to your account. Transactions
+    are reflected in invoices or credit memos.
+  clone: Clone is the name of a button or link that allows you to create a new item
+    by copying the information from an existing item, for example, a contact or opportunity.
+  collapsible section: Sections on detail pages that users can hide or show.
+  combination chart: A combination chart plots multiple sets of data on a single chart.
+    Each set of data is based on a different field, so values are easy to compare.
+    You can also combine certain chart types to present data in different ways on
+    a single chart.
+  commit amount: Amount entered in a forecast that an individual salesperson is reasonably
+    confident of closing in a particular month or quarter. For managers, this should
+    equal the amount that they and their team can confidently close.
+  Communities: ''
+  article manager: Salesforce uses the term article manager to represent a specific
+    type of user. Article managers can access the Article Management tab to create,
+    edit, assign, publish, archive, and delete articles. Article managers are sometimes
+    referred to as knowledge managers. Article managers require the Manage Articles
+    user permission. The Article Management tab is not visible to users without Manage
+    Articles.
+  asset: A specific model or type of product that a customer owns. Depending on how
+    your organization uses assets, they can represent your products that the customer
+    has purchased and installed or your competitor's products that the customer uses.
+  assignment: An assignment is a draft article that has been assigned to another user
+    for editing. Assignments may contain brief instructions and a due date.
+  auto response rule: A set of conditions for sending automatic email responses to
+    case or lead submissions based on the attributes of the submitted record. a Web-to-Lead
+    form.
+  auto number: A custom field type that automatically adds a unique sequential number
+    to each record. These fields are read only. Used as two words except when modifying
+    a noun. For example, as "The maximum length of any auto-number field is 30 characters".
+  autosuggest: One word. Use the term autosuggest when the system automatically suggests
+    terms, such as tags, based on criteria the user enters.
+  best answer: When a member of an answers community asks a question and other community
+    members post a reply, the asker can mark one of the replies as the best answer.
+    The best answer then appears directly under the question (above the other replies).
+    Identifying the best answer helps other community members with the same question
+    quickly find the most relevant, useful information.
+  best case amount: Revenue projection in a forecast that identifies total possible
+    revenue for a specific month or quarter. For managers, this should equal the total
+    amount of revenue they and their entire team might possibly generate.
+  bitly: ''
+  bigram: In search, a subsequence of two words from a sequence of words. For example,
+    if the search string is 'diego maradona plays soccer,' then 'diego maradona,'
+    'maradona plays,' and 'plays soccer' are word-level bigrams.
+  blank lookup: A lookup that is performed when the lookup field dialog does not have
+    a search term.
+  briefcase: The set of data that you can manage offline using Connect Offline. Always
+    capitalize Briefcase.
+  bookable: ''
+  boosting factor: In search, a value used to increase the score of a search term
+    or a document containing a search term. The score determines where in the search
+    results an item is returned.
+  bucketing: A tool in the report builder that lets users categorize report records
+    by field, without having to create a formula or a custom field.
+  campaign hierarchy: A set of up to five campaigns organized into a hierarchy. A
+    parent campaign can have several child campaigns, but a child campaign can have
+    only one parent.
+  business unit: "This phrase represents a child account in Enterprise 2.0 accounts\
+    \ within Marketing Cloud.\r\n\r\nEach business unit that connects using the same\
+    \ active Salesforce system user integrates using the same data model."
+  campaign: A marketing initiative, such as an advertisement, direct mail, or conference,
+    that you conduct in order to generate prospects and build brand awareness.
+  campaign member: Any lead or contact associated with a campaign.
+  account assignment rule: A rule that automatically assigns accounts to territories,
+    based on criteria you define.
+  AE: Generally spell out. When writing for an audience familiar with the role, AE
+    may be used after the first reference.
+  account team: An account team is a team of users that work together on an account.
+    For example, an account team may include an executive sponsor, dedicated support
+    representative, or project manager.
+  activity: Planned task or event, optionally related to another type of record such
+    as an account, contact, lead, opportunity, or case.
+  activity timeline: Area on Opportunity Workspace showing upcoming and past meetings
+    and open and completed tasks.
+  activity history: The Activity History related list of a record displays all completed
+    tasks, logged phone calls, saved interaction logs, expired events, outbound email,
+    mass email, email added from Microsoft Outlook, and merged documents for the record
+    and its associated records.
+  add-in: "Software that adds functionality to a larger program.\r\n\r\nDon't use\
+    \ as a synonym for plug-in, which is a component that helps browsers support the\
+    \ file format of an object embedded in an HTML page."
+  advanced search: A search function within Salesforce that offers additional search
+    features and functionality. To access it, click Advanced Search... in the sidebar.
+  age: 'In opportunity reports, the Age of an open opportunity is the number of days
+    since the opportunity was created. '
+  amount without adjustments: Applies to Collaborative Forecasts. The sum of a person's
+    owned revenue opportunities, including his or her subordinates' opportunities,
+    without adjustments. Subordinates include everyone reporting up to a person in
+    the forecast hierarchy.
+  amount without manager adjustment: Applies to Collaborative Forecasts. The forecast
+    number as seen by the forecast owner. This is the sum of the owner's revenue opportunities
+    and his or her subordinates' opportunities, including adjustments made on the
+    subordinates' forecasts. It doesn't include adjustments made by forecast managers
+    above the owner in the forecast hierarchy.
+  article: Articles capture information about your company's products and services
+    that you want to make available in your knowledge base.
+  article category: In Salesforce Knowledge, a category group organizes data categories
+    into a logical hierarchy. For example, to classify articles by sales regions and
+    business units, create two category groups, Sales Regions and Business Units.
+    The Sales Regions category group could consist of a geographical hierarchy, such
+    as All Sales Regions as the top level, North America, Europe, and Asia at the
+    second level, and so on up to five levels. When creating articles, authors assign
+    the relevant categories to the article. End users searching for articles can search
+    and filter by category.
+  blockout: ''
+  reduced availability: ''
+  diminished availability: ''
+  permit: ''
+  allowlist: ''
+  includelist: ''
+  denylist: ''
+  avoidlist: ''
+  secondary: ''
+  primary: ''
+  unethical: ''
+  opaque box: ''
+  clear box: ''
+  security researcher: ''
+  scrum lead: ''
+  Main Services Agreement (MSA): ''
+  core feature: ''
+  sync: ''
+  replica: ''
+  closed box: ''
+  controller: ''
+  open box: ''
+  ethical: ''
+  malicious: ''
+  daily meeting: ''
+  main: ''
+  follower: ''
+  unexplainable: ''
+  explainable: ''
+  top-level: ''
+  leader: ''
+  active: ''

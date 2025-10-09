@@ -1,0 +1,27 @@
+extends: existence
+message: "Avoid using periods in acronyms."
+link: https://confluence.internal.salesforce.com/display/DOCTEAM/abbreviations%3A+Style+Guidelines
+level: suggestion
+ignorecase: true
+nonword: true
+tokens:
+  # Matches patterns like A.B.C or A.B.C.
+  # Uses regex lookahead to ensure we have at least two period-letter pairs
+  # The negative lookbehind prevents matching things like file extensions (.txt)
+  - '(?<!\.)[A-Z]\.[A-Z](?:\.[A-Z])+\.?'
+  # Same pattern but for lowercase
+  - '(?<!\.)[a-z]\.[a-z](?:\.[a-z])+\.?'
+# Exceptions can be added here if needed
+exceptions:
+  - "e.g."
+  - "i.e."
+  - "etc."
+  - "vs."
+  - "Ph.D."
+  - "Mr."
+  - "Mrs."
+  - "Ms."
+  - "Dr."
+  - "Prof."
+  - "Sr."
+  - "Jr."

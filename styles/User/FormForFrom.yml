@@ -1,0 +1,9 @@
+extends: sequence
+message: "Did you mean 'from' instead of 'form'?"
+level: warning
+scope: sentence
+ignorecase: true
+tokens:
+  - pattern: "form"
+  - tag: NNP|NN|PRP # Proper noun, noun, or pronoun
+    pattern: ".*"

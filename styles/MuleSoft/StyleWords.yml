@@ -1,0 +1,42 @@
+# # Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Proposes substitutions for adherence to our style guide
+#
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: warning
+ignorecase: true
+nonword: false
+action:
+  name: replace
+swap:
+  '2FA': 'MFA'
+  'TFA': 'MFA'
+  'a lot': many or more
+  'a number of': many, several, or a few
+  'and/or': and or or (depending on the intended meaning)
+  'backwards': backward
+  'check box': checkbox
+  'data are': data is
+  '\b(?:different to|different than)': different from
+  'drag and drop': drag
+  '\(IDPs\)': external identity providers (IdPs)
+  'grayed out': unavailable
+  'grey': gray
+  'in the command line': on the command line
+  'information on': information about
+  'log into': log in to
+  'multifactor authentication': multi-factor authentication
+  '(?:navigation bar|navigation menu|navigation panel|left pane|left menu|left navigation bar|left navigation)': sidebar
+  '\b(?:on premise|on-premise)': on-premises
+  'sign into': sign in to
+  'synchronize': sync
+  'whether or not': whether
+  'wish': want
+  '\betc\.?': and so on
+  '\b(?:eg|eg\.|e\.g\.),?': for example
+  '\b(?:ie|ie\.|i\.e\.),?': that is
+  'ergo': therefore

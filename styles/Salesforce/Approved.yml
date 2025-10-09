@@ -1,0 +1,1284 @@
+extends: substitution
+message: '%s ''%s'''
+level: suggestion
+ignorecase: false
+swap:
+  DataGraph: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  SLDS 1: Acronym for the Salesforce Lightning Design System 1. (Formerly just "SLDS"
+    until "SLDS 2" came along in 2025).
+  SLDS 2: Acronym for the Salesforce Lightning Design System 2. Formerly, we had just
+    just "SLDS" (now "SLDS 1") until "SLDS 2" came along in 2025.
+  Save & New: Alternative save option on most pages with which you can save your current
+    changes and create a new entry.
+  A2A: 'Spell out on first mention.  Stands for "Agent2Agent" when referring to the
+    Agent2Agent Protocol. '
+  MCP: Spell out on first use. Stands for Model Context Protocol.
+  Omnistudio: CamelCase was removed starting with the 252 release. If you find it
+    with a capital S in API names or permission names, leave it capitalized so we
+    don't introduce a breaking change for customers.
+  Unified Knowledge: 'Unified Knowledge works by helping you connect external sources
+    of knowledge to Salesforce. If you append "base," lowercase it (it''s not part
+    of the product name).
+
+
+    See https://help.salesforce.com/s/articleView?id=service.knowledge_uk_about.htm&type=5.'
+  1D: Abbreviation of "one-dimensional."
+  Omni Supervisor: No hyphen, although "Omni-Channel" does use a hyphen.
+  Anypoint Security: 'Always include "Anypoint." (Don''t say just "Security.")
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Anypoint Monitoring: ''
+  MuleSoft: A suite of API-management products used to connect and integrate apps,
+    systems, and data across an enterprise. Part of the Salesforce family since 2018.
+  Agentforce: 'In CX content, use Einstein or Agentforce as follows:
+
+
+    Agentforce: A gen AI solution using the LLM Gateway and the Reasoning Engine
+
+
+    Einstein:
+
+    * A gen AI solution using the LLM Gateway
+
+    * A predictive AI solution
+
+    * A service used in Einstein solutions'
+  MuleSoft API Catalog for Salesforce: 'After first mention, use API Catalog or API
+    Catalog for Salesforce.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.
+
+
+    Salesforce (Agentforce): use MuleSoft for Agentforce: API Catalog'
+  'MuleSoft for Agentforce: API Catalog': 'After first mention, use API Catalog.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.
+
+    '
+  'MuleSoft for Agentforce: Topic Center': 'After first mention, use Topic Center.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Exchange: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  CCaaS: Contact Center as a Service. Only CC and S are uppercase.
+  OpenAPI: No space between Open and API.
+  Field History Tracking: Each word capitalized.
+  Field Audit Trail: Each word capitalized.
+  UBP: Acronym for "usage-based. pricing."
+  u: ''
+  Omniscript: ''
+  Flexcards: 'Plural of "Flexcard." Unlike most prooper nouns, "Flexcard" can be pluralized.
+
+
+    Note: Omnistudio features are never lowercased, even when used in the plural.
+    This is an exception to feature names guideline.'
+  Flexcard: 'Unlike most proper nouns, this term can be plualized: Flexcards.
+
+
+    Note: Omnistudio features are never lowercased, even when used in the plural.
+    This is an exception to feature names guideline.'
+  Unicode: Always capitlized.
+  Salesforce: "Salesforce is the name of the company and the product.\r\n\r\nThe company\
+    \ name is Salesforce. Only use salesforce.com, inc. in copyrights. "
+  DITA: ''
+  Core-on-Git: Core-on-Git is tooling supported by CoreDX that allows Core engineers
+    to use Git to interact with Core App code in their development workflow.
+  FSRE: Use after first mention of Falcon Site Reliability Engineering.
+  security group: Use after first mention of Salesforce security group.
+  PagerDuty: The tool used to configure on-call support schedules, establish escalation
+    policies, and page on-call engineers when service or feature issues occur and
+    require human intervention.
+  Government Cloud: Don't use "the Government Cloud." Refer to Government Cloud without
+    prefixing it with "the."
+  Falcon instance: After first mention, use FI.
+  FBOT: Use after first mention of Falcon Build Orchestration Tool.
+  Bazel: An open-source build and test tool similar to Make, Maven, and Gradle. Designed
+    and published by Google for building large dependencies. Currently open source
+  accountable executive service owner: After first mention, use AESO.
+  SAR: Alternatively, use Security Assessment Report, with every first letter capitalized.
+    The term should be spelled out on its first mention, with the acronym used for
+    all subsequent mentions.
+  Lightning page: When you’re talking about the object in the API, use "FlexiPage".
+    In all other cases, use "Lightning page."
+  Site Reliability: ''
+  FUN: ''
+  CodeGenie for Search: ''
+  UMD: ''
+  AESO: 'Use after first mention of accountable executive service owner. '
+  CUJ: Use after first mention of critical user journey.  In "CUJ," the "C" stands
+    for "critical."
+  eRelease: Emergency Releases, or eReleases are a type of unplanned "minor" release
+    vehicle. They are used to address production issues that require immediate attention.
+  Falcon Developer Portal: A one-stop web portal for Falcon development. Analogous
+    to the AWS Management Console.
+  Falcon configuration bundle: A single artifact that represents a subset of a service’s
+    configuration required to run on Falcon. Bundles can be linked to other configuration
+    bundle artifacts to form a complete representation of the service.
+  FD: Abbreviation for "functional domain."
+  FCE: ' Use after first mention of Falcon Cost Explorer.'
+  Falcon Foundation: A group of services that are available in every Falcon instance.
+    Falcon Foundation services provide basic needs common to every type of application,
+    such as networking, security, and monitoring. Every FI contains a Foundation FD.
+  FedRAMP: Use after first mention of Federal Risk and Authorization Management Program.
+  FEDX: Use after first mention of Falcon Easy Developer Experience.
+  FKP: Use after first mention of Falcon Kubernetes Platform.
+  FIT: Use after first mention of Falcon Integration Testing.
+  FOT: ' Use after first mention of Falcon Onboarding Tool.'
+  FOX: Use after first mention of Falcon Onboarding Experience.
+  GRC: Acronym for Governance, Risk, and Compliance.
+  HDPS: Use after first mention of Hyperforce Development Platform Support.
+  GSOC: Acronym for Government Security Operations Center.
+  IATT: Alternatively, use Interim Authorization to Test, with every first letter
+    capitalized. The term should be spelled out on its first mention, with the acronym
+    used for all subsequent mentions.
+  Hyperforce: The external product name for Falcon.
+  IL: Alternatively, use Impact Level, with every first letter capitalized. The use
+    of IL is generally followed by a number, such as IL4 or IL5.
+  IdP: 'Alternatively, use identity provider, lowercase.The term should be spelled
+    out on its first mention, with the acronym used for all subsequent mentions. '
+  JAB: Alternatively, use Joint Authorization Board, with every first letter capitalized.
+    Use as "the JAB" not simply "JAB".  The term should be spelled out on its first
+    mention, with the acronym used for all subsequent mentions.
+  MO: 'Alternatively, use Mission Owner, with every first letter capitalized. The
+    term should be spelled out on its first mention, with the acronym used for all
+    subsequent mentions. '
+  POA&M: Alternatively, use Plan of Actions and Milestones, with every first letter
+    capitalized. The term should be spelled out on its first mention, with the acronym
+    used for all subsequent mentions.
+  SAP: Alternatively, use Security Assessment Plan, with every first letter capitalized.  The
+    term should be spelled out on its first mention, with the acronym used for all
+    subsequent mentions.
+  PPSM: Alternatively, use Ports, Protocols, and Services Management, with every first
+    letter capitalized. The term should be spelled out on its first mention, with
+    the acronym used for all subsequent mentions.
+  SCCA: Alternatively, use Secure Cloud Computing Architecture, with every first letter
+    capitalized. The term should be spelled out on its first mention, with the acronym
+    used for all subsequent mentions.
+  RMF: Alternatively, use Risk Management Framework, with every first letter capitalized.
+    The term should be spelled out on its first mention, with the acronym used for
+    all subsequent mentions.
+  service ownership: A cultural and philosophical model in which a team is fully responsible
+    and accountable for a service or feature throughout its lifecycle.
+  SFCI: ' Use after first mention of Salesforce Continuous Integration.'
+  SFSG: Use after first mention of Salesforce security group.
+  SLA: Use after first mention of SLA.
+  SLI: Use after first mention of SLI.
+  SLO: Use after first mention of SLO.
+  SSP: Alternatively, use System Security Plan, with every first letter capitalized.
+    The term should be spelled out on its first mention, with the acronym used for
+    all subsequent mentions.
+  SNAP: Alternatively, use System Network Approval Process with every first letter
+    capitalized.  The term should be spelled out on its first mention, with the acronym
+    used for all subsequent mentions.
+  TEM: Alternatively, use Technical Exchange Meeting, with every first letter capitalized.
+    The term should be spelled out on its first mention, with the acronym used for
+    all subsequent mentions.
+  Data Loader: 'A Force.com platform tool used to import and export data from your
+    Salesforce organization.
+
+
+    MuleSoft: dataloader.io OK'
+  Community Builder: 'Community Builder lets you select a template and then walks
+    you through the initial setup for your data categories or topics, depending on
+    which template youre using.
+
+
+    MuleSoft: lowercase OK'
+  Mule: 'For first mention, use "Mule runtime engine".
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Mule runtime: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  Anypoint VPC: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  Runtime Manager agent: Don't pluralize or make possessive. Being a product name,
+    it doesn't take an article.
+  Runtime Manager: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  API Community Manager: Don't pluralize or make possessive. Being a product name,
+    it doesn't take an article.
+  Composer: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  RPA: Don't pluralize or make possessive. Being a product name, it doesn't take an
+    article.
+  Connector DevKit: 'After first mention, use Connector DevKit, DevKit, Mule SDK,
+    or SDK.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  MUnit: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  Anypoint Platform: "Always refer to as Anypoint Platform. \n\nDon't pluralize or\
+    \ make possessive. Being a product name, it doesn't take an article."
+  FIRE BOM: 'Use after first mention of Falcon Integrated Repeatable Environment Bill
+    of Materials.
+
+    '
+  Anypoint Platform PCE: 'First mention, use Anypoint Platform Private Cloud Edition.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Anypoint API Governance: 'Always include Anypoint.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Anypoint Analytics: 'Always include Anypoint.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Anypoint MQ: 'Always include Anypoint.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Anypoint Service Mesh: 'Always include Anypoint.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Anypoint Visualizer: 'Always include Anypoint.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  API Console: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  API Experience Hub: Don't pluralize or make possessive. Being a product name, it
+    doesn't take an article.
+  API Designer: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  API Manager: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  Code Builder: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  API Notebook: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  APIkit: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  CloudHub: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  Design Center: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  DataWeave: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  DevKit: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  Flex Gateway: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  Object Store: 'Also used: Object Store v2.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  Mule SDK: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  Partner Manager: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  Roostify Connector: 'Use data source in common usage. Use datasource only when it''s
+    the specific name of something.
+
+
+    MuleSoft: Two words. Use "datasource" (or DataSource) only when quoting syntax.'
+  Runtime Fabric: 'Never RTF.
+
+
+    Don''t pluralize or make possessive. Being a product name, it doesn''t take an
+    article.'
+  RPA Manager: Don't pluralize or make possessive. Being a product name, it doesn't
+    take an article.
+  SDK: Don't pluralize or make possessive. Being a product name, it doesn't take an
+    article.
+  Studio: Don't pluralize or make possessive. Being a product name, it doesn't take
+    an article.
+  FI: Use after first use of Falcon instance.
+  2GP: 'Acronym for second-generation packaging. '
+  Vegacache: A Salesforce-managed caching service based on Redis.
+  Alibaba: A third-party tool.
+  MIME: 'MIME stands for Multipurpose Internet Mail Extensions. This is an industry
+    term that we don''t spell out on first use. '
+  MIM: ''
+  REST API: Most Salesforce API names, such as Metadata API, REST API, Tooling API,
+    and Enterprise API, are considered product names. "The" is not part of the name.
+  IntelliJ: ''
+  To-Do: Capitalized when referring to the feature.
+  Spiff: ''
+  Impala: ''
+  Apache Impala: ''
+  key: ''
+  User Interface API: This is a product name, so it doesn't take an article.
+  Salesforce Extensions for VS Code: A product name, so don't use an article with
+    it.
+  Process Builder: A product name, so it doesn't take an article.
+  the Ant Migration Tool: 'Takes an article: "Download the Ant Migration Tool...."'
+  1GP: 'Acronym for first-generation packaging. '
+  Bayeux: Bayeux is a protocol for transporting asynchronous messages, primarily over
+    HTTP.
+  bulkify: Acceptable jargon for more technical audiences.
+  Developer Pro sandbox: Don't capitalize the "sandbox" part of the name in a sentence.
+  DML: Acronym for Data Manipulation Language.
+  Data Manipulation Language: After first mention, use DML.
+  Developer sandbox: Don't capitalize the "sandbox" part of the name in a sentence.
+  dynamic Visualforce binding: Can be plural.  Only "Visualforce" needs to be capitalized.
+  enterprise WSDL: Lowercase "enterprise" if it's not UI text.
+  Full sandbox: Don't capitalize the "sandbox" part of the name in a sentence.
+  ERD: Acronym for entity relationship diagram.
+  gRPC: Lowercase the "g" only.
+  Lightning component: 'Capitalization is tricky. See the "Lightning Component Framework
+    Style Guide" in Confluence: https://confluence.internal.salesforce.com/x/TQWiCQ '
+  Lightning Component framework: Don't capitalize "framework" here.
+  Lightning Platform app menu: Lowercase both "app" and "menu."
+  LMA: Acronym for License Management App.
+  lwc-recipes: The literal name of a public repo in GitHub.
+  Partial Copy sandbox: Don't capitalize the "sandbox" part of the name in a sentence.
+  OData: 'Abbreviation for Open Data Protocol. '
+  partner WSDL: Lowercase "partner" if it's not UI text.
+  Pub/Sub API: This is the actual product name, not an abbreviation of the product
+    name.
+  RESTful: In developer documentation, capitalize the REST part, because it refers
+    to the software architecture called REST.
+  Reports and Dashboards API via Apex: ''
+  QueryBuilder: One word with a capitalized Q and B.
+  SOQL: Use this abbeviation after the first mention of Salesforce Object Query Language.
+  SOSL: Use this abbeviation after the first mention of Salesforce Object Search Language.
+  Visualforce: Product name. Only the V is capitalized.
+  VS Code: Use after first mention of Visual Studio Code
+  Connect in Apex: This is what used to be called "Chatter in Apex"
+  Apex: ''
+  AJAX Toolkit: AJAX is always all caps.
+  the Salesforce Platform: 'The Salesforce Platform is an umbrella brand that comprises
+    many pieces of our technology stack, including Lightning, Heroku, IoT, Analytics,
+    AppExchange, and Trailhead.
+
+
+    Use the Salesforce Platform on first mention. If the content that follows refers
+    only to the Salesforce Platform, it’s ok to shorten it to just the platform. But
+    if the content discusses multiple platforms, use the full term in each mention
+    for clarity.'
+  QuickBooks: ''
+  NetSuite: ''
+  OmniOut: ''
+  Program Builder: ''
+  sObject: "Use sObject only in context of developer documentation for Apex or APIs.\
+    \ Use SObject (capital S) only when referring to the SObject Apex class or API\
+    \ object name. In most other cases, the proper term is object.\r\n\r\nIn Apex\
+    \ class names (for example, SObject class) and API object names (for example,\
+    \ DescribeGlobalSObjectResult), sObject is spelled with an upper-case S because\
+    \ of code style conventions.\r\n\r\nIn Apex and APIs, an sObject is the variable\
+    \ that holds the value of a Salesforce record. It exists only in memory during\
+    \ a database transaction or API call. Once the transaction completes, the data\
+    \ contained in the sObject is saved as a record on the Salesforce database. An\
+    \ sObject can also refer to a generic data type of a variable. See the Apex topic\
+    \ sObject Types for more information.\r\n\r\nThe “s” in sObject stands for Salesforce."
+  Salesforce DX: Stands for Salesforce Developer Experience. It’s more an umbrella
+    theme than a product.
+  Salesforce CLI: The command line interface that drives Salesforce DX.
+  Telesign: 'Don''t capitalize the "s" in Telesign, even though some of that company''s
+    web pages have the name as TeleSign.
+
+
+    Telesign is a California-based company offering digital identity verification
+    and communication services.'
+  Connect REST: ''
+  Recycle Bin: A page that lets you view and restore deleted information. Access the
+    Recycle Bin by using the link in the sidebar.
+  Answers: Answers is a feature of the Community application that enables users to
+    ask questions and have community members post replies. Community members can then
+    vote on the helpfulness of each reply, and the person who asked the question can
+    mark one reply as the best answer.
+  something: ''
+  Account Engagement: Replaces "Pardot." On first mention, say "Marketing Cloud Account
+    Engagement." Thereafter, say "Account Engagement."
+  Marketing Cloud: ''
+  UAT: User-acceptance testing. A process used to confirm that the functionality meets
+    the planned requirements. UAT is one of the final stages before deployment to
+    production.
+  Tooling API: Note that most Salesforce API names such as Metadata API, REST API,
+    Tooling API, and Enterprise AP are considered product names, and the is not part
+    of the name.
+  Metadata API: Note that most Salesforce API names such as Metadata API, REST API,
+    Tooling API, and Enterprise AP are considered product names, and the is not part
+    of the name.
+  Vertica: ''
+  reCAPTCHA: ''
+  grantmaking: ''
+  the Manufacturing Cloud: Don't use "the" in front of Manufacturing Cloud when referring
+    to the product name. You can use "the" when referring to a feature ("the Manufacturing
+    Cloud ___").
+  Manufacturing Cloud: ''
+  Health Cloud: ''
+  Financial Services Cloud: ''
+  Automotive Cloud: ''
+  Salesforce admin: ''
+  Omnistudio Data Mapper: ''
+  Code Genie for Search: ''
+  Ask Code Genie: ''
+  prin: ''
+  O: ''
+  time zone: ''
+  High Volume Customer Portal User: A user profile in Salesforce.
+  Enterprise API: Note that most Salesforce API names such as Metadata API, REST API,
+    Tooling API, and Enterprise API are considered product names, and "the" is not
+    part of the name.
+  Eloqua: An Oracle product. Salesforce Analytics has a product called Oracle Eloqua
+    Connection.
+  Discover Companies: Filtered search of third-party data that customers buy on AppExchange
+    (available as Lightning Data)
+  DE: Developer Edition
+  API: 'Application Programming Interface
+
+
+    Most Salesforce API names such as Metadata API, REST API, Tooling API, and Enterprise
+    API are considered product names, and "the" is not part of the name.'
+  Data Cloud: ''
+  AI-generated: ''
+  add-ins: Plural version of add-in
+  affect: To influence.
+  Android release: 'Use the word release—not version or OS—followed by the release
+    number. The word release is lowercase. '
+  Cadence object: ''
+  CE: Contact Manager
+  Collaborative Forecasts: ''
+  column: ''
+  Commerce Cloud: ''
+  Data Checker: ''
+  Data.com Clean: "Data.com Clean (EOL in 2020):\r\na. Clean jobs\r\nb. Clean job\
+    \ scheduling\r\nc. Clean job metrics and analytics\r\nd. Clean objects updated\
+    \ by Clean jobs"
+  Data Quality: Data Quality is umbrella category for Lightning Data, data integration,
+    (until EOL) Data.com, and duplicate management
+  Data.com Prospector: In list with Clean, put Prospector first (EOL in 2020)
+  DBCOM: Database.com
+  Desktop client access: ''
+  Dun & Bradstreet: ''
+  EE: Enterprise
+  Enterprise: ''
+  ES: Essentials
+  Flow Builder: Starting with 238/240, the old Salesforce Flow becomes Flow Builder.
+  GE: Group
+  Generally Available (GA): Marketable feature set ready for all customer production
+    use and all functional, quality, and performance requirements are complete.
+  Help Menu: The Help Menu is the menu reached by clicking on the question mark in
+    the upper-right corner in Lightning Experience.
+  Hindsight bias: Hindsight bias is the admin-friendly version of this data science
+    term.
+  hmm: ''
+  ID: "The abbreviation for identification in text is ID.\r\n\r\nIn API names, the\
+    \ abbreviation is Id."
+  IoT: A piece of technology stack under the umbrella, the Salesforce platform
+  JSON: JavaScript Object Notation
+  Lightning: A piece of technology stack under the umbrella, the Salesforce platform
+  Marketing Cloud Engagement: ''
+  Marketing Cloud Advertising: ''
+  Marketing Cloud Personalization: ''
+  ME: Personal
+  myEinstein: ''
+  myLightning: ''
+  navigation paths for object management features: ''
+  navigation paths: Navigation paths vary for the App Launcher, object management
+    features, personal settings, and Setup pages.
+  navigation paths for Setup pages: ''
+  navigation paths for personal settings: ''
+  navigation paths for the App Launcher: ''
+  NLP: In documentation, use natural-language processing (NLP) on first mention, NLP
+    thereafter.
+  PE: Professional
+  Professional: ''
+  PXE: Performance
+  Record type access: ''
+  Rich Text Area: ''
+  Sales Engagement: formerly High Velocity Sales
+  Salesforce app: ''
+  Salesforce Flow: "Salesforce Flow refers to the entire automation\r\nproduct portfolio\
+    \ (including Flow Builder, MuleSoft, OmniStudio, and some Einstein products) across\
+    \ the Customer 360.\r\n\r\nSalesforce Flow replaces what was previously called\
+    \ Einstein Automate."
+  Salesforce enforces: ''
+  Salesforce mobile app: ''
+  Service Cloud: ''
+  Setup pages: Use when referring to Setup items in Lightning Experience
+  Setup objects: Use when referring to Setup items in Lightning Experience
+  Setup records: Use when referring to Setup items in Lightning Experience
+  Tab visibility: ''
+  The Object Manager: The Object Manager is a streamlined tool that lets admins access
+    object management settings for standard and custom objects. Object management
+    settings include customizations like fields, page layouts, and compact layouts.
+    The Object Manager is available only in Lightning Experience.
+  the Salesforce Trust site: ''
+  Try Einstein: ''
+  UE: Unlimited
+  Unlimited: ''
+  visualforce markup: ''
+  Visualforce page access: ''
+  W2L: ''
+  web browser: ''
+  web page: ''
+  web portal: ''
+  Windows: Although Android, iOS, and Windows devices have similar features, the terminology
+    usually differs. When possible, use hardware and software terminology consistent
+    with the operating system the mobile app runs on.
+  YouTube video community: When referring to YouTube
+  Zoomin: Zoomin is a scalable, performant, tool-agnostic content publishing pipeline.
+  email: ''
+  emails: ''
+  Service Cloud portal: The Service Cloud portal is the Customer Portal intended for
+    many thousands to millions of users. After you purchase Service Cloud portal licenses,
+    you can assign them to Customer Portal-enabled contacts so that large numbers
+    of users can log in to a Customer Portal without affecting its performance.
+  Site.com Studio: ''
+  Slack: ''
+  Snap-Ins: ''
+  Social Hub: 'Social Hub is a rules engine that allows users to apply automated "formulas"
+    for handling posts based on preset criteria. '
+  Social Studio Mobile: "Social Studio Mobile is a mobile solution allowing companies\
+    \ to get closer to their customers on iOS devices and Android phones everywhere\
+    \ they have WiFi and cellular coverage.\r\n\r\n"
+  Social Studio: Social Studio is a one stop solution allowing you to manage, schedule,
+    create and monitor posts organized by brand, region or multiple teams and individuals
+    in a unified interface.
+  SocialPages: SocialPages is an app in the Marketing Cloud that allows you to create,
+    schedule, and publish content for your Facebook Fan pages without navigating through
+    Facebook Developer screens and building fan pages from scratch.
+  Socrata Open Data Portal: Socrata Open Data Portal is commonly used for sharing
+    health data and for collaboration between governments and their citizens.
+  softphone CTI adapter: 'A computer-telephony integration (CTI) adapter is a light-weight
+    software program that controls the appearance and behavior of a Salesforce SoftPhone. '
+  Splunk: Splunk (the product) captures, indexes and correlates real-time data in
+    a searchable repository from which it can generate graphs, reports, alerts, dashboards
+    and visualizations.
+  Tenant Secret: No Salesforce employees have access to these keys in cleartext.
+  The End of Software: The End of Software is a registered trademark of salesforce.com.
+    The first or most prominent use should include the registered trademark symbol.
+  Thunderhead: Part of Interaction Studio
+  Tokenized Sending: Tokenized sending allows you to use contact data you deem too
+    sensitive to store in your Marketing Cloud account database due to laws, regulations,
+    or security policies in your messaging activity. This process allows you to take
+    information from your own data systems and transmit it to the Marketing Cloud
+    only at send time via an API call.
+  Trailblazer: ''
+  Trailblazer.me: ''
+  Trailhead: Trailhead modules take less than 20 minutes and include knowledge checks
+    with badges to track your progress.
+  Trailmixes: Plural of trailmixes. Use in context like "My Trailmixes" page.
+  Translation Workbench: 'The Translation Workbench lets you specify languages you
+    want to translate. You can assign translators to languages, create translations
+    for customizations you''ve made to your Salesforce organization, and override
+    labels and translations from managed packages. '
+  Unlimited Edition: Unlimited Edition is salesforce.com's solution for maximizing
+    CRM success and extending that success across the entire enterprise through the
+    Force.com platform.
+  URL s-control: "An s-control that contains an external URL that hosts the HTML that\
+    \ should be rendered on a page. When saved this way, the HTML is hosted and run\
+    \ by an external website. URL s-controls are also called Web controls.\r\n\r\n\
+    S-controls have been superseded by Visualforce pages. After March 2010 organizations\
+    \ that have never created s-controls, as well as new organizations, won't be allowed\
+    \ to create them. Existing s-controls will remain unaffected, and can still be\
+    \ edited."
+  Wealth Management: A Lightning version of the Financial Services Cloud app, which
+    is now titled Financial Services Cloud (Classic)
+  web: ''
+  Web & Mobile Analytics: Web & Mobile Analytics helps you gather data about visitor
+    behavior on your website and mobile application, and provide powerful visualizations
+    of the data. The collected data is also available inside the Marketing Cloud “
+    ready to be used to segment messaging lists, provide highly personalized messaging
+    content and drive 1:1  Customer Journeys.
+  web direct leads: Web direct leads is a specific lead source indicating that the
+    lead was generated when a user, who has bookmarked your website or directly typed
+    the URL of your website into a browser, filled out the Web-to-Lead form containing
+    the Salesforce tracking code.
+  Web service: A mechanism by which two applications can easily exchange data over
+    the Internet, even if they run on different platforms, are written in different
+    languages, or are geographically remote from each other.
+  Web Recommendations: ''
+  web referral leads: 'Web referral lead is a specific lead source indicating that
+    the lead was generated when a user navigated to your website using a referring
+    link on another site and filled out the Web-to-Lead form containing the Salesforce
+    tracking code. '
+  web tab: A custom tab that allows your users to use external websites from within
+    the application.
+  Web-to-Case: Functionality that lets you gather customer support issues and feedback
+    on your company's website and then generate cases using that data.
+  Web-to-Lead: Functionality that lets you gather registration or profile information
+    on your company's website and then generate leads using that data.
+  web2case: An internal salesforce.com term for Web-to-Case.
+  web2lead: An internal salesforce.com term for Web-to-Lead.
+  website: ''
+  Wi-Fi: "Wi-Fi is a registered trademark of the Wi-Fi Alliance and the brand name\
+    \ for products based on IEEE 801.11 standards.\r\n\r\nUse Wi-Fi when referring\
+    \ to the wireless connection on a mobile device or to wireless networks."
+  ZIP code: ''
+  World Wide Web: ''
+  OAuth: ''
+  Ohana: ''
+  Omni-Channel: 'Use Omni-Channel to create work items from Salesforce records and
+    route them to the most qualified, available agents in your organization. '
+  Omni-Channel widget: ''
+  Omnichannel Inventory: ''
+  open CTI: An application programming interface that lets developers build CTI (computer-telephony
+    integration) systems that integrate with Salesforce without the use of CTI adpaters
+    or client applications.
+  Oracle partition: Oracle databases can be partitioned. Salesforce partitions each
+    database into 32 partitions, and all customer data is partitioned.
+  OS: "Spell out operating system except when you refer to macOS and iOS, because\
+    \ those are the names of the operating systems that run on Apple devices. Google,\
+    \ Apple, and Research in Motion (RIM) have branding guidelines and preferred language\
+    \ for describing releases of their operating systems.\r\n\r\nOS is acceptable\
+    \ in field labels."
+  PaaS: 'An environment where developers use programming tools offered by a service
+    provider to create applications and deploy them in a cloud. The application is
+    hosted as a service and provided to customers via the Internet. '
+  Partner Central: Name for the Lightning Bolt solution or community template that
+    can be used to build partner communities.
+  Partner Central Bolt Solution: Name for the Lightning Bolt solution or community
+    template that can be used to build partner communities.
+  Partner Scorecard: 'A scorecard that can be associated with a channel program, level,
+    or account. Track metrics (summary results from reports) based on predefine categories.
+    Can be used to measure performance against KPIs. '
+  PBX: A telephony switch that is used exclusively by a single call center to route
+    calls in Salesforce CRM Call Center.
+  PDF: ''
+  PDFs: ''
+  Performance Edition: "Performance Edition is designed for customers that need to\
+    \ drive amazing growth, achieve new levels of customer satisfaction, and maximize\
+    \ sales and service success in the social and mobile world.\r\n\r\nFor customers\
+    \ in Japan, Singapore, and South Korea, we offer Performance Edition Limited,\
+    \ which includes all Performance Edition functionality except Data.com."
+  Personal Edition: Product designed for individual sales representatives and single
+    users.
+  Personalization Builder: 'Personalization Builder, powered by Einstein, delivers
+    the next best product, content or offer to every individual through Product and
+    Content Recommendations. '
+  Platform as a Service (PaaS): 'An environment where developers use programming tools
+    offered by a service provider to create applications and deploy them in a cloud.
+    The application is hosted as a service and provided to customers via the Internet. '
+  Platform Edition: A Salesforce edition based on Enterprise, Unlimited, or Performance
+    Edition that does not include any of the standard Salesforce CRM apps, such as
+    Sales or Service & Support.
+  Professional Edition: A Salesforce edition designed for businesses who need full-featured
+    CRM functionality.
+  Question-to-Case: Question-to-Case
+  Quick Actions in the Publisher: Quick Actions in the Publisher
+  Quick Send: A feature in Distributed Marketing that allows users to send a single
+    Marketing Cloud email from an individual's record in other clouds.
+  quirks mode: A browser implementation that supports legacy Web pages that rely on
+    Web browsers' incomplete or incorrect implementations of HTML and CSS to display
+    properly. Browsers revert to quirks mode if you forget to set the DOCTYPE properly
+    at the top of a Web page, or if you do not use well-formed HTML.
+  Retail Banking: A Lightning app designed for personal bankers.
+  Retail Banking Console: The default view for the Retail Banking app.
+  Richter scale: Measurement for the severity of earthquakes.
+  SaaS: 'A delivery model where a software application is hosted as a service and
+    provided to customers via the Internet. The SaaS vendor takes responsibility for
+    the daily maintenance, operation, and support of the application and each customer''s
+    data. '
+  SageMaker: 'Amazon product; https://help.salesforce.com/s/articleView?id=release-notes.cdp_rn_2023_summer_byom_awssagemaker_ga.htm&release=244&type=5 '
+  Salesforce certificate and key pair: Salesforce certificates and key pairs are used
+    for signatures that verify a request is coming from your organization. They are
+    used for authenticated SSL communications with an external web site, or when using
+    your organization as an Identity Provider. You only need to generate a Salesforce
+    certificate and key pair if you're working with an external website that wants
+    verification that a request is coming from a Salesforce organization.
+  Salesforce Classic: The name for the Aloha version of Salesforce on the desktop.
+    Use this name whenever you're discussing the old, non-Lightning user interface.
+  Salesforce Classic Mobile: 'Salesforce Classic Mobile is the original Salesforce
+    CRM mobile app, which lets users access their Salesforce data from mobile devices
+    running the mobile client application. '
+  Salesforce Communities: Salesforce Communities are customizable public or private
+    spaces for employees, end-customers, and partners to collaborate on best practices
+    and business processes.
+  Salesforce console: The Salesforce console is designed for users in fast-paced environments
+    who need to find, update, and create records quickly. It improves upon the Agent
+    Console in the Console tab by displaying records and related items as tabs on
+    one screen.
+  Salesforce Console integration toolkit: An API that uses browsers as clients to
+    display pages as tabs in a Salesforce console; it provides developers with programmatic
+    access to the console so that administrators can extend it to meet your business
+    needs.
+  Salesforce Console push notifications: Visual indicators in a Salesforce console
+    that show when a record or field has changed during a user's session.
+  Salesforce CPQ: "Product name. Spell out on first reference. Can use \"CPQ\" on\
+    \ subsequent references.\r\n\r\n(CPQ stands for Configure, Price, Quote, a business\
+    \ software application designed for sales teams to provide product options and\
+    \ prices with accuracy.)"
+  Salesforce CRM call center: A Salesforce feature that seamlessly integrates Salesforce
+    with third-party computer-telephony integration (CTI) systems.
+  Salesforce CRM call center queue: A mechanism for storing one or more inbound calls
+    that cannot be immediately answered by a Salesforce CRM Call Center user. Some
+    CTI systems use multiple queues to differentiate between different types of calls.
+  Salesforce CRM content: An on-demand, content-management system that allows you
+    to organize, share, search, and manage content within your organization and across
+    key areas of the Salesforce application. Content can include all file types, from
+    traditional business documents such as Microsoft PowerPoint presentations to audio
+    files, video files, and Web pages.
+  Salesforce Customer Support: When referring to our company's customer support organization,
+    use Salesforce Customer Support.
+  Salesforce Data Cloud: ''
+  Salesforce Developers: In documentation and UI text, use Salesforce Developers to
+    refer to developer.salesforce.com.
+  Salesforce Easy: ''
+  Salesforce Education Services: ''
+  Salesforce for Outlook: Salesforce for Outlook, a Microsoft Outlook integration
+    application that you install, syncs contacts, events, and tasks between Outlook
+    and Salesforce. You can add Outlook emails, attachments, events, and tasks to
+    multiple Salesforce contacts, and view Salesforce records related to the contacts
+    and leads in your emails and events directly in Outlook.
+  Salesforce for Outlook configuration: Salesforce for Outlook, a Microsoft Outlook
+    integration application that you install, syncs contacts, events, and tasks between
+    Outlook and Salesforce. You can add Outlook emails, attachments, events, and tasks
+    to multiple Salesforce contacts, and view Salesforce records related to the contacts
+    and leads in your emails and events directly in Outlook.
+  Salesforce Mobile Classic: ''
+  Salesforce Surveys: "Allows admins to build, distribute, and store data from surveys\
+    \ in Salesforce.\r\n\r\nCan also be shortened to \"Surveys\"."
+  Salesforce to Salesforce: 'The org-to-org sharing product. Style Guide only. Do
+    not conref into userdoc glossaries. XML guidelines for writers: Use the OrgToOrgName
+    variable in reusable.xml.'
+  Salesforce to Salesforce connection: A business partner that you invite to share
+    data using Salesforce to Salesforce.
+  salesforce.com: ''
+  Salesforce1: Short form product name of the flagship Salesforce mobile app for touchscreen
+    smartphones and tablets. Use this product name when you're referring to all of
+    the available "flavors" of the app, including the the mobile browser app and all
+    of the downloadable apps.
+  Selligent: A Marketing Automation Platform (https://www.selligent.com/). Interaction
+    Studio can integrate with Selligent.
+  Server-Side JavaScript: The Marketing Cloud application uses JavaScript code processed
+    by the Marketing Cloud servers. Instead of using the browser to render the JavaScript
+    on the client-side computer, the Marketing Cloud application executes the JavaScript
+    on the server when rendering. Use Core server-side JavaScript functions to personalize
+    landing pages and create applications to run on the Salesforce Marketing Cloud
+    platform. Use Platform server-side JavaScript functions to work with messages,
+    landing pages, and applications.
+  window: ''
+  Gantt: 'A Gantt chart is a type of bar chart that illustrates a project schedule. '
+  Google Apps: Google Apps is a suite of on-demand communication and collaboration
+    services hosted by Google and designed for business users. Salesforce integrates
+    key Google Apps services and provides several AppExchange apps that enhance and
+    customize Google-related functionality.
+  gmail: A free Web-based email service from Google that operates on all standard
+    browsers and can be used with your company's domain. Also known as Google Mail.
+  Google Docs: Google Docs allows you to create on-demand documents, spreadsheets,
+    and presentations, edit them in your browser, and work together in real time with
+    other collaborators.
+  GPT: Generative Pre-trained Transformer (GPT), generates human-like language, trained
+    on large amounts of text data, used for natural language processing tasks, such
+    as language translation, text summarization, or question-answering.
+  Google Talk: Google Talk is Google's instant-messaging tool. When the Google Talk
+    Sidebar Component is activated in Salesforce, Google Talk displays in the sidebar
+    where it can be toggled on, off, or expanded into its own window. You can also
+    log a chat record as an activity on a Salesforce lead or contact record.
+  Group Edition: "A product designed for small businesses and workgroups with a limited\
+    \ number of users.\r\n\r\nThis term is an unregistered trademark. The first or\
+    \ most prominent use of this term should include a trademark symbol:   XML guidelines\
+    \ for writers: Use the GroupEdition variable in reusable.xml."
+  GroupConnect: Use GroupConnect to send messages to contacts via messaging apps.
+    Currently, GroupConnect supports the LINE mobile messaging app. Use GroupConnect
+    to create and send messages, manage contact subscriptions, and review messaging
+    activities.
+  gtag: ''
+  GTL: "Guide Template Language (GTL)\r\n\r\nSpell out on first reference. Okay to\
+    \ use GTL on second reference."
+  Hadoop: 'Apache Hadoop is an open-source software framework written in Java for
+    distributed storage and distributed processing of very large data sets on computer
+    clusters built from commodity hardware. '
+  Guide Template Language (GTL): "Guide Template Language (Guide or GTL) provides\
+    \ a declarative syntax used for creating personalized, dynamic, data-driven messages.\
+    \ Construct templates for use across channels and layouts. \r\n\r\nOkay to use\
+    \ GTL on second reference."
+  Guided Setup: A tool that provides step-by-step guidance for setting up Salesforce
+    features in your org.
+  Heroku: A cloud-based application platform for building and deploying web apps.
+  IDE: A software application that provides comprehensive facilities for software
+    developers including a source code editor, testing and debugging tools, and integration
+    with source code control systems.
+  Identity Embedded Login: 'The feature that allows front-end web developers to embed
+    a login form in any web page. '
+  IdeaExchange: A forum where salesforce.com customers can suggest new product concepts,
+    promote favorite enhancements, interact with product managers and other customers,
+    and preview what salesforce.com is planning to deliver in future releases. Visit
+    IdeaExchange at ideas.salesforce.com.
+  iframe: ''
+  in WhatsApp: ''
+  interactive voice response: The hardware and software that prompts a Salesforce
+    CRM Call Center caller to enter specific digits, such as a menu selection, or
+    an account number. IVR is also known as a Voice Response Unit (VRU).
+  iPad: 'When specifying a version of iOS, append the version number but don''t include
+    the word version: iOS 5.0.'
+  iOS: 'iOS is the name of the operating system that runs on Apple line of mobile
+    devices: iPad, iPhone, and iPod touch.'
+  iPhone: ''
+  ISO code: The International Organization for Standardization country code, which
+    represents each country by two letters.
+  JavaScript: ''
+  Journey Builder: Journey Builder is used for creating responsive automated multi-channel
+    campaigns. Use Journey Builder to design a communication plan that reaches customers
+    at every stage of their journey with your brand.
+  Koa: 'Koa is a text-based self-service template that is optimized for mobile devices. '
+  Kokua: Kokua is a self-service template for Communities.
+  Lightning app: Term for standard and custom apps in Lightning Experience.
+  Lightning App Builder: 'The Lightning App Builder lets you build apps and communities
+    visually, without code, using standard and custom-built Lightning components. '
+  Lightning Configuration Converter: Declarative tool to convert JavaScript buttons
+    in an org to Lightning-friendly alternatives.
+  Lightning Code Analyzer: Debugging tool to identify problems in the JavaScript files
+    that are part of your Lightning bundles. Part of Force.com IDE 2
+  Lightning Connect: Lightning Connect enables you to access records that are stored
+    outside Salesforce, such as data in an enterprise resource planning (ERP) system.
+    Salesforce represents the data in external objects and accesses the external data
+    in real time via Web service callouts to external data sources.
+  Lightning Experience: The name for the newest version of Salesforce on the desktop.
+    Always use the full form of the product name when discussing the user interface.
+    Never abbreviate to just Lightning.
+  Lightning Data: 'AppExchange packages of third-party data. '
+  Lightning Platform: The salesforce.com platform for building applications in the
+    cloud. Lightning Platform combines a powerful user interface, operating system,
+    and database to allow you to customize and deploy applications in the cloud for
+    your entire enterprise.
+  like, Chatter Answers: To show support or indicate quality or usefulness for a question,
+    answer, or knowledge article.
+  Live Agent: Live Agent lets service organizations connect with customers or website
+    visitors in real time through a Web-based, text-only live chat.
+  Live Agent console: The Live Agent console is a dedicated console used by customer
+    service agents to manage Live Agent chats. Agents can answer chat requests, conduct
+    live chats, and interact with Salesforce records and Salesforce Knowledge articles.
+  LiveMessage: Messaging Channel for Service Cloud.
+  Lucene partition: If an organization requires more than 500 MB to create a Lucene
+    index for search, separate indexes are created. The set of indexes for a single
+    organization is called a partition.
+  Marketing Cloud Connect: Connect your Salesforce Marketing Cloud account to your
+    Sales Cloud or Service Cloud account. Engage with customers across marketing,
+    sales, and service ” creating seamless experiences across every touchpoint with
+    your brand.
+  Marketing Cloud Mobile App: 'Salesforce Marketing Cloud Mobile App is a way to manage
+    Marketing Cloud from anywhere. With the power to run your marketing from your
+    phone or iPad, you can now track performance across multiple brands, take action
+    and collaborate with your team. '
+  Marketo: 'Noun. A Marketing Automation Platform owned by Adobe (www.marketo.com).
+    Interaction Studio can integrate with Marketo. Example: "Interaction Studio can
+    integrate several common marketing automation platforms such as Eloqua, Marketo,
+    Salesforce, and Selligent."'
+  Matched Leads: A Lightning App Builder component that contains a list of leads matched
+    to an account.
+  MobileConnect: Create, send, receive, and track SMS and MMS text messages in MobileConnect.
+    Send real-time alerts and transactional messages to subscribers using templates
+    and a drag-and-drop interface. Automatically respond to incoming messages, manage
+    keywords, and many other tasks.
+  MobilePush: 'MobilePush lets you create and send notifications to encourage use
+    of your app. To target your notifications to the best audience, use data about
+    your users from multiple channels. '
+  N-gram transformation: The N-gram transformation generates a case-sensitive, full-text
+    search index based on all data in the specified dataset. Analytics uses the search
+    index to quickly retrieve stored data.
+  n-gram: 'In search, a subsequence of n items from a sequence. Common word-level
+    n-grams include bigrams (two words) and trigrams (three words). '
+  Salesforce Help: ''
+  Interaction Studio: ''
+  CRM Analytics: ''
+  edgemart transformation: 'An edgemart transformation gives the dataflow access to
+    an existing, registered dataset, which can contain Salesforce data, external data,
+    or a combination of the two. '
+  ecommerce: ''
+  eGPT: "Einstein GPT (eGPT)\r\n\r\nThe world's first generative AI for CRM.\r\n\r\
+    \nSpell out in full on first reference. Okay to use eGPT on second reference."
+  Einstein Account Insights: Feature that helps your team to stay informed about key
+    business developments that affect their customers.
+  Einstein Activity Capture: Feature that automatically add activities to related
+    Salesforce records.
+  Einstein Agent: Recommends field values for cases using Einstein to analyze your
+    past case data.
+  Einstein Bots: Chatbot Builder
+  Einstein Answers: A communities Einstein feature, which finds answers to questions
+    asked by community members.
+  Einstein Automated Contacts: Feature that reviews your activities and suggests new
+    contacts and contact roles for opportunities.
+  Einstein Forecasting: 'A Sale Cloud Einstein feature that improves forecasting accuracy
+    with forecast predictions, and helps sales ops track how sales teams are doing. '
+  Einstein Discovery recommendations: ''
+  Einstein GPT (eGPT): "The world's first generative AI for CRM\r\n\r\nOkay to use\
+    \ eGPT on second reference."
+  Einstein Lead Scoring: Feature that shows which leads best fit your company's successful
+    conversation patters.
+  Einstein Intent Set: Packaged Intents for Einstein Bots.
+  Einstein Next Best Action: A product that lets admins deliver propositions at the
+    right moment to the right person by building recommendation strategies.
+  Einstein Opportunity Scoring: A Sale Cloud Einstein feature that scores opportunities
+    based on how likely they are to be won.
+  Einstein Opportunity Insights: Feature that provides updates about opportunities,
+    predictions about which deals are likely to be won, reminders to follow up, and
+    notifications when key moments in a deal take place.
+  Einstein Platform: Name for all of the Einstein services that the MetaMind team
+    is creating, such as Einstein Vision
+  Einstein Spam Detection: ''
+  Einstein Prediction Builder: A feature that lets customer predict almost any field
+    in Salesforce using the power of artificial intelligence.
+  Einstein Vision: Product name for the service and API that enables developers to
+    implement image recognition in their apps and create their own image classifiers.
+    It can be followed by the word API.
+  email approval response: 'The email approval response feature gives users the ability
+    to approve or reject email approval requests by replying to the email. '
+  email alert: Email alerts are workflow and approval actions that are generated using
+    an email template by a workflow rule or approval process and sent to designated
+    recipients, either Salesforce users or others.
+  email notification: An email that's sent when activities happen in Chatter. You
+    can configure the activities that trigger email notifications.
+  Email Send: 'Context "Use the Email Send report to view account activity." '
+  email send: Send single emails to leads, contacts, and person account records, or
+    send to a list through campaigns and reports.
+  Email Studio: Email Studio builds and sends personalized email from basic newsletters
+    to the most complex campaigns. Deliver promotional, transactional, and triggered
+    messages. Track and optimize to drive performance.
+  Email-to-Case: Capitalize the E and C and hyphenate like Web-to-Case.
+  email template: A form email that communicates a standard message, such as a welcome
+    letter to new employees or an acknowledgement that a customer service request
+    has been received. Email templates can be personalized with merge fields, and
+    can be written in text, HTML, or custom format.
+  Encryption Key Management: "Refers to all aspects of key management, such as key\
+    \ creation, processes, and storage.\r\n                    "
+  Enhanced Goals: Helps sales teams precisely track goals and metrics related to their
+    work.
+  Enterprise Edition: A Salesforce edition designed for larger, more complex businesses.
+  entitlement template: Entitlement templates are predefined terms of customer support
+    that you can quickly add to products. For example, you can create entitlement
+    templates for Web or phone support so that users can easily add entitlements to
+    products offered to customers.
+  entitlement contact: Entitlement contacts are contacts specified to receive customer
+    support, for example, a named caller. They're listed on an entitlement's Contacts
+    related list or the contact's Entitlements related list. Entitlement contacts
+    don't have page layouts, search layouts, buttons, links, or record types.
+  entitlement process: Entitlement processes are timelines that include all of the
+    steps (milestones) that your support team must complete to resolve cases. Each
+    process includes the logic necessary to determine how to enforce the correct service
+    level for your customers.
+  Experience Cloud: ''
+  extensible markup language: A markup language that enables the sharing and transportation
+    of structured data. All Force.com components that are retrieved or deployed through
+    the Metadata API are represented by XML definitions.
+  feed attachment: A feed attachment is a file or link that is attached to a post
+    in a Chatter feed.
+  feed filter: Feed filters display a subset of posts in your Chatter feed on the
+    Chatter tab.
+  feed tracking: Administrator settings that determine which records can be followed
+    and which fields can be tracked in Chatter feeds. Enabling an object for feed
+    tracking allows people to follow records of that object type. Enabling fields
+    for feed tracking allows users to see updates on the Chatter feed when those fields
+    are changed on records they follow.
+  field dependency: A filter that allows you to change the contents of a picklist
+    based on the value of another field.
+  Field Service Lightning Mobile App: Product name for the field service mobile app.
+  field sets: A field set is a grouping of fields. For example, you could have a field
+    set that contains fields describing a user's first name, middle name, last name,
+    and business title. Field sets can be referenced on Visualforce pages dynamically.
+    If the page is added to a managed package, administrators can add, remove, or
+    reorder fields in a field set to modify the fields presented on the Visualforce
+    page without modifying any code.
+  field update: Field updates are workflow and approval actions that specify the field
+    you want updated and the new value for it.Field updates are workflow actions that
+    specify the field you want updated and the new value for it. Depending on the
+    type of field, you can choose to apply a specific value, make the value blank,
+    or calculate a value based on a formula you create.
+  field-level help: Custom help text that you can provide for any standard or custom
+    field. It displays when users hover a mouse over the help icon adjacent to that
+    field.
+  field-level security: Settings that determine whether fields are hidden, visible,
+    read only, or editable for users. Available in Enterprise, Unlimited, Performance,
+    and Developer Editions only.
+  Fileforce: 'The set of storage servers (not relational databases) that contain binary
+    data such as weekly export zip files, documents, and attachments associated with
+    an organization''s records. '
+  firmographics: Firmographics (also known as emporographics or firm demographics)
+    are sets of characteristics to segment prospect organizations.
+  Chatter answers follow: A subscription to a question that lets you receive emails
+    when someone answers or comments on a specific question.
+  Salesforce Field Service (SFS): Okay to use SFS on second reference.
+  SFS: "Salesforce Field Service (SFS)\r\n\r\nSpell out in full on first refernce.\
+    \ Okay to use SFS on second reference."
+  data category for articles: In Salesforce Knowledge, data categories are a set of
+    criteria organized hierarchically into category groups. Articles in the knowledge
+    base can be classified according to multiple categories that make it easy for
+    users to find the articles they need. For example, to classify articles by sales
+    regions and business units, create two category groups, Sales Regions and Business
+    Units. The Sales Regions category group could consist of a geographical hierarchy,
+    such as All Sales Regions as the top level, North America, Europe, and Asia at
+    the second level, and so on up to five levels. Authors assign categories to articles.
+    Administrators can use data categories to control access to articles.
+  data category for Answers: On the Answers tab, data categories allow users to classify
+    questions in an answers zone. For example, if you have a zone for hardware products,
+    your data categories may include laptops, desktops, and printers. Zone members
+    can quickly browse within a specific category to find answers to their questions.
+    Administrators can use data categories to control access to questions.
+  Data.com Premium Clean: ''
+  Data.com Premium Prospector: ''
+  Database.com: Database.com is an enterprise cloud database from salesforce.com.
+    Use title-style capitalization, except in a logo or URL.
+  dev: ''
+  Dev Hub: 'The org that you use to manage your scratch orgs. '
+  DID: A phone number that allows a Salesforce CRM Call Center user to be reached
+    directly from outside the call center. DIDs can be used in place of extensions,
+    which require a caller to first dial the main private branch exchange number and
+    then enter an extension.
+  Do Not Call: ''
+  Distributed Sending: 'Distributed Sending is an email marketing solution. It is
+    a solutions package where corporate can provide the email templates, the images/logos,
+    the subscriber lists, etc. for the local marketers, agents, franchisees, interns,
+    etc. to use to send targeted email messages to their subscribers. '
+  Do Not Email: ''
+  Intelligence Reports for Engagement: ''
+  Marketing Cloud Intelligence: ''
+  Company Hierarchy: 'Company Hierarchy displays a hierarchical family tree view of
+    all accounts. '
+  Community Pulse: 'A bar across the Community Workspaces page that displays up to
+    six tiles with report metrics. '
+  Community Templates for Self-Service: ''
+  Configure, Price, Quote (CPQ): "CPQ stands for Configure, Price, Quote, a business\
+    \ software application designed for sales teams to provide product options and\
+    \ prices with accuracy.\r\n\r\nOkay to use CPQ on second reference."
+  Connect for Outlook: "Force.com Connect for Microsoft Outlook is our legacy add-in\
+    \ for Microsoft Outlook 2007 and earlier. It lets you sync between Salesforce\
+    \ and Outlook. Connect for Outlook adds buttons and options to Outlook.\r\n\r\n\
+    XML guidelines for writers: Use the variable OutlookClient in reusable.xml."
+  Connect for Office: "Product that allows you to integrate Salesforce with Microsoft\
+    \ Word and Excel.\r\n\r\nXML guidelines for writers: Use the variable OfficeClient\
+    \ in reusable.xml."
+  Connect Offline: Product that allows salespeople to use Salesforce to update their
+    data remotely, anywhere, anytime, totally unplugged.
+  Contact Manager: A Salesforce edition designed for small businesses that provides
+    access to key contact management features.
+  Contact Builder: The Contact Builder app provides access to contact data contained
+    within your account and the relationships designed to help you use that data.
+    You can use Contact Builder to manage, consolidate, organize, and link data from
+    all Salesforce Marketing Cloud apps and external sources.
+  Content Builder: 'Content Builder is our cross-channel content management tool that
+    allows you to consolidate images, documents, and content in a single location
+    for use in the Marketing Cloud. With an easy-to-use, drag and drop interface,
+    Content Builder is more efficient than our previous creating and editing tools.
+    Content Builder is first integrated with Email Studio. '
+  CPQ: "Abbreviation for Salesforce CPQ product. Spell out \"Salesforce CPQ\" on first\
+    \ reference.\r\n(CPQ stands for Configure, Price, Quote, a business software application\
+    \ designed for sales teams to provide product options and prices with accuracy.)"
+  COVID-19: ''
+  CTI adapter: A lightweight software program that controls the appearance and behavior
+    of a Salesforce SoftPhone. The adapter acts as an intermediary between a third-party
+    computer telephony integration (CTI) system, Salesforce, and a Salesforce CRM
+    Call Center user. It must be installed on any machine that needs access to Salesforce
+    CRM Call Center functionality.
+  CTI connector: A component of a computer telephony integration (CTI) adapter that
+    maintains an in-memory representation of a Salesforce CRM Call Center user's SoftPhone,
+    including the phone numbers, records, and status associated with a call. The CTI
+    connector is the component of a CTI adapter that can be customized by an organization.
+  CTI system: The hardware and software that implements computer-telephony integration
+    (CTI) for a particular call center.
+  Customer 360 Audiences: "Product name Customer 360 Audiences\r\n\r\nNoun. A new\
+    \ product owned by Salesforce. Because of the plural in the last word, I have\
+    \ been getting a subject/verb agreement error. The full product name is \"Customer\
+    \ 360 Audiences\" and will never be shortened in Help."
+  Customer Portal: ''
+  DaaS: An application development model where all development is on the Web. This
+    means that source code, compilation, and development environments are not on local
+    machines, but are Web-based services.
+  ChatGPT: ''
+  Chasitor: Chat Visitor
+  Chatter: Chatter is a Salesforce collaboration application that helps you connect
+    with people and share business information securely and in real time.
+  Chatter Answers: Chatter Answers is a self-service support community where users
+    can post questions and receive answers and comments from other users or your support
+    agents.
+  Chatter Answers topics: The sidebar that lists data categories from which your customers
+    can browse questions and replies. For example, if you have a zone for hardware
+    products, your topics may include laptops, desktops, and printers.
+  Chatter bookmarks: Chatter bookmarks let you keep track of individual posts that
+    interest you. When someone comments on a post you bookmarked, you receive an email
+    notification.
+  Chatter comment: A reply to a post in a Chatter feed.
+  Chatter favorite: Chatter favorites are shortcuts on your Chatter tab to the latest
+    posts and comments for topics, list views, and Chatter feed searches.
+  Chatter feed: 'A list of recent activities in Salesforce. Chatter feeds display:
+    On the Chatter or Home tab, where you can see your posts, posts from people you
+    follow, and updates to records you follow, and posts to groups you''re a member
+    ofOn profiles, where you can see posts made by the person whose profile you''re
+    viewing. On records, where you can see updates to the record you''re viewing.
+    On Chatter groups, where you can see posts to the group you''re viewing'
+  Chatter group: 'Chatter groups let you share information with specific people. For
+    example, if you''re working on a project and want to share information only with
+    your team members, you can create a Chatter group for your team. Chatter groups
+    include a list of members, a Chatter feed, and a photo. You can create the following
+    types of Chatter groups: Public: Only group members can post, but anyone can see
+    the posts and join the public group.Private: Only group members can post and see
+    the posts. The group''s owner or managers must add members.'
+  Chatter influence: An indicator of a person's influence in Chatter. The number of
+    posts and comments the person makes, and the number of comments and likes the
+    person receives determine the level of influence. Top Influencers lead collaboration
+    efforts by regularly sharing essential content.Active Influencers encourage others
+    to get involved and share knowledge.Observers are quiet participants or just getting
+    started in Chatter.
+  Chatter mobile: A free mobile application that lets you collaborate in Chatter from
+    your mobile device. Use Chatter Mobile to post and comment in Chatter, and receive
+    updates about the people, records, and files you follow and your groups.
+  Chatter Questions: ''
+  Chatter profile: A personal page for each Salesforce user that includes contact
+    information, following and followers lists, a Chatter feed, and a photo.
+  Checkout product: A product is any item or service you purchase from Checkout. For
+    example, a product could be a Professional edition license, a support package,
+    or extra storage.
+  Checkout quote: A Checkout quote is a convenient, risk-free way to price products
+    or services and terms before placing an order. Quotes can be for new business,
+    add-ons, upgrades, or renewals.
+  Classic app: Term for standard and custom apps in Salesforce Classic.
+  Clickjack Protection for Visualforce Pages: Clickjack protection secures your Visualforce
+    pages against user interface redress attacks. You can enable clickjack protection
+    for Visualforce pages that suppress the standard header. The setting is global
+    to your organization and applies to all your Visualforce pages.
+  clickjack: Malicious technique of tricking a Web user into clicking on something
+    different from what the user perceives they are clicking on, potentially revealing
+    confidential information or taking control of their computer while clicking on
+    seemingly innocuous web pages. A clickjack takes the form of embedded code or
+    a script that can execute without the user's knowledge.
+  clickjack protection: ''
+  cloud computing: A model for software development and distribution based on the
+    Internet. The technology infrastructure for a service, including data, is hosted
+    on the Internet. This allows consumers to develop and use services with browsers
+    or other thin clients instead of investing in hardware, software, or maintenance.
+    Use this to On-Demand or Software as a Service to describe the Salesforce delivery
+    model.
+  CloudPages: CloudPages is a Marketing Cloud application used to create and publish
+    targeted marketing content to customers across multiple channels.
+  Collect Tracking Code: 'Collect Tracking Code is a JavaScript snippet you can use
+    to capture data about known subscribers and unknown visitor behavior. '
+  Command Center: The Marketing Cloud Command Center helps showcase a brand's social
+    presence and provides live details about what is happening regarding the brand
+    on social media. Use Command Center on large displays if you need to monitor and
+    display high-level social performance information.
+  Commerce Payments: ''
+  Community 360: Feature in the Service Cloud Console that analyzes a customer's activity
+    in a community (cases and articles viewed), to help support agents to be more
+    effective.
+  Community application: The Community application includes the ideas and answers
+    features. The Community app is available in the Force.com app menu.
+  relate to: ''
+  assigned approver: The assigned approver is the user responsible for approving an
+    approval request.
+  Aura component: ''
+  associated record: A single instance of a Salesforce object. Use the term record
+    when referring to a particular instance of an object. Use the term object when
+    referring to the overall concept of a custom object or standard Salesforce object
+    like accounts and contacts. For example, "You can create custom fields for each
+    of the objects your organization uses." and "In the Recycle Bin, select the checkbox
+    next to the records you want to recover." Avoid the use of entity in customer-facing
+    text.
+  Audience Builder: The Audience Builder app allows you to segment your subscribers
+    in sophisticated ways. This segmentation helps you better target your sends. Audience
+    Builder provides you with a quicker and deeper understanding of your customer
+    attributes and behavior.
+  Aura Components: ''
+  automatic number identification: The number from which a caller is dialing in Salesforce
+    CRM Call Center.
+  Automation Studio: Automation Studio is a Salesforce Marketing Cloud application
+    used to execute multi-step marketing and data management activities on an immediate,
+    triggered, or scheduled basis. Use Automation Studio's workflow canvas to build
+    simple or multi-step automations.
+  B2B Commerce managed package: ''
+  B2B Marketing Analytics: 'B2B Marketing Analytics provides advanced analytics for
+    the data-driven marketer, letting you explore both your marketing and sales data
+    in one place. '
+  Business Manager: ''
+  Build Your Own: A basic template for community developers.
+  business account: A company or organization that you want to track.
+  Campaign Marketplace: 'A Partner Community component that organizes and shares pre-approved
+    campaigns based on a list-view and filters and displays them in a tile view in
+    the partner''s community. '
+  campaign ROI: The campaign ROI is the return on your marketing investment. Use the
+    Campaign ROI Analysis Report to analyze the ROI. The ROI is calculated as the
+    net gain (Total Value Won Opps - Actual Cost) divided by the Actual Cost. The
+    ROI result is expressed as a percentage.
+  Google Play: ''
+  Actions in the Salesforce1 Action Bar: Actions in the Salesforce1 Action Bar
+  Ad Studio: A Marketing Cloud Advertising Studio uses existing customer data from
+    email, mobile push interactions and conversions on your site to securely sync
+    with the contact's Facebook and Twitter accounts.
+  Additional Campaign Influence Attribution Models: SKU that provides three more attribution
+    models for customers with both Sales Cloud and Pardot licenses.
+  Advertising Audiences: Use Advertising Audiences to securely create segmented audiences
+    for Facebook, Twitter, Google AdWords or Social Studio.
+  Advertising Studio: Advertising Studio uses existing customer data from email, mobile
+    push interactions and conversions on your site to securely sync with the contact's
+    Facebook and Twitter accounts.
+  ALM: The process of managing an application's lifecycle, from planning, to development,
+    to integration, to support.
+  Aloha: The Aloha template uses Salesforce Identity to provide an App Launcher for
+    community users.
+  AMPscript: The AMPscript scripting language allows for personalized content within
+    HTML emails, text emails, landing pages, SMS and MMS messages, and push notifications
+    from MobilePush.
+  Aloha UI: The older Salesforce UI
+  analytic snapshot source report: The custom report scheduled to run and load data
+    as records into a custom object.
+  analytic snapshot: An analytic snapshot lets you report on historical data. Authorized
+    users can save tabular or summary report results to fields on a custom object,
+    then map those fields to corresponding fields on a target object. They can then
+    schedule when to run the report to load the custom object's fields with the report's
+    data.
+  analytic snapshot running user: The user whose security settings determine the source
+    report's level of access to data. This bypasses all security settings, giving
+    all users who can view the results of the source report in the target object access
+    to data they might not be able to see otherwise.
+  analytic snapshot target object: The custom object that receives the results of
+    the source report as records.
+  Analytics Builder: Analytics Builder enables you to gain deep insights into the
+    behaviors and interests of your contacts across channels. Use these insights to
+    set marketing goals and refine customer journeys.
+  Android: 'Android is an operating system for mobile devices developed by the Open
+    Handset Alliance. When specifying a version of the Android operating system, use
+    the word release (lowercase) followed by the release number. Example: Android
+    release 3.0.'
+  ANI: The number from which a caller is dialing in Salesforce CRM Call Center.
+  App Launcher: The App Launcher presents logos that link to your connected apps and
+    standard apps, all from one tab in Salesforce. Users must be assigned a profile
+    or permission set with Use Identity Features enabled and the App Launcher set
+    to Visible to see it. Then, it appears as an app in the Force.com App Menu.
+  App Store: Name of Apple's online store for downloadable iOS apps
+  approval process: An approval process is an automated process your organization
+    can use to approve records in Salesforce. An approval process specifies the steps
+    necessary for a record to be approved and who must approve it at each step. A
+    step can apply to all records included in the process, or just records that meet
+    certain administrator-defined criteria. An approval process also specifies the
+    actions to take when a record is approved, rejected, recalled, or first submitted
+    for approval.
+  Application Hub: An app where you can manage all your Salesforce environments in
+    one place, and where admins and developers can work collaboratively to manage
+    the creation and distribution of apps.
+  approval process diagram: A visual flowchart representation of an approval process.
+    From a detail page of an approval process, you can open the diagram by launching
+    the Process Visualizer.
+  approval request: An approval request is an email, Salesforce1 notification, or
+    Chatter post notifying the recipient that a record was submitted for approval
+    and that his or her approval is requested.
+  Approvals in Chatter: If your organization has both Approvals and Chatter enabled,
+    administrators can turn on Approvals in Chatter, which lets users receive approval
+    requests as posts in their Chatter feeds.
+  approval steps: Approval steps assign approval requests to various users and define
+    the chain of approval for a particular approval process. Each approval step specifies
+    the attributes a record must have to advance to that approval step, the user who
+    can approve requests for those records, and whether to allow the delegate of the
+    approver to approve the requests. The first approval step in a process specifies
+    the action to take if a record does not advance to that step. Subsequent steps
+    in the process allow you to specify what happens if an approver rejects the request.
+  archived article: Archived articles were published but later removed from public
+    visibility. Article managers can view and manage archived articles on the Article
+    Management tab by clicking the Articles tab in the View area and choosing Archived
+    Articles. Archived articles are not visible in the Articles tab (in any channel)
+    or the public knowledge base. Articles can be archived manually or automatically
+    via an expiration date.
+  Google Workspace: ''

@@ -1,0 +1,327 @@
+extends: substitution
+message: '%s ''%s'''
+level: error
+ignorecase: true
+swap:
+  etc: ''
+  and above: 'For API and product version numbers:
+
+
+    Use "and later" instead of "and above," as in "Internet Explorer 7.0 and later."'
+  create a new: 'Just say "create a __" instead of "create a new __," etc.
+
+
+    The button standard is "New ___." See https://confluence.internal.salesforce.com/x/dQWGC.'
+  Create New: 'For buttons, say "New" or "New [Thing]" instead. See the Button standard:
+    https://confluence.internal.salesforce.com/x/dQWGC '
+  administrator: 'Generally say "Salesforce admin" on first mention and "admin" after
+    that.
+
+
+    Exception: The edge case related to "Black Tab."'
+  system administrator: 'Generally say "Salesforce admin" on first mention and "admin"
+    after that.
+
+
+    Exception: The edge case related to "Black Tab."'
+  may: 'Avoid "may," "might," and other modal verbal phrases.
+
+
+    Note: Don''t change modal verbs that appear in legal boilerplate text such as
+    disclosures.
+
+
+    MuleSoft: Use only in the context of permissions'
+  lets: Avoid permissive language unless you're talking about permissions. Don't use
+    "lets" when what you mean is "makes possible."
+  let: Avoid permissive language unless you're talking about permissions. Don't use
+    "let" when what you mean is "make possible."
+  have to: 'As a general rule, avoid "have to." The phrase is hard to translate in
+    some languages, and omitting it also reduces word count and improves the tone
+    of your content. '
+  surface: 'What we used to call an agent "surface" we now refer to as an agent "connection."  '
+  surfaces: 'What we used to call an agent "surface" we now refer to as an agent "connection."  '
+  config: Spell out "configuration" instead.
+  Activate: 'Don''t use, except in Tableau doc. '
+  click on: 'Use "click" instead.  Click means click the left mouse button. '
+  Plan of Actions and Milestones: Every first letter capitalized. After first mention,
+    use POA&M.
+  Pager Duty: Use PagerDuty.
+  gimlet: Outdated codename for Core-on-Git. Use Core-on-Git instead.
+  GovCloud: Always say Government Cloud.
+  customer user journey: Use critical user journey.
+  Core on Git: Should be hyphenated. Use Core-on-Git instead.
+  black-tab: "\"Don't use in customer-facing content. Treat as a proper noun: Black\
+    \ Tab. Two words. Don't hyphenate. \n\nReplace with \"Black Tab\" instead."
+  blacktab: "\"Don't use in customer-facing content. Treat as a proper noun: Black\
+    \ Tab. Two words. Don't hyphenate. \n\nReplace with \"Black Tab\" instead."
+  ad-hoc release: Use "ad hoc release" instead.
+  account executive service owner: Use accountable executive service owner.
+  logical service: What we once called a "logical service" is now called a "feature."
+  physical service: Now that "feature" has replaced "logical service," we don't need
+    to distinguish between logical and physical services.
+  Omnichannel: 'MuleSoft: Use multichannel instead'
+  FIREBoM: Use FIRE BOM instead
+  might: Avoid the conditional could, might, should and would in hypothetical examples.
+    Present indicative and imperative are better because they're less wordy and more
+    direct.
+  desire: Don't use terms that belong in a Tennessee Williams play.
+  wish: Too fluffy. Be more direct.
+  desired: 'Avoid flowery language. Be more direct.
+
+    '
+  revert back: ''
+  add an additional: ''
+  add additional: ''
+  should: 'Avoid the conditional "could, might, should, and would" in hypothetical
+    examples. Present indicative and imperative are better because they''re less wordy
+    and more direct.
+
+    See "modal verbs" in the style guide for examples of writing around "should."'
+  hotfix: A hotfix is a software update that is released outside the normal update
+    cycle or intended to be applied to a live system; often to fix a bug. Don't use
+    "hotfix" as a verb to mean the application of a hotfix to a system -- that's too
+    jargony.
+  Trailhead Superbadge: ''
+  realtime: 'Noun: "real time"
+
+    Adjective: "real-time"'
+  visually impaired: ''
+  utilized: Don't use. Substitute a simpler word.
+  utilizes: Don't use. Substitute a simpler word.
+  Datorama Reports for Marketing Cloud: Datorama is called Marketing Cloud Intelligence
+    as of 2022.
+  MC Intelligence: 'Replaces the term ''Datorama'' since 2022. '
+  ought to: For more examples, see "modal verbs" in the style guide.
+  reply to address: Hyphenate "reply-to" when a compound adjective.
+  need to: 'As a general rule, avoid "need to." It''s hard to translate in some languages,
+    and omitting it also reduces word count and improves the tone of your content. '
+  Workbench: "Workbench isn’t supported by Salesforce and shouldn’t be mentioned in\
+    \ external content. \n\nThe replacement term for Workbench depends on multiple\
+    \ factors, so we can’t recommend a term here. There are several tools that provide\
+    \ functionality similar to some Workbench features, so consider how the customer\
+    \ used Workbench in the context you’re describing. See the Salesforce Help topic\
+    \ “Replacement Tools for Workbench.\"\n\nFor questions about alternative tools\
+    \ for Workbench, refer to the #workbench-eol Slack channel."
+  SFX: ''
+  color-blind: ''
+  total solution: Don't editorialize in technical documentation.
+  the Help and Training portal: ''
+  state-of-the-art: Don't editorialize in technical documentation.
+  state of the art: Don't editorialize in technical documentation.
+  utilize: Don't use. Substitute a simpler word, such as use.
+  user-friendly: Don't editorialize in technical documentation.
+  white box: ''
+  black box: ''
+  Searchinator answers: ''
+  Searchinator search: ''
+  seamless: Don't editorialize in technical documentation.
+  pull the plug: ''
+  powerful feature: Don't editorialize in technical documentation.
+  popup window: Don't use popup window to describe an overlay window in the UI. Just
+    call it a window instead.
+  online help: Don't refer to the Help and Training Portal or any variants.
+  master: 'Use scrum lead to replace scrum master.
+
+
+    Use Main Services Agreement (MSA) to replace Master Subscription Agreement (MSA).
+
+
+    Don''t use master in new features, documentation or UI text to mean main, primary,
+    principal, source, leader, active, or controller.
+
+
+    Consider main or primary as alternatives.
+
+    Change master now if doing so doesn’t cause problematic inconsistencies in your
+    doc set.
+
+    If your scrum team suggests the term in a new feature or UI element, you can use
+    another term.
+
+    Fixing master can be complicated because of seven possible alternatives and the
+    legal references that can’t change.'
+  blind: ''
+  robust: Instead of saying "robust," say WHY or HOW something is robust.
+  license management org: ''
+  kind of: Avoid adverbs that don't carry important meaning.
+  i.e.: Avoid Latin expressions.
+  the Salesforce Help: Don't refer to the Help and Training Portal or any variants.
+  H&T: Don't refer to the Help and Training Portal or any variants.
+  etc.: Avoid Latin expressions.
+  et al.: Avoid Latin expressions.
+  en masse: Avoid non-English-language expressions.
+  e.g.: ''
+  mutton: An internal term for dropdown menus. Don't use.
+  déjà vu: Say "feeling familiar" instead. Avoid non-English-language expressions.
+  Datorama: Datorama is called Marketing Cloud Intelligence as of 2022.
+  Datorama Reports: The term "Datorama Reports" was deprecated in late 2022 and replaced
+    by "Intelligence Reports for Engagement."
+  alright: Say "all right" instead.
+  Auto-Activated: Don't use, except in Tableau doc.
+  activated: Don't use, except in Tableau doc.
+  At this point: ''
+  blackhat: Replace with unethical or malicious.
+  whitehat: Replace with security researcher or ethical.
+  whitelistings: Replace with allowlist, includelist or permit.
+  whitelisted: Replace with allowlist, includelist or permit.
+  white listed: Replace with allowlist, includelist or permit.
+  white listing: Replace with allowlist, includelist or permit.
+  Whitelist: Replace with allowlist, includelist or permit.
+  Whitelists: Replace with allowlist, includelist or permit.
+  Whitelisting: Replace with allowlist, includelist or permit.
+  white list: Replace with allowlist, includelist or permit.
+  white lists: Replace with allowlist, includelist or permit.
+  brownouts: Replace with reduced availability.
+  brownout: Replace with reduced availability.
+  blackouts: Replace with blockout.
+  blackout: Replace with blockout.
+  scrum master: Use scrum lead to replace scrum master.
+  cutting edge: Avoid cliches.
+  Conversational search: ''
+  Master Subscription Agreement (MSA): Use Main Services Agreement (MSA) to replace
+    Master Subscription Agreement (MSA).
+  would: Avoid the conditional could, might, should and would in hypothetical examples.
+    Present indicative and imperative are better because they're less wordy and more
+    direct.
+  could: Avoid the conditional could, might, should and would in hypothetical examples.
+    Present indicative and imperative are better because they're less wordy and more
+    direct.
+  bug: 'Use issue, problem, error, or change, not bug or defect.
+
+
+    Use the past tense: fixed an issue'
+  click here: Never use "Click Here" as link text.
+  very: Avoid adverbs that don't carry important meaning.
+  somewhat: Avoid adverbs that don't carry important meaning.
+  extremely: Avoid adverbs that don't carry important meaning.
+  basically: Avoid adverbs that don't carry important meaning.
+  actually: Avoid adverbs that don't carry important meaning.
+  obviously: Avoid adverbs that don't carry important meaning.
+  probably: Avoid adverbs that don't carry important meaning.
+  definitely: Avoid adverbs that don't carry important meaning.
+  practically: Avoid adverbs that don't carry important meaning.
+  really: Avoid adverbs that don't carry important meaning.
+  a lot: Avoid a lot or replace it with a less wordy alternative such as several,
+    many, or often.
+  and/or: Don't use. Instead, rewrite to clarify the sentence. This usually means
+    choosing or, which can mean either or both
+  As it was earlier demonstrated: ''
+  bells and whistles: ''
+  Auto-Enabled: ''
+  available for activation: ''
+  Automatically applied: ''
+  bimonthly: Avoid using bi- as a prefix to a time period.
+  biweekly: Avoid using bi- as a prefix to a time period.
+  bona fide: Avoid this non-English-language expressions and use substitute
+  carte blanche: Avoid this non-English-language expressions and use substitute
+  cell phone: Don't use cellular phone or cell phone unless you need to call out the
+    cellular technology.
+  Caution: Don't use caution. Use warning, which is a type of note that informs users
+    that failure to perform or avoid a specific action could result in a loss of data.
+  cellular phone: Don't use cellular phone or cell phone unless you need to call out
+    the cellular technology.
+  come out of left field: ''
+  Data leakage: ''
+  Data Assessor: ''
+  defect: ''
+  ease of use: ''
+  Einstein Analytics in 238: ''
+  Einstein Automate: Starting with 238/240, Salesforce Flow replaces Einstein Automate
+  field in: When referring to fields in relation to objects, use on instead of in.
+  Force.com: Now called Lightning Platform.
+  free: Free has legal implications and our legal team has asked us not to use it.
+  freemium: Freemium is the internal term. Try Einstein is the customer-facing term.
+  general-purpose: ''
+  Goldilocks: ''
+  grow your business: ''
+  hands-on: ''
+  help and training: Don't refer to the Help and Training Portal or any variants.
+  hit it out of the park: ''
+  High Velocity Sales: ''
+  hit the panic button: ''
+  In fact: ''
+  innovative: ''
+  intuitively: ''
+  label leakage: ''
+  leaker: ''
+  leverage: ''
+  LEX: ''
+  Messaging & Journeys: ''
+  muttons: 'An internal term for drop-down menus. '
+  Opt in Window: ''
+  paradigm: ''
+  Staggered fashion: ''
+  the ball’s in your court: ''
+  utilizing: Don't use. Substitute a simpler word.
+  vis-à-vis: Avoid this non-English-language expressions and use substitute
+  Wave Analytics in 208.9: ''
+  we have your back: ''
+  well-oiled machine: ''
+  You should be able to see: ''
+  Spam IQ: ''
+  spade: 'Avoid unless talking about an actual shovel or a suit in a deck of cards. '
+  Supportforce: OBSOLETE. Salesforce.com product that includes support features such
+    as cases and solutions.
+  tab overview page: "The tab home page is the page that displays when you click one\
+    \ of the major tabs in Salesforce.\r\n\r\nUse tab home page instead of tab overview\
+    \ page."
+  Trailheads: "Trailhead modules take less than 20 minutes and include knowledge checks\
+    \ with badges to track your progress.\r\n\r\nDon't use \"Trailheads\" plural anywhere.\
+    \ The product/experience/delivery mechanism is Trailhead, and things delivered\
+    \ in it are Trails, Modules, Projects, and Units."
+  rollup: ''
+  roll up: ''
+  self-service web portal: Refers to the Self-Service site that an organization posts
+    online so their customers can use the Self-Service feature.
+  Help & Training Portal: Use Salesforce Help.
+  Help & Training: Use Salesforce Help instead.
+  Help Portal: Use Salesforce Help instead.
+  home in on: Instead, use focus on or something similar. Although hone in on is a
+    commonly used variant of home in on, this usage is incorrect. (Home in on means
+    to find and move directly toward, or, figuratively, to focus on, while hone means
+    to sharpen.) Avoid controversy by writing around the phrase.
+  hone in on: Instead, use focus on or something similar. Although hone in on is a
+    commonly used variant of home in on, this usage is incorrect. (Home in on means
+    to find and move directly toward, or, figuratively, to focus on, while hone means
+    to sharpen.) Avoid controversy by writing around the phrase.
+  machine-learning: Never hyphenate, even when a compound adjective.
+  Master Service Agreement (MSA): Master Service Agreement (MSA) is deprecated by
+    legal. Use Main Services Agreement (MSA) instead.
+  Field Service Lightning: "Field Service Lightning (FSL) is a Salesforce product\
+    \ that connects customers, workforce and products on a single platform to deliver\
+    \ exceptional on-site services. \r\nIt also provides customer support team a chance\
+    \ to intelligently delegate work to Field Service technicians and monitor them\
+    \ constantly."
+  first-class: 'Can be considered classist. Consider using core feature, built-in,
+    or top-level instead. '
+  Force.com Migration Tool: Force.com is deprecated. Replace with Ant Migration Tool.
+  FSL: "Field Service Lightning (FSL) is a Salesforce product that connects customers,\
+    \ workforce and products on a single platform to deliver exceptional on-site services.\
+    \ \r\nIt also provides customer support team a chance to intelligently delegate\
+    \ work to Field Service technicians and monitor them constantly."
+  grayed out: Don't refer to a button as "grayed out", "dimmed", or "uneditable";
+    instead, describe an option as unavailable.
+  dimmed: Don't refer to a button as "grayed out", "dimmed", or "uneditable"; instead,
+    describe an option as unavailable.
+  Community Cloud: ''
+  Wave dashboard designer: "Old name for dashboard designer.\r\n\r\nThe old designer\
+    \ is still referred to as \"classic designer.\""
+  as such: The expression as such is stilted, so cut or use itself or another simpler
+    expression instead.
+  Android Market: Don't use. Former name for Google Play.
+  blacklist: Replace with blocklist, denylist, excludelist, avoidlist.
+  black lists: Replace with blocklist, denylist, excludelist, avoidlist.
+  blacklisting: Replace with blocklist, denylist, excludelist, avoidlist.
+  black listing: Replace with blocklist, denylist, excludelist, avoidlist.
+  black list: Replace with blocklist, denylist, excludelist, avoidlist.
+  blacklisted: Replace with blocklist, denylist, excludelist, avoidlist.
+  black listed: Replace with blocklist, denylist, excludelist, avoidlist.
+  slave: "when used to mean duplicated or inherited from something else.\r\n\r\nwhen\
+    \ used to mean controlled by something else."
+  slavery: "when used to mean duplicated or inherited from something else.\r\n\r\n\
+    when used to mean controlled by something else."
+  blackbox model: ''
+  whitebox model: ''
+  first-class citizen: ''
+  standup: (meeting)

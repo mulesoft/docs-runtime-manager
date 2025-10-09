@@ -1,0 +1,30 @@
+# # Copyright (c) 2023, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Proposes using contractions where applicable
+#
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: warning
+nonword: false
+action:
+  name: replace
+swap:
+  'are not': aren't
+  'can not': can't
+  'cannot': can't
+  'did not': didn't
+  'do not': don't
+  'Do not': 
+  'is not': isn't
+  'Is not': Is not
+  'it is': it's
+  'It is': It's
+  'they are': they're
+  'They are': They're
+  'you are': you're
+  'we are': we're
+  'We are': We're
+  'You are': You're

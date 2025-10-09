@@ -1,0 +1,19 @@
+# # Copyright (c) 2024, salesforce.com, inc.
+# All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clausescope: raw
+#
+# Flags headings that contain end punctuation marks
+#
+extends: existence
+message: "Don't use end punctuation in headings."
+nonword: true
+level: warning
+scope: heading
+action:
+  name: edit
+  params:
+    - remove
+    - '.?!'
+tokens:
+  - '[a-z0-9][.?!](?:\s|$)'
