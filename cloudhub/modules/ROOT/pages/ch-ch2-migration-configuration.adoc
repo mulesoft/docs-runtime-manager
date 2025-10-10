@@ -474,6 +474,8 @@ Replicas with fewer than 1.0 vCores provide limited CPU, and I/O for application
 
 == Migrate Your CloudHub Applications to CloudHub 2.0
 
+Migrate your CloudHub applications to CloudHub 2.0 by gathering reusable artifacts, creating private spaces, and updating application configurations. This process requires collecting CIDR blocks, VPN connections, SSL certificates, and firewall rules from your existing CloudHub environment. You must update Mule runtime versions to 4.3.x or later and modify application code to remove persistent queues and CloudHub connectors. Deploy applications using the two-step process through Anypoint Exchange and configure egress firewall rules for Mule services access.
+
 === Before You Begin
 
 Keep your reusable artifacts. Gather all required information to set up a private space and use your CloudHub artifacts to configure the CloudHub 2.0 environment:
