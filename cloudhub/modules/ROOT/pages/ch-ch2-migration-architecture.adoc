@@ -1,0 +1,154 @@
+= CloudHub to CloudHub 2.0 Migration Architecture
+
+Migrating CloudHub configurations to CloudHub 2.0 requires you to implement critical steps, handle unique customizations, and make sure that all configuration dependencies resolve correctly. This process minimizes risks and keeps your systems compliant and efficient.
+
+== Understand the Differences	
+
+Identify critical architectural differences and configuration gaps between ClouHub and CloudHub 2.0. This comparison enables accurate planning for your custom migration case. 
+Review core differences in deployment models and environmental dependencies that directly affect your unique, customized configurations. 
+Use this essential comparative knowledge to scope your migration effort precisely and mitigate the risk of incompatibility during upgrade planning.
+
+.Architecture
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|The CloudHub architecture includes two major components, the ​Anypoint platform services, and the worker cloud.
+|The CloudHub 2.0 architecture comprises two major components, the Anypoint Platform services, and shared global regions.
+
+|image:architecture-diagram.png[]
+|image:ch2-architecture.png[]
+|===
+
+====
+
+.Private Network
+[%collapsible,opts=hide-details]
+====
+
+The Private Network extends your corporate network and allows CloudHub workers and CloudHub 2.0 replicas to access resources behind the corporate firewall. The way to create a private network is different from CloudHub to CloudHub 2.0.
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0
+
+|A Virtual Private Cloud (VPC) allows you to create a virtual, private, and isolated network segment in the cloud to host your CloudHub workers.
+|A private space is a virtual, private, and isolated logical space in CloudHub 2.0 in which to run Mule apps. You can create multiple private spaces, either in the same or different regions.
+
+|Static IPs are available as a per-application feature. You enable *Static IPs* on individual apps, and each app gets its own set of egress static IPs. Not provisioned at the VPC level.
+|Static IPs are provisioned at the private space level. All applications in the same private space share these outbound static IPs.
+
+|Firewall rules include four default inbound rules created automatically. Egress is not supported - all outbound traffic from the VPC is allowed by default with no firewall rule configuration.
+|Firewall rules include two default inbound rules and two default outbound rules created automatically. You can configure additional inbound/outbound rules and application-level egress rules for granular control.
+
+|TLS/SSL certificates require manual configuration. The SLB uses the platform's wildcard certificate. For custom domains, create a DLB and upload your own PEM-encoded certificates and private keys.
+|TLS context is automatically created for the private space with wildcard certificates for both internal and public endpoints.
+
+|The default ingress load balancer is SLB provided by default for all apps. DLB is optional and you create and configure it within the VPC.
+|A fully managed ingress load balancer is automatically provisioned for the private space.
+|===
+
+====
+
+.Connectivity Methods
+[%collapsible,opts=hide-details]
+====
+
+The private network connects to the corporate network using these connectivity methods:
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0
+
+a| * VPC peering (AWS VPC to Mule VPC)
+ * AWS Direct Connect
+ * Transit Gateway Attachments
+ * VPN tunnel/IPsec tunnel
+a| * VPN tunnel
+ * Transit Gateway Attachments
+
+|To enable VPC peering and AWS Direct Connect, contact the MuleSoft Support team.
+|CloudHub 2.0 supports Transit Gateway or VPN tunnel.
+|===
+
+====
+
+.Firewall Rules
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub Ingress (Inbound) Rules
+|CloudHub 2.0 Ingress (Inbound) Rules
+
+|CloudHub adds firewall rules automatically when you create a VPC.
+|CloudHub 2.0 adds firewall rules automatically when you create a private space.
+
+|All traffic to a VPC is blocked unless explicitly allowed in a firewall rule.
+|All traffic to a private space is blocked unless explicitly allowed in a firewall rule.
+
+a|Four default inbound rules are created automatically:
+
+* Two rules to allow inbound connections from within your local Anypoint VPC through ports 8091 and 8092. 
+** Specifically for DLB interactions. 
+* Two rules allow inbound connections from anywhere through ports 8081 and 8082.
+** Specifically for DLB interactions.
+a|Two default inbound rules are created automatically:
+
+* Two rules to allow inbound connections from any host:
+** HTTPS: port 443
+** HTTP: port 80
+
+|CloudHub supports HTTP/HTTPS protocols only.
+|CloudHub 2.0 supports HTTP, HTTPS, and TCP protocols.
+
+|The maximum number of firewall rules is approximately 35 per VPC, depending on the number of rules CloudHub requires. 
+|The maximum number of inbound firewall rules is 300.
+|===
+
+
+[cols="1",options="header"]
+|===
+|Egress (Outbound) Rules
+
+|CloudHub doesn't support egress firewall rules. There are no egress control capabilities. CloudHub allows all outbound traffic by default.
+
+|CloudHub 2.0 provides two default outbound rules created automatically. You can configure additional inbound/outbound rules and application-level egress rules for granular control.
+The maximum number of outbound firewall rules in CloudHub 2.0 is 300.
+
+a|CloudHub 2.0 adds two egress rules by default:
+
+* TCP: All ports (to anywhere)
+* HTTPS: 443 (to anywhere)
+|===
+
+
+[cols="1",options="header"]
+|===
+|CloudHub 2.0 Application-Level Egress Rules
+
+|CloudHub 2.0 supports egress firewall rules at the application-level. Application-level egress rules are independent of private-space-level firewall rules.
+
+|Enable the application-level egress rules feature via the Anypoint Runtime Manager UI.
+
+|In CloudHub 2.0, egress traffic passes both application-level control (enforced in the first place), and private-space-level control (enforced after app-level).
+
+| Apply the application-level egress rules that you configured in your private space when you deploy an application.
+
+a|You can configure application-level egress connections, such as:
+
+* Anypoint MQ
+* Object Store v2
+* API Manager
+|===
+
+
+====
+
