@@ -165,7 +165,7 @@ a|You can configure application-level egress connections, such as:
 |CloudHub supports static IP addresses at application level.
 |CloudHub 2.0 supports static IP addresses at the private space level.
 
-|CloudHub provisions two to four (depending on the region) outbound static IPs per application if you enable the *Static IPs* feature for that specific app.
+|CloudHub provides two to four (depending on the region) outbound static IPs per application if you enable the *Static IPs* feature for that specific app.
 |CloudHub 2.0 provisions two or three inbound and outbound static IPs (depending on the region's availability of Multi-AZ zones) at the private space level.
 
 |Applications deployed to the same VPC don’t automatically share static IPs. Each application has its own set of outbound static IPs if you enable the *Static IPs* feature. Inbound static IPs are only available through a DLB. All applications behind the same DLB share the same set of inbound static IPs.
@@ -197,7 +197,7 @@ a|CloudHub provides two types of load balancing:
 |You can download ingress traffic logs from Runtime Manager. This provides full visibility into ingress traffic for troubleshooting.
 
 |You can assign up to four load balancer units to a DLB. Each unit provides two workers, resulting in a maximum of eight workers for high availability and load distribution. The SLB provides high availability that is fully managed by the platform with no customer configuration required.
-|CloudHub 2.0 provides a fully managed ingress load balancer that automatically distributes application replicas across two or more availability zones (AZs)for maximum availability and fault tolerance. This built-in multi-AZ distribution provides high availability out of the box.
+|CloudHub 2.0 provides a fully managed ingress load balancer that automatically distributes application replicas across two or more availability zones (AZs) for maximum availability and fault tolerance. This built-in multi-AZ distribution provides high availability out of the box.
 |===
 
 ====
@@ -228,7 +228,7 @@ a|Supported protocols:
 * TLS 1.3
 
 |
-|An application can have multiple endpoints, depending on ‌domain and TLS context configuration.
+|An application can have multiple endpoints, depending on ‌the domain and TLS context configuration.
 
 |===
 
@@ -321,7 +321,7 @@ a|Use one of these three options:
 |You can download the application and runtime logs separately.
 |CloudHub 2.0 merges application and runtime logs into a single log stream. To find runtime logs, download the application log and check for runtime-related messages
 
-|For organizations with the Global Deployment entitlement, CloudHub stores logs in the region where the application is first deployed. To reset this configuration, delete and recreate  the application.
+|For organizations with the Global Deployment entitlement, CloudHub stores logs in the region where the application is first deployed. To reset this configuration, delete and recreate the application.
 |CloudHub 2.0 stores logs in the region where the application is currently deployed, without any legacy tracking from previous deployments. This design simplifies log region management when you move applications between regions.
 
 |CloudHub 1.0 has limited control over log forwarding.
@@ -401,7 +401,7 @@ a|Names are unique per private space. CloudHub 2.0 adds a six-character unique I
 |===
 
 CloudHub 2.0 provides a more granular resource capacity for applications to process data. You can assign 0.5, 1.5, 2.5, 3, 3.5, and 4 vCores on top of the current vCore levels to your applications without jumping from 0.2 to 1 vCores if your application requires more processing power.
-Replicas with fewer than 1.0 vCores provide limited CPU and I/O for applications with smaller workloads. Replicas with one or more vCores provide performance consistency.
+Replicas with fewer than 1.0 vCores provide limited CPU, and I/O for applications with smaller workloads. Replicas with one or more vCores provide performance consistency.
 
 ====
 
@@ -414,10 +414,10 @@ Replicas with fewer than 1.0 vCores provide limited CPU and I/O for applications
 |CloudHub
 |CloudHub 2.0 
 
-|A worker in CloudHub is a dedicated Amazon Elastic Compute Cloud (EC2) virtual machine instance that runs your Mule application. Each worker is a full virtual server with its own operating system, allocated memory, CPU resources, and isolated runtime environment. Each worker is an independent EC2 instance running a copy of your application.
+|A worker in CloudHub is a dedicated Amazon Elastic Compute Cloud (EC2) virtual machine instance that runs your Mule application. Each worker is a full virtual server with its own operating system, memory, CPU resources, and isolated runtime environment. Each worker is an independent EC2 instance running a copy of your application.
 |A replica in CloudHub 2.0 is a dedicated instance of Mule runtime engine that runs your integration application. Each replica is a containerized instance with its own isolated environment, allocated memory (heap and total), CPU resources (vCores), and storage capacity. Each replica runs in a separate container from every other application, providing complete isolation between applications.
 
-|If you select the *Automatically restart application when not responding* option, CloudHub monitors the worker and also automatically restarts the application if necessary.
+|If you select the *Automatically restart application when not responding* option, CloudHub monitors the worker and automatically restarts the application if necessary.
 |CloudHub 2.0 monitors all applications and restarts them automatically if necessary so that Mule applications recover without your intervention. Application crash recovery is enabled by default.
 
 |image:worker-logical-rep.png[Diagram showing the logic of a worker]
@@ -438,13 +438,13 @@ Replicas with fewer than 1.0 vCores provide limited CPU and I/O for applications
 |CloudHub doesn’t support Mule clustering. You can run multiple workers for scale and High Availability (HA), but they're independent runtimes without cluster semantics. There's no distributed in-memory state or cluster-aware components.
 |CloudHub 2.0 supports Mule clustering. Multiple replicas of the same app form a managed cluster. This unlocks cluster-aware runtime behavior.
 
-|CloudHub scales applications by deploying multiple workers (up to eight) for each application. The SLB automatically distributes traffic across these workers. For applications that require shared state, you must store that state externally (for example, in a database or object store), because workers cannot share in-memory state.
+|CloudHub scales applications by deploying multiple workers (up to eight) for each application. The SLB automatically distributes traffic across these workers. For applications that need a shared state, store that state externally (for example, in a database or Object Store). Workers can't share in-memory state.
 |CloudHub 2.0 scales applications by deploying multiple replicas (up to sixteen) for each application. The platform's cluster mode coordinates the behavior across these replicas automatically. For applications with stateful requirements, you can use Mule's native clustered features (such as clustered object stores and clustered caches) to maintain state across replicas.
 
 |CloudHub achieves HA with two or more workers. It supports availability across AZs, and the platform handles failover. 
 |CloudHub 2.0 provides fully managed HA. The platform automatically spreads replicas across two or more AZs, with round-robin HTTP load balancing and cluster-aware recovery.
 
-|CloudHub monitors workers and automatically performs restarts. Blue/green deployment at the DLB or SLB layer provides seamless cutover, but this process lacks cluster draining and coordination within the runtime.
+|CloudHub monitors workers and automatically performs restarts. Blue-green deployment at the DLB or SLB layer provides seamless cutover, but this process lacks cluster draining and coordination within the runtime.
 |CloudHub 2.0 provides orchestrated restarts and rolling updates across replicas. Cluster-aware coordination helps minimize impact during upgrades and failures.
 
 |You manage worker counts and rely on external stores for shared state.
@@ -465,7 +465,7 @@ Replicas with fewer than 1.0 vCores provide limited CPU and I/O for applications
 |CloudHub 2.0 
 
 |CloudHub triggers custom alerts when your application sends notifications to Runtime Manager using Anypoint Connector for CloudHub (CloudHub Connector). For more information, see xref:custom-application-alerts.adoc[Custom Application Alerts].
-|CloudHub 2.0 custom alerts indicate whether an app is successfully deployed and whether it is behaving as expected. For more information, see xref:cloudhub-2::ch2-config-app-alerts.adoc[Configuring Application Alerts].
+|CloudHub 2.0 custom alerts indicate whether an app is successfully deployed and whether it's behaving as expected. For more information, see xref:cloudhub-2::ch2-config-app-alerts.adoc[Configuring Application Alerts].
 |===
 
 ====
@@ -473,7 +473,7 @@ Replicas with fewer than 1.0 vCores provide limited CPU and I/O for applications
 
 == Migrate Your CloudHub Applications to CloudHub 2.0
 
-Migrate your CloudHub applications to CloudHub 2.0 by gathering reusable artifacts, creating private spaces, and updating application configurations. This process requires collecting CIDR blocks, VPN connections, SSL certificates, and firewall rules from your existing CloudHub environment. You must update Mule runtime versions to 4.3.x or later and modify application code to remove persistent queues and CloudHub connectors. Deploy applications using the two-step process through Anypoint Exchange and configure egress firewall rules for Mule services access.
+Migrate your CloudHub applications to CloudHub 2.0 by gathering reusable artifacts, creating private spaces, and updating application configurations. This process requires collecting CIDR blocks, VPN connections, SSL certificates, and firewall rules from your existing CloudHub environment. Update Mule runtime versions to 4.3.x or later, and modify application code to remove persistent queues and CloudHub connectors. Deploy applications using the two-step process through Anypoint Exchange and configure egress firewall rules for Mule services access.
 
 === Before You Begin
 
@@ -527,9 +527,6 @@ Before finalizing the migration, check the xref:cloudhub-2::ch2-limits.adoc[Clou
 
 == See Also
 
-Access comprehensive CloudHub 2.0 documentation covering architecture, networking, and deployment procedures. Find detailed guides for private space setup, configuration management, and application deployment methods. Explore monitoring, logging, and troubleshooting resources for CloudHub 2.0 environments.
-
-=== CloudHub 2.0 Overview and Migration
 * xref:cloudhub-2::index.adoc[]
 * xref:cloudhub-2::ch2-comparison.adoc[]
 * xref:cloudhub-2::ch2-features.adoc[]
@@ -537,51 +534,9 @@ Access comprehensive CloudHub 2.0 documentation covering architecture, networkin
 * xref:vpc-upgrade.adoc[]
 * xref:app-migration.adoc[]
 * xref:ch-ch2-migration-completion.adoc[]
-
-=== CloudHub 2.0 Architecture and Networking
 * xref:cloudhub-2::ch2-architecture.adoc[]
 * xref:cloudhub-2::ch2-networking-guide.adoc[]
-* xref:cloudhub-2::ch2-clustering.adoc[]
-* xref:cloudhub-2::ch2-ha-dr.adoc[]
 
-=== Private Spaces and Network Setup
-* xref:cloudhub-2::ch2-private-space-about.adoc[]
-* xref:cloudhub-2::ps-setup.adoc[]
-* xref:cloudhub-2::ps-gather-setup-info.adoc[]
-* xref:cloudhub-2::ps-create-configure.adoc[]
-* xref:cloudhub-2::ps-create-configure-vpn.adoc[]
-* xref:cloudhub-2::ps-create-configure-tgw.adoc[]
 
-=== CloudHub 2.0 Configuration
-* xref:cloudhub-2::ps-configure.adoc[]
-* xref:cloudhub-2::ps-config-ssl-endpoints.adoc[]
-* xref:cloudhub-2::ps-config-domains.adoc[]
-* xref:cloudhub-2::ps-config-fw-rules.adoc[]
-* xref:cloudhub-2::ps-config-app-level-egress.adoc[]
 
-=== CloudHub 2.0 Deployment
-* xref:cloudhub-2::ch2-deploy.adoc[]
-* xref:cloudhub-2::ch2-deploy-private-space.adoc[]
-* xref:cloudhub-2::ch2-deploy-maven.adoc[]
-* xref:cloudhub-2::ch2-deploy-cli.adoc[]
-* xref:cloudhub-2::ch2-deploy-api.adoc[]
 
-=== CloudHub 2.0 Application Management
-* xref:cloudhub-2::ch2-manage-apps.adoc[]
-* xref:cloudhub-2::ch2-update-apps.adoc[]
-* xref:cloudhub-2::ch2-manage-props.adoc[]
-* xref:cloudhub-2::ch2-manage-schedules.adoc[]
-* xref:cloudhub-2::ch2-configure-horizontal-autoscaling.adoc[]
-
-=== CloudHub 2.0 Monitoring and Logging
-* xref:cloudhub-2::ch2-monitor-apps.adoc[]
-* xref:cloudhub-2::ch2-view-logs.adoc[]
-* xref:cloudhub-2::ch2-config-app-alerts.adoc[]
-* xref:cloudhub-2::ch2-integrate-log-system.adoc[]
-
-=== Essential CloudHub References
-* xref:cloudhub-architecture.adoc[]
-* xref:virtual-private-cloud.adoc[]
-* xref:cloudhub-dedicated-load-balancer.adoc[]
-* xref:managing-applications-on-cloudhub.adoc[]
-* xref:custom-application-alerts.adoc[]
