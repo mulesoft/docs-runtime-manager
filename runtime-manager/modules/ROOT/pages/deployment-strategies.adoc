@@ -231,8 +231,10 @@ include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
 [%header,cols="15,60"]
 |===
 |Deployment Option | Implementation
-|CloudHub 2.0 | CloudHub 2.0 does not support the xref:insight.adoc[Insight] troubleshooting tool. Use xref:monitoring::index.adoc[Anypoint Monitoring] instead.
-|CloudHub | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule applications deployed through Runtime Manager. You can enable the Insight analytics feature and specify metadata options on the Insight tab.
+|CloudHub 2.0 | Use the MuleSoft diagnostics agent to troubleshoot your Mule applications deployed to CloudHub 2.0. This feature leverages Einstein generative AI to automate diagnostics collection and provide intelligent, actionable insights. See xref:cloudhub-2::ch2-view-diag.adoc[].
+|CloudHub 
+| - The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule applications deployed through Runtime Manager. You can enable the Insight analytics feature and specify metadata options on the Insight tab. +
+  - Use the MuleSoft diagnostics agent to troubleshoot your Mule applications deployed to CloudHub. This feature leverages Einstein generative AI to automate diagnostics collection and provide intelligent, actionable insights. See xref:cloudhub::ch-diagnostics-agent.adoc[].
 |Hybrid | The xref:insight.adoc[Insight] troubleshooting tool provides in-depth visibility into business transactions and events on your Mule applications deployed through Runtime Manager.
 |Private Cloud Edition | Anypoint Platform PCE does not include the xref:insight.adoc[Insight] troubleshooting tool.
 |Runtime Fabric | Use Anypoint Monitoring to view information about applications deployed to Runtime Fabric. To obtain the health status of the cluster and components, use Runtime Fabric command-line tools. See xref:runtime-fabric::manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric].
