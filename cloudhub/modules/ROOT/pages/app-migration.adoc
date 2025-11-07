@@ -89,6 +89,9 @@ After the upgrade process deploys your CloudHub 2.0 application, test the app by
 
 To avoid updating your client applications that connect to CloudHub, retain the domains from CloudHub on CloudHub 2.0. To link your applications, apply either of these options:
 
+[NOTE]
+You can also use APIs for https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/minor/4.1/console/method/%231340/[application linking] using the `upgradeData` object while creating CloudHub 2.0 deployments, and for https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/minor/4.1/console/method/%231736/[traffic switching] using the newly introduced endpoint.
+
 Customer-Managed:: Switch the application’s xref:cloudhub-2::ch2-config-endpoints-paths.adoc[DNS] to point to CloudHub 2.0.
 
 MuleSoft-Managed:: Carry over vanity URLs while incrementally switching percentage of traffic from CloudHub to CloudHub 2.0.
