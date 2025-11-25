@@ -18,8 +18,8 @@ Identify critical architectural differences and configuration gaps between ClouH
 |CloudHub
 |CloudHub 2.0 
 
-|The CloudHub architecture includes two major components, the Anypoint Platform services, and the worker cloud.
-|The CloudHub 2.0 architecture includes two major components, the Anypoint Platform services, and shared global regions.
+|The CloudHub architecture includes two major components: Anypoint Platform services and the worker cloud. The worker cloud is a multitenant cloud of Amazon EC2 virtual machines distributed across global regions where your applications run.
+|The CloudHub 2.0 architecture includes two major components: Anypoint Platform services and shared global regions. Shared global regions are a multitenant cloud of containerized replicas distributed across global regions where your applications run. While conceptually similar to the worker cloud, CloudHub 2.0 uses a container-based infrastructure instead of VM-based infrastructure.
 
 |image:architecture-diagram.png[]
 |image:ch2-architecture.png[]
@@ -39,7 +39,7 @@ The Private Network extends your corporate network and helps CloudHub workers an
 |CloudHub 2.0
 
 |A xref:virtual-private-cloud.adoc[Virtual Private Cloud (VPC)] is a virtual, private, and isolated cloud network segment for hosting CloudHub workers.
-|A private space is a virtual, private, and isolated logical space in CloudHub 2.0 for running Mule apps. You can create multiple private spaces in the same or different regions.
+|A private space is a virtual, private, and isolated logical space in CloudHub 2.0 for running Mule apps. 
 
 |Static IPs are managed per application, not at the VPC level. Turn on *Static IPs* for individual apps to receive their own set of egress static IPs.
 |Static IPs are provisioned at the private space level. All applications in the same private space share these outbound static IPs.
