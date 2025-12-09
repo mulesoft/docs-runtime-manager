@@ -108,8 +108,8 @@ a|CloudHub 2.0 creates two default inbound rules automatically:
 ** HTTPS: port 443
 ** HTTP: port 80
 
-|CloudHub supports HTTP/HTTPS protocols only.
-|CloudHub 2.0 supports HTTP, HTTPS, and TCP protocols.
+|CloudHub supports HTTP, HTTPS, and TCP protocols. The Dedicated Load Balancer (DLB) also supports WebSockets (ws and wss).
+|CloudHub 2.0 supports HTTP, HTTPS, and TCP protocols. The upgrade tooling does not support TCP traffic migration yet.
 
 |The maximum number of firewall rules is approximately 35 per VPC, depending on the number of rules CloudHub requires. 
 |The maximum number of inbound firewall rules is 300.
@@ -399,7 +399,7 @@ Replicas with fewer than 1.0 vCores offer limited CPU and I/O suitable for small
 |A replica in CloudHub 2.0 is a dedicated, containerized instance of Mule runtime engine that runs your integration application. Each replica provides complete isolation between applications with its own isolated environment, allocated memory (heap and total), CPU resources (vCores), and storage capacity.
 
 |If you select *Automatically restart application when not responding*, CloudHub monitors the worker and automatically restarts the application if necessary.
-|CloudHub 2.0 monitors all applications and restarts them automatically if necessary. Mule applications recover without your intervention. Application crash recovery is enabled by default.
+|CloudHub 2.0 provides self-healing capabilities that automatically recover applications from both Mule process failures and underlying infrastructure failures. If either the Mule process or the infrastructure fails, CloudHub 2.0 automatically restarts the application on healthy infrastructure without your intervention. Application crash recovery is enabled by default.
 
 |image:worker-logical-rep.png[Diagram showing the logic of a worker,width=500,height=300]
 |image:replica-logical-rep.png[Diagram showing the logic of a replica,width=500,height=300]
