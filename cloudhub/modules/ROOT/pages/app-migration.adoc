@@ -8,6 +8,13 @@ The current CloudHub application runs without disruption until the upgrade compl
 [NOTE]
 During the application upgrade process, MuleSoft doesn't provide any out-of-the-box entitlements. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
 
+== Eligibility
+
+To link a CloudHub application with a CloudHub 2.0 application and gradually switch traffic using the application migration tool, first upgrade the CloudHub VPC to a CloudHub 2.0 private space by using the xref:vpc-upgrade.adoc[VPC upgrade tool].
+
+You can use the application upgrade tool only in CloudHub 2.0 private spaces that were upgraded from a CloudHub VPC.
+
+
 == Upgrade Your CloudHub Application to CloudHub 2.0 via Anypoint Platform
 
 . From *Anypoint Platform*, select *Runtime Manager* > *Applications*.
@@ -81,6 +88,9 @@ When deploying a new CloudHub 2.0 application, avoid using the CloudHub default 
 After the upgrade process deploys your CloudHub 2.0 application, test the app by directing traffic to it and verifying network connectivity and the app behavior. 
 
 To avoid updating your client applications that connect to CloudHub, retain the domains from CloudHub on CloudHub 2.0. To link your applications, apply either of these options:
+
+[NOTE]
+You can also use APIs for https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/minor/4.1/console/method/%231340/[application linking] using the `upgradeData` object while creating CloudHub 2.0 deployments, and for https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/minor/4.1/console/method/%231736/[traffic switching] using the newly introduced endpoint.
 
 Customer-Managed:: Switch the application’s xref:cloudhub-2::ch2-config-endpoints-paths.adoc[DNS] to point to CloudHub 2.0.
 
