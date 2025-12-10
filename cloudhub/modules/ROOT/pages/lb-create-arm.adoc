@@ -66,7 +66,12 @@ For more information about static IP addresses, see xref:cloudhub-dedicated-load
 * *Keep URL encoding* specifies that the DLB passes only the `%20` and `%23` characters as is.
 +
 If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
-* *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
+* *Transport Downstream Protocols* specifies the list of enabled TLS protocols for connections from the client to the DLB.
++
+Use the dropdown to add or remove protocols.
+* *Transport Upstream Protocols* specifies the list of enabled TLS protocols for connections from the DLB to the Mule application.
++
+Use the dropdown to add or remove protocols.
 * *Forward Client Certificate* specifies that the DLB forwards the client certificate to the CloudHub worker.
 . Add a certificate.
 
