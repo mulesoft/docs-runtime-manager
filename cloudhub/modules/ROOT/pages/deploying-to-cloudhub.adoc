@@ -160,9 +160,22 @@ For a complete list of the commands, see xref:anypoint-cli::index.adoc[Anypoint 
 
 == Copy an Application from Sandbox to Production
 
-If you create and test an application in a sandbox environment, you must move it to the
-production environment before deploying it.
-You must have the CloudHub Admin role to move applications between environments.
+If you create and test an application in a sandbox environment, you can move it to the
+production environment for deployment.
+To move applications between environments, you need the following permissions:
+
+* At the business group level:
+** Exchange Viewer
+** Read Runtime Fabrics
+* In the target environment (where you are deploying the application):
+** Create Applications
+** Download Applications
+** Read Applications
+* In the source environment (from where the application is fetched):
+** Download Applications
+** Read Applications
+
+For information about configuring permissions, see xref:access-management::teams.adoc[Teams].
 
 To avoid name conflicts, rename the application before you deploy it to another environment.
 
