@@ -58,6 +58,8 @@ You can apply only one autoscaling policy per application.
 
 The maximum amount and size of workers that you have available is limited by the characteristics of your account. If multiple applications running in your account compete for limited resources, they are allocated in a first-come, first-served manner.
 
+Autoscaling fails if your org reaches its vCore limit because there are no available resources to provision new workers. To continue, increase your org’s vCore limit or stop unused apps to free up vCores.
+
 == Edit an Existing Policy
 
 To edit an existing policy, open the *Policies* tab. Click the policy name and you will access the same menu that is used to create a new policy.
