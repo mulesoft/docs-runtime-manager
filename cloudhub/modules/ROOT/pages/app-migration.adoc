@@ -122,7 +122,7 @@ During traffic switching, CloudHub needs to know the traffic source to correctly
 
 [NOTE]
 ====
-If your CloudHub 1.0 application has the default endpoint configured traffic switches at the SLB. If you need to switch traffic from the DLB instead, remove the CloudHub 1.0 default endpoint, apply changes, and then change the traffic switch percentage. This allows traffic switching to take effect at the DLB.
+If your CloudHub 1.0 application has the default endpoint configured, traffic switches at the SLB. To switch traffic from the DLB instead, remove the CloudHub 1.0 default endpoint, apply changes, and then change the traffic switch percentage. This allows traffic switching to take effect at the DLB.
 ====
 
 To ensure successful traffic switching, follow specific configurations depending on the type of load balancer you want to use and the type of traffic you expect.
