@@ -33,6 +33,46 @@ Contains the serial number used by the CA to identify the client
 [NOTE]
 The client certificate is validated at the DLB-level, but it is not re-validated at the API-level. TLS is 1-way between the DLB and the API.
 
+== How Client Certificate Validation Works
+
+Client certificate validation succeeds when either of these conditions occurs:
+
+* The list of certificates you uploaded to the DLB includes the client certificate.
+* Any CA in the list of certificates you uploaded to the DLB signed the client certificate.
+
+=== Trust-Based Validation Behavior
+
+The DLB performs trust-based validation. It trusts any certificate that chains up to a trusted root CA or intermediate CA that you uploaded.
+
+For example, if you upload this certificate chain to the DLB:
+
+----
+Client Certificate1 → Intermediate CA1 → Intermediate CA2 → Root CA
+----
+
+The DLB also accepts a different client certificate that chains to the same CAs:
+
+----
+Client Certificate2 → Intermediate CA1 → Intermediate CA2 → Root CA
+----
+
+In this case, the DLB accepts `Client Certificate2` even though it isn't part of the intended client chain. The DLB accepts it because you uploaded `Intermediate CA1` and `CA2` as trusted CAs.
+
+[IMPORTANT]
+====
+The DLB doesn't enforce client identity. It only verifies that the certificate is valid and that a trusted CA signed it.
+====
+
+=== Implement Client Identity Verification
+
+To verify client identity beyond CA trust validation, inspect client certificate details in your Mule application using these headers:
+
+* `X-SSL-Client-DN`: Contains the full distinguished name of the client certificate. Use this header to verify the Subject DN or Common Name (CN).
+* `X-SSL-Client-Verify`: Returns `SUCCESS` if the client certificate is valid. Check this header to confirm that the DLB validated the certificate.
+* `X-SSL-Client-Serial`: Contains the serial number that the CA uses to identify the client. Use this header to match against authorized client certificate serial numbers.
+
+By validating these headers in your backend application, you can restrict access to specific authorized clients.
+
 == Add Revocation Lists
 
 The CloudHub load balancer can optionally verify client requests against certificate revocation lists (CRL). All CRL files must be concatenated into a single, unencrypted PEM-encoded file for upload. The order of items in the CRL is not important.
