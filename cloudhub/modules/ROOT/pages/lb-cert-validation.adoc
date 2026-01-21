@@ -65,7 +65,7 @@ The DLB doesn't enforce client identity. It only verifies that the certificate i
 
 === Implement Client Identity Verification
 
-To verify client identity beyond CA trust validation, inspect the client certificate details in your Mule application. Use the `X-SSL-Client-DN` header to verify the Subject DN or Common Name (CN), and use the `X-SSL-Client-Serial` header to match against authorized client certificate serial numbers. By validating these headers in your backend application, you can restrict access to specific authorized clients.
+To verify client identity beyond CA trust validation, inspect certificate details in your Mule app. Use the X-SSL-Client-DN header to verify the Subject DN or Common Name (CN) and the X-SSL-Client-Serial header to match authorized serial numbers. Validating these headers restricts access to specific authorized clients.
 
 == Add Revocation Lists
 
