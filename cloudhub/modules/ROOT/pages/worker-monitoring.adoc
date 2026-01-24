@@ -64,22 +64,39 @@ image::cloudhub-app-autorestart.png[Automatically restart application when not r
 [NOTE]
 If you change the flag `monitoringEnabled` via API, the application doesn't restart automatically and you must restart it manually.
 
-== How Automatic Restarts Work
+== How Automatic Restarts and Relaunches Work
 
-If you select the *Automatically restart application when not responding* option, CloudHub monitors the worker and also automatically restarts the application if necessary.
+If you select the *Automatically restart application when not responding* option, CloudHub monitors the worker and automatically attempts recovery using two mechanisms: application restarts and application relaunches.
 
-CloudHub displays a notification that the app is restarting and another to report the success or failure of the restart.
+=== Application Restarts
 
-* If the restart succeeds, the ping script is reinitialized so that monitoring continues.
-* If the restart fails, CloudHub continues to attempt restarting the app up to a total of five times.
+CloudHub continuously checks the health of the worker JVM.
+If the JVM becomes unresponsive, CloudHub restarts the application on the same worker instance.
 
-After the maximum number of restart attempts is exceeded, CloudHub takes no further action. The monitoring script exits and the application is left unchanged until you manually intervene.
+* If the restart succeeds, health monitoring continues.
+* If the restart fails, CloudHub attempts up to five restarts.
 
-The logs report the details of the restart procedure.
+After five restart attempts, CloudHub stops trying to restart the application on that worker.
 
-If you don't select the *Automatically restart application when not responding* option, the monitoring script exits and the application is left unchanged until you manually restart.
+=== Application Relaunches
 
-CloudHub displays a notification and a log message and takes no further action.
+After CloudHub exhausts all restart attempts, it evaluates the worker state and attempts an application relaunch.
+During an application relaunch, CloudHub terminates the failed worker and provisions a new worker instance.
+
+CloudHub attempts up to three application relaunches.
+
+If all relaunch attempts fail:
+
+* CloudHub stops automatic recovery.
+* CloudHub sends you a notification.
+* You must manually redeploy the application to restore it.
+
+The logs show the details of the restart and relaunch procedures.
+
+=== Without Automatic Restarts
+
+If you don't select the *Automatically restart application when not responding* option, CloudHub displays a notification and a log message when the application becomes unresponsive, but doesn't attempt automatic recovery.
+You must manually restart the application.
 
 == See Also
 
