@@ -76,6 +76,13 @@ Direct Connect requires the use of the Border Gateway Protocol (BGP) for dynamic
 For high availability, use multiple Direct Connect connections from different AWS Direct Connect Locations.
 --
 
+[IMPORTANT]
+--
+Before deleting a VPC that uses Direct Connect, contact MuleSoft Support to remove the Direct Connect connection.
+
+MuleSoft Support manually provisions and removes Direct Connect connections. If you delete a VPC before removing Direct Connect, the deletion can fail and leave resources (VPCs, virtual gateway attachments, and hosted connections) in AWS.
+--
+
 
 == See Also
 
