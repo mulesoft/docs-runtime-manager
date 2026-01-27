@@ -53,7 +53,13 @@ CloudHub VPC doesn't restrict outbound egress traffic, so removing the default f
 
 Non-HTTP/S TCP Traffic::
 +
-You can send only HTTP and HTTPS traffic to applications in the migrated private space. Upgraded private spaces don't support TCP traffic.
+You can send only HTTP and HTTPS traffic to applications in the migrated private space. Upgraded private spaces don't support non-HTTP/S TCP traffic.
++
+For in-place migrations with existing network connections (Transit Gateway or VPN), the CloudHub 2.0 private space infrastructure uses an internal IP range (`100.67.x.x`) that differs from the original VPC IP range. This IP range mismatch prevents TCP traffic that requires node-level access from reaching the private space through your on-premise network.
++
+To enable TCP traffic for migrated private spaces with network connections, add routes in your on-premise network to reach the private space infrastructure CIDR range, and coordinate with MuleSoft Support for required NAT configuration changes.
++
+If you can't add these routes, consider this limitation before starting the in-place migration.
 
 
 == Understand Environment Association
