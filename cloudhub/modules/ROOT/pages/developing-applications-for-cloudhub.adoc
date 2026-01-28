@@ -110,9 +110,9 @@ CloudHub worker local storage is ephemeral. Unlike local development environment
 
 This limitation affects:
 
-* *Persistent object stores*: Configuring persistent="true" writes data to local disk. This works in Anypoint Studio and standalone Mule runtimes, but data doesn't persist across CloudHub restarts. Use xref:object-store::index.adoc[Object Store v2] for persistent storage.
-* *Local file operations*: The File connector and other file-based operations write to the worker's local disk. CloudHub deletes these files when the app restarts.
-* *Temporary files and caches*: App-generated files, custom logs, and local cache data don't persist.
+Persistent object stores:: Configuring persistent="true" writes data to local disk. This works in Anypoint Studio and standalone Mule runtimes, but data doesn't persist across CloudHub restarts. Use xref:object-store::index.adoc[Object Store v2] for persistent storage.
+Local file operations:: The File connector and other file-based operations write to the worker's local disk. CloudHub deletes these files when the app restarts.
+Temporary files and caches:: App-generated files, custom logs, and local cache data don't persist.
 
 To ensure data persistence in CloudHub:
 
