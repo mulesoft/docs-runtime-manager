@@ -104,6 +104,24 @@ For information about how to find and use connectors with your application, see 
 xref:connectors::introduction/introduction-to-anypoint-connectors.adoc[Introduction to Anypoint Connectors].
 In addition, you can create your own connectors using Anypoint Connector DevKit.
 
+== Understand Local Storage Limitations
+
+CloudHub worker local storage is ephemeral. Unlike local development environments, CloudHub clears local data when an app restarts.
+
+This limitation affects:
+
+Persistent object stores:: Configuring `persistent="true"` writes data to local disk. This works in Anypoint Studio and standalone Mule runtimes, but data doesn't persist across CloudHub restarts. Use xref:object-store::index.adoc[Object Store v2] for persistent storage.
+Local file operations:: The File connector and other file-based operations write to the worker's local disk. CloudHub deletes these files when the app restarts.
+Temporary files and caches:: App-generated files, custom logs, and local cache data don't persist.
+
+To ensure data persistence in CloudHub:
+
+* Use xref:object-store::index.adoc[Object Store v2] instead of persistent object stores for app state and synchronization data.
+* Store files in external cloud storage services.
+* Design stateless integrations by persisting data in external databases or messaging queues.
+
+For more information about designing resilient applications, see xref:cloudhub-hadr.adoc[CloudHub High Availability and Disaster Recovery].
+
 == Use Secure Properties
 
 You can flag application properties as secure so that their values are not visible to users at runtime or passed between the server and the console.
