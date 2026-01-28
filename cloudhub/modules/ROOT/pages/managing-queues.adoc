@@ -43,6 +43,12 @@ If you are updating an existing application, click *Apply Changes*.
 +
 image::persistentqueuessetondeploy.png[PersistentQueuesSetOnDeploy]
 
+When you enable persistent queues, CloudHub replaces the default Mule runtime queue manager with a persistent one. This manager persists all queues, regardless of in-app configuration. Affected queue types:
+
+* VM connector queues, whether configured as persistent or not in the application
+* Internal Batch component queues
+* Internal SEDA queues
+
 == View Queues
 
 After you enable persistent queues, click *Queues* in the left navigation menu. CloudHub lists the queues in your application in the order they appear in your application:
