@@ -22,6 +22,15 @@ Your application can also store custom integration data as well, within the limi
 * xref:object-store::osv2-faq.adoc[Object Store v2] expands the number of cloud object store regions and object store capabilities for use with Mule 3.8.5 and later and for Mule 4.
 ====
 
+[IMPORTANT]
+====
+CloudHub clears local disk storage when an app restarts or redeploys. Because Object Store v1 writes to local disk, data isn't preserved, even if you configure `persistent="true"`.
+
+In Anypoint Studio and standalone Mule runtimes, the local file system persists, so object stores retain data across restarts. CloudHub workers use volatile disk storage.
+
+To persist data across restarts, use xref:object-store::index.adoc[Object Store v2] to store data externally.
+====
+
 == Store and Retrieve Data
 
 To work with application data inside a Mule flow, use the Object Store connector. The connector provides operations to store, retrieve, list, and remove data from a Runtime Manager Object Store. The Object Store connector works with both Object Store v1 and Object Store v2.
