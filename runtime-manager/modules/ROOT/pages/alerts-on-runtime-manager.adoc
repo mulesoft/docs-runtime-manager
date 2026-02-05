@@ -339,8 +339,8 @@ You can’t use the combination of characters _$&_.
 .Variables for Alerts
 |===
 | Alert Type | Alert | Applicable Variables
-2+| All Alerts | `${resource}` `${severity}` `${state}`
-.7+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}`
+2+| All Alerts | `${resource}` `${severity}` 
+.7+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}` `${state}`
 | *Memory usage - CloudHub*
 | *Custom application notification* | `${user}` `${priority}` `${transactionId}` `${message}`
 | *Deployment failed* |  `${user}` `${message}`
