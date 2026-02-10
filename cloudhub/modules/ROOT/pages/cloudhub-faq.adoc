@@ -14,7 +14,7 @@ CloudHub is a cloud-based integration platform as a service (iPaaS) that enables
 
 As the name suggests, iPaaS (integration platform as a service) is a development platform for building integration applications. It provides a set of services and capabilities for integrating applications in the cloud and within the enterprise. The core tenets of iPaaS are the same as PaaS, except the services on the platform are geared towards integration. In addition to some base expectations, such as multi-tenancy, elasticity and reliability, iPaaS also provides intermediation of data and events, orchestration, a service container for publishing REST and SOAP services, strong security capabilities, and monitoring and developer tooling.
 
-For more information, see https://blogs.mulesoft.com/dev/mule-dev/introducing-integration-paas-ipaas/[Introducing integration PaaS (iPaaS)].
+For more information, see https://blogs.mulesoft.com/api-integration/cloud/introducing-integration-paas-ipaas/[Introducing integration PaaS (iPaaS)].
 
 
 == How can I create a CloudHub account?
@@ -28,7 +28,7 @@ An https://anypoint.mulesoft.com/#/signup[Anypoint Platform account] gives you a
 
 == Where can I get Anypoint Studio?
 
-Anypoint Studio can be downloaded https://www.mulesoft.com/lp/dl/studio[here]. From Studio, you can deploy directly to CloudHub or run your applications locally on an embedded Mule runtime engine (Mule).
+Anypoint Studio can be downloaded https://www.mulesoft.com/lp/dl/anypoint-mule-studio[here]. From Studio, you can deploy directly to CloudHub or run your applications locally on an embedded Mule runtime engine (Mule).
 
 == How much does CloudHub cost?
 
@@ -135,14 +135,14 @@ If the underlying infrastructure suffers a failure, the platform migrates your a
 Any applications running on hardware marked as impaired or end-of-life are restarted to preemptively migrate the app to a new worker to prevent a possible outage.
 * *Security patching*
 +
-If any security vulnerabilities are identified, the relevant applications are patched and restarted. See the https://www.mulesoft.com/legal/versioning-back-support-policy#critical[Critical Security Vulnerabilities] policy.
+If any security vulnerabilities are identified, the relevant applications are patched and restarted. See the https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/Agreements/versioning-back-support-policy.pdf[Critical Security Vulnerabilities] policy.
 * *Application crash*
 +
 The platform recognizes an application crash (due to a problem with custom code or a bug in the underlying stack) and restarts the worker automatically if the automatic restart option is selected.
 
 == Why can't I deploy more than one application?
 
-MuleSoft is limiting the free accounts to one worker, which allows you to deploy one application. You can upgrade to a http://www.mulesoft.com/cloudhub/cloudhub-pricing[paid subscription] to deploy more applications, or you can scale your single application across more than one worker.
+MuleSoft is limiting the free accounts to one worker, which allows you to deploy one application. You can upgrade to a https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[paid subscription] to deploy more applications, or you can scale your single application across more than one worker.
 
 == My application has deployed successfully, so why do I see "you need to change the configuration of your docroot" when I go to mysubdomain.cloudhub.io?
 
@@ -186,7 +186,7 @@ CloudHub can set the worker's public IP address to be static. However, the inter
 
 == What are the possible IP ranges that can be assigned to static IP addresses?
 
-Because CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html[Amazon EC2 Public IP Ranges].
+Because CloudHub deploys on Amazon EC2, IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html[Amazon EC2 Public IP Ranges].
 
 == How can I change the timezone for my app?
 
@@ -195,7 +195,7 @@ Customers with an Enterprise account can choose any global region in which to de
 
 == Proactive Monitoring
 
-The CloudHub platform is monitored 24 hours a day, 7 days a week, by automated systems. Should any issue affect the health of the CloudHub infrastructure, the operations team is notified and responds immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users. You can view the current status of CloudHub services and upcoming maintenance at http://status.mulesoft.com[`status.mulesoft.com`] and http://eu1-status.mulesoft.com[`eu1-status.mulesoft.com`].
+The CloudHub platform is monitored 24 hours a day, 7 days a week, by automated systems. Should any issue affect the health of the CloudHub infrastructure, the operations team is notified and responds immediately to diagnose and correct it. This 24x7 monitoring covers the entire CloudHub platform, benefiting all CloudHub users. You can view the current status of CloudHub services and upcoming maintenance at https://status.salesforce.com/products/Mulesoft[`status.mulesoft.com`] and https://status.salesforce.com/products/Mulesoft[`eu1-status.mulesoft.com`].
 
 == Can I request access to heap dumps for troubleshooting purposes?
 
