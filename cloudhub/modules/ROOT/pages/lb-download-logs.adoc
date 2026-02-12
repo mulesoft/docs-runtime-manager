@@ -5,7 +5,7 @@ endif::[]
 :page-aliases: runtime-manager::lb-download-logs.adoc
 
 
-Download dedicated load balancer (DLB) logs using the CloudHub API. DLB log downloads are processed asynchronously. After initiating a request, check the request status and retrieve the download URL when processing completes. Only one active download request per DLB is allowed at a time.
+Download dedicated load balancer (DLB) logs using the CloudHub API. DLB log downloads run asynchronously. After initiating a request, check its status and retrieve the download URL when processing completes. Only one active download request per DLB is allowed at a time.
 
 DLB log downloads require two APIs:
 
@@ -57,7 +57,7 @@ The API returns a response similar to this:
 
 These validations apply to the request:
 
-* `resourceType` is a required parameterand must be `DLB_LOGS`.
+* `resourceType` is a required parameter and must be `DLB_LOGS`.
 * `resourceName` is a required parameter and must be a valid DLB name associated with the requesting organization.
 * `queryType` is a required parameter and must be `RELATIVE` or `ABSOLUTE`. If `queryType` is `ABSOLUTE`, `startTime` and `endTime` are required parameters. Time format must be ISO 8601.
 * `validityMinutes` is an optional parameter. Default value is 60 minutes. Allowed range is 10 to 1440 minutes.
@@ -96,7 +96,7 @@ These validations apply to the request:
 
 == Download Log Status API
 
-Check request status and retrieve the download URL when processing completes.
+Check the request status and retrieve the download URL when processing completes.
 
 [source,bash]
 ----
@@ -144,7 +144,7 @@ When processing completes, the API returns a response similar to this, including
 
 These constraints apply to DLB log downloads:
 
-* You can download only the log requests you initiated; you can't access logs or requests created by other organizations.
+* You can download only log requests you initiated within your organization. Access to requests from other organizations isn't allowed.
 * Only one request per DLB can be executed at a time.
 * If a request is already in progress for a DLB and another request is made for the same DLB, the request fails with HTTP 429.
 
