@@ -137,9 +137,9 @@ When processing completes, the API returns a response similar to this, including
 }
 ----
 
-The `expiresIn` value defines the time window in which both the download URL and the extraction token are valid. The `downloadUrl` is time-sensitive: download the logs (`.zip` file) within this window. After the URL expires, it can't be reused; initiate a new download request to obtain a new URL.
+The `expiresIn` value defines the time window in which the download URL is valid. The `downloadUrl` is time-sensitive, so download the logs (`.zip` file) within this window. After the validity period ends, the URL expires and can't be used; initiate a new download request to obtain a new URL.
 
-The download file is provided in compressed (`.zip`) format and requires the `token` value from the response to extract its contents. The token isn't recoverable after it expires. Complete both the download and the extraction within the validity period.
+The download file is provided in compressed (`.zip`) format and requires the `token` value from the response to extract its contents. If you download the `.zip` file and retain the token before the download URL expires, you can extract the file later. However, the token can't be recovered after it expires.
 
 == Constraints
 
