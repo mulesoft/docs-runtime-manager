@@ -21,7 +21,9 @@ The download process runs as follows:
 
 == Initiate Download API: Absolute Query Type
 
-Use the absolute query type to request logs for a specific time range by specifying `startTime` and `endTime` in ISO 8601 format.
+Use the absolute query type to request logs for a specific time range by specifying `startTime` and `endTime`.
+
+If `queryType` is `ABSOLUTE`, `startTime` and `endTime` must be specified in ISO 8601 UTC format with microsecond precision (`YYYY-MM-DDTHH:mm:ss.SSSSSSZ`), for example, `2025-12-25T10:00:00.000000Z`. The `Z` suffix is required to indicate UTC. Requests that don't match this format fail validation.
 
 [source,bash]
 ----
@@ -57,7 +59,7 @@ These validations apply to the request:
 
 * `resourceType` is a required parameter and must be `DLB_LOGS`.
 * `resourceName` is a required parameter and must be a valid DLB name associated with the requesting organization.
-* `queryType` is a required parameter and must be `RELATIVE` or `ABSOLUTE`. If `queryType` is `ABSOLUTE`, `startTime` and `endTime` are required parameters. Time format must be ISO 8601.
+* `queryType` is a required parameter and must be `RELATIVE` or `ABSOLUTE`. If `queryType` is `ABSOLUTE`, `startTime` and `endTime` are required parameters and must be in ISO 8601 UTC format with microsecond precision (`YYYY-MM-DDTHH:mm:ss.SSSSSSZ`).
 * `validityMinutes` is an optional parameter. Default value is 60 minutes. Allowed range is 10 to 1440 minutes.
 
 == Initiate Download API: Relative Query Type
@@ -105,7 +107,7 @@ curl --location -X GET 'https://anypoint.mulesoft.com/cloudhub/api/organizations
 
 These validations apply to the request:
 
-* `myDlbExecutionName` is a required query parameter. The value must be the execution name from the `myDlbExecutionName` field in the Initiate Download API response.
+* `executionName` is a required query parameter. Use the value from the `executionName` field in the Initiate Download API response.
 * The execution name must be valid; missing, invalid, or unknown values are rejected.
 
 === Sample Response
@@ -134,6 +136,10 @@ When processing completes, the API returns a response similar to this, including
     "resourceName": "myDlbName"
 }
 ----
+
+The `expiresIn` value defines the time window in which both the download URL and the extraction token are valid. The `downloadUrl` is time-sensitive: download the logs (`.zip` file) within this window. After the URL expires, it can't be reused; initiate a new download request to obtain a new URL.
+
+The download file is provided in compressed (`.zip`) format and requires the `token` value from the response to extract its contents. The token isn't recoverable after it expires. Complete both the download and the extraction within the validity period.
 
 == Constraints
 
