@@ -147,8 +147,8 @@ These constraints apply to DLB log downloads:
 
 * Only one request per DLB can be executed at a time.
 * If a request is in progress for a DLB and another request is made for the same DLB, the request fails with HTTP 429.
+* Log downloads are limited to 10,000 rows per request.
 
 == See Also
 
 * xref:cloudhub-dedicated-load-balancer.adoc[]
-
