@@ -61,6 +61,7 @@ These validations apply to the request:
 * `resourceName` is a required parameter and must be a valid DLB name associated with the requesting organization.
 * `queryType` is a required parameter and must be `RELATIVE` or `ABSOLUTE`. If `queryType` is `ABSOLUTE`, `startTime` and `endTime` are required parameters and must be in ISO 8601 UTC format with microsecond precision (`YYYY-MM-DDTHH:mm:ss.SSSSSSZ`).
 * `validityMinutes` is an optional parameter. Default value is 60 minutes. Allowed range is 10 to 1440 minutes.
+* `maxRows` is an optional parameter. Default value is 10,000. Maximum value is 500,000.
 
 == Initiate Download API: Relative Query Type
 
@@ -76,6 +77,7 @@ curl --location -X POST 'https://anypoint.mulesoft.com/cloudhub/api/organization
     "resourceName": "myDlbName",
     "queryType": "RELATIVE",
     "timeRange": "LAST_3_HOURS",
+    "maxRows": 500000,
     "validityMinutes": 60
 }'
 ----
@@ -92,6 +94,7 @@ These validations apply to the request:
 ** `LAST_6_HOURS`
 ** `LAST_24_HOURS`
 * `validityMinutes` is an optional parameter. Default value is 60 minutes. Allowed range is 10 to 1440 minutes.
+* `maxRows` is an optional parameter. Default value is 10,000. Maximum value is 500,000.
 
 == Download Log Status API
 
@@ -147,7 +150,7 @@ These constraints apply to DLB log downloads:
 
 * Only one request per DLB can be executed at a time.
 * If a request is in progress for a DLB and another request is made for the same DLB, the request fails with HTTP 429.
-* Each request returns up to 10,000 most recent log rows. To access older logs, make a request for a specific time range using the `ABSOLUTE` query type.
+* Each request returns up to 10,000 most recent log rows. To retrieve more rows, specify the optional `maxRows` parameter in the request body (up to 500,000). To access older logs, make a request for a specific time range using the `ABSOLUTE` query type.
 
 == See Also
 
