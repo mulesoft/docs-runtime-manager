@@ -92,12 +92,12 @@ When the deployment region matches the VPC region:
 
 When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means that the app does not have access to any connectivity methods configured for the VPC.
 
-== FAQ: Can an environment be associated with more than a single VPC?
+== FAQ: How to Associate an Environment with Multiple VPCs
 
-Yes, an environment may be assigned to more than one VPC provided that those VPC reside in different regions.
-When an application is deployed to that environment the VPC it is deployed to is defined based on the deployment region.
-If the environment is not specifically associated to a VPC in that region then the default VPC for that region will be used.
-If environment is associated to a new VPC within the same region of a previously assigned VPC this association will replace previous one, but applications already deployed will keep running on the previous VPC until restarted.
+You can assign an environment to more than one VPC if those VPCs reside in different regions.
+When you deploy an application to that environment, the deployment region determines which VPC hosts it.
+If the environment lacks a VPC association in that region, the application uses the default VPC for that region.
+Associating an environment with a new VPC in the same region as a previously assigned VPC replaces the previous association. However, already-deployed applications continue running on the previous VPC until you restart them.
 
 == See Also
 
