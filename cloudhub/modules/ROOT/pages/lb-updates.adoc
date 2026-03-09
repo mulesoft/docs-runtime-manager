@@ -8,7 +8,7 @@ endif::[]
 The CloudHub dedicated load-balancer service provides quarterly updates that include the latest OS and security patches. If necessary, additional patches provide updates more often.
 These updates don't include feature changes.
 
-Because these updates contain required security patches, you cannot roll back these updates once applied.
+Because these updates contain required security patches, you can't roll back these updates once applied.
 
 When updates are available, an *Update* button appears on the load balancers page:
 
@@ -30,13 +30,13 @@ To update a load balancer:
 . Click the *Update* button.
 . At the *Update load balancer* prompt, click *Update*.
 +
-Click the *View release notes* link for details on the update. 
+Click the *View release notes* link for details on the update.
 +
 [IMPORTANT]
-When you update a DLB with static IP addresses, the update might require additional static IPs. If you are prompted to add these new IP addresses to your allowlist, do so before you click *Update*.
+When you update a DLB with static IP addresses, the update might require additional static IPs. If you're prompted to add these new IP addresses to your allowlist, do so before you click *Update*.
 
 
-The update results in a rolling restart with no downtime. However, some inflight requests might be impacted.
+The update results in a rolling restart with no downtime. Some in-flight requests might experience a brief interruption during the restart. No transactions are dropped or lost provided that transaction times are shorter than 600 seconds or the configured Mule Application Response Timeout, whichever is smaller.
 
 If you experience a sustained outage after updating, contact MuleSoft Support.
 

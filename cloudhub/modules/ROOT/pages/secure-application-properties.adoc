@@ -48,7 +48,7 @@ For Mule 4.0 and later, in the `mule-artifact.json` file under the `secureProper
   "configs": [
     "testprops-app.xml"
   ],
-  "secureProperties": ["password", "birthdate"],
+  "secureProperties":  ["password", "birthdate"] ,
   "redeploymentEnabled": true,
   "name": "secure-properties",
   "minMuleVersion": "4.2.1",
@@ -117,8 +117,7 @@ After you set the property, you can't retrieve it; however, you can overwrite th
 To update a value, enter a new value into the field.
 
 After an application is deployed with safely hidden application properties, CloudHub maintains the security flag for those properties.
-Even if you edit your application file to remove the `secureProperties` definitions from your `mule-artifact.json` file and then upload that edited application file to CloudHub, CloudHub maintains the invisibility of the properties previously flagged as safely hidden.
-
+Even if you edit your application file to remove the `secureProperties` definitions from your `mule-artifact.json` file and then upload that edited application file to CloudHub, CloudHub keeps the invisibility of the properties previously flagged as safely hidden. Any property added as secure at any time remains secure even after it is deleted from the `mule-artifact.json` file.
 
 == Copy Safely Hidden Application Properties between Sandboxes
 

@@ -9,15 +9,15 @@ endif::[]
 You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.
 Use the *Schedulers* tab in the navigation menu to enable or disable Scheduler elements, change the frequency, or run the scheduled job immediately, all without changing the running application.
 
-[NOTE]
-Schedule management is supported on servers in a hybrid deployment environment using only Mule version 3.9 or later.
-
 From the *Schedulers* tab, you can:
 
 * Enable or disable the Scheduler
 * Change the frequency
 * Specify when to start running the Scheduler
 * Specify the timezone for a cron Scheduler
+
+[NOTE]
+You can't set a timezone for a scheduler running on CloudHub or Government Cloud.
 
 
 Runtime Manager lists the name of each Scheduler component as `polling://{flow_name}`.

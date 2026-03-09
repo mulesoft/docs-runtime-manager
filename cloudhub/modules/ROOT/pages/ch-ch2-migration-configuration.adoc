@@ -1,0 +1,522 @@
+= CloudHub to CloudHub 2.0 Migration Configuration
+
+Migrate your CloudHub configurations to CloudHub 2.0 by following critical steps, handling customizations, and ensuring all configuration dependencies resolve correctly. This process reduces risks and keeps your systems compliant and efficient.
+
+== Understand the Differences	
+
+Identify critical architectural differences and configuration gaps between ClouHub and CloudHub 2.0. Review deployment models and environmental dependencies that affect custom configurations. Use this information to accurately scope the migration effort and reduce incompatibility risk during upgrade planning.
+
+
+=== Infrastructure and Networking Differences
+
+.Architecture
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|The CloudHub architecture includes two major components: Anypoint Platform services and a multitenant cloud of virtual machines distributed across global regions where your applications run. Individual instances of an application are called workers. CloudHub uses a VM-based infrastructure.
+|The CloudHub 2.0 architecture includes two major components: Anypoint Platform services and a multitenant cloud of containerized replicas distributed across global regions where your applications run. Individual instances of an application are called replicas. CloudHub 2.0 uses a container-based infrastructure.
+
+|image:ch1-architecture-diagram-new.png[Diagram showing CloudHub architecture]
+|image:ch2-architecture-diagram-new.png[Diagram showing CloudHub 2.0 architecture]
+|===
+
+====
+
+.Private Network
+[%collapsible,opts=hide-details]
+====
+
+The Private Network extends your corporate network and helps CloudHub workers and CloudHub 2.0 replicas to access resources behind the corporate firewall. Creating a private network differs between CloudHub and CloudHub 2.0.
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0
+
+|A xref:virtual-private-cloud.adoc[Virtual Private Cloud (VPC)] is a virtual, private, and isolated cloud network segment for hosting CloudHub workers.
+|A private space is a virtual, private, and isolated logical space in CloudHub 2.0 for running Mule apps. 
+
+|Static IPs are managed per application, not at the VPC level. Turn on *Static IPs* for individual apps to receive their own set of egress static IPs.
+|Static IPs are provisioned at the private space level. All applications in the same private space share these outbound static IPs.
+
+|CloudHub provides a Shared Load Balancer (SLB) by default for all apps. The Dedicated Load Balancer (DLB) is optional, and you create and configure it within the VPC.
+|CloudHub 2.0 automatically provisions a fully managed ingress load balancer for the private space.
+
+|TLS/SSL certificates require manual configuration. The SLB uses the platform's wildcard certificate. For custom domains, create a DLB and upload PEM-encoded certificates and private keys.
+|CloudHub 2.0 automatically creates a default TLS context for the private space with wildcard certificates for both internal and public endpoints. You can configure custom vanity domains with your own TLS context for both internal and external endpoints.
+|===
+
+====
+
+.Connectivity Methods
+[%collapsible,opts=hide-details]
+====
+
+The private network connects to the corporate network using these connectivity methods:
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0
+
+a| * VPC peering (AWS VPC to Mule VPC)
++
+Requires configuration. Contact the MuleSoft Support team to enable.
+ * AWS Direct Connect
+ +
+ Requires configuration. Contact the MuleSoft Support team to enable.
+ * Transit Gateway Attachments
+ * VPN tunnel/IPsec tunnel
+a| * VPN tunnel
+ * Transit Gateway Attachments
+
+|Contact the MuleSoft Support team to enable VPC peering and AWS Direct Connect.
+|CloudHub 2.0 supports Transit Gateway or VPN tunnel.
+|===
+
+====
+
+.Firewall Rules
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub Ingress (Inbound) Rules
+|CloudHub 2.0 Ingress (Inbound) Rules
+
+|CloudHub adds firewall rules automatically when you create a VPC.
+|CloudHub 2.0 adds firewall rules automatically when you create a private space.
+
+|By default, all traffic to a VPC is blocked unless explicitly allowed by a firewall rule. However, CloudHub automatically creates four default inbound firewall rules when you create a VPC.
+|Traffic to a private space is blocked unless explicitly allowed by a firewall rule.
+
+a|CloudHub creates four default inbound rules automatically:
+
+* Two rules to allow inbound connections from within your local Anypoint VPC through ports 8091 and 8092. 
+** Specifically for DLB interactions. 
+* Two rules allow inbound connections from anywhere through ports 8081 and 8082.
+** Specifically for SLB interactions.
+a|CloudHub 2.0 creates two default inbound rules automatically:
+
+* Two rules to allow inbound connections from any host:
+** HTTPS: port 443
+** HTTP: port 80
+
+|CloudHub supports HTTP, HTTPS, and TCP protocols. The Dedicated Load Balancer (DLB) also supports WebSockets (ws and wss).
+|CloudHub 2.0 supports HTTP, HTTPS, and TCP protocols. The upgrade tooling does not support TCP traffic migration yet.
+
+|The maximum number of firewall rules is approximately 35 per VPC, depending on the number of rules CloudHub requires. 
+|The maximum number of inbound firewall rules is 300.
+|===
+
+
+[cols="1",options="header"]
+|===
+|Egress (Outbound) Rules
+
+|CloudHub doesn't support egress firewall rules. It allows all outbound traffic by default.
+
+|CloudHub 2.0 creates two default outbound rules automatically. You can configure additional rules and application-level egress rules for granular control.
+The maximum number of outbound firewall rules is 300.
+
+a|CloudHub 2.0 adds two egress rules by default. You can delete these rules if you want to block all outbound traffic for security reasons:
+
+* TCP: All ports (to anywhere)
+* HTTPS: 443 (to anywhere)
+|===
+
+
+[cols="1",options="header"]
+|===
+|CloudHub 2.0 Application-Level Egress Rules
+
+|CloudHub 2.0 supports egress firewall rules at the application level. Application-level egress rules are independent of private-space-level firewall rules. See xref:cloudhub-2::ps-config-app-level-egress.adoc[].
+
+|Turn on application-level egress rules in Runtime Manager. 
+
+|In CloudHub 2.0, egress traffic passes through both application-level control (enforced first) and private-space-level control (enforced after application-level control).
+
+|Apply application-level egress rules when you deploy your application. See xref:cloudhub-2::ps-config-app-level-egress.adoc#apply-application-level-egress-rules-when-deploying-your-applications[Apply Application-Level Egress Rules].
+a|You can configure application-level egress connections, such as:
+
+* Anypoint MQ
+* Object Store v2
+* API Manager
+|===
+
+====
+
+.Static IP Addresses
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|CloudHub supports static IP addresses at the application level.
+|CloudHub 2.0 supports static IP addresses at the private space level.
+
+|If you turn on *Static IPs* for an application, CloudHub provides outbound static IPs.
+|CloudHub 2.0 provides inbound and outbound static IPs at the private space level.
+
+|Applications deployed to the same VPC don't automatically share static IPs. If you turn on *Static IPs* for an application, it receives its own set of outbound static IPs. Inbound static IPs are available only through a DLB, and all applications behind the same DLB share them.
+|Applications deployed to the same private space use the same set of inbound and outbound static IPs. To have unique static IPs per application, use a different private space.
+|===
+
+====
+
+
+.Load Balancing	
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+a|CloudHub provides two types of load balancing:
+
+* Shared Load Balancer (SLB): CloudHub provides it by default for all apps.
+* Dedicated Load Balancer (DLB): You create it within the VPC.
+|CloudHub 2.0 automatically provides a fully managed ingress load balancer for each private space with a simplified architecture that removes the need to select or create load balancers.
+
+|CloudHub load balancers provide round-robin load distribution across workers.
+|CloudHub 2.0 provides a fully managed ingress load balancer for each private space that automatically balances inbound traffic across multiple application replicas. The ingress load balancer auto-scales to accommodate traffic. You can configure this load balancer to meet your specific requirements.
+
+|CloudHub doesn’t support load balancer logs for the DLB. The SLB has no log access.
+|Download ingress traffic logs from Runtime Manager for full visibility into ingress traffic and troubleshooting.
+
+|You can assign up to four load balancer units (up to eight workers total) to a Dedicated Load Balancer (DLB) for high availability and load distribution. The Shared Load Balancer (SLB) provides fully managed high availability with no customer configuration required.
+|CloudHub 2.0 automatically distributes application replicas across two or more availability zones (AZs) for built-in high availability and fault tolerance.
+|===
+
+====
+
+.Domains and TLS Context
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|SSL termination happens at the DLB layer.
+|SSL termination happens at the ingress load balancer layer.
+
+|The communication between the DLB and the Mule application is internal to the VPC.
+|Applications inside a private space communicate using the ingress load balancer via the internal endpoint. This depends on the application protocol.
+
+a|Supported protocols:
+
+* https://help.salesforce.com/s/articleView?id=004205269&type=1[TLS 1.1] (for existing DLBs until January 31, 2026)
+* TLS 1.2
+* https://help.mulesoft.com/s/article/How-To-Enable-TLSv1-3-For-Outbound-Requests-In-Cloudhub[TLS 1.3]
+a|Supported protocols:
+
+* TLS 1.2
+* TLS 1.3
+
+|
+|An application can have multiple endpoints, depending on ‌the domain and TLS context configuration.
+
+|===
+
+====
+
+.Mutual TLS
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|CloudHub doesn't provide native mutual TLS (mTLS) capability. The Dedicated Load Balancer (DLB) handles mTLS at the infrastructure level, performing client certificate validation and forwarding certificate information to applications via HTTP headers.
+|CloudHub 2.0 provides native mTLS with TLS contexts and truststores. Configure mTLS at the private space level with centralized management. CloudHub 2.0 also supports forward SSL, which forwards client certificate information to applications via HTTP headers. 
+
+|CloudHub supports limited Certificate Authority (CA) certificates through the DLB. It accepts certificate files in PEM format only. 
+|CloudHub 2.0 provides dynamic certificate management, application-level xref:cloudhub-2::ps-config-domains.adoc#truststore[truststore] access, and in-place updates without redeployment. Upload truststore files in PEM and JKS formats.
+|===
+
+====
+
+.URL Rewriting
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|Implement URL rewriting at the DLB level using mapping rules. Configure a DLB to use this feature.
+|Implement URL rewrite at the application level using domains and endpoints for a more flexible, per-app configuration.
+|===
+
+====
+
+.Internal Application Communication
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|The internal worker hostname `mule-worker-internal-<app>.<region>.cloudhub.io` resolves to the Mule worker’s internal IP address for VPC-internal communication.
+a|Use one of these three options:
+
+* Internal endpoint: `internal-<app>-<uniq-id>.<space-id>.<region>.cloudhub.io.`
+* Custom internal endpoint: CNAME pointing to the internal endpoint. You can configure custom TLS contexts for internal endpoints that are only accessible via the private network.
+* Kubernetes service address: Direct pod-to-pod communication. This works only for applications in the same namespace (environment).
+|===
+
+====
+
+=== Application Differences
+
+.Persistent VM Queues Vs. Anypoint MQ
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|CloudHub persistent queues store VM queue messages externally to the application. Use this feature mainly with VM components. Turn on CloudHub persistent queues on a per-application basis. 
+|xref:mq::index.adoc[Anypoint MQ] provides persistent message storage in cloud infrastructure, eliminating VM-dependent queue management. Anypoint MQ provides asynchronous message processing, event-driven architectures, and cross-application communication. Configure Anypoint MQ on a per-application basis with automatic scaling and high availability.
+|===
+
+====
+
+.Logging
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|During deployment, CloudHub automatically replaces the application archive's `log4j2.xml` file with a predefined template. CloudHub uses the original `log4j2.xml` file only when you disable CloudHub logs.
+|CloudHub 2.0 merges the `log4j2.xml` configuration file from the application archive with predefined appenders. These appenders send logs directly to Runtime Manager and Anypoint Monitoring, preserving custom appenders while enabling platform integration.
+
+|Download the application and runtime logs separately.
+|CloudHub 2.0 merges application and runtime logs into a single log stream. To find runtime logs, download the application log and check for runtime-related messages.
+
+|CloudHub stores logs in the region where it was first deployed. If you move the app to another region, the logs remain stored in the initial deployment region. To reset this log retention configuration, delete and re-create the app.
+|CloudHub 2.0 stores logs in the region where the application is currently deployed. You can't move the app to a different region once deployed. To reset this log retention configuration, delete and re-create the app.
+
+|CloudHub has limited control over log forwarding.
+a|If you deselect *Forward application logs to Anypoint Platform* within the app configuration in Runtime Manager:
+
+* CloudHub 2.0 doesn’t forward application logs to Runtime Manager or Anypoint Monitoring.
+* The custom log appenders configured in your application continue to function normally (excluding file-based appenders).
+
+This provides more granular control over platform log forwarding.
+
+
+| For more information, see https://help.salesforce.com/s/articleView?id=001117963&type=1[CloudHub 1.0 Logging FAQ]
+| For more information, see https://help.salesforce.com/s/articleView?id=001119527&type=1[CloudHub 2.0 Logging FAQ]
+|===
+
+====
+
+.Deployment Configuration
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|Use maven and `pom.xml` configuration to deploy applications to CloudHub. See xref:mule-runtime::deploy-to-cloudhub.adoc[].
+a|App deployment with maven and `pom.xml` configuration takes two steps:
+
+. Publish the artifact to Anypoint Exchange (`mvn clean deploy`).
+. Deploy the artifact to CloudHub 2.0 (`mvn clean deploy`, `-DmuleDeploy`).
+
+For more information, see xref:mule-runtime::deploy-to-cloudhub-2.adoc[].
+
+
+|The maximum size of a Mule application (ZIP or JAR) file is 200 MB.
+|The maximum size of a Mule application JAR file is 350 MB.
+
+|Names are unique per control plane.
+a|Names are unique per private space. CloudHub 2.0 adds a six-character unique ID to the application name that you specify in the public endpoint URL: `Myapp-uniq-id.shard.region.cloudhub.io`
+
+* `uniq-id`: is a six-digit value appended to the app name to ensure uniqueness.
+* `shard`: is a six-digit value associated with the space (private or shared) the app is deployed to.
+
+|The DLB supports a maximum HTTP POST (payload) size of 200 MB.
+|The maximum HTTP request size is 1 GB.
+|===
+
+====
+
+
+.vCore Sizes
+[%collapsible,opts=hide-details,width=100%]
+====
+
+[cols="1,1",options="header,spread,autowidth"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|See xref:cloudhub::cloudhub-architecture#cloudhub-workers[CloudHub Workers].
+|See xref:cloudhub-2::ch2-architecture#cloudhub-2-replicas[CloudHub 2.0 Replicas].
+|===
+
+CloudHub 2.0 provides a more granular resource capacity for applications. You can assign specific vCore increments (including 0.5, 1.5, 2.5, 3, 3.5, and 4). This granularity helps match processing needs precisely and avoids forcing a jump from 0.2 to 1 vCores. 
+Replicas with fewer than 1.0 vCores offer limited CPU and I/O suitable for smaller workloads, while those with one or more vCores provide performance consistency.
+====
+
+.Worker Vs. Replica
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|A worker in CloudHub is a dedicated Amazon Elastic Compute Cloud (EC2) virtual machine instance that runs your Mule application. It functions as a full, independent virtual server with its own operating system, memory, CPU resources, and isolated runtime environment.
+|A replica in CloudHub 2.0 is a dedicated, containerized instance of Mule runtime engine that runs your integration application. Each replica provides complete isolation between applications with its own isolated environment, allocated memory (heap and total), CPU resources (vCores), and storage capacity.
+
+|If you select *Automatically restart application when not responding*, CloudHub monitors the worker and automatically restarts the application if necessary.
+|CloudHub 2.0 provides self-healing capabilities that automatically recover applications from both Mule process failures and underlying infrastructure failures. If either the Mule process or the infrastructure fails, CloudHub 2.0 automatically restarts the application on healthy infrastructure without your intervention. Application crash recovery is enabled by default.
+
+|image:worker-logical-rep.png[Diagram showing the logic of a worker,width=500,height=300]
+|image:replica-logical-rep.png[Diagram showing the logic of a replica,width=500,height=300]
+|===
+
+====
+
+.High Availability with Clustering
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|CloudHub doesn’t support Mule clustering. You can run multiple workers for scale and High Availability (HA), but they're independent runtimes without cluster semantics. There's no distributed in-memory state or cluster-aware components.
+|CloudHub 2.0 supports Mule clustering. Multiple replicas of the same app form a managed cluster, enabling cluster-aware runtime behavior. This includes shared memory and distributed locking across runtime replicas, with a single primary replica running the application logic and secondary replica(s) available for high-availability if the primary goes down.
+
+|CloudHub scales applications by deploying multiple workers (up to eight) for each application. The SLB automatically distributes traffic across these workers. For applications that need shared state, store that state externally (for example, in a database or Object Store). Workers can't share in-memory state.
+|CloudHub 2.0 scales applications by deploying multiple replicas (up to sixteen) for each application. The platform's cluster mode coordinates behavior across these replicas automatically. For applications with stateful requirements, use Mule's native clustered features (such as clustered object stores and clustered caches) to maintain state across replicas.
+
+|CloudHub achieves HA with two or more workers. It supports availability across AZs, and the platform handles failover. 
+|CloudHub 2.0 provides fully managed HA. The platform automatically spreads replicas across two or more AZs, with round-robin HTTP load balancing and cluster-aware recovery.
+
+|CloudHub monitors workers and automatically performs restarts. Blue-green deployment at the DLB or SLB layer provides seamless cutover, but this process lacks cluster draining and coordination within the runtime.
+|CloudHub 2.0 provides orchestrated restarts and rolling updates across replicas. Cluster-aware coordination minimizes impact during upgrades and failures.
+
+|You manage worker counts and rely on external stores for shared state.
+|CloudHub 2.0 provides fully managed clustering. Select replica counts, and the platform handles cluster formation, health, placement, and recovery.
+|===
+
+====
+
+=== Runtime Manager Differences
+
+.Alerts
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header", spread]
+|===
+|CloudHub
+|CloudHub 2.0 
+
+|CloudHub triggers custom alerts when your application sends notifications to Runtime Manager using Anypoint Connector for CloudHub (CloudHub Connector). For more information, see xref:custom-application-alerts.adoc[Custom Application Alerts].
+|CloudHub 2.0 enables application deployment success and failure alerts. For custom alerting, CloudHub 2.0 leverages Anypoint Monitoring Alerts For more information, see xref:cloudhub-2::ch2-config-app-alerts.adoc[Configuring Application Alerts].
+|===
+
+====
+
+
+== Migrate Your CloudHub Applications to CloudHub 2.0
+
+Migrate your CloudHub applications to CloudHub 2.0 by gathering reusable artifacts, creating private spaces, and updating application configurations. Collect CIDR blocks, VPN connections, SSL certificates, and firewall rules from your existing CloudHub environment. Update Mule runtime versions to a supported runtime version. If you are using persistent queues and CloudHub connectors, modify application code to remove them. Deploy applications using the two-step process through Anypoint Exchange and configure egress firewall rules for Mule services access.
+
+=== Before You Begin
+
+Gather the required information to set up a private space and use your CloudHub reusable artifacts to configure the CloudHub 2.0 environment:
+
+* CIDR block information 
++
+If you require both CloudHub and CloudHub 2.0 to exist at the same time on the same network, use a new CIDR block for CloudHub 2.0.
+* VPN connection information
+* SSL certificates
+* DNS server information
+* Ingress firewall rules
+* Mule application code
+
+For more information, see xref:cloudhub-2::ps-gather-setup-info.adoc#setup-info-private-space[Information Required to Set Up a Private Space].
+
+=== Create Your Private Space
+
+* If you’re using DLB, configure custom TLS certificates in your private space.
+* Create and configure your CloudHub 2.0 private space using one of these methods:
+** https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-20-api/[CloudHub 2.0 API^]
+** Anypoint Runtime Manager
++
+See xref:cloudhub-2::ps-create-configure.adoc[Create a Private Space via Runtime Manager].
+
+=== Update the Mule Runtime Version	
+
+CloudHub 2.0 supports Mule runtime versions 4.3.x and later. Upgrade to a supported Mule runtime version.
+
+=== Update the Mule Application Code	
+
+* Update the application's `pom.xml` with CloudHub 2.0 deployment configuration. See xref:mule-runtime::deploy-to-cloudhub-2.adoc[Deploy to CloudHub 2.0].
+* Update the application's `log4j2.xml` with log forwarding options if needed. See xref:cloudhub-2::ch2-integrate-log-system.adoc[Integrate with Your Logging System Using Log4j].
+* Remove persistent queues and implement AnypointMQ.
+* Remove CloudHub Connector and replace with custom logic.
+
+
+=== Deploy your Application
+
+* If you'reusing DLB, configure application mapping rules via path and path rewrite configurations for endpoints in the application deployment.
+* Publish your application to xref:exchange::index.adoc[Anypoint Exchange].
+* Deploy your application to your CloudHub 2.0 private space. See xref:cloudhub-2::ch2-deploy-private-space.adoc[Deploy to a Private Space].
+* Configure required egress firewall rules to access other Mule services, such as API Manager, ObjectStore, and Anypoint MQ. See xref:cloudhub-2::ps-config-app-level-egress.adoc#apply-application-level-egress-rules-when-deploying-your-applications[Configure an Application-Level Egress].
+* Update CI/CD scripts to support the two-step deployment process.
+
+
+=== Review CloudHub 2.0 Limitations
+Before finalizing the migration, review the xref:cloudhub-2::ch2-limits.adoc[CloudHub 2.0 Limitations].
+
+
+== See Also
+
+* xref:cloudhub-2::index.adoc[]
+* xref:cloudhub-2::ch2-comparison.adoc[]
+* xref:cloudhub-2::ch2-features.adoc[]
+* xref:cloudhub-2::ch2-limits.adoc[]
+* xref:vpc-upgrade.adoc[]
+* xref:app-migration.adoc[]
+* xref:ch-ch2-migration-completion.adoc[]
+* xref:cloudhub-2::ch2-architecture.adoc[]
+* xref:cloudhub-2::ch2-networking-guide.adoc[]
+
+
+
+

@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: runtime-manager::lb-create-arm.adoc
+:page-notice-banner-message: Support for TLS 1.1 and earlier versions in Dedicated Load Balancers (DLB) ends soon. For new DLBs, support for TLS 1.1 and earlier versions ends on <b>December 1, 2025</b>. For existing DLBs, support for TLS 1.1 and earlier versions ends on <b>October 31, 2026</b>. Update your DLB configuration to use TLS 1.2 or a later version to prevent service interruptions.
+
 
 
 
@@ -64,45 +66,28 @@ For more information about static IP addresses, see xref:cloudhub-dedicated-load
 * *Keep URL encoding* specifies that the DLB passes only the `%20` and `%23` characters as is.
 +
 If you deselect this option, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
+* *Transport Downstream Protocols* specifies the list of enabled TLS protocols for connections from the client to the DLB.
 +
-* *Support TLS 1.0* specifies to support TLS 1.0 between the client and the DLB.
+Use the dropdown to add or remove protocols.
+* *Transport Upstream Protocols* specifies the list of enabled TLS protocols for connections from the DLB to the Mule application.
 +
-To use TLS 1.0, see <<Enable TLS 1.0 on a DLB Using Runtime Manager>>.
-* *Upstream TLS 1.2* specifies to force TLS 1.2 between the DLB and the upstream CloudHub worker.
+Use the dropdown to add or remove protocols.
 * *Forward Client Certificate* specifies that the DLB forwards the client certificate to the CloudHub worker.
 . Add a certificate.
 
 .. Click *Add certificate*:
-+
-.The arrow shows the *Add certificate* option in the *Create Load Balancer* page.
-image::lb-cert-upload-create.png[Add certificate option in the Create Load Balancer page]
 .. On the *Create Load Balancer | Add certificate* page, select *Choose File* to upload both public key and private key files.
-.. If you want to add a client certificate, click *Choose File* to upload the file.
+.. If you want to add a trusted CA certificate, click *Choose File* to upload the file.
 +
-The client certificate is a trusted CA certificate used to verify client certificates.
+The trusted CA certificate is used to verify client certificates.
 
 .. If you want to add URL mapping rules, click the *>* icon to display the options:
-+
-.The arrow shows the expand icon in the *Create Load Balancer | Add certificate* page.
-image::lb-create-mapping-rules.png[Expand icon in the *Create Load Balancer Add certificate* page]
 +
 If you add more than one URL mapping rule, order the rules in the list according to the priority in which they should be applied.
 +
 Click *Add New Rule*, and then specify the input path, target app, output path, and protocol.
 .. Click *Save Certificate*.
 . Click *Create Load Balancer*.
-
-== Enable TLS 1.0 on a DLB Using Runtime Manager
-
-// TLS 1.0 Support
-include::partial$tls-support.adoc[tag=tlsSupport]
-
-To enable TLS support:
-
-. Select the *Support TLS 1.0* option.
-. Using the API, change the default cipher suite to `OldDefault`.
-+
-See xref:lb-cert-validation.adoc#change-the-default-cipher-suite-to-support-tls-1-0[Change the Default Cipher Suite to Support TLS 1.0].
 
 
 == See Also

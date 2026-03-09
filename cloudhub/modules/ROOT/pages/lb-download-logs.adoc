@@ -1,0 +1,157 @@
+= Download Dedicated Load Balancer Logs
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:page-aliases: runtime-manager::lb-download-logs.adoc
+
+
+Download dedicated load balancer (DLB) logs using the CloudHub API. DLB log downloads run asynchronously. After initiating a request, check its status and retrieve the download URL when processing completes. Only one active download request per DLB is allowed at a time.
+
+DLB log downloads require two APIs:
+
+* Initiate Download
+* Download Log Status
+
+The download process runs as follows:
+
+. Fetch the authorization token.
+. Call the Initiate Download API.
+. Periodically check the request status using the Download Log Status API.
+. Retrieve the download URL when processing completes.
+
+== Initiate Download API: Absolute Query Type
+
+Use the absolute query type to request logs for a specific time range by specifying `startTime` and `endTime`.
+
+If `queryType` is `ABSOLUTE`, `startTime` and `endTime` must be specified in ISO 8601 UTC format with microsecond precision (`YYYY-MM-DDTHH:mm:ss.SSSSSSZ`), for example, `2025-12-25T10:00:00.000000Z`. The `Z` suffix is required to indicate UTC. Requests that don't match this format fail validation.
+
+[source,bash]
+----
+curl --location -X POST 'https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/logs/download' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer myAccessToken' \
+--data '{
+    "resourceType": "DLB_LOGS",
+    "resourceName": "myDlbName",
+    "queryType": "ABSOLUTE",
+    "startTime": "2025-12-25T10:00:00.000000Z",
+    "endTime": "2026-01-01T10:00:00.000000Z"
+}'
+----
+
+=== Sample Response
+
+The API returns a response similar to this:
+
+[source,json]
+----
+{
+    "executionName": "myDlbExecutionName",
+    "startDate": "Fri Jan 02 17:38:09 UTC 2026",
+    "status": "RUNNING",
+    "message": "Log download request submitted successfully"
+}
+----
+
+=== Validations
+
+These validations apply to the request:
+
+* `resourceType` is a required parameter and must be `DLB_LOGS`.
+* `resourceName` is a required parameter and must be a valid DLB name associated with the requesting organization.
+* `queryType` is a required parameter and must be `RELATIVE` or `ABSOLUTE`. If `queryType` is `ABSOLUTE`, `startTime` and `endTime` are required parameters and must be in ISO 8601 UTC format with microsecond precision (`YYYY-MM-DDTHH:mm:ss.SSSSSSZ`).
+* `validityMinutes` is an optional parameter. Default value is 60 minutes. Allowed range is 10 to 1440 minutes.
+* `maxRows` is an optional parameter. Default value is 10,000. Maximum value is 500,000.
+
+== Initiate Download API: Relative Query Type
+
+Use the relative query type to request logs for a preset time window (for example, the last 1, 3, 6, or 24 hours) by specifying a `timeRange` value.
+
+[source,bash]
+----
+curl --location -X POST 'https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/logs/download' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer myAccessToken' \
+--data '{
+    "resourceType": "DLB_LOGS",
+    "resourceName": "myDlbName",
+    "queryType": "RELATIVE",
+    "timeRange": "LAST_3_HOURS",
+    "maxRows": 500000,
+    "validityMinutes": 60
+}'
+----
+
+=== Validations
+
+These validations apply to the request:
+
+* `resourceType` is a required parameter and must be `DLB_LOGS`.
+* `resourceName` is a required parameter and must be a valid DLB name associated with the requesting organization.
+* `queryType` is a required parameter and must be `RELATIVE` or `ABSOLUTE`. If `queryType` is `RELATIVE`, `timeRange` is a required parameter and must be one of:
+** `LAST_1_HOUR`
+** `LAST_3_HOURS`
+** `LAST_6_HOURS`
+** `LAST_24_HOURS`
+* `validityMinutes` is an optional parameter. Default value is 60 minutes. Allowed range is 10 to 1440 minutes.
+* `maxRows` is an optional parameter. Default value is 10,000. Maximum value is 500,000.
+
+== Download Log Status API
+
+Check the request status and retrieve the download URL when processing completes.
+
+[source,bash]
+----
+curl --location -X GET 'https://anypoint.mulesoft.com/cloudhub/api/organizations/myOrgID/logs/download/status?executionName=myDlbExecutionName' \
+--header 'Authorization: Bearer myAccessToken'
+----
+
+=== Validations
+
+These validations apply to the request:
+
+* `executionName` is a required query parameter. Use the value from the `executionName` field in the Initiate Download API response.
+* The execution name must be valid; missing, invalid, or unknown values are rejected.
+
+=== Sample Response
+
+While the logs are being processed, the API returns a response similar to this:
+
+[source,json]
+----
+{
+    "message": "Log download request is being processed",
+    "resourceName": "myDlbName"
+}
+----
+
+=== Successful Execution Response
+
+When processing completes, the API returns a response similar to this, including the download URL:
+
+[source,json]
+----
+{
+    "message": "DLB logs processed successfully",
+    "downloadUrl": "myLogsDownloadUrl",
+    "expiresIn": "60 minutes",
+    "token": "myDownloadUrlToken",
+    "resourceName": "myDlbName"
+}
+----
+
+The `expiresIn` value defines the time window in which the download URL is valid. The `downloadUrl` is time-sensitive, so download the logs (`.zip` file) within this window. After the validity period ends, the URL expires and can't be used; initiate a new download request to obtain a new URL.
+
+The download file is provided in compressed (`.zip`) format and requires the `token` value from the response to extract its contents. If you download the `.zip` file and retain the token before the download URL expires, you can extract the file later. However, the token can't be recovered after it expires.
+
+== Constraints
+
+These constraints apply to DLB log downloads:
+
+* Only one request per DLB can be executed at a time.
+* If a request is in progress for a DLB and another request is made for the same DLB, the request fails with HTTP 429.
+* Each request returns up to 10,000 most recent log rows. To retrieve more rows, specify the optional `maxRows` parameter in the request body (up to 500,000). To access older logs, make a request for a specific time range using the `ABSOLUTE` query type.
+
+== See Also
+
+* xref:cloudhub-dedicated-load-balancer.adoc[]

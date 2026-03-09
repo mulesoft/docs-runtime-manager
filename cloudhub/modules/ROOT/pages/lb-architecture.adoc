@@ -68,6 +68,12 @@ You can configure the DLB to pass request URIs unchanged or decoded:
 * If you select *Keep URL encoding*, the DLB passes only the %20 and %23 characters as is.
 * If you deselect *Keep URL encoding*, the DLB decodes the encoded part of the request URI before passing it to the CloudHub worker.
 
+== URL Path Normalization
+
+CloudHub dedicated load balancers treat consecutive path separators as a single separator. For example, when a request includes `orders//details` in the path, the DLB normalizes it to `orders/details` before forwarding it to the Mule worker.
+
+This behavior aligns with URL handling best practices and is standard across most web systems. If your application requires preserving consecutive path separators (for example, APIs with optional URI parameters), send requests directly to the Mule worker using the `mule-worker-_myApp_._region_.cloudhub.io` hostname.
+
 == See Also
 
 * xref:virtual-private-cloud.adoc[Virtual Private Cloud]

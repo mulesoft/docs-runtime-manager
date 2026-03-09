@@ -124,7 +124,7 @@ Some more complex conditions require that you define parameters that appear as n
 
 === Conditions for Applications Deployed to CloudHub
 
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
+image:logo-cloud-active.png[width=24,height=24,link="/runtime-manager/deployment-strategies#cloudhub-deployments", title="CloudHub"]
 
 For applications deployed to CloudHub, the following alert conditions apply:
 
@@ -136,6 +136,9 @@ The CPU usage of the CloudHub workers that run the application is above or below
 image::alerts-conditions-apps-cpu.png[CPU usage - Cloudhub]
 
 To enable this condition, specify the percentage and duration that triggers the alert.
+
+[NOTE]
+For CloudHub multiworker applications, the alert considers the CPU threshold of the entire application.
 
 --
 
@@ -187,7 +190,7 @@ The following alerts for applications deployed to CloudHub require no additional
 
 === Conditions for Applications Deployed to Local Servers
 
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-hybrid-active.png[width=24,height=24,link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
 
 For applications deployed to local servers, the following alert conditions apply:
 
@@ -235,7 +238,7 @@ The following alerts for applications deployed to local servers require no addit
 
 === Conditions for Local Servers
 
-image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
+image:logo-hybrid-active.png[width=24,height=24,link="/runtime-manager/deployment-strategies#hybrid-deployments", title="Hybrid"]
 
 The available alert events depend on the server type.
 The following alerts are available for all target types (servers and nodes in server groups and clusters):
@@ -250,8 +253,6 @@ image::alerts-conditions-servers-cpu.png[Server CPU usage alert condition]
 
 To enable this condition, specify the CPU percentage and duration that triggers the alert.
 
-[NOTE]
-For CloudHub multiworker applications, the alert considers the CPU threshold of the entire application.
 --
 
 Server Load average::
@@ -338,8 +339,8 @@ You can’t use the combination of characters _$&_.
 .Variables for Alerts
 |===
 | Alert Type | Alert | Applicable Variables
-2+| All Alerts | `${resource}` `${severity}` `${state}`
-.7+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}`
+2+| All Alerts | `${resource}` `${severity}` 
+.7+| CloudHub App Alerts |*CPU usage - CloudHub* .2+|`${operator}` `${value}` `${state}`
 | *Memory usage - CloudHub*
 | *Custom application notification* | `${user}` `${priority}` `${transactionId}` `${message}`
 | *Deployment failed* |  `${user}` `${message}`
