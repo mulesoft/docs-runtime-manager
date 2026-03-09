@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: runtime-manager::dedicated-load-balancer-tutorial.adoc
-:page-notice-banner-message: <p>Support for TLS 1.1 and earlier ends soon. For <b>Dedicated Load Balancers (DLBs)</b>, support ends on <b>October 2, 2025</b> for new DLBs and on <b>January 31, 2026</b> for existing DLBs.<br/>For <b>CloudHub Shared Load Balancers (SLBs)</b>, support ends on <b>October 17, 2025</b>. Update your DLB and SLB configurations to use <b>TLS 1.2 or later</b> to prevent service interruptions.</p>
+:page-notice-banner-message: <p>TLS 1.1 and earlier are no longer supported on <b>Dedicated Load Balancers, or DLBs</b> and <b>CloudHub Shared Load Balancers, or SLBs</b>. Use <b>TLS 1.2 or later</b> in your DLB and SLB configurations.</p>
 
 CloudHub provides two types of load balancers:
 
@@ -12,7 +12,7 @@ CloudHub provides two types of load balancers:
 Provides basic load balancing functionality.
 * Dedicated Load Balancer
 +
-Enables you to deploy and configure one or more custom load balancers within an Anypoint Virtual Private Cloud (Anypoint VPC).
+Enables you to deploy and configure one or more custom load balancers within an Anypoint Virtual Private Cloud, or Anypoint VPC.
 
 == Shared Load Balancers
 
@@ -26,7 +26,14 @@ If an application exceeds the rate limit for a shared load balancer, the load ba
 
 To perform custom load balancer configuration or have higher rate limit thresholds, you must use a dedicated load balancer.
 
-The shared load balancer supports TLS 1.2.
+The shared load balancer supports only TLS 1.2. It doesn't support TLS 1.3.
+
+[IMPORTANT]
+--
+If your application uses only TLS 1.3, for example `jdk.tls.client.protocols=TLSv1.3`, connectivity to internal MuleSoft subsystems that use TLS 1.2 fails. Handshake exceptions or connection failures can occur.
+
+Keep TLS 1.2 enabled in your application configuration. For compatibility with the shared load balancer and platform services, set `jdk.tls.client.protocols=TLSv1.2,TLSv1.3`.
+--
 
 == Dedicated Load Balancers
 
@@ -40,7 +47,7 @@ This enables you to host your applications under a single domain.
 * Enable HTTP Streaming via the API in CloudHub.
 +
 [NOTE]
-The uploaded file size cannot be over 1000MB.
+The uploaded file size can't be over 1000MB.
 
 Dedicated load balancers are an optional component of Anypoint Platform.
 

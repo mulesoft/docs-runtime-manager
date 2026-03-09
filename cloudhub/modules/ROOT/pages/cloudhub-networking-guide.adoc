@@ -21,7 +21,7 @@ For information about VPC, see xref:virtual-private-cloud.adoc[Virtual Private C
 
 == Load Balancing
 
-CloudHub provides a load balancing service for all integrations. You can use the default load balancing service or obtain a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer].
+CloudHub provides a load balancing service for all integrations. You can use the default load balancing service or obtain a xref:cloudhub-dedicated-load-balancer.adoc[dedicated load balancer]. For TLS version requirements and JVM TLS configuration when using the shared load balancer, see xref:dedicated-load-balancer-tutorial.adoc#shared-load-balancers[Shared Load Balancers].
 
 The CloudHub load balancing service does round robin load distribution across workers, which allows workers to scale linearly as they receive more requests. The load balancing service also provides transparent switchover when an application is upgraded. See xref:managing-applications-on-cloudhub.adoc[Manage Applications on CloudHub].
 
