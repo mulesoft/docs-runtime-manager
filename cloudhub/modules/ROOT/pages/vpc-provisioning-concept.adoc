@@ -92,6 +92,13 @@ When the deployment region matches the VPC region:
 
 When the deployment region does not match the VPC region, the app is deployed outside of the VPC. This means that the app does not have access to any connectivity methods configured for the VPC.
 
+== FAQ: How to Associate an Environment with Multiple VPCs
+
+You can assign an environment to more than one VPC if those VPCs reside in different regions.
+When you deploy an application to that environment, the deployment region determines which VPC hosts it.
+If the environment lacks a VPC association in that region, the application uses the default VPC for that region.
+If you associate an environment with a new VPC in the same region as an existing VPC, the new association replaces the previous one. However, already-deployed applications continue running on the previous VPC until you restart them.
+
 == See Also
 
 * xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity to Your Network]
