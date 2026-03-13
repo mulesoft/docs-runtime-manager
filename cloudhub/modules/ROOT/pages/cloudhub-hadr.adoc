@@ -7,20 +7,31 @@ endif::[]
 
 CloudHub provides high availability (HA) and disaster recovery for application and hardware failures.
 
-CloudHub uses Amazon AWS for its cloud infrastructure, so availability is dependent on Amazon. The availability and deployments in CloudHub are separated into different regions, which in turn point to the corresponding Amazon regions. If an Amazon region goes down, the applications within the region are unavailable and not automatically replicated in other regions.
+CloudHub uses Amazon AWS for its cloud infrastructure, so availability depends on Amazon. CloudHub runs deployments in different regions that map to Amazon regions. If an Amazon region goes down, applications in that region become unavailable; CloudHub doesn't replicate them to other regions.
 
-For example, if the US East region is unavailable, the CloudHub management UI, as well as the various REST services that enable deployments, are unavailable until the region's availability is restored.
-New applications can't be deployed while US East is down.
+For example, when the US East region is down, the CloudHub management UI and the REST services that enable deployments stay unavailable until the region recovers. You can't deploy new applications while US East is down.
 
-While the control plane is unavailable, the runtime plane continues to send log data and other telemetry data, which the worker buffers (up to 1 GB) until availability is restored.
+While the control plane is unavailable, the runtime plane continues to send log data and other telemetry data; the worker buffers up to 1 GB of it until the control plane recovers.
 
-CloudHub provides an internal messaging mechanism, in the form of persistent queues, that is used for message reliability.
-While persistent queues are highly available within a region, they might not be accessible if the region or part of the region is unavailable (usually a few seconds or minutes), which could result in some data loss.
-After the region is available again, CloudHub resumes communication with the queues.
+CloudHub provides persistent queues for message reliability. Within a region, persistent queues are highly available, but when the region or part of it is down—usually for a few seconds or minutes—they become inaccessible and you sometimes lose data. When the region recovers, CloudHub resumes communication with the queues.
 
-Some CloudHub modules, such as Anypoint Object Store v1, application settings, and Insight-related information, are maintained in the US East region for all applications regardless of the region where they are deployed. Anypoint Object Store v2 is maintained in the same region as the deployed CloudHub application. For both Anypoint Object Store v1 and v2, if a region is unavailable, the data persists and becomes available again after the region returns to service.
+Some CloudHub modules—Anypoint Object Store v1, application settings, and Insight-related information—reside in the US East region for all applications. Anypoint Object Store v2 resides in the same region as the deployed application. For both Object Store v1 and v2, when a region is down, data persists and becomes available again when the region returns to service.
 
-Anypoint Virtual Private Cloud (Anypoint VPC) is set up at the region level. If a region is unavailable, Anypoint VPC is unavailable unless a previous Anypoint VPC instance is set up for the other region.
+Anypoint Virtual Private Cloud (Anypoint VPC) applies at the region level. When a region is down, that region's VPC is down unless you've set up a VPC instance in another region.
+
+== High Availability Versus Disaster Recovery
+
+*High availability (HA)* is the measure of a system's ability to remain accessible despite a system component failure. You generally implement HA by building multiple levels of fault tolerance or load balancing into a system. In CloudHub, you can achieve high availability by deploying your application with multiple workers and enabling persistent queues where appropriate.
+
+*Disaster recovery (DR)* refers to the process of restoring a system to an acceptable previous state after a natural or man-made disaster, such as flooding, fires, power failures, server failures, or misconfigurations.
+
+Both increase availability, but with HA you typically see no loss of service. HA keeps the service up; DR preserves data. With DR, you usually see a brief loss of service while the DR plan runs and the system restores.
+
+These terms help you plan HA and DR on CloudHub:
+
+Recovery Time Objective (RTO):: The maximum downtime a business tolerates. RTO is the time the system takes to recover after a disruption.
+
+Recovery Point Objective (RPO):: The maximum acceptable data loss after a disaster. RPO drives how often you back up data.
 
 == Anypoint CloudHub Default Deployment Model
 
@@ -28,25 +39,55 @@ If the application uses multiple workers, CloudHub deploys the workers in separa
 
 image::hadr-am-web-services.png[]
 
-If an application uses a single worker, when the availability zone is unavailable, CloudHub automatically restarts the application in a different availability zone.
-In this case, the application might experience downtime.
+If an application uses a single worker and that availability zone goes down, CloudHub restarts the application in a different availability zone. The application can experience downtime during the restart.
 
 You can set up `status.mulesoft.com` to receive alerts when a failure occurs in an availability zone or region.
 
+== Shared Responsibility for Disaster Recovery
+
+MuleSoft manages CloudHub control plane and worker infrastructure within each region. You're responsible for cross-region strategy, application-level failover, and data synchronization. This table lists who does what for disaster recovery on CloudHub.
+
+[%header,cols="1a,2a"]
+|===
+|Party |Responsibility
+|MuleSoft |Control plane availability: Anypoint Platform UI, deployment APIs, and platform services within the provisioned region
+|MuleSoft |Infrastructure patching, security updates, and maintenance of the worker cloud
+|MuleSoft |Multi-AZ worker distribution: when you use multiple workers, CloudHub deploys them across two or more availability zones within the same region
+|MuleSoft |Automatic restart of applications in a different availability zone when one worker or AZ fails
+|Customer |Define and implement a cross-region DR strategy for primary and backup regions
+|Customer |Decide when to trigger regional failover—for example, based on health checks or business criteria
+|Customer |Configure Global Server Load Balancing (GSLB) or a dedicated load balancer (DLB) and routing rules to direct traffic to a backup region during a disaster
+|Customer |Application-level failover: deploy and maintain applications in more than one region when you need cross-region DR
+|Customer |Replicate and back up external data stores such as databases, object stores, and other systems that your applications use across regions
+|Customer |Set up Anypoint VPC in each region when you need network connectivity there for DR
+|===
+
+=== Customer Responsibility for Disaster Recovery
+
+If your organization needs cross-region DR, design and operate your applications for it. MuleSoft doesn't automatically replicate applications or fail over traffic to another region. You're responsible for:
+
+* *Regional failover strategy* — Decide when to switch traffic to a backup region—for example, after a region outage or based on health checks.
+* *Traffic management* — Use a load balancer, cloud-based or on-premises, such as a Dedicated Load Balancer (DLB) or external GSLB, to route traffic to applications in different regions and to switch to the backup region as part of your DR plan.
+* *Application deployment* — Deploy the same or equivalent applications in a backup region and keep them in sync with configuration and code.
+* *Data and state* — Replicate or back up external data stores such as databases, caches, and object stores that your integrations use so applications in a DR region can access the data they need. Anypoint Object Store v1 and v2 are regional; they don't provide cross-region failover.
+
+For guidance on designing HA and DR topologies—including active-active, warm standby, and cold standby—see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
 
 == Suggested Alternative Deployment Model
 
-You can use a load balancer (cloud or on-premises) for applications deployed to different regions to provide a better disaster recovery strategy.
+You can use a cloud-based or on-premises load balancer for applications deployed to different regions to improve your disaster recovery strategy. Configure your load balancer to perform health checks and to route traffic to your backup region when the primary region goes down. For CloudHub-specific load balancing options, see xref:dedicated-load-balancer-tutorial.adoc[CloudHub Load Balancers] and xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers].
 
 image::hadr-load-balancer.png[]
 
 == Keep Integrations Stateless
 
-Ensure that integrations are stateless. Transactional information isn't shared between client invocations or executions (in case of scheduled services). If the middleware must maintain some data because of a system limitation, ensure that the data persists in an external store, such as a database or a messaging queue, and not within the middleware infrastructure or memory.
+Keep integrations stateless. Don't share transactional information between client invocations or scheduled runs. When the middleware needs to keep data because of a system limitation, store it in an external store such as a database or messaging queue, not in the middleware infrastructure or memory.
 
-As you scale, especially in the cloud, ensure that the state of and resources used by each worker or node are independent of other workers. This model provides better performance and scalability, as well as reliability.
+As you scale, especially in the cloud, keep each worker's state and resources independent of other workers. This model gives you better performance, scalability, and reliability.
 
-=== See Also
+== See Also
 
 * xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]
 * xref:object-store::index.adoc[Anypoint Object Store v2]
+* xref:cloudhub-2::ch2-ha-dr.adoc[CloudHub 2.0 High Availability and Disaster Recovery]
+* xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]
