@@ -73,6 +73,21 @@ If your organization needs cross-region DR, design and operate your applications
 
 For guidance on designing HA and DR topologies—including active-active, warm standby, and cold standby—see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
 
+=== Restoring After a Disaster
+
+Restoration depends on the DR strategy you put in place. In general, after you confirm the primary region or application is unavailable:
+
+. Switch traffic to the backup region. 
++
+Use your load balancer, such as a GSLB or Dedicated Load Balancer (DLB), to route traffic to the backup region. The health checks you configured earlier mark the primary as unhealthy and direct traffic to the backup endpoints. If you use cold or warm standby, bring your backup applications online.
+. Bring backup applications online when you use cold or warm standby. 
++
+If the control plane is available, use Anypoint Runtime Manager or the CloudHub API to start the backup application or scale it up. If the control plane is in the same region as the failed primary, it is unavailable. You can't start or scale apps until the control plane recovers, unless you use automation that doesn't depend on the control plane.
+. Verify that the backup region is serving traffic and that dependent systems use the correct endpoints or data stores.
+. When the primary region recovers, optionally fail back by switching traffic from the backup region back to the primary and resyncing data when needed.
+
+Your RTO depends on how quickly you complete these steps and, for cold or warm standby, on how long it takes to start or scale the backup application. For active-active setups, traffic continues on the remaining region without a switch. For more on recovery types and topologies, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery] and xref:cloudhub-2::ch2-ha-dr.adoc[CloudHub 2.0 High Availability and Disaster Recovery].
+
 == Suggested Alternative Deployment Model
 
 You can use a cloud-based or on-premises load balancer for applications deployed to different regions to improve your disaster recovery strategy. Configure your load balancer to perform health checks and to route traffic to your backup region when the primary region goes down. For CloudHub-specific load balancing options, see xref:dedicated-load-balancer-tutorial.adoc[CloudHub Load Balancers] and xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers].
