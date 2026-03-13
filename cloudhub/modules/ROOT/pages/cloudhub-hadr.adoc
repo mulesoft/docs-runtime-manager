@@ -54,22 +54,22 @@ MuleSoft manages CloudHub control plane and worker infrastructure within each re
 |MuleSoft |Infrastructure patching, security updates, and maintenance of the worker cloud
 |MuleSoft |Multi-AZ worker distribution: when you use multiple workers, CloudHub deploys them across two or more availability zones within the same region
 |MuleSoft |Automatic restart of applications in a different availability zone when one worker or AZ fails
-|Customer |Define and implement a cross-region DR strategy for primary and backup regions
-|Customer |Decide when to trigger regional failover—for example, based on health checks or business criteria
-|Customer |Configure Global Server Load Balancing (GSLB) or a dedicated load balancer (DLB) and routing rules to direct traffic to a backup region during a disaster
-|Customer |Application-level failover: deploy and maintain applications in more than one region when you need cross-region DR
-|Customer |Replicate and back up external data stores such as databases, object stores, and other systems that your applications use across regions
-|Customer |Set up Anypoint VPC in each region when you need network connectivity there for DR
+|You |Define and implement a cross-region DR strategy for primary and backup regions
+|You |Decide when to trigger regional failover—for example, based on health checks or business criteria
+|You |Configure Global Server Load Balancing (GSLB) or a dedicated load balancer (DLB) and routing rules to direct traffic to a backup region during a disaster
+|You |Implement application-level failover strategy: deploy and maintain applications in more than one region when you need cross-region DR
+|You |Replicate and back up external data stores such as databases, object stores, and other systems that your applications use across regions
+|You |Set up Anypoint VPC in each region when you need network connectivity there for DR
 |===
 
-=== Customer Responsibility for Disaster Recovery
+=== Your Responsibilities for Disaster Recovery
 
 If your organization needs cross-region DR, design and operate your applications for it. MuleSoft doesn't automatically replicate applications or fail over traffic to another region. You're responsible for:
 
-* *Regional failover strategy* — Decide when to switch traffic to a backup region—for example, after a region outage or based on health checks.
-* *Traffic management* — Use a load balancer, cloud-based or on-premises, such as a Dedicated Load Balancer (DLB) or external GSLB, to route traffic to applications in different regions and to switch to the backup region as part of your DR plan.
-* *Application deployment* — Deploy the same or equivalent applications in a backup region and keep them in sync with configuration and code.
-* *Data and state* — Replicate or back up external data stores such as databases, caches, and object stores that your integrations use so applications in a DR region can access the data they need. Anypoint Object Store v1 and v2 are regional; they don't provide cross-region failover.
+* Regional failover strategy: Decide when to switch traffic to a backup region—for example, after a region outage or based on health checks.
+* Traffic management: Use a load balancer, cloud-based or on-premises, such as a Dedicated Load Balancer (DLB) or external GSLB, to route traffic to applications in different regions and to switch to the backup region as part of your DR plan.
+* Application deployment: Deploy the same or equivalent applications in a backup region and keep them in sync with configuration and code.
+* Data and state: Replicate or back up external data stores such as databases, caches, and object stores that your integrations use so applications in a DR region can access the data they need. Anypoint Object Store v1 and v2 are regional; they don't provide cross-region failover.
 
 For guidance on designing HA and DR topologies—including active-active, warm standby, and cold standby—see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
 
