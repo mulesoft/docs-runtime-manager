@@ -11,7 +11,7 @@ CloudHub uses Amazon AWS for its cloud infrastructure, so availability depends o
 
 For example, when the US East region is down, the CloudHub management UI and the REST services that enable deployments stay unavailable until the region recovers. You can't deploy new applications while US East is down.
 
-While the control plane is unavailable, the runtime plane continues to send log data and other telemetry data; the worker buffers up to 1 GB of it until the control plane recovers.
+While the control plane is unavailable, the runtime plane continues to send log data and other telemetry data. The worker buffers up to 1 GB of it until the control plane recovers.
 
 CloudHub provides persistent queues for message reliability. Within a region, persistent queues are highly available, but when the region or part of it is down—usually for a few seconds or minutes—they become inaccessible and you sometimes lose data. When the region recovers, CloudHub resumes communication with the queues.
 
