@@ -29,7 +29,7 @@ These are some of the possible issues you may encounter during an on-demand main
 
 If the tunnels are not back up within 10-15 minutes at any point in time, try restarting your end of the tunnels to bring them back up.
 
-If your VPN is configured with static routing, try generating "interesting traffic" (traffic that should be encrypted over the Anypoint VPN connection) towards the Anypoint VPN to bring up the VPN. See https://help.mulesoft.com/s/article/How-to-Generate-Interesting-Traffic-for-Anypoint-VPN[How to Generate Interesting Traffic for Anypoint VPN^] for more information.
+If your VPN is configured with static routing, try generating "interesting traffic" (traffic that should be encrypted over the Anypoint VPN connection) towards the Anypoint VPN to bring up the VPN. See https://help.salesforce.com/s/articleView?id=001117182&type=1[How to Generate Interesting Traffic for Anypoint VPN] for more information.
 
 === Tunnel Goes Down Due to Inactivity
 
@@ -53,10 +53,7 @@ If you use IKEv1, use the default configuration: 28800 seconds for the Phase 1 l
 
 === Anypoint VPN Goes Down Periodically Due to PFS not Enabled for IPsec Phase 2
 
-If you use Azure VPN, ensure that PFS is enabled and adjust the lifetimes for Phase 2. For more information, see:
-
-* https://help.mulesoft.com/s/article/Anypoint-VPN-goes-Down-Periodically-Due-to-PFS-is-not-Enabled-for-IPsec-Phase-2[Anypoint VPN Goes Down Periodically Due to PFS not Enabled for IPsec Phase 2^]
-* https://help.mulesoft.com/s/article/Anypoint-VPN-to-Azure-keeps-going-down-every-hour[Anypoint VPN to Azure Keeps Going Down Every Hour^]
+If you use Azure VPN, ensure that PFS is enabled and adjust the lifetimes for Phase 2. For more information, see https://help.salesforce.com/s/articleView?id=001116834&type=1[Anypoint VPN to Azure keeps going down every hour].
 
 === Anypoint VPN with BGP Routing Enters into Asymmetric Mode after an Update
 
