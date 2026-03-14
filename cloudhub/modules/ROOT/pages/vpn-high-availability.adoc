@@ -32,7 +32,7 @@ To eliminate all single points of failure, the two customer gateways should be i
 
 image:vpn-ha-topology.png[VPN High Availability Topology]
 
-Use BGP routing to advertise the same routes via VPN-1 and VPN-2. For instructions on how to control path selection via the routing protocol, see https://help.mulesoft.com/s/article/Anypoint-VPN-Path-Selection-using-BGP-Routing[Anypoint VPN Path Selection using BGP Routing].
+Use BGP routing to advertise the same routes via VPN-1 and VPN-2. For instructions on how to control path selection via the routing protocol, see https://help.salesforce.com/s/articleView?id=001116889&type=1[Anypoint VPN Path Selection using BGP Routing].
 
 In this scenario, the VPN Gateways are configured to prefer VPN-1 Tunnel-1, then VPN-1 Tunnel-2, then VPN-2 Tunnel-1, and finally VPN-2 Tunnel-2.
 This configuration produces an automatic failover to another tunnel and another VPN in the event of a VPN connectivity issue. This makes the Anypoint VPN solution more resilient and robust.
@@ -43,6 +43,6 @@ High Availability VPN connections also support static routing, in which you esta
 
 * xref:vpn-create-arm.adoc[Create an Anypoint VPN Connection]
 * xref:vpn-downtime-risk.adoc[Anypoint VPN Downtime Risk]
-* https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html[Using Redundant Site-to-Site VPN Connections to Provide Failover^]
-* https://docs.aws.amazon.com/vpn/latest/s2svpn/disaster-recovery-resiliency.html[Continue to Have Redundant Pair of VPNs as Well^]
-* https://help.mulesoft.com/s/article/How-to-Calculate-VPC-and-VPN-License-Requirements[How to Calculate VPC and VPN License Requirements^]
+* https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html[Using Redundant Site-to-Site VPN Connections to Provide Failover]
+* https://docs.aws.amazon.com/vpn/latest/s2svpn/disaster-recovery-resiliency.html[Continue to Have Redundant Pair of VPNs as Well]
+* https://help.salesforce.com/s/articleView?id=001114580&type=1[How to Calculate VPC and VPN License Requirements]
