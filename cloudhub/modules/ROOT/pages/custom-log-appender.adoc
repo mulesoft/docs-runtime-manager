@@ -13,7 +13,7 @@ After you configure logs to flow to both your log system and CloudHub, disable t
 
 * This feature is available only on request.
 +
-If you do not see the *Disable CloudHub logs* option in Runtime Manager, you can request it on https://help.mulesoft.com/[Help Center].
+If you do not see the *Disable CloudHub logs* option in Runtime Manager, you can request it on https://help.salesforce.com/[Salesforce Help].
 * MuleSoft Support doesn't provide assistance for implementing custom logging configurations or resolving issues caused by custom logging configurations.
 * MuleSoft is not responsible for issues arising from misconfiguration of your Log4j appender, including these or other issues:
 ** Lost logging data
@@ -109,7 +109,7 @@ You must include the appenders in your custom configurations in the `log4j2.xml`
 ----
 
 [WARNING]
-If you need to use https://logging.apache.org/log4j/2.x/manual/configuration.html#scripts[scripts^] in your `log4j2.xml` custom configuration, make sure to enable the languages you use by setting the `log4j2.Script.enableLanguages` system property accordingly. You can enable multiple languages by providing a comma-separated list of values. For example, `log4j2.Script.enableLanguages=js,groovy`.
+If you need to use https://logging.apache.org/log4j/2.x/manual/configuration.html#scripts[scripts] in your `log4j2.xml` custom configuration, make sure to enable the languages you use by setting the `log4j2.Script.enableLanguages` system property accordingly. You can enable multiple languages by providing a comma-separated list of values. For example, `log4j2.Script.enableLanguages=js,groovy`.
 
 == Enable Custom Log4j Configurations in CloudHub
 
@@ -137,4 +137,3 @@ After your application starts, logs start flowing to your custom Log4j appender 
 == See Also
 
 * xref::deploying-to-cloudhub.adoc[Deploy to CloudHub]
-* https://help.mulesoft.com/s/global-search/%40uri#q=log4j&t=SalesforceArticle[CloudHub Log4j Knowledge Articles]
