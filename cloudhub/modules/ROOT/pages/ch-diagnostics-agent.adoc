@@ -36,6 +36,20 @@ You can also use the following URL to download a diagnostics file directly:
 `api/v2/applications/__appName__/instances/__instanceId__/diagnostics`
 ====
 
+== Run the MuleSoft Diagnostics Agent
+
+You can also run the MuleSoft Diagnostics Agent from Runtime Manager to generate and download the diagnostics for manual inspection or to run the analysis simultaneously.
+
+. From Anypoint Platform, select *Runtime Manager* > *Applications*.
+. Select the app name.
+. In the navigation menu, select *Diagnostics*.
+. Select an active replica from the dropdown list.
+. Click the *Analyze & Troubleshoot* dropdown. You have these options:
+** Select *Generate Mule Diagnostics* to generate and download the diagnostics for manual inspection.
+... Click *Download* to download the Mule diagnostics files.
+** Select *Analyze with Einstein* to generate the Mule diagnostics and run the analysis simultaneously. 
+... Click *View Analysis* to open the analysis page.
+
 == Analyze with Einstein
 
 Use the MuleSoft diagnostics agent to troubleshoot your Mule applications deployed to CloudHub. This feature leverages Einstein generative AI to automate diagnostics collection and provide intelligent, actionable insights.
