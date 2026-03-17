@@ -2,12 +2,6 @@
 
 Troubleshoot CloudHub applications by downloading comprehensive diagnostics files. Use Einstein generative AI to automatically analyze diagnostics and receive intelligent insights about root causes and recommended actions. This analysis identifies performance issues, memory problems, and configuration errors to help resolve problems faster.
 
-== Before You Begin
-
-Before analyzing MuleSoft diagnostics with Einstein:
-
-include::cloudhub-2::partial$diagnostics-agent.adoc[tag=prerequisites]
-
 == Download Diagnostics
 
 Diagnostics display the Java thread dump of each CloudHub worker in each deployment. These indicate the current state of the server, which is helpful for debugging and support.
@@ -34,13 +28,32 @@ To download diagnostics:
 . In the *Deployments* section, select the date and worker for which you want to download diagnostics.
 . Click the download icon for the worker and select *Diagnostics*.
 
-
 [TIP]
 ====
-You can also use the following URL to download a diagnostics file directly:
+Use this URL to download a diagnostics file directly:
 
 `api/v2/applications/__appName__/instances/__instanceId__/diagnostics`
 ====
+
+== Analyze with Einstein
+If you select *Analyze with Einstein*, the system generates the Mule diagnostics and runs the Einstein analysis simultaneously. The resulting analysis identifies root causes and recommends actions based on the DIAF file.
+
+=== Before You Begin
+
+Before analyzing MuleSoft diagnostics with Einstein:
+
+include::cloudhub-2::partial$diagnostics-agent.adoc[tag=prerequisites]
+
+=== Run and Download the Einstein Analysis
+
+To run and download the Einstein analysis:
+
+. From Anypoint Platform, select *Runtime Manager* > *Applications*.
+. Select the app name.
+. In the navigation menu, select *Logs*.
+. In the *Deployments* section, select the date and worker for which you want to run the analysis.
+. Click the download icon for the worker and select *Analyze with Einstein*.
+. After the process completes, click the download icon to download an `.html` file containing the analysis.
 
 [[run-the-mulesoft-diagnostics-agent]]
 == Run the MuleSoft Diagnostics Agent
@@ -70,9 +83,6 @@ include::partial$diagnostics-agent.adoc[tag=diafFile]
 +
 [NOTE]
 The DIAF doesn’t replace application logs.
-
-=== Analyze with Einstein
-If you select *Analyze with Einstein*, the system generates the Mule diagnostics and runs the Einstein analysis simultaneously. The resulting analysis identifies root causes and recommends actions based on the DIAF file.
 
 
 == Considerations and Limitations
