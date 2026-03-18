@@ -38,7 +38,7 @@ The *Deployment Target* field shows the preselected private space for the applic
 You can’t edit this field.
 . For *Application File*, you can either:
 +
-* Upload your application file: Download the application asset from the link under *Application File*, make the necessary changes, and upload it to deploy your new application to the CloudHub 2.0 private space.
+* Upload your application file: Download the application asset from the link under *Application File*, make the necessary changes, and upload it to deploy your application to the CloudHub 2.0 private space.
 * Import file from Exchange: Import the CloudHub application you want to upgrade.
 . In the *Ingress* tab, specify the *Endpoint* configuration:
 .. Select a *Host* from the dropdown list.
@@ -60,12 +60,12 @@ In applications with inbound traffic, the Shared Load Balancer (SLB) handles tra
 ====
 
 [NOTE]
-The *Host* dropdown list shows only the domains initially added under the certificates of the underlying VPC's DLB configuration. If you add a new certificate to the original VPC's DLB after the application upgrade starts, add it manually under the *Domain & TLS* tab of your newly created private space for that domain to appear on the *Host* dropdown list.
+The *Host* dropdown list shows only the domains initially added under the certificates of the underlying VPC's DLB configuration. If you add a new certificate to the original VPC's DLB after the application upgrade starts, add it manually under the *Domain & TLS* tab of your CloudHub 2.0 private space for that domain to appear on the *Host* dropdown list.
 
 
 === Considerations and Limitations
 
-The upgrade process doesn’t automatically map some configuration settings to the new CloudHub 2.0 application. 
+The upgrade process doesn’t automatically map some configuration settings to the CloudHub 2.0 application. 
 
 ==== Application Properties 
 
@@ -80,7 +80,7 @@ To manage a migrated app using the Mule Maven plugin (MMP), copy the public URL 
 
 ==== CloudHub Application Default Domain
 
-When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
+When deploying a CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
 
 
 == Next Steps After Application Upgrade
@@ -214,7 +214,7 @@ Autodiscovery connects a deployed Mule application with an API defined in API Ma
 
 After traffic fully redirects to the CloudHub 2.0 application, stop your CloudHub application within 30 days and mark the upgrade as complete. 
 
-If you change your CloudHub application after it stops, the changes aren't replicated in your new CloudHub 2.0 application. Make any required changes to the CloudHub 2.0 application settings. 
+If you change your CloudHub application after it stops, the changes aren't replicated in your CloudHub 2.0 application. Make any required changes to the CloudHub 2.0 application settings. 
 
 After your CloudHub application stops, delete it within 30 days. 
 
@@ -236,7 +236,7 @@ To perform a DLB failover:
 
 . For each DLB linked to your upgraded VPC, go to the DLB settings page and click *Failover to CloudHub 2.0*. 
 +
-This fails over the `anypointdns.net` domain to CloudHub 2.0, removes any additional DLB hop, and redirects traffic to your new CloudHub 2.0 private space URL.
+This fails over the `anypointdns.net` domain to CloudHub 2.0, removes any additional DLB hop, and redirects traffic to your CloudHub 2.0 private space URL.
 
 . After the traffic failover completes, stop and delete the CloudHub DLB linked to the VPC.
 
