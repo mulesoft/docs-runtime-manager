@@ -41,28 +41,6 @@ To download a diagnostics file directly, use this URL. Replace `__appName__` wit
 `api/v2/applications/__appName__/instances/__instanceId__/diagnostics`
 
 
-[[analyze-diagnostics-with-einstein]]
-== Analyze Diagnostics with Einstein
-
-In Runtime Manager, you can run *Analyze with Einstein* for a specific worker. The platform uses your diagnostics and the DIAF to produce an analysis that suggests root causes and recommended actions. You download the result as an HTML file.
-
-=== Before You Analyze
-
-Before analyzing diagnostics with Einstein:
-
-include::cloudhub-2::partial$diagnostics-agent.adoc[tag=prerequisites]
-
-=== Run Analyze with Einstein
-
-To run and download the Einstein analysis:
-
-. From Anypoint Platform, select *Runtime Manager* > *Applications*.
-. Select the app name.
-. In the navigation menu, select *Logs*.
-. In the *Deployments* section, select the date and worker for which you want to run the analysis.
-. Click the download icon for the worker and select *Analyze with Einstein*.
-. After the process completes, click the download icon to download an `.html` file containing the analysis.
-
 [[run-the-mulesoft-diagnostics-agent]]
 == Generate Diagnostics with MuleSoft Diagnostics Agent
 
@@ -93,6 +71,27 @@ include::partial$diagnostics-agent.adoc[tag=diafFile]
 [NOTE]
 The DIAF doesn't replace application logs.
 
+[[analyze-diagnostics-with-einstein]]
+== Analyze Diagnostics with Einstein
+
+In Runtime Manager, you can run *Analyze with Einstein* for a specific worker. The platform uses your diagnostics and the DIAF to produce an analysis that suggests root causes and recommended actions. You download the result as an HTML file.
+
+=== Before You Analyze
+
+Before analyzing diagnostics with Einstein:
+
+include::cloudhub-2::partial$diagnostics-agent.adoc[tag=prerequisites]
+
+=== Run Analyze with Einstein
+
+To run and download the Einstein analysis:
+
+. From Anypoint Platform, select *Runtime Manager* > *Applications*.
+. Select the app name.
+. In the navigation menu, select *Logs*.
+. In the *Deployments* section, select the date and worker for which you want to run the analysis.
+. Click the download icon for the worker and select *Analyze with Einstein*.
+. After the process completes, click the download icon to download an `.html` file containing the analysis.
 
 == Considerations and Limitations
 
