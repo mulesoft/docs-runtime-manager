@@ -15,7 +15,7 @@ While the control plane is unavailable, the runtime plane continues to send log 
 
 CloudHub provides persistent queues for message reliability. Within a region, persistent queues are highly available, but when the region or part of it is down—usually for a few seconds or minutes—they become inaccessible and you sometimes lose data. When the region recovers, CloudHub resumes communication with the queues.
 
-Some CloudHub modules—Anypoint Object Store v1, application settings, and Insight-related information—reside in the US East region for all applications. Anypoint Object Store v2 resides in the same region as the deployed application. For both Object Store v1 and v2, when a region is down, data persists and becomes available again when the region returns to service.
+Some CloudHub modules, such as Anypoint Object Store v1, application settings, and Insight-related information, reside in the US East region for all applications. Anypoint Object Store v2 resides in the same region as the deployed application. For both Object Store v1 and v2, when a region is down, data persists and becomes available again when the region returns to service.
 
 Anypoint Virtual Private Cloud (Anypoint VPC) applies at the region level. When a region is down, that region's VPC is down unless you've set up a VPC instance in another region.
 
