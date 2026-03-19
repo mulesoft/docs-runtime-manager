@@ -9,7 +9,7 @@ CloudHub provides high availability (HA) and disaster recovery for application a
 
 CloudHub uses Amazon AWS for its cloud infrastructure, so availability depends on Amazon. CloudHub runs deployments in different regions that map to Amazon regions. If an Amazon region goes down, applications in that region become unavailable. CloudHub doesn't replicate them to other regions.
 
-For example, when the US East region is down, the CloudHub management UI and the REST services that enable deployments stay unavailable until the region recovers. You can't deploy new applications while US East is down.
+For example, when the US East region is down, the CloudHub management UI and the REST services that enable deployments remain unavailable until the region recovers. You can't deploy new applications while US East is down.
 
 While the control plane is unavailable, the runtime plane continues to send log data and other telemetry data. The worker buffers up to 1 GB of it until the control plane recovers.
 
