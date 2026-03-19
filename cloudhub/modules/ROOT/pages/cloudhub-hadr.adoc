@@ -50,16 +50,16 @@ MuleSoft manages CloudHub control plane and worker infrastructure within each re
 [%header,cols="1a,2a"]
 |===
 |Party |Responsibility
-|MuleSoft |Control plane availability: Anypoint Platform UI, deployment APIs, and platform services within the provisioned region
-|MuleSoft |Infrastructure patching, security updates, and maintenance of the worker cloud
-|MuleSoft |Multi-AZ worker distribution: when you use multiple workers, CloudHub deploys them across two or more availability zones within the same region
-|MuleSoft |Automatic restart of applications in a different availability zone when one worker or AZ fails
-|You |Define and implement a cross-region DR strategy for primary and backup regions
-|You |Decide when to trigger regional failover—for example, based on health checks or business criteria
-|You |Configure Global Server Load Balancing (GSLB) or a dedicated load balancer (DLB) and routing rules to direct traffic to a backup region during a disaster
-|You |Implement application-level failover strategy: deploy and maintain applications in more than one region when you need cross-region DR
-|You |Replicate and back up external data stores such as databases, object stores, and other systems that your applications use across regions
-|You |Set up Anypoint VPC in each region when you need network connectivity there for DR
+|MuleSoft |Control plane availability: Anypoint Platform UI, deployment APIs, and platform services within the provisioned region.
+|MuleSoft |Infrastructure patching, security updates, and maintenance of the worker cloud.
+|MuleSoft |Multi-AZ worker distribution: when you use multiple workers, CloudHub deploys them across two or more availability zones within the same region.
+|MuleSoft |Automatic restart of applications in a different availability zone when one worker or AZ fails.
+|You |Define and implement a cross-region DR strategy for primary and backup regions.
+|You |Decide when to trigger regional failover—for example, based on health checks or business criteria.
+|You |Configure Global Server Load Balancing (GSLB) or a dedicated load balancer (DLB) and routing rules to direct traffic to a backup region during a disaster.
+|You |Implement application-level failover strategy: deploy and maintain applications in more than one region when you need cross-region DR.
+|You |Replicate and back up external data stores such as databases, object stores, and other systems that your applications use across regions.
+|You |Set up Anypoint VPC in each region when you need network connectivity there for DR.
 |===
 
 === Your Responsibilities for Disaster Recovery
