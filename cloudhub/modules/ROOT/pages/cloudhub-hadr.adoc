@@ -86,7 +86,7 @@ If the control plane is available, use Anypoint Runtime Manager or the CloudHub 
 . Verify that the backup region is serving traffic and that dependent systems use the correct endpoints or data stores.
 . When the primary region recovers, optionally fail back by switching traffic from the backup region back to the primary and resyncing data when needed.
 
-Your RTO depends on how quickly you complete these steps and, for cold or warm standby, on how long it takes to start or scale the backup application. For active-active setups, traffic continues on the remaining region without a switch. For more on recovery types and topologies, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery] and xref:cloudhub-2::ch2-ha-dr.adoc[CloudHub 2.0 High Availability and Disaster Recovery].
+Your RTO depends on how quickly you complete these steps and, for cold or warm standby, on how long it takes to start or scale the backup application. For active-active setups, traffic continues on the remaining region without a switch. For more on recovery types and topologies, see xref:mule-runtime::hadr-guide.adoc[] and xref:cloudhub-2::ch2-ha-dr.adoc[].
 
 == Suggested Alternative Deployment Model
 
