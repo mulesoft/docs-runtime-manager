@@ -3,16 +3,18 @@
 You can generate diagnostics for your CloudHub apps and run an AI-powered analysis with Einstein. Use one of these options:
 
 * xref:#download-diagnostics[Download diagnostics from Runtime Manager]
-* xref:#run-diagnostics-with-url[Download diagnostics via URL]
 * xref:#run-the-mulesoft-diagnostics-agent[Generate diagnostics with MuleSoft Diagnostics Agent]
 
 == Understanding Diagnostics
 
-Diagnostics are snapshots of your app at a point in time. They include a Java thread dump for each worker (all threads and their state), which helps with debugging and support. For supported Mule versions, diagnostics also include the Diagnostic Information Analysis File (DIAF), which Einstein uses for analysis.
+What you get depends on your Mule runtime version:
 
-Diagnostics aren't available for apps on Mule versions earlier than 3.8.0 (excluding 3.7.4).
+* **Older Mule versions** (before DIAF support): Diagnostics are a thread dump—a snapshot of all threads and their current state for each worker.
+* **Newer Mule versions** (with DIAF support): Diagnostics are a DIAF (Diagnostic Information Analysis File). The DIAF includes the thread dump plus the current runtime state in plain text and system details such as OS, Java version, and memory consumption.
 
 include::cloudhub-2::partial$diagnostics-agent.adoc[tag=diafFile]
+
+Diagnostics aren't available for apps on Mule versions earlier than 3.8.0 (excluding 3.7.4).
 
 DIAF is available for applications running on these Mule versions:
 
@@ -31,20 +33,14 @@ To download diagnostics from Runtime Manager:
 . Click the download icon for the worker.
 . Select *Diagnostics*.
 
-You can then xref:#analyze-diagnostics-with-einstein[analyze the diagnostics with Einstein].
-
-[[run-diagnostics-with-url]]
-== Download Diagnostics via URL
-
 To download a diagnostics file directly, use this URL. Replace `__appName__` with your application name and `__instanceId__` with the instance ID (you can find both in Runtime Manager).
 
-`api/v2/applications/__appName__/instances/__instanceId__/diagnostics`
-
+`api/v2/organizations/{{orgId}}/environments/{{envId}}/applications/{{appName}}/instances/{{instanceId}}/diagnostics`
 
 [[run-the-mulesoft-diagnostics-agent]]
 == Generate Diagnostics with MuleSoft Diagnostics Agent
 
-On the Runtime Manager *Diagnostics* page, run the MuleSoft Diagnostics Agent to generate diagnostics on demand for a chosen replica. Download the diagnostics for manual inspection, or *Analyze with Einstein* (or both). 
+On the Runtime Manager *Diagnostics* page, run the MuleSoft Diagnostics Agent to generate diagnostics on demand for a chosen replica. Download the diagnostics for manual inspection, or *Analyze with Einstein* (or both).
 
 . From Anypoint Platform, select *Runtime Manager* > *Applications*.
 . Select the app name.
