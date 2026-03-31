@@ -313,6 +313,27 @@ For transaction-level events, Insight might display long numeric values in the I
 
 To do this, use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number. See xref:mule-runtime::business-events-in-components.adoc#customize-the-transaction-id[Customize the Transaction ID].
 
+
+[[enable-trace-data]]
+== Enable Trace Data Collection
+
+
+Traces enable you to understand the path of a transaction in the MuleSoft ecosystem by providing full visibility into the execution path of API calls or application transactions. 
+When you enable trace data collection for an app, Anypoint Platform collects and exposes tracing information from Mule runtime engine in the OpenTelemetry standard, enabling you to export it using the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter]. 
+
+* You can enable trace data collection for your Runtime Fabric applications running on Mule version 4.6 or later, and the minimum Runtime Fabric agent version required is 2.6.31 or above. 
+* You can enable trace data collection using only the Runtime Manager UI and API, but you can't enable trace data collection using the Mule Maven plugin, Anypoint CLI, or Anypoint Studio.
+
+
+To enable trace data collection for an app:
+
+. In Runtime Manager, click the *Monitoring* tab.
+. Select the *Enable tracing* checkbox.
+. Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
+
+Once you enable tracing, and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
+
+
 == See Also
 
 * xref:monitoring.adoc[Monitor Applications]
