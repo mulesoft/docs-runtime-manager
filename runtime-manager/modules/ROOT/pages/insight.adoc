@@ -1,10 +1,15 @@
-= Insight
+= Insight (To be Deprecated)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :keywords: cloudhub, analytics, monitoring, insight, filter
 :page-deployment-options: ch, hybrid
 
+--
+[.notice-banner]
+
+This page documents a legacy troubleshooting tool for Mule apps deployed to CloudHub and on-premises servers. For the new troubleshooting approach with traces, refer to these pages: xref:runtime-manager::insight.adoc#enable-trace-data[Enable Trace Data Collection for CloudHub Apps] and xref:monitoring::am-installing.adoc#tracing-setup[Enable Trace Data Collection for Hybrid Runtime Servers].
+--
 
 Insight is a troubleshooting tool that provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers. Insight tracks everything your data does in an app so you can find and recover from errors that occur during message processing.
 
@@ -312,6 +317,26 @@ Track more granular events by enabling default event tracking for your entire fl
 For transaction-level events, Insight might display long numeric values in the ID column. You can customize the transaction IDs to display more intuitive values that are relevant to your business requirements.
 
 To do this, use a Mule expression to configure your Mule application to return meaningful information about a transaction, such as order number, tracking number, or employee identification number. See xref:mule-runtime::business-events-in-components.adoc#customize-the-transaction-id[Customize the Transaction ID].
+
+
+[[enable-trace-data]]
+== Enable Trace Data Collection
+
+
+Traces enable you to understand the path of a transaction in the MuleSoft ecosystem by providing full visibility into the execution path of API calls or application transactions. 
+
+When you enable trace data collection for an app, Anypoint Platform collects and exposes tracing information from Mule runtime engine in the OpenTelemetry standard, enabling you to export it using the Anypoint Monitoring Distributed Tracing Experience. 
+
+You can enable trace data collection for your CloudHub applications running on Mule version 4.6 or later.
+
+To enable trace data collection for an app:
+
+. In Runtime Manager, click the *Runtime* tab.
+. Select the *Enable tracing* checkbox.
+. Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
+
+After you enable tracing and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
+
 
 == See Also
 
