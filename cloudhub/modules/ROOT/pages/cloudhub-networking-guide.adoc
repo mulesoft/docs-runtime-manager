@@ -78,7 +78,31 @@ You can access these IP addresses through the `mule-worker-internal-myapp.region
 
 == IP Ranges and Static IPs
 
-CloudHub IP addresses are chosen from the Amazon EC2 IP pool. For a list of these ranges, see https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html[Amazon AWS IP Address Ranges API]. The download link in that page will retrieve a dynamically generated JSON representation of all ranges that include the region. These ranges can change without notice, so you should update this information regularly.
+CloudHub IP addresses are chosen from the Salesforce EC2 IP pool or Amazon EC2 IP pool depending on the availability. For a list of AWS ranges, see https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html[Amazon AWS IP Address Ranges API]. The download link in that page will retrieve a dynamically generated JSON representation of all ranges that include the region.
+
+The following table summarizes the Salesforce IP pool that are available for your application in each region:
+
+[%header,cols="1a,2a"]
+|===
+| Region | CIDR
+
+| ca-central-1
+| `149.60.32.0/21`, `149.60.40.0/21`, `149.60.48.0/21`, `149.60.56.0/21`
+
+| us-west-1
+| `149.60.64.0/20`, `149.60.80.0/20`, `149.60.96.0/20`
+
+| us-west-2
+| `149.60.128.0/18`, `149.60.192.0/19`, `149.60.112.0/20`, `149.60.4.0/22`, `149.60.1.0/24`
+
+| us-east-2
+| `157.232.0.0/18`, `157.232.64.0/18`, `149.60.224.0/19`, `149.60.12.0/22`, `149.60.8.0/23`, `149.60.11.0/24`
+
+| us-east-1
+| `157.232.128.0/18`, `157.232.192.0/18`, `170.139.0.0/18`, `170.139.64.0/18`, `170.139.128.0/18`, `170.139.192.0/19`, `170.139.224.0/20`, `149.60.24.0/21`
+|===
+
+Salesforce and Amazon ranges can change without notice, so you should update this information regularly.
 
 CloudHub supports allocating a static IP for applications so that they can be allowlisted for other services. To enable a static IP for your application, go to the *Static IPs* tab in the application settings page on the Runtime Manager UI, then enable the *Use Static IP* checkbox. By default, you are allocated a number of static IPs equal to twice the number of Production vCores in your subscription. To increase this limit, contact https://help.salesforce.com[Salesforce Help].
 
