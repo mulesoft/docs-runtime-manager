@@ -196,7 +196,7 @@ a|CloudHub provides two types of load balancing:
 |Download ingress traffic logs from Runtime Manager for full visibility into ingress traffic and troubleshooting.
 
 |You can assign up to four load balancer units (up to eight workers total) to a Dedicated Load Balancer (DLB) for high availability and load distribution. The Shared Load Balancer (SLB) provides fully managed high availability with no customer configuration required.
-|CloudHub 2.0 automatically distributes application replicas across two or more availability zones (AZs) for built-in high availability and fault tolerance.
+|CloudHub 2.0 automatically distributes application replicas across two or more availability zones (AZs) for built-in high availability and fault tolerance. If you use the xref:vpc-upgrade.adoc[VPC upgrade tool], the private space inherits the same number of AZs as the original CloudHub VPC.
 |===
 
 ====
@@ -423,7 +423,7 @@ Replicas with fewer than 1.0 vCores offer limited CPU and I/O suitable for small
 |CloudHub 2.0 scales applications by deploying multiple replicas (up to sixteen) for each application. The platform's cluster mode coordinates behavior across these replicas automatically. For applications with stateful requirements, use Mule's native clustered features (such as clustered object stores and clustered caches) to maintain state across replicas.
 
 |CloudHub achieves HA with two or more workers. It supports availability across AZs, and the platform handles failover. 
-|CloudHub 2.0 provides fully managed HA. The platform automatically spreads replicas across two or more AZs, with round-robin HTTP load balancing and cluster-aware recovery.
+|CloudHub 2.0 provides fully managed HA. The platform automatically spreads replicas across two or more AZs, with round-robin HTTP load balancing and cluster-aware recovery. If you use the xref:vpc-upgrade.adoc[VPC upgrade tool], the private space inherits the same number of AZs as the original CloudHub VPC.
 
 |CloudHub monitors workers and automatically performs restarts. Blue-green deployment at the DLB or SLB layer provides seamless cutover, but this process lacks cluster draining and coordination within the runtime.
 |CloudHub 2.0 provides orchestrated restarts and rolling updates across replicas. Cluster-aware coordination minimizes impact during upgrades and failures.
