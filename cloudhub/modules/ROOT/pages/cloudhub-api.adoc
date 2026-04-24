@@ -56,6 +56,110 @@ The CloudHub API manages only applications deployed to CloudHub, the cloud-based
 To manage on-premises applications using the API, see https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/arm-rest-services[Runtime Manager REST Services].
 
 
+== Quick Reference: Common API Endpoints
+
+The following tables list the most commonly used CloudHub API endpoints grouped by category. All endpoints use the base URL `+https://anypoint.mulesoft.com/cloudhub/api+` unless otherwise noted.
+
+For full details on request parameters, payloads, and responses, see the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[interactive API reference on Exchange].
+
+=== Applications
+
+[%header,cols="10,45,45"]
+|===
+|Method |Endpoint |Description
+|`GET` |`/applications` |List all applications.
+|`POST` |`/applications` |Create and deploy a new application.
+|`GET` |`/applications/{domain}` |Get details for a specific application.
+|`PUT` |`/applications/{domain}` |Update application metadata (workers, runtime version, properties).
+|`DELETE` |`/applications/{domain}` |Delete an application.
+|===
+
+For more information, see xref:managing-applications-on-cloudhub.adoc[].
+
+=== Logs
+
+[%header,cols="10,45,45"]
+|===
+|Method |Endpoint |Description
+|`POST` |`/v2/applications/{domain}/logs` |Search application log entries.
+|`GET` |`/v2/applications/{domain}/deployments/{deploymentId}/logs` |Retrieve logs for a specific deployment.
+|`GET` |`/v2/applications/{domain}/instances/{instanceId}/logs` |Retrieve logs for a specific instance.
+|`GET` |`/v2/applications/{domain}/instances/{instanceId}/log-file` |Download the log file for a specific instance.
+|===
+
+=== Notifications and Alerts
+
+[%header,cols="10,45,45"]
+|===
+|Method |Endpoint |Description
+|`GET` |`/notifications` |List notifications.
+|`POST` |`/notifications` |Create a notification.
+|`PUT` |`/notifications/{notificationId}` |Mark a notification as read or unread.
+|`GET` |`/v2/alerts` |List alerts for an application.
+|`POST` |`/v2/alerts` |Create an alert.
+|`PUT` |`/v2/alerts/{alertId}` |Update an alert.
+|`DELETE` |`/v2/alerts/{alertId}` |Delete an alert.
+|===
+
+For more information, see xref:custom-application-alerts.adoc[].
+
+=== Schedules
+
+[%header,cols="10,45,45"]
+|===
+|Method |Endpoint |Description
+|`GET` |`/applications/{domain}/schedules` |List all schedules for an application.
+|`PUT` |`/applications/{domain}/schedules` |Update all schedules for an application.
+|`PUT` |`/applications/{domain}/schedules/{scheduleId}` |Update a specific schedule.
+|===
+
+For more information, see xref:managing-schedules.adoc[].
+
+=== Load Balancers
+
+[%header,cols="10,45,45"]
+|===
+|Method |Endpoint |Description
+|`GET` |`/organizations/{orgId}/loadbalancers` |List load balancers in an organization.
+|`POST` |`/organizations/{orgId}/loadbalancers` |Create a load balancer.
+|`GET` |`/organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{lbId}` |Get details for a specific load balancer.
+|`PATCH` |`/organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{lbId}` |Update a load balancer (mapping rules, certificates, cipher suites).
+|`DELETE` |`/organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{lbId}` |Delete a load balancer.
+|`GET` |`/organizations/{orgId}/loadbalancers/ciphersuites` |List available cipher suites.
+|`POST` |`/organizations/{orgId}/logs/download` |Initiate a DLB log download.
+|`GET` |`/organizations/{orgId}/logs/download/status` |Check DLB log download status.
+|===
+
+For detailed curl examples, see xref:lb-create-api.adoc[], xref:lb-cert-validation.adoc[], xref:lb-mapping-rules.adoc[], and xref:lb-download-logs.adoc[].
+
+=== VPCs, VPNs, and Transit Gateways
+
+[%header,cols="10,45,45"]
+|===
+|Method |Endpoint |Description
+|`GET` |`/organizations/{orgId}/vpcs` |List VPCs in an organization.
+|`POST` |`/organizations/{orgId}/vpcs` |Create a VPC.
+|`PUT` |`/organizations/{orgId}/vpcs/{vpcId}` |Update a VPC (associated environments, firewall rules).
+|`DELETE` |`/organizations/{orgId}/vpcs/{vpcId}` |Remove a VPC.
+|`POST` |`/organizations/{orgId}/vpns` |Create a VPN connection.
+|`DELETE` |`/organizations/{orgId}/vpns/{vpnId}` |Delete a VPN connection.
+|`POST` |`/organizations/{orgId}/tgws` |Create a Transit Gateway attachment.
+|`DELETE` |`/organizations/{orgId}/tgws/{tgwId}` |Remove a Transit Gateway attachment.
+|===
+
+For detailed curl examples, see xref:create-vpc-cli.adoc[].
+
+=== Diagnostics
+
+[%header,cols="10,45,45"]
+|===
+|Method |Endpoint |Description
+|`GET` |`/v2/organizations/{orgId}/environments/{envId}/applications/{appName}/instances/{instanceId}/diagnostics` |Download diagnostics for a specific application instance.
+|===
+
+For more information, see xref:ch-diagnostics-agent.adoc[].
+
+
 == Use the CloudHub API
 
 Before getting started, familiarize yourself with operations for applications.
