@@ -37,8 +37,9 @@ When designing the schedule, consider the following:
 +
 During service updates or security patching, CloudHub waits two minutes for existing schedules to complete.
 After two minutes, CloudHub retriggers any incomplete schedules.
+Additionally, during zero downtime deployments, schedules whose trigger time overlaps with the deployment window might be triggered more than once, even if the initial execution completed successfully.
 +
-To avoid retriggers with long-running schedules, make sure that the app executes the flow idempotently.
+To avoid retriggers with long-running schedules, and duplicate processing during deployment overlaps, make sure that the app executes the flow idempotently.
 * Design your schedules to prevent duplicate data processing, as they can be triggered more than once due to the issues mentioned previously.
 * For multi-worker apps, CloudHub guarantees that the schedule trigger executes on a single worker.
 +
