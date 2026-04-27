@@ -66,7 +66,7 @@ For more information, see xref:managing-schedules.adoc[].
 |===
 |Method |Endpoint |Description
 |`GET` |`/organizations/{orgId}/loadbalancers` |List load balancers in an organization.
-|`POST` |`/organizations/{orgId}/loadbalancers` |Create a load balancer.
+|`POST` |`/organizations/{orgId}/vpcs/{vpcId}/loadbalancers` |Create a load balancer.
 |`GET` |`/organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{lbId}` |Get details for a specific load balancer.
 |`PATCH` |`/organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{lbId}` |Update a load balancer (mapping rules, certificates, cipher suites).
 |`DELETE` |`/organizations/{orgId}/vpcs/{vpcId}/loadbalancers/{lbId}` |Delete a load balancer.
@@ -86,9 +86,11 @@ For detailed curl examples, see xref:lb-create-api.adoc[], xref:lb-cert-validati
 |`POST` |`/organizations/{orgId}/vpcs` |Create a VPC.
 |`PUT` |`/organizations/{orgId}/vpcs/{vpcId}` |Update a VPC (associated environments, firewall rules).
 |`DELETE` |`/organizations/{orgId}/vpcs/{vpcId}` |Remove a VPC.
-|`POST` |`/organizations/{orgId}/vpns` |Create a VPN connection.
-|`DELETE` |`/organizations/{orgId}/vpns/{vpnId}` |Delete a VPN connection.
+|`POST` |`/organizations/{orgId}/vpcs/{vpcId}/ipsec` |Create a VPN connection.
+|`DELETE` |`/organizations/{orgId}/vpcs/{vpcId}/ipsec/{vpnId}` |Delete a VPN connection.
+|`GET` |`/organizations/{orgId}/tgws` |List Transit Gateway attachments in an organization.
 |`POST` |`/organizations/{orgId}/tgws` |Create a Transit Gateway attachment.
+|`PUT` |`/organizations/{orgId}/tgws/{tgwId}` |Update a Transit Gateway attachment.
 |`DELETE` |`/organizations/{orgId}/tgws/{tgwId}` |Remove a Transit Gateway attachment.
 |===
 
@@ -99,7 +101,13 @@ For detailed curl examples, see xref:create-vpc-cli.adoc[].
 [%header,cols="10,45,45"]
 |===
 |Method |Endpoint |Description
-|`GET` |`/v2/organizations/{orgId}/environments/{envId}/applications/{appName}/instances/{instanceId}/diagnostics` |Download diagnostics for a specific application instance.
+|`GET` |`/v2/applications/{domain}/instances/diagnostics` |List diagnostics for an application.
+|`GET` |`/v2/applications/{domain}/instances/{instanceId}/diagnostics` |Get diagnostics for an instance without persisting them.
+|`POST` |`/v2/applications/{domain}/instances/{instanceId}/diagnostics` |Generate and persist diagnostics for an instance.
+|`GET` |`/v2/applications/{domain}/instances/diagnostics/{diagnosticId}/download` |Download a diagnostic.
+|`GET` |`/v2/applications/{domain}/instances/diagnostics/analysis-readiness` |Check if analysis can be triggered.
+|`GET` |`/v2/applications/{domain}/instances/{instanceId}/diagnostics/analysis/latest` |Get the latest analysis for an instance.
+|`POST` |`/v2/applications/{domain}/instances/{instanceId}/diagnostics/analyze` |Trigger an analysis for an instance.
 |===
 
 For more information, see xref:ch-diagnostics-agent.adoc[].
