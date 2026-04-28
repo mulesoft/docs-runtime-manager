@@ -3,11 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-These tables list the most commonly used CloudHub API endpoints grouped by category. All endpoints use the base URL `+https://anypoint.mulesoft.com/cloudhub/api+`.
+These tables list the most commonly used CloudHub Application Programming Interface (API) endpoints grouped by category. All endpoints use the base URL `+https://anypoint.mulesoft.com/cloudhub/api+`.
 
 For full details on request parameters, payloads, and responses, see the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/cloudhub-api/[interactive API reference on Exchange].
 
-=== Applications
+== Applications
+
+Use these endpoints to deploy, manage, and delete Mule applications running on CloudHub.
 
 [%header,cols="10,45,45"]
 |===
@@ -21,7 +23,9 @@ For full details on request parameters, payloads, and responses, see the https:/
 
 For more information, see xref:managing-applications-on-cloudhub.adoc[].
 
-=== Logs
+== Logs
+
+Use these endpoints to search and download application log entries.
 
 [%header,cols="10,45,45"]
 |===
@@ -32,7 +36,9 @@ For more information, see xref:managing-applications-on-cloudhub.adoc[].
 |`GET` |`/v2/applications/{domain}/instances/{instanceId}/log-file` |Download the log file for a specific instance.
 |===
 
-=== Notifications and Alerts
+== Notifications and Alerts
+
+Use these endpoints to manage notifications and configure alerts for your CloudHub applications.
 
 [%header,cols="10,45,45"]
 |===
@@ -48,7 +54,9 @@ For more information, see xref:managing-applications-on-cloudhub.adoc[].
 
 For more information, see xref:custom-application-alerts.adoc[].
 
-=== Schedules
+== Schedules
+
+Use these endpoints to view and update scheduled jobs for your CloudHub applications.
 
 [%header,cols="10,45,45"]
 |===
@@ -60,7 +68,9 @@ For more information, see xref:custom-application-alerts.adoc[].
 
 For more information, see xref:managing-schedules.adoc[].
 
-=== Load Balancers
+== Load Balancers
+
+Use these endpoints to create, configure, and manage dedicated load balancers (DLBs) for your CloudHub applications.
 
 [%header,cols="10,45,45"]
 |===
@@ -77,7 +87,9 @@ For more information, see xref:managing-schedules.adoc[].
 
 For detailed curl examples, see xref:lb-create-api.adoc[], xref:lb-cert-validation.adoc[], xref:lb-mapping-rules.adoc[], and xref:lb-download-logs.adoc[].
 
-=== VPCs, VPNs, and Transit Gateways
+== VPCs, VPNs, and Transit Gateways
+
+Use these endpoints to manage Virtual Private Clouds (VPCs), Virtual Private Networks (VPNs), and transit gateway attachments for your CloudHub network infrastructure.
 
 [%header,cols="10,45,45"]
 |===
@@ -96,7 +108,9 @@ For detailed curl examples, see xref:lb-create-api.adoc[], xref:lb-cert-validati
 
 For detailed curl examples, see xref:create-vpc-cli.adoc[].
 
-=== Diagnostics
+== Diagnostics
+
+Use these endpoints to generate, retrieve, and analyze application diagnostics.
 
 [%header,cols="10,45,45"]
 |===
