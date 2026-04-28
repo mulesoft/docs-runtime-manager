@@ -19,6 +19,10 @@ The default CloudHub certificates are configured as part of the private space's 
 
 The VPC upgrade tool migrates the DLB certificates to the new private space on a best-effort basis only. If the migration excludes certificates or your apps require specific TLS configurations, manually add TLS contexts to the private space. In the new private space, use the *Domains & TLS* tab to ceate DLB certificates.
 
+[IMPORTANT]
+====
+The VPC upgrade tool reuses the same underlying CloudHub VPC, so the new CloudHub 2.0 private space inherits the same number of availability zones (AZs) as the original VPC. The upgrade process does not add or change availability zones. For example, if your CloudHub VPC has only two AZs, the upgraded CloudHub 2.0 private space also has two AZs.
+====
 
 [NOTE]
 During the VPC upgrade process, you use doubled entitlements for your VPC and network connections. Work with your account representative to remain compliant with entitlements and finish the upgrade on time.
