@@ -99,6 +99,9 @@ MuleSoft-Managed:: Carry over vanity URLs while incrementally switching percenta
 [IMPORTANT]
 Restart your DLB before initiating the traffic switching.
 
+[NOTE]
+To switch application traffic, you must have the *CloudHub Network Administrator* permission. Without this permission, the traffic switching controls are not available. For more information about assigning permissions, see xref:access-management::permissions-by-product.adoc[Permissions Available in Anypoint Platform].
+
 To gradually switch traffic from CloudHub to CloudHub 2.0:
 
 . In *Runtime Manager*, go to *Finish Upgrade*.
