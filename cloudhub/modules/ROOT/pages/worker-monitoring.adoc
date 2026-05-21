@@ -11,29 +11,11 @@ You can enable automatic restarts so that your application can recover automatic
 
 == How Application Monitoring Works
 
-Monitoring works differently depending on your Mule version.
-
-* Mule 4.x
-+
 CloudHub uses the Mule Agent health check endpoint to determine the readiness of a deployment. This monitoring method provides a thorough check to ensure that the application is deployed and applies gateway policies.
-+
+
 Every 30 seconds, CloudHub checks the health check endpoint. If CloudHub detects that the health check endpoint fails three times in a row, the logs print a warning.
 
-* Mule 3.8.x
-+
-When you deploy, CloudHub inserts a monitoring ping flow into your application.
-+
-When the application starts, the logs display a message to indicate that monitoring is enabled and that the ping flow has been injected into your application:
-+
-.The arrow shows the `Monitoring enabled` and `Registering ping flow injector` messages in the logs.
-image::cloudhub-app-monitor-enabled.png[Monitoring enabled and Registering ping flow injector message in the logs]
-+
-Every 30 seconds, CloudHub sends an HTTP GET request to the ping flow.
-+
-If the application is running normally, the ping flow sends a response.
-If CloudHub receives no response from three consecutive pings, the logs display a warning and a full thread dump.
-
-In both cases, CloudHub triggers a notification to the console to alert you that a worker for an application stopped responding.
+CloudHub triggers a notification to the console to alert you that a worker for an application stopped responding.
 
 If you configure email alerts, the unresponsive worker also triggers an email alert based on the `Worker Not Responding` event.
 
