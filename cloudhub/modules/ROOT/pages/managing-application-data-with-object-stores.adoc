@@ -19,7 +19,7 @@ Your application can also store custom integration data as well, within the limi
 ====
 * Object stores are handled in the way described in this document only for applications deployed to CloudHub workers. For applications that you deploy via the Runtime Manager to local servers, you must handle the storage of data in your own repository. See xref:runtime-manager::deployment-strategies.adoc[Deployment Options] for more details.
 * All data in Object Store v1 is handled by servers in the *US-East zone*, regardless of what zone your application is deployed to. This may impact performance.
-* xref:object-store::osv2-faq.adoc[Object Store v2] expands the number of cloud object store regions and object store capabilities for use with Mule 3.8.5 and later and for Mule 4.
+* xref:object-store::osv2-faq.adoc[Object Store v2] expands the number of cloud object store regions and object store capabilities.
 ====
 
 [IMPORTANT]
@@ -65,7 +65,6 @@ Object Store v1 has a:
 
 Object Store v2:
 
-* Works with Mule 3.8.5 and later, and Mule 4
 * Unlimited number of keys per application
 * Values can be up to 10 MB
 * Trial level 10 TPS, premium level 100 TPS
@@ -74,7 +73,7 @@ Object Store v2:
 
 == Advanced Information
 
-Internally, Mule has several different types of object stores. Runtime Manager provides Object Store v1 (for Mule 3) and Object Store v2 (for Mule 3.8.5 and later, and Mule 4). These object stores are for runtime information about your application, such as those use cases mentioned above. You can find this object store internally in the Mule Registry under the '_defaultUserObjectStore` if you want to access it directly. The Object Store module and connectors use this store to store all their data by default.
+Internally, Mule has several different types of object stores. Runtime Manager provides Object Store v2. These object stores are for runtime information about your application, such as those use cases mentioned above. You can find this object store internally in the Mule Registry under the '_defaultUserObjectStore` if you want to access it directly. The Object Store module and connectors use this store to store all their data by default.
 
 === See also
 
@@ -82,4 +81,3 @@ Internally, Mule has several different types of object stores. Runtime Manager p
 * xref:object-store::index.adoc[Object Store v2]
 * xref:object-store::osv2-tutorial.adoc[Tutorial: Object Store v2]
 * https://www.mulesoft.com/exchange/org.mule.connectors/mule-objectstore-connector/[Object Store Connector for Mule 4 in Anypoint Exchange]
-* https://www.mulesoft.com/exchange/org.mule.modules/mule-module-objectstore/[Object Store Connector for Mule 3 in Anypoint Exchange]
