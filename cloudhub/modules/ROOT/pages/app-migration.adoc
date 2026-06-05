@@ -102,6 +102,9 @@ Restart your DLB before initiating the traffic switching.
 [NOTE]
 To switch application traffic, you must have the CloudHub Network Administrator permission. Without this permission, the traffic switching controls aren't available. For more information about assigning permissions, see xref:access-management::permissions-by-product.adoc[].
 
+[IMPORTANT]
+The CloudHub application must remain in STARTED state until the link between CloudHub and CloudHub 2.0 is successfully established. Stopping the CloudHub application before the link is established can cause traffic disruptions.
+
 To gradually switch traffic from CloudHub to CloudHub 2.0:
 
 . In *Runtime Manager*, go to *Finish Upgrade*.
