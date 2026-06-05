@@ -128,8 +128,21 @@ If your CloudHub VPC doesn't have any network connections, and you create new on
 The firewall rules configured in your VPC are copied to the private space. After that, you can make additional changes to the firewall rules in the VPC and the private space. To avoid configuration drift, apply any firewall rule changes in both places throughout the migration.
 
 [WARNING]
-VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` drop during the migration. 
+VPC firewall rules that have ports other than `80`, `443`, and `30500` to `32500` drop during the migration.
 
+
+=== Enable CloudHub 2.0 Apps to Communicate with CloudHub Apps via DLB
+
+During a partial migration, a CloudHub 2.0 app may need to communicate with a CloudHub app through the CloudHub Dedicated Load Balancer (DLB). Because CloudHub 2.0 uses a separate infrastructure CIDR pool, the DLB doesn't allow this traffic by default.
+
+To allow a CloudHub 2.0 app to reach a CloudHub app via the DLB, add the following CloudHub 2.0 infrastructure CIDR ranges to the DLB allowlist:
+
+* `100.64.0.0/16`
+* `100.66.0.0/16`
+* `100.67.0.0/16`
+* `100.68.0.0/16`
+
+For more information about CloudHub 2.0 infrastructure CIDR ranges, see xref:cloudhub-2::ps-gather-setup-info.adoc#infra-cidr-pool[Infrastructure CIDR Pool].
 
 
 == See Also
