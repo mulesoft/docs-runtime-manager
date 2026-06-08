@@ -61,6 +61,23 @@ Send data to an external tool like Splunk or ELK.
 
 
 
+== Troubleshoot Runtime Manager Agent Upgrades
+
+image:logo-hybrid-active.png[width=24,height=24,xref="deployment-strategies.adoc#hybrid-deployments", title="Hybrid"]
+image:logo-server-active.png[width=24,height=24,xref="deployment-strategies.adoc#anypoint-platform-pce-deployments", title="Anypoint Platform PCE"]
+
+=== TLS Handshake Failures After Upgrading to Runtime Manager Agent 2.7.x in FIPS Environments
+
+If you upgrade the Runtime Manager Agent from 2.6.x to 2.7.x in a FIPS-enabled environment, you might see `handshake_failure` errors in your `mule_ee.log` files.
+
+*Cause*
+
+Runtime Manager Agent 2.6.x had no `tls-fips140-2.conf` file mechanism and used all JVM-supported ciphers with TLSv1.2. Starting with 2.7.x, the agent reads its cipher list from the `tls-fips140-2.conf` file. If ciphers required by your environment are not present in that file, TLS handshakes fail.
+
+*Solution*
+
+Add the required ciphers to the `tls-fips140-2.conf` file and restart the Runtime Manager Agent.
+
 == See Also
 
 * xref:managing-deployed-applications.adoc[Manage Deployed Applications]
