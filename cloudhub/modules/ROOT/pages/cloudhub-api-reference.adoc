@@ -36,6 +36,8 @@ Use these endpoints to search and download application log entries.
 |`GET` |`/v2/applications/{domain}/instances/{instanceId}/log-file` |Download the log file for a specific instance.
 |===
 
+When filtering by time range, the `startTime` and `endTime` parameters require ISO 8601 UTC format with microsecond precision (`YYYY-MM-DDTHH:mm:ss.SSSSSSZ`), for example, `2025-12-25T10:00:00.000000Z`. These parameters don't accept epoch (Unix) timestamps.
+
 == Notifications and Alerts
 
 Use these endpoints to manage notifications and configure alerts for your CloudHub applications.
