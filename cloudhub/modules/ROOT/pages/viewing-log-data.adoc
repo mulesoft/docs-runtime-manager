@@ -83,6 +83,13 @@ CloudHub stores up to 100 MB of log data per application per worker, or up to 30
 
 CloudHub stores log data in Universal Time (UTC); however, the console displays the log using your computer's local time zone.
 
+== Retrieve Logs Using the CloudHub API
+
+To retrieve application logs programmatically, use the CloudHub API log endpoints.
+See xref:cloudhub-api-reference.adoc[CloudHub API Reference].
+
+When filtering by time range, the `startTime` and `endTime` parameters require ISO 8601 UTC format with microsecond precision (`YYYY-MM-DDTHH:mm:ss.SSSSSSZ`), for example, `2025-12-25T10:00:00.000000Z`. These parameters do not accept epoch (Unix) timestamps.
+
 
 == Search Logs
 
