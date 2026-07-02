@@ -36,7 +36,10 @@ image::policy-form.png[form]
 . Determine if the scaling will be based on *Memory or CPU usage*.
 +
 [NOTE]
-The percentage shown is the percentage of total memory or CPU allocated for the JVM that's being used. This includes the memory being consumed by the JVM itself.
+====
+* For *CPU*: The percentage shown is the worker's total CPU usage relative to its allocated CPU capacity. Autoscaling is triggered based on the worker's overall CPU usage, not JVM CPU usage alone.
+* For *Memory*: The percentage shown is the percentage of total memory allocated for the JVM that's being used, including memory consumed by the JVM itself.
+====
 
 . Determine the *Rules* for your scaling. You must provide the following values for both the upscale and the downscale conditions:
 .. A usage *percentage*
