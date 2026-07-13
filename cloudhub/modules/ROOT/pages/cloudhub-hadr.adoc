@@ -105,9 +105,10 @@ image::hadr-load-balancer.png["A load balancer running health checks and routing
 
 == Best Practices
 
-Keep your integrations stateless. Don't share transactional information between client invocations or scheduled runs. When the middleware must retain data because of a system limitation, store it in an external store, such as a database or a messaging queue, rather than in the middleware infrastructure or memory.
-
-As you scale, especially in the cloud, keep each worker's state and resources independent of the other workers. This model delivers better performance, scalability, and reliability.
+* Keep your integrations stateless.
+* Don't share transactional information between client invocations or scheduled runs.
+* When the middleware must retain data because of a system limitation, store it in an external store, such as a database or a messaging queue, rather than in the middleware infrastructure or memory.
+* As you scale, especially in the cloud, keep each worker's state and resources independent of the other workers, which delivers better performance, scalability, and reliability.
 
 == See Also
 
