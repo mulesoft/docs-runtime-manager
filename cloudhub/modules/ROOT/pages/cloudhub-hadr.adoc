@@ -7,6 +7,8 @@ endif::[]
 
 CloudHub provides high availability (HA) and disaster recovery for application and hardware failures.
 
+For an overview of HA and DR across all Mule deployment models, and to compare CloudHub with other options, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
+
 CloudHub uses Amazon AWS for its cloud infrastructure, so availability depends on Amazon. CloudHub runs deployments in different regions that map to Amazon regions. If an Amazon region goes down, applications in that region become unavailable. CloudHub doesn't replicate them to other regions.
 
 For example, when the US East region is down, the CloudHub management UI and the REST services that enable deployments remain unavailable until the region recovers. You can't deploy new applications while US East is down.
