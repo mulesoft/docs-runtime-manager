@@ -16,7 +16,7 @@ High availability (HA) measures a system's ability to remain accessible when a c
 
 Disaster recovery (DR) restores a system to an acceptable previous state after a natural or man-made disaster, such as flooding, fires, power failures, server failures, or misconfigurations.
 
-Both strategies increase availability, but they differ in one key way: HA generally keeps the service up with no loss, whereas DR preserves the data but usually incurs a brief loss of service while the DR plan runs and the system restores.
+Both strategies increase availability but differ in scope: on CloudHub, HA keeps your application serving requests through worker and availability-zone failures with no loss of service, whereas DR restores service and data after a region-level disruption and usually incurs a brief loss of service while the DR plan runs.
 
 Two measurable objectives drive your DR plan:
 
@@ -30,7 +30,7 @@ CloudHub builds high availability into its default deployment model, and MuleSof
 
 When your application uses multiple workers, CloudHub deploys the workers in separate availability zones by default, which provides HA across availability zones. The distance between availability zones varies and generally stays under 350 miles.
 
-image::hadr-am-web-services.png[]
+image::hadr-am-web-services.png["CloudHub deploying an application's workers across separate availability zones within a single region"]
 
 When your application uses a single worker and that availability zone goes down, CloudHub restarts the application in a different availability zone. The application can experience downtime during the restart.
 
@@ -54,6 +54,8 @@ MuleSoft manages the CloudHub control plane and worker infrastructure within eac
 |You |Replicate and back up the external data stores that your applications use across regions, such as databases and object stores.
 |You |Set up Anypoint VPC in each region where you need network connectivity for DR.
 |===
+
+In short, MuleSoft keeps the platform and workers resilient within a region, and you own everything that spans regions: when to fail over, how to route traffic, which applications to run in a backup region, and how to replicate data.
 
 === Your Responsibilities for Disaster Recovery
 
@@ -99,7 +101,7 @@ Anypoint VPC:: Anypoint Virtual Private Cloud (Anypoint VPC) applies at the regi
 
 To strengthen your DR strategy, route traffic across regions with a cloud-based or on-premises load balancer. Configure the load balancer to run health checks and to route traffic to your backup region when the primary region goes down. For CloudHub-specific options, see xref:dedicated-load-balancer-tutorial.adoc[CloudHub Load Balancers] and xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers].
 
-image::hadr-load-balancer.png[]
+image::hadr-load-balancer.png["A load balancer running health checks and routing traffic to a backup region when the primary region goes down"]
 
 == Best Practices
 
