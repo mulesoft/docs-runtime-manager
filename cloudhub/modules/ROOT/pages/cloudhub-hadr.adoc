@@ -8,7 +8,7 @@ CloudHub provides high availability (HA) and disaster recovery (DR) that protect
 
 For an overview of HA and DR across all Mule deployment models, and to compare CloudHub with other options, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
 
-CloudHub runs on Amazon AWS, so its availability depends on Amazon. CloudHub maps each deployment region to an Amazon region. If an Amazon region goes down, applications in that region become unavailable, and CloudHub does not replicate them to other regions.
+CloudHub runs on Amazon AWS, so its availability depends on Amazon. CloudHub maps each deployment region to an Amazon region. If an Amazon region goes down, applications in that region become unavailable, and CloudHub doesn't replicate them to other regions.
 
 == High Availability Versus Disaster Recovery
 
@@ -38,7 +38,7 @@ To receive alerts when a failure occurs in an availability zone or region, set u
 
 == Disaster Recovery in CloudHub
 
-MuleSoft manages the CloudHub control plane and worker infrastructure within each region. You own the cross-region strategy, application-level failover, and data synchronization. The following table shows who does what for disaster recovery on CloudHub.
+MuleSoft manages the CloudHub control plane and worker infrastructure within each region. You own the cross-region strategy, application-level failover, and data synchronization. This table shows who does what for disaster recovery on CloudHub.
 
 [%header,cols="1a,2a"]
 |===
@@ -59,12 +59,12 @@ In short, MuleSoft keeps the platform and workers resilient within a region, and
 
 === Your Responsibilities for Disaster Recovery
 
-If your organization needs cross-region DR, design and operate your applications for it. MuleSoft does not automatically replicate applications or fail over traffic to another region. You own the following areas:
+If your organization needs cross-region DR, design and operate your applications for it. MuleSoft doesn't automatically replicate applications or fail over traffic to another region. You own these areas:
 
 * *Regional failover strategy* - Decide when to switch traffic to a backup region, for example, after a region outage or based on health checks.
 * *Traffic management* - Route traffic across regions with a cloud-based or on-premises load balancer, such as a Dedicated Load Balancer (DLB) or an external GSLB, and switch to the backup region as part of your DR plan.
 * *Application deployment* - Deploy the same or equivalent applications in a backup region, and keep their configuration and code in sync.
-* *Data and state* - Replicate or back up the external data stores that your integrations use, such as databases, caches, and object stores, so that applications in a DR region access the data they need. Anypoint Object Store v1 and v2 are regional and do not provide cross-region failover.
+* *Data and state* - Replicate or back up the external data stores that your integrations use, such as databases, caches, and object stores, so that applications in a DR region access the data they need. Anypoint Object Store v1 and v2 are regional and don't provide cross-region failover.
 
 For guidance on designing HA and DR topologies, including active-active, warm standby, and cold standby, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
 
@@ -77,7 +77,7 @@ Your restoration steps depend on the DR strategy you put in place. After you con
 Use your load balancer, such as a GSLB or a Dedicated Load Balancer (DLB), to route traffic to the backup region. The health checks you configured earlier mark the primary as unhealthy and direct traffic to the backup endpoints.
 . Bring backup applications online when you use cold or warm standby.
 +
-If the control plane is available, use Anypoint Runtime Manager or the CloudHub API to start or scale up the backup application. If the control plane sits in the same region as the failed primary, it is unavailable, and you cannot start or scale applications until the control plane recovers, unless you use automation that does not depend on the control plane.
+If the control plane is available, use Anypoint Runtime Manager or the CloudHub API to start or scale up the backup application. If the control plane sits in the same region as the failed primary, it is unavailable, and you cannot start or scale applications until the control plane recovers, unless you use automation that doesn't depend on the control plane.
 . Verify that the backup region serves traffic and that dependent systems use the correct endpoints and data stores.
 . Fail back when the primary region recovers, switching traffic from the backup region to the primary and resyncing data as needed.
 
@@ -85,7 +85,7 @@ Your RTO depends on how quickly you complete these steps and, for cold or warm s
 
 == Considerations and Limitations
 
-Account for the following CloudHub behaviors when you plan HA and DR:
+Account for these CloudHub behaviors when you plan HA and DR:
 
 Control plane availability:: When the US East region goes down, the CloudHub management UI and the REST services that enable deployments stay unavailable until the region recovers, and you cannot deploy new applications during that time.
 
@@ -105,7 +105,7 @@ image::hadr-load-balancer.png["A load balancer running health checks and routing
 
 == Best Practices
 
-Keep your integrations stateless. Do not share transactional information between client invocations or scheduled runs. When the middleware must retain data because of a system limitation, store it in an external store, such as a database or a messaging queue, rather than in the middleware infrastructure or memory.
+Keep your integrations stateless. Don't share transactional information between client invocations or scheduled runs. When the middleware must retain data because of a system limitation, store it in an external store, such as a database or a messaging queue, rather than in the middleware infrastructure or memory.
 
 As you scale, especially in the cloud, keep each worker's state and resources independent of the other workers. This model delivers better performance, scalability, and reliability.
 
