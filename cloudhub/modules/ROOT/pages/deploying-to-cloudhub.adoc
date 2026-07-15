@@ -55,6 +55,15 @@ See <<Application Names>>.
 .. Select the file to upload and then click *Open*.
 +
 The application file size limit is 200 MB.
++
+[NOTE]
+====
+The maximum CloudHub 1.0 application size is a hard limit of 200 MB (209,715,200 bytes).
+Deployments that exceed it fail with HTTP `400` and the error message `Maximum length exceeded: 209715200 Bytes`.
+You can't raise this limit.
+To reduce the deployable archive, remove unused dependencies and externalize large resources.
+Mule apps deploy as self-contained archives, so all dependencies count toward the limit.
+====
 
 ** Copy an application from a nonproduction environment.
 +
