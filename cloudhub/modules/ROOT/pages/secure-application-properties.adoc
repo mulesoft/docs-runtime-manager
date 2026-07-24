@@ -15,6 +15,15 @@ Internally, safely hidden application properties are encrypted and stored in a M
 For applications deployed to CloudHub workers or hybrid deployments, you can use Runtime Manager to set hidden properties.
 For applications that you deploy using another deployment option, you must use secure property placeholder files bundled in the deployable application archive file.
 
+[NOTE]
+====
+This page describes safely hidden application properties for CloudHub (1.0) and hybrid deployments.
+
+On CloudHub 2.0, secure-property masking is configured in Runtime Manager on the *Properties* tab (property protection), not through `mule-artifact.json` or config-file masking. Masked values aren't viewable or retrievable after being set and are encrypted in the Anypoint Security secrets manager. Runtime Manager properties override archive-bundled properties of the same name.
+
+On CloudHub 2.0, configuring masking through `mule-artifact.json` or config-file masking isn't the recommended practice. For information, see xref:cloudhub-2::ch2-protect-app-props.adoc[Protecting App Property Values].
+====
+
 [IMPORTANT]
 Safely hidden application properties are a separate feature and concept from the encrypted Mule application properties that are stored in secure configuration files.
 See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties].
@@ -214,6 +223,7 @@ If you don't want to encrypt properties for Mule applications that are deployed 
 == See Also
 
 * xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties]
+* xref:cloudhub-2::ch2-protect-app-props.adoc[Protecting App Property Values (CloudHub 2.0)]
 * xref:cloudhub-manage-props.adoc[Manage Properties for Applications on CloudHub]
 * xref:runtime-manager::hybrid-manage-props.adoc[Manage Properties for Applications On-Premises]
 * xref:runtime-manager::managing-deployed-applications.adoc[Manage Deployed Applications]
