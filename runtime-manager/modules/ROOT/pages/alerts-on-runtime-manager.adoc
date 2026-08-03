@@ -20,7 +20,7 @@ Runtime Manager retains thirty days of alert history.
 Alerts retrigger when the conditions exceed the specified threshold. 
 ====
 
-== Runtime Manager Alerts Compared with Anypoint Monitoring Alerts
+== Compare Runtime Manager Alerts and Anypoint Monitoring Alerts
 
 Runtime Manager and Anypoint Monitoring provide different alert systems.
 Use the alert page and API for the system that owns the alert you need.
@@ -34,15 +34,19 @@ Use Runtime Manager REST Services endpoints for these alerts:
 * Alert configuration (alert definitions): `GET /hybrid/api/v1/alerts` and related alert-definition operations
 * Fired-alert history: alert-history endpoints for the alert ID, for example `GET /armui/api/v1/alerts/cloudhub/{alertId}/history`
 +
-Runtime Manager alert history is retained for 30 days.
+Runtime Manager retains 30 days of alert history.
 Runtime Manager alerts retrigger when a condition continues to breach its threshold.
-These Runtime Manager alerts aren't listed on the Anypoint Monitoring *Alerts* page.
+Runtime Manager alerts aren't listed on the Anypoint Monitoring *Alerts* page.
 
 Anypoint Monitoring alerts::
 API-behavior-focused alerts, including instance alerts (such as response time, request count using sliding-window thresholds, policy violations, and HTTP status codes), plus Contracts, Basic, and Advanced alerts.
 +
-Use Anypoint Monitoring alert APIs for Anypoint Monitoring alert definitions and fired-alert history.
-Runtime Manager alert endpoints don't return Anypoint Monitoring alerts.
+Use Anypoint Monitoring alert APIs for:
++
+* Alert configuration (alert definitions)
+* Fired-alert history
++
+Runtime Manager alert endpoints don't return these Anypoint Monitoring alerts.
 +
 For Anypoint Monitoring alerts, see xref:monitoring::basic-alerts.adoc[Getting Alerts].
 
