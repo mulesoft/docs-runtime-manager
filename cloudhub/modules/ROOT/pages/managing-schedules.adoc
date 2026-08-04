@@ -45,7 +45,10 @@ To avoid retriggers with long-running schedules, and duplicate processing during
 +
 However, subsequent triggers might execute on a different worker.
 CloudHub distributes multiple concurrent schedules across workers.
-* The minimum recommended frequency between calls is 10 seconds.
+* Schedules run on a best-effort basis and aren't guaranteed to trigger at an exact time.
+The platform evaluates due schedules on a recurring cycle, so the actual run time can drift from the configured interval, and the schedule can occasionally skip or merge runs under load.
+This drift is most significant at short intervals. For time-sensitive workloads where each run must occur close to its scheduled time, use an interval of 60 seconds or greater.
+If you require precise, fixed-interval execution, trigger the flow externally (for example, through an HTTP endpoint) instead of using a schedule.
 * If a scheduled job is not triggered because the application is not running,
 CloudHub triggers the job as soon as it restarts.
 * When a Mule 4.x app uses a schedule to trigger a flow with subflow, the scheduler waits until both main flow and subflow complete before scheduling the next run.
