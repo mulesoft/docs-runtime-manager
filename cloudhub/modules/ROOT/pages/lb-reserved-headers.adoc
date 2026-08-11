@@ -36,7 +36,7 @@ The CloudHub Dedicated Load Balancer (DLB) reserves and injects specific HTTP he
 Security Headers::
 +
 * The DLB enforces the security headers, and you can't override them.
-* The DLB injects the `X-Content-Type-Options`, `X-Frame-Options`, and `X-XSS-Protection` headers in the DLB response to callers for successful responses (`2xx` and `3xx` status codes).
+* The DLB injects the `X-Content-Type-Options`, `X-Frame-Options`, and `X-XSS-Protection` headers in the DLB response to callers for responses with these status codes: `200`, `201`, `204`, `206`, `301`, `302`, `303`, `304`, `307`, and `308`. These are the status codes for which the underlying NGINX `add_header` directive applies by default. Responses with other status codes, such as `202 Accepted`, don't include these headers.
 * The DLB always injects the `Strict-Transport-Security` regardless of the response code.
 
 x-ch1-path Header::
