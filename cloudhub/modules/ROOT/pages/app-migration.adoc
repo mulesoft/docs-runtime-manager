@@ -80,7 +80,7 @@ To manage a migrated app using the Mule Maven plugin (MMP), copy the public URL 
 
 ==== CloudHub Application Default Domain
 
-When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
+When deploying a new CloudHub 2.0 application during migration, don't configure it to use the inherited CloudHub default domain (the shared `+*.cloudhub.io+` endpoint in the format `<app_name>.<region>.cloudhub.io`). This domain is automatically carried over to the CloudHub 2.0 private space, but it's globally shared and can't be managed by you. Route traffic through your vanity domain or `anypointdns.net` endpoint instead. Using the default domain interferes with how traffic switching determines the traffic source (SLB versus DLB) and can cause traffic outages.
 
 
 == Next Steps After Application Upgrade
