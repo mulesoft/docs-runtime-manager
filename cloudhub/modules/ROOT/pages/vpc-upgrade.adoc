@@ -119,7 +119,9 @@ After you migrate all the applications in a VPC, delete the VPC and any associat
 For the final steps after VPC upgrade and CloudHub application migration, see xref:ch-ch2-migration-completion.adoc[].
 
 [NOTE]
-When deploying a new CloudHub 2.0 application, avoid using the CloudHub default domain to prevent issues such as traffic outages.
+====
+When deploying a new CloudHub 2.0 application during migration, don't configure it to use the inherited CloudHub default domain (the shared `+*.cloudhub.io+` endpoint in the format `<app_name>.<region>.cloudhub.io`). This domain is automatically carried over to the CloudHub 2.0 private space, but it's globally shared and can't be managed by you. Route traffic through your vanity domain or `anypointdns.net` endpoint instead. Using the default domain interferes with how traffic switching determines the traffic source (SLB versus DLB) and can cause traffic outages.
+====
 
 During the migration, you can continue to deploy and manage applications in your VPC to maintain business continuity. To prevent configuration drift, after the upgrade, your CloudHub dedicated VPC is locked for any changes to the infrastructure, including environment or business group associations, network connections, and internal DNS. Make any required changes to the newly created private space. The upgrade process applies any CloudHub 2.0 configuration changes to the CloudHub VPC. 
 
