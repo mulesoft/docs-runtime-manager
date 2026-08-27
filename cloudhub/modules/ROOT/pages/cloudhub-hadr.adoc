@@ -6,7 +6,7 @@ endif::[]
 
 CloudHub provides high availability (HA) and disaster recovery (DR) that protect your applications from application and hardware failures.
 
-For an overview of HA and DR across all Mule deployment models, and to compare CloudHub with other options, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
+For an overview of HA and DR across all Mule deployment models, and to compare CloudHub with other options, see xref:hosting-home::hadr-guide.adoc[High Availability and Disaster Recovery].
 
 CloudHub runs on Amazon AWS, so its availability depends on Amazon. CloudHub maps each deployment region to an Amazon region. If an Amazon region goes down, applications in that region become unavailable, and CloudHub doesn't replicate them to other regions.
 
@@ -66,7 +66,7 @@ If your organization needs cross-region DR, design and operate your applications
 * *Application deployment* - Deploy the same or equivalent applications in a backup region, and keep their configuration and code in sync.
 * *Data and state* - Replicate or back up the external data stores that your integrations use, such as databases, caches, and object stores, so that applications in a DR region access the data they need. Anypoint Object Store v1 and v2 are regional and don't provide cross-region failover.
 
-For guidance on designing HA and DR topologies, including active-active, warm standby, and cold standby, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
+For guidance on designing HA and DR topologies, including active-active, warm standby, and cold standby, see xref:hosting-home::hadr-guide.adoc[High Availability and Disaster Recovery].
 
 === Restoring After a Disaster
 
@@ -81,7 +81,7 @@ If the control plane is available, use Anypoint Runtime Manager or the CloudHub 
 . Verify that the backup region serves traffic and that dependent systems use the correct endpoints and data stores.
 . Fail back when the primary region recovers, switching traffic from the backup region to the primary and resyncing data as needed.
 
-Your RTO depends on how quickly you complete these steps and, for cold or warm standby, on how long the backup application takes to start or scale. For active-active setups, traffic continues on the remaining region without a switch. For more on recovery types and topologies, see xref:mule-runtime::hadr-guide.adoc[] and xref:cloudhub-2::ch2-ha-dr.adoc[].
+Your RTO depends on how quickly you complete these steps and, for cold or warm standby, on how long the backup application takes to start or scale. For active-active setups, traffic continues on the remaining region without a switch. For more on recovery types and topologies, see xref:hosting-home::hadr-guide.adoc[] and xref:cloudhub-2::ch2-ha-dr.adoc[].
 
 == Considerations and Limitations
 
@@ -112,7 +112,7 @@ image::hadr-load-balancer.png["A load balancer running health checks and routing
 
 == See Also
 
-* xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery]
+* xref:hosting-home::hadr-guide.adoc[High Availability and Disaster Recovery]
 * xref:object-store::index.adoc[Anypoint Object Store v2]
 * xref:cloudhub-2::ch2-ha-dr.adoc[CloudHub 2.0 High Availability and Disaster Recovery]
 * xref:cloudhub-dedicated-load-balancer.adoc[Dedicated Load Balancers]
