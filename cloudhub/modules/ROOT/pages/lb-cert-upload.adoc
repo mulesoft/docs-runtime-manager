@@ -104,6 +104,10 @@ openssl rsa -in new-example-com-private.pem -out new-example-com-private_noencry
 . Click *Apply Changes*.
 
 
+[WARNING]
+Using RSA 4096-bit certificates can reduce DLB worker performance by up to ten times compared to RSA 2048-bit certificates. Plan DLB sizing accordingly before adding new 4096-bit certificates or updating existing certificates to 4096 bits.
+
+
 == See Also
 
 * xref:lb-ssl-endpoints.adoc[Configure SSL Endpoints]
