@@ -16,9 +16,6 @@ The tool provisions the infrastructure for a CloudHub 2.0 private space by cloni
 If your VPC has existing Transit Gateways (TGW) or Virtual Private Networks (VPN) connections, they transfer seamlessly to the new CloudHub 2.0 private space. This migration ensures that any new applications deployed to the new private space can communicate effectively.
 
 The upgrade tool doesn't migrate or delete VPC peering connections. If a VPC with peering completes the upgrade, those connections remain on the CloudHub VPC. CloudHub apps can keep using them. Apps in the new CloudHub 2.0 private space can't use those peering connections.
-// PLACEHOLDER (W-23544596): After CloudHub engineering confirms, add the customer-facing steps for:
-// - Migrating from VPC peering to a transit gateway or VPN before you upgrade
-// - What to do with leftover peering after the upgrade (leave it, delete it, who deletes it, and how)
 
 The default CloudHub certificates are configured as part of the private space's default certificates. The DLB custom domains of the migrated VPC are created as part of the private space's custom TLS certificates.
 
@@ -47,7 +44,6 @@ VPCs with legacy VPNs configured aren't eligible for the upgrade.
 
 Direct Connect or VPC Peering:: 
 If your VPC has Direct Connect or VPC Peering configured, migrate to Transit Gateway or VPN before upgrading.
-// PLACEHOLDER (W-23544596): After CloudHub engineering confirms, add the customer-facing steps for migrating off VPC peering (and Direct Connect, if the same process applies) to a transit gateway or VPN.
 
 TLS 1.1 ciphers::
 +
