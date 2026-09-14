@@ -11,15 +11,18 @@ In your network, you must add the hostnames and ports of various parts of Anypoi
 
 These tables show you the ports or IP addresses and hostnames to add to your allowlists to allow communication between the agent and the Runtime Manager console.
 
-Because the following endpoints use mutual TLS authentication, to establish the connection, you must configure SSL passthrough to allow the certificates:
+The following endpoints use mutual TLS (mTLS) authentication:
 
 * runtime-manager.anypoint.mulesoft.com
 * runtime-manager.eu1.anypoint.mulesoft.com
 * runtime-manager.gov.anypoint.mulesoft.com
 * data-authenticator.anypoint.mulesoft.com
 * data-authenticator.gov.anypoint.mulesoft.com
-* us1.ingest.mulesoft.com 
-* eu1.ingest.mulesoft.com 
+* us1.ingest.mulesoft.com
+* eu1.ingest.mulesoft.com
+
+[IMPORTANT]
+The `*.ingest.mulesoft.com:8443` endpoint uses Mutual TLS (mTLS) for direct agent-to-platform certificate authentication. Configure your firewall or network proxy to allow SSL passthrough — do not enable deep packet inspection (DPI) or SSL decryption for this traffic. Ensure proxy rules also permit outbound TCP on port 8443 in addition to standard port 443.
 
 In addition, the following endpoints use WebSockets:
 
@@ -31,6 +34,9 @@ In addition, the following endpoints use WebSockets:
 Ports, IP addresses, and hostnames are required for outbound connectivity. Inbound connectivity is not required to your network and servers. The connection between customer-hosted Mule runtime and Anypoint Platform is established via persistent Websocket connections. All connections are outbound.
 
 == Ports
+
+[NOTE]
+Starting with Runtime Manager Agent 2.7.0 (Anypoint Monitoring Agent 2.7.1+), Mule runtimes stream telemetry metrics using an OpenTelemetry-based exporter. This requires outbound access to `*.ingest.mulesoft.com` on port 8443.
 
 [%header,cols="10a,50a,10a"]
 |===
