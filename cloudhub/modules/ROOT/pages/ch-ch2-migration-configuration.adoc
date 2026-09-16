@@ -335,6 +335,30 @@ This provides more granular control over platform log forwarding.
 
 ====
 
+[#scheduler-concurrent-execution]
+.Known Issue: Scheduler Concurrent Execution
+[%collapsible,opts=hide-details]
+====
+
+[cols="1,1",options="header"]
+|===
+|CloudHub
+|CloudHub 2.0
+
+|For affected applications, CloudHub prevents overlapping executions of the same Scheduler even when the Scheduler source's `disallowConcurrentExecution` setting is `false` or omitted.
+|CloudHub 2.0 honors the `disallowConcurrentExecution` setting. If the setting is `false` or omitted, another execution can start before the previous execution finishes.
+|===
+
+This issue applies only when you migrate an application from CloudHub to CloudHub 2.0. Review each Scheduler that has a small interval, such as less than one second, and can run longer than its configured interval, when `disallowConcurrentExecution` is `false` or omitted. CloudHub 2.0 can start overlapping executions that consume the application thread pool shared by all flows. Excessive queued executions can delay or prevent other flows from running.
+
+To prevent overlapping executions after migration, explicitly set `disallowConcurrentExecution="true"`. If a trigger becomes due while the previous execution is still running, CloudHub 2.0 skips that trigger and tries again at the next configured interval.
+
+When an affected Scheduler has a very short interval, skipped triggers can generate excessive INFO-level log messages. To suppress INFO-level messages from `org.mule.runtime.core.internal.source.scheduler.DefaultSchedulerMessageSource`, including the repeated `Execution skipped` message, set its log level to *WARNING* in the application's *Monitoring* tab. Applying the log-level change restarts the application. For instructions, see xref:cloudhub-2::ch2-manage-app-logs.adoc#configure-log-levels-and-categories[Configure Log Levels and Categories].
+
+For more information about the Scheduler source setting, see xref:mule-runtime::scheduler-concept.adoc#props_scheduler[Scheduler].
+
+====
+
 .Deployment Configuration
 [%collapsible,opts=hide-details]
 ====
@@ -488,6 +512,7 @@ CloudHub 2.0 supports Mule runtime versions 4.3.x and later. Upgrade to a suppor
 
 * Update the application's `pom.xml` with CloudHub 2.0 deployment configuration. See xref:mule-runtime::deploy-to-cloudhub-2.adoc[Deploy to CloudHub 2.0].
 * Update the application's `log4j2.xml` with log forwarding options if needed. See xref:cloudhub-2::ch2-integrate-log-system.adoc[Integrate with Your Logging System Using Log4j].
+* Review Scheduler configurations for the xref:ch-ch2-migration-configuration.adoc#scheduler-concurrent-execution[known Scheduler concurrent-execution issue].
 * Remove persistent queues and implement AnypointMQ.
 * Remove CloudHub Connector and replace with custom logic.
 
