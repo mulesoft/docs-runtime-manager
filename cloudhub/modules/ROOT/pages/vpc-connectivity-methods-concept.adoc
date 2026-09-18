@@ -5,7 +5,7 @@ endif::[]
 :page-aliases: runtime-manager::vpc-connectivity-methods-concept.adoc,
 
 
-You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using the following methods:
+You can connect an Anypoint Virtual Private Cloud (Anypoint VPC) to your private network using these methods:
 
 * IPsec tunnel
 * Transit gateway attachment
@@ -63,18 +63,71 @@ To use VPC Peering, your AWS and Anypoint VPCs must be located in the same regio
 
 == AWS Direct Connect
 
-To create a Direct Connect connection to Anypoint VPC, create or leverage an existing AWS Transit Gateway on your AWS account and set up the Direct Connect connection to the Transit Gateway.
-Then, attach Anypoint VPC to the transit gateway and configure the required routing to enable Anypoint VPC on-premises connectivity.
+To create a Direct Connect connection to Anypoint VPC, create or use an existing AWS Transit Gateway in your AWS account and set up the Direct Connect connection to the Transit Gateway.
+Then, attach Anypoint VPC to the Transit Gateway and configure the required routing to enable Anypoint VPC on-premises connectivity.
+
+On your AWS account, attach Direct Connect connections to a Direct Connect Gateway and associate that Direct Connect Gateway with your Transit Gateway. Anypoint VPC attaches to the Transit Gateway.
 
 image::vpc-overview-dx.png[AWS Direct Connect Overview]
 
 [NOTE]
 --
-To use Direct Connect, your AWS Direct Connect Partner and the Anypoint VPCs must be located in the same region. Direct Connect gateways are not supported.
-Direct Connect requires the use of the Border Gateway Protocol (BGP) for dynamic routing.
-
-For high availability, use multiple Direct Connect connections from different AWS Direct Connect Locations.
+To use Direct Connect, your AWS Direct Connect Partner and the Anypoint VPCs must be located in the same region.
+Direct Connect requires the Border Gateway Protocol (BGP) for dynamic routing. Static routing isn't supported.
 --
+
+[[direct-connect-high-availability]]
+== Direct Connect High Availability
+
+A single Direct Connect connection isn't sufficient for high availability. A failure at the facility, hardware, or connection level can cause total connectivity loss.
+
+For workloads that require high availability, use multiple Direct Connect connections that enter the AWS Global Network at two AWS Direct Connect locations and converge at a Transit Gateway in your AWS account. Attach Anypoint VPC to that Transit Gateway.
+
+image::vpc-overview-dx-ha.png[High Availability Direct Connect for Anypoint VPC]
+
+This HA topology uses these components:
+
+* *On-premises infrastructure* +
+Network traffic originates from your on-premises environment. Use a single data center with redundant edge routers, or distribute traffic across multiple physical data centers.
+* *Two AWS Direct Connect locations* +
+To provide path redundancy, Direct Connect connections must enter the AWS Global Network at two AWS facilities. See https://aws.amazon.com/directconnect/locations/[AWS Direct Connect Locations].
+* *AWS Transit Gateway* +
+The Transit Gateway in your AWS account acts as a centralized cloud router. Attach both Direct Connect connections to a Direct Connect Gateway, and associate that Direct Connect Gateway with the Transit Gateway.
+* *Anypoint VPC* +
+Attach Anypoint VPC to your Transit Gateway to route traffic privately to your on-premises resources.
+
+=== Prerequisites
+
+Before you configure Direct Connect high availability:
+
+* Provision the Transit Gateway and Anypoint VPC in the same AWS region.
+* Use BGP for dynamic routing. Static routing isn't supported.
+* Plan Direct Connect connections at two AWS Direct Connect locations.
+* Stay within the 95 route table entries allowed per Anypoint VPC. Consolidate networks with summary routes so you don't exceed the limit.
+
+=== Configure Direct Connect High Availability
+
+. In your AWS account, create a Transit Gateway in the same region as your Anypoint VPC.
+. Work with AWS or your AWS Direct Connect Partner to provision dedicated or hosted connections at two physical locations:
+.. Establish connection A between your on-premises network and AWS Direct Connect Location 1.
+.. Establish connection B between your on-premises network and AWS Direct Connect Location 2.
+.. Create the virtual interfaces (VIFs) required to attach both Direct Connect connections to your Transit Gateway through a Direct Connect Gateway.
+. Enable BGP over both Direct Connect connections.
++
+To manage traffic as active/passive or active/active, configure your on-premises edge routers. For an active/standby setup, use AS path prepending on the secondary connection so it's a less preferred route during normal operations. See https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html#private-routing-policies[Routing policies for Direct Connect] in the AWS documentation.
+. Verify that routes propagate from the Direct Connect Gateway into the Transit Gateway route table associated with Anypoint VPC.
+. Attach Anypoint VPC to the Transit Gateway. See xref:tgw-attach-arm.adoc[Attach to Transit Gateways].
++
+If you also need MuleSoft to accept a Direct Connect VIF or hosted connection, see xref:to-request-vpc-connectivity.adoc#configure-direct-connect-connections[Configure Direct Connect Connections].
+. In your Transit Gateway route tables, route traffic destined for your on-premises network over the Direct Connect links, and route traffic destined for Anypoint VPC to the VPC attachment.
+
+=== Failover Behavior
+
+Because this architecture uses BGP for dynamic routing across redundant paths, failover is automatic:
+
+* If the primary network link, on-premises router, or AWS Direct Connect location fails, BGP withdraws the primary routes.
+* The Transit Gateway moves active traffic to the secondary Direct Connect connection.
+* When the primary connection is restored, BGP re-advertises the preferred routes and traffic returns to its normal path. You don't need to update routing manually in CloudHub or AWS.
 
 [IMPORTANT]
 --
@@ -87,5 +140,6 @@ MuleSoft Support manually provisions and removes Direct Connect connections. If 
 == See Also
 
 * xref:to-request-vpc-connectivity.adoc[Request VPC Connectivity to Your Network]
+* xref:tgw-attach-arm.adoc[Attach to Transit Gateways]
 * xref:vpn-about.adoc[Anypoint VPN]
 * xref:tgw-about.adoc[Transit Gateway Attachments]
