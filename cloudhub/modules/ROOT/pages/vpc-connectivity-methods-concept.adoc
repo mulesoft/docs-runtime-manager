@@ -77,7 +77,7 @@ Direct Connect requires the Border Gateway Protocol (BGP) for dynamic routing. S
 --
 
 [[direct-connect-high-availability]]
-=== Direct Connect High Availability
+== Direct Connect High Availability
 
 A single Direct Connect connection isn't sufficient for high availability. A failure at the facility, hardware, or connection level can cause total connectivity loss.
 
@@ -96,7 +96,7 @@ The Transit Gateway in your AWS account acts as a centralized cloud router. Atta
 * *Anypoint VPC* +
 Attach Anypoint VPC to your Transit Gateway to route traffic privately to your on-premises resources.
 
-==== Prerequisites
+=== Prerequisites
 
 Before you configure Direct Connect high availability:
 
@@ -105,7 +105,7 @@ Before you configure Direct Connect high availability:
 * Plan Direct Connect connections at two AWS Direct Connect locations.
 * Stay within the 95 route table entries allowed per Anypoint VPC. Consolidate networks with summary routes so you don't exceed the limit.
 
-==== Configure Direct Connect High Availability
+=== Configure Direct Connect High Availability
 
 . In your AWS account, create a Transit Gateway in the same region as your Anypoint VPC.
 . Work with AWS or your AWS Direct Connect Partner to provision dedicated or hosted connections at two physical locations:
@@ -121,7 +121,7 @@ To manage traffic as active/passive or active/active, configure your on-premises
 If you also need MuleSoft to accept a Direct Connect VIF or hosted connection, see xref:to-request-vpc-connectivity.adoc#configure-direct-connect-connections[Configure Direct Connect Connections].
 . In your Transit Gateway route tables, route traffic destined for your on-premises network over the Direct Connect links, and route traffic destined for Anypoint VPC to the VPC attachment.
 
-==== Failover Behavior
+=== Failover Behavior
 
 Because this architecture uses BGP for dynamic routing across redundant paths, failover is automatic:
 
