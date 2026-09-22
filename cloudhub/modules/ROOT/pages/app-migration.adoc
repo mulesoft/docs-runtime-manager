@@ -82,6 +82,10 @@ To manage a migrated app using the Mule Maven plugin (MMP), copy the public URL 
 
 When deploying a new CloudHub 2.0 application during migration, don't configure it to use the inherited CloudHub default domain (the shared `+*.cloudhub.io+` endpoint in the format `<app_name>.<region>.cloudhub.io`). This domain is automatically carried over to the CloudHub 2.0 private space, but it's globally shared and can't be managed by you. Route traffic through your vanity domain or `anypointdns.net` endpoint instead. Using the default domain interferes with how traffic switching determines the traffic source (SLB versus DLB) and can cause traffic outages.
 
+==== Scheduler Concurrent Execution
+
+Before you migrate the application, review Scheduler configurations for the xref:ch-ch2-migration-configuration.adoc#scheduler-concurrent-execution[known Scheduler concurrent-execution issue].
+
 
 == Next Steps After Application Upgrade
 
