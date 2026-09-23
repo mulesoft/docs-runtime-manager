@@ -124,7 +124,7 @@ To manage traffic as active/passive or active/active, configure your on-premises
 Because this architecture uses BGP for dynamic routing across redundant paths, failover is automatic:
 
 * If the primary network link, on-premises router, or AWS Direct Connect location fails, BGP withdraws the primary routes.
-* The Transit Gateway moves active traffic to the secondary Direct Connect connection.
+* If the Transit Gateway moves active traffic to the secondary Direct Connect connection.
 * When the primary connection is restored, BGP re-advertises the preferred routes and traffic returns to its normal path. You don't need to update routing manually in CloudHub or AWS.
 
 [IMPORTANT]
