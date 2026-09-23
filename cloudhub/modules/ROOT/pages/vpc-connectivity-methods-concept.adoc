@@ -117,8 +117,6 @@ Before you configure Direct Connect high availability:
 To manage traffic as active/passive or active/active, configure your on-premises edge routers. For an active/standby setup, use AS path prepending on the secondary connection so it's a less preferred route during normal operations. See https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html#private-routing-policies[Routing policies for Direct Connect] in the AWS documentation.
 . Verify that routes propagate from the Direct Connect Gateway into the Transit Gateway route table associated with Anypoint VPC.
 . Attach Anypoint VPC to the Transit Gateway. See xref:tgw-attach-arm.adoc[Attach to Transit Gateways].
-+
-If you also need MuleSoft to accept a Direct Connect VIF or hosted connection, see xref:to-request-vpc-connectivity.adoc#configure-direct-connect-connections[Configure Direct Connect Connections].
 . In your Transit Gateway route tables, route traffic destined for your on-premises network over the Direct Connect links, and route traffic destined for Anypoint VPC to the VPC attachment.
 
 === Failover Behavior
