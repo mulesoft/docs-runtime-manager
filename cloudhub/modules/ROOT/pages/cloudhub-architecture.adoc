@@ -113,6 +113,51 @@ If you enable automatic restarts, CloudHub also automatically restarts applicati
 [NOTE]
 The Limit for the *JVM - Heap Used* graph on Runtime Manager and Anypoint Monitoring can sometimes dynamically increase. It technically shows JVM property `maxMemory()` under the hood, which means the max amount of memory that JVM attempts to use for the heap. Due to the nature of Java, it dynamically changes within the JVM runtime heap size available, depending on a number of factors such as memory fragmentation, garbage collection, and other memory management used by JVM.
 
+[[application-sizing-and-memory-management]]
+=== Application Sizing and Memory Management
+
+When you select a worker size, CloudHub allocates vCores, worker memory, and JVM heap together.
+Use the worker size table to match those values to your application's CPU and memory needs.
+
+You can scale an application vertically by selecting a larger worker size, or horizontally by adding workers.
+See xref:cloudhub-fabric.adoc#worker-scale-out[Worker Scale-out].
+
+Workers with 0.1 vCores and 0.2 vCores provide limited CPU and I/O for apps with smaller workloads.
+These workers can burst to higher CPU speeds for a short time, which helps application startup and infrequent, large workloads.
+If you need consistent performance, use workers with 1 or more vCores.
+
+==== Investigate Memory Pressure and `OutOfMemoryError`
+
+If an application runs out of heap, Mule logs an `OutOfMemoryError`.
+On-Error components can't handle this error, and the only safe recovery is to restart the Mule runtime instance.
+See xref:mule-runtime::mule-error-concept.adoc#fatal_jvm_errors[What Happens After a FATAL_JVM_ERROR].
+
+To correlate memory use with application load in Anypoint Monitoring:
+
+. Click *Monitoring* from the Anypoint Platform home page or from the *Runtimes* menu.
+. Click *Built-in dashboards*, select the environment and application, and click *View*.
+. On the *JVM* tab, review *Heap Used*, *Heap Committed*, and the garbage collection charts.
+. On the *Overview* tab, review *Mule Messages* to compare message load with heap growth.
+
+For chart definitions, see xref:monitoring::app-dashboards.adoc#jvm-charts[JVM] and xref:monitoring::app-dashboards.adoc#overview-charts[Overview] in the built-in dashboards.
+
+If you enable *Automatically restart application when not responding*, CloudHub restarts an unresponsive JVM on the same worker and can relaunch the application on a new worker if restarts fail.
+See xref:worker-monitoring.adoc[Application Monitoring and Automatic Restarts].
+
+When a worker is impaired by hardware or software failures, including memory issues, CloudHub attempts to restart the app on a new worker.
+If the application fails to start after five attempts, its status is *Failed* or *Unrecoverable Runtime Error*, and you must restart the application manually.
+See xref:cloudhub-impaired-worker.adoc[Impaired Worker Monitoring].
+
+You can't download heap dumps from CloudHub.
+include::partial$heap-dump-note.adoc[]
+
+Common causes of `OutOfMemoryError` include processing large payloads without streaming, unconsumed streams that accumulate buffers, unbounded in-memory caching, and memory leaks in custom Java code.
+To reduce memory use for large payloads, stream data instead of loading it into memory, and size batch jobs so that parallel threads fit in the allocated heap.
+See xref:mule-runtime::streaming-about.adoc#consume-streams-promptly[Consume Streams Promptly] and xref:mule-runtime::tuning-batch-processing.adoc[Batch Job Performance Tuning].
+
+For CloudHub 2.0 replica sizes and heap values, see xref:cloudhub-2::ch2-architecture.adoc#cloudhub-2-replicas[CloudHub 2.0 Replicas].
+If you are migrating applications from CloudHub to CloudHub 2.0, compare worker and replica sizes in xref:ch-ch2-migration-configuration.adoc[CloudHub to CloudHub 2.0 Migration].
+
 
 == Global Worker Clouds
 
