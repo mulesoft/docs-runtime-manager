@@ -131,6 +131,130 @@ Here is an example of data received in JSON format in response to a request to g
 ----
 
 
+== JVM Tuning Fields
+
+The Application API (v2) accepts two optional JVM tuning fields on `POST /applications` and `PUT /applications/{domain}`, and returns them from `GET /applications/{domain}`: `openJvmPackagesForArrow` and `gcMethod`. Both fields require a worker replacement to take effect, so redeploy or restart the app after you change either value.
+
+=== openJvmPackagesForArrow
+
+`openJvmPackagesForArrow` is a nullable Boolean that defaults to `false`. When you set it to `true`, the CloudHub worker starts with these additional JVM flags:
+
+----
+--add-opens=java.base/java.nio=ALL-UNNAMED
+-Dmule.module.tweaking.validation.skip=true
+----
+
+Set this field to `true` only for applications that require the Apache Arrow JDBC driver, such as Snowflake Arrow, DuckDB, or any Arrow-backed connector, on Java 17. Without these flags, Java 17's stricter module system blocks Arrow's use of `sun.misc.Unsafe` and off-heap NIO buffers, and the application fails at runtime with an `InaccessibleObjectException`.
+
+[NOTE]
+====
+Enabling `openJvmPackagesForArrow` widens the JVM's reflective access surface, because `java.base/java.nio` becomes open to the unnamed module. Enable it only for apps that need Apache Arrow, not as a general default.
+====
+
+[NOTE]
+====
+`openJvmPackagesForArrow` is a transitional setting. It's removed after Mule runtime engine delivers Module Layer Propagation, tracked in ADR-MULE-#072.
+====
+
+This table shows how each value behaves:
+
+[%header,cols="30,35,35"]
+|===
+|Value in request |Effect on POST (create) |Effect on PUT (update)
+|`true` |Worker starts with both flags |Worker starts with both flags
+|`false` |Worker starts without the flags (default) |Worker starts without the flags
+|`null` or omitted |Treated as `false` |Leaves the stored value unchanged
+|===
+
+Sample request (POST):
+
+[source,json,linenums]
+----
+{
+  "domain": "my-arrow-app",
+  "muleVersion": { "version": "4.7.0" },
+  "openJvmPackagesForArrow": true
+}
+----
+
+Sample response (GET):
+
+[source,json,linenums]
+----
+{
+  "domain": "my-arrow-app",
+  "openJvmPackagesForArrow": true
+}
+----
+
+=== gcMethod
+
+`gcMethod` is a nullable String that selects which garbage collector the CloudHub worker's JVM uses. It defaults to `null`, which applies the boot-time default. Input is case-insensitive, and CloudHub persists and returns the canonical form:
+
+[%header,cols="34,33,33"]
+|===
+|Input |Canonical form |JVM flag applied to the worker
+|`Serial`, `serial`, `SERIAL` |`Serial` |`-XX:+UseSerialGC`
+|`Parallel`, `parallel`, `PARALLEL` |`Parallel` |`-XX:+UseParallelGC`
+|`G1`, `g1` |`G1` |`-XX:+UseG1GC`
+|`null`, `""`, or omitted |`null` (no override) |Boot-time default GC applies
+|Any other value |HTTP 400 with an allow-list error |—
+|===
+
+Only these three canonical names match. CloudHub rejects aliases such as `G1GC` or `ParallelOld`, so use only `Serial`, `Parallel`, or `G1`.
+
+Choose a collector based on the workload:
+
+* Serial GC minimizes the memory footprint on small workers (0.1 or 0.2 vCore).
+* Parallel GC maximizes throughput for batch and ETL-heavy apps.
+* G1 delivers lower, more predictable pause times for latency-sensitive request/response apps on 1 vCore or larger.
+
+[NOTE]
+====
+When `gcMethod` is unset, the worker uses the baseline collector baked into its CloudHub AMI's `wrapper.conf`. On current CloudHub 1.0 AMIs, that baseline is Parallel GC on all Java versions (8, 11, and 17) and all worker sizes. This baseline is a CloudHub deployment choice, not a JVM ergonomics outcome, so it applies even on Java 17, where the JVM's own default would otherwise be G1. Leaving `gcMethod` unset is the recommended path unless you have a specific reason to override it.
+====
+
+This table shows how each value behaves:
+
+[%header,cols="30,35,35"]
+|===
+|Value in request |Effect on POST (create) |Effect on PUT (update)
+|`Serial`, `Parallel`, or `G1` (any case) |Stores the canonical form |Updates to the canonical form and audits the change
+|`null` or omitted |Leaves the field `null` (boot default applies) |Leaves the stored value unchanged
+|`""` or whitespace only |Stores `null` (boot default applies) |Clears any existing override and audits the change
+|Any other non-empty string |HTTP 400 |HTTP 400
+|===
+
+Changing `gcMethod` doesn't hot-restart running workers. The new selector applies on the next worker replacement: a redeploy, restart, or scaling event.
+
+Sample request (POST):
+
+[source,json,linenums]
+----
+{
+  "domain": "my-latency-app",
+  "muleVersion": { "version": "4.7.0" },
+  "gcMethod": "G1"
+}
+----
+
+Sample request (PUT), which clears the override:
+
+[source,json,linenums]
+----
+{ "gcMethod": "" }
+----
+
+Sample response (GET):
+
+[source,json,linenums]
+----
+{
+  "domain": "my-latency-app",
+  "gcMethod": "G1"
+}
+----
+
 
 == Rate Limits
 
