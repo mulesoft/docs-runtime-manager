@@ -278,9 +278,9 @@ a|Supported protocols:
 |The internal worker hostname `mule-worker-internal-<app>.<region>.cloudhub.io` resolves to the Mule worker’s internal IP address for VPC-internal communication.
 a|Use one of these three options:
 
-* Internal endpoint: `internal-<app>-<uniq-id>.<space-id>.<region>.cloudhub.io.`
+* Internal endpoint: `<app>.internal-<space-id>.<region>.cloudhub.io`
 * Custom internal endpoint: CNAME pointing to the internal endpoint. You can configure custom TLS contexts for internal endpoints that are only accessible via the private network.
-* Kubernetes service address: Direct pod-to-pod communication. This works only for applications in the same namespace (environment).
+* Kubernetes service address: `<app>.<envid>.svc.cluster.local:${http.port}` for direct pod-to-pod communication within the same namespace (environment). This path isn't highly available and bypasses the ingress load balancer, so use the internal endpoint instead unless you specifically need direct pod-to-pod routing.
 |===
 
 ====
