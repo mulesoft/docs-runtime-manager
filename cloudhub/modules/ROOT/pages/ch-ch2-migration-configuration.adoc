@@ -174,14 +174,14 @@ a|You can configure application-level egress connections, such as:
 ====
 
 
-.Load Balancing	
+.Load Balancing
 [%collapsible,opts=hide-details]
 ====
 
 [cols="1,1",options="header"]
 |===
 |CloudHub
-|CloudHub 2.0 
+|CloudHub 2.0
 
 a|CloudHub provides two types of load balancing:
 
@@ -197,6 +197,12 @@ a|CloudHub provides two types of load balancing:
 
 |You can assign up to four load balancer units (up to eight workers total) to a Dedicated Load Balancer (DLB) for high availability and load distribution. The Shared Load Balancer (SLB) provides fully managed high availability with no customer configuration required.
 |CloudHub 2.0 automatically distributes application replicas across two or more availability zones (AZs) for built-in high availability and fault tolerance. If you use the xref:vpc-upgrade.adoc[VPC upgrade tool], the private space inherits the same number of AZs as the original CloudHub VPC.
+
+a|URL decoding is enabled by default at the ingress layer for both SLB and DLB:
+
+* SLB: URL decoding is always enabled.
+* DLB: URL decoding is enabled by default, but you can disable it by enabling the *Keep URL encoding* option.
+|URL encoding is enabled by default at the ingress layer for both Shared Space (SS) and Private Space (PS). CloudHub 2.0 does not support URL decoding at the ingress layer. URLs remain encoded as received from the client.
 |===
 
 ====
