@@ -33,6 +33,44 @@ These endpoints use WebSockets:
 [NOTE]
 Ports, IP addresses, and hostnames are required for outbound connectivity. Inbound connectivity is not required to your network and servers. The connection between customer-hosted Mule runtime and Anypoint Platform is established via persistent Websocket connections. All connections are outbound.
 
+== WebSocket Connection Requirements
+
+The Mule runtime agent maintains a persistent WebSocket connection over HTTPS (WSS port 443) to Anypoint Runtime Manager. To maintain agent communication, configure your network infrastructure to allow this connection.
+
+=== Preventing Idle Timeout Disconnections
+
+Configure network proxies and firewalls to prevent idle timeouts from terminating WebSocket connections. Enabled idle timeouts on your network infrastructure can cause the agent to disconnect unexpectedly from Runtime Manager. To prevent agent disconnections:
+
+* Disable idle timeouts on your firewall and proxy servers for connections to `runtime-manager.anypoint.mulesoft.com` and regional variants.
+* Configure keep-alive mechanisms to maintain the connection during inactive periods.
+* Work with your network administrator to ensure that proxy and firewall policies allow persistent connections.
+
+=== Bypassing SSL/TLS Inspection
+
+Configure your network proxies and firewalls to bypass SSL/TLS inspection for WebSocket connections to Anypoint Platform endpoints. Enable SSL passthrough for these hostnames:
+
+* `anypoint.mulesoft.com`
+* `runtime-manager.anypoint.mulesoft.com`
+* Regional variants, such as `runtime-manager.eu1.anypoint.mulesoft.com` and `runtime-manager.gov.anypoint.mulesoft.com`
+
+[IMPORTANT]
+====
+Don't enable SSL/TLS decryption or deep packet inspection for these WebSocket connections. If you intercept or modify the SSL/TLS handshake, the agent fails authentication with Runtime Manager. 
+
+Configure your firewall rules to explicitly allow SSL passthrough for Anypoint Platform endpoints.
+====
+
+=== Handling Transient Network Disconnections
+
+Brief network disruptions can cause temporary disconnection alerts in Runtime Manager. However, the Mule runtime agent reconnects automatically when network connectivity returns. Expect this behavior during network disruptions:
+
+* Brief network interruptions trigger temporary disconnection alerts.
+* The agent attempts to reestablish the WebSocket connection automatically.
+* When connectivity is restored, the agent reconnects and resumes normal operation.
+* Persistent disconnections lasting longer than a few minutes require network or firewall investigation.
+
+For more information on configuring agent communication through proxy servers, see xref:rtm-agent-proxy-config.adoc[].
+
 == Ports
 
 [NOTE]
