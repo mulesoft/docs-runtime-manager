@@ -111,6 +111,19 @@ For information about using variables in alerts, see xref:runtime-manager::alert
 
 When you trigger the alert, the specified recipients receive an email with the custom message you added to the app.
 
+=== Alert Email Size Limit
+
+CloudHub delivers each alert email in an internal request that includes the email template and every notification variable, including custom properties. That request can't exceed 240,000 bytes.
+
+A custom property that the email body references counts toward the limit more than once. CloudHub includes the property in the notification variables and again when it expands the template. For example, if the message body contains `${errorLogData}`, that value is counted twice. In testing, CloudHub stopped sending the email at about 145 KB of notification payload when the template expanded a large custom property, and at about 240 KB when it didn't. Keep custom-property data well below about 140 KB.
+
+If the request exceeds 240,000 bytes, CloudHub accepts the notification and returns HTTP 200, but it doesn't send the email and doesn't tell you that the email failed. You can't resend that email.
+
+Put a short error summary in the alert email, and keep the detailed errors in the application logs.
+
+[NOTE]
+Some mail clients clip large emails. Gmail clips messages over about 102 KB and shows "[Message clipped] View entire message". CloudHub still delivers the full body.
+
 == Notifications
 
 _Notifications_ give you visibility into business-related events inside your application.
