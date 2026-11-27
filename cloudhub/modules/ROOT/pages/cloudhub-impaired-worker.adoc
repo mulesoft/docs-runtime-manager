@@ -14,7 +14,7 @@ As long as the app is running on multiple workers, this delay shouldn't impact t
 
 After the app is completely up and running, CloudHub switches the traffic to the new app instance and deletes the old app instance, ensuring zero downtime.
 
-If the application fails to start after five attempts, its status is *Failed* or *Unrecoverable Runtime Error* and you must manually restart the application.
+If the application fails to start after five attempts, its status is *Failed* or *Unrecoverable Runtime Error* and you must manually restart the application or the restart will be attempted during the next impaired worker recovery cycle.
 
 You see a notification indicating that the automatic restart occurred. The application log indicates when an app is restarted automatically and any failures. For example:
 
